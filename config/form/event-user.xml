@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<attributes>
+		<attribute name="name">user</attribute>
+	</attributes>
+	<fieldsets>
+
+		<fieldset name="main">
+			<legend>User of event</legend>
+			<elements>
+
+				<field type="textinputAC" name="id">
+						<label>LLL:calendar.event.attr.assigned_to</label>
+						<config>
+							<acListener>
+								<ext>calendar</ext>
+								<controller>autocompletion</controller>
+								<cmd>user</cmd>
+							</acListener>
+							<acLabelFunc>TodoyuUserManager::getLabel</acLabelFunc>
+						</config>
+						<required />
+				</field>
+
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>

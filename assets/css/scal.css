@@ -1,0 +1,205 @@
+/* ------------------------------------------------------------
+	todoyu-style calendar widget
+   ------------------------------------------------------------ */
+
+#panelwidget-calendar-content * {
+	font-size:11px;
+	line-height:21px;
+}
+
+#panelwidget-calendar-content .calheader .caltitle,
+#panelwidget-calendar-content .calheader .calcontrol,
+#panelwidget-calendar-content .dayboxname {
+	font-size:12px;
+}
+
+.todoyuskin {
+	margin:2px 1px 1px 2px;
+	padding:0;
+	border:0px none;
+	width: 253px;
+	display:block;
+	background-color: #fff;
+	min-height:175px;
+}
+
+.todoyuskin:hover {
+	cursor:pointer;
+}
+
+.todoyuskin .calwrapper {
+	display:block;
+}
+
+.todoyuskin .calweekswrapper {
+	display:block;
+}
+
+.todoyuskin .calheader {
+	position:relative;
+	display: block;
+	width:100%;
+	text-align:center;
+	font-weight: bold;
+	background:#D7DCC6;
+	margin:0 0 1px;
+}
+
+	.todoyuskin .caltitle {
+		width:auto;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+	}
+
+	.todoyuskin .calcontrol {
+		font-weight: bold;
+		width:25px;
+	}
+
+	.todoyuskin .calcontrol:hover {
+		background:#316AC5;
+		color:#fff;
+	}
+
+	.todoyuskin .calclose {
+		float:right;
+		display:none;
+	}
+
+	.todoyuskin .calnextmonth {
+		position:absolute;
+		right:25px;
+	}
+
+	.todoyuskin .calnextyear {
+		position:absolute;
+		right:0px;
+	}
+
+	.todoyuskin .calprevmonth {
+		position:absolute;
+		left:25px;
+	}
+
+	.todoyuskin .calprevyear {
+		position:absolute;
+		left:0px;
+	}
+
+.todoyuskin .daybox {
+	float:left;
+	background-color: white;
+	width:35px;
+	padding:0;
+	text-align:center;
+}
+
+.todoyuskin .today {
+	background-color: #e4eace;
+	font-weight:bold;
+}
+
+.todoyuskin .dayboxdate {
+}
+
+.todoyuskin .dayboxvalue{
+	display: none;
+}
+
+.todoyuskin .dayboxname{
+	background-color: #e4eace;
+	font-size:10px !important;
+	text-transform:uppercase;
+}
+
+.todoyuskin .dayboxsunday,
+.todoyuskin .dayboxsaturday {
+	background-color: #f2f3ed;
+}
+
+.todoyuskin .daybox:hover,
+.todoyuskin .daybox:hover * {
+	background:#316ac5;
+	color:#fff;
+}
+
+.todoyuskin .dayboxname:hover {}
+
+.todoyuskin .dayinmonth {}
+
+.todoyuskin .dayoutmonth * {
+	color: #999;
+}
+
+.todoyuskin .dayselected{
+	background-color: #d3d9bf;
+}
+
+.todoyuskin .daycurrent{
+	border:1px solid #f2f3ed;
+}
+
+.todoyuskin .weekbox{
+	width:100%;
+	min-height:21px;
+	display:block;
+}
+
+.todoyuskin .endweek{}
+
+.todoyuskin .weekboxname{}
+
+/* border */
+.todoyuskin .calweekswrapper {
+	border-width:1px 1px 0 0;
+	border-color:#818181;
+	border-style:dotted;
+}
+
+.todoyuskin .weekbox {
+	border-width:0 0 1px 0;
+	border-color:#818181;
+	border-style:dotted;
+}
+
+.todoyuskin .weekboxname {
+	border-width:0 0 0 1px;
+	border-color:#e4eace;
+	border-style:solid;
+}
+
+.todoyuskin .daybox {
+	border-width:0 0 0 1px;
+	border-color:#818181;
+	border-style:dotted;
+}
+
+.inSelMonth {
+	border:1px solid #8fa8de !important;
+}
+
+.todoyuskin .dayboxname {
+	border-width:0 1px 0 0;
+	border-color:#e4eace;
+	border-style:solid;
+}
+
+
+
+
+#gridcontainer.dayMode, #gridcontainer.weekMode {
+	overflow-y:visible; height:100%;
+}
+
+#gridcontainer.monthMode {
+	overflow: visible;
+}
+
+.tg-nowptr {
+	left:0;
+}
+
+.eventQuickInfoHotspot, .monthevent, .montheventTime, .dayevent, .eventQuickInfoHotspot dt dt dd span{
+	font-size:9px !important;
+}

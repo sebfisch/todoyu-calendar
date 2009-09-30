@@ -1,0 +1,11 @@
+/* ------------------------------------------------------------
+	event
+   ------------------------------------------------------------ */
+
+#panelwidget-event h1 .title {
+	background:	url('../img/icons.png') no-repeat 8px -1285px;
+}
+
+#panelwidget-event button .buttonAddEvent	{
+	background-position: 8px -480px;
+}

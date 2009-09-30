@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locallang>
+	<labels lang="en">
+		<label index="title">Holiday regions</label>
+		<label index="showNoHolidays">Hide holidays</label>
+	</labels>
+	<labels lang="de">
+		<label index="title">Feiertagsregionen</label>
+		<label index="showNoHolidays">Keine Feiertage anzeigen</label>
+	</labels>
+</locallang>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<attributes>
+		<attribute name="action">?ext=calendar&amp;controller=event</attribute>
+		<attribute name="name">event</attribute>
+		<attribute name="onsubmit">return Todoyu.Ext.calendar.Edit.saveEvent(this)</attribute>
+		<attribute name="class">formEvent</attribute>
+	</attributes>
+	<hiddenFields>
+		<field name="id" />
+	</hiddenFields>
+
+	<fieldsets>
+
+		<fieldset name="main">
+			<legend>Data of the event</legend>
+			<elements>
+
+				<field type="textinput" name="title">
+					<label>LLL:calendar.event.attr.title</label>
+					<required>1</required>
+				</field>
+
+				<field type="select" name="eventtype">
+					<label>LLL:calendar.event.attr.eventtype</label>
+					<source type="function">
+						<function>TodoyuEventDataSource::getEventTypeOptions</function>
+					</source>
+					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.Edit.reload(this.form)"</extraAttributes>
+					<required>1</required>
+				</field>
+
+				<field type="checkbox" name="is_dayevent">
+					<label>LLL:calendar.event.attr.is_dayevent</label>
+					<extraAttributes>onclick="Todoyu.Ext.calendar.Event.hideTime('event');"</extraAttributes>
+				</field>
+
+				<field type="checkbox" name="is_public">
+					<label>LLL:calendar.event.attr.is_public</label>
+				</field>
+
+				<field type="checkbox" name="is_private">
+					<label>LLL:calendar.event.attr.is_private</label>
+					<validate>
+						<user msg="LLL:calendar.check.privateEvent">
+							<function>TodoyuEventFormValidator::eventIsAssignableToCurrentUserOnly</function>
+						</user>
+					</validate>
+				</field>
+
+				<field type="datetimeinput" name="date_start">
+					<label>LLL:calendar.event.attr.startdate</label>
+					<required>1</required>
+					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event');"</extraAttributes>
+					<class>datetime</class>
+				</field>
+
+				<field type="datetimeinput" name="date_end">
+					<label>LLL:calendar.event.attr.enddate</label>
+					<validate>
+						<user msg="LLL:calendar.check.starttimeAfterEndtime">
+							<function>TodoyuFormValidator::dateTimeNotBefore</function>
+							<field>date_start</field>
+						</user>
+					</validate>
+					<class>datetime</class>
+				</field>
+			</elements>
+		</fieldset>
+
+		<fieldset name="details">
+			<legend>Details</legend>
+			<elements>
+
+				<field type="textinput" name="place">
+					<label>LLL:calendar.event.attr.place</label>
+				</field>
+
+				<field type="textarea" name="description">
+					<label>LLL:calendar.event.attr.description</label>
+				</field>
+
+				<field type="databaseRelation" name="user">
+					<label>LLL:calendar.event.attr.assigned_to</label>
+					<foreignRecordConf>
+						<foreignformxml>ext/calendar/config/form/event-user.xml</foreignformxml>
+						<foreignLabelUserFunc>TodoyuUserManager::getDatabaseRelationLabel</foreignLabelUserFunc>
+						<addSubformConfig>
+							<ext>calendar</ext>
+							<controller>formhandling</controller>
+						</addSubformConfig>
+					</foreignRecordConf>
+					<required />
+				</field>
+
+				<field type="textinputAC" name="id_project">
+					<label>LLL:calendar.event.attr.id_project</label>
+					<config>
+						<acListener>
+								<ext>calendar</ext>
+								<controller>autocompletion</controller>
+								<cmd>project</cmd>
+						</acListener>
+						<acLabelFunc>TodoyuProjectManager::getLabel</acLabelFunc>
+					</config>
+				</field>
+
+				<field type="textinputAC" name="id_task">
+					<label>LLL:calendar.event.attr.id_task</label>
+					<config>
+						<acListener>
+								<ext>calendar</ext>
+								<controller>autocompletion</controller>
+								<cmd>task</cmd>
+						</acListener>
+						<acLabelFunc>TodoyuTaskManager::getLabel</acLabelFunc>
+					</config>
+				</field>
+
+			</elements>
+		</fieldset>
+
+		<fieldset name="buttons">
+			<legend>Actions</legend>
+			<class>buttons</class>
+			<elements>
+				<field type="button" name="save">
+					<text>LLL:form.field.save</text>
+					<type>submit</type>
+					<class>buttonSave</class>
+					<hasIcon>1</hasIcon>
+				</field>
+				<field type="button" name="cancel">
+					<text>LLL:form.field.cancel</text>
+					<type>button</type>
+					<class>buttonCancel</class>
+					<hasIcon>1</hasIcon>
+					<onclick>Todoyu.Ext.calendar.Edit.cancelEventEdit()</onclick>
+				</field>
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>

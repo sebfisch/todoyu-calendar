@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locallang>
+	<labels lang="en">
+		<label index="title">Year selector</label>
+	</labels>
+	<labels lang="de">
+		<label index="title">Jahreswähler</label>
+	</labels>
+</locallang>

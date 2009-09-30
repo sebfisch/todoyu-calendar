@@ -1,0 +1,64 @@
+<div class="mainGrid">
+	<div id="gridcontainer" class="dayMode">
+		<div id="topcontainerwk">{* ----- top container ----- *}
+			<table class="wk-weektop"><tbody>
+				<tr class="wk-daynames">
+					<td rowspan="3" class="wk-tzlabel">
+						<div id="toggleDayView" class="{if $fullDayView}full{/if}" title="{if $fullDayView}{Label calendar.showworkinghours}{else}{Label calendar.showfullday}{/if}" onclick="Todoyu.Ext.calendar.Navi.toggleFullDayView()"></div>
+					</td>
+					<th scope="col"><br/></th>
+					<th style="width:4px;" rowspan="3"></th>
+				</tr><tr>
+					<td class="wk-allday">
+						<div id="dayViewAllDaywk">
+							{if count($holidays[$dateKey]) > 0}<span id="holiday-{$dayDateKey}" class="holiday holidayQuickInfoHotspot">&nbsp;&nbsp;&nbsp;&nbsp; {$holidays[$dayDateKey][0][title]} </span>{/if}
+							{$birthdays}
+							{foreach $dayEvents[$dateKey] dayEvent}
+								{$dayEvent}
+							{/foreach}
+						</div>
+					</td>
+				</tr>
+				<tr class="wk-webcontent"><td class="wk-webcontent-td"></td></tr>
+			</tbody></table>
+		</div>{* ----- end: top container ----- *}
+		{* ----- hours of day ----- *}
+		<div id="calendararea" class="wk-scrolltimedevents {if $fullDayView}full{/if} contextmenucalendararea">
+			<table class="tg-timedevents" id="tgTable"><tbody>
+				<tr>
+					<td style="width:40px;"></td>
+					<td>
+						<div class="tg-hourmarkerwrapper">
+							<div class="tg-hourmarkers">
+								{for markercounter 0 23}<div class="tg-dualmarker"></div>{/for}
+							</div>
+						</div>
+					</td>
+				</tr><tr>
+					<td class="tg-times">{* ----- textual hour (00:00 to 23:00)  ----- *}
+						<div style="top:644px;" class="tg-nowptr" id="tgnowptr"/>
+						{assign var=hourTimestamp value=$timestamp}
+						{for hourcounter 0 23}{if $hourcounter == 8}<div id="dayStart"></div>{/if}
+							<div title="{dateFormat $timestamp DlongD2MlongY4} - {if $hourcounter < 10}0{/if}{$hourcounter}:00" id="createEventAt-{$hourTimestamp}" class="tg-time-day">
+								{if $hourcounter < 10}0{/if}{$hourcounter}:00
+							</div>
+						{assign var=hourTimestamp value=$hourTimestamp+3600}
+						{/for}
+					</td>
+					<td class="tg-col dayview{if date('d.m.y', $tstamp) == date('d.m.y', time())}today{/if}">
+						{* ----- hour contents (events and related info-tooltips) ----- *}
+						<div id="tgCol0" class="tg-colwrapper">
+						{foreach $events event}
+							{$event}
+						{/foreach}
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>{* ----- end: hours of day ----- *}
+	</div>
+</div>
+
+<script language="javascript">
+Todoyu.Ext.calendar.setTitle('{$title}');
+</script>

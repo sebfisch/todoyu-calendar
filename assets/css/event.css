@@ -1,0 +1,54 @@
+.dayMode .event,
+.weekMode .event {
+	-moz-user-select:none;
+	color:#fff;
+	overflow:hidden;
+	position:absolute;
+}
+
+.dayMode .event dl,
+.weekMode .event dl {
+	
+}
+
+.dayMode .event dt,
+.weekMode .event dt {
+	padding: 1px;
+	white-space:nowrap;
+}
+
+.dayMode .event dt span.time,
+.weekMode .event dt span.time {
+	padding: 2px;
+	font-family:Verdana,Helvetica,sans-serif;
+	font-size:9px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	line-height:normal;
+	text-align:left;
+	white-space:nowrap;
+	color: #fff;
+}
+
+.dayMode .event dd,
+.weekMode .event dd {
+	font-family:Verdana,Helvetica,sans-serif;
+	font-size:9px;
+	white-space:nowrap;
+	color: #fff;
+	padding: 2px;
+}
+
+
+.dayevent {
+	margin: 0px;
+	margin-bottom: 1px;
+	height: 14px;
+	padding-top: 1px;
+	
+}
+
+#topcontainerwk .dayevent {
+	position:relative;
+}

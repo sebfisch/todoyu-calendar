@@ -1,0 +1,51 @@
+<div class="mainGrid">
+	<div id="gridcontainer" class="weekMode">
+		{include ext/calendar/view/calendar-week-dayeventbar.tmpl}
+		{* ----- start scrolltimedevents ----- *}
+		<div id="calendararea" class="wk-scrolltimedevents {if $fullDayView}full{/if} contextmenucalendararea">
+			<table class="tg-timedevents" id="tgTable">
+				<tbody>
+					<tr><td style="width:40px;"></td>
+						<td colspan="7">
+							<div class="tg-hourmarkerwrapper">
+								<div class="tg-hourmarkers">
+								{* ----- render hour splitting lines ----- *}
+								{for hourmarker 0 23}
+									<div class="tg-dualmarker"></div>
+								{/for}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="tg-times">
+							<div style="top:430px;" class="tg-nowptr" id="tgnowptr"/>
+							{for hour 0 23}
+								<div class="tg-time">{if $hour < 10}0{/if}{$hour}:00</div>
+							{/for}
+						</td>
+						{* ----- render week event inserters ----- *}
+						{for daycounter 0 6}
+							{assign var=dayDateKey value=date('Ymd', $timestamps[$daycounter])}
+							<td class="tg-col{$weekclass[$daycounter]}{if $timestamps[$daycounter] == $timestamp_today} tg-coltoday{/if}">
+								<div class="tg-colwrapper">
+									<div id="tgCol{$daycounter}">
+									{foreach $events[$dayDateKey] event}
+										{$event}
+									{/foreach}									
+									</div>
+								</div>
+							</td>
+						{/for}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		{* ----- end scrolltimedevents ------- *}
+	</div>
+	{* ------ end gridcontainer ------ *}
+</div>
+
+<script language="javascript">
+Todoyu.Ext.calendar.setTitle('{$title}');
+</script>

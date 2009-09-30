@@ -1,0 +1,26 @@
+/* ------------------------------------------------------------
+	calendar
+   ------------------------------------------------------------ */
+
+#panelwidget-calendar {
+	border:none;
+	z-index:1;
+}
+
+#panelwidget-calendar h1 .title {
+	background:url('../img/icons.png') no-repeat 4px -66px;
+}
+
+#scalupdate {
+	display: none;
+}
+
+#panelwidget-event-content {
+	padding: 6px 0 6px 5px;
+}
+
+#panelwidget-calendar-content .calheader,
+#panelwidget-calendar-content .calcontrol {
+	font-weight: normal !important;
+	text-transform: uppercase;
+}

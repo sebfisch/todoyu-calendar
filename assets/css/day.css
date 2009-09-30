@@ -1,0 +1,66 @@
+/* ------------------------------------------------------------
+	header
+   ------------------------------------------------------------ */
+
+.day-wk-dayname {
+	font-weight:normal;
+	color:#112aab;
+	padding:2px 4px;
+	margin-left:4px;
+	white-space:nowrap;
+	text-align: center;
+}
+
+.day-todaywk-dayname{
+	background-color:#88aacc;
+	border-color:#6786a7 #aaccee #aaccee #6786a7;
+	border-style:solid;
+	border-width:1px;
+	color:#fff;
+	font-weight:bold;
+	padding:1px 3px;
+	margin-left:0px;
+	white-space:nowrap;
+	text-align: center;
+}
+
+
+/* ------------------------------------------------------------
+	dayview allday 00:00 - 23:00
+   ------------------------------------------------------------ */
+
+#dayViewAllDaywk {
+	padding: 0px 0px 2px 0px;
+	background: none;
+}
+
+.tg-time-day {
+	padding-left:2px;
+	color: #446688;
+	border-top:1px solid #ddd;
+	background-color:#f2f3ed;
+	height:41px;
+	cursor:pointer;
+}
+
+.tg-time-day:hover {
+	background-color:#f1ffc4;
+}
+
+
+/* ------------------------------------------------------------
+	dayview today
+   ------------------------------------------------------------ */
+
+.dayviewtoday {
+	background-color:#ffffcc;
+}
+
+
+/* ------------------------------------------------------------
+	event
+   ------------------------------------------------------------ */
+
+.dayevent {
+	padding-top: 1px;
+}

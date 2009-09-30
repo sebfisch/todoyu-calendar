@@ -1,0 +1,45 @@
+<div class="mainGrid month" id="calendararea">
+	<div id="gridcontainer" class="monthMode">
+		<table class="mv-daynames-table"><tbody>
+			<tr>
+				{for daynum 0 6}<th title="{Label calendar.weekdayName$daynum}" class="mv-dayname {cycle values="odd,even"}">
+					{Label calendar.weekdayNameShort$daynum}
+				</th>{/for}
+			</tr>
+		</tbody></table>
+		<div id="mvEventContainer" class="mv-event-container">
+		{for monthrowCounter 1 5}{assign var=dayFrom value=$monthrowCounter*7-6}{assign var=dayUntil value=$monthrowCounter*7}
+			<div class="month-row">
+				<table class="st-grid"><tbody>
+					<tr>
+					{for daycounter $dayFrom $dayUntil}{assign var=dayDateKey value=date('Ymd', $timestamps[$daycounter])}
+											<td id="createEventAt-{$timestamps[$daycounter]}" {if count($holidays[$dayDateKey]) == 0}title="{dateFormat $timestamps[$daycounter] DlongD2MlongY4}{if $timestamps[$daycounter] == $timestamp_today} ({Label calendar.today}){/if}"{/if} class="{if count($holidays[$dayDateKey]) > 0}dayTitleHoliday {/if}createEventHotspotOnTitle title t{if $timestamps[$daycounter] == $timestamp_today}today{/if}{if $dwoo.for.daycounter.first} first{/if}{if date('n', $timestamps[$daycounter])==date('n')} inSelMonthTitle{/if}">
+												{if $daycounter == $dayFrom}<span class="weekNumber" title="{dateFormat $timestamps[$daycounter] calendarweek}">{dateFormat $timestamps[$daycounter] calendarweek}</span>{/if}
+												<span {if count($holidays[$dayDateKey]) > 0}id="holiday-{$dayDateKey}" class="holiday holidayQuickInfoHotspot"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;{if count($holidays[$dayDateKey]) == 0}</span>{/if}
+												{if date('j', $timestamps[$daycounter]) == 1}{dateFormat $timestamps[$daycounter] MlongD2}{else}{date('j', $timestamps[$daycounter])}{/if}{if count($holidays[$dayDateKey]) > 0}</span>{/if}
+											</td>
+					{/for}
+					</tr><tr>
+					{for daycounter $dayFrom $dayUntil}<td id="createEventAt-{$timestamps[$daycounter]}" class="content c{if $timestamps[$daycounter] == $timestamp_today}today{/if}{if $dwoo.for.daycounter.first} first{/if}{if date('n', $timestamps[$daycounter])==date('n')} inSelMonth{/if}">
+							{assign var=dayDateKey value=date('Ymd', $timestamps[$daycounter])}
+							{$birthdays[$dayDateKey]}
+							{foreach $dayEvents[$dayDateKey] dayEvent}
+								{$dayEvent}
+							{/foreach}
+							{foreach $events[$dayDateKey] event}
+								{$event}
+							{/foreach}
+							{if daycounter == $dayUntil}<br/>{/if}
+						</td>
+					{/for}
+					</tr>
+				</tbody></table>
+			</div>
+		{/for}
+		</div>
+	</div>
+</div>
+
+<script language="javascript">
+Todoyu.Ext.calendar.setTitle('{$title}');
+</script>

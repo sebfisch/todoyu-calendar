@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locallang>
+	<labels lang="en">
+		<label index="section.panelwidgets">Panel widgets</label>
+		<label index="right.PanelWidgetCalendar">See calendar widget</label>
+		<label index="right.PanelWidgetQuickEvent">See quickevent widget</label>
+	</labels>
+	<labels lang="de">
+		<label index="section.panelwidgets">Panel widgets</label>
+		<label index="right.PanelWidgetCalendar">Kalender widget (anzeigen)</label>
+		<label index="right.PanelWidgetQuickEvent">Termin widget (anzeigen)</label>
+	</labels>
+</locallang>

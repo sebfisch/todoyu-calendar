@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form>
+	<attributes>
+		<attribute name="name">holiday</attribute>
+		<attribute name="action">?ext=sysmanager&amp;controller=records</attribute>
+		<attribute name="onsubmit">Todoyu.Ext.sysmanager.Extensions.Records.saveRecord(this); return false;</attribute>
+	</attributes>
+	<fieldsets>
+
+		<fieldset name="main">
+			<legend>holiday of holidayset</legend>
+			<elements>
+
+				<field type="textinputAC" name="id">
+						<label>LLL:calendar.holidayset.attr.holiday</label>
+						<config>
+							<acListener>
+								<ext>calendar</ext>
+								<controller>autocompletion</controller>
+								<cmd>holiday</cmd>
+								<minChars>1</minChars>
+							</acListener>
+							<acLabelFunc>TodoyuHolidayManager::getHolidayLabel</acLabelFunc>
+						</config>
+						<required>1</required>
+				</field>
+
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>

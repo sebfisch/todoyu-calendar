@@ -1,0 +1,43 @@
+<div class="quickinfo-left"> </div>
+<div class="quickinfo-right">
+	<table class="quickinfo" onclick="$('quickinfo').hide();">
+		<tr>
+			<td class="quickinfo_label"><div class="quickinfo_what">&nbsp;</div></td>
+			<td class="quickinfo_content quickinfo_title">
+				{if $is_private == 1}
+					<span class="privateEvent"></span>
+					{if isUserId($id_user_create)}{$title}{else}{Label calendar.privateEvent.info}{/if}
+				{else}{$title}{/if}
+			</td>
+		</tr><tr>
+			<td class="quickinfo_label"> </td>
+			<td class="quickinfo_content">{Label core.type}: {EventTypeLabel $eventtype}</td>
+		</tr><tr>
+			<td class="quickinfo_label"><div class="quickinfo_when">&nbsp;</div></td>
+			<td class="quickinfo_content">
+			{if $eventtype != 3}{* ----- not a birthday? ----- *}
+				{dateFormat $date_start datetime} {Label calendar.hour}<br/>{dateFormat $date_end datetime} {Label calendar.hour}
+			{else}{* ----- birthday? ----- *}{dateFormat $date_start D2M2}{/if}
+			</td>
+		</tr>
+		{if $place != '' && $eventtype != 3}<tr>
+			<td class="quickinfo_label"><div class="quickinfo_where">&nbsp;</div></td>
+			<td class="quickinfo_content">{$place}</td>
+		</tr>{/if}
+		{if $description != ''}<tr>
+			<td class="quickinfo_label"><div class="quickinfo_description">&nbsp;</div></td>
+			<td class="quickinfo_content">{$description}</td>
+		</tr>{/if}
+		{if $eventtype != 3}{* ----- creation/ assigned user(s): not relevant for birthdays ----- *}<tr>
+			<td class="quickinfo_label"><div class="quickinfo_owner">&nbsp;</div></td>
+			<td class="quickinfo_content">{userName $id_user_create}</td>
+		</tr><tr>
+			<td class="quickinfo_label"><div class="quickinfo_assignedto">&nbsp;</div></td>
+			<td class="quickinfo_content">
+				{foreach $assignedUsers num userData}
+					<span class="{if $userData.is_acknowledged != 1}isNotAcknowledgedIcon{/if}">{userName $userData.id_user}</span><br/>
+				{/foreach}
+			</td>
+		</tr>{/if}
+	</table>
+</div>

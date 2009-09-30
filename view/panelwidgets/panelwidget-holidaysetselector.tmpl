@@ -1,0 +1,8 @@
+<select id="panelwidget-holidaysetselector-list" name="holidaysets" multiple="true"/>
+	<option onclick="if(this.selected)Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector.selectNoSetOption();" value="0" {if in_array(0, $prefs)} selected="selected"{/if}>{Label panelwidget-holidaysetselector.showNoHolidays}</option>
+{foreach $sets idSet setData}
+	<option value="{$idSet}" class="holidayset_{$idSet} {cycle values="odd,even"}{if $setData.selected == 1} selected{/if}"{if $setData.selected == 1} selected="selected"{/if}>
+		{$setData.title}
+	</option>
+{/foreach}
+</select>

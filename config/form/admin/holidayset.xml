@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<attributes>
+		<attribute name="name">holidayset</attribute>
+		<attribute name="action">?ext=sysmanager&amp;controller=records</attribute>
+		<attribute name="onsubmit">Todoyu.Ext.sysmanager.Extensions.Records.saveRecord(this); return false;</attribute>
+	</attributes>
+	<hiddenFields>
+		<field name="id"></field>
+	</hiddenFields>
+	<fieldsets>
+		<fieldset name="main">
+			<legend>Main data of a holidayset</legend>
+			<elements>
+				<field type="textinput" name="title">
+					<label>LLL:calendar.holidayset.attr.name</label>
+					<required>1</required>
+				</field>
+				<field type="textarea" name="description">
+					<label>LLL:calendar.holidayset.attr.description</label>
+				</field>
+				<field type="button" name="expandall">
+					<type>button</type>
+					<text>LLL:core.expandall</text>
+					<onclick>Todoyu.Form.expandAllForeignRecords(this.id);</onclick>
+					<class></class>
+				</field>
+				<field type="databaseRelation" name="holiday">
+					<label>LLL:calendar.holidayset.attr.holiday</label>
+					<foreignRecordConf>
+						<foreignformxml>ext/calendar/config/form/admin/holidayset-holiday.xml</foreignformxml>
+						<foreignLabelField>title</foreignLabelField>
+						<addSubformConfig>
+							<ext>calendar</ext>
+							<controller>formhandling</controller>
+						</addSubformConfig>
+					</foreignRecordConf>
+				</field>
+			</elements>
+		</fieldset>
+		<fieldset name="buttons">
+			<legend>Actions</legend>
+			<class>buttons</class>
+			<elements>
+				<field type="button" name="save">
+					<type>submit</type>
+					<text>LLL:form.field.save</text>
+					<class>buttonSave</class>
+					<hasIcon>1</hasIcon>
+				</field>
+				<field type="button" name="cancel">
+					<text>LLL:form.field.cancel</text>
+					<type>button</type>
+					<class>buttonCancel</class>
+					<hasIcon>1</hasIcon>
+					<onclick>Todoyu.Ext.sysmanager.Extensions.Records.closeForm();</onclick>
+				</field>
+			</elements>
+		</fieldset>
+	</fieldsets>
+</form>

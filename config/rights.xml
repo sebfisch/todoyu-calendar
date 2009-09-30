@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rights labels="ext/calendar/locale/rights.xml">
+	<section key="panelwidgets">
+		<allow right="PanelWidgetCalendar" comment="can see quicktaskwizard" />
+		<allow right="PanelWidgetQuickEvent" comment="can see quicktaskwizard" />
+	</section>
+</rights>
