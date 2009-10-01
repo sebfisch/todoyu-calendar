@@ -99,10 +99,7 @@
 	 *	@param	Object	response
 	 */
 	onSaved: function(response) {
-		var saveButton = document.getElementsByName('holiday[save]')[0];
-		Todoyu.Notification.notify(response.responseText, saveButton);
+		Todoyu.notify('success', response.responseText);
 	}
-
-
 
  };
