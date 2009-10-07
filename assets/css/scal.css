@@ -10,7 +10,8 @@
 #panelwidget-calendar-content .calheader .caltitle,
 #panelwidget-calendar-content .calheader .calcontrol,
 #panelwidget-calendar-content .dayboxname {
-	font-size:12px;
+	font-size:10px;
+	letter-spacing: 0.3px;
 }
 
 .todoyuskin {
@@ -122,6 +123,12 @@
 .todoyuskin .daybox:hover * {
 	background:#316ac5;
 	color:#fff;
+}
+
+.dayboxname:hover {
+	background-color:#e4eace !important;
+	color:#000 !important;
+	cursor:default;
 }
 
 .todoyuskin .dayboxname:hover {}
