@@ -1,9 +1,8 @@
 {$tabs}{* -------- calendar tabs -------- *}
 <div id="calendar">
-
 	<div id="calendar-header">{* -------- calendar header: (navi and tabs) -------- *}
-		<div id="date-navi" class="headerLine">{* -------- navi: -------- *}
-			<span id="calendarTitle">{dateFormat $currentDate DlongD2MlongY4} ({dateFormat $currentDate calendarweek})</span>
+		<div id="date-navi" class="headerLine">
+			<span id="calendarTitle"></span>
 			<div id="calendarNavigation">
 				<div title="{Label calendar.gobackward.title}" class="icon goback" onmousedown="Todoyu.Ext.calendar.Navi.goBackward()"></div>
 				<button class="button buttonToday" title="{Label calendar.gototoday.title}" onmousedown="Todoyu.Ext.calendar.Navi.goToday()">
@@ -12,12 +11,10 @@
 				</button>
 				<div title="{Label calendar.goforward.title}" class="icon goforward" onmousedown="Todoyu.Ext.calendar.Navi.goForward()"></div>
 			</div>
-			<span class="rgt"><!-- right --></span>{* -------- end: navi -------- *}
+			<span class="rgt"><!-- right --></span>
 		</div>
 	</div>{* -------- end: calendar header (navi and tabs) -------- *}
-
 	<div id="calendar-body">
 		{$calendar}{*  -------- actual calendar (either day, week or month view) -------- *}
 	</div>
-
 </div>

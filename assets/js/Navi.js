@@ -25,6 +25,7 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
+	 *	Set calendar title
 	 *
 	 */
 	setTitle: function(title) {
@@ -32,7 +33,10 @@ Todoyu.Ext.calendar.Navi = {
 	},
 
 
-
+	/**
+	 * Get active tab
+	 *
+	 */
 	getActiveTab: function() {
 		return this.ext.Tabs.getActive();
 	},
@@ -40,6 +44,7 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
+	 *
 	 *
 	 */
 	getDirectionDate: function(direction) {

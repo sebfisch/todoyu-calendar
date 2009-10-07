@@ -53,19 +53,19 @@ Todoyu.Ext.calendar = {
 		yearnext:		'&raquo;&raquo;'
 	},
 
-	
-	
+
+
 	/**
 	 *	Initialization
 	 */
-	init: function(fullHeight) {		
+	init: function(fullHeight) {
 		this.CalendarBody.init(fullHeight);
-				
+
 		this.installGeneralObservers();
-		this.installBodyObservers();		
+		this.installBodyObservers();
 	},
-	
-	
+
+
 	/**
 	 *	Get selected date timestamp
 	 *
@@ -74,7 +74,7 @@ Todoyu.Ext.calendar = {
 	getDate: function() {
 		return this.PanelWidget.Calendar.getDate();
 	},
-	
+
 	/**
 	 *	Set selected date timestamp
 	 *
@@ -83,18 +83,18 @@ Todoyu.Ext.calendar = {
 	setDate: function(date) {
 		this.PanelWidget.Calendar.setDate(date, true);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Get calendar time (timestamp)
 	 */
 	getTime: function() {
 		return this.PanelWidget.Calendar.getTime();
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Set calendar time (timestamp
 	 * @param	Integer		time
@@ -102,34 +102,34 @@ Todoyu.Ext.calendar = {
 	setTime: function(time) {
 		this.PanelWidget.Calendar.setTime(time);
 	},
-	
+
 	/**
 	 * Get day start of calendar time
 	 */
 	getDayStart: function() {
 		return Todoyu.Time.getDayStart(this.getTime());
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Get weekstart of calendar time
 	 */
 	getWeekStart: function() {
 		return Todoyu.Time.getWeekStart(this.getTime());
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Get active tab in calendar
 	 */
 	getActiveTab: function() {
 		return this.Tabs.getActive();
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Set active tab in calenar (only set data, no update)
 	 * @param {Object} tab
@@ -137,27 +137,27 @@ Todoyu.Ext.calendar = {
 	setActiveTab: function(tab) {
 		this.Tabs.setActive(tab);
 	},
-		
-	
-	
+
+
+
 	/**
 	 * Hook before calendar body update
-	 */	
+	 */
 	beforeUpdate: function() {
 		this.uninstallBodyObservers();
-		
+
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Hook after calendar body update
 	 */
-	afterUpdate: function() {		
+	afterUpdate: function() {
 		this.installBodyObservers();
 		this.CalendarBody.reInit();
 	},
-	
+
 
 
 	/**
@@ -168,9 +168,9 @@ Todoyu.Ext.calendar = {
 		Todoyu.PanelWidget.observe('staffselector', this.onStaffSelectionChanges.bind(this));
 		Todoyu.PanelWidget.observe('eventtypeselector', this.onEventtypeSelectionChanges.bind(this));
 	},
-		
-	
-	
+
+
+
 	/**
 	 * Install calendar body observers
 	 */
@@ -179,9 +179,9 @@ Todoyu.Ext.calendar = {
 		this.installEventObservers();
 		this.CalendarBody.installObserversCreateEvent();
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Uninstall calendar body observers
 	 */
@@ -199,21 +199,21 @@ Todoyu.Ext.calendar = {
 	 */
 	installEventObservers: function(el) {
 		this.Event.installObservers();
-		/*	
-			// Install click for update		
+		/*
+			// Install click for update
 		$('calendar-body').select('div.eventQuickInfoHotspot.updateAllowed').each(function(element) {
 				element.observe('click', this.onEventClick.bindAsEventListener(this));
 		}.bind(this));
 		*/
 	},
-	
-	
-	
+
+
+
 	uninstallEventObservers: function() {
-		
+
 	},
-	
-	
+
+
 	/**
 	 *	Event handler: onDateChanged
 	 *
@@ -223,9 +223,9 @@ Todoyu.Ext.calendar = {
 	onDateChanged: function(widgetName, update) {
 		this.show(null, update.date);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Handler for staff selection changes
 	 * @param	String		widgetName
@@ -234,9 +234,9 @@ Todoyu.Ext.calendar = {
 	onStaffSelectionChanges: function(widgetName, users) {
 		this.refresh();
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Handler for eventtype selection changes
 	 * @param	String		widgetName
@@ -245,21 +245,21 @@ Todoyu.Ext.calendar = {
 	onEventtypeSelectionChanges: function(widgetName, eventTypes) {
 		this.refresh();
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Ecent click handler
 	 * @param	Event		event
 	 */
 	onEventClick: function(event) {
 		var idEvent = event.findElement('div').id.split('-').last();
-		
+
 		this.Event.updateEvent(idEvent);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Callback for calendar body update
 	 * @param	Response		response
@@ -267,9 +267,9 @@ Todoyu.Ext.calendar = {
 	onCalendarBodyUpdated: function(response) {
 		this.afterUpdate();
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Update the calendar body area
 	 * @param	String		url
@@ -277,21 +277,21 @@ Todoyu.Ext.calendar = {
 	 */
 	updateCalendarBody: function(url, options) {
 		this.beforeUpdate();
-		
+
 		Todoyu.Ui.update('calendar-body', url, options);
 	},
 
-	
-	
+
+
 	/**
 	 * Refresh calendar with current settings
 	 */
 	refresh: function() {
 		this.show(null, null);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Update calendar body with new config
 	 * @param	String		tab
@@ -304,7 +304,7 @@ Todoyu.Ext.calendar = {
 		if( Object.isNumber(date) ) {
 			this.setDate(date);
 		}
-		
+
 		var url 	= Todoyu.getUrl('calendar', 'calendar');
 		var options	= {
 			'parameters': {
@@ -319,7 +319,7 @@ Todoyu.Ext.calendar = {
 	},
 
 
-	
+
 	/**
 	 * Set calendar title
 	 * @param	String		title
@@ -327,16 +327,16 @@ Todoyu.Ext.calendar = {
 	setTitle: function(title) {
 		this.Navi.setTitle(title);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Add event with popup
 	 * @param	Integer		time
 	 */
 	addEvent: function(time) {
 		this.Edit.openPopup(time);
-	},	
+	},
 
 
 
