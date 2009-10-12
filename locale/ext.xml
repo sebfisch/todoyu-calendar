@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
 	<labels lang="en">
+		<label index="ext.title">Calendar</label>
 		<label index="privateEvent.info">(private)</label>
 		<label index="hrs">Hrs</label>
 		<label index="yearsOld">years old</label>
