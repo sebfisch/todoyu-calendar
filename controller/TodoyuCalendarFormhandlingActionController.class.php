@@ -4,7 +4,7 @@ class TodoyuCalendarFormhandlingActionController extends TodoyuActionController 
 
 	public static function addSubformAction(array $params) {
 		$index		= intval($params['indexOfForeignRecord']);
-		$xmlFile	= TodoyuDiv::makeCleanFilename($params['formname'] . '.xml');
+		$xmlFile	= TodoyuDiv::makeCleanFilename($params['form'] . '.xml');
 
 			// Construct form object
 		$xmlPath 	= 'ext/calendar/config/form/' . $xmlFile;
