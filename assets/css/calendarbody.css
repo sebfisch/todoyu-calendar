@@ -1,6 +1,6 @@
-/* ------------------------------------------------------------
+/* ----------------------
 	scrolling or not
-   ------------------------------------------------------------ */
+   ---------------------- */
 
 #calendararea {
 	border-right: 1px dotted #818181;
@@ -47,9 +47,9 @@
 }
 
 
-/* ------------------------------------------------------------
+/* ----------------------
 	area tabs
-   ------------------------------------------------------------ */
+   ---------------------- */
 p#calendar-tabhead-day-label span.icon {
 	background: transparent url(../img/icons.png) no-repeat scroll 1px -1339px;
 	margin-right: 1px;
@@ -65,11 +65,9 @@ p#calendar-tabhead-month-label span.icon {
 	margin-right: 1px;
 }
 
-
-
-/* ------------------------------------------------------------
+/* ----------------------
 	calendar
-   ------------------------------------------------------------ */
+   ---------------------- */
 
 #calendar {
 	background-color: #fff;
@@ -125,8 +123,6 @@ p#calendar-tabhead-month-label span.icon {
 		padding:0;
 	}
 
-
-
 #calendar-body {
 	float:left;
 	clear:both;
@@ -135,10 +131,9 @@ p#calendar-tabhead-month-label span.icon {
 	padding-bottom:10px;
 }
 
-
-/* ------------------------------------------------------------
+/* ----------------------
 	events in all views
-   ------------------------------------------------------------ */
+   ---------------------- */
 
 .chip {
 
@@ -148,8 +143,6 @@ p#calendar-tabhead-month-label span.icon {
 	cursor: pointer;
 	/*border-right: 2px solid #f7d460 !important;*/
 }
-
-
 
 .ca-elp {
 	color: #fff;
@@ -177,10 +170,9 @@ p#calendar-tabhead-month-label span.icon {
 	color: #999;
 }
 
-
-/* ------------------------------------------------------------
+/* ------------------------
 	create or update event
-   ------------------------------------------------------------ */
+   ------------------------ */
 li.editeventtab p.label span.icon {
 	background: transparent url(../img/icons.png) no-repeat scroll -1px -1145px;
 	margin-right: 2px;
@@ -217,10 +209,9 @@ li.editeventtab p.label span.icon {
 	font-weight: bold;
 }
 
-
-/* ------------------------------------------------------------
+/* ----------------------
 	repetitions
-   ------------------------------------------------------------ */
+   ---------------------- */
 
 #repetitions_choices {
 	margin: 5px 0 10px 150px;
@@ -233,11 +224,9 @@ li.editeventtab p.label span.icon {
 	margin-top: 5px;
 }
 
-
-/* ------------------------------------------------------------
+/* ----------------------
 	holidays
-   ------------------------------------------------------------ */
-
+   ---------------------- */
 
 .holidays {
 	background: transparent url(../img/icons.png) no-repeat scroll 0 -425px;
@@ -249,10 +238,9 @@ li.editeventtab p.label span.icon {
 	min-height: 17px;
 }
 
-
-/* ------------------------------------------------------------
+/* ----------------------
 	birthdays
-   ------------------------------------------------------------ */
+   ---------------------- */
 
 .birthdays {
 	background: transparent url(../img/icons.png) no-repeat scroll 0 -467px;
@@ -268,9 +256,9 @@ li.editeventtab p.label span.icon {
 	cursor: pointer;
 }
 
-/* ------------------------------------------------------------
+/* ----------------------
 	quickinfo
-   ------------------------------------------------------------ */
+   ---------------------- */
 
 #quickinfo {
 	background-color: transparent;
@@ -353,10 +341,9 @@ li.editeventtab p.label span.icon {
 	width: 28px;
 }
 
-
-/* ------------------------------------------------------------
+/* ----------------------
 	deleterepetition
-   ------------------------------------------------------------ */
+   ---------------------- */
 #popup-deleterepetition {
    text-align: center;
 }
@@ -371,10 +358,9 @@ li.editeventtab p.label span.icon {
 	margin-right: 10px;
 }
 
-
-/* ------------------------------------------------------------
+/* ----------------------
 	updaterepetition
-   ------------------------------------------------------------ */
+   ---------------------- */
 #popup-updaterepetition {
    text-align: center;
 }

@@ -1,6 +1,6 @@
-/* ------------------------------------------------------------
+/* ------------------------------------
 	todoyu-style calendar widget
-   ------------------------------------------------------------ */
+   ------------------------------------ */
 
 #panelwidget-calendar-content * {
 	font-size:11px;
@@ -157,7 +157,9 @@
 
 .todoyuskin .weekboxname{}
 
-/* border */
+/* ----------------
+	border
+   ---------------- */
 .todoyuskin .calweekswrapper {
 	border-width:1px 1px 0 0;
 	border-color:#818181;
@@ -192,8 +194,9 @@
 	border-style:solid;
 }
 
-
-
+/* -----------------------
+	gridcontainer
+   ----------------------- */
 
 #gridcontainer.dayMode, #gridcontainer.weekMode {
 	overflow-y:visible; height:100%;
@@ -202,6 +205,7 @@
 #gridcontainer.monthMode {
 	overflow: visible;
 }
+
 
 .tg-nowptr {
 	left:0;

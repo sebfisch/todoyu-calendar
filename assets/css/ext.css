@@ -1,7 +1,6 @@
-/* ------------------------------------------------------------
+/* -------------------------
 	holidays admin module
-   ------------------------------------------------------------ */
-
+   ------------------------- */
 
 #admin-tabs li.tabkey-holidays span.icon {
 	background: url('../img/icons.png') no-repeat 0 -404px;
@@ -43,10 +42,9 @@ form.createevent label, form.createeventMidcol label{
 	width: 150px;
 }
 
-
-/*-------------------------------------
+/*-------------------------
 	list mode in portal
---------------------------------------*/
+--------------------------- */
 
 #holidays h3,
 #events .event h3{
@@ -131,9 +129,9 @@ span.isNotAcknowledgedIcon {
 
 form.formEvent button.buttonSave {}
 
-/* ------------------------------------------------------------
+/* ----------------------
 	events types
-   ------------------------------------------------------------ */
+   ---------------------- */
 
 .eventtype_1 {
    background: transparent url(../img/icons.png) no-repeat scroll 0 -721px;
@@ -187,9 +185,9 @@ form.formEvent button.buttonSave {}
    background: transparent url(../img/icons.png) no-repeat scroll 0 -1122px;
 }
 
-/* --------------------------------------------------
+/* ------------------------
 	portal events list
-   -------------------------------------------------- */
+   ------------------------ */
 #birthdays h3 {
 	background-color: #fff;
 	background: transparent url(../img/icons.png) no-repeat scroll 4px -1428px;
@@ -211,20 +209,18 @@ h1.holidaysforecast span.title {
 	padding-left: 20px;
 }
 
-/* --------------------------------------------------
+/* ------------------------------------------------------------------
 	events without/ with multiple user assignments inside calendar
-   -------------------------------------------------- */
+   ------------------------------------------------------------------ */
 .enumColBGFademultiOrNone,
 .enumColBGmultiOrNone {
 	color: #191919;
 	background-color: #f2f3ed;
 }
 
-
-
-/* --------------------------------------------------
+/* --------------------------------------------------------------------
 	date navigational buttons (center on today, go forward / backward)
-   -------------------------------------------------- */
+   -------------------------------------------------------------------- */
 
 #date-navi {
 }

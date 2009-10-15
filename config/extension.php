@@ -35,10 +35,6 @@ TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManage
 
 
 
-
-
-
-
 	// Setup tabs in calendar area
 $CONFIG['EXT']['calendar']['config'] = array(
 	'defaultTab'	=> 'week'
@@ -68,7 +64,7 @@ $CONFIG['EXT']['calendar']['contentTabs'] = array(
 
 
 	// Register event types
-	// @see	constants are defined in  constants.php
+	// @see		referring constants are defined in constants.php
 $CONFIG['EXT']['calendar']['EVENTTYPE'] = array(
 	EVENTTYPE_GENERAL		=> 'general',
 	EVENTTYPE_AWAY			=> 'away',
@@ -83,6 +79,13 @@ $CONFIG['EXT']['calendar']['EVENTTYPE'] = array(
 	EVENTTYPE_COMPENSATION	=> 'compensation',
 	EVENTTYPE_MILESTONE		=> 'milestone',
 	EVENTTYPE_REMINDER		=> 'reminder'
+);
+
+	// Which event types define absences?
+$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'] = array(
+	EVENTTYPE_AWAY,
+	EVENTTYPE_VACATION,
+	EVENTTYPE_COMPENSATION
 );
 
 	// Default color preset for events being assigned to several users / none
@@ -111,10 +114,8 @@ $CONFIG['EXT']['portal']['tabcontentconfig']['calendar'] = array(
 );
 
 	// Default values for event editing
-$CONFIG['EXT']['calendar']['default']['timeStart']		= 28800; // 08:00
-$CONFIG['EXT']['calendar']['default']['eventDuration']	= 3600; // 1 hour
-
-
+$CONFIG['EXT']['calendar']['default']['timeStart']		= 28800;	// 08:00
+$CONFIG['EXT']['calendar']['default']['eventDuration']	= 3600;		// 1 hour
 
 	// Register contextmenu
 //TodoyuContextMenuManager::registerFunction('Calendar', 'TodoyuPanelWidgetEventtypeSelector::getContextMenuItems', 10);
