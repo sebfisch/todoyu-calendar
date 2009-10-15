@@ -1,39 +1,39 @@
 <div class="portalEventsList">
 	{include file="tab-portal-eventslist-header.tmpl"}{* ----- header with column titles ----- *}
 	<div class="events" id="events">{* ----- the actual list of events ----- *}
-{if count($events) == 0}
-		<br/><span class="contentMessage">{Label calendar.noEventsFound}</span>
-{else}{foreach $events idEvent event}{* ------- event entry ------- *}
-		<div id="event-{$idEvent}" class="event {cycle values="odd,even"}">
-			<h3 id="event-{$idEvent}-header" class="contextmenuevent enumColBorLef{$color.id}" name="event-{$event.id}">
-				<a href="javascript:void(0)" onclick="Todoyu.Ext.calendar.Event.toggleDetails({$idEvent}); {if $event.is_acknowledged == 0}Todoyu.Ext.calendar.Event.acknowledgeEvent({$idEvent}, {$event.id_user});{/if}" class="title ">
-					<span class="headLabel" title="{$event.title}">
-						<span class="icon eventtype_{$event.eventtype}" title="{EventTypeLabel $event.eventtype}"> </span>
-						{if $event.is_acknowledged == 0}<span id="acknowledge-{$event.id}" class="isNotAcknowledgedIcon"> </span>{/if}
-						<span><span>{date_dmyHi $event.date_start} - {date_dmyHi $event.date_end}</span></span>
-						{htmlencode $event.title}
-					</span>
-				</a><div class="clear"><!-- --></div>
-			</h3>
-			{$details}
-		</div>{* ------- end: event entry ------- *}
-{/foreach}{/if}
+
+	{if count($events) == 0}
+			<br/><span class="contentMessage">{Label calendar.noEventsFound}</span>
+	{else}
+		{foreach $events idEvent event}{* ------- event entry ------- *}
+			<div id="event-{$idEvent}" class="event {cycle values="odd,even"}">
+				<h3 id="event-{$idEvent}-header" class="contextmenuevent enumColBorLef{$color.id}" name="event-{$event.id}">
+					<a href="javascript:void(0)" onclick="Todoyu.Ext.calendar.Event.toggleDetails({$idEvent}); {if $event.is_acknowledged == 0}Todoyu.Ext.calendar.Event.acknowledgeEvent({$idEvent}, {$event.id_user});{/if}" class="title ">
+						<span class="headLabel" title="{$event.title}">
+							<span class="icon eventtype_{$event.eventtype}" title="{EventTypeLabel $event.eventtype}"> </span>
+							{if $event.is_acknowledged == 0}<span id="acknowledge-{$event.id}" class="isNotAcknowledgedIcon"> </span>{/if}
+							<span><span>{date_dmyHi $event.date_start} - {date_dmyHi $event.date_end}</span></span>
+							{htmlencode $event.title}
+						</span>
+					</a><div class="clear"><!-- --></div>
+				</h3>
+				{$details}
+			</div>{* ------- end: event entry ------- *}
+		{/foreach}
+	{/if}
 	</div>
-{if $showHolidays}{if count($holidays)>0}
-	<br/><h1 class="headerLine">
-		<span class="holidaysforecast">{LabelReplace calendar.eventslist.holidaysWithinTheNextXweeks null XXX $holidaysLookAheadWeeksAmount}</span>
-		<span class="rgt"></span>
-	</h1>
+{if $showHolidays && count($holidays)>0}
+	<br/>
+	{Header LabelReplace(calendar.eventslist.holidaysWithinTheNextXweeks null XXX $holidaysLookAheadWeeksAmount) "holidaysforecast"}
 	<div id="holidays">
 		{include file="holidayslist.tmpl"}
 	</div>
-{/if}{/if}{if $showBirthdays}{if count($birthdays)>0}
-	<br/><h1 class="headerLine">
-		<span class="birthdaysforecast">{LabelReplace calendar.eventslist.birthdaysWithinTheNextXweeks null XXX $birthdaysLookAheadWeeksAmount}</span>
-		<span class="rgt"></span>
-	</h1>
+{/if}
+{if $showBirthdays && count($birthdays)>0}
+	<br/>
+	{Header LabelReplace(calendar.eventslist.birthdaysWithinTheNextXweeks null XXX $birthdaysLookAheadWeeksAmount) "birthdaysforecast"}
 	<div id="birthdays">
 		{include file="birthdayslist.tmpl"}
 	</div>
-{/if}{/if}
+{/if}
 </div>

@@ -202,11 +202,11 @@ form.formEvent button.buttonSave {}
 	background-color: #f3f3f3;
 }
 
-span.birthdaysforecast {
+h1.birthdaysforecast span.title {
 	background: transparent url(../img/icons.png) no-repeat scroll 0 -462px;
 	padding-left: 20px;
 }
-span.holidaysforecast {
+h1.holidaysforecast span.title {
 	background: transparent url(../img/icons.png) no-repeat scroll 0 -1311px;
 	padding-left: 20px;
 }
