@@ -33,11 +33,14 @@
 					<label>LLL:calendar.holiday.attr.holidayset</label>
 					<foreignRecordConf>
 						<foreignformxml>ext/calendar/config/form/admin/holiday-holidayset.xml</foreignformxml>
-						<foreignLabelField>title</foreignLabelField>
 						<addSubformConfig>
 							<ext>calendar</ext>
 							<controller>formhandling</controller>
 						</addSubformConfig>
+						<label type="field">
+							<field>title</field>
+							<noLabel>Neuer Feiertag</noLabel>
+						</label>
 					</foreignRecordConf>
 				</field>
 			</elements>

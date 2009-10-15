@@ -7,7 +7,7 @@
 		<attribute name="class">formQuickEvent</attribute>
 	</attributes>
 	<hiddenFields>
-		
+
 	</hiddenFields>
 
 	<fieldsets>
@@ -19,7 +19,7 @@
 					<label>LLL:calendar.event.attr.title</label>
 					<required />
 				</field>
-				
+
 				<field type="textarea" name="description">
 					<label>LLL:calendar.event.attr.description</label>
 				</field>
@@ -61,11 +61,15 @@
 					<label>LLL:calendar.event.attr.assigned_to</label>
 					<foreignRecordConf>
 						<foreignformxml>ext/calendar/config/form/event-user.xml</foreignformxml>
-						<foreignLabelUserFunc>TodoyuUserManager::getDatabaseRelationLabel</foreignLabelUserFunc>
 						<addSubformConfig>
 							<ext>calendar</ext>
 							<controller>formhandling</controller>
 						</addSubformConfig>
+						<label type="function">
+							<function>TodoyuUserViewHelper::getUserLabel</function>
+							<noLabel>Neuer Benutzer</noLabel>
+						</label>
+						<validateRequired>TodoyuUserViewHelper::validateRequiredUserAC</validateRequired>
 					</foreignRecordConf>
 					<required />
 				</field>

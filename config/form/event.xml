@@ -84,11 +84,15 @@
 					<label>LLL:calendar.event.attr.assigned_to</label>
 					<foreignRecordConf>
 						<foreignformxml>ext/calendar/config/form/event-user.xml</foreignformxml>
-						<foreignLabelUserFunc>TodoyuUserManager::getDatabaseRelationLabel</foreignLabelUserFunc>
 						<addSubformConfig>
 							<ext>calendar</ext>
 							<controller>formhandling</controller>
 						</addSubformConfig>
+						<label type="function">
+							<function>TodoyuUserViewHelper::getUserLabel</function>
+							<noLabel>Neuer Benutzer</noLabel>
+						</label>
+						<validateRequired>TodoyuUserViewHelper::validateRequiredUserAC</validateRequired>
 					</foreignRecordConf>
 					<required />
 				</field>

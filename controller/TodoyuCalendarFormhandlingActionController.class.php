@@ -3,31 +3,27 @@
 class TodoyuCalendarFormhandlingActionController extends TodoyuActionController {
 
 	public static function addSubformAction(array $params) {
-		$index		= intval($params['indexOfForeignRecord']);
-		$xmlFile	= TodoyuDiv::makeCleanFilename($params['form'] . '.xml');
+		$index		= intval($params['index']);
+		$fieldName	= $params['field'];
+		$formName	= $params['form'];
+		$idRecord	= intval($params['record']);
+		$xmlPath 	= 'ext/calendar/config/form/' . $formName . '.xml';
 
-			// Construct form object
-		$xmlPath 	= 'ext/calendar/config/form/' . $xmlFile;
-
-		if( ! is_file($xmlPath) )	{
-			$xmlPath	= 'ext/calendar/config/form/admin/' . $xmlFile;
-		}
+//
+//		if( ! is_file($xmlPath) )	{
+//			$xmlPath	= 'ext/calendar/config/form/admin/' . $xmlFile;
+//		}
 
 		$form 	= new TodoyuForm($xmlPath);
 		$form	= TodoyuFormHook::callBuildForm($xmlPath, $form, $index);
 
-			// Prepare, set data
-		$formField		= $form->getField($params['field']);
-		$form['name']	= $params['formname'];
+			// Load form data
+		$data	= TodoyuFormHook::callLoadData($xmlPath, array(), $idRecord);
 
-		$formData	= TodoyuFormHook::callLoadData($xmlPath, array(), 0);
-		$form->setFormData( $formData );
+		$form->setName($formName);
+		$form->setFormData($data);
 
-		if( method_exists($formField, 'addNewRecord') )	{
-			return $formField->addNewRecord($index);
-		} else {
-			return 'sorry wrong type of field';
-		}
+		return $form->getField($fieldName)->renderNewRecord($index);
 	}
 
 }
