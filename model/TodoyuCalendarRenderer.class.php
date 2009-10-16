@@ -95,17 +95,16 @@ class TodoyuCalendarRenderer {
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-day.tmpl';
-		$data		= array();
-
-		$data['timestamp']	= $currentDate;
-		$data['fullDayView']= TodoyuCalendarPreferences::getFullDayView();
-		$data['dateKey']	= date('Ymd', $dateStart);
-
-		$data['events']		= self::preRenderEventsForDay($dateStart, $eventTypes, $users, $userColors);
-		$data['dayEvents']	= self::preRenderDayevents('day', $dateStart, $dateEnd, $eventTypes, $users);
-		$data['birthdays']	= in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('day', $dateStart, $dateEnd) : '';
-		$data['holidays']	= TodoyuCalendarManager::getHolidays($dateStart, $dateEnd);
-		$data['title']		= TodoyuCalendarViewHelper::getCalendarTitle('day', $dateStart, $dateEnd);
+		$data		= array(
+			'timestamp'		=> $currentDate,
+			'fullDayView'	=> TodoyuCalendarPreferences::getFullDayView(),
+			'dateKey'		=> date('Ymd', $dateStart),
+			'events'		=> self::preRenderEventsForDay($dateStart, $eventTypes, $users, $userColors),
+			'dayEvents'		=> self::preRenderDayevents('day', $dateStart, $dateEnd, $eventTypes, $users),
+			'birthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('day', $dateStart, $dateEnd) : '',
+			'holidays'		=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
+			'title'			=> TodoyuCalendarViewHelper::getCalendarTitle('day', $dateStart, $dateEnd)
+		);
 
 		return render($tmpl, $data);
 	}
@@ -129,19 +128,17 @@ class TodoyuCalendarRenderer {
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-week.tmpl';
-		$data		= array();
-
-		$data['timestamps']		= TodoyuTime::getDayTimesOfWeek($currentDate);
-		$data['fullDayView']	= TodoyuCalendarPreferences::getFullDayView();
-
-		$data['timestamp']			= $currentDate;
-		$data['timestamp_today']	= TodoyuTime::getDayStart(NOW);
-
-		$data['events']		= self::preRenderEventsForWeek($dateStart, $eventTypes, $users, $userColors);
-		$data['dayEvents']	= self::preRenderDayevents('week', $dateStart, $dateEnd, $eventTypes, $users);
-		$data['birthdays']	= in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('week', $dateStart, $dateEnd) : array();
-		$data['holidays']	= TodoyuCalendarManager::getHolidays($dateStart, $dateEnd);
-		$data['title']		= TodoyuCalendarViewHelper::getCalendarTitle('week', $dateStart, $dateEnd);
+		$data		= array(
+			'timestamps'		=> TodoyuTime::getDayTimesOfWeek($currentDate),
+			'fullDayView'		=> TodoyuCalendarPreferences::getFullDayView(),
+			'timestamp'			=> $currentDate,
+			'timestamp_today'	=> TodoyuTime::getDayStart(NOW),
+			'events'			=> self::preRenderEventsForWeek($dateStart, $eventTypes, $users, $userColors),
+			'dayEvents'			=> self::preRenderDayevents('week', $dateStart, $dateEnd, $eventTypes, $users),
+			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('week', $dateStart, $dateEnd) : array(),
+			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
+			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('week', $dateStart, $dateEnd)
+		);
 
 		return render($tmpl, $data);
 	}
@@ -154,10 +151,11 @@ class TodoyuCalendarRenderer {
 	 * @param	Integer		$currentDate
 	 * @return	String
 	 */
-	public static function renderCalendarMonth($currentDate) {
-		$currentDate= intval($currentDate);
-		$users		= TodoyuCalendarManager::getSelectedUsers();
-		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($currentDate);
+	public static function renderCalendarMonth($selectedDate) {
+		$selectedDate	= intval($selectedDate);
+		$users			= TodoyuCalendarManager::getSelectedUsers();
+		
+		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($selectedDate);
 		$dateStart	= $monthRange['start'];
 		$dateEnd	= $monthRange['end'];
 
@@ -165,18 +163,17 @@ class TodoyuCalendarRenderer {
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-month.tmpl';
-		$data		= array();
-
-		$data['timestamps']		= TodoyuCalendarManager::getShownDaysTimestampsOfMonthView($currentDate);
-
-		$data['timestamp']		= $currentDate;
-		$data['timestamp_today']= TodoyuTime::getDayStart(NOW);
-
-		$data['events']		= self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors);
-		$data['dayEvents']	= self::preRenderDayevents('month',	$dateStart, $dateEnd, $eventTypes, $users, $amountDays);
-		$data['birthdays']	= in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('month', $dateStart, $dateEnd) : array();
-		$data['holidays']	= TodoyuCalendarManager::getHolidays($dateStart, $dateEnd);
-		$data['title']		= TodoyuCalendarViewHelper::getCalendarTitle('month', $dateStart, $dateEnd);
+		
+		$data		= array(
+			'timestamps'		=> TodoyuCalendarManager::getShownDaysTimestampsOfMonthView($selectedDate),
+			'timestamp'			=> $selectedDate,
+			'timestamp_today'	=> TodoyuTime::getDayStart(NOW),
+			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors),
+			'dayEvents'			=> self::preRenderDayevents('month', $dateStart, $dateEnd, $eventTypes, $users),//, $amountDays),
+			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('month', $dateStart, $dateEnd) : array(),
+			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
+			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('month', $dateStart, $dateEnd)
+		);
 
 		return render($tmpl, $data);
 	}
@@ -242,7 +239,6 @@ class TodoyuCalendarRenderer {
 			// Add overlap informations to events for each day
 		$eventsByDay= TodoyuEventManager::addOverlapInformationToEvents($eventsByDay);
 
-
 			// Render events array
 		foreach($eventsByDay as $dateKey => $eventsOfDay) {
 			$dayTime = mktime(0, 0, 0, substr($dateKey, 4, 2), substr($dateKey, 6, 2), substr($dateKey, 0, 4) );
@@ -303,7 +299,6 @@ class TodoyuCalendarRenderer {
 				} else {
 					$event['top']		= TodoyuEventRenderer::getTimeCoordinate($event['date_start']);
 				}
-
 
 				$event['height']	= TodoyuEventRenderer::getEventHeight($dayTime, $event['date_start'], $event['date_end'] );
 

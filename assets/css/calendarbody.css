@@ -9,6 +9,9 @@
 }
 
 #calendararea.month {
+	height: 670px !important;
+}
+#calendararea.sixWeeks {
 	height: 800px !important;
 }
 

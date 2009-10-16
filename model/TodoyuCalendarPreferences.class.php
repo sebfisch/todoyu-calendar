@@ -133,7 +133,6 @@ class TodoyuCalendarPreferences {
 
 
 
-
 	/**
 	 * Save selected holidaysets
 	 *

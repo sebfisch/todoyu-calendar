@@ -38,24 +38,23 @@ class TodoyuCalendarManager {
 			// Have calendar JS and CSS registered (for correct style and context menu handling)
 		TodoyuPage::addExtAssets('calendar', 'public');
 
-		$today	=	mktime(0, 0, 0, date('n', NOW), date('j', NOW), date('Y', NOW) );
-		
+		$today		=	mktime(0, 0, 0, date('n', NOW), date('j', NOW), date('Y', NOW));
 		$dateStart	= TodoyuTime::getDayStart(NOW);
 		$dateEnd	= NOW + 2 * 365 * 24 * 3600;
 
 		$events	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(userid()));
 		// @todo	add fetch/ mergin of day-events / non-day-events
 
-		if ( $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showHolidays'] ) {
+		if ($GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showHolidays']) {
 				// Get holidays within the next X (see calendar/config/extension.php) weeks
 			$amountWeeksToLookToForHolidays = $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['holidaysLookAheadWeeks'];
 			$endTime	= $today + $amountWeeksToLookToForHolidays * 604800;	// 604800 == 24 * 60 * 60 * 7
-			$holidays	= TodoyuHolidayManager::getPersonHolidaysInTimespan( array($idUser), $today, $endTime);
+			$holidays	= TodoyuHolidayManager::getPersonHolidaysInTimespan(array($idUser), $today, $endTime);
 		} else {
 			$holidays	= array();
 		}
 
-		if ( $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showBirthdays'] ) {
+		if ($GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showBirthdays']) {
 				// Get birthdays within the next X (see calendar/config/extension.php) weeks
 			$amountWeeksToLookToForBirthdays = $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['birthdaysLookAheadWeeks'];
 			$endTime	= $today + $amountWeeksToLookToForHolidays * 604800;	// 604800 == 24 * 60 * 60 * 7
@@ -94,11 +93,9 @@ class TodoyuCalendarManager {
 			case 'day':
 				$days = 1;
 				break;
-
 			case 'week':
 				$days = 7;
 				break;
-
 			case 'month':
 				$days = 35;
 				break;
@@ -119,7 +116,7 @@ class TodoyuCalendarManager {
 	public static function getHolidays($dateStart, $dateEnd) {
 		$holidaySets	= self::getSelectedHolidaysets();
 		
-		if( sizeof($holidaySets) > 0 ) {
+		if(sizeof($holidaySets) > 0) {
 			$holidays	= TodoyuHolidayManager::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySets);
 			$grouped	= TodoyuHolidayManager::groupHolidaysByDays($holidays);
 		}
@@ -137,8 +134,8 @@ class TodoyuCalendarManager {
 	 * @param	Boolean		$insideTheSameWeek	If true, the two days are inside the same week
 	 * @return	Integer
 	 */
-	public static function getAmountOfDaysInbetweenWeekdayNums( $startDay, $endDay, $insideTheSameWeek = true ) {
-		if ( $insideTheSameWeek ) {
+	public static function getAmountOfDaysInbetweenWeekdayNums($startDay, $endDay, $insideTheSameWeek = true) {
+		if ($insideTheSameWeek) {
 				// Both days are within the same week
 			$amount = ($endDay == 0 ? 7 : $endDay) - ($startDay == 0 ? 7 : $startDay) + 1;
 		} else {
@@ -161,16 +158,16 @@ class TodoyuCalendarManager {
 	 * @param	Integer 	$tstamp		UNIX Timestamp of the selected date
 	 * @return	Array
 	 */
-	public static function getMonthData( $tstamp ) {
-		$month					= date( 'm', $tstamp );
-		$year					= date( 'Y', $tstamp );
-		$secondsOfMonth			= TodoyuTime::getDayRange( mktime( 0, 0, 0, $month, 1, $year) );
+	public static function getMonthData($tstamp) {
+		$month					= date('m', $tstamp);
+		$year					= date('Y', $tstamp);
+		$secondsOfMonth			= TodoyuTime::getDayRange(mktime(0, 0, 0, $month, 1, $year));
 
-		$shownDaysOfLastMonth	= ( date( 'w', mktime(0, 0, 0, $month, 1, $year) ) ) - 1;
-		$shownDaysOfNextMonth	= 35 - ( TodoyuTime::getAmountOfDaysInMonth( $tstamp ) ) - ( TodoyuTime::getAmountOfDaysInMonth( $tstamp, -1 ) );
+		$shownDaysOfLastMonth	= date('w', mktime(0, 0, 0, $month, 1, $year)) - 1;
+		$shownDaysOfNextMonth	= 35 - (TodoyuTime::getAmountOfDaysInMonth($tstamp)) - (TodoyuTime::getAmountOfDaysInMonth($tstamp, -1));
 
 		$eventsStart['date']	= $secondsOfMonth['start'] - $shownDaysOfLastMonth * 86400;
-		$eventsStart['days']	= TodoyuTime::getAmountOfDaysInMonth( $tstamp ) + $shownDaysOfLastMonth + $shownDaysOfNextMonth;
+		$eventsStart['days']	= TodoyuTime::getAmountOfDaysInMonth($tstamp) + $shownDaysOfLastMonth + $shownDaysOfNextMonth;
 
 		return $eventsStart;
 	}
@@ -181,7 +178,6 @@ class TodoyuCalendarManager {
 	 * Get date range for month of the timestamp
 	 * (include days of the previous and next month because of the calendar layout)
 	 * 
-	 *
 	 * @param	Integer		$time
 	 * @return	Array
 	 */
@@ -190,7 +186,7 @@ class TodoyuCalendarManager {
 		$monthRange	= TodoyuTime::getMonthRange($time);
 		
 		$start		= TodoyuTime::getWeekStart($monthRange['start']);
-		$end		= TodoyuTime::getWeekStart($monthRange['end']) + 7 * 86400 - 1;
+		$end		= TodoyuTime::getWeekStart($monthRange['end']) + 604099; //604099 = 7 * 86400 - 1;
 		
 		return array(
 			'start'	=> $start,
@@ -208,35 +204,33 @@ class TodoyuCalendarManager {
 	 * @param	Integer 	$tstampSelDay		Timestamp of selected day in calendar widget
 	 * @return	Array		Duration infos (TD rendering infos)
 	 */
-	public static function getEventDurationRenderData( $startTime, $endTime, $tstampSelDay ) {
-		$startDayOfWeek		= TodoyuTime::getWeekdayNum( $startTime );
-		$startWeekNumber	= TodoyuTime::getWeeknumber( $startTime );
+	public static function getEventDurationRenderData($startTime, $endTime, $tstampSelDay) {
+		$startDayOfWeek		= TodoyuTime::getWeekdayNum($startTime);
+		$startWeekNumber	= TodoyuTime::getWeeknumber($startTime);
+		$endDayOfWeek		= TodoyuTime::getWeekdayNum($endTime);
+		$endWeekNumber		= TodoyuTime::getWeeknumber($endTime);
+		$currentWeekNumber	= TodoyuTime::getWeeknumber($tstampSelDay);
 
-		$endDayOfWeek		= TodoyuTime::getWeekdayNum( $endTime );
-		$endWeekNumber		= TodoyuTime::getWeeknumber( $endTime );
-
-		$currentWeekNumber	= TodoyuTime::getWeeknumber( $tstampSelDay );
-
-			// If start and enddate is in the same week
+			// If start and end date is in the same week
 		if($startWeekNumber == $endWeekNumber) {
-			$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums( $startDayOfWeek, $endDayOfWeek, true );
+			$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums($startDayOfWeek, $endDayOfWeek, true);
 			$duration['blankTDBefore']	= $startDayOfWeek - 1;
 		} else {
 					// Is the current week the first one?
 				if($currentWeekNumber == $startWeekNumber) {
 
-					$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums( $startDayOfWeek, '', false );
+					$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums($startDayOfWeek, '', false);
 					$duration['blankTDBefore']	= 7 - $duration['duration'];
 				}
 
 					// Is the current week the last one?
 				if($currentWeekNumber == $endWeekNumber) {
-					$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums( '', $endDayOfWeek, false );
+					$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums('', $endDayOfWeek, false);
 					$duration['blankTDBefore']	= 0;
 				}
 
 					// Is the current week between the first and last one? Show the full week
-				if($currentWeekNumber != $startWeekNumber && $currentWeekNumber != $endWeekNumber ) {
+				if($currentWeekNumber != $startWeekNumber && $currentWeekNumber != $endWeekNumber) {
 					$duration['duration']		= 7;
 					$duration['blankTDBefore']	= 0;
 				}
@@ -259,33 +253,33 @@ class TodoyuCalendarManager {
 	 */
 	public static function getShownDaysTimestampsOfMonthView($tstamp) {
 		$tstamp		= intval($tstamp);
+		$monthSpecs	= self::getMonthSpecs($tstamp);
 
-		$monthSpecs	= self::getMonthSpecs( $tstamp );
-
-		$monthNum			= intval( $monthSpecs['dateOfCurrentMonth'] );
-		$nextMonthNum		= intval( $monthSpecs['dateOfNextMonth'] );
+		$monthNum			= intval($monthSpecs['dateOfCurrentMonth']);
+		$nextMonthNum		= intval($monthSpecs['dateOfNextMonth']);
 		$yearOfLastMonth   	= $monthSpecs['dateOfCurrentMonth'] == 1 ? $monthSpecs['selectedYear'] - 1 : $monthSpecs['selectedYear'];
-		$currentYear		= date( 'Y', NOW );
+		$selectedYear		= $monthSpecs['selectedYear'];
 
 			// Days in month before selected
 		$row	= 0;
-		for($i = $row; $i <= $monthSpecs['shownDaysOfLastMonth']; $i++ ) {
+		for($i = $row; $i <= $monthSpecs['shownDaysOfLastMonth']; $i++) {
 			$dayNum			= $monthSpecs['daysOfLastMonth'] - $monthSpecs['shownDaysOfLastMonth'] + $i;
-			$tstamps[$i]	= mktime(0, 0, 0, $monthSpecs['dateOfLastMonth'], $dayNum, $yearOfLastMonth  );
+			$tstamps[$i]	= mktime(0, 0, 0, $monthSpecs['dateOfLastMonth'], $dayNum, $yearOfLastMonth);
 			$row++;
 		}
 			// Days in selected month
-		$dayNum				= 1;
-		for( $i = $row; $dayNum <= $monthSpecs['daysOfMonth']; $i++ ) {
-			$tstamps[$i]		= mktime(0, 0, 0, $monthNum, $dayNum, $currentYear );
+		$dayNum	= 1;
+		for($i = $row; $dayNum <= $monthSpecs['daysOfMonth']; $i++) {
+			$tstamps[$i]		= mktime(0, 0, 0, $monthNum, $dayNum, $selectedYear);
 			$row++;
 			$dayNum++;
-		}
+		}		
 			// Days in month after selected
-		$dayNum		= 1;
-		for( $i = $row; $dayNum <= $monthSpecs['shownDaysOfNextMonth']; $i++ ) {
+		$dayNum	= 1;
+		$addDays = count($tstamps) > 36 ? 7 : 0;
+		for($i = $row; $dayNum <= $monthSpecs['shownDaysOfNextMonth'] + $addDays; $i++) {
 			$yearOfNextMonth	= $monthSpecs['dateOfCurrentMonth'] == 12 ? $monthSpecs['selectedYear'] + 1 : $monthSpecs['selectedYear'];
-			$tstamps[$i]		= mktime(0, 0, 0, $nextMonthNum, $dayNum, $yearOfNextMonth );
+			$tstamps[$i]		= mktime(0, 0, 0, $nextMonthNum, $dayNum, $yearOfNextMonth);
 			$row++;
 			$dayNum++;
 		}
@@ -301,18 +295,18 @@ class TodoyuCalendarManager {
 	 * @param	Integer	$tstamp		UNIX Timestamp (selected date in calendar panel widget)
 	 * @return	Array	data		precalculated attributes of prev., selected and next month to be rendered
 	 */
-	public static function getMonthSpecs( $tstamp ) {
+	public static function getMonthSpecs($tstamp) {
 		$tstamp	= intval($tstamp);
 		$month	= date('m', $tstamp);
 		$year	= date('Y', $tstamp);
 
 		$data	= array(
-			'daysOfMonth'			=> TodoyuTime::getAmountOfDaysInMonth( $tstamp ),
-			'daysOfLastMonth'		=> TodoyuTime::getAmountOfDaysInMonth( $tstamp, -1 ),
-			'numericDayOfWeek'		=> date( 'w', mktime(0, 0, 0, $month, 1, $year) ),
+			'daysOfMonth'			=> TodoyuTime::getAmountOfDaysInMonth($tstamp),
+			'daysOfLastMonth'		=> TodoyuTime::getAmountOfDaysInMonth($tstamp, -1),
+			'numericDayOfWeek'		=> date('w', mktime(0, 0, 0, $month, 1, $year)),
 			'dateOfLastMonth'		=> $month == 1 ? 12 : $month - 1,
-			'dateOfCurrentMonth'	=> date( 'm', $tstamp ),
-			'dateOfNextMonth'		=> date( 'm', strtotime( '+1 month', $tstamp ) ),
+			'dateOfCurrentMonth'	=> $month,
+			'dateOfNextMonth'		=> date('m', strtotime('+1 month', $tstamp)),
 			'selectedYear'			=> $year,
 		);
 
@@ -321,16 +315,24 @@ class TodoyuCalendarManager {
 
 		return $data;
 	}
-	
-	
+
+
+
+	/**
+	 * 	Get context menu items
+	 * 
+	 *	@param	unknown_type	$time
+	 *	@param	Array	$items
+	 *	@return	Array
+	 */
 	public static function getContextMenuItems($time, array $items) {
 		$items = array_merge_recursive($items, $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Area']);
 		
 		return $items;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get calendar tabs configuration array
 	 *
@@ -344,14 +346,14 @@ class TodoyuCalendarManager {
 			$tabs[$index]['key']		= $tab['id'];
 			$tabs[$index]['classKey'] 	= $tab['id'];
 			$tabs[$index]['hasIcon'] 	= 1;
-			//$tabs[$index]['position']	= $index == 0 ? 'first' : (($index == count($tabs) - 1) ? 'last' : '');
+//			$tabs[$index]['position']	= $index == 0 ? 'first' : (($index == count($tabs) - 1) ? 'last' : '');
 		}
 		
 		return $tabs;		
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get currently selected users (defined by the panel widget)
 	 * If no user is selected, the current user will automaticly be selected
@@ -360,16 +362,16 @@ class TodoyuCalendarManager {
 	 */
 	public static function getSelectedUsers() {
 		$users	= TodoyuPanelWidgetStaffSelector::getSelectedUsers();
-		
-		if( sizeof($users) === 0) {
+
+		if(sizeof($users) === 0) {
 			$users = array(userid());
 		}
-		
+
 		return $users;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get currently selected event types
 	 *
@@ -378,9 +380,9 @@ class TodoyuCalendarManager {
 	public static function getSelectedEventTypes() {
 		return TodoyuPanelWidgetEventtypeSelector::getSelectedEventTypes();
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get currently selected holidaysets
 	 *

@@ -28,6 +28,12 @@
 
 class TodoyuCalendarViewHelper {
 
+	/**
+	 *	Get context menu header
+	 * 
+	 *	@param	Integer	$idEvent
+	 *	@return	String
+	 */
 	public static function getContextMenuHeader($idEvent) {
 		$idEvent	= intval($idEvent);
 		$event		= TodoyuEventManager::getEvent($idEvent);
@@ -36,12 +42,20 @@ class TodoyuCalendarViewHelper {
 	}
 
 
+
+	/**
+	 *	Get calendar title
+	 * 
+	 *	@param	String	$mode
+	 *	@param	Integer	$dateStart
+	 *	@param	Integer	$dateEnd
+	 *	@return	String
+	 */
 	public static function getCalendarTitle($mode, $dateStart, $dateEnd) {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
 
 		switch($mode) {
-
 			case 'day':
 				$title	= TodoyuTime::format($dateStart, 'DlongD2MlongY4') . ' (' . TodoyuTime::format($dateStart, 'calendarweek') . ')';
 				break;
