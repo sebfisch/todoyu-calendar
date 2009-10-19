@@ -74,12 +74,12 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 */
 	show: function(type, key, mouseX, mouseY) {
 		var x = mouseX + 16, y = mouseY-12;
-		
+
 		if( this.loading === true ) {
 			return false;
 		}		
 		this.loading = true;
-		
+
 		if( this.isCached(key) ) {
 			this.updateContent(this.getFromCache(key));
 			this.showPopUp(x, y);
@@ -88,19 +88,18 @@ Todoyu.Ext.calendar.Quickinfo = {
 			this.loadQuickInfo(type, key, x, y);
 		}
 	},
-		
+
 	showPopUp: function(x, y) {
 		$(this.popUpID).setStyle({
 			'top': y + 'px',
 			'left': x + 'px'
 		}).show();
 	},
-	
+
 	hide: function() {
 		$(this.popUpID).hide();
 	},
-	
-	
+
 	loadQuickInfo: function(type, key, mouseX, mouseY) {
 		var	url		= Todoyu.getUrl('calendar', 'quickinfo');
 		var options	= {
@@ -114,71 +113,71 @@ Todoyu.Ext.calendar.Quickinfo = {
 		Todoyu.send(url, options);
 		
 	},
-	
+
 	onQuickInfoLoaded: function(key, x, y, response) {
 		this.addToCache(key, response.responseText);
 		this.updateContent(response.responseText);
 		this.showPopUp(x, y);
 		this.loading = false;
 	},
-	
+
 	addToCache: function(key, content) {
 		this.cache[key] = content;
 	},
-	
+
 	getFromCache: function(key) {
 		return this.cache[key];
 	},
-	
+
 	removeFromCache: function(key) {
 		if( this.cache[key] ) {
 			delete this.cache[key];
 		}
 	},
-	
+
 	isCached: function(key) {
 		return typeof(this.cache[key]) === 'string';
 	},
-	
+
 	updateContent: function(content) {
 		$(this.popUpID).update(content);
 	},
-		
+
 	Event: {
 		observers: [],
-		
+
 		elementSelector:  'div.eventQuickInfoHotspot',
-		
+
 		installObservers: function() {
 			$$(this.elementSelector).each(this.installOnElement.bind(this));
 		},
-		
+
 		installOnElement: function(element) {		
 			var idEvent	= element.readAttribute('id').split('-').last();
-			
+
 				// Mouseover
 			var observerOver= this.onMouseOver.bindAsEventListener(this, idEvent);
 			var observerOut	= this.onMouseOut.bindAsEventListener(this, idEvent);
-			
+
 			this.observers.push({
 				'element': element,
 				'over': observerOver,
 				'out': observerOut
 			});
-			
+
 			element.observe('mouseover', observerOver);
 			element.observe('mouseout', observerOut);
 		},
-		
+
 		uninstallObservers: function() {
 			this.observers.each(function(observer){
 				Event.stopObserving(observer.element, 'mouseover', observer.over);
 				Event.stopObserving(observer.element, 'mouseout', observer.out);
 			});
-			
+
 			this.observers = [];
 		},
-			
+
 		onMouseOver: function(event, idEvent) {
 			Todoyu.Ext.calendar.Quickinfo.show('event', idEvent, event.pointerX(), event.pointerY());
 		},
