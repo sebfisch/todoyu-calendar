@@ -53,11 +53,11 @@ class TodoyuPanelWidgetEventtypeSelector extends TodoyuPanelWidget implements To
 			$params,									// widget params
 			$idArea										// area ID
 		);
-		
+
 			// Add assets
 		TodoyuPage::addExtAssets('calendar', 'public');
 		TodoyuPage::addExtAssets('calendar', 'panelwidget-eventtypeselector');
-		
+
 		$this->addHasIconClass();
 		$this->addClass('user');
 
@@ -73,22 +73,22 @@ class TodoyuPanelWidgetEventtypeSelector extends TodoyuPanelWidget implements To
 	 * @return	String
 	 */
 	public function renderContent() {
-		TodoyuExtensions::loadConfigIfAvailable('calendar', 'panelwidgets');
-		
+//		TodoyuExtensions::loadConfig('calendar', 'panelwidgets');
+
 		$selectedEventtypes	= $this->getSelectedEventTypes();
 		$eventtypes			= TodoyuEventManager::getEventTypes(true);
-		
+
 		$tmpl	= 'ext/calendar/view/panelwidgets/panelwidget-eventtypeselector.tmpl';
 		$data	= array(
 			'id'			=> $this->getID(),
 			'eventtypes'	=> $eventtypes,
 			'selected'		=> $selectedEventtypes,
-			'config'		=> $this->config		
+			'config'		=> $this->config
 		);
-		
+
 		return render($tmpl, $data);
-		
-		
+
+
 
 		$prefs	= self::getSelectedEventTypes();
 
@@ -164,14 +164,14 @@ class TodoyuPanelWidgetEventtypeSelector extends TodoyuPanelWidget implements To
 	 */
 	public function getSelectedEventTypes() {
 		$eventTypes	= TodoyuCalendarPreferences::getPref('panelwidget-eventtypeselector', 0, AREA);
-		
+
 		if( $eventTypes === false || $eventTypes === '' ) {
 			$eventTypes	= TodoyuEventManager::getEventTypes(false);
 			$eventTypes	= array_keys($eventTypes);
 		} else {
 			$eventTypes	= TodoyuDiv::intExplode(',', $eventTypes);
 		}
-		
+
 		return $eventTypes;
 	}
 
