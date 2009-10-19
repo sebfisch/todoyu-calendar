@@ -125,7 +125,7 @@ class TodoyuCalendarPreferences {
 	 * @param	Array		$types
 	 */
 	public static function saveEventtypes($types) {
-		$types	= TodoyuDiv::intvalArray($types);
+		$types	= TodoyuArray::intval($types);
 		$types	= implode(',', $types);
 
 		self::savePref('panelwidget-eventtypeselector', $types, 0, true, AREA);
@@ -139,7 +139,7 @@ class TodoyuCalendarPreferences {
 	 * @param	Array	$setIDs
 	 */
 	public static function saveHolidaysets($setIDs) {
-		$setIDs	= TodoyuDiv::intvalArray($setIDs);
+		$setIDs	= TodoyuArray::intval($setIDs);
 
 			// 'no set'-option selected? deselect all other options
 		if (in_array(0, $setIDs)) {

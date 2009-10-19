@@ -73,8 +73,8 @@ class TodoyuEventManager {
 	public static function getEventsInTimespan($dateStart, $dateEnd, array $users = array(), array $eventTypes = array(), $dayEvents = null, $indexField = 'id') {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
-		$users		= TodoyuDiv::intvalArray($users, true, true);
-		$eventTypes	= TodoyuDiv::intvalArray($eventTypes, true, true);
+		$users		= TodoyuArray::intval($users, true, true);
+		$eventTypes	= TodoyuArray::intval($eventTypes, true, true);
 
 		if( sizeof($users) === 0 ) {
 			$users	= array(userid());
@@ -274,7 +274,7 @@ class TodoyuEventManager {
 	 * @return	Array
 	 */
 	public static function getAssignedUsersOfEvents(array $eventIDs ) {
-		$eventIDs	= array_unique( TodoyuDiv::intvalArray($eventIDs) );
+		$eventIDs	= array_unique( TodoyuArray::intval($eventIDs) );
 
 		$fields	= 'id_event, id_user';
 		$tables	= 'ext_calendar_mm_event_user';
@@ -369,7 +369,7 @@ class TodoyuEventManager {
 
 			// Add users
 		if( is_array($users) ) {
-			$users	= TodoyuDiv::getColumnFromArray($users, 'id');
+			$users	= TodoyuArray::getColumn($users, 'id');
 			self::assignUsersToEvent($idEvent, $users);
 		}
 
@@ -394,7 +394,7 @@ class TodoyuEventManager {
 
 			// Add users
 		if( is_array($data['user']) ) {
-			$users	= TodoyuDiv::getColumnFromArray($data['user'], 'id');
+			$users	= TodoyuArray::getColumn($data['user'], 'id');
 			self::assignUsersToEvent($idEvent, $users);
 			unset($data['user']);
 		}
@@ -456,7 +456,7 @@ class TodoyuEventManager {
 	 */
 	public static function assignUsersToEvent($idEvent, array $userIDs) {
 		$idEvent	= intval($idEvent);
-		$userIDs	= TodoyuDiv::intvalArray($userIDs, true, true);
+		$userIDs	= TodoyuArray::intval($userIDs, true, true);
 
 		foreach($userIDs as $idUser) {
 			self::assignUserToEvent($idEvent, $idUser);

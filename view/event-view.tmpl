@@ -1,4 +1,14 @@
-<a href="javascript:Todoyu.Ext.calendar.Event.show({$event.id})">Reload</a>
+
 <script language="javascript">
 Todoyu.Ext.calendar.setTitle('{dateFormat $event.date_start DshortD2MlongY4}: {$event.title} {time()}');
 </script>
+
+<h2>{$event.title}</h2>
+<p>{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime}</p>
+<p> - {$event.description}</p>
+<br>
+<br>
+<br>
+<p>This view is just experimental, nicer view will follow =)</p>
+<br>
+<a href="javascript:Todoyu.Ext.calendar.Event.show({$event.id})">Reload</a>

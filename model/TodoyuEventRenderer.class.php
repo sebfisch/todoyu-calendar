@@ -108,7 +108,7 @@ class TodoyuEventRenderer {
 	 * @return	Array
 	 */
 	public static function prepareEventRenderData($calendarMode = 'month', array $data, array $selectedUserIDs = array()) {
-		$selectedUserIDs	= TodoyuDiv::intvalArray($selectedUserIDs);
+		$selectedUserIDs	= TodoyuArray::intval($selectedUserIDs);
 		$assignedUsers 		= TodoyuEventManager::getAssignedUsersOfEvent( $data['id'] , true );
 
 		$idCurrentUser		= userid();
@@ -152,7 +152,7 @@ class TodoyuEventRenderer {
 	 * @return	String	Div of the event
 	 */
 	public static function renderEvent(array $event, $calendarMode = 'month', array $selectedUserIDs = array(), $selectedUserColors = array() ) {
-		$selectedUserIDs= TodoyuDiv::intvalArray($selectedUserIDs);
+		$selectedUserIDs= TodoyuArray::intval($selectedUserIDs);
 		$event			= self::prepareEventRenderData($calendarMode, $event, $selectedUserIDs, $selectedUserColors );
 
 		if($calendarMode === 'list')	{
@@ -178,7 +178,7 @@ class TodoyuEventRenderer {
 	 * @return	String
 	 */
 	public static function renderFulldayEvent( $calendarMode = 'day', array $data = array(), array $selectedUserIDs) {
-		$selectedUserIDs	= TodoyuDiv::intvalArray($selectedUserIDs);
+		$selectedUserIDs	= TodoyuArray::intval($selectedUserIDs);
 		$data				= self::prepareEventRenderData($calendarMode, $data, $selectedUserIDs );
 
 		return render('ext/calendar/view/event-fullday.tmpl', $data);

@@ -59,7 +59,7 @@ class TodoyuHolidayManager {
 	 * @return	Array
 	 */
 	public static function getHolidaySetsOfAddresses(array $addressIDs, $groupAddressesBySet = false) {
-		$addressIDs		= TodoyuDiv::intvalArray($addressIDs, true, true);
+		$addressIDs		= TodoyuArray::intval($addressIDs, true, true);
 
 		$fields	= 'id,id_holidayset';
 		$table	= 'ext_user_address';
@@ -117,7 +117,7 @@ class TodoyuHolidayManager {
 	 *
 	 */
 	public static function getHolidaysInTimespan($dateStart = 0, $dateEnd = 0, array $holidaysets) {
-		$holidaysets= TodoyuDiv::intvalArray($holidaysets, true, false);
+		$holidaysets= TodoyuArray::intval($holidaysets, true, false);
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
 
@@ -148,7 +148,7 @@ class TodoyuHolidayManager {
 	 * @return	Array
 	 */
 	public static function getPersonHolidaysInTimespan(array $userIDs, $tstampFrom = 0, $tstampUntil = 0) {
-		$userIDs		= TodoyuDiv::intvalArray($userIDs, true, true);
+		$userIDs		= TodoyuArray::intval($userIDs, true, true);
 		$tstampFrom		= intval($tstampFrom);
 		$tstampUntil	= intval($tstampUntil);
 
