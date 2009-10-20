@@ -537,11 +537,6 @@ class TodoyuEventManager {
 
 
 
-
-
-
-
-
 	/**
 	 * Calculate number of day the event starts, relative to shown days of current week-view
 	 *

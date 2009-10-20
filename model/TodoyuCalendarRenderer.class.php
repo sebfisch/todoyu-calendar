@@ -317,7 +317,7 @@ class TodoyuCalendarRenderer {
 	 *
 	 * @param	String		$mode
 	 * @param	Integer		$dateStart
-	 * @param	Integer		$dateEnd
+	 * @param	Integer		$dateEnd	last shown date in current calendar view 
 	 * @param	Array		$eventTypes
 	 * @param	Array		$users
 	 * @return	Array
@@ -334,7 +334,8 @@ class TodoyuCalendarRenderer {
 				if( ! in_array($event['id'], $rendered) || $mode === 'month' ) {
 					$rendered[] = $event['id'];
 
-					$dayEvents[$dateKey][] = TodoyuEventRenderer::renderFulldayEvent($mode, $event, $users);
+					$event['tstamp_lastDay']	= $dateEnd;
+					$dayEvents[$dateKey][]		= TodoyuEventRenderer::renderFulldayEvent($mode, $event, $users);
 				}
 			}
 		}

@@ -30,8 +30,13 @@ Todoyu.Ext.calendar.Event = {
 	* @see function showEventQuickinfo()
 	*/
 	objTimeControl: {},
-	
-	
+
+
+
+	/**
+	 * Install observers
+	 * 
+	 */
 	installObservers: function() {
 			// View
 		$('calendararea').select('div.event').each(function(eventElement){
@@ -48,7 +53,14 @@ Todoyu.Ext.calendar.Event = {
 		}.bind(this));
 		*/
 	},
-	
+
+
+
+	/**
+	 * Event double click handler
+	 * 
+	 * @param	object	event
+	 */
 	onEventDblClick: function(event) {
 		event.stop();
 		
@@ -58,10 +70,14 @@ Todoyu.Ext.calendar.Event = {
 		this.show(idEvent);
 	},
 	
+	
+	
+	/**
+	 * Show event
+	 * 
+	 * @param	Integer	idEvent
+	 */
 	show: function(idEvent) {
-		//alert('Detail view is disabled at the moment');
-		//return;
-		
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
 			'parameters': {
@@ -74,7 +90,14 @@ Todoyu.Ext.calendar.Event = {
 		
 		//Todoyu.Ui.updateContent(url, options);
 	},
-	
+
+
+
+	/**
+	 * Edit event
+	 * 
+	 * @param	Integer	idEvent
+	 */
 	edit: function(idEvent) {
 		var url = Todoyu.getUrl('calendar', 'event');
 
@@ -88,11 +111,20 @@ Todoyu.Ext.calendar.Event = {
 		Todoyu.Ui.updateContent(url, options);
 		scroll(0, 0);
 	},
-	
+
+
+
+	/**
+	 * Remove event
+	 * 
+	 * @param	Integer	idEvent
+	 */
 	remove: function(idEvent) {
-		if( confirm('Remove event?') ) {
-			$('event-' + idEvent).fade();
-			
+		if(confirm('Remove event?')) {
+			$$('div#event-' + 4).each(function(eventElement){
+				eventElement.fade();
+			});
+
 			var url		= Todoyu.getUrl('calendar', 'event');
 			var options	= {
 				'parameters': {
@@ -101,14 +133,18 @@ Todoyu.Ext.calendar.Event = {
 				},
 				'onComplete': this.onRemoved.bind(this, idEvent)
 			};
-			
+
 			Todoyu.send(url, options);			
 		}
 	},
-	
+
+
+
 	onRemoved: function(idEvent, response) {
 		
 	},
+
+
 
 	/**
 	 * If in a form "is_dayevent" is clicked, toggle time fields and set their value to 00:00
@@ -116,7 +152,7 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 * @param	String	formName	Name of the XML-form
 	*/
-	hideTime:function( formName ) {
+	hideTime:function(formName) {
 		if ($(formName+'-0-field-starttime')) {
 			$(formName+'-0-field-starttime').value	= '00:00';
 		}
@@ -132,7 +168,7 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 * @param	String	formName	Name of the XML-form
 	*/
-	updateEnddate:function( formName ) {
+	updateEnddate:function(formName) {
 		if ($(formName+'-0-field-enddate')) {
 			$(formName+'-0-field-enddate').value = $F(formName+'-0-field-startdate');
 		}
@@ -145,17 +181,17 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 *	@param	Integer	idEvent
 	 */
-	toggleDetails: function( idEvent ) {
+	toggleDetails: function(idEvent) {
 			// If detail is not loaded yet, send request
-		if( ! this.isDetailsLoaded( idEvent ) ) {
-			this.loadDetails( idEvent, 'listing' );
+		if(! this.isDetailsLoaded(idEvent)) {
+			this.loadDetails(idEvent, 'listing');
 			$('event-' + idEvent + '-details').hide();
 		}
 
 		var details	= $('event-' + idEvent + '-details');
 
 			// Save preference
-		this.saveEventOpen(idEvent, ! Todoyu.exists('event-' + idEvent + '-details') );
+		this.saveEventOpen(idEvent, ! Todoyu.exists('event-' + idEvent + '-details'));
 
 			// Toggle visibility
 		details.toggle();
@@ -169,7 +205,7 @@ Todoyu.Ext.calendar.Event = {
 	 *	@param	Intger	idEvent
 	 *	@param	String	mode	'day' / 'week' / 'month'
 	 */
-	loadDetails: function( idEvent, mode ) {
+	loadDetails: function(idEvent, mode) {
 		target	= 'event-' + idEvent + '-header';
 		url		= Todoyu.getUrl('calendar', 'event');
 		options	= {
@@ -204,7 +240,7 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 *	@param	Integer		eventID
 	 */
-	createEventQuickinfo: function( eventID ) {
+	createEventQuickinfo: function(eventID) {
 		if(! $('quickinfo')) {
 			Todoyu.Ext.calendar.Quickinfo.insertQuickInfoElement();
 		}
@@ -235,7 +271,7 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 *	@param	String		holidayDate
 	 */
-	createHolidayQuickinfo: function( holidayDate ) {
+	createHolidayQuickinfo: function(holidayDate) {
 		if(! $('quickinfo')) {
 			Todoyu.Ext.calendar.Quickinfo.insertQuickInfoElement();
 		}
@@ -281,7 +317,7 @@ Todoyu.Ext.calendar.Event = {
 		} else {
 				// Is timer not running? start timeout to show quick info after
 			if(! this.objTimeControl[eventID]) {
-		    	this.objTimeControl[eventID] = window.setTimeout("Todoyu.Ext.calendar.Event.createEventQuickinfo(" + eventID + ")", 500);
+				this.objTimeControl[eventID] = window.setTimeout("Todoyu.Ext.calendar.Event.createEventQuickinfo(" + eventID + ")", 500);
 			} else {
 					// Clear a new start (restart timeout)
 				window.clearTimeout(this.objTimeControl[eventID]);
@@ -299,7 +335,7 @@ Todoyu.Ext.calendar.Event = {
 	 *	@param	Integer		mouseX		Horizontal mouse coordinate
 	 *	@param	Integer		mouseY		Vertical mouse coordinate
 	 */
-	showHolidayQuickinfo: function( holidayDate, mouseX, mouseY ) {
+	showHolidayQuickinfo: function(holidayDate, mouseX, mouseY) {
 			// First show
 		if(! $('quickinfo')) {
 			this.ext.Quickinfo.insertQuickInfoElement();
@@ -312,7 +348,7 @@ Todoyu.Ext.calendar.Event = {
 		} else {
 				// Is timer not running? start timeout to show quick info after
 			if(! this.objTimeControl[holidayDate]) {
-		    	this.objTimeControl[holidayDate] = window.setTimeout("Todoyu.Ext.calendar.Event.createHolidayQuickinfo(" + holidayDate + ")", 500);
+				this.objTimeControl[holidayDate] = window.setTimeout("Todoyu.Ext.calendar.Event.createHolidayQuickinfo(" + holidayDate + ")", 500);
 			} else {
 					// Clear a new start (restart timeout)
 				window.clearTimeout(this.objTimeControl[holidayDate]);
@@ -328,7 +364,7 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 *	@param	Integer		eventID		ID of the selected event
 	 */
-	hideQuickinfo: function( timerID ) {
+	hideQuickinfo: function(timerID) {
 			// Timer run?
 		if(this.objTimeControl[timerID]) {
 			window.clearTimeout(this.objTimeControl[timerID]);
@@ -341,10 +377,6 @@ Todoyu.Ext.calendar.Event = {
 			$('quickinfo').hide();
 		}
 	},
-
-
-
-
 
 
 
@@ -392,7 +424,7 @@ Todoyu.Ext.calendar.Event = {
 	 *	@param	Integer		idEvent
 	 *	@return	Boolean
 	 */
-	isDetailsLoaded: function( idEvent )	{
+	isDetailsLoaded: function(idEvent)	{
 		return Todoyu.exists('event-'+idEvent+'-details');
 	},
 
@@ -413,19 +445,19 @@ Todoyu.Ext.calendar.Event = {
 
 			// Calculate time of day in 30 minute steps from mouse-Y
 		var halfHours	= (eventPointerY - calTopCoord) / 21.5 + '';
-		halfHours		= parseInt( halfHours.split('.')[0], 10);
+		halfHours		= parseInt(halfHours.split('.')[0], 10);
 
 		timestamp	+= halfHours * 1800;
 
 			// Calculate day of week from mouse-X
 		if (idTab == 'week') {
 			var day	= (eventPointerX - calLeftCoord) / 88 + '';
-			day		= parseInt( day.split('.')[0], 10);
+			day		= parseInt(day.split('.')[0], 10);
 			timestamp	+= day * 86400;
 		}
 
 			// Compensate for workingDay-display mode (top hour is 08:00 and not 00:00)
-		if( ! $('toggleDayView').hasClassName('full') ) {
+		if(! $('toggleDayView').hasClassName('full')) {
 			timestamp += 28800; // 28800 == 8 * 60 * 60;
 		}
 
@@ -444,19 +476,19 @@ Todoyu.Ext.calendar.Event = {
 		if (idEventtype == 3) {
 			var irrelevant = ['.fieldnameIs_dayevent', '.fieldnameDate_end', '.fieldnameStarttime', '.fieldnameEndtime', '.fieldnameUser'];
 			irrelevant.each(function(elementClass)	{
-				$$( elementClass )[0].hide();
+				$$(elementClass)[0].hide();
 			});
 
-			if ( $$('.remove-user')[0] ) {
+			if ($$('.remove-user')[0]) {
 					// Remove default user assignment
-				Todoyu.Form.removeSubRecord( $$('.remove-user')[0] );
+				Todoyu.Form.removeSubRecord($$('.remove-user')[0]);
 			}
 			Todoyu.Popup.currentWindow.setSize(450, 140);
 		} else {
 			var relevant = ['.fieldnameIs_dayevent', '.fieldnameDate_end', '.fieldnameStarttime', '.fieldnameEndtime', '.fieldnameUser'];
 			relevant.each(function(elementClass)	{
-				if ($$( elementClass )[0]) {
-					$$( elementClass )[0].show();
+				if ($$(elementClass)[0]) {
+					$$(elementClass)[0].show();
 				}
 			});
 			Todoyu.Popup.popup.setSize(450, 260);
@@ -470,15 +502,15 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 */
 	deleteEvent: function(idEvent)	{
-		if( confirm('[LLL:calendar.event.deleteEvent.confirm]') )	{
-			var url = Todoyu.getUrl( 'calendar' , 'event' );
+		if(confirm('[LLL:calendar.event.deleteEvent.confirm]'))	{
+			var url = Todoyu.getUrl('calendar' , 'event');
 
 			var options = {
 				'parameters': {
 					'cmd': 'delete',
 					'idEvent': idEvent
 				},
-				'onComplete': this.onDeleted.bind( this )
+				'onComplete': this.onDeleted.bind(this)
 			};
 
 			Todoyu.send(url, options);

@@ -130,12 +130,12 @@ class TodoyuEventRenderer {
 		));
 
 		if ($calendarMode == 'week') {
-			$shownStartingDayNum	= TodoyuEventManager::calcEventStartingDayNumInWeek(	$data['date_start'], $data['tstamp_firstDay']);
-			$shownEndingDayNum		= TodoyuEventManager::calcEventEndingDayNumInWeek(	$data['date_end'], $data['tstamp_lastDay']);
+			$shownStartingDayNum	= TodoyuEventManager::calcEventStartingDayNumInWeek($data['date_start'], $data['tstamp_firstDay']);
+			$shownEndingDayNum		= TodoyuEventManager::calcEventEndingDayNumInWeek($data['date_end'], $data['tstamp_lastDay']);
 
 			$data['shownStartingDayNum']	= $shownStartingDayNum;
 			$data['shownEndingDayNum']		= $shownEndingDayNum;
-			$data['shownDaysDuration']		= $shownEndingDayNum - $shownStartingDayNum;
+			$data['shownDaysDuration']		= $shownEndingDayNum - $shownStartingDayNum;			
 		}
 
 		return $data;
@@ -177,7 +177,7 @@ class TodoyuEventRenderer {
 	 * @param	Array	$selectedUserColors
 	 * @return	String
 	 */
-	public static function renderFulldayEvent( $calendarMode = 'day', array $data = array(), array $selectedUserIDs) {
+	public static function renderFulldayEvent($calendarMode = 'day', array $data = array(), array $selectedUserIDs) {
 		$selectedUserIDs	= TodoyuArray::intval($selectedUserIDs);
 		$data				= self::prepareEventRenderData($calendarMode, $data, $selectedUserIDs );
 
