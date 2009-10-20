@@ -186,7 +186,7 @@ class TodoyuCalendarManager {
 		$monthRange	= TodoyuTime::getMonthRange($time);
 		
 		$start		= TodoyuTime::getWeekStart($monthRange['start']);
-		$end		= TodoyuTime::getWeekStart($monthRange['end']) + 604099; //604099 = 7 * 86400 - 1;
+		$end		= TodoyuTime::getWeekStart($monthRange['end']) + 604799; //604799 = 7 * 86400 - 1;
 		
 		return array(
 			'start'	=> $start,

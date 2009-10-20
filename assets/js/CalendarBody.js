@@ -1,4 +1,3 @@
-
 Todoyu.Ext.calendar.CalendarBody = {
 	
 	ext: Todoyu.Ext.calendar,
@@ -6,7 +5,13 @@ Todoyu.Ext.calendar.CalendarBody = {
 	idArea: 'calendararea',
 	
 	calendarBody: null,
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	init: function(fullHeight) {
 		this.calendarBody = $(this.idArea);
 		
@@ -15,23 +20,53 @@ Todoyu.Ext.calendar.CalendarBody = {
 			this.setFullHeight(fullHeight, false);
 		}
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	reInit: function() {
 		this.init(this.isFullHeight());
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	installContextMenu: function() {
 		this.ext.ContextMenuCalendarBody.reattach();
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	toggleFullDayView: function() {
 		this.setFullHeight(!this.isFullHeight(), true);
 	},
-		
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	isFullHeight: function() {
 		return this.calendarBody.hasClassName('full');
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	setFullHeight: function(fullHeight, savePref) {
 		if( fullHeight ) {
 			this.calendarBody.addClassName('full');
@@ -45,11 +80,23 @@ Todoyu.Ext.calendar.CalendarBody = {
 			this.saveFullDayViewPref();
 		}
 	},	
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	saveFullDayViewPref: function(){
 		this.ext.savePref('fulldayview', this.isFullHeight() ? 1 : 0);
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	getTimeOfMouseCoordinates: function(x, y) {
 		var height	= 1010; //this.getHeight();
 		var top		= y - this.calendarBody.cumulativeOffset().top;
@@ -78,16 +125,34 @@ Todoyu.Ext.calendar.CalendarBody = {
 		
 		return time;
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	getHeight: function() {
 		return this.calendarBody.getHeight();
 	},
+
 	
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	installObservers: function() {
 		
 		
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	installObserversCreateEvent: function() {
 		this.reInit();
 		var tab	= this.ext.getActiveTab();
@@ -98,7 +163,13 @@ Todoyu.Ext.calendar.CalendarBody = {
 			this.calendarBody.observe('dblclick', this.onEventCreateDayWeek.bindAsEventListener(this));
 		}
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	onEventCreateDayWeek: function(event) {
 		if( event.findElement('td.tg-col') ) {
 			var time	= this.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
@@ -106,7 +177,13 @@ Todoyu.Ext.calendar.CalendarBody = {
 			this.ext.addEvent(time);
 		}		
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	onEventCreateMonth: function(event) {
 		var cell	= event.findElement('td');
 		

@@ -56,20 +56,43 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 			// Initialize calendar (have sCal render the calender code to the DOM)
 		this.Calendar 	= new scal(this.calName, this.onDateSelected.bind(this), options);
 	},
-	
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	getDate: function() {
 		return this.Calendar.currentdate.getTime();
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	setDate: function(date, noExternalUpdate) {
 		  this.Calendar.setCurrentDate(new Date(date), noExternalUpdate);
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	getTime: function() {
 		return parseInt(this.getDate()/1000, 10);
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	setTime: function(time, noExternalUpdate) {
 		this.setDate(time*1000, noExternalUpdate);
 	},
@@ -122,10 +145,6 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		});
 		//this.saveCurrentDate();
 	},
-
-
-
-	
 
 
 

@@ -229,11 +229,12 @@ class TodoyuCalendarRenderer {
 		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($dateStart);
 		$dateStart	= $monthRange['start'];
 		$dateEnd	= $monthRange['end'];
-
+		
 		$renderedEvents	= array();
 
 			// Get all events in current view
 		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $users, $eventTypes);
+		
 			// Group the events by day
 		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
 			// Add overlap informations to events for each day

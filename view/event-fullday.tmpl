@@ -30,8 +30,7 @@
 			{/for}
 		{/if}
 	</tr>
-{else}
-	{* ======================================== fullday events in DAY and MONTH viewing mode ======================================== *}
+{else}{* ---------------------------------------- fullday events in DAY and MONTH viewing mode ---------------------------------------- *}
 	<div id="event-{$id}" class="event contextmenuevent eventQuickInfoHotspot dayevent enumColBgFg{$colors.id} {if $updateAllowed} updateAllowed{/if}">
 		<span class="eventtype_{$eventtype}" style="width: 10px; margin-right: 2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		{if $is_private == 1}{* ----- only show title, if event is not private ----- *}

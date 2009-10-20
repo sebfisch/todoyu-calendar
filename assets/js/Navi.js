@@ -44,7 +44,7 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
-	 *
+	 *	@todo	comment
 	 *
 	 */
 	getDirectionDate: function(direction) {
@@ -58,6 +58,7 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
+	 *	@todo	comment
 	 *
 	 */
 	getBackwardDate: function() {
@@ -78,6 +79,7 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
+	 *	@todo	comment
 	 *
 	 */
 	getForwardDate: function() {
@@ -98,6 +100,7 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
+	 *	@todo	comment
 	 *
 	 */
 	getTodayDate: function() {
@@ -120,6 +123,7 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
+	 *	@todo	comment
 	 *
 	 */
 	toggleFullDayView: function() {

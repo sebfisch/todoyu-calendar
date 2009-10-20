@@ -29,8 +29,9 @@ Todoyu.Ext.calendar.Tabs = {
 	 *	Current active tab
 	 */
 	active: null,
-	
-	
+
+
+
 	/**
 	 *	On selecting a tab
 	 *
@@ -46,6 +47,7 @@ Todoyu.Ext.calendar.Tabs = {
 	},
 
 
+
 	/**
 	 *	 Get active tab ID
 	 */
@@ -56,10 +58,17 @@ Todoyu.Ext.calendar.Tabs = {
 
 		return this.active;
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	setActive: function(tab) {
 		this.active = tab;
 	},
+
 
 
 	/**

@@ -21,7 +21,13 @@
 Todoyu.Ext.calendar.Edit = {
 
 	ext: Todoyu.Ext.calendar,
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	openPopup: function(time) {
 		var url		= Todoyu.getUrl('calendar',	'quickevent');
 		var options	= {
@@ -95,7 +101,13 @@ Todoyu.Ext.calendar.Edit = {
 		
 		return false;
 	},
-	
+
+
+
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	onEventSaved: function(response) {
 		var error	= response.getTodoyuHeader('error');
 		

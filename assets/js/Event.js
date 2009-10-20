@@ -140,6 +140,10 @@ Todoyu.Ext.calendar.Event = {
 
 
 
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	onRemoved: function(idEvent, response) {
 		
 	},

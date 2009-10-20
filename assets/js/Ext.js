@@ -209,6 +209,10 @@ Todoyu.Ext.calendar = {
 
 
 
+	/**
+	 *	@todo	comment
+	 *
+	 */
 	uninstallEventObservers: function() {
 
 	},
