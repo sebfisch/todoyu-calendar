@@ -30,7 +30,7 @@ class TodoyuCalendarViewHelper {
 
 	/**
 	 *	Get context menu header
-	 * 
+	 *
 	 *	@param	Integer	$idEvent
 	 *	@return	String
 	 */
@@ -45,7 +45,7 @@ class TodoyuCalendarViewHelper {
 
 	/**
 	 *	Get calendar title
-	 * 
+	 *
 	 *	@param	String	$mode
 	 *	@param	Integer	$dateStart
 	 *	@param	Integer	$dateEnd
@@ -80,6 +80,28 @@ class TodoyuCalendarViewHelper {
 		}
 
 		return $title;
+	}
+
+
+
+	/**
+	 * Gets an options array of working hours in percent
+	 *
+	 *
+	 * @param	TodoyuForm $source
+	 * @return	Array
+	 */
+	public static function getWorkingHoursOptions(TodoyuFormElement $field)	{
+		$options = array();
+
+		for($index = 0; $index <= 24; $index += 0.5)	{
+			$options[] = array(
+				'value'	=> $index * 60,
+				'label'	=> sprintf('%.1f', $index) . ' ' . Label('LLL:core.time.hours')
+			);
+		}
+
+		return $options;
 	}
 
 }

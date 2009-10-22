@@ -227,30 +227,7 @@ class TodoyuHolidayManager {
 
 
 
-	/**
-	 * Gets an options array of working hours in percent
-	 *
-	 *
-	 * @param	TodoyuForm $source
-	 * @return	Array
-	 */
-	public static function getHolidayWorkingHoursRangeOptions(Form $source)	{
-		$options = array();
 
-		$currentValues = $source->getFormData();
-
-		for($index = 0; $index <= 8; $index+=0.5)	{
-			$index = doubleval($index);
-
-			$options[] = array(
-				'value'		=> $index * 60,
-				'label'		=> $index . ' h',
-				'selected'	=> ($currentValues['workinghours'] == $index * 60) ? 'selected' : ''
-			);
-		}
-
-		return $options;
-	}
 
 
 
