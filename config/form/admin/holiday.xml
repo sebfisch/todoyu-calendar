@@ -40,7 +40,7 @@
 						</addSubformConfig>
 						<label type="field">
 							<field>title</field>
-							<noLabel>Neuer Feiertag</noLabel>
+							<noLabel>Neues Feiertagsset</noLabel>
 						</label>
 					</foreignRecordConf>
 				</field>

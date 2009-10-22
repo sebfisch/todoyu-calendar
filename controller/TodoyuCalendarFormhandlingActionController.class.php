@@ -7,12 +7,27 @@ class TodoyuCalendarFormhandlingActionController extends TodoyuActionController 
 		$fieldName	= $params['field'];
 		$formName	= $params['form'];
 		$idRecord	= intval($params['record']);
-		$xmlPath 	= 'ext/calendar/config/form/' . $formName . '.xml';
 
-//
-//		if( ! is_file($xmlPath) )	{
-//			$xmlPath	= 'ext/calendar/config/form/admin/' . $xmlFile;
-//		}
+
+		if( $formName === 'record' ) {
+			$xmlBase	= 'ext/calendar/config/form/admin/';
+
+			switch($fieldName) {
+				case 'holidayset':
+					$xmlPath = $xmlBase . 'holiday.xml';
+					break;
+			}
+
+		} else {
+			$xmlBase	= 'ext/calendar/config/form/';
+
+			switch($fieldName) {
+				case 'user':
+					$xmlPath = $xmlBase . $formName . '.xml';
+					break;
+			}
+
+		}
 
 		$form 	= new TodoyuForm($xmlPath);
 		$form	= TodoyuFormHook::callBuildForm($xmlPath, $form, $index);
