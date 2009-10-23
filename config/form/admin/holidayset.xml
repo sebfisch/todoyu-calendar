@@ -36,7 +36,7 @@
 						<foreignformxml>ext/calendar/config/form/admin/holidayset-holiday.xml</foreignformxml>
 						<addSubformConfig>
 							<ext>calendar</ext>
-							<controller>formhandling</controller>
+							<controller>records</controller>
 						</addSubformConfig>
 						<label type="field">
 							<field>title</field>

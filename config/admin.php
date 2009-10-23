@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -34,17 +34,17 @@ TodoyuExtManager::addRecordConfig('calendar', 'holidayset', array(
 	'list'		=> 'TodoyuHolidaysEditorRenderer::getAdminHolidaySetList',
 	'form'		=> 'ext/calendar/config/form/admin/holidayset.xml',
 	'object'	=> 'TodoyuHolidaySet',
-	'delete'	=> 'TodoyuHolidayManager::removeHolidaySet',
-	'save'		=> 'TodoyuHolidayManager::saveHolidaySets',
+	'delete'	=> 'TodoyuHolidaySetManager::deleteHolidaySet',
+	'save'		=> 'TodoyuHolidaySetManager::saveHolidaySet'
 ));
 
 // add holidays to record area of the sysadmin
 TodoyuExtManager::addRecordConfig('calendar', 'holiday', array(
 	'label'		=> 'LLL:calendar.holiday',
-	'list'		=> 'TodoyuHolidaysEditorRenderer::getAdminHolidayList',
+	'list'		=> 'TodoyuHolidayManager::getRecords',
 	'form'		=> 'ext/calendar/config/form/admin/holiday.xml',
 	'object'	=> 'TodoyuHoliday',
-	'delete'	=> 'TodoyuHolidayManager::removeHoliday',
+	'delete'	=> 'TodoyuHolidayManager::deleteHoliday',
 	'save'		=> 'TodoyuHolidayManager::saveHoliday'
 ));
 

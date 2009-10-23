@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -58,7 +58,14 @@ class TodoyuHolidaysEditorRenderer {
 	 *
 	 * @return	Array
 	 */
-	public static function getAdminHolidayList()	{
+	public static function getAdminHolidayList() {
+
+
+
+
+
+
+
 		$returnArray = array();
 
 		$holidays = Todoyu::db()->getArray('id, title, date', 'ext_calendar_holiday', 'deleted = 0', '', 'date DESC');

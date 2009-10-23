@@ -32,22 +32,200 @@ class TodoyuHolidayManager {
 	const SET_TABLE	= 'ext_calendar_holidayset';
 
 
+	/**
+	 * Get holiday
+	 *
+	 * @param	Integer		$idHoliday
+	 * @return	TodoyuHoliday
+	 */
+	public static function getHoliday($idHoliday) {
+		$idHoliday	= intval($idHoliday);
+
+		return TodoyuCache::getRecord('TodoyuHoliday', $idHoliday);
+	}
+
+
+	public static function getAllHolidays() {
+		$fields	= '*';
+		$table	= self::TABLE;
+		$where	= 'deleted = 0';
+		$order	= 'title';
+
+	}
+
+
+
 
 	/**
-	 * Get holiday sets
+	 * Saves a holiday record
+	 *
+	 *
+	 * @param	Array	$formData
+	 * @param	String	$formXML
+	 * @return	Integer
+	 */
+	public static function saveHoliday(array $data) {
+		$idHoliday	= intval($data['id']);
+		$xmlPath	= 'ext/contact/config/form/holiday.xml';
+
+		if( $idHoliday === 0 ) {
+			$idHoliday = self::addHoliday();
+		}
+
+		$data	= self::saveHolidayForeignRecords($data, $idHoliday);
+		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idHoliday);
+
+
+		TodoyuDebug::printInFirebug($data, 'holiday');
+
+		self::updateHoliday($idHoliday, $data);
+
+		return $idRecord;
+	}
+
+
+	public static function addHoliday(array $data = array()) {
+		unset($data['id']);
+
+		return Todoyu::db()->addRecord(self::TABLE, $data);
+	}
+
+
+	public static function updateHoliday($idHoliday, array $data) {
+		$idHoliday	= intval($idHoliday);
+		unset($data['id']);
+
+		return Todoyu::db()->updateRecord(self::TABLE, $idHoliday, $data);
+	}
+
+
+
+	public static function getHolidaySets($idHoliday) {
+		$idHoliday	= intval($idHoliday);
+
+		$fields	= '	s.*';
+		$table	= '	ext_calendar_holidayset s,
+					ext_calendar_mm_holiday_holidayset mm';
+		$where	= ' mm.id_holiday	= ' . $idHoliday . ' AND
+					mm.id_holidayset= s.id AND
+					s.deleted 		= 0';
+		$order	= '	s.title';
+
+		return Todoyu::db()->getArray($fields, $table, $where, '', $order);
+	}
+
+
+
+	/**
+	 * Handles foreign records of holidays
+	 *
+	 * @param	Integer	$recordID
+	 * @param	Array	$formData
+	 */
+	protected static function saveHolidayForeignRecords(array $data, $idHoliday) {
+		$idHoliday	= intval($idHoliday);
+
+		self::removeHolidaySets($idHoliday);
+
+		if( is_array($data['holidayset']) ) {
+			$holidaySetIDs	= TodoyuArray::getColumn($data['holidayset'], 'id');
+			foreach($holidaySetIDs as $idHolidaySet) {
+				self::addHolidaySet($idHoliday, $idHolidaySet);
+			}
+		}
+		unset($data['holidayset']);
+
+		return $data;
+	}
+
+
+
+	public static function removeHolidaySets($idHoliday) {
+		$idHoliday	= intval($idHoliday);
+
+		TodoyuDbHelper::removeMMrelations('ext_calendar_mm_holiday_holidayset', 'id_holiday', $idHoliday);
+	}
+
+
+	public static function addHolidaySet($idHoliday, $idHolidaySet) {
+		$idHoliday		= intval($idHoliday);
+		$idHolidaySet	= intval($idHolidaySet);
+
+		TodoyuDbHelper::addMMrelation('ext_calendar_mm_holiday_holidayset', 'id_holiday', 'id_holidayset', $idHoliday, $idHolidaySet);
+	}
+
+
+
+
+	/**
+	 * Sets the Holiday with given id to deleted
+	 *
+	 *
+	 * @param	Integer	$holidayID
+	 */
+	public static function deleteHoliday($idHoliday)	{
+		$idHoliday	= intval($idHoliday);
+
+		return Todoyu::db()->deleteRecord(self::TABLE, $idHoliday);
+	}
+
+
+
+
+	public static function getRecords() {
+		$holidays	= self::getAllHolidays();
+		$records	= array();
+
+		foreach($holidays as $holiday) {
+			$records[] = array(
+				'id'					=> $holiday['id'],
+				'label'					=> $holiday['title'],
+				'additionalInformations'=> TodoyuTime::format($holiday['date'], 'date')
+			);
+		}
+
+		return $records;
+	}
+
+
+
+
+
+
+	/**
+	 * Renders holidaysets in admin module
+	 *
 	 *
 	 * @return	Array
 	 */
-	public static function getHolidaySets() {
+	public static function getAdminHolidayList() {
 
-		return Todoyu::db()->getArray(
-			'id, title',					// fields
-			self::SET_TABLE,				// table
-			'deleted = 0',					// where clause
-			'', 'title', '',				// group, order, limit
-			'id'							// index field
-		);
+
+		$returnArray = array();
+
+		$holidays = Todoyu::db()->getArray('id, title, date', 'ext_calendar_holiday', 'deleted = 0', '', 'date DESC');
+
+		foreach($holidays as $key => $holiday)	{
+			$returnArray[] = array(
+			'id'						=> $holiday['id'],
+			'label'						=> $holiday['title'],
+			'additionalInformations' 	=> date(TodoyuLocale::getLabel('core.dateFormat'), $holiday['date']));
+		}
+
+		return $returnArray;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -93,17 +271,13 @@ class TodoyuHolidayManager {
 	 * @return	Array
 	 */
 	public static function getHolidaysetOptions(TodoyuFormElement $field) {
-		$holidaysets = self::getHolidaySets();
+		$holidaySets= TodoyuHolidaySetManager::getAllHolidaySets();
+		$reform		= array(
+			'id'	=> 'value',
+			'name'	=> 'label'
+		);
 
-		$sets = array();
-		foreach($holidaysets as $id => $setData) {
-			$sets[]	= array(
-				'value'		=> $id,
-				'label' 	=> $setData['name']
-			);
-		}
-
-		return $sets;
+		return TodoyuArray::reform($holidaySets, $reform);
 	}
 
 
@@ -152,12 +326,12 @@ class TodoyuHolidayManager {
 		$dateEnd		= intval($dateEnd);
 
 			// Get working locations (company addresses) of given persons, affected holidaySets of given address IDs
-		$addressIDs		= TodoyuUserManager::getWorkaddressIDsOfUsers($userIDs);		
+		$addressIDs		= TodoyuUserManager::getWorkaddressIDsOfUsers($userIDs);
 		$holidaysetIDs	= self::getHolidaySetsOfAddresses($addressIDs);
 
 			// Get all holidays affected holidaysets in given timespan
 		$holidays		= self::getHolidaysInTimespan($dateStart, $dateEnd, $holidaysetIDs);
-		
+
 //		TodoyuDebug::printHtml($holidays);
 
 		return $holidays;
@@ -255,33 +429,6 @@ class TodoyuHolidayManager {
 
 
 
-	/**
-	 * Saves a holiday record
-	 *
-	 *
-	 * @param	Array	$formData
-	 * @param	String	$formXML
-	 * @return	Integer
-	 */
-	public static function saveHoliday(array $formData, $formXML)	{
-		$idRecord	= intval($formData['id']);
-		unset($formData['id']);
-
-		if($idRecord == 0)	{
-			$idRecord = self::createNewRecord(self::TABLE);
-		}
-
-		$formData	= TodoyuFormHook::callSaveData($formXML, $formData, $idRecord);
-		$formData	= self::handleHolidayForeignRecords($idRecord, $formData);
-		$formData['date'] = TodoyuTime::parseDate($formData['date']);
-
-		$where = 'id = ' . $idRecord;
-
-		Todoyu::db()->doUpdate(self::TABLE, $where, $formData);
-
-		return $idRecord;
-	}
-
 
 
 	/**
@@ -332,32 +479,6 @@ class TodoyuHolidayManager {
 
 
 
-	/**
-	 * Handles foreign records of holidays
-	 *
-	 * @param	Integer	$recordID
-	 * @param	Array	$formData
-	 */
-	protected static function handleHolidayForeignRecords($idRecord, array $formData)	{
-		$localData = $formData;
-
-		self::removeMMData($idRecord, 'ext_calendar_mm_holiday_holidayset', 'id_holiday');
-		if(array_key_exists('holidayset', $localData))	{
-			$holidaySets = array();
-
-			foreach($localData['holidayset'] as $holidaySet)	{
-				$holidaySets[] = $holidaySet['id'];
-			}
-
-			self::saveMMData($idRecord, $holidaySets, 'ext_calendar_mm_holiday_holidayset', 'id_holidayset', 'id_holiday');
-
-			unset($localData['holidayset']);
-		}
-
-
-		return $localData;
-	}
-
 
 
 	/**
@@ -374,19 +495,6 @@ class TodoyuHolidayManager {
 	}
 
 
-
-	/**
-	 * Sets the Holiday with given id to deleted
-	 *
-	 *
-	 * @param	Integer	$holidayID
-	 */
-	public static function removeHoliday($holidayID)	{
-		$updateArray	= array('date_update' => NOW,
-								'deleted' => 1);
-
-		Todoyu::db()->doUpdate(self::TABLE, 'id = ' . intval($holidayID), $updateArray);
-	}
 
 
 

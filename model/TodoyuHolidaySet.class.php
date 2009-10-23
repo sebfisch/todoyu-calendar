@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -35,9 +35,10 @@ class TodoyuHolidaySet extends TodoyuBaseObject {
 	 *
 	 * @param	Integer	$recordID
 	 */
-	function __construct($idRecord)	{
-		$idRecord	= intval($idRecord);
-		parent::__construct($idRecord, self::TABLE);
+	function __construct($idHolidaySet)	{
+		$idHolidaySet	= intval($idHolidaySet);
+
+		parent::__construct($idHolidaySet, self::TABLE);
 	}
 
 
@@ -47,33 +48,18 @@ class TodoyuHolidaySet extends TodoyuBaseObject {
 	 *
 	 */
 	public function loadForeignData()	{
-		$this->loadHolidays();
+		$this->data['holiday']	= TodoyuHolidaySetManager::getHolidays($this->id);
 	}
 
 
 
-	/**
-	 * Load holidays
-	 *
-	 */
-	private function loadHolidays()	{
-		$localID	= intval( $this->data['id'] );
-		$holidays	= array();
-
-		$result = Todoyu::db()->doSelect(
-			'id_holiday',							// fields
-			'ext_calendar_mm_holiday_holidayset',	// table
-			'id_holidayset = '.intval($localID)		// where clause
-		);
-
-		while($row = Todoyu::db()->fetchAssoc($result))	{
-			$obj = new Holiday($row['id_holiday']);
-			$holidays[] = $obj->getTemplateData();
+	public function getTemplateData($loadForeignRecords = false) {
+		if( $loadForeignRecords ) {
+			$this->loadForeignData();
 		}
 
-		$this->data['holiday'] = $holidays;
+		return parent::getTemplateData();
 	}
-
 
 }
 ?>
