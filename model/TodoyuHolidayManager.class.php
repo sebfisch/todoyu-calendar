@@ -60,7 +60,6 @@ class TodoyuHolidayManager {
 
 
 
-
 	/**
 	 * Save holiday
 	 *
@@ -231,15 +230,6 @@ class TodoyuHolidayManager {
 
 
 
-
-
-
-
-
-
-
-
-
 	/**
 	 * Get IDs of holidaysets of given addresses (IDs)
 	 *
@@ -273,9 +263,6 @@ class TodoyuHolidayManager {
 
 		return $holidaysetIDs;
 	}
-
-
-
 
 
 
@@ -364,10 +351,6 @@ class TodoyuHolidayManager {
 			return array();
 		}
 	}
-
-
-
-
 
 
 

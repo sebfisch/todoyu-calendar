@@ -93,11 +93,34 @@ class TodoyuCalendarViewHelper {
 	 */
 	public static function getWorkingHoursOptions(TodoyuFormElement $field)	{
 		$options = array();
-
+		
 		for($index = 0; $index <= 24; $index += 0.5)	{
 			$options[] = array(
 				'value'	=> $index * 60,
 				'label'	=> sprintf('%.1f', $index) . ' ' . Label('LLL:core.time.hours')
+			);
+		}
+
+		return $options;
+	}
+
+
+
+	/**
+	 * Gets an options array of all defined holidays
+	 *
+	 *
+	 * @param	TodoyuForm $source
+	 * @return	Array
+	 */
+	public static function getHolidayOptions(TodoyuFormElement $field)	{
+		$options = array();
+		
+		$holidays	= TodoyuHolidayManager::getAllHolidays();
+		foreach($holidays as $num => $holiday)	{
+			$options[] = array(
+				'value'	=> $holiday['id'],
+				'label'	=> $holiday['title'] . ' (' . TodoyuTime::format($holiday['date'], 'D2M2Y4') . ')'
 			);
 		}
 

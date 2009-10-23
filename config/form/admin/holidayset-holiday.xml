@@ -12,17 +12,11 @@
 			<legend>holiday of holidayset</legend>
 			<elements>
 
-				<field type="textinputAC" name="id">
+				<field type="select" name="id">
 						<label>LLL:calendar.holidayset.attr.holiday</label>
-						<config>
-							<acListener>
-								<ext>calendar</ext>
-								<controller>autocompletion</controller>
-								<cmd>holiday</cmd>
-								<minChars>1</minChars>
-							</acListener>
-							<acLabelFunc>TodoyuHolidayManager::getHolidayLabel</acLabelFunc>
-						</config>
+						<source type="function">
+							<function>TodoyuCalendarViewHelper::getHolidayOptions</function>
+						</source>
 						<required>1</required>
 				</field>
 
