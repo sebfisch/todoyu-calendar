@@ -20,61 +20,36 @@
 ***************************************************************/
 
 /**
- * Holiday
+ * Holidayset view helper
  *
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuHoliday extends TodoyuBaseObject {
-
-	const TABLE = 'ext_calendar_holiday';
+class TodoyuHolidayViewHelper {
 
 	/**
-	 * Constructor
+	 * Get available holiday sets (to render select-dropdown)
 	 *
-	 * @param	Integer		$idHoliday
-	 */
-	public function __construct($idHoliday)	{
-		$idHoliday	= intval($idHoliday);
-
-		parent::__construct($idHoliday, self::TABLE );
-	}
-
-
-
-	/**
-	 * Get holiday label
-	 *
-	 * @return	String
-	 */
-	public function getLabel() {
-		return $this->get('title');
-	}
-
-
-
-	/**
-	 * Load foreign data
-	 */
-	public function loadForeignData()	{
-		$this->data['holidayset']	= TodoyuHolidayManager::getHolidaySets($this->id);
-	}
-
-
-
-	/**
-	 * Get template data for holiday
-	 *
-	 * @param	Bool		$loadForeignRecords
 	 * @return	Array
 	 */
-	public function getTemplateData($loadForeignRecords = false) {
-		if( $loadForeignRecords ) {
-			$this->loadForeignData();
-		}
+	public static function getHolidaysetOptions(TodoyuFormElement $field) {
+		$holidaySets= TodoyuHolidaySetManager::getAllHolidaySets();
+		$reform		= array(
+			'id'	=> 'value',
+			'name'	=> 'label'
+		);
 
-		return parent::getTemplateData();
+		return TodoyuArray::reform($holidaySets, $reform);
 	}
+
+
+
+
+
+
+
+
+
 
 }
 

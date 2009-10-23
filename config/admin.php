@@ -31,7 +31,7 @@ if( ! defined('TODOYU') ) die('NO ACCESS');
 // add holidaysets to record area of the sysadmin
 TodoyuExtManager::addRecordConfig('calendar', 'holidayset', array(
 	'label'		=> 'LLL:calendar.applicableholidayset',
-	'list'		=> 'TodoyuHolidaysEditorRenderer::getAdminHolidaySetList',
+	'list'		=> 'TodoyuHolidaySetManager::getRecords',
 	'form'		=> 'ext/calendar/config/form/admin/holidayset.xml',
 	'object'	=> 'TodoyuHolidaySet',
 	'delete'	=> 'TodoyuHolidaySetManager::deleteHolidaySet',

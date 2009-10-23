@@ -1,16 +1,54 @@
 <?php
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2009 snowflake productions gmbh
+*  All rights reserved
+*
+*  This script is part of the todoyu project.
+*  The todoyu project is free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License, version 2,
+*  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
+*  the Free Software Foundation;
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
 
+/**
+ * Holidayset manager
+ *
+ * @package		Todoyu
+ * @subpackage	Calendar
+ */
 class TodoyuHolidaySetManager {
 
 	const TABLE = 'ext_calendar_holidayset';
 
 
+	/**
+	 * Get holidayset
+	 *
+	 * @param	Integer		$idHolidaySet
+	 * @return	TodoyuHolidaySet
+	 */
 	public static function getHolidaySet($idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);
 
 		return TodoyuCache::getRecord('TodoyuHolidaySet', $idHolidaySet);
 	}
 
+
+
+	/**
+	 * Get all holidayset records
+	 *
+	 * @return	Array
+	 */
 	public static function getAllHolidaySets() {
 		$fields	= '*';
 		$table	= self::TABLE;
@@ -21,6 +59,13 @@ class TodoyuHolidaySetManager {
 	}
 
 
+
+	/**
+	 * Save a holidayset
+	 *
+	 * @param	Array		$data
+	 * @return	Integer
+	 */
 	public static function saveHolidaySet(array $data) {
 		$idHolidaySet	= intval($data['id']);
 		$xmlPath		= 'ext/calendar/config/form/holidayset.xml';
@@ -32,13 +77,20 @@ class TodoyuHolidaySetManager {
 		$data	= self::saveHolidaySetForeignData($data, $idHolidaySet);
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idHolidaySet);
 
-
 		self::updateHolidaySet($idHolidaySet, $data);
 
 		return $idHolidaySet;
 	}
 
 
+
+	/**
+	 * Save holidayset foreign data
+	 *
+	 * @param	Array		$data
+	 * @param	Integer		$idHolidaySet
+	 * @return	Array
+	 */
 	public static function saveHolidaySetForeignData(array $data, $idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);
 
@@ -55,6 +107,14 @@ class TodoyuHolidaySetManager {
 		return $data;
 	}
 
+
+
+	/**
+	 * Add a holidayset record
+	 *
+	 * @param	Array		$data
+	 * @return	Integer
+	 */
 	public static function addHolidaySet(array $data = array()) {
 		unset($data['id']);
 
@@ -62,6 +122,14 @@ class TodoyuHolidaySetManager {
 	}
 
 
+
+	/**
+	 * Update holidayset record
+	 *
+	 * @param	Integer		$idHolidaySet
+	 * @param	Array		$data
+	 * @return	Bool
+	 */
 	public static function updateHolidaySet($idHolidaySet, array $data) {
 		$idHolidaySet	= intval($idHolidaySet);
 		unset($data['id']);
@@ -69,6 +137,14 @@ class TodoyuHolidaySetManager {
 		return Todoyu::db()->updateRecord(self::TABLE, $idHolidaySet, $data);
 	}
 
+
+
+	/**
+	 * Add/link a holiday to the holidayset
+	 *
+	 * @param	Integer		$idHolidaySet
+	 * @param	Integer		$idHoliday
+	 */
 	public static function addHoliday($idHolidaySet, $idHoliday) {
 		$idHolidaySet	= intval($idHolidaySet);
 		$idHoliday		= intval($idHoliday);
@@ -77,6 +153,13 @@ class TodoyuHolidaySetManager {
 	}
 
 
+
+	/**
+	 * Delete a holidayset
+	 *
+	 * @param	Integer		$idHolidaySet
+	 * @return	Bool
+	 */
 	public static function deleteHolidaySet($idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);
 
@@ -84,6 +167,12 @@ class TodoyuHolidaySetManager {
 	}
 
 
+
+	/**
+	 * Remove/unlink all linked holidays (only the link)
+	 *
+	 * @param	Integer		$idHolidaySet
+	 */
 	public static function removeHolidays($idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);
 
@@ -91,6 +180,13 @@ class TodoyuHolidaySetManager {
 	}
 
 
+
+	/**
+	 * Get holidays linked to the holidayset
+	 *
+	 * @param	Integer		$idHolidaySet
+	 * @return	Array
+	 */
 	public static function getHolidays($idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);
 
@@ -105,8 +201,58 @@ class TodoyuHolidaySetManager {
 		return Todoyu::db()->getArray($fields, $table, $where, '', $order);
 	}
 
-}
 
+
+	/**
+	 * Get all holidayset records for admin
+	 *
+	 * @return	Array
+	 */
+	public static function getRecords() {
+		$holidaySets= self::getAllHolidaySets();
+		$records	= array();
+
+		foreach($holidaySets as $holidaySet) {
+			$records[] = array(
+				'id'					=> $holidaySet['id'],
+				'label'					=> $holidaySet['title'],
+				'additionalInformations'=> $holidaySet['description']
+			);
+		}
+
+		return $records;
+	}
+
+
+
+	/**
+	 * Autocomplete holidaysets
+	 *
+	 * @param	String		$sword
+	 * @return	Array
+	 */
+	public static function autocompleteHolidaySet($sword)	{
+		$swords 	= TodoyuDiv::trimExplode(' ', $sword, true);
+		$results	= array();
+
+		if( sizeof($swords) > 0 ) {
+			$fields	= 'id, name';
+			$table	= self::TABLE;
+			$where	= Todoyu::db()->buildLikeQuery($swords, array('name', 'description'));
+			$order	= 'name';
+			$limit	= 30;
+
+			$holidaySets = Todoyu::db()->getArray($fields, $table, $where, '', $order, $limit);
+
+			foreach($holidaySets as $holidaySet) {
+				$results[$holidaySet['id']] = $holidaySet['name'];
+			}
+		}
+
+		return $results;
+	}
+
+}
 
 
 ?>
