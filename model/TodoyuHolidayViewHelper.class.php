@@ -42,15 +42,6 @@ class TodoyuHolidayViewHelper {
 		return TodoyuArray::reform($holidaySets, $reform);
 	}
 
-
-
-
-
-
-
-
-
-
 }
 
 ?>
