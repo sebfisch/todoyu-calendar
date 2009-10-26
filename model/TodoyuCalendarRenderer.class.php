@@ -132,7 +132,7 @@ class TodoyuCalendarRenderer {
 			'timestamps'		=> TodoyuTime::getDayTimesOfWeek($currentDate),
 			'fullDayView'		=> TodoyuCalendarPreferences::getFullDayView(),
 			'timestamp'			=> $currentDate,
-			'timestamp_today'	=> TodoyuTime::getDayStart(NOW),
+			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsForWeek($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('week', $dateStart, $dateEnd, $eventTypes, $users),
 			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('week', $dateStart, $dateEnd) : array(),
@@ -167,7 +167,7 @@ class TodoyuCalendarRenderer {
 		$data		= array(
 			'timestamps'		=> TodoyuCalendarManager::getShownDaysTimestampsOfMonthView($selectedDate),
 			'timestamp'			=> $selectedDate,
-			'timestamp_today'	=> TodoyuTime::getDayStart(NOW),
+			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('month', $dateStart, $dateEnd, $eventTypes, $users),//, $amountDays),
 			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('month', $dateStart, $dateEnd) : array(),

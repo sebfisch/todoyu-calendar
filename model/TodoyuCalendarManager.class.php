@@ -39,7 +39,7 @@ class TodoyuCalendarManager {
 		TodoyuPage::addExtAssets('calendar', 'public');
 
 		$today		=	mktime(0, 0, 0, date('n', NOW), date('j', NOW), date('Y', NOW));
-		$dateStart	= TodoyuTime::getDayStart(NOW);
+		$dateStart	= TodoyuTime::getStartOfDay(NOW);
 		$dateEnd	= NOW + 2 * 365 * 24 * 3600;
 
 		$events	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(userid()));
@@ -75,7 +75,7 @@ class TodoyuCalendarManager {
 	 * @return Integer
 	 */
 	public static function getPortalAppointmentsAmount() {
-		$dateStart	= TodoyuTime::getDayStart(NOW);
+		$dateStart	= TodoyuTime::getStartOfDay(NOW);
 		$dateEnd	= NOW + 2 * 365 * 24 * 3600;
 		
 		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(userid()));

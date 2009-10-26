@@ -124,7 +124,7 @@ class TodoyuEventManager {
 	 * @return	Array		Events grouped by datekey
 	 */
 	public static function groupEventsByDay(array $events, $dateStart, $dateEnd) {
-		$dateStart		= TodoyuTime::getDayStart($dateStart);
+		$dateStart		= TodoyuTime::getStartOfDay($dateStart);
 		$dateEnd		= intval($dateEnd);
 		$groupedEvents	= array();
 
