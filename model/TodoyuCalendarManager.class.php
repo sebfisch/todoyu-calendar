@@ -391,6 +391,27 @@ class TodoyuCalendarManager {
 	public static function getSelectedHolidaysets() {
 		return TodoyuPanelWidgetHolidaysetSelector::getSelectedHolidaysetIDs();
 	}
+	
+	
+	
+	/**
+	 * Extend company address form (hooked into contact's form building)
+	 *
+	 * @param	TodoyuForm		$form			Task edit form object
+	 * @param	Integer		$idTask			Task ID
+	 * @return	TodoyuForm		Moddified form object
+	 */
+	public static function modifyAddressFormfields(TodoyuForm $form, $addressIndex) {
+		$addressIndex	= intval($addressIndex);
+		$contactType	= TodoyuContactPreferences::getActiveTab();
+
+		if ($contactType == 'company') {
+				// Extend company record form with holidayset selector
+			$form->addElementsFromXML('ext/calendar/config/form/addressholidayset.xml');
+		}
+
+		return $form;
+	}	
 
 }
 

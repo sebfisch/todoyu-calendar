@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Extend company address part of form (ext/contact/config/form/company.xml) with holidayset selector -->
+<form>
+	<fieldsets>
+		<fieldset name="addressholidayset">
+			<legend>Holidayset of address</legend>
+			<elements>
+				<field type="select" name="id_holidayset">
+					<label>LLL:calendar.holidayset</label>
+					<source type="function">
+						<function>TodoyuHolidayViewHelper::getHolidaysetOptions</function>
+						<lazyInit/>
+					</source>
+				</field>
+			</elements>
+		</fieldset>
+	</fieldsets>
+</form>

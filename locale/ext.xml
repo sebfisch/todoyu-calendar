@@ -2,6 +2,7 @@
 <locallang>
 	<labels lang="en">
 		<label index="ext.title">Calendar</label>
+		<label index="holidayset">Holidayset</label>
 		<label index="privateEvent.info">(private)</label>
 		<label index="hrs">Hrs</label>
 		<label index="yearsOld">years old</label>
