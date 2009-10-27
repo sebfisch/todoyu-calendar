@@ -120,7 +120,6 @@ $CONFIG['EXT']['calendar']['default']['eventDuration']	= 3600;		// 1 hour
 	// Register contextmenu
 //TodoyuContextMenuManager::registerFunction('Calendar', 'TodoyuPanelWidgetEventtypeSelector::getContextMenuItems', 10);
 
-
 	// Add holiday set selector to company address form
 if (TodoyuRequest::getArea() == 'contact' /*&& INTERNAL_COMPANY_ID == TodoyuRequest::getParam('editID', true)*/) {
 	TodoyuFormHook::registerBuildForm('ext/contact/config/form/address.xml',		'TodoyuCalendarManager::modifyAddressFormfields');

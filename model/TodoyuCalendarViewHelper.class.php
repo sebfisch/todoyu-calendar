@@ -88,7 +88,7 @@ class TodoyuCalendarViewHelper {
 	 * Gets an options array of working hours in percent
 	 *
 	 *
-	 * @param	TodoyuForm $source
+	 * @param	TodoyuForm $field
 	 * @return	Array
 	 */
 	public static function getWorkingHoursOptions(TodoyuFormElement $field)	{
