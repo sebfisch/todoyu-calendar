@@ -79,7 +79,7 @@ class TodoyuHolidayManager {
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idHoliday);
 
 
-		TodoyuDebug::printInFirebug($data, 'holiday');
+//		TodoyuDebug::printInFirebug($data, 'holiday');
 
 		self::updateHoliday($idHoliday, $data);
 
