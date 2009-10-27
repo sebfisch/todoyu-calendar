@@ -28,9 +28,19 @@
 
 if( ! defined('TODOYU') ) die('NO ACCESS');
 
+
+
 	// Declare ext ID, path
 define('EXTID_CALENDAR', 104);
 define('PATH_EXT_CALENDAR', PATH_EXT . '/calendar');
+
+	// Register module locales
+TodoyuLocale::register('calendar', PATH_EXT_CALENDAR . '/locale/ext.xml');
+TodoyuLocale::register('panelwidget-calendar', PATH_EXT_CALENDAR . '/locale/panelwidget-calendar.xml');
+TodoyuLocale::register('panelwidget-quickevent', PATH_EXT_CALENDAR . '/locale/panelwidget-quickevent.xml');
+TodoyuLocale::register('panelwidget-eventtypeselector', PATH_EXT_CALENDAR . '/locale/panelwidget-eventtypeselector.xml');
+TodoyuLocale::register('panelwidget-holidaysetselector', PATH_EXT_CALENDAR . '/locale/panelwidget-holidaysetselector.xml');
+TodoyuLocale::register('panelwidget-calendaradmin', PATH_EXT_CALENDAR . '/locale/panelwidget-calendaradmin.xml');
 
 	// Request configurations
 require_once( PATH_EXT_CALENDAR . '/config/constants.php' );
@@ -42,18 +52,8 @@ require_once( PATH_EXT_CALENDAR . '/config/hooks.php' );
 
 require_once( PATH_EXT_CALENDAR . '/dwoo/plugins.php');
 
-
-	// Register localization files
-TodoyuLocale::register('calendar', PATH_EXT_CALENDAR . '/locale/ext.xml');
-TodoyuLocale::register('panelwidget-calendar', PATH_EXT_CALENDAR . '/locale/panelwidget-calendar.xml');
-TodoyuLocale::register('panelwidget-quickevent', PATH_EXT_CALENDAR . '/locale/panelwidget-quickevent.xml');
-TodoyuLocale::register('panelwidget-eventtypeselector', PATH_EXT_CALENDAR . '/locale/panelwidget-eventtypeselector.xml');
-TodoyuLocale::register('panelwidget-holidaysetselector', PATH_EXT_CALENDAR . '/locale/panelwidget-holidaysetselector.xml');
-TodoyuLocale::register('panelwidget-calendaradmin', PATH_EXT_CALENDAR . '/locale/panelwidget-calendaradmin.xml');
-
-
+	// Add menu entries
 if( TodoyuAuth::isLoggedIn() ) {
-		// Add menu entries
 	TodoyuFrontend::addMenuEntry('planning', 'LLL:calendar.tab.label', '?ext=calendar', 50);
 	TodoyuFrontend::addSubmenuEntry('planning', 'calendar', 'LLL:calendar.submenu.label', '?ext=calendar', 62);
 }
