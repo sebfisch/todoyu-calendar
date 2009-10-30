@@ -1,19 +1,66 @@
 <?php
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2009 snowflake productions gmbh
+*  All rights reserved
+*
+*  This script is part of the todoyu project.
+*  The todoyu project is free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License, version 2,
+*  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
+*  the Free Software Foundation;
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
+
+/**
+ * Event action controller
+ *
+ * @package		Todoyu
+ * @subpackage	Calendar
+ */
 
 class TodoyuCalendarEventActionController extends TodoyuActionController {
+
 	
+	
+	/**
+	 *	@todo	COMMENT
+	 *
+	 *	@param array $params
+	 */
 	public function addAction(array $params) {
 		$time	= TodoyuCalendarPreferences::getDate(AREA);
 		
 		return TodoyuEventEditRenderer::renderCreateEventMainContent($time);
 	}
+
 	
+	
+	/**
+	 *	@todo	COMMENT
+	 *
+	 *	@param array $params
+	 */
 	public function editAction(array $params) {
 		$idEvent	= intval($params['event']);
 		
 		return TodoyuEventEditRenderer::renderEditView($idEvent);
 	}
+
 	
+	
+	/**
+	 *	@todo	COMMENT
+	 *
+	 *	@param array $params
+	 */
 	public function saveAction(array $params) {
 		$eventData	= $params['event'];
 		$idEvent	= intval($params['event']['id']);
@@ -43,14 +90,27 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			return $form->render();
 		}
 	}
+
 	
 	
+	/**
+	 *	@todo	COMMENT
+	 *
+	 *	@param array $params
+	 */
 	public function deleteAction(array $params) {
 		$idEvent = intval($params['event']);
 		
 		TodoyuEventManager::deleteEvent($idEvent);
 	}
+
 	
+	
+	/**
+	 *	@todo	COMMENT
+	 *
+	 *	@param array $params
+	 */
 	public function detailAction(array $params) {
 		$idEvent	= intval($params['eventID']);
 		
@@ -69,7 +129,14 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				break;
 		}
 	}
+
 	
+	
+	/**
+	 *	@todo	COMMENT
+	 *
+	 *	@param array $params
+	 */
 	public function acknowledgeAction(array $params) {
 		$idEvent= intval($params['eventID']);
 		$idUser	= intval($params['idUser']);
@@ -80,10 +147,14 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		
 		echo 'ok';
 	}
+
 	
 	
-	
-	
+	/**
+	 *	@todo	COMMENT
+	 *
+	 *	@param array $params
+	 */
 	public function showAction(array $params) {
 		$idEvent	= intval($params['event']);
 		
