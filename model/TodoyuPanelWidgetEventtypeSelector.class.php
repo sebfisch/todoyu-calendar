@@ -26,7 +26,7 @@
  * @subpackage	Calendar
  */
 
-class TodoyuPanelWidgetEventtypeSelector extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
+class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
 
 	/**
 	 * Preference name
