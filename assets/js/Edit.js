@@ -39,13 +39,13 @@ Todoyu.Ext.calendar.Edit = {
 		var idPopup	= 'popupCreateEvent';
 		var title	= 'Create event';
 		var width	= 480;
-		var height	= 300;		
-		
-		Todoyu.Popup.openWindow(idPopup, title, width, height, 0, 0, url, options);
-	},	
-	
-	
-	
+		var height	= 300;
+
+		Todoyu.Popup.openWindow(idPopup, title, width, height, url, options);
+	},
+
+
+
 
 	/**
 	 *	Is only used for the event popup. Check the inputs and handle it accordingly
@@ -74,7 +74,7 @@ Todoyu.Ext.calendar.Edit = {
 	 */
 	onQuickEventSaved: function(response) {
 		var isError = response.getTodoyuHeader('error') == 1;
-		
+
 		if( isError ) {
 			Todoyu.Popup.setContent(response.responseText);
 		} else {
@@ -82,7 +82,7 @@ Todoyu.Ext.calendar.Edit = {
 			this.ext.refresh();
 		}
 	},
-	
+
 	/**
 	 *	Leave events form, return to prev. calendar view
 	 */
@@ -90,7 +90,7 @@ Todoyu.Ext.calendar.Edit = {
 		// A bad way, we'll fix this in the next release =)
 		Todoyu.Ui.updatePage('calendar');
 	},
-	
+
 	saveEvent: function(form) {
 		$(form).request({
 			'parameters': {
@@ -98,7 +98,7 @@ Todoyu.Ext.calendar.Edit = {
 			},
 			'onComplete': this.onEventSaved.bind(this)
 		});
-		
+
 		return false;
 	},
 
@@ -110,7 +110,7 @@ Todoyu.Ext.calendar.Edit = {
 	 */
 	onEventSaved: function(response) {
 		var error	= response.getTodoyuHeader('error');
-		
+
 		if( error == 1 ) {
 			$('event-form').replace(response.responseText);
 		} else {
