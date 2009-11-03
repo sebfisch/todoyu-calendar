@@ -28,7 +28,6 @@
 
 class TodoyuEventRenderer {
 
-
 	/**
 	 * Render list of events to be displayed in events tab of portal
 	 *
@@ -112,7 +111,7 @@ class TodoyuEventRenderer {
 		$assignedUsers 		= TodoyuEventManager::getAssignedUsersOfEvent( $data['id'] , true );
 
 		$idCurrentUser		= userid();
-		$groupsCurrentUser	= TodoyuAuth::getGroupIDs();
+//		$groupsCurrentUser	= TodoyuAuth::getGroupIDs();
 
 		$idAssignedUser		= count($assignedUsers) == 1 ? $assignedUsers[0]['id_user'] : 0;
 
@@ -276,6 +275,13 @@ class TodoyuEventRenderer {
 	}
 
 
+
+	/**
+	 *	Render event view
+	 *
+	 *	@param	Integer	$idEvent
+	 *	@return	String
+	 */
 	public static function renderEventView($idEvent) {
 		$idEvent	= intval($idEvent);
 		$event		= TodoyuEventManager::getEvent($idEvent);
@@ -288,7 +294,6 @@ class TodoyuEventRenderer {
 
 		return render($tmpl, $data);
 	}
-
 
 }
 

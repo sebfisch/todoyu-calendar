@@ -117,7 +117,7 @@ class TodoyuCalendarViewHelper {
 		$options = array();
 		
 		$holidays	= TodoyuHolidayManager::getAllHolidays();
-		foreach($holidays as $num => $holiday)	{
+		foreach($holidays as $holiday)	{
 			$options[] = array(
 				'value'	=> $holiday['id'],
 				'label'	=> $holiday['title'] . ' (' . TodoyuTime::format($holiday['date'], 'D2M2Y4') . ')'

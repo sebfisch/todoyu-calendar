@@ -128,8 +128,6 @@ class TodoyuEventManager {
 		$dateEnd		= intval($dateEnd);
 		$groupedEvents	= array();
 
-		$date	= $dateStart;
-
 		for($date = $dateStart; $date <= $dateEnd; $date += TodoyuTime::SECONDS_DAY ) {
 			$dayKey		= date('Ymd', $date);
 			$dayRange	= TodoyuTime::getDayRange($date);
@@ -223,6 +221,13 @@ class TodoyuEventManager {
 	}
 
 
+
+	/**
+	 *	Fix event overlap
+	 *
+	 *	@param	Array	$events
+	 *	@return	Array
+	 */
 	public static function fixEventOverlap(array $events) {
 
 		return $events;
@@ -388,7 +393,6 @@ class TodoyuEventManager {
 	 */
 	public static function saveQuickEvent(array $data) {
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
-		$idEvent	= intval($data['id']);
 
 		$idEvent	= self::addEvent(array());
 
@@ -609,7 +613,6 @@ class TodoyuEventManager {
 
 
 
-
 	/**
 	 * Remove event from cache
 	 *
@@ -621,9 +624,6 @@ class TodoyuEventManager {
 		TodoyuCache::removeRecord('Event', $idEvent);
 		TodoyuCache::removeRecordQuery(self::TABLE, $idEvent);
 	}
-
-
-
 
 
 

@@ -83,6 +83,7 @@ class TodoyuHolidayManager {
 
 		self::updateHoliday($idHoliday, $data);
 
+			//	@todo	fix - $idRecord is not defined
 		return $idRecord;
 	}
 
@@ -391,5 +392,6 @@ class TodoyuHolidayManager {
 
 		return $holidaysGrouped;
 	}
+	
 }
 ?>

@@ -56,7 +56,7 @@ class TodoyuCalendarManager {
 
 		if ($GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showBirthdays']) {
 				// Get birthdays within the next X (see calendar/config/extension.php) weeks
-			$amountWeeksToLookToForBirthdays = $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['birthdaysLookAheadWeeks'];
+//			$amountWeeksToLookToForBirthdays = $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['birthdaysLookAheadWeeks'];
 			$endTime	= $today + $amountWeeksToLookToForHolidays * 604800;	// 604800 == 24 * 60 * 60 * 7
 			$birthdays	= TodoyuUserManager::getUsersByBirthdayInTimespan($today, $endTime);
 		} else {

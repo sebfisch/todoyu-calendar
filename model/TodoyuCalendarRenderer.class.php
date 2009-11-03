@@ -242,8 +242,7 @@ class TodoyuCalendarRenderer {
 
 			// Render events array
 		foreach($eventsByDay as $dateKey => $eventsOfDay) {
-			$dayTime = mktime(0, 0, 0, substr($dateKey, 4, 2), substr($dateKey, 6, 2), substr($dateKey, 0, 4) );
-
+//			$dayTime = mktime(0, 0, 0, substr($dateKey, 4, 2), substr($dateKey, 6, 2), substr($dateKey, 0, 4) );
 			foreach($eventsOfDay as $event) {
 				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, 'month', $users, $userColors);
 			}
