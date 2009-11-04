@@ -27,9 +27,9 @@
 				<field type="select" name="eventtype">
 					<label>LLL:calendar.event.attr.event_type</label>
 					<source type="function">
-						<function>TodoyuEventManager::getEventTypesForForm</function>
+						<function>TodoyuEventViewHelper::getEventTypeOptions</function>
 					</source>
-					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.onSwitchEventtype($F(this.id));"</extraAttributes>
+					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.onEventtypeChange(this)"</extraAttributes>
 				</field>
 
 				<field type="checkbox" name="is_dayevent">

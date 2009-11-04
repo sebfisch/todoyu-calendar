@@ -664,39 +664,6 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Get Event types in a form-readable format
-	 *
-	 * @param 	Form 	$form
-	 * @return	Array
-	 */
-	public static function getEventTypesForForm(TodoyuFormElement $field) {
-		$options = array(
-//			0 => array(
-//				'value'		=> 0,
-//				'label'		=> TodoyuLocale::getLabel('LLL:core.pleaseChoose'),
-//				'selected'	=> !$form->getFormData('eventtype') ? false : true,
-//			)
-		);
-
-		$eventTypes = self::getEventTypes(true);
-		$eventType	= $field->getForm()->getFormData('eventtype');
-
-		if(is_array($eventTypes))	{
-			foreach($eventTypes as $index => $eventValues)  {
-				$options[] = array(
-					'value'		=> $index,
-					'label'		=> $eventValues['label'],
-					'selected'	=> $index == $eventType
-				);
-			}
-		}
-
-		return $options;
-	}
-
-
-
-	/**
 	 * Remove fields based on the selected
 	 *
 	 * @param	TodoyuForm	$form

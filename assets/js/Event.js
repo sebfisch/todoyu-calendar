@@ -473,29 +473,33 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 *	Evoked on change of selected eventtype in quick-event form (toggle ir/relevant fields)
 	 *
-	 * @param	Integer	idEventtype
+	 * @param	
 	 */
-	onSwitchEventtype: function(idEventtype) {
-			// Birthday?
-		if (idEventtype == 3) {
-			var irrelevant = ['.fieldnameIs_dayevent', '.fieldnameDate_end', '.fieldnameStarttime', '.fieldnameEndtime', '.fieldnameUser'];
-			irrelevant.each(function(elementClass)	{
-				$$(elementClass)[0].hide();
-			});
+	onEventtypeChange: function(field) {
+		var basename	= 'formElement-quickevent-field-';
+		var idEventtype	= $F(field);
+		var fieldsToHide= {
+			3: ['is-dayevent', 'enddate', 'starttime', 'endtime', 'user'], // Birthday
+			13: ['is-dayevent', 'enddate', 'starttime', 'endtime'], // Reminder
+			4: ['is-dayevent', 'starttime', 'endtime',], // Vacation
+		};
 
-			if ($$('.remove-user')[0]) {
-					// Remove default user assignment
-				Todoyu.Form.removeSubRecord($$('.remove-user')[0]);
-			}
-			Todoyu.Popup.currentWindow.setSize(450, 140);
-		} else {
-			var relevant = ['.fieldnameIs_dayevent', '.fieldnameDate_end', '.fieldnameStarttime', '.fieldnameEndtime', '.fieldnameUser'];
-			relevant.each(function(elementClass)	{
-				if ($$(elementClass)[0]) {
-					$$(elementClass)[0].show();
+			// First show all fields which may be hidden by an action before
+		$H(fieldsToHide).each(function(typeFields){
+			typeFields.value.each(function(fieldname){
+				if( Todoyu.exists(basename + fieldname) ) {
+					$(basename + fieldname).show();
 				}
 			});
-			Todoyu.Popup.popup.setSize(450, 260);
+		});
+		
+			// Hide fields for current type if defined
+		if( fieldsToHide[idEventtype] ) {
+			fieldsToHide[idEventtype].each(function(fieldname){
+				if( Todoyu.exists(basename + fieldname) ) {
+					$(basename + fieldname).hide();
+				}
+			});
 		}
 	},
 
