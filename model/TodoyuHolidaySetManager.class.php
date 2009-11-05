@@ -20,7 +20,7 @@
 ***************************************************************/
 
 /**
- * Holidayset manager
+ * HolidaySet manager
  *
  * @package		Todoyu
  * @subpackage	Calendar
@@ -31,7 +31,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Get holidayset
+	 * Get holiday set
 	 *
 	 * @param	Integer		$idHolidaySet
 	 * @return	TodoyuHolidaySet
@@ -45,7 +45,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Get all holidayset records
+	 * Get all holidaySet records
 	 *
 	 * @return	Array
 	 */
@@ -61,7 +61,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Save a holidayset
+	 * Save a holidaySet
 	 *
 	 * @param	Array		$data
 	 * @return	Integer
@@ -85,7 +85,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Save holidayset foreign data
+	 * Save holidaySet foreign data
 	 *
 	 * @param	Array		$data
 	 * @param	Integer		$idHolidaySet
@@ -110,7 +110,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Add a holidayset record
+	 * Add a holidaySet record
 	 *
 	 * @param	Array		$data
 	 * @return	Integer
@@ -124,7 +124,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Update holidayset record
+	 * Update holidaySet record
 	 *
 	 * @param	Integer		$idHolidaySet
 	 * @param	Array		$data
@@ -140,7 +140,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Add/link a holiday to the holidayset
+	 * Add/link a holiday to the holidaySet
 	 *
 	 * @param	Integer		$idHolidaySet
 	 * @param	Integer		$idHoliday
@@ -155,7 +155,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Delete a holidayset
+	 * Delete a holidaySet
 	 *
 	 * @param	Integer		$idHolidaySet
 	 * @return	Bool
@@ -182,7 +182,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Get holidays linked to the holidayset
+	 * Get holidays linked to the holidaySet
 	 *
 	 * @param	Integer		$idHolidaySet
 	 * @return	Array
@@ -204,7 +204,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Get all holidayset records for admin
+	 * Get all holidaySet records for admin
 	 *
 	 * @return	Array
 	 */
@@ -226,7 +226,7 @@ class TodoyuHolidaySetManager {
 
 
 	/**
-	 * Autocomplete holidaysets
+	 * Autocomplete holidaySets
 	 *
 	 * @param	String		$sword
 	 * @return	Array

@@ -39,7 +39,7 @@ $panelWidgetConfigEventTypeSelector		= array('selectAllOnFirstRun'	=> true);
 TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuPanelWidgetCalendar', 			10, $panelWidgetConfigCalendar);
 TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuPanelWidgetQuickEvent',			20,	$panelWidgetConfigQuickEvent);
 TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuPanelWidgetStaffSelector',		30,	$panelWidgetConfigStaffSelector );
-TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuPanelWidgetEventtypeSelector',	40,	$panelWidgetConfigEventTypeSelector );
-TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuPanelWidgetHolidaysetSelector',	50, $panelWidgetConfigHolidaySetSelector);
+TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuPanelWidgetEventTypeSelector',	40,	$panelWidgetConfigEventTypeSelector );
+TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuPanelWidgetHolidaySetSelector',	50, $panelWidgetConfigHolidaySetSelector);
 
 ?>

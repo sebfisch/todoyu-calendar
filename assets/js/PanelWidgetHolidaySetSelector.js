@@ -19,11 +19,11 @@
 ***************************************************************/
 
 /**
- * Panel widget: holidayset selector
+ * Panel widget: holidaySet selector
  *
  */
 
-Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector = {
+Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	ext:			Todoyu.Ext.user,
 
@@ -46,18 +46,18 @@ Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector = {
 	 *	Install observers
 	 */
 	installObservers: function() {
-		$(this.list).observe('change', this.onHolidaysetSelect.bind(this));
+		$(this.list).observe('change', this.onHolidaySetSelect.bind(this));
 	},
 
 
 
 	/**
-	 *	Holidayset select event handler
+	 *	HolidaySet select event handler
 	 *
 	 *	@param	unknown	event
 	 */
-	onHolidaysetSelect: function(event) {
-		this.onUpdate( this.getSelectedHolidaysetIDs().join(',') );
+	onHolidaySetSelect: function(event) {
+		this.onUpdate( this.getSelectedHolidaySetIDs().join(',') );
 	},
 
 
@@ -75,9 +75,9 @@ Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector = {
 
 
 	/**
-	 *	Select all holidaysets
+	 *	Select all holidaySets
 	 */
-	selectAllHolidaysets: function() {
+	selectAllHolidaySets: function() {
 		$$('#panelwidget-holidaysetselector-list option').each(function(item) {
 			item.selected = true;
 		});
@@ -86,9 +86,9 @@ Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector = {
 
 
 	/**
-	 *	Unselect all holidaysets
+	 *	Unselect all holidaySets
 	 */
-	unselectAllHolidaysets: function() {
+	unselectAllHolidaySets: function() {
 		$$('#panelwidget-holidaysetselector-list option').each(function(item) {
 			item.selected = false;
 		});
@@ -99,7 +99,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector = {
 	 *	Select 'no set'-option only
 	 */
 	selectNoSetOption: function() {
-		this.unselectAllHolidaysets();
+		this.unselectAllHolidaySets();
 		$('panelwidget-holidaysetselector-list').options[0].selected= true;
 
 	},
@@ -107,11 +107,11 @@ Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector = {
 
 
 	/**
-	 *	Get IDs of selected holidaysets
+	 *	Get IDs of selected holidaySets
 	 *
 	 *	@return	Array
 	 */
-	getSelectedHolidaysetIDs: function() {
+	getSelectedHolidaySetIDs: function() {
 		var setIDs = [];
 
 		$$('#panelwidget-holidaysetselector-list option').each(function(item) {
@@ -126,7 +126,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector = {
 
 
 	/**
-	 *	Get amount of selected holidaysets
+	 *	Get amount of selected holidaySets
 	 *
 	 *	@return	Integer
 	 */
@@ -149,7 +149,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector = {
 	 *
 	 *	@return	Boolean
 	 */
-	isAnyHolidaysetSelected: function() {
+	isAnyHolidaySetSelected: function() {
 
 		return ( this.getAmountOfselectedSets() > 0  );
 	},
@@ -160,7 +160,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector = {
 	 *	Store user prefs
 	 */
 	savePrefs: function() {
-		var typeIDs	= this.getSelectedHolidaysetIDs().join(',');
+		var typeIDs	= this.getSelectedHolidaySetIDs().join(',');
 
 		var url		= Todoyu.getUrl('calendar', 'preference');
 		var options	= {

@@ -20,7 +20,7 @@
 ***************************************************************/
 
 /**
- * Holidayset view helper
+ * HolidaySet view helper
  *
  * @package		Todoyu
  * @subpackage	Calendar
@@ -32,7 +32,7 @@ class TodoyuHolidayViewHelper {
 	 *
 	 * @return	Array
 	 */
-	public static function getHolidaysetOptions(TodoyuFormElement $field) {
+	public static function getHolidaySetOptions(TodoyuFormElement $field) {
 		$holidaySets= TodoyuHolidaySetManager::getAllHolidaySets();
 
 		$reform		= array(

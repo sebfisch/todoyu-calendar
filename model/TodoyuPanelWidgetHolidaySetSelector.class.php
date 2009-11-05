@@ -20,7 +20,7 @@
 ***************************************************************/
 
 /**
- * Panel widget: holidayset selector
+ * Panel widget: holidaySet selector
  *
  * @package		Todoyu
  * @subpackage	Calendar
@@ -53,7 +53,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 			// Construct PanelWidget (init basic configuration)
 		parent::__construct(
 			'calendar',									// ext key
-			'holidaysetSelector',						// panel widget ID
+			'holidaySetSelector',						// panel widget ID
 			'LLL:panelwidget-holidaysetselector.title',	// widget title text
 			$config,									// widget config array
 			$params,									// widget params
@@ -64,20 +64,20 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 		$this->addClass('user');
 
 			// Init widget JS (observers)
-		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector.init.bind(Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector)');
+		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector.init.bind(Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector)');
 	}
 
 
 
 	/**
-	 * Render panel content (holidayset selector)
+	 * Render panel content (holidaySet selector)
 	 *
 	 * @return	String
 	 */
 	public function renderContent() {
 		require_once(PATH_EXT_CALENDAR . '/config/panelwidgets.php');
 
-		$prefs	= self::getSelectedHolidaysetIDs();
+		$prefs	= self::getSelectedHolidaySetIDs();
 		$sets	= TodoyuHolidaySetManager::getAllHolidaySets();
 
 		foreach($sets as $idSet => $typeData) {
@@ -111,7 +111,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 
 
 	/**
-	 * Store prefs of the holidayset selector panel widget
+	 * Store prefs of the holidaySet selector panel widget
 	 *
 	 * @param	Integer	$idArea
 	 * @param	String	$prefVals
@@ -134,14 +134,14 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 
 
 	/**
-	 * Get IDs of selected holidaysets
+	 * Get IDs of selected holidaySets
 	 *
 	 * @return	Array
 	 */
 	public function getSelectedHolidaySetIDs($area = AREA) {
 		$selectorPref	= TodoyuCalendarPreferences::getPref('panelwidget-holidaysetselector', 0, $area);
 		$selectedSetIDs	= TodoyuDiv::intExplode(',', $selectorPref);
-		
+
 		return $selectedSetIDs;
 	}
 

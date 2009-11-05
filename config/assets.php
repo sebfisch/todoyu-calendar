@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -183,7 +183,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 	'panelwidget-eventtypeselector' => array(
 		'js' => array(
 			array(
-				'file' => 'ext/calendar/assets/js/PanelWidgetEventtypeSelector.js',
+				'file' => 'ext/calendar/assets/js/PanelWidgetEventTypeSelector.js',
 				'position' => 140
 			)
 		),
@@ -201,7 +201,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 	'PanelWidgetHolidaysetSelector' => array(
 		'js' => array(
 			array(
-				'file' => 'ext/calendar/assets/js/PanelWidgetHolidaysetSelector.js',
+				'file' => 'ext/calendar/assets/js/PanelWidgetHolidaySetSelector.js',
 				'position' => 150
 			)
 		),

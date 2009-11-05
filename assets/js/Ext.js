@@ -166,7 +166,7 @@ Todoyu.Ext.calendar = {
 	installGeneralObservers: function() {
 		Todoyu.PanelWidget.observe('calendar', this.onDateChanged.bind(this));
 		Todoyu.PanelWidget.observe('staffselector', this.onStaffSelectionChanges.bind(this));
-		Todoyu.PanelWidget.observe('eventtypeselector', this.onEventtypeSelectionChanges.bind(this));
+		Todoyu.PanelWidget.observe('eventtypeselector', this.onEventTypeSelectionChanges.bind(this));
 	},
 
 
@@ -242,11 +242,11 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 * Handler for eventtype selection changes
+	 * Handler for eventType selection changes
 	 * @param	String		widgetName
 	 * @param	Array		eventTypes
 	 */
-	onEventtypeSelectionChanges: function(widgetName, eventTypes) {
+	onEventTypeSelectionChanges: function(widgetName, eventTypes) {
 		this.refresh();
 	},
 

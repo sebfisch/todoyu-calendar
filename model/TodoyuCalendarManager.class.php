@@ -77,9 +77,9 @@ class TodoyuCalendarManager {
 	public static function getPortalAppointmentsAmount() {
 		$dateStart	= TodoyuTime::getStartOfDay(NOW);
 		$dateEnd	= NOW + 2 * 365 * 24 * 3600;
-		
+
 		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(userid()));
-		
+
 		return sizeof($events);
 	}
 
@@ -103,9 +103,9 @@ class TodoyuCalendarManager {
 
 		return $days;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get holidays in a timespan for the current holiday sets
 	 *
@@ -114,13 +114,13 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getHolidays($dateStart, $dateEnd) {
-		$holidaySets	= self::getSelectedHolidaysets();
-		
+		$holidaySets	= self::getSelectedHolidaySets();
+
 		if(sizeof($holidaySets) > 0) {
 			$holidays	= TodoyuHolidayManager::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySets);
 			$grouped	= TodoyuHolidayManager::groupHolidaysByDays($holidays);
 		}
-		
+
 		return $grouped;
 	}
 
@@ -171,23 +171,23 @@ class TodoyuCalendarManager {
 
 		return $eventsStart;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get date range for month of the timestamp
 	 * (include days of the previous and next month because of the calendar layout)
-	 * 
+	 *
 	 * @param	Integer		$time
 	 * @return	Array
 	 */
 	public static function getMonthDisplayRange($time) {
 		$time		= intval($time);
 		$monthRange	= TodoyuTime::getMonthRange($time);
-		
+
 		$start		= TodoyuTime::getWeekStart($monthRange['start']);
 		$end		= TodoyuTime::getWeekStart($monthRange['end']) + 604799; //604799 = 7 * 86400 - 1;
-		
+
 		return array(
 			'start'	=> $start,
 			'end'	=> $end
@@ -273,7 +273,7 @@ class TodoyuCalendarManager {
 			$tstamps[$i]		= mktime(0, 0, 0, $monthNum, $dayNum, $selectedYear);
 			$row++;
 			$dayNum++;
-		}		
+		}
 			// Days in month after selected
 		$dayNum	= 1;
 		$addDays = count($tstamps) > 36 ? 7 : 0;
@@ -320,14 +320,14 @@ class TodoyuCalendarManager {
 
 	/**
 	 * 	Get context menu items
-	 * 
+	 *
 	 *	@param	unknown_type	$time
 	 *	@param	Array	$items
 	 *	@return	Array
 	 */
 	public static function getContextMenuItems($time, array $items) {
 		$items = array_merge_recursive($items, $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Area']);
-		
+
 		return $items;
 	}
 
@@ -340,7 +340,7 @@ class TodoyuCalendarManager {
 	 */
 	public static function getCalendarTabsConfig() {
 		$tabs	= $GLOBALS['CONFIG']['EXT']['calendar']['contentTabs'];
-		
+
 		foreach($tabs as $index => $tab) {
 			$tabs[$index]['htmlId'] 	= 'calendar-tabhead-' . $tab['id'];
 			$tabs[$index]['key']		= $tab['id'];
@@ -348,8 +348,8 @@ class TodoyuCalendarManager {
 			$tabs[$index]['hasIcon'] 	= 1;
 //			$tabs[$index]['position']	= $index == 0 ? 'first' : (($index == count($tabs) - 1) ? 'last' : '');
 		}
-		
-		return $tabs;		
+
+		return $tabs;
 	}
 
 
@@ -357,7 +357,7 @@ class TodoyuCalendarManager {
 	/**
 	 * Get currently selected users (defined by the panel widget)
 	 * If no user is selected, the current user will automaticly be selected
-	 * 
+	 *
 	 * @return	Array
 	 */
 	public static function getSelectedUsers() {
@@ -378,22 +378,22 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getSelectedEventTypes() {
-		return TodoyuPanelWidgetEventtypeSelector::getSelectedEventTypes();
+		return TodoyuPanelWidgetEventTypeSelector::getSelectedEventTypes();
 	}
 
 
 
 	/**
-	 * Get currently selected holidaysets
+	 * Get currently selected holiday sets
 	 *
 	 * @return	Array
 	 */
-	public static function getSelectedHolidaysets() {
-		return TodoyuPanelWidgetHolidaysetSelector::getSelectedHolidaysetIDs();
+	public static function getSelectedHolidaySets() {
+		return TodoyuPanelWidgetHolidaySetSelector::getSelectedHolidaySetIDs();
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Extend company address form (hooked into contact's form building)
 	 *
@@ -406,12 +406,12 @@ class TodoyuCalendarManager {
 		$contactType	= TodoyuContactPreferences::getActiveTab();
 
 		if ($contactType == 'company') {
-				// Extend company record form with holidayset selector
+				// Extend company record form with holiday set selector
 			$form->addElementsFromXML('ext/calendar/config/form/addressholidayset.xml');
 		}
 
 		return $form;
-	}	
+	}
 
 }
 

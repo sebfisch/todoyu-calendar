@@ -27,13 +27,13 @@
  */
 
 class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
-	
+
 	protected $value	= '';
-	
+
 	protected $item		= 0;
-	
-	
-	
+
+
+
 	/**
 	 *	@todo	COMMENT
 	 *
@@ -43,9 +43,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 		$this->value	= $params['value'];
 		$this->item		= intval($params['item']);
 	}
-	
-	
-	
+
+
+
 	/**
 	 *	@todo	COMMENT
 	 *
@@ -53,12 +53,12 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 */
 	public function tabAction(array $params) {
 		$tabKey	= trim($params['tab']);
-		
+
 		TodoyuCalendarPreferences::saveActiveTab($tabKey);
 	}
-	
-	
-	
+
+
+
 	/**
 	 *	@todo	COMMENT
 	 *
@@ -66,12 +66,12 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 */
 	public function dateAction(array $params) {
 		$date	= intval($this->value);
-		
+
 		TodoyuCalendarPreferences::saveDate($date, AREA);
 	}
-	
-	
-	
+
+
+
 	/**
 	 *	@todo	COMMENT
 	 *
@@ -79,12 +79,12 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 */
 	public function panelwidgeteventtypeselectorAction(array $params) {
 		$eventTypes	= TodoyuDiv::intExplode(',', $this->value, true, true);
-		
-		TodoyuCalendarPreferences::saveEventtypes($eventTypes);
+
+		TodoyuCalendarPreferences::saveEventTypes($eventTypes);
 	}
 
-	
-	
+
+
 	/**
 	 *	@todo	COMMENT
 	 *
@@ -95,9 +95,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 		TodoyuCalendarPreferences::saveHolidaysets($holidaySets);
 	}
-	
-	
-	
+
+
+
 	/**
 	 *	@todo	COMMENT
 	 *
@@ -105,12 +105,12 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 */
 	public function fulldayviewAction(array $params) {
 		$fullDay	= intval($this->value) === 1;
-		
+
 		TodoyuCalendarPreferences::saveFullDayView($fullDay);
 	}
 
-	
-	
+
+
 	/**
 	 *	@todo	COMMENT
 	 *
@@ -119,8 +119,8 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	public function pwidgetAction(array $params) {
 		TodoyuPanelWidgetManager::saveCollapsedStatus(EXTID_CALENDAR, $this->item, $this->value);
 	}
-	
-	
+
+
 }
 
 ?>

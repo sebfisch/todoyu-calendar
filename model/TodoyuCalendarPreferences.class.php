@@ -103,17 +103,17 @@ class TodoyuCalendarPreferences {
 
 		self::savePref('date', $date, 0, true, $idArea);
 	}
-	
-	
+
+
 	public static function saveFullDayView($full = true) {
 		$full	= $full ? 1 : 0;
-		
+
 		self::savePref('fulldayview', $full, 0, true);
 	}
-	
+
 	public static function getFullDayView() {
 		$pref	= self::getPref('fulldayview', 0);
-				
+
 		return intval($pref) === 1;
 	}
 
@@ -124,7 +124,7 @@ class TodoyuCalendarPreferences {
 	 *
 	 * @param	Array		$types
 	 */
-	public static function saveEventtypes($types) {
+	public static function saveEventTypes($types) {
 		$types	= TodoyuArray::intval($types);
 		$types	= implode(',', $types);
 
@@ -134,11 +134,11 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * Save selected holidaysets
+	 * Save selected holiday sets
 	 *
 	 * @param	Array	$setIDs
 	 */
-	public static function saveHolidaysets($setIDs) {
+	public static function saveHolidaySets($setIDs) {
 		$setIDs	= TodoyuArray::intval($setIDs);
 
 			// 'no set'-option selected? deselect all other options
@@ -209,8 +209,8 @@ class TodoyuCalendarPreferences {
 
 		TodoyuPreferenceManager::savePreference(EXTID_CALENDAR, 'date', $tstamp, 0, true, $idArea);
 	}
-	
-	
+
+
  }
 
 ?>

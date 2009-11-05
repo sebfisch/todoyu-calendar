@@ -23,7 +23,7 @@
  *
  */
 
-Todoyu.Ext.calendar.PanelWidget.EventtypeSelector = {
+Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	ext:	Todoyu.Ext.calendar,
 
@@ -75,7 +75,7 @@ Todoyu.Ext.calendar.PanelWidget.EventtypeSelector = {
 	/**
 	 *	Select all event types
 	 */
-	selectAllEventtypes: function(select) {
+	selectAllEventTypes: function(select) {
 		var selected = select === true;
 		this.list.select('option').each(function(option){
 			option.selected = selected;
@@ -88,7 +88,7 @@ Todoyu.Ext.calendar.PanelWidget.EventtypeSelector = {
 	 *
 	 *	@return	Array
 	 */
-	getSelectedEventtypes: function() {
+	getSelectedEventTypes: function() {
 		return $F(this.list);
 	},
 
@@ -99,8 +99,8 @@ Todoyu.Ext.calendar.PanelWidget.EventtypeSelector = {
 	 *
 	 *	@return	Integer
 	 */
-	getNumberOfSelectedEventtypes: function() {
-		return this.getSelectedEventtypes().size();
+	getNumberOfSelectedEventTypes: function() {
+		return this.getSelectedEventTypes().size();
 	},
 
 
@@ -110,8 +110,8 @@ Todoyu.Ext.calendar.PanelWidget.EventtypeSelector = {
 	 *
 	 *	@return	Boolean
 	 */
-	isAnyEventtypeSelected: function() {
-		return this.getNumberOfSelectedEventtypes() > 0;
+	isAnyEventTypeSelected: function() {
+		return this.getNumberOfSelectedEventTypes() > 0;
 	},
 
 
@@ -120,12 +120,12 @@ Todoyu.Ext.calendar.PanelWidget.EventtypeSelector = {
 	 *	Store user prefs
 	 */
 	savePrefs: function() {
-		var pref = this.getSelectedEventtypes().join(',');
+		var pref = this.getSelectedEventTypes().join(',');
 				
 		Todoyu.Pref.save('calendar', 'panelwidgeteventtypeselector', pref, 0, this.onPrefsSaved.bind(this));
 	},
 	
 	onPrefsSaved: function(response) {
-		Todoyu.PanelWidget.inform('eventtypeselector', this.getSelectedEventtypes());
+		Todoyu.PanelWidget.inform('eventtypeselector', this.getSelectedEventTypes());
 	}
 };
