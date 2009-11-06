@@ -60,8 +60,9 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 
 	/**
-	 *	@todo	comment
+	 *	Get current calendar date
 	 *
+	 *	@return	Integer
 	 */
 	getDate: function() {
 		return this.Calendar.currentdate.getTime();
@@ -70,8 +71,10 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 
 	/**
-	 *	@todo	comment
+	 *	Set current calendar date
 	 *
+	 *	@param	Integer	date
+	 *	@param	Boolean	noExternalUpdate
 	 */
 	setDate: function(date, noExternalUpdate) {
 		  this.Calendar.setCurrentDate(new Date(date), noExternalUpdate);
@@ -80,8 +83,9 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 
 	/**
-	 *	@todo	comment
+	 *	Get time
 	 *
+	 *	@return	Integer
 	 */
 	getTime: function() {
 		return parseInt(this.getDate()/1000, 10);
@@ -90,8 +94,10 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 
 	/**
-	 *	@todo	comment
+	 *	Set time
 	 *
+	 *	@param	Integer	time
+	 *	@param	Boolean	noExternalUpdate
 	 */
 	setTime: function(time, noExternalUpdate) {
 		this.setDate(time*1000, noExternalUpdate);

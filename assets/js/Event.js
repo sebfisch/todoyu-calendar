@@ -141,8 +141,10 @@ Todoyu.Ext.calendar.Event = {
 
 
 	/**
-	 *	@todo	comment
+	 *	Handle 'on removed' event
 	 *
+	 *	@param	Integer	idEvent
+	 *	@param	Object	response
 	 */
 	onRemoved: function(idEvent, response) {
 		
@@ -492,7 +494,7 @@ Todoyu.Ext.calendar.Event = {
 				}
 			});
 		});
-		
+
 			// Hide fields for current type if defined
 		if( fieldsToHide[idEventType] ) {
 			fieldsToHide[idEventType].each(function(fieldname){

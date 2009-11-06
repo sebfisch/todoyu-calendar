@@ -25,8 +25,9 @@ Todoyu.Ext.calendar.Edit = {
 
 
 	/**
-	 *	@todo	comment
+	 *	Open (create event) popup
 	 *
+	 *	@param	Integer	time
 	 */
 	openPopup: function(time) {
 		var url		= Todoyu.getUrl('calendar',	'quickevent');
@@ -70,7 +71,7 @@ Todoyu.Ext.calendar.Edit = {
 	/**
 	 *	If saved, return to currently selected calendar view (day / week / month)
 	 *
-	 *  @param	Integer		response	Response, containing startdate of the event
+	 *  @param	Object	response	Response, containing startdate of the event
 	 */
 	onQuickEventSaved: function(response) {
 		var isError = response.getTodoyuHeader('error') == 1;
@@ -105,8 +106,9 @@ Todoyu.Ext.calendar.Edit = {
 
 
 	/**
-	 *	@todo	comment
+	 *	'On event saved' handler
 	 *
+	 *	@param	Object	response
 	 */
 	onEventSaved: function(response) {
 		var error	= response.getTodoyuHeader('error');

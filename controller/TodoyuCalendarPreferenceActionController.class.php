@@ -35,9 +35,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	@todo	COMMENT
+	 *	Init
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
 	 */
 	public function init(array $params) {
 		$this->value	= $params['value'];
@@ -47,9 +47,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	@todo	COMMENT
+	 *	'tab' action method, saves active tab preference
 	 *
-	 *	@param array $params
+	 *	@param	Array $params
 	 */
 	public function tabAction(array $params) {
 		$tabKey	= trim($params['tab']);
@@ -60,7 +60,7 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	@todo	COMMENT
+	 *	'date' action method, saves date preference
 	 *
 	 *	@param array $params
 	 */
@@ -73,9 +73,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	@todo	COMMENT
+	 *	Saves eventTypeSelector widget preferences (selected event types)
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
 	 */
 	public function panelwidgeteventtypeselectorAction(array $params) {
 		$eventTypes	= TodoyuDiv::intExplode(',', $this->value, true, true);
@@ -86,22 +86,22 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	@todo	COMMENT
+	 *	Saves HolidaySetSelector widget preferences (selected holidaySets)
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
 	 */
 	public function panelwidgetholidaysetselectorAction(array $params) {
 		$holidaySets	= TodoyuDiv::intExplode(',', $this->value, true, false);
 
-		TodoyuCalendarPreferences::saveHolidaysets($holidaySets);
+		TodoyuCalendarPreferences::saveHolidaySets($holidaySets);
 	}
 
 
 
 	/**
-	 *	@todo	COMMENT
+	 *	'fulldayview' action method, saves viewing mode (full / half) day
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
 	 */
 	public function fulldayviewAction(array $params) {
 		$fullDay	= intval($this->value) === 1;
@@ -112,14 +112,13 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	@todo	COMMENT
+	 *	General panelWidget action, saves collapse status
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
 	 */
 	public function pwidgetAction(array $params) {
 		TodoyuPanelWidgetManager::saveCollapsedStatus(EXTID_CALENDAR, $this->item, $this->value);
 	}
-
 
 }
 

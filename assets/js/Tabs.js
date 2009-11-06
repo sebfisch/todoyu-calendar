@@ -49,7 +49,9 @@ Todoyu.Ext.calendar.Tabs = {
 
 
 	/**
-	 *	 Get active tab ID
+	 *	Get active tab ID
+	 *
+	 *	@return
 	 */
 	getActive: function() {
 		if( this.active === null ) {
@@ -62,8 +64,9 @@ Todoyu.Ext.calendar.Tabs = {
 
 
 	/**
-	 *	@todo	comment
+	 *	Set given tab as currently active one
 	 *
+	 *	@param	String	tab
 	 */
 	setActive: function(tab) {
 		this.active = tab;
@@ -72,9 +75,9 @@ Todoyu.Ext.calendar.Tabs = {
 
 
 	/**
-	 *	 Save pref: ID of given tab
+	 *	Save pref: key of given tab
 	 *
-	 *	@param	String	idTab	('day', 'week' or 'month')
+	 *	@param	String	tabKey	('day', 'week' or 'month')
 	 */
 	saveTabSelection: function(tabKey) {
 		this.ext.savePref('tab', tabKey);

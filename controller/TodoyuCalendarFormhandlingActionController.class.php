@@ -28,19 +28,19 @@
 
 class TodoyuCalendarFormhandlingActionController extends TodoyuActionController {
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	'addSubForm' action method
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return String
 	 */
 	public static function addSubformAction(array $params) {
 		$index		= intval($params['index']);
 		$fieldName	= $params['field'];
 		$formName	= $params['form'];
 		$idRecord	= intval($params['record']);
-
 
 		if( $formName === 'record' ) {
 			$xmlBase	= 'ext/calendar/config/form/admin/';

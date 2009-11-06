@@ -29,42 +29,44 @@
 class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 
 	/**
-	 *	@todo	COMMENT
+	 *	Init
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
 	 */
 	public function init(array $params) {
 		TodoyuHeader::sendHeaderJSON();
 	}
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	Area action method
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return	String (JSON)
 	 */
 	public function areaAction(array $params) {
 		$time		= intval($params['time']);
 		$contextMenu= new TodoyuContextMenu('CalendarArea', $time);
 
-		return $contextMenu->getJSON();			
+		return $contextMenu->getJSON();
 	}
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	Event action method
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return	String	(JSON)
 	 */
 	public function eventAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$contextMenu= new TodoyuContextMenu('Event', $idEvent);
-		
-		return $contextMenu->getJSON();		
+
+		return $contextMenu->getJSON();
 	}
-		
+
 }
 
 ?>

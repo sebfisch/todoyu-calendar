@@ -210,19 +210,19 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	@todo	comment
-	 *
+	 *	Uninstall event observers
 	 */
 	uninstallEventObservers: function() {
 
 	},
 
 
+
 	/**
 	 *	Event handler: onDateChanged
 	 *
-	 *	@param	String	widget		Name of the widget
-	 *	@param	Integer	timestamp	Unix-Timestamp
+	 *	@param	String	widgetName
+	 *	@param	Object	update
 	 */
 	onDateChanged: function(widgetName, update) {
 		this.show(null, update.date);

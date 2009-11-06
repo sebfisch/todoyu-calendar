@@ -27,22 +27,23 @@
  */
 
 class TodoyuCalendarCalendarActionController extends TodoyuActionController {
-	
+
 	/**
-	 *	@todo	COMMENT
+	 *	Calendar update action method: Saves date and active tab and rerenders the calendar
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return	String
 	 */
 	public function updateAction(array $params) {
 		$time	= intval($params['time']);
 		$tab	= $params['tab'];
-		
+
 		TodoyuPanelWidgetCalendar::saveDate($time);
 		TodoyuCalendarPreferences::saveActiveTab($tab);
-		
-		return TodoyuCalendarRenderer::renderCalendar($time, $tab);	
+
+		return TodoyuCalendarRenderer::renderCalendar($time, $tab);
 	}
-		
+
 }
 
 ?>

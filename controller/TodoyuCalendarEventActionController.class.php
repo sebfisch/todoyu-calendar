@@ -28,38 +28,41 @@
 
 class TodoyuCalendarEventActionController extends TodoyuActionController {
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	'add' action method
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return	String
 	 */
 	public function addAction(array $params) {
 		$time	= TodoyuCalendarPreferences::getDate(AREA);
-		
+
 		return TodoyuEventEditRenderer::renderCreateEventMainContent($time);
 	}
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	'edit' action method
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return	String
 	 */
 	public function editAction(array $params) {
 		$idEvent	= intval($params['event']);
-		
+
 		return TodoyuEventEditRenderer::renderEditView($idEvent);
 	}
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	'save' action method
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return	String
 	 */
 	public function saveAction(array $params) {
 		$eventData	= $params['event'];
@@ -70,7 +73,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$form->setUseRecordID(false);
 
 		$form		= TodoyuFormHook::callBuildForm($xmlPath, $form, $idEvent);
-		
+
 		$form->setFormData($eventData);
 
 			// Send idTask header for javascript
@@ -83,7 +86,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				// Save or update event
 			$idEvent= TodoyuEventManager::saveEvent($eventData);
 			$event	= TodoyuEventManager::getEvent($idEvent);
-			
+
 			TodoyuHeader::sendTodoyuHeader('time', $event->get('date_start'));
 		} else {
 			TodoyuHeader::sendTodoyuHeader('error', true);
@@ -91,34 +94,35 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		}
 	}
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	'delete' action method
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
 	 */
 	public function deleteAction(array $params) {
 		$idEvent = intval($params['event']);
-		
+
 		TodoyuEventManager::deleteEvent($idEvent);
 	}
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	'detail' action method
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return	String
 	 */
 	public function detailAction(array $params) {
 		$idEvent	= intval($params['eventID']);
-		
+
 		switch( $params['mode'] ) {
 			case 'listing':
 				$event	= TodoyuEventManager::getEvent($idEvent);
 				$data	= $event->getTemplateData();
-				
+
 				return TodoyuEventRenderer::renderEvent($data, 'list');
 				break;
 
@@ -130,37 +134,39 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		}
 	}
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	'acknowledge' action method
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@todo	remove echo / finish implementation
 	 */
 	public function acknowledgeAction(array $params) {
 		$idEvent= intval($params['eventID']);
 		$idUser	= intval($params['idUser']);
-		
+
 		TodoyuEventManager::acknowledgeEvent($idEvent, $idUser);
 
 		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
-		
+
 		echo 'ok';
 	}
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	'show' action method
 	 *
-	 *	@param array $params
+	 *	@param	Array $params
+	 *	@return	String
 	 */
 	public function showAction(array $params) {
 		$idEvent	= intval($params['event']);
-		
+
 		return TodoyuEventRenderer::renderEventView($idEvent);
 	}
-	
+
 }
 
 ?>
