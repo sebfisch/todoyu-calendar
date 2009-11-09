@@ -252,21 +252,22 @@ Todoyu.Ext.calendar.Event = {
 		}
 
 		if(Todoyu.Ext.calendar.Event.objTimeControl[eventID]) {
-				// Get quick info content
-			new Ajax.Request('?ext=calendar&controller=quickinfo', {
-				method: 'post',
-					'parameters': {
-					'cmd':			'show',
-					'type':			'event',
-					'eventID':		eventID
+			var url		= Todoyu.getUrl('calendar', 'quickinfo');
+			var options	= {
+				'parameters': {
+					'cmd':		'show',
+					'type':		'event',
+					'eventID':	eventID
 				},
 				onSuccess: function(info) {
-					Todoyu.Ext.calendar.Quickinfo.insertIdentifiedQuickInfoElement(eventID, info);
+					this.ext.Quickinfo.insertIdentifiedQuickInfoElement(eventID, info);
 				},
 				onComplete: function(info) {
-					Todoyu.Ext.calendar.Quickinfo.setQuickInfoElVisible(eventID);
+					this.ext.Quickinfo.setQuickInfoElVisible(eventID);
 				}
-			});
+			};
+			
+			Todoyu.send(url, options);
 		}
 	},
 
@@ -483,7 +484,7 @@ Todoyu.Ext.calendar.Event = {
 		var fieldsToHide= {
 			3: ['is-dayevent', 'enddate', 'starttime', 'endtime', 'user'], // Birthday
 			13: ['is-dayevent', 'enddate', 'starttime', 'endtime'], // Reminder
-			4: ['is-dayevent', 'starttime', 'endtime',] // Vacation
+			4: ['is-dayevent', 'starttime', 'endtime'] // Vacation
 		};
 
 			// First show all fields which may be hidden by an action before

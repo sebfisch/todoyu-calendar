@@ -77,9 +77,9 @@ Todoyu.Ext.calendar.Edit = {
 		var isError = response.getTodoyuHeader('error') == 1;
 
 		if( isError ) {
-			Todoyu.Popup.setContent(response.responseText);
+			Todoyu.Popup.setContent('popupCreateEvent', response.responseText);
 		} else {
-			Todoyu.Popup.close();
+			Todoyu.Popup.close('popupCreateEvent');
 			this.ext.refresh();
 		}
 	},
