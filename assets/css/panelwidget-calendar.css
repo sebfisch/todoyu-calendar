@@ -12,19 +12,32 @@
 }
 
 div.dateDropDowns {
-	margin:0 0 -2px 0;	
+	margin:0 0 1px 0;
+	background-color:#D7DCC6;
+	padding: 1px 3px 1px 3px;
 }
 
 div.dateDropDowns select {
-	background-color:#C1C5B3; width:50px; height:15px;
+	background-color:#EDF1E0;
+	width:50px;
+	height:15px;
+	text-align:center;
 }
 
-div.dateDropDowns select option.odd{
-	background-color:#F3F3F3;
+div.dateDropDowns select option{
+	text-align:center;
+}
+
+div.dateDropDowns select option.odd {
+	background-color:#f3f3f3;
 }
 
 div.dateDropDowns select.months {
-	width:146px;
+	width:140px;
+}
+
+div.dateDropDowns select.months option{
+	text-align:left;
 }
 
 #scalupdate {
