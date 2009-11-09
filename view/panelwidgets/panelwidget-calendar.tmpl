@@ -2,24 +2,23 @@
 {assign var=selMonth value=date('n',$date)}
 {assign var=selYear value=date('Y',$date)}
 {assign var=lastDay value=date('t', $date)}
-
 <div id="{$id}" class="{$class}">
 	<div class="dateDropDowns">
 		<select id="selDay" onchange="Todoyu.Ext.calendar.PanelWidget.Calendar.onCalendarDropdownChange();">
-		{for day 1 31}
+{for day 1 31}
 			<option value="{$day}"{if $day>$lastDay} style="display:none;"{/if}{if $day == $selDay} selected="selected"{/if} class="{cycle values="odd,even"}">{$day}</option>
-		{/for}
+{/for}
 		</select>
 		<select id="selMonth" class="months" onchange="Todoyu.Ext.calendar.PanelWidget.Calendar.onCalendarDropdownChange();">
-		{for m 1 12}
-		{assign var=month value=mktime(0,0,0,$m)}
+{for m 1 12}
+	{assign var=month value=mktime(0,0,0,$m)}
 			<option value="{$m-1}"{if $selMonth == $m} selected="selected"{/if} class="{cycle values="odd,even"}">{dateFormat $month Mlong}</option>
-		{/for}
-		</select>	
-		<select id="selYear" onchange="Todoyu.Ext.calendar.PanelWidget.Calendar.onCalendarDropdownChange();">
-		{for year 2004 2037}
-			<option value="{$year}"{if $year == $selYear} selected="selected"{/if} class="{cycle values="odd,even"}">{$year}</option>
-		{/for}
+{/for}
 		</select>
-	</div>	
+		<select id="selYear" onchange="Todoyu.Ext.calendar.PanelWidget.Calendar.onCalendarDropdownChange();">
+{for year 2004 2037}
+			<option value="{$year}"{if $year == $selYear} selected="selected"{/if} class="{cycle values="odd,even"}">{$year}</option>
+{/for}
+		</select>
+	</div>
 </div>
