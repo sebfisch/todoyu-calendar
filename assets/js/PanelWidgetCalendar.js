@@ -126,6 +126,49 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		this.onUpdate(mode);
 	},
 
+	
+	
+	
+	/**
+	 *	Handle date change via dropdowns of widget
+	 */
+	onCalendarDropdownChange: function() {
+		var	timestamp	= new Date.UTC($F('selYear'), $F('selMonth'), $F('selDay'), '16', '0', '0') / 1000;	
+		this.setTime(timestamp, true);
+		this.onUpdate('month');
+	},
+
+	
+	
+	/**
+	 *	Refresh date dropdown
+	 */
+	updateDateDropdown: function() {
+		var	date	=	new Date(this.getDate());
+		
+		$('selDay').value	= date.getDate();
+		$('selMonth').value	= date.getMonth();
+		$('selYear').value	= date.getFullYear();
+		
+		this.updateDateDropdownDays();
+	},
+
+
+
+	/**
+	 *	Update days options in date dropdown (to contain the max amount of days of the selected month)
+	 *
+	 *	@param	Date	date
+	 */
+	updateDateDropdownDays: function() {
+		var time		=	this.getTime();		
+		var daysInMonth	= Todoyu.Time.getDaysInMonth(time);
+		
+		$$('#selDay option').each(function(element) {
+			element.style.display = (parseInt(element.value, 10) <= daysInMonth) ? 'block' : 'none';
+		});
+	},
+
 
 
 	/**
@@ -149,6 +192,8 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 			'mode':	mode,
 			'date': this.getDate()
 		});
+		
+		this.updateDateDropdown();
 		//this.saveCurrentDate();
 	},
 

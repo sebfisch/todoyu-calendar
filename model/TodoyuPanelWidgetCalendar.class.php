@@ -60,10 +60,6 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 
 
 
-	
-
-
-
 	/**
 	 * Add calendar inline JS (initialization)
 	 *
@@ -115,11 +111,9 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 
 		return parent::render();
 	}
-	
-	
-	
-	
-	
+
+
+
 	/**
 	 * Get date for area
 	 *
@@ -128,9 +122,9 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 	public static function getDate($idArea = AREA) {
 		return TodoyuCalendarPreferences::getDate($idArea);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Save calendar date for area
 	 *
@@ -139,7 +133,7 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 	 */
 	public static function saveDate($time, $idArea = AREA) {
 		$time	= intval($time);
-		
+
 		TodoyuCalendarPreferences::saveDate($time, $idArea);
 	}
 
