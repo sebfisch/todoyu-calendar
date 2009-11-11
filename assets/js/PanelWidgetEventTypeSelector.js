@@ -35,7 +35,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	 */
 	init: function() {
 		this.list	= $('panelwidget-eventtypeSelector-list');
-				
+						
 		this.installObservers();
 	},
 
@@ -56,6 +56,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	 *	@param	unknown	event
 	 */
 	onSelectionChange: function(event) {
+		console.log('dsfasdf');
 		this.onUpdate();
 	},
 

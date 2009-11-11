@@ -478,7 +478,7 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 * @param	
 	 */
-	onEventTypeChange: function(field) {
+	onEventtypeChange: function(field) {
 		var basename	= 'formElement-quickevent-field-';
 		var idEventType	= $F(field);
 		var fieldsToHide= {

@@ -134,7 +134,7 @@ class TodoyuEventRenderer {
 
 			$data['shownStartingDayNum']	= $shownStartingDayNum;
 			$data['shownEndingDayNum']		= $shownEndingDayNum;
-			$data['shownDaysDuration']		= $shownEndingDayNum - $shownStartingDayNum;			
+			$data['shownDaysDuration']		= $shownEndingDayNum - $shownStartingDayNum;
 		}
 
 		return $data;
@@ -152,17 +152,19 @@ class TodoyuEventRenderer {
 	 */
 	public static function renderEvent(array $event, $calendarMode = 'month', array $selectedUserIDs = array(), $selectedUserColors = array() ) {
 		$selectedUserIDs= TodoyuArray::intval($selectedUserIDs);
-		$event			= self::prepareEventRenderData($calendarMode, $event, $selectedUserIDs, $selectedUserColors );
+		$event			= self::prepareEventRenderData($calendarMode, $event, $selectedUserIDs, $selectedUserColors);
 
 		if($calendarMode === 'list')	{
 			$color = self::getEventColorData(userid());
 			$event['colors']		= $color[userid()];
 			$event['currentUser']	= userid();
 
-			return render('ext/calendar/view/event-listmode.tmpl', $event);
+			$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
+		} else {
+			$tmpl	= 'ext/calendar/view/event.tmpl';
 		}
 
-		return render('ext/calendar/view/event.tmpl', $event);
+		return render($tmpl, $event);
 	}
 
 

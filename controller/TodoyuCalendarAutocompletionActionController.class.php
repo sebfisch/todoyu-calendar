@@ -28,6 +28,11 @@
 
 class TodoyuCalendarAutocompletionActionController extends TodoyuActionController {
 
+	/**
+	 * Autocomplete searchword
+	 *
+	 * @var	String
+	 */
 	protected $sword;
 
 
@@ -72,15 +77,33 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 
 
 	/**
-	 *	Task action method
+	 *	Get task autocomplete
 	 *
 	 *	@param	Array	$params
 	 *	@return	String
 	 */
 	public function taskAction(array $params) {
-		$results = TodoyuTaskFilterDataSource::autocompleteTasks($this->sword);
+		$idProject	= intval($params['event']['id_project']);
 
-		return TodoyuRenderer::renderAutocompleteList($results);
+			// If project is set, only search in project task, else search in all tasks
+		if( $idProject !== 0 ) {
+			$filters = array(
+				array(
+					'filter'	=> 'tasknumberortitle',
+					'value'		=> $this->sword
+				),
+				array(
+					'filter'	=> 'project',
+					'value'		=> $idProject
+				)
+			);
+
+			$acTasks	= TodoyuTaskFilterDataSource::getTaskAutocompleteListByFilter($filters);
+		} else {
+			$acTasks	= TodoyuTaskFilterDataSource::getTaskAutocompleteListBySearchword($this->sword);
+		}
+
+		return TodoyuRenderer::renderAutocompleteList($acTasks);
 	}
 
 

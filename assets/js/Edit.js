@@ -21,6 +21,8 @@
 Todoyu.Ext.calendar.Edit = {
 
 	ext: Todoyu.Ext.calendar,
+	
+	popup: null,
 
 
 
@@ -42,7 +44,11 @@ Todoyu.Ext.calendar.Edit = {
 		var width	= 480;
 		var height	= 300;
 
-		Todoyu.Popup.openWindow(idPopup, title, width, height, url, options);
+		this.popup = Todoyu.Popup.openWindow(idPopup, title, width, height, url, options);
+	},
+	
+	closePopup: function() {
+		this.popup.close();
 	},
 
 

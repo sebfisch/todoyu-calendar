@@ -92,7 +92,7 @@
 					<type>button</type>
 					<class>buttonCancel</class>
 					<hasIcon />
-					<onclick>Todoyu.Popup.close()</onclick>
+					<onclick>Todoyu.Ext.calendar.Edit.closePopup()</onclick>
 				</field>
 			</elements>
 		</fieldset>
