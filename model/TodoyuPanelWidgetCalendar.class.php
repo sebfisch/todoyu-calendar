@@ -76,6 +76,7 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 
 
 
+
 	/**
 	 * Render content
 	 * NOTE:	the calender HTML content itself is written to the DOM via JS by the sCal library!
@@ -83,11 +84,17 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 	 * @return String
 	 */
 	public function renderContent() {
+		$date	= $this->getDate();
+
 		$tmpl	= 'ext/calendar/view/panelwidgets/panelwidget-calendar.tmpl';
 		$data	= array(
-			'id'		=> 'widgetCalendar-' . TodoyuRequest::getParam('ext'),
-			'class'		=> $this->config['class'],
-			'date'		=> $this->getDate()
+			'id'			=> $this->getID(), // 'panel-' . TodoyuRequest::getParam('ext'),
+			'class'			=> $this->config['class'],
+			'date'			=> $date,
+			'dateDay'		=> date('d', $date),
+			'dateMonth'		=> date('n', $date),
+			'dateYear'		=> date('Y', $date),
+			'daysInMonth'	=> date('t', $date)
 		);
 
 		$content	= render($tmpl, $data);
@@ -119,8 +126,8 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 	 *
 	 * @return	Integer
 	 */
-	public static function getDate($idArea = AREA) {
-		return TodoyuCalendarPreferences::getDate($idArea);
+	public static function getDate() {
+		return TodoyuCalendarPreferences::getDate(AREA);
 	}
 
 
@@ -131,10 +138,10 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 	 * @param	Integer		$time
 	 * @param	Integer		$idArea
 	 */
-	public static function saveDate($time, $idArea = AREA) {
+	public static function saveDate($time) {
 		$time	= intval($time);
 
-		TodoyuCalendarPreferences::saveDate($time, $idArea);
+		TodoyuCalendarPreferences::saveDate($time, AREA);
 	}
 
 }

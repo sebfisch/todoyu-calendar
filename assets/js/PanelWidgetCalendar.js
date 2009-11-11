@@ -30,7 +30,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 	area:	Todoyu.getArea(),
 
-	calName: 'widgetCalendar-' + Todoyu.getArea(),
+	calName: 'panelwidget-calendar-scal',
 
 	Calendar:	null,
 
@@ -55,6 +55,18 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		
 			// Initialize calendar (have sCal render the calender code to the DOM)
 		this.Calendar 	= new scal(this.calName, this.onDateSelected.bind(this), options);
+		
+		this.installSelectorObserver();
+	},
+	
+	
+	/**
+	 * Install observers for the date selector dropdowns
+	 */
+	installSelectorObserver: function() {
+		$('panelwidget-calendar-selectors').select('select').each(function(item){
+			item.observe('change', this.onSelectorChange.bindAsEventListener(this, item))
+		}.bind(this));		
 	},
 
 
@@ -132,10 +144,18 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 *	Handle date change via dropdowns of widget
 	 */
-	onCalendarDropdownChange: function() {
-		var	timestamp	= new Date.UTC($F('selYear'), $F('selMonth'), $F('selDay'), '16', '0', '0') / 1000;	
-		this.setTime(timestamp, true);
-		this.onUpdate('month');
+	onSelectorChange: function(event, selector) {
+		var	timestamp	= this.getSelectorTime();
+		this.setTime(timestamp, false);
+		//this.onUpdate('month');
+	},
+	
+	getSelectorTime: function() {
+		var day 	= $F('panelwidget-calendar-sel-day');
+		var month 	= $F('panelwidget-calendar-sel-month');
+		var year	= $F('panelwidget-calendar-sel-year');
+		
+		return parseInt((new Date(year, month, day, 0, 0, 0)).getTime()/1000, 10);
 	},
 
 	
@@ -143,32 +163,24 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 *	Refresh date dropdown
 	 */
-	updateDateDropdown: function() {
+	updateDateSelector: function() {
 		var	date	=	new Date(this.getDate());
 		
-		$('selDay').value	= date.getDate();
-		$('selMonth').value	= date.getMonth();
-		$('selYear').value	= date.getFullYear();
-		
-		this.updateDateDropdownDays();
-	},
-
-
-
-	/**
-	 *	Update days options in date dropdown (to contain the max amount of days of the selected month)
-	 *
-	 *	@param	Date	date
-	 */
-	updateDateDropdownDays: function() {
-		var time		=	this.getTime();		
+			// Set current date to selector
+		$('panelwidget-calendar-sel-day').value		= date.getDate();
+		$('panelwidget-calendar-sel-month').value	= date.getMonth();
+		$('panelwidget-calendar-sel-year').value	= date.getFullYear();
+				
+		var time		= this.getTime();		
 		var daysInMonth	= Todoyu.Time.getDaysInMonth(time);
 		
-		$$('#selDay option').each(function(element) {
-			element.style.display = (parseInt(element.value, 10) <= daysInMonth) ? 'block' : 'none';
+			// Toggle the day options for the current month
+		$('panelwidget-calendar-sel-day').select('option').each(function(option) {
+			option.setStyle({
+				'display': (parseInt(option.value, 10) <= daysInMonth) ? 'block' : 'none'
+			})
 		});
 	},
-
 
 
 	/**
@@ -193,7 +205,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 			'date': this.getDate()
 		});
 		
-		this.updateDateDropdown();
+		this.updateDateSelector();
 		//this.saveCurrentDate();
 	},
 
