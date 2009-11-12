@@ -147,7 +147,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	onSelectorChange: function(event, selector) {
 		var	timestamp	= this.getSelectorTime();
 		this.setTime(timestamp, false);
-		//this.onUpdate('month');
+	//	this.onUpdate('month');
 	},
 	
 	getSelectorTime: function() {
