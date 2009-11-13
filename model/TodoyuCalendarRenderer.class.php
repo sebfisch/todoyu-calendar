@@ -31,11 +31,15 @@ class TodoyuCalendarRenderer {
 	/**
 	 * Render the whole calendar (full page, including header, tabs and the actual calendar)
 	 *
+	 * @param	String	$activeTab
 	 * @return	String	Code of the calendar
 	 */
-	public static function render() {
+	public static function render($activeTab = '') {
 		$currentDate= TodoyuPanelWidgetCalendar::getDate(EXTID_CALENDAR);
-		$activeTab	= TodoyuCalendarPreferences::getActiveTab();
+
+		if ($activeTab == '') {
+			$activeTab	= TodoyuCalendarPreferences::getActiveTab();
+		}
 
 		$tmpl	= 'ext/calendar/view/main.tmpl';
 		$data	= array(
