@@ -59,7 +59,19 @@ $CONFIG['EXT']['calendar']['contentTabs'] = array(
 		'class'		=> 'month',
 		'hasIcon'	=> 1,
 		'label'		=> 'LLL:calendar.contentTab.month'
-	)
+	),
+	array(
+		'id'		=> 'add',
+		'class'		=> 'add',
+		'hasIcon'	=> 1,
+		'label'		=> 'LLL:calendar.contentTab.add'
+	)/*,
+	array(
+		'id'		=> 'edit',
+		'class'		=> 'edit',
+		'hasIcon'	=> 1,
+		'label'		=> 'LLL:calendar.contentTab.edit'
+	)*/
 );
 
 

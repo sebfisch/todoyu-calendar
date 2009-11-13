@@ -19,6 +19,12 @@
 ***************************************************************/
 
 Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
+	
+	ext: Todoyu.Ext.calendar,
+	
+	openEventEdit: function() {
+		this.ext.Edit.showEditView(0);
+	},
 
 
 

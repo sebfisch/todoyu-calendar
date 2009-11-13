@@ -44,13 +44,12 @@ TodoyuLocale::register('panelwidget-calendaradmin', PATH_EXT_CALENDAR . '/locale
 
 	// Request configurations
 require_once( PATH_EXT_CALENDAR . '/config/constants.php' );
-	// @note	before extension.php constants.php MUST be loaded!
 require_once( PATH_EXT_CALENDAR . '/config/extension.php' );
 require_once( PATH_EXT_CALENDAR . '/config/panelwidgets.php' );
 require_once( PATH_EXT_CALENDAR . '/config/admin.php' );
 require_once( PATH_EXT_CALENDAR . '/config/hooks.php' );
-
 require_once( PATH_EXT_CALENDAR . '/dwoo/plugins.php');
+
 
 	// Add menu entries
 if( TodoyuAuth::isLoggedIn() ) {

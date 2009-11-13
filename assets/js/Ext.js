@@ -339,7 +339,7 @@ Todoyu.Ext.calendar = {
 	 * @param	Integer		time
 	 */
 	addEvent: function(time) {
-		this.Edit.openPopup(time);
+		this.Edit.showEditView(0, time);
 	},
 
 
@@ -360,5 +360,13 @@ Todoyu.Ext.calendar = {
 		};
 
 		Todoyu.send(url, options);
+	},
+	
+	hideCalendar: function() {
+		$('calendar').hide();
+	},
+	
+	showCalendar: function() {
+		$('calendar').show();
 	}
 };

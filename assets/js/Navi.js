@@ -29,7 +29,7 @@ Todoyu.Ext.calendar.Navi = {
 	 *
 	 */
 	setTitle: function(title) {
-		$('calendarTitle').update(title);
+		$('calendar-title').update(title);
 	},
 
 

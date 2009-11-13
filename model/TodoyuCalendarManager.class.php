@@ -346,7 +346,6 @@ class TodoyuCalendarManager {
 			$tabs[$index]['key']		= $tab['id'];
 			$tabs[$index]['classKey'] 	= $tab['id'];
 			$tabs[$index]['hasIcon'] 	= 1;
-//			$tabs[$index]['position']	= $index == 0 ? 'first' : (($index == count($tabs) - 1) ? 'last' : '');
 		}
 
 		return $tabs;

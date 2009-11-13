@@ -76,6 +76,10 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 107
 			),
 			array(
+				'file' => 'ext/calendar/assets/js/EventView.js',
+				'position' => 107
+			),
+			array(
 				'file' => 'ext/calendar/assets/js/CalendarBody.js',
 				'position' => 108
 			),

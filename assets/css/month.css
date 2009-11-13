@@ -1,5 +1,5 @@
 /* ------------
-	Header
+	header
    ------------ */
 
 .mv-daynames-table {
@@ -20,10 +20,8 @@
 	text-transform:uppercase;
 }
 
-
-
 /* --------------
-	Month view
+	month view
    -------------- */
 
 /* border color and style */
@@ -119,10 +117,8 @@
 	overflow:hidden;
 }
 
-
-
 /* --------------
-	Event
+	event
    -------------- */
 
 .monthevent {
@@ -147,8 +143,9 @@
 	border-left: 1px solid #d7dcc6;
 }
 
-span.holiday, span .holidayQuickInfoHotspot {
-	background:url('../img/icons.png') no-repeat -1px -1257px;
+span.holiday,
+span .holidayQuickInfoHotspot {
+	background:url('../img/icons.png') no-repeat -1px -390px;
 	cursor: pointer;
 }
 div.quickinfoHoliday_content span.holiday {

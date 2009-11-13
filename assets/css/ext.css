@@ -1,5 +1,5 @@
 /* -------------------------
-	Holidays admin module
+	holidays admin module
    ------------------------- */
 
 #admin-tabs li.tabkey-holidays span.icon {
@@ -41,8 +41,6 @@ form.createevent label, form.createeventMidcol label{
 	float: left;
 	width: 150px;
 }
-
-
 
 /*-------------------------
 	list mode in portal
@@ -103,20 +101,14 @@ form.createevent label, form.createeventMidcol label{
 	padding-left: 13px;
 }
 
-#events .isNotAcknowledgedIcon, span.isNotAcknowledgedIcon {
-	background: transparent url(../img/icons.png) no-repeat 0 -1179px;
-}
-
-span.isNotAcknowledgedIcon {
+#events .headLabel span.isNotAcknowledgedIcon {
+	background: transparent url(../../../project/assets/img/icons.png) no-repeat 0 -240px;
+	height:25px;
+	width: 20px;
 	padding: 0 0 0 16px;
-}
-
-#events .headLabel .isNotAcknowledgedIcon{
-	float: left;
-	height: 12px;
-	width: 10px;
 	margin-right: 10px;
 }
+
 
 #holidays .holidayTitle {
 	padding-left: 15px;
@@ -131,72 +123,68 @@ span.isNotAcknowledgedIcon {
 
 form.formEvent button.buttonSave {}
 
-
-
 /* ----------------------
-	Events types
+	events types
    ---------------------- */
 
 .eventtype_1 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -721px;
+   background: url(../img/icons.png) no-repeat scroll 0 -660px;
 }
 
 .eventtype_2 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -665px;
+   background: url(../img/icons.png) no-repeat scroll 0 -690px;
 }
 
 .eventtype_3 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -466px;
+   background: url(../img/icons.png) no-repeat scroll 0 -420px;
 }
 
 .eventtype_4 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -641px;
+   background: url(../img/icons.png) no-repeat scroll 0 -390px;
 }
 
 .eventtype_5 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -751px;
+   background: url(../img/icons.png) no-repeat scroll 0 -720px;
 }
 
 .eventtype_6 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -692px;
+   background: url(../img/icons.png) no-repeat scroll 0 -750px;
 }
 
 .eventtype_7 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -944px;
+   background: url(../img/icons.png) no-repeat scroll 0 -780px;
 }
 
 .eventtype_8 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -970px;
+   background: url(../img/icons.png) no-repeat scroll 0 -810px;
 }
 
 .eventtype_9 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -998px;
+   background: url(../img/icons.png) no-repeat scroll 0 -840px;
 }
 
 .eventtype_10 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -1031px;
+   background: url(../img/icons.png) no-repeat scroll 0 -870px;
 }
 
 .eventtype_11 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -1061px;
+   background: url(../img/icons.png) no-repeat scroll 0 -900px;
 }
 
 .eventtype_12 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -1091px;
+   background: url(../img/icons.png) no-repeat scroll 0 -930px;
 }
 
 .eventtype_13 {
-   background: transparent url(../img/icons.png) no-repeat scroll 0 -1122px;
+   background: url(../img/icons.png) no-repeat scroll 0 -960px;
 }
 
-
-
 /* ------------------------
-	Portal events list
+	portal events list
    ------------------------ */
 #birthdays h3 {
 	background-color: #fff;
-	background: transparent url(../img/icons.png) no-repeat scroll 4px -1428px;
+	background: transparent url(../img/icons.png) no-repeat scroll 4px -420px;
 	border-bottom: 1px dotted #848484;
 	border-left: 5px solid #bbb;
 	padding-left: 35px;
@@ -207,18 +195,16 @@ form.formEvent button.buttonSave {}
 }
 
 h1.birthdaysforecast span.title {
-	background: transparent url(../img/icons.png) no-repeat scroll 0 -462px;
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -420px;
 	padding-left: 20px;
 }
 h1.holidaysforecast span.title {
-	background: transparent url(../img/icons.png) no-repeat scroll 0 -1311px;
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -990px;
 	padding-left: 20px;
 }
 
-
-
 /* ------------------------------------------------------------------
-	Events without/ with multiple user assignments inside calendar
+	events without/ with multiple user assignments inside calendar
    ------------------------------------------------------------------ */
 .enumColBGFademultiOrNone,
 .enumColBGmultiOrNone {
@@ -229,37 +215,40 @@ h1.holidaysforecast span.title {
 
 
 /* --------------------------------------------------------------------
-	Date navigational buttons (center on today, go forward / backward)
+	date navigational buttons (center on today, go forward / backward)
    -------------------------------------------------------------------- */
+#calendar-header {
 
-#date-navi {
+}
+#calendar-quicknav div.icon {
+	height:24px;
 }
 
-	#date-navi .goback {
+	#calendar-quicknav .goback {
 		min-width: 28px;
 		width: 28px;
 		cursor: pointer;
-		background: transparent url(../img/icons.png) no-repeat scroll 0 -785px;
+		background: transparent url(../img/icons.png) no-repeat scroll 2px -115px;
 	}
 
-	#date-navi .goforward {
+	#calendar-quicknav .goforward {
 		min-width: 28px;
 		width: 28px;
 		cursor: pointer;
-		background: transparent url(../img/icons.png) no-repeat scroll 0 -839px;
+		background: transparent url(../img/icons.png) no-repeat scroll 2px -175px;
 	}
 
-	#date-navi .buttonToday {
+	#calendar-quicknav .buttonToday {
 		float:left;
 		margin-right:8px;
 		margin-top:-1px;
 	}
 
-	#date-navi .buttonToday span.rgt {
+	#calendar-quicknav .buttonToday span.rgt {
 		background-color:#e7e7e7;
 	}
 
-	button.buttonToday span.today {
+	#calendar-quicknav button.buttonToday span.icon {
 		cursor: pointer;
-		background: transparent url(../img/icons.png) no-repeat scroll 5px -814px;
+		background: url(../img/icons.png) no-repeat scroll 2px -148px;
 	}

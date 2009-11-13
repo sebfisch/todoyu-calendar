@@ -3,7 +3,7 @@
 	<attributes>
 		<attribute name="action">?ext=calendar&amp;controller=event</attribute>
 		<attribute name="name">event</attribute>
-		<attribute name="onsubmit">return Todoyu.Ext.calendar.Edit.saveEvent(this)</attribute>
+		<attribute name="onsubmit">return false</attribute>
 		<attribute name="class">formEvent</attribute>
 	</attributes>
 	<hiddenFields>
@@ -133,13 +133,14 @@
 					<type>submit</type>
 					<class>buttonSave</class>
 					<hasIcon>1</hasIcon>
+					<onclick>Todoyu.Ext.calendar.Edit.saveEvent()</onclick>
 				</field>
 				<field type="button" name="cancel">
 					<text>LLL:form.field.cancel</text>
 					<type>button</type>
 					<class>buttonCancel</class>
 					<hasIcon>1</hasIcon>
-					<onclick>Todoyu.Ext.calendar.Edit.cancelEventEdit()</onclick>
+					<onclick>Todoyu.Ext.calendar.Edit.cancelEdit()</onclick>
 				</field>
 			</elements>
 		</fieldset>

@@ -27,7 +27,7 @@ class TodoyuEventEditRenderer {
 	 * @param	Integer	$time
 	 * @return	String	HTML
 	 */
-	public static function renderCreateEventMainContent($time = 0) {
+	public static function renderAddView($time = 0) {
 		$tabLabel	= Label('LLL:calendar.newevent');
 		$headTab	= self::renderEventEditTab($tabLabel, 'add');
 		$form		= self::renderEventForm(0, $time);
@@ -45,10 +45,10 @@ class TodoyuEventEditRenderer {
 	 */
 	public static function renderEditView($idEvent)	{
 		$idEvent	= intval($idEvent);
-		
+
 		$tabLabel	= Label('LLL:calendar.editevent');
 		$headTab	= self::renderEventEditTab($tabLabel, 'edit');
-		
+
 		$form		= self::renderEventForm($idEvent);
 
 		return $headTab . $form;
@@ -91,14 +91,14 @@ class TodoyuEventEditRenderer {
 	 * @return	TodoyuForm
 	 */
 	public static function renderEventForm($idEvent, $time = 0) {
-		$idEvent= intval($idEvent);
-		$time	= intval($time);
-		
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 
-		$form	= new TodoyuForm($xmlPath);
+		$idEvent= intval($idEvent);
+		$time	= intval($time);
+
+		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
+
 		$form->setUseRecordID(false);
-		$form	= TodoyuFormHook::callBuildForm($xmlPath, $form, $idEvent);
 
 		if( $idEvent === 0 ) {
 			TodoyuEventManager::createNewEventWithDefaultsInCache($time);
@@ -106,9 +106,7 @@ class TodoyuEventEditRenderer {
 
 		$event	= TodoyuEventManager::getEvent($idEvent);
 
-		$event->loadForeignData();
-
-		$data	= $event->getTemplateData();
+		$data	= $event->getTemplateData(true);
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
 
 		$form->setFormData($data);

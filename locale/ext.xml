@@ -45,6 +45,8 @@
 		<label index="contentTab.day">Day</label>
 		<label index="contentTab.week">Week</label>
 		<label index="contentTab.month">Month</label>
+		<label index="contentTab.edit">Edit event</label>
+		<label index="contentTab.add">Add new event</label>
 		<label index="header.today">Today</label>
 		<label index="today">Today</label>
 		<label index="appointments">Appointments</label>

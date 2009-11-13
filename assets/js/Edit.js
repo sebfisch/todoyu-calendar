@@ -22,91 +22,13 @@ Todoyu.Ext.calendar.Edit = {
 
 	ext: Todoyu.Ext.calendar,
 	
-	popup: null,
-
-
-
-	/**
-	 *	Open (create event) popup
-	 *
-	 *	@param	Integer	time
-	 */
-	openPopup: function(time) {
-		var url		= Todoyu.getUrl('calendar',	'quickevent');
-		var options	= {
-			'parameters': {
-				'cmd': 'popup',
-				'time': time
-			}
-		};
-		var idPopup	= 'popupCreateEvent';
-		var title	= 'Create event';
-		var width	= 480;
-		var height	= 300;
-
-		this.popup = Todoyu.Popup.openWindow(idPopup, title, width, height, url, options);
-	},
-	
-	closePopup: function() {
-		this.popup.close();
-	},
-
-
-
-
-	/**
-	 *	Is only used for the event popup. Check the inputs and handle it accordingly
-	 *
-	 *	@param	Mixed	form		All fields of the event form
-	 *	@param	String	type		Type command
-	 *	@return	Boolean
-	 */
-	saveQuickEvent: function(form) {
-		$(form).request({
-			'parameters': {
-				'cmd':	'save'
-			},
-			'onComplete': this.onQuickEventSaved.bind(this)
-		});
-
-		return false;
-	},
-
-
-
-	/**
-	 *	If saved, return to currently selected calendar view (day / week / month)
-	 *
-	 *  @param	Object	response	Response, containing startdate of the event
-	 */
-	onQuickEventSaved: function(response) {
-		var isError = response.getTodoyuHeader('error') == 1;
-
-		if( isError ) {
-			Todoyu.Popup.setContent('popupCreateEvent', response.responseText);
-		} else {
-			Todoyu.Popup.close('popupCreateEvent');
-			this.ext.refresh();
-		}
-	},
-
-	/**
-	 *	Leave events form, return to prev. calendar view
-	 */
-	cancelEventEdit: function() {
-		// A bad way, we'll fix this in the next release =)
-		Todoyu.Ui.updatePage('calendar');
-	},
-
 	saveEvent: function(form) {
-		$(form).request({
+		$('event-form').request({
 			'parameters': {
 				'cmd':	'save'
 			},
 			'onComplete': this.onEventSaved.bind(this)
 		});
-
-		return false;
 	},
 
 
@@ -117,16 +39,105 @@ Todoyu.Ext.calendar.Edit = {
 	 *	@param	Object	response
 	 */
 	onEventSaved: function(response) {
-		var error	= response.getTodoyuHeader('error');
-
-		if( error == 1 ) {
+		if( response.hasTodoyuError() ) {
+			Todoyu.notifyError('Invalid form data');
 			$('event-form').replace(response.responseText);
 		} else {
+			Todoyu.notifySuccess('Event saved');
 			var time	= response.getTodoyuHeader('time');
-			//console.log('saved');
-			Todoyu.Ui.updatePage('calendar');
-			//this.ext.show(null, time);
+			this.ext.show(this.ext.Tabs.active, time*1000);
+			this.closeEdit();
 		}
-	}
+	},
+	
+	
 
+	/**
+	 *	Leave events form, return to prev. calendar view
+	 */
+	cancelEdit: function() {
+		this.ext.show(this.ext.Tabs.active);
+		this.closeEdit();
+	},
+
+
+	
+	/**
+	 * 
+	 * @param {Object} idEvent
+	 * @param {Object} time
+	 */
+	showEditView: function(idEvent, time) {
+		this.addEditTab('Edit');
+		this.ext.hideCalendar();
+		this.loadEditForm(idEvent, time);
+	},
+	
+	
+	
+	addEditTab: function(label) {
+		if( ! Todoyu.exists('calendar-tabhead-edit') ) {
+			var tab = Todoyu.Tabs.build('calendar-tabhead-edit', 'item bcg05 tabkey-edit edit edit', label, true);
+		
+			$('calendar-tabhead-add').insert({
+				'after': tab
+			});
+		}		
+		
+			// Delay activation, because tabhandler activates add tab after this function
+		this.activateEditTab.bind(this).delay(0.1);
+	},
+	
+	closeEdit: function() {
+		this.removeEditTab();
+		this.hideEdit();
+		this.ext.showCalendar();
+		$('calendar-edit').update('');
+	},
+	
+	activateEditTab: function() {
+		Todoyu.Tabs.setActive('calendar-tabs', 'calendar-tabhead-edit');
+	},
+	
+	loadEditForm: function(idEvent, time) {
+		var url		= Todoyu.getUrl('calendar', 'event');
+		var options	= {
+			'parameters': {
+				'cmd': 'edit',
+				'event': idEvent,
+				'time': time
+			},
+			'onComplete': this.onEditFormLoaded.bind(this, idEvent)			
+		}
+		var target	= 'calendar-edit';
+		
+		Todoyu.Ui.update(target, url, options);
+	},
+	
+	onEditFormLoaded: function(idEvent, response) {
+		var tabLabel = response.getTodoyuHeader('tabLabel');
+		
+		this.setEditTabLabel(tabLabel);
+		this.showEdit();
+	},
+	
+	setEditTabLabel: function(label) {
+		$('calendar-tabhead-edit').select('span.labeltext').first().update(label);
+	},
+	
+	isEditActive: function() {
+		return Todoyu.exists('calendar-tabhead-edit');
+	},
+	
+	removeEditTab: function() {
+		$('calendar-tabhead-edit').remove();
+	},
+		
+	showEdit: function() {
+		$('calendar-edit').show();
+	},
+	
+	hideEdit: function() {
+		$('calendar-edit').hide();
+	}
 };

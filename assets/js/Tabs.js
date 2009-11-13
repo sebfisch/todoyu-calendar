@@ -29,7 +29,7 @@ Todoyu.Ext.calendar.Tabs = {
 	 *	Current active tab
 	 */
 	active: null,
-
+	
 
 
 	/**
@@ -39,11 +39,27 @@ Todoyu.Ext.calendar.Tabs = {
 	 *	@param	String	tabKey
 	 */
 	onSelect: function(event, tabKey) {
-		this.active = tabKey;
-		
-		//this.saveTabSelection(tabKey);
-		
-		this.ext.show(tabKey);
+		switch(tabKey) {
+				// Click on edit tab does nothing
+			case 'edit':
+				break;
+				// Click on add tab add a new edit tab
+			case 'add':
+				this.ext.Edit.showEditView(0);
+				break;
+				// Click on view tabs changes calendar view
+			default:
+				this.closeSpecialTabs();		
+				this.active = tabKey;
+				this.ext.show(tabKey);
+				break;			
+		}	
+	},
+	
+	closeSpecialTabs: function() {
+		if( this.ext.Edit.isEditActive() ) {
+			this.ext.Edit.closeEdit();
+		}	
 	},
 
 
@@ -70,6 +86,7 @@ Todoyu.Ext.calendar.Tabs = {
 	 */
 	setActive: function(tab) {
 		this.active = tab;
+		Todoyu.Tabs.setActive('calendar-tabs', 'calendar-tabhead-' + tab);
 	},
 
 

@@ -724,15 +724,15 @@ class TodoyuEventManager {
 	 *
 	 *	@param	Integer	$timeStamp
 	 */
-	public static function createNewEventWithDefaultsInCache($timeStamp)	{
-		$timeStamp		= intval($timeStamp);
+	public static function createNewEventWithDefaultsInCache($date)	{
+		$date		= intval($date);
 
-		$defaultData	= self::getEventDefaultData($timeStamp);
+		$defaultData= self::getEventDefaultData($date);
 
-		$event	= self::getEvent(0);
+		$idCache	= TodoyuCache::makeClassKey('TodoyuEvent', 0);
+		$event		= self::getEvent(0);
 		$event->injectData($defaultData);
-
-		$event->cache();
+		TodoyuCache::set($idCache, $event);
 	}
 
 

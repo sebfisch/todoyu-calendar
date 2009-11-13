@@ -26,7 +26,6 @@
  * @subpackage	Calendar
  *
 */
-
 class TodoyuEvent extends TodoyuBaseObject {
 
 	/**
@@ -39,42 +38,13 @@ class TodoyuEvent extends TodoyuBaseObject {
 	}
 
 
-	
+
 	/**
 	 * Get start date
-	 * 
+	 *
 	 */
 	public function getStartDate() {
 		return $this->get('date_start');
-	}
-
-
-
-	/**
-	 * Sets event to deleted
-	 *
-	 * @todo	Wrong place for this function!
-	 */
-	public function delete()	{
-		$idEvent = intval($this->get('id'));
-
-		$update = array('deleted'	=> 1);
-
-		Todoyu::db()->doUpdate('ext_calendar_event', 'id = ' . $idEvent, $update);
-		Todoyu::db()->doDelete('ext_calendar_mm_event_user', 'id_event = ' . $idEvent);
-
-		TodoyuCache::removeRecord('Event', $idEvent);
-	}
-
-
-
-	/**
-	 * caches event
-	 *
-	 */
-	public function cache()	{
-		$cacheClassKey = TodoyuCache::makeClassKey('TodoyuEvent', intval($this->get('id')));
-		TodoyuCache::set($cacheClassKey, $this);
 	}
 
 
@@ -84,11 +54,13 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 *
 	 */
 	public function loadForeignData()	{
-		$this->data['user'] = TodoyuEventManager::getAssignedUsersOfEvent($this->id, true);
+		if( ! is_array($this->data['user']) ) {
+			$this->data['user'] = TodoyuEventManager::getAssignedUsersOfEvent($this->id, true);
+		}
 	}
 
 
-	
+
 	/**
 	 *	Get template data
 	 *

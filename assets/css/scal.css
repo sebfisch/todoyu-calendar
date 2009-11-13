@@ -1,5 +1,5 @@
 /* ------------------------------------
-	Todoyu-style calendar widget
+	todoyu-style calendar widget
    ------------------------------------ */
 
 #panelwidget-calendar-content * {
@@ -157,10 +157,8 @@
 
 .todoyuskin .weekboxname{}
 
-
-
 /* ----------------
-	Border
+	border
    ---------------- */
 .todoyuskin .calweekswrapper {
 	border-width:1px 1px 0 0;
@@ -196,10 +194,8 @@
 	border-style:solid;
 }
 
-
-
 /* -----------------------
-	Gridcontainer
+	gridcontainer
    ----------------------- */
 
 #gridcontainer.dayMode, #gridcontainer.weekMode {

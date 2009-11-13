@@ -37,12 +37,10 @@ class TodoyuCalendarRenderer {
 		$currentDate= TodoyuPanelWidgetCalendar::getDate(EXTID_CALENDAR);
 		$activeTab	= TodoyuCalendarPreferences::getActiveTab();
 
-		$tmpl	= 'ext/calendar/view/midcol.tmpl';
+		$tmpl	= 'ext/calendar/view/main.tmpl';
 		$data	= array(
-			'active'		=> $activeTab,
-			'calendar'		=> self::renderCalendar($currentDate, $activeTab),
 			'tabs'			=> self::renderTabs($activeTab),
-			'currentDate'	=> $currentDate
+			'calendar'		=> self::renderCalendar($currentDate, $activeTab)
 		);
 
 		return render($tmpl, $data);
@@ -58,6 +56,8 @@ class TodoyuCalendarRenderer {
 	 * @return	String
 	 */
 	public static function renderCalendar($currentDate, $activeTab) {
+		$currentDate	= intval($currentDate);
+
 		switch( $activeTab ) {
 			case 'day':
 				return self::renderCalendarDay($currentDate);
@@ -118,6 +118,7 @@ class TodoyuCalendarRenderer {
 	 * @return	String
 	 */
 	public static function renderCalendarWeek($currentDate) {
+			// Get display infos
 		$currentDate= intval($currentDate);
 		$users		= TodoyuCalendarManager::getSelectedUsers();
 		$weekRange	= TodoyuTime::getWeekRange($currentDate);
@@ -133,7 +134,7 @@ class TodoyuCalendarRenderer {
 			'fullDayView'		=> TodoyuCalendarPreferences::getFullDayView(),
 			'timestamp'			=> $currentDate,
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
-			'events'			=> self::preRenderEventsForWeek($dateStart, $eventTypes, $users, $userColors),
+			'events'			=> self::preRenderEventsDayAndWeek('week', $dateStart, $dateEnd, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('week', $dateStart, $dateEnd, $eventTypes, $users),
 			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('week', $dateStart, $dateEnd) : array(),
 			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
@@ -154,7 +155,7 @@ class TodoyuCalendarRenderer {
 	public static function renderCalendarMonth($selectedDate) {
 		$selectedDate	= intval($selectedDate);
 		$users			= TodoyuCalendarManager::getSelectedUsers();
-		
+
 		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($selectedDate);
 		$dateStart	= $monthRange['start'];
 		$dateEnd	= $monthRange['end'];
@@ -163,7 +164,7 @@ class TodoyuCalendarRenderer {
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-month.tmpl';
-		
+
 		$data		= array(
 			'timestamps'		=> TodoyuCalendarManager::getShownDaysTimestampsOfMonthView($selectedDate),
 			'timestamp'			=> $selectedDate,
@@ -229,12 +230,12 @@ class TodoyuCalendarRenderer {
 		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($dateStart);
 		$dateStart	= $monthRange['start'];
 		$dateEnd	= $monthRange['end'];
-		
+
 		$renderedEvents	= array();
 
 			// Get all events in current view
 		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $users, $eventTypes);
-		
+
 			// Group the events by day
 		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
 			// Add overlap informations to events for each day
@@ -317,7 +318,7 @@ class TodoyuCalendarRenderer {
 	 *
 	 * @param	String		$mode
 	 * @param	Integer		$dateStart
-	 * @param	Integer		$dateEnd	last shown date in current calendar view 
+	 * @param	Integer		$dateEnd	last shown date in current calendar view
 	 * @param	Array		$eventTypes
 	 * @param	Array		$users
 	 * @return	Array

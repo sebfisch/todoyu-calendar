@@ -3,71 +3,76 @@
    ---------------------- */
 
 #calendararea {
-	border-right:1px dotted #818181;
-	overflow:hidden;
-	height:461px;
+	border-right: 1px dotted #818181;
+	overflow: hidden;
+	height: 461px;
 }
 
 #calendararea.month {
-	height:670px !important;
+	height: 670px !important;
 }
 #calendararea.sixWeeks {
-	height:800px !important;
+	height: 800px !important;
 }
 
 #calendararea.full {
-	overflow:visible;
-	height:auto;
+	overflow: visible;
+	height: auto;
 }
 
 #toggleDayView {
-	height:20px;
+	height: 20px;
 	width:40px;
-	cursor:pointer;
-	background:url(../img/icons.png) no-repeat 0 -339px;
+	cursor: pointer;
+	background:url(../img/icons.png) no-repeat 2px -58px;
 }
 
 #toggleDayView.full {
-	background-position:0 -359px;
+	background-position:2px -88px;
 }
 
-#showWorkingDay {
-	cursor:pointer;
-	background:url('../img/icons.png') no-repeat 0 -339px;
-	height:20px;
-}
-
-#showFullDay {
-	cursor:pointer;
-	background:url('../img/icons.png') no-repeat 0 -359px;
-	height:20px;
-}
 
 #tgnowptr {
 	background-image:url(../img/background-hours.png);
-	background-repeat:repeat-y;
-	background-color:#f2f3ed;
+	background-repeat: repeat-y;
+	background-color: #f2f3ed;
 }
+
 
 
 /* ----------------------
 	Area tabs
    ---------------------- */
-p#calendar-tabhead-day-label span.icon {
-	background:transparent url(../img/icons.png) no-repeat scroll 1px -1339px;
-	margin-right:1px;
+#calendar-tabs li span.icon {
+	margin-right:2px;
 }
-
-p#calendar-tabhead-week-label span.icon {
-	background:transparent url(../img/icons.png) no-repeat scroll 1px -1369px;
-	margin-right:1px;
+#calendar-tabs li.day span.icon {
+	background: url(../img/icons.png) no-repeat scroll 2px -204px;
 }
-
-p#calendar-tabhead-month-label span.icon {
-	background:transparent url(../img/icons.png) no-repeat scroll 1px -1399px;
-	margin-right:1px;
+#calendar-tabs li.week span.icon {
+	background: url(../img/icons.png) no-repeat scroll 2px -234px;
 }
-
+#calendar-tabs li.month span.icon {
+	background: url(../img/icons.png) no-repeat scroll 2px -264px;
+}
+#calendar-tabs li.add {
+	float:right;
+}
+#calendar-tabs li.add span.icon {
+	background: url(../img/icons.png) no-repeat scroll 2px -294px;
+}
+#calendar-tabs li.edit {
+	float:right;
+}
+#calendar-tabs li.edit span.icon {
+	background: url(../img/icons.png) no-repeat scroll 2px -24px;
+}
+#calendar-tabs li.view {
+	float:right;
+}
+#calendar-tabs li.view span.icon {
+	background: url(../img/icons.png) no-repeat scroll 2px 6px;
+}
 
 
 /* ----------------------
@@ -75,51 +80,51 @@ p#calendar-tabhead-month-label span.icon {
    ---------------------- */
 
 #calendar {
-	background-color:#fff;
+	background-color: #fff;
 }
 
 #calendar h1 {
-	padding-left:10px !important;
+	padding-left: 10px !important;
 }
 
 #calendar #createevent {
-	margin-top:10px;
-	margin-left:10px;
+	margin-top: 10px;
+	margin-left: 10px;
 }
 
 
 #calendar #createevent .formelement {
-	margin-bottom:4px;
-	clear:both;
+	margin-bottom: 4px;
+	clear: both;
 }
 
 #calendar #createevent .formelement input,
 #calendar #createevent .formelement textarea,
 #calendar #createevent .formelement select {
-	border:1px solid #d3dabb;
+	border: 1px solid #d3dabb;
 }
 
 #calendar #createevent .formelement select.large {
-	width:355px;
+	width: 355px;
 }
 
 #calendar #createevent .formelement .small {
-	width:80px;
+	width: 80px;
 }
 
 #calendar #createevent .formelement .large {
-	width:352px;
+	width: 352px;
 }
 
-	#calendarTitle {
+	#calendar-title {
 		position:absolute;
 		line-height:23px;
 		margin:0;
 		padding:0 0 0 10px;
-		text-transform:uppercase;
+		text-transform: uppercase;
 	}
 
-	#date-navi #calendarNavigation {
+	#calendar-quicknav {
 		position:absolute;
 		top:3px;
 		right:15px;
@@ -136,40 +141,38 @@ p#calendar-tabhead-month-label span.icon {
 	padding-bottom:10px;
 }
 
-
-
 /* ----------------------
-	Events in all views
+	events in all views
    ---------------------- */
 
 .updateAllowed {
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .ca-elp {
-	color:#fff;
-	display:inline;
-	white-space:normal;
+	color: #fff;
+	display: inline;
+	white-space: normal;
 }
 
 .privateEvent {
 	background:transparent url(../img/icons.png) no-repeat scroll 0 -405px;
-	padding:0 0 0 15px;
+	padding: 0 0 0 15px;
 }
 
 .seriesEvent {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -909px;
-	padding:0 0 0 15px;
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -330px;
+	padding: 0 0 0 15px;
 }
 
 .seriesEventDark {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -924px;
-	padding:0 0 0 15px;
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -360px;
+	padding: 0 0 0 15px;
 }
 
 .weekNumber {
-	float:left;
-	color:#999;
+	float: left;
+	color: #999;
 }
 
 
@@ -177,39 +180,40 @@ p#calendar-tabhead-month-label span.icon {
 /* ------------------------
 	Create or update event
    ------------------------ */
-
 li.editeventtab p.label span.icon {
-	background:transparent url(../img/icons.png) no-repeat scroll -1px -1145px;
-	margin-right:2px;
+	background: transparent url(../img/icons.png) no-repeat scroll -1px -30px;
+	margin-right: 2px;
 }
 
 #createevent .label {
-	float:left;
-	font-weight:bold;
-	width:125px;
+	float: left;
+	font-weight: bold;
+	width: 125px;
 }
 
 #createevent .saveButton {
-	background-color:green;
-	color:white;
+	background-color: green;
+	color: white;
 }
 
+#createevent .deleteButton { }
+
 #createevent #repeatsChoices {
-	margin-left:130px;
-	margin-top:5px;
-	margin-bottom:5px;
-	padding:4px;
-	background-color:#f2f3ed;
+	margin-left: 130px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 4px;
+	background-color: #f2f3ed;
 }
 
 #createevent #repeatsChoices_when {
-	margin-top:10px;
-	font-weight:bold;
+	margin-top: 10px;
+	font-weight: bold;
 }
 
 #createevent #repeatsChoices_area {
-	margin-top:10px;
-	font-weight:bold;
+	margin-top: 10px;
+	font-weight: bold;
 }
 
 
@@ -219,30 +223,30 @@ li.editeventtab p.label span.icon {
    ---------------------- */
 
 #repetitions_choices {
-	margin:5px 0 10px 150px;
-	padding:0 3px 0 3px;
-	background-color:#f2f3ed;
-	width:352px;
+	margin: 5px 0 10px 150px;
+	padding: 0 3px 0 3px;
+	background-color: #f2f3ed;
+	width: 352px;
 }
 
 #repetitions_area {
-	margin-top:5px;
+	margin-top: 5px;
 }
 
 
 
 /* ----------------------
-	Holidays
+	holidays
    ---------------------- */
 
 .holidays {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -425px;
-	padding:0 0 0 15px;
-	margin:0 0 2px 1px;
-	color:#fff;
-	background-color:#9b9b9b;
-	overflow:hidden;
-	min-height:17px;
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -390px;
+	padding: 0 0 0 15px;
+	margin: 0 0 2px 1px;
+	color: #fff;
+	background-color: #9b9b9b;
+	overflow: hidden;
+	min-height: 17px;
 }
 
 
@@ -252,17 +256,17 @@ li.editeventtab p.label span.icon {
    ---------------------- */
 
 .birthdays {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -467px;
-	padding:0 0 0 18px;
-	margin:0 0 2px 1px;
-	color:#000;
-	background-color:#d7dcc6;
-	overflow:hidden;
-	min-height:17px;
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -410px;
+	padding: 0 0 0 18px;
+	margin: 0 0 2px 1px;
+	color: #000;
+	background-color: #d7dcc6;
+	overflow: hidden;
+	min-height: 17px;
 }
 
 .birthdays_update {
-	cursor:pointer;
+	cursor: pointer;
 }
 
 
@@ -272,83 +276,84 @@ li.editeventtab p.label span.icon {
    ---------------------- */
 
 #quickinfo {
-	background-color:transparent;
-	border:none;
-	position:absolute;
-	left:0;
-	top:0;
-	z-index:100;
+	background-color: transparent;
+	border: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 100;
 }
 
 .quickinfo {
-	background-color:#edf1e0;
-	text-align:left;
+	background-color: #edf1e0;
+	text-align: left;
 }
 
 .quickinfo-left {
-	float:left;
-	background:transparent url(../img/icons.png) no-repeat 0 -867px;
-	width:14px;
-	height:40px;
-	display:block;
+	float: left;
+	background: transparent url(../img/icons.png) no-repeat 0 -450px;
+	width: 14px;
+	height: 40px;
+	display: block;
 }
 
 .quickinfo_label {
-	background-color:#d3dabb;
-	padding:0;
+	background-color: #d3dabb;
+	padding: 0;
 }
 
 .quickinfo_label span {
-	width:600px;
+	width: 600px;
 }
 
 .quickinfo_content {
-	font-weight:bold;
-	white-space:nowrap;
-	font-size:10px;
+	font-weight: bold;
+	white-space: nowrap;
+	font-size: 10px;
 }
 
 .quickinfo_content span {
-	font-weight:normal;
+	font-weight: normal;
 }
 
 .quickinfoHoliday_content {
-	white-space:nowrap;
-	font-size:10px;
-	font-weight:normal;
-	background-color:#edf1e0;
-	margin:0 0 0 14px;
-	padding:6px 12px 16px 12px;
+	white-space: nowrap;
+	font-size: 10px;
+	font-weight: normal;
+	background-color: #edf1e0;
+	margin: 0 0 0 14px;
+	padding: 6px 12px 16px 12px;
 }
 
+
 .quickinfo_what {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -594px;
-	width:28px;
+	background: transparent url(../img/icons.png) no-repeat scroll 2px -478px;
+	width: 28px;
 }
 
 .quickinfo_when {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -551px;
-	width:28px;
+	background: transparent url(../img/icons.png) no-repeat scroll 2px -568px;
+	width: 28px;
 }
 
 .quickinfo_where {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -498px;
-	width:28px;
+	background: transparent url(../img/icons.png) no-repeat scroll 2px -538px;
+	width: 28px;
 }
 
 .quickinfo_description {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -573px;
-	width:28px;
+	background: transparent url(../img/icons.png) no-repeat scroll 2px -598px;
+	width: 28px;
 }
 
 .quickinfo_owner {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -525px;
-	width:28px;
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -510px;
+	width: 28px;
 }
 
 .quickinfo_assignedto {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -618px;
-	width:28px;
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -630px;
+	width: 28px;
 }
 
 
@@ -356,41 +361,35 @@ li.editeventtab p.label span.icon {
 /* ----------------------
 	Delete repetition
    ---------------------- */
-
 #popup-deleterepetition {
-   text-align:center;
+   text-align: center;
 }
 
 #popup-deleterepetition .label {
-	font-weight:bold;
-	float:left;
+	font-weight: bold;
+	float: left;
 }
 
 #popup-deleterepetition .button {
-	float:left;
-	margin-right:10px;
+	float: left;
+	margin-right: 10px;
 }
-
-
 
 /* ----------------------
 	Update repetition
    ---------------------- */
-
 #popup-updaterepetition {
-   text-align:center;
+   text-align: center;
 }
 
 #popup-updaterepetition .label {
-	font-weight:bold;
-	float:left;
+	font-weight: bold;
+	float: left;
 }
 
 #popup-updaterepetition .button {
-	float:left;
-	margin-right:10px;
+	float: left;
+	margin-right: 10px;
 }
 
-.createEventHotspotOnCell {
-	cursor:pointer;
-}
+.createEventHotspotOnCell { cursor: pointer; }

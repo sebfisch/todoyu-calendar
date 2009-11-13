@@ -85,11 +85,20 @@ Todoyu.Ext.calendar.Event = {
 				'event': idEvent
 			}			
 		};
+		var target	= 'calendar-view';
 		
-		this.ext.updateCalendarBody(url, options);
+		Todoyu.Ui.update(target, url, options);
 		
-		//Todoyu.Ui.updateContent(url, options);
+		this.addViewTab('View');
+		this.ext.hideCalendar();
+		this.showView();
+		
+		
+		//this.ext.updateCalendarBody(url, options);
+		
+
 	},
+
 
 
 
@@ -99,17 +108,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	Integer	idEvent
 	 */
 	edit: function(idEvent) {
-		var url = Todoyu.getUrl('calendar', 'event');
-
-		var options = {
-			'parameters': {
-				'cmd': 'edit',
-				'event': idEvent
-			}
-		};
-
-		Todoyu.Ui.updateContent(url, options);
-		scroll(0, 0);
+		this.ext.Edit.showEditView(idEvent);
 	},
 
 

@@ -1,0 +1,24 @@
+{$tabs}
+
+<div id="calendar">
+
+	{* ---- Calendar header ---- *}
+	<div id="calendar-header" class="headerLine">
+		<span id="calendar-title"></span>
+		<div id="calendar-quicknav">
+			<div id="calendar-quicknav-backward" title="{Label calendar.gobackward.title}" class="icon goback" onclick="Todoyu.Ext.calendar.Navi.goBackward()"></div>
+			{Button label="calendar.gototoday" title="LLL:calendar.gototoday.title" onclick="Todoyu.Ext.calendar.Navi.goToday()" class="buttonToday" id="calendar-quicknav-today"}
+			<div id="calendar-quicknav-forward" title="{Label calendar.goforward.title}" class="icon goforward" onclick="Todoyu.Ext.calendar.Navi.goForward()"></div>
+		</div>
+		<span class="rgt"><!-- right --></span>
+	</div>
+
+	{* ---- Calendar body ---- *}
+	<div id="calendar-body">
+		{$calendar}
+	</div>
+
+</div>
+
+<div id="calendar-edit" style="display:none"></div>
+<div id="calendar-view" style="display:none"></div>

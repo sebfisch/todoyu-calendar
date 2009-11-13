@@ -39,7 +39,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	public function addAction(array $params) {
 		$time	= TodoyuCalendarPreferences::getDate(AREA);
 
-		return TodoyuEventEditRenderer::renderCreateEventMainContent($time);
+		return TodoyuEventEditRenderer::renderAddView($time);
 	}
 
 
@@ -52,8 +52,20 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function editAction(array $params) {
 		$idEvent	= intval($params['event']);
+		$time		= intval($params['time']);
 
-		return TodoyuEventEditRenderer::renderEditView($idEvent);
+		if( $idEvent === 0 ) {
+			$tabLabel	= 'New Event';
+		} else {
+			$event		= TodoyuEventManager::getEvent($idEvent);
+			$tabLabel	= TodoyuDiv::cropText($event->getTitle(), 20, '...', false);
+		}
+
+		TodoyuHeader::sendTodoyuHeader('tabLabel', 'Edit: ' . $tabLabel);
+
+		return TodoyuEventEditRenderer::renderEventForm($idEvent, $time);
+
+//		return TodoyuEventEditRenderer::renderEditView($idEvent);
 	}
 
 
