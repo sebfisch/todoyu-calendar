@@ -1,7 +1,5 @@
-{Header title="test"}
-<script language="javascript">
-Todoyu.Ext.calendar.setTitle('{dateFormat $event.date_start DshortD2MlongY4}: {$event.title} {time()}');
-</script>
+{Header title=cat(dateFormat($event.date_start DshortD2MlongY4) ": " $event.title)}
+
 
 <h2>{$event.title}</h2>
 <p>{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime}</p>

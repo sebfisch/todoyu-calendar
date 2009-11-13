@@ -22,24 +22,39 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	
 	ext: Todoyu.Ext.calendar,
 	
+	popup: null,
+	
 	openEventEdit: function() {
 		this.ext.Edit.showEditView(0);
 	},
 
 
-
 	/**
-	 *	Load event form
+	 *	Open (create event) popup
+	 *
+	 *	@param	Integer	time
 	 */
-	loadEventForm: function() {
-		var	url		= Todoyu.getUrl('calendar', 'event');
+	openPopup: function(time) {
+		var url		= Todoyu.getUrl('calendar',	'quickevent');
 		var options	= {
 			'parameters': {
-				'cmd': 'add'
+				'cmd': 'popup',
+				'time': time
 			}
 		};
+		var idPopup	= 'popupCreateEvent';
+		var title	= 'Create event';
+		var width	= 480;
+		var height	= 300;
 
-		Todoyu.Ui.updateContent(url, options);
+		this.popup = Todoyu.Popup.openWindow(idPopup, title, width, height, url, options);
+	},
+	
+	closePopup: function() {
+		this.popup.close();
 	}
+
+
+
 
 };

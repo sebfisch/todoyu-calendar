@@ -1,17 +1,12 @@
 Todoyu.Ext.calendar.EventView = {
 	
-	showView: function(idEvent) {
-		
-		
-		
-		
-		
-		this.addViewTab('View');
+	ext: Todoyu.Ext.calendar,
+	
+	open: function(idEvent) {
+		this.addTab('');
+		this.loadDetails(idEvent);
 		this.ext.hideCalendar();
-		this.showView();
-		
-		
-		
+		this.show();		
 	},
 	
 	loadDetails: function(idEvent) {
@@ -21,18 +16,25 @@ Todoyu.Ext.calendar.EventView = {
 				'cmd': 'show',
 				'event': idEvent
 			},
-			'onComplete': this.onDetailsLoaded		
+			'onComplete': this.onDetailsLoaded.bind(this, idEvent)	
 		};
 		var target	= 'calendar-view';
 		
 		Todoyu.Ui.update(target, url, options);
 	},
 	
+	onDetailsLoaded: function(idEvent, response) {
+		var tabLabel = response.getTodoyuHeader('tabLabel');
+		
+		console.log(tabLabel);
+		
+		this.setTabLabel(tabLabel);
+	},	
 	
 		
-	addViewTab: function(label) {
+	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tabhead-view') ) {
-			var tab = Todoyu.Tabs.build('calendar-tabhead-view', 'item bcg05 tabkey-view view view', label, true);
+			var tab = Todoyu.Tabs.build('calendar-tabhead-view', 'item bcg05 tabkey-view view', label, true);
 		
 			$('calendar-tabhead-add').insert({
 				'after': tab
@@ -40,26 +42,35 @@ Todoyu.Ext.calendar.EventView = {
 		}		
 		
 			// Delay activation, because tabhandler activates add tab after this function
-		Todoyu.Tabs.setActive.delay(0.1, 'calendar-tabs', 'calendar-tabhead-view');
-		//this.activateEditTab.bind(this).delay(0.1);
+		Todoyu.Tabs.setActive.defer('calendar-tabhead-view');
 	},
 	
-	setViewTabLabel: function(label) {
-		
+	removeTab: function() {
+		$('calendar-tabhead-view').remove();
 	},
 	
-	hideView: function() {
+	setTabLabel: function(label) {
+		Todoyu.Tabs.setLabel('calendar-tabhead-view', label);
+	},
+	
+	hide: function() {
 		$('calendar-view').hide();
 	},
 	
-	showView: function() {
+	show: function() {
 		$('calendar-view').show();
 	},
 	
+	isActive: function() {
+		return Todoyu.exists('calendar-tabhead-view');
+	},
 
 	
-	closeView: function() {
-		
+	close: function() {
+		this.removeTab();
+		this.hide();
+		this.ext.showCalendar();
+		$('calendar-view').update('');
 	}
 	
 };

@@ -54,13 +54,13 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$time		= intval($params['time']);
 
+			// Send tab label
 		if( $idEvent === 0 ) {
 			$tabLabel	= 'New Event';
 		} else {
 			$event		= TodoyuEventManager::getEvent($idEvent);
 			$tabLabel	= TodoyuDiv::cropText($event->getTitle(), 20, '...', false);
 		}
-
 		TodoyuHeader::sendTodoyuHeader('tabLabel', 'Edit: ' . $tabLabel);
 
 		return TodoyuEventEditRenderer::renderEventForm($idEvent, $time);
@@ -175,6 +175,13 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function showAction(array $params) {
 		$idEvent	= intval($params['event']);
+
+			// Send tab label
+		$event		= TodoyuEventManager::getEvent($idEvent);
+		$tabLabel	= TodoyuDiv::cropText($event->getTitle(), 20, '...', false);
+
+		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel, true);
+
 
 		return TodoyuEventRenderer::renderEventView($idEvent);
 	}

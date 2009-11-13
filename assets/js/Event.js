@@ -78,25 +78,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	Integer	idEvent
 	 */
 	show: function(idEvent) {
-		var url		= Todoyu.getUrl('calendar', 'event');
-		var options	= {
-			'parameters': {
-				'cmd': 'show',
-				'event': idEvent
-			}			
-		};
-		var target	= 'calendar-view';
-		
-		Todoyu.Ui.update(target, url, options);
-		
-		this.addViewTab('View');
-		this.ext.hideCalendar();
-		this.showView();
-		
-		
-		//this.ext.updateCalendarBody(url, options);
-		
-
+		this.ext.EventView.open(idEvent);
 	},
 
 
@@ -108,7 +90,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	Integer	idEvent
 	 */
 	edit: function(idEvent) {
-		this.ext.Edit.showEditView(idEvent);
+		this.ext.Edit.open(idEvent);
 	},
 
 
