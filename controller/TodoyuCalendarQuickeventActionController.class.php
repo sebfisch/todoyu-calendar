@@ -28,8 +28,8 @@
 
 class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 
-	
-	
+
+
 	/**
 	 *	@todo	COMMENT
 	 *
@@ -37,6 +37,8 @@ class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 	 */
 	public function popupAction(array $params) {
 		$time	= intval($params['time']);
+		$time	= TodoyuTime::getStartOfDay($time);
+		$time	= $time + 8 * 3600;
 
 		return TodoyuEventRenderer::renderCreateQuickEvent($time);
 	}

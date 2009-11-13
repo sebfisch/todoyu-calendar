@@ -24,8 +24,10 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	
 	popup: null,
 	
-	openEventEdit: function() {
-		this.ext.Edit.showEditView(0);
+	add: function() {
+		var time = this.ext.getTime();
+		
+		this.openPopup(time);
 	},
 
 
@@ -42,7 +44,7 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 				'time': time
 			}
 		};
-		var idPopup	= 'popupCreateEvent';
+		var idPopup	= 'quickevent';
 		var title	= 'Create event';
 		var width	= 480;
 		var height	= 300;
@@ -52,9 +54,44 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	
 	closePopup: function() {
 		this.popup.close();
+	},
+	
+	
+	
+	/**
+	 *	Is only used for the event popup. Check the inputs and handle it accordingly
+	 *
+	 *	@param	Mixed	form		All fields of the event form
+	 *	@param	String	type		Type command
+	 *	@return	Boolean
+	 */
+	save: function(form) {
+		$(form).request({
+			'parameters': {
+				'cmd':	'save'
+			},
+			'onComplete': this.onSaved.bind(this)
+		});
+
+		return false;
+	},
+
+
+
+	/**
+	 *	If saved, return to currently selected calendar view (day / week / month)
+	 *
+	 *  @param	Object	response	Response, containing startdate of the event
+	 */
+	onSaved: function(response) {
+		var isError = response.getTodoyuHeader('error') == 1;
+
+		if( response.hasTodoyuError() ) {
+			Todoyu.Popup.setContent('quickevent', response.responseText);
+		} else {
+			Todoyu.Popup.close('quickevent');
+			this.ext.refresh();
+		}
 	}
-
-
-
 
 };

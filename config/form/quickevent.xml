@@ -3,7 +3,7 @@
 	<attributes>
 		<attribute name="action">?ext=calendar&amp;controller=quickevent</attribute>
 		<attribute name="name">quickevent</attribute>
-		<attribute name="onsubmit">return Todoyu.Ext.calendar.Edit.saveQuickEvent(this)</attribute>
+		<attribute name="onsubmit">return Todoyu.Ext.calendar.PanelWidget.QuickEvent.save(this)</attribute>
 		<attribute name="class">formQuickEvent</attribute>
 	</attributes>
 	<hiddenFields>
@@ -44,7 +44,6 @@
 
 				<field type="timeinput" name="starttime">
 					<label>LLL:calendar.event.attr.starttime</label>
-					<required />
 				</field>
 
 				<field type="dateinput" name="enddate">
@@ -54,7 +53,6 @@
 
 				<field type="timeinput" name="endtime">
 					<label>LLL:calendar.event.attr.endtime</label>
-					<required />
 				</field>
 
 				<field type="databaseRelation" name="user">
@@ -92,7 +90,7 @@
 					<type>button</type>
 					<class>buttonCancel</class>
 					<hasIcon />
-					<onclick>Todoyu.Ext.calendar.Edit.closePopup()</onclick>
+					<onclick>Todoyu.Ext.calendar.PanelWidget.QuickEvent.closePopup()</onclick>
 				</field>
 			</elements>
 		</fieldset>
