@@ -8,7 +8,7 @@
 
 		<select id="panelwidget-{$id}-sel-day">
 		{for day 1 31}
-			<option value="{$day}"{if $day>$daysInMonth} style="display:none;"{/if}{if $day == $dateDay} selected="selected"{/if} class="{cycle values="odd,even"}">{$day}</option>
+			<option value="{$day}"{if $day == $dateDay} selected="selected"{/if} class="{if $day>$daysInMonth}hidden {/if}{cycle values="odd,even"}">{$day}</option>
 		{/for}
 		</select>
 
