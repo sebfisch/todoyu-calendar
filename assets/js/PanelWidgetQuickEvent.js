@@ -31,6 +31,7 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	},
 
 
+
 	/**
 	 *	Open (create event) popup
 	 *
@@ -55,9 +56,9 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	closePopup: function() {
 		this.popup.close();
 	},
-	
-	
-	
+
+
+
 	/**
 	 *	Is only used for the event popup. Check the inputs and handle it accordingly
 	 *

@@ -95,6 +95,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	},
 
 
+
 	/**
 	 *	Select 'no set'-option only
 	 */

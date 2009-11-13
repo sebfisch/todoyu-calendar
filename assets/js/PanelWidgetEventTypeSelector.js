@@ -82,7 +82,8 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 			option.selected = selected;
 		});
 	},
-	
+
+
 
 	/**
 	 *	Get IDs of selected event types

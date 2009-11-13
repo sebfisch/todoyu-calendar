@@ -48,7 +48,7 @@ Todoyu.Ext.calendar = {
 	 *	Extend scal options (weekdaystart = monday, yearprev = symbol to go backwards, yearnext = symbol to go forwards
 	 */
 	calOptions: {
-		weekdaystart:	1,
+		weekdaystart:	0,
 		yearprev:		'&laquo;&laquo;',
 		yearnext:		'&raquo;&raquo;'
 	},
@@ -74,6 +74,8 @@ Todoyu.Ext.calendar = {
 	getDate: function() {
 		return this.PanelWidget.Calendar.getDate();
 	},
+
+
 
 	/**
 	 *	Set selected date timestamp
@@ -102,6 +104,8 @@ Todoyu.Ext.calendar = {
 	setTime: function(time) {
 		this.PanelWidget.Calendar.setTime(time);
 	},
+
+
 
 	/**
 	 * Get day start of calendar time
@@ -361,11 +365,15 @@ Todoyu.Ext.calendar = {
 
 		Todoyu.send(url, options);
 	},
-	
+
+
+
 	hideCalendar: function() {
 		$('calendar').hide();
 	},
-	
+
+
+
 	showCalendar: function() {
 		$('calendar').show();
 	}

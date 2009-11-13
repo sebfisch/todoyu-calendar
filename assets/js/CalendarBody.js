@@ -102,7 +102,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 			this.calendarBody.removeClassName('full');
 			this.calendarBody.scrollTop = 336;
 		}
-		
+
 		if( savePref === true ) {
 			this.saveFullDayViewPref();
 		}
@@ -130,7 +130,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 		var height	= 1010; //this.getHeight();
 		var top		= y - this.calendarBody.cumulativeOffset().top;
 		var left	= x - this.calendarBody.cumulativeOffset().left;
-		
+
 			// If view is minimized, add invisible part
 		if( ! this.isFullHeight() ) {
 			top += (8 * 42);

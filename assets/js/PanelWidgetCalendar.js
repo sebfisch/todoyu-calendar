@@ -35,7 +35,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	Calendar:	null,
 
 	prefSavingEnabled: true,
-	
+
 
 
 	/**
@@ -45,21 +45,21 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 */
 	init: function(timestamp) {
 		var initialDate = new Date(timestamp * 1000);
-		
+
 		var options		= Object.extend(this.ext.calOptions, {
 			year:			initialDate.getYear() + 1900,
 			month:			initialDate.getMonth() + 1,
 			day:			initialDate.getDate(),
 			'oncalchange':	this.onCalendarChange.bind(this)
 		});
-		
+
 			// Initialize calendar (have sCal render the calender code to the DOM)
 		this.Calendar 	= new scal(this.calName, this.onDateSelected.bind(this), options);
 		
 		this.installSelectorObserver();
 	},
-	
-	
+
+
 	/**
 	 * Install observers for the date selector dropdowns
 	 */
@@ -138,8 +138,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		this.onUpdate(mode);
 	},
 
-	
-	
+
 	
 	/**
 	 *	Handle date change via dropdowns of widget
@@ -149,7 +148,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		this.setTime(timestamp, false);
 	//	this.onUpdate('month');
 	},
-	
+
 	getSelectorTime: function() {
 		var day 	= $F('panelwidget-calendar-sel-day');
 		var month 	= $F('panelwidget-calendar-sel-month');
@@ -158,8 +157,8 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		return parseInt((new Date(year, month, day, 0, 0, 0)).getTime()/1000, 10);
 	},
 
-	
-	
+
+
 	/**
 	 *	Refresh date dropdown
 	 */

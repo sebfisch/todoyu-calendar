@@ -24,8 +24,8 @@
 Todoyu.Ext.calendar.Edit = {
 
 	ext: Todoyu.Ext.calendar,
-	
-	
+
+
 	/**
 	 * Open edit view for an event
 	 * 
@@ -39,7 +39,7 @@ Todoyu.Ext.calendar.Edit = {
 	},
 
 
-	
+
 	/**
 	 * Load edit form for an event
 	 * 
@@ -60,9 +60,9 @@ Todoyu.Ext.calendar.Edit = {
 
 		Todoyu.Ui.update(target, url, options);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Add the edit tab
 	 * 
@@ -80,9 +80,9 @@ Todoyu.Ext.calendar.Edit = {
 			// Delay activation, because tabhandler activates add tab after this function
 		Todoyu.Tabs.setActive.defer('calendar-tabhead-edit');
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Close edit view
 	 */
@@ -94,7 +94,7 @@ Todoyu.Ext.calendar.Edit = {
 	},
 
 
-	
+
 	/**
 	 * Handler when edit form is loaded
 	 * 
@@ -119,8 +119,8 @@ Todoyu.Ext.calendar.Edit = {
 		$('calendar-tabhead-edit').select('span.labeltext').first().update(label);
 	},
 
-	
-	
+
+
 	/**
 	 * Check if edit view is active
 	 */
