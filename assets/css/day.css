@@ -1,5 +1,5 @@
 /* ----------------------
-	header
+	Header
    ---------------------- */
 
 .day-wk-dayname {
@@ -24,8 +24,10 @@
 	text-align: center;
 }
 
+
+
 /* -------------------------------
-	dayview allday 00:00 - 23:00
+	Dayview allday 00:00 - 23:00
    ------------------------------- */
 
 #dayViewAllDaywk {
@@ -46,16 +48,20 @@
 	background-color:#f1ffc4;
 }
 
+
+
 /* ----------------------
-	dayview today
+	Dayview today
    ---------------------- */
 
 .dayviewtoday {
 	background-color:#ffffcc;
 }
 
+
+
 /* ----------------------
-	event
+	Event
    ---------------------- */
 
 .dayevent {

@@ -1,5 +1,5 @@
 /* -------------------------
-	holidays admin module
+	Holidays admin module
    ------------------------- */
 
 #admin-tabs li.tabkey-holidays span.icon {
@@ -41,6 +41,8 @@ form.createevent label, form.createeventMidcol label{
 	float: left;
 	width: 150px;
 }
+
+
 
 /*-------------------------
 	list mode in portal
@@ -129,8 +131,10 @@ span.isNotAcknowledgedIcon {
 
 form.formEvent button.buttonSave {}
 
+
+
 /* ----------------------
-	events types
+	Events types
    ---------------------- */
 
 .eventtype_1 {
@@ -185,8 +189,10 @@ form.formEvent button.buttonSave {}
    background: transparent url(../img/icons.png) no-repeat scroll 0 -1122px;
 }
 
+
+
 /* ------------------------
-	portal events list
+	Portal events list
    ------------------------ */
 #birthdays h3 {
 	background-color: #fff;
@@ -209,8 +215,10 @@ h1.holidaysforecast span.title {
 	padding-left: 20px;
 }
 
+
+
 /* ------------------------------------------------------------------
-	events without/ with multiple user assignments inside calendar
+	Events without/ with multiple user assignments inside calendar
    ------------------------------------------------------------------ */
 .enumColBGFademultiOrNone,
 .enumColBGmultiOrNone {
@@ -218,8 +226,10 @@ h1.holidaysforecast span.title {
 	background-color: #f2f3ed;
 }
 
+
+
 /* --------------------------------------------------------------------
-	date navigational buttons (center on today, go forward / backward)
+	Date navigational buttons (center on today, go forward / backward)
    -------------------------------------------------------------------- */
 
 #date-navi {

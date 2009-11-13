@@ -1,5 +1,5 @@
 /* ------------
-	header
+	Header
    ------------ */
 
 .mv-daynames-table {
@@ -20,8 +20,10 @@
 	text-transform:uppercase;
 }
 
+
+
 /* --------------
-	month view
+	Month view
    -------------- */
 
 /* border color and style */
@@ -117,8 +119,10 @@
 	overflow:hidden;
 }
 
+
+
 /* --------------
-	event
+	Event
    -------------- */
 
 .monthevent {

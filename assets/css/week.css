@@ -1,5 +1,5 @@
 /* ---------------
-	grid
+	Grid
    --------------- */
 
 .mainGrid {
@@ -12,8 +12,10 @@
 	position:relative;
 }
 
+
+
 /* ---------------
-	header
+	Header
    --------------- */
 
 #topcontainerwk {
@@ -58,8 +60,10 @@
 	white-space:nowrap;
 }
 
+
+
 /* ------------------
-	week view
+	Week view
    ------------------ */
 
 #weekViewAllDaywk {
@@ -179,7 +183,6 @@
 	margin-bottom:-1008px;
 	cursor: pointer;
 }
-
 
 .dayevent {
 	color:#fff;
