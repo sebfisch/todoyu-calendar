@@ -34,6 +34,14 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 	// Default assets: loaded all over the installation always
 	'default' => array(
 		'js' => array(
+			array(
+				'file' => 'ext/calendar/assets/js/Ext.js',
+				'position' => 100
+			),
+			array(
+				'file' => 'ext/calendar/assets/js/Event.js',
+				'position' => 105
+			),
 		),
 		'css' => array(
 		)
@@ -43,14 +51,6 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 		// Public assets: basis assets for this extension
 	'public' => array(
 		'js' => array(
-			array(
-				'file' => 'ext/calendar/assets/js/Ext.js',
-				'position' => 100
-			),
-//			array(
-//				'file' => 'ext/calendar/assets/js/ExtObservers.js',
-//				'position' => 101
-//			),
 			array(
 				'file' => 'ext/calendar/assets/js/HolidayEditor.js',
 				'position' => 102
@@ -62,10 +62,6 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			array(
 				'file' => 'ext/calendar/assets/js/Navi.js',
 				'position' => 104
-			),
-			array(
-				'file' => 'ext/calendar/assets/js/Event.js',
-				'position' => 105
 			),
 			array(
 				'file' => 'ext/calendar/assets/js/Quickinfo.js',
@@ -92,6 +88,8 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 110
 			)
 		),
+
+
 
 		'css' => array(
 			array(
@@ -220,10 +218,11 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 
 );
 
+
+
 $CONFIG['EXT']['portal']['assets']['public']['css'][] = array(
 	'file'		=> 'ext/calendar/assets/css/ext.css',
 	'position'	=> 100
 );
-
 
 ?>
