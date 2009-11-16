@@ -64,6 +64,8 @@ class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 			$storageData	= $form->getStorageData();
 //			$storageData	= TodoyuFormHook::callSaveData($xmlPath, $storageData, 0);
 
+			TodoyuDebug::printInFirebug($storageData, 'storageData');
+
 				// Save or update event
 			$idEvent	= TodoyuEventManager::saveQuickEvent($storageData);
 			$event		= TodoyuEventManager::getEvent($idEvent);

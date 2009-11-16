@@ -50,7 +50,7 @@
 
 				<field type="datetimeinput" name="date_start">
 					<label>LLL:calendar.event.attr.startdate</label>
-					<required>1</required>
+					<required />
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event');"</extraAttributes>
 					<class>datetime</class>
 				</field>
@@ -58,10 +58,9 @@
 				<field type="datetimeinput" name="date_end">
 					<label>LLL:calendar.event.attr.enddate</label>
 					<validate>
-						<user msg="LLL:calendar.check.starttimeAfterEndtime">
-							<function>TodoyuFormValidator::dateTimeNotBefore</function>
+						<dateTimeNotBefore msg="LLL:calendar.check.starttimeAfterEndtime">
 							<field>date_start</field>
-						</user>
+						</dateTimeNotBefore>
 					</validate>
 					<class>datetime</class>
 				</field>

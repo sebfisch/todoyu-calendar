@@ -402,7 +402,11 @@ class TodoyuEventManager {
 			unset($data['user']);
 		}
 
+		TodoyuDebug::printInFirebug($data, 'data');
+
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
+
+		TodoyuDebug::printInFirebug($data, 'data after callSaveData');
 
 			// Update the event with the definitive data
 		self::updateEvent($idEvent, $data);
