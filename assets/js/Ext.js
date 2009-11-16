@@ -306,9 +306,18 @@ Todoyu.Ext.calendar = {
 	 * @param	Integer		date
 	 */
 	show: function(tab, date) {
-		if( Object.isString(tab) ) {
-			this.setActiveTab(tab);
+			// Close special tabs (edit,view)
+		this.Tabs.closeSpecialTabs();
+			// Make sure calendar is visible
+		this.showCalendar();
+		
+			// Get active tab and set it
+		if( ! Object.isString(tab) ) {
+			tab = this.getActiveTab();
 		}
+		this.setActiveTab(tab);
+		
+			// Set new date if given as parameter
 		if( Object.isNumber(date) ) {
 			this.setDate(date);
 		}
@@ -343,7 +352,7 @@ Todoyu.Ext.calendar = {
 	 * @param	Integer		time
 	 */
 	addEvent: function(time) {
-		this.Edit.showEditView(0, time);
+		this.Edit.open(0, time);
 	},
 
 
@@ -368,12 +377,19 @@ Todoyu.Ext.calendar = {
 
 
 
+	/**
+	 * Hide calendar container
+	 */
 	hideCalendar: function() {
 		$('calendar').hide();
 	},
 
 
 
+	/**
+	 * Show calendar container
+	 * Available containers: calendar, view, edit
+	 */
 	showCalendar: function() {
 		$('calendar').show();
 	}

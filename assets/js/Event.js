@@ -134,23 +134,6 @@ Todoyu.Ext.calendar.Event = {
 
 
 	/**
-	 * If in a form "is_dayevent" is clicked, toggle time fields and set their value to 00:00
-	 * because they are not needed in this case
-	 *
-	 * @param	String	formName	Name of the XML-form
-	*/
-	hideTime:function(formName) {
-		if ($(formName+'-0-field-starttime')) {
-			$(formName+'-0-field-starttime').value	= '00:00';
-		}
-		if ($(formName+'-0-field-endtime')) {
-			$(formName+'-0-field-endtime').value	= '00:00';
-		}
-	},
-
-
-
-	/**
 	 * Automatically set the enddate to the same value as the startdate in a form
 	 *
 	 * @param	String	formName	Name of the XML-form

@@ -32,7 +32,6 @@
 
 				<field type="checkbox" name="is_dayevent">
 					<label>LLL:calendar.event.attr.is_dayevent</label>
-					<extraAttributes>onclick="Todoyu.Ext.calendar.Event.hideTime('event');"</extraAttributes>
 				</field>
 
 				<field type="checkbox" name="is_public">

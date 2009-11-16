@@ -34,25 +34,16 @@
 
 				<field type="checkbox" name="is_dayevent">
 					<label>LLL:calendar.event.attr.is_dayevent</label>
-					<extraAttributes>onclick="Todoyu.Ext.calendar.Event.hideTime('quickevent');"</extraAttributes>
 				</field>
 
-				<field type="dateinput" name="startdate">
+				<field type="datetimeinput" name="date_start">
 					<label>LLL:calendar.event.attr.startdate</label>
 					<required />
 				</field>
 
-				<field type="timeinput" name="starttime">
-					<label>LLL:calendar.event.attr.starttime</label>
-				</field>
-
-				<field type="dateinput" name="enddate">
+				<field type="datetimeinput" name="date_end">
 					<label>LLL:calendar.event.attr.enddate</label>
 					<required />
-				</field>
-
-				<field type="timeinput" name="endtime">
-					<label>LLL:calendar.event.attr.endtime</label>
 				</field>
 
 				<field type="databaseRelation" name="user">

@@ -402,11 +402,7 @@ class TodoyuEventManager {
 			unset($data['user']);
 		}
 
-		TodoyuDebug::printInFirebug($data, 'data');
-
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
-
-		TodoyuDebug::printInFirebug($data, 'data after callSaveData');
 
 			// Update the event with the definitive data
 		self::updateEvent($idEvent, $data);
@@ -785,33 +781,6 @@ class TodoyuEventManager {
 		$items = array_merge_recursive($items, $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Event']);
 
 		return $items;
-	}
-
-
-
-	/**
-	 *	Save hook for quickevent form
-	 *	Combine startdate and starttime (and end) to one db field
-	 *
-	 *	@param	Array		$data
-	 *	@param	Integer		$idRecord
-	 *	@return	Array
-	 */
-	public static function saveQuicktaskHook(array $data, $idRecord) {
-		$dateStart	= intval($data['startdate']);
-		$dateEnd	= intval($data['enddate']);
-		$timeStart	= intval($data['starttime']);
-		$timeEnd	= intval($data['endtime']);
-
-		$data['date_start']	= $dateStart + $timeStart;
-		$data['date_end']	= $dateEnd + $timeEnd;
-
-		unset($data['startdate']);
-		unset($data['starttime']);
-		unset($data['enddate']);
-		unset($data['endtime']);
-
-		return $data;
 	}
 
 }

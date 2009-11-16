@@ -64,6 +64,21 @@ Todoyu.Ext.calendar.Edit = {
 
 
 	/**
+	 * Handler when edit form is loaded
+	 * 
+	 * @param	Integer		idEvent
+	 * @param {Object} response
+	 */
+	onFormLoaded: function(idEvent, response) {
+		var tabLabel = response.getTodoyuHeader('tabLabel');
+
+		this.setTabLabel(tabLabel);
+		this.show();
+	},
+	
+	
+
+	/**
 	 * Add the edit tab
 	 * 
 	 * @param	String		label
@@ -91,21 +106,6 @@ Todoyu.Ext.calendar.Edit = {
 		this.hide();
 		this.ext.showCalendar();
 		$('calendar-edit').update('');
-	},
-
-
-
-	/**
-	 * Handler when edit form is loaded
-	 * 
-	 * @param	Integer		idEvent
-	 * @param {Object} response
-	 */
-	onFormLoaded: function(idEvent, response) {
-		var tabLabel = response.getTodoyuHeader('tabLabel');
-
-		this.setTabLabel(tabLabel);
-		this.show();
 	},
 
 
