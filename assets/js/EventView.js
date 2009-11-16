@@ -17,7 +17,7 @@ Todoyu.Ext.calendar.EventView = {
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
 			'parameters': {
-				'cmd': 'show',
+				'action': 'show',
 				'event': idEvent
 			},
 			'onComplete': this.onDetailsLoaded.bind(this, idEvent)	

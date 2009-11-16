@@ -65,7 +65,7 @@
 		var options	= {
 			'parameters': {
 				'holiday': idHoliday,
-				'cmd': 'edit'
+				'action': 'edit'
 			}
 		};
 
@@ -83,7 +83,7 @@
 	save: function(form) {
 		$(form).request({
 			'parameters': {
-				'cmd': 'save'
+				'action': 'save'
 			},
 			'onComplete': this.onSaved.bind(this)
 		});

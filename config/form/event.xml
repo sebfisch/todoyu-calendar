@@ -101,7 +101,7 @@
 						<acListener>
 								<ext>calendar</ext>
 								<controller>autocompletion</controller>
-								<cmd>project</cmd>
+								<action>project</action>
 						</acListener>
 						<acLabelFunc>TodoyuProjectManager::getLabel</acLabelFunc>
 					</config>
@@ -113,7 +113,7 @@
 						<acListener>
 								<ext>calendar</ext>
 								<controller>autocompletion</controller>
-								<cmd>task</cmd>
+								<action>task</action>
 						</acListener>
 						<acLabelFunc>TodoyuTaskManager::getLabel</acLabelFunc>
 					</config>

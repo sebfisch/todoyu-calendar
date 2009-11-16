@@ -310,13 +310,13 @@ Todoyu.Ext.calendar = {
 		this.Tabs.closeSpecialTabs();
 			// Make sure calendar is visible
 		this.showCalendar();
-		
+
 			// Get active tab and set it
 		if( ! Object.isString(tab) ) {
 			tab = this.getActiveTab();
 		}
 		this.setActiveTab(tab);
-		
+
 			// Set new date if given as parameter
 		if( Object.isNumber(date) ) {
 			this.setDate(date);
@@ -325,7 +325,7 @@ Todoyu.Ext.calendar = {
 		var url 	= Todoyu.getUrl('calendar', 'calendar');
 		var options	= {
 			'parameters': {
-				'cmd': 'update',
+				'action': 'update',
 				'tab':	this.getActiveTab(),
 				'time':	this.getTime()
 			},
@@ -363,11 +363,11 @@ Todoyu.Ext.calendar = {
 	 *	@param	String	name	Name of the preference
 	 *	@param	Mixed	value	Value to be saved
 	 */
-	savePref: function(command, value) {
+	savePref: function(action, value) {
 		var url		= Todoyu.getUrl('calendar', 'preference');
 		var options	= {
 			'parameters': {
-				'cmd':		command,
+				'action':	action,
 				'value':	value
 			}
 		};

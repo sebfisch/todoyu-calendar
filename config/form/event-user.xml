@@ -15,7 +15,7 @@
 							<acListener>
 								<ext>calendar</ext>
 								<controller>autocompletion</controller>
-								<cmd>user</cmd>
+								<action>user</action>
 							</acListener>
 							<acLabelFunc>TodoyuUserManager::getLabel</acLabelFunc>
 						</config>

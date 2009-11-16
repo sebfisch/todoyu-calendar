@@ -109,7 +109,7 @@ Todoyu.Ext.calendar.Event = {
 			var url		= Todoyu.getUrl('calendar', 'event');
 			var options	= {
 				'parameters': {
-					'cmd': 'delete',
+					'action': 'delete',
 					'event': idEvent
 				},
 				'onComplete': this.onRemoved.bind(this, idEvent)
@@ -180,7 +180,7 @@ Todoyu.Ext.calendar.Event = {
 		url		= Todoyu.getUrl('calendar', 'event');
 		options	= {
 			'parameters': {
-				'cmd': 		'detail',
+				'action': 		'detail',
 				'mode':		mode,
 				'eventID': 	idEvent
 			},
@@ -219,7 +219,7 @@ Todoyu.Ext.calendar.Event = {
 			var url		= Todoyu.getUrl('calendar', 'quickinfo');
 			var options	= {
 				'parameters': {
-					'cmd':		'show',
+					'action':		'show',
 					'type':		'event',
 					'eventID':	eventID
 				},
@@ -252,7 +252,7 @@ Todoyu.Ext.calendar.Event = {
 			new Ajax.Request('?ext=calendar&controller=quickinfo', {
 				method: 'post',
 					'parameters': {
-					'cmd':		'show',
+					'action':		'show',
 					'type':		'holiday',
 					'date':		holidayDate
 				},
@@ -362,7 +362,7 @@ Todoyu.Ext.calendar.Event = {
 
 		var options = {
 			'parameters': {
-				'cmd': 'acknowledge',
+				'action': 'acknowledge',
 				'eventID': idEvent,
 				'idUser': idUser
 			},
@@ -482,7 +482,7 @@ Todoyu.Ext.calendar.Event = {
 
 			var options = {
 				'parameters': {
-					'cmd': 'delete',
+					'action': 'delete',
 					'idEvent': idEvent
 				},
 				'onComplete': this.onDeleted.bind(this)

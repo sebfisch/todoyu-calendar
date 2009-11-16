@@ -19,14 +19,14 @@
 ***************************************************************/
 
 Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
-	
+
 	ext: Todoyu.Ext.calendar,
-	
+
 	popup: null,
-	
+
 	add: function() {
 		var time = this.ext.getTime();
-		
+
 		this.openPopup(time);
 	},
 
@@ -41,7 +41,7 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 		var url		= Todoyu.getUrl('calendar',	'quickevent');
 		var options	= {
 			'parameters': {
-				'cmd': 'popup',
+				'action': 'popup',
 				'time': time
 			}
 		};
@@ -52,7 +52,7 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 
 		this.popup = Todoyu.Popup.openWindow(idPopup, title, width, height, url, options);
 	},
-	
+
 	closePopup: function() {
 		this.popup.close();
 	},
@@ -62,14 +62,13 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	/**
 	 *	Is only used for the event popup. Check the inputs and handle it accordingly
 	 *
-	 *	@param	Mixed	form		All fields of the event form
-	 *	@param	String	type		Type command
+	 *	@param	Element		form		Form element
 	 *	@return	Boolean
 	 */
 	save: function(form) {
 		$(form).request({
 			'parameters': {
-				'cmd':	'save'
+				'action':	'save'
 			},
 			'onComplete': this.onSaved.bind(this)
 		});

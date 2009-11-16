@@ -66,7 +66,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 		var url		= Todoyu.getUrl('calendar', 'contextmenu');
 		var options	= {
 			'parameters': {
-				'cmd': 'area',
+				'action': 'area',
 				'time': time
 			}
 		};

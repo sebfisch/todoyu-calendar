@@ -50,7 +50,7 @@ Todoyu.Ext.calendar.Edit = {
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
 			'parameters': {
-				'cmd': 'edit',
+				'action': 'edit',
 				'event': idEvent,
 				'time': time
 			},
@@ -163,7 +163,7 @@ Todoyu.Ext.calendar.Edit = {
 	saveEvent: function() {
 		$('event-form').request({
 			'parameters': {
-				'cmd':	'save'
+				'action':	'save'
 			},
 			'onComplete': this.onEventSaved.bind(this)
 		});
