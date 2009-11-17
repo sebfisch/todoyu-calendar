@@ -101,8 +101,8 @@ Todoyu.Ext.calendar = {
 	 * Set calendar time (timestamp
 	 * @param	Integer		time
 	 */
-	setTime: function(time) {
-		this.PanelWidget.Calendar.setTime(time);
+	setTime: function(time, noExternalUpdate) {
+		this.PanelWidget.Calendar.setTime(time, noExternalUpdate);
 	},
 
 

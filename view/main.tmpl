@@ -1,6 +1,6 @@
 {$tabs}
 
-<div id="calendar">
+<div id="calendar" {if ! $showCalendar}style="display:none"{/if}>
 
 	{* ----------------- Calendar header ----------------- *}
 	<div id="calendar-header" class="headerLine">
@@ -15,10 +15,19 @@
 
 	{* -------------- Calendar body --------------------- *}
 	<div id="calendar-body">
-		{$calendar}
+		{if $showCalendar}
+			{$content}
+		{/if}
 	</div>
 
 </div>
 
-<div id="calendar-edit" style="display:none"></div>
-<div id="calendar-view" style="display:none"></div>
+<div id="calendar-edit" {if $active != 'edit'}style="display:none"{/if}>
+{if $active == 'edit'}{$content}{/if}
+</div>
+<div id="calendar-view" {if $active != 'view'}style="display:none"{/if}>
+{if $active == 'view'}{$content}{/if}
+<script>
+Todoyu.Ext.calendar.setTime.bind(Todoyu.Ext.calendar).delay(1, {$date}, true);
+</script>
+</div>

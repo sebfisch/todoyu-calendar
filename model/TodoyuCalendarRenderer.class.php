@@ -34,7 +34,7 @@ class TodoyuCalendarRenderer {
 	 * @param	String	$activeTab
 	 * @return	String	Code of the calendar
 	 */
-	public static function render($activeTab = '') {
+	public static function render($activeTab = '', array $params = array()) {
 		$currentDate= TodoyuPanelWidgetCalendar::getDate(EXTID_CALENDAR);
 
 		if ($activeTab == '') {
@@ -44,8 +44,15 @@ class TodoyuCalendarRenderer {
 		$tmpl	= 'ext/calendar/view/main.tmpl';
 		$data	= array(
 			'tabs'			=> self::renderTabs($activeTab),
-			'calendar'		=> self::renderCalendar($currentDate, $activeTab)
+			'active'		=> $activeTab,
+			'content'		=> self::renderCalendar($currentDate, $activeTab, $params),
+			'showCalendar'	=> $activeTab === 'day' || $activeTab === 'week' || $activeTab === 'month'
 		);
+
+		if( $activeTab === 'view' ) {
+			$event	= TodoyuEventManager::getEvent($params['event']);
+			$data['date']	= $event->getStartDate();
+		}
 
 		return render($tmpl, $data);
 	}
@@ -59,7 +66,7 @@ class TodoyuCalendarRenderer {
 	 * @param	String		$activeTab
 	 * @return	String
 	 */
-	public static function renderCalendar($currentDate, $activeTab) {
+	public static function renderCalendar($currentDate, $activeTab, array $params = array()) {
 		$currentDate	= intval($currentDate);
 
 		switch( $activeTab ) {
@@ -73,6 +80,11 @@ class TodoyuCalendarRenderer {
 
 			case 'month':
 				return self::renderCalendarMonth($currentDate);
+				break;
+
+			case 'view':
+				$idEvent	= intval($params['event']);
+				return TodoyuEventRenderer::renderEventView($idEvent);
 				break;
 
 			default:
@@ -412,6 +424,18 @@ class TodoyuCalendarRenderer {
 		$tabsID		= 'calendar-tabs';
 		$class		= 'tabs';
 		$jsHandler	= 'Todoyu.Ext.calendar.Tabs.onSelect.bind(Todoyu.Ext.calendar.Tabs)';
+
+		if( $activeTab === 'view' ) {
+			$tabs[] = array(
+				'id'		=> 'view',
+				'class'		=> 'view',
+				'hasIcon'	=> true,
+				'label'		=> 'Details',
+				'htmlId'	=> 'calendar-tabhead-view',
+				'key'		=> 'view',
+				'classKey'	=> 'view'
+			);
+		}
 
 		return TodoyuTabheadRenderer::renderTabs($tabsID, $class, $jsHandler, $tabs, $activeTab);
 	}

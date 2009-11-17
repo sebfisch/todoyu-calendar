@@ -184,6 +184,8 @@
 		<label index="submenuentry.day">Calendar > Day</label>
 		<label index="submenuentry.week">Calendar > Week</label>
 		<label index="submenuentry.month">Calendar > Month</label>
+		<label index="search.label">Events</label>
+		<label index="search.mode.label">Search events</label>
 	</labels>
 
 	<labels lang="de">

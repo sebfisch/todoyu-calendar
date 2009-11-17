@@ -102,10 +102,12 @@ Todoyu.Ext.calendar.Edit = {
 	 * Close edit view
 	 */
 	close: function() {
-		this.removeTab();
-		this.hide();
-		this.ext.showCalendar();
-		$('calendar-edit').update('');
+		if( Todoyu.exists('calendar-tabhead-edit') ) {
+			this.removeTab();
+			this.hide();
+			this.ext.showCalendar();
+			$('calendar-edit').update('');
+		}		
 	},
 
 

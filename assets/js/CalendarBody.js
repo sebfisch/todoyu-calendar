@@ -48,6 +48,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 *	Reinitialize calendar boy
 	 */
 	reInit: function() {
+		this.calendarBody = $(this.idArea);
 		this.init(this.isFullHeight());
 	},
 
