@@ -1,0 +1,88 @@
+#quickinfo {
+	background-color: transparent;
+	border: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 100;
+}
+
+.quickinfo {
+	background-color: #edf1e0;
+	text-align: left;
+}
+
+.quickinfo-left {
+	float: left;
+	background: transparent url(../img/icons.png) no-repeat 0 -450px;
+	width: 14px;
+	height: 20px;
+	display: block;
+}
+
+.quickinfo_label {
+	background-color: #d3dabb;
+	padding: 0;
+}
+
+.quickinfo_label span {
+	width: 600px;
+}
+
+.quickinfo_content {
+	font-weight: bold;
+	white-space: nowrap;
+	font-size: 10px;
+}
+
+.quickinfo_content span {
+	font-weight: normal;
+}
+
+.quickinfoHoliday_content {
+	white-space: nowrap;
+	font-size: 10px;
+	font-weight: normal;
+	background-color: #edf1e0;
+	margin: 0 0 0 14px;
+	padding: 6px 12px 16px 12px;
+}
+
+
+
+/* ------------------------------------------
+	Quickinfo inline event attribute icons
+   ------------------------------------------*/
+
+.quickinfo_what,
+.quickinfo_when,
+.quickinfo_where,
+.quickinfo_description,
+.quickinfo_owner,
+.quickinfo_assignedto {
+	width: 28px;	
+}
+
+.quickinfo_what {
+	background: transparent url(../img/icons.png) no-repeat scroll 2px -480px;
+}
+
+.quickinfo_when {
+	background: transparent url(../img/icons.png) no-repeat scroll 2px -570px;
+}
+
+.quickinfo_where {
+	background: transparent url(../img/icons.png) no-repeat scroll 2px -540px;
+}
+
+.quickinfo_description {
+	background: transparent url(../img/icons.png) no-repeat scroll 2px -598px;
+}
+
+.quickinfo_owner {
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -510px;
+}
+
+.quickinfo_assignedto {
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -630px;
+}

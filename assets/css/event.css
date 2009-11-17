@@ -6,11 +6,6 @@
 	position:absolute;
 }
 
-.dayMode .event dl,
-.weekMode .event dl {
-
-}
-
 .dayMode .event dt,
 .weekMode .event dt {
 	padding: 1px;
@@ -50,4 +45,40 @@
 
 #topcontainerwk .dayevent {
 	position:relative;
+}
+
+
+
+/* --------------------------------------------
+	Events in all views (day, week, month)
+   -------------------------------------------- */
+
+.updateAllowed {
+	cursor: pointer;
+}
+
+.ca-elp {
+	color: #fff;
+	display: inline;
+	white-space: normal;
+}
+
+.privateEvent {
+	background:transparent url(../img/icons.png) no-repeat scroll 0 -405px;
+	padding: 0 0 0 15px;
+}
+
+.seriesEvent {
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -330px;
+	padding: 0 0 0 15px;
+}
+
+.seriesEventDark {
+	background: transparent url(../img/icons.png) no-repeat scroll 0 -360px;
+	padding: 0 0 0 15px;
+}
+
+.weekNumber {
+	float: left;
+	color: #999;
 }

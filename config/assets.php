@@ -119,6 +119,10 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			array(
 				'file'		=> 'ext/calendar/assets/css/event.css',
 				'position'	=> 106
+			),
+			array(
+				'file'		=> 'ext/calendar/assets/css/quickinfo.css',
+				'position'	=> 107
 			)
 		)
 	),
