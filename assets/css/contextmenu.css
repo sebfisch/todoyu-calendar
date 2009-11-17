@@ -1,0 +1,14 @@
+/* ---------------------------
+	Event contextmenu
+   ---------------------------  */
+a.eventContextMenu.eventEdit {
+	background:url(../img/contextmenu.png) no-repeat 5px 0px;
+}
+
+a.eventContextMenu.eventShow {
+	background:url(../img/contextmenu.png) no-repeat 5px -28px;
+}
+
+a.eventContextMenu.eventRemove {
+	background:url(../img/contextmenu.png) no-repeat 5px -58px;
+}

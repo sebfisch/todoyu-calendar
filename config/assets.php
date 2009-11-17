@@ -44,6 +44,10 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			),
 		),
 		'css' => array(
+			array(
+				'file'		=> 'ext/calendar/assets/css/contextmenu.css',
+				'position'	=> 90
+	            ),
 		)
 	),
 
