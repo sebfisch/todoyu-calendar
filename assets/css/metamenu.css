@@ -1,0 +1,23 @@
+/* --------------------------
+	Metamenu entries
+   -------------------------- */
+
+ul.navilist li .itemcalendar a {
+	padding-left: 26px !important;
+}
+
+ul.navilist li .itemcalendar a:hover {
+	background-color: #EFF3E5 !important;
+}
+
+a.linkplanningday {
+	background:url('../img/icons.png') no-repeat 6px -205px !important;
+}
+
+a.linkplanningweek {
+	background:url('../img/icons.png') no-repeat 6px -235px !important;
+}
+
+a.linkplanningmonth {
+	background:url('../img/icons.png') no-repeat 6px -265px !important;
+}
