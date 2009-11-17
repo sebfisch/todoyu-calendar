@@ -26,8 +26,10 @@
 {if $active == 'edit'}{$content}{/if}
 </div>
 <div id="calendar-view" {if $active != 'view'}style="display:none"{/if}>
-{if $active == 'view'}{$content}{/if}
+{if $active == 'view'}
+{$content}
 <script>
 Todoyu.Ext.calendar.setTime.bind(Todoyu.Ext.calendar).delay(1, {$date}, true);
 </script>
+{/if}
 </div>
