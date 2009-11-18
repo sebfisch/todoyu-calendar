@@ -45,7 +45,7 @@ function Dwoo_Plugin_EventTypeLabel(Dwoo $dwoo, $id) {
 
 	$designation = $GLOBALS['CONFIG']['EXT']['calendar']['EVENTTYPE'][$id];
 
-	return Label('calendar.eventtypes.' . $designation);
+	return Label('event.eventtypes.' . $designation);
 }
 
 

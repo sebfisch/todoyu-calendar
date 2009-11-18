@@ -16,16 +16,16 @@
 			<elements>
 
 				<field type="textinput" name="title">
-					<label>LLL:calendar.event.attr.title</label>
+					<label>LLL:event.attr.title</label>
 					<required />
 				</field>
 
 				<field type="textarea" name="description">
-					<label>LLL:calendar.event.attr.description</label>
+					<label>LLL:event.attr.description</label>
 				</field>
 
 				<field type="select" name="eventtype">
-					<label>LLL:calendar.event.attr.event_type</label>
+					<label>LLL:event.attr.event_type</label>
 					<source type="function">
 						<function>TodoyuEventViewHelper::getEventTypeOptions</function>
 					</source>
@@ -33,21 +33,21 @@
 				</field>
 
 				<field type="checkbox" name="is_dayevent">
-					<label>LLL:calendar.event.attr.is_dayevent</label>
+					<label>LLL:event.attr.is_dayevent</label>
 				</field>
 
 				<field type="datetimeinput" name="date_start">
-					<label>LLL:calendar.event.attr.startdate</label>
+					<label>LLL:event.attr.startdate</label>
 					<required />
 				</field>
 
 				<field type="datetimeinput" name="date_end">
-					<label>LLL:calendar.event.attr.enddate</label>
+					<label>LLL:event.attr.enddate</label>
 					<required />
 				</field>
 
 				<field type="databaseRelation" name="user">
-					<label>LLL:calendar.event.attr.assigned_to</label>
+					<label>LLL:event.attr.assigned_to</label>
 					<foreignRecordConf>
 						<foreignformxml>ext/calendar/config/form/event-user.xml</foreignformxml>
 						<addSubformConfig>

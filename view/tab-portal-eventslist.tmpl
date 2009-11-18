@@ -3,7 +3,7 @@
 	<div class="events" id="events">{* ----- The actual list of events ----- *}
 
 	{if count($events) == 0}
-			<br/><span class="contentMessage">{Label calendar.noEventsFound}</span>
+			<br/><span class="contentMessage">{Label event.noEventsFound}</span>
 	{else}
 		{foreach $events idEvent event}{* ------- Event entry ------- *}
 			<div id="event-{$idEvent}" class="event {cycle values="odd,even"}">
@@ -24,14 +24,14 @@
 	</div>
 {if $showHolidays && count($holidays)>0}
 	<br/>
-	{Header LabelReplace(calendar.eventslist.holidaysWithinTheNextXweeks null XXX $holidaysLookAheadWeeksAmount) "holidaysforecast"}
+	{Header LabelReplace(event.eventslist.holidaysWithinTheNextXweeks null XXX $holidaysLookAheadWeeksAmount) "holidaysforecast"}
 	<div id="holidays">
 		{include file="holidayslist.tmpl"}
 	</div>
 {/if}
 {if $showBirthdays && count($birthdays)>0}
 	<br/>
-	{Header LabelReplace(calendar.eventslist.birthdaysWithinTheNextXweeks null XXX $birthdaysLookAheadWeeksAmount) "birthdaysforecast"}
+	{Header LabelReplace(event.eventslist.birthdaysWithinTheNextXweeks null XXX $birthdaysLookAheadWeeksAmount) "birthdaysforecast"}
 	<div id="birthdays">
 		{include file="birthdayslist.tmpl"}
 	</div>

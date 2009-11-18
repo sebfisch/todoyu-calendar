@@ -36,6 +36,7 @@ define('PATH_EXT_CALENDAR', PATH_EXT . '/calendar');
 
 	// Register module locales
 TodoyuLocale::register('calendar', PATH_EXT_CALENDAR . '/locale/ext.xml');
+TodoyuLocale::register('event', PATH_EXT_CALENDAR . '/locale/event.xml');
 TodoyuLocale::register('panelwidget-calendar', PATH_EXT_CALENDAR . '/locale/panelwidget-calendar.xml');
 TodoyuLocale::register('panelwidget-quickevent', PATH_EXT_CALENDAR . '/locale/panelwidget-quickevent.xml');
 TodoyuLocale::register('panelwidget-eventtypeselector', PATH_EXT_CALENDAR . '/locale/panelwidget-eventtypeselector.xml');

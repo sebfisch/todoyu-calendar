@@ -10,7 +10,7 @@
 			<elements>
 
 				<field type="textinputAC" name="id">
-						<label>LLL:calendar.event.attr.assigned_to</label>
+						<label>LLL:event.attr.assigned_to</label>
 						<config>
 							<acListener>
 								<ext>calendar</ext>
