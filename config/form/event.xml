@@ -17,7 +17,7 @@
 			<elements>
 
 				<field type="textinput" name="title">
-					<label>LLL:event.attr.title</label>
+					<label>LLL:core.title</label>
 					<required>1</required>
 				</field>
 

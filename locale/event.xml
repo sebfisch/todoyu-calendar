@@ -21,7 +21,6 @@
 		<label index="eventtypes.compensation">Compensation</label>
 		<label index="eventtypes.milestone">Milestone</label>
 		<label index="eventtypes.reminder">Reminder</label>
-		<label index="attr.title">Title</label>
 		<label index="attr.creator">Creator</label>
 		<label index="attr.eventtype">Event type</label>
 		<label index="attr.event_type">Event type</label>

@@ -19,7 +19,7 @@
 							<tables>ext_calendar_holidayset</tables>
 							<where>deleted = 0</where>
 							<order>title</order>
-							<label>title</label>
+							<label>LLL:core.title</label>
 							<value>id</value>
 						</source>
 				</field>

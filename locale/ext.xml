@@ -10,6 +10,8 @@
 		<label index="goforward.title">Shift forward shown time extract</label>
 		<label index="gototoday.title">Center calendar view showing today</label>
 		<label index="gototoday">Today</label>
+		
+		<!-- @todo use labels from core/locale/date.xml -->
 		<label index="weekdayName0">Monday</label>
 		<label index="weekdayName1">Tuesday</label>
 		<label index="weekdayName2">Wednesday</label>
@@ -24,6 +26,21 @@
 		<label index="weekdayNameShort4">Fri</label>
 		<label index="weekdayNameShort5">Sat</label>
 		<label index="weekdayNameShort6">Sun</label>
+		
+		<!-- @todo use labels from core/locale/date.xml -->
+		<label index="contentTab.day">Day</label>
+		<label index="contentTab.week">Week</label>
+		<label index="contentTab.month">Month</label>
+		
+		<!-- @todo use labels from core/locale/date.xml -->
+		<label index="weekdayshort.day0">Mon</label>
+		<label index="weekdayshort.day1">Tue</label>
+		<label index="weekdayshort.day2">Wed</label>
+		<label index="weekdayshort.day3">Thu</label>
+		<label index="weekdayshort.day4">Fri</label>
+		<label index="weekdayshort.day5">Sat</label>
+		<label index="weekdayshort.day6">Sun</label>
+				
 		<label index="showworkinghours">Show working hours (08h-18h)</label>
 		<label index="showfullday">Show hours of full day (00h-22h)</label>
 		<label index="applicableholidayset">Holidays set</label>
@@ -34,22 +51,12 @@
 		<label index="page.title">Calendar</label>
 		<label index="tab.label">Planning</label>
 		<label index="tab.day">Day</label>
-		<label index="submenu.label">Calendar</label>
-		<label index="contentTab.day">Day</label>
-		<label index="contentTab.week">Week</label>
-		<label index="contentTab.month">Month</label>
+		<label index="submenu.label">Calendar</label>		
 		<label index="contentTab.edit">Edit event</label>
 		<label index="contentTab.add">Add new event</label>
 		<label index="header.today">Today</label>
 		<label index="today">Today</label>
 		<label index="appointments">Appointments</label>
-		<label index="weekdayshort.day0">Mon</label>
-		<label index="weekdayshort.day1">Tue</label>
-		<label index="weekdayshort.day2">Wed</label>
-		<label index="weekdayshort.day3">Thu</label>
-		<label index="weekdayshort.day4">Fri</label>
-		<label index="weekdayshort.day5">Sat</label>
-		<label index="weekdayshort.day6">Sun</label>
 		<label index="daily">Daily</label>
 		<label index="weekly">Weekly</label>
 		<label index="monthly">Monthly</label>
@@ -92,7 +99,6 @@
 		<label index="holidayset.attr.description">Description</label>
 		<label index="holidayset.attr.holiday">Holidays</label>
 		<label index="holiday">Holiday</label>
-		<label index="holiday.attr.title">Title</label>
 		<label index="holiday.attr.description">Description</label>
 		<label index="holiday.attr.workinghours">Working hours</label>
 		<label index="holiday.attr.date">Date</label>
@@ -127,12 +133,13 @@
 		<label index="tab.day">Tag</label>
 		<label index="submenu.label">Kalender</label>
 		<label index="appointments">Termine</label>
+		<label index="header.today">Heute</label>
+		<label index="newevent">Neuer Termin</label>
 		<label index="contentTab.day">Tag</label>
 		<label index="contentTab.week">Woche</label>
 		<label index="contentTab.month">Monat</label>
-		<label index="header.today">Heute</label>
-		<label index="header.today">Heute</label>
-		<label index="newevent">Neuer Termin</label>
+		
+		<!-- @todo use labels from core/locale/date.xml -->
 		<label index="weekdayName0">Montag</label>
 		<label index="weekdayName1">Dienstag</label>
 		<label index="weekdayName2">Mittwoch</label>
@@ -154,6 +161,7 @@
 		<label index="weekdayshort.day4">Fr</label>
 		<label index="weekdayshort.day5">Sa</label>
 		<label index="weekdayshort.day6">So</label>
+				
 		<label index="daily">Täglich</label>
 		<label index="weekly">Wöchentlich</label>
 		<label index="monthly">Monatlich</label>
