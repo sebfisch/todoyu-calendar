@@ -75,7 +75,7 @@
 				</field>
 
 				<field type="textarea" name="description">
-					<label>LLL:event.attr.description</label>
+					<label>LLL:core.description</label>
 				</field>
 
 				<field type="databaseRelation" name="user">

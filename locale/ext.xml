@@ -96,10 +96,8 @@
 		<label index="weeknumber">Calendar week</label>
  		<label index="weeknumberShortcut">CW</label>
 		<label index="holidayset.attr.name">Name</label>
-		<label index="holidayset.attr.description">Description</label>
 		<label index="holidayset.attr.holiday">Holidays</label>
 		<label index="holiday">Holiday</label>
-		<label index="holiday.attr.description">Description</label>
 		<label index="holiday.attr.workinghours">Working hours</label>
 		<label index="holiday.attr.date">Date</label>
 		<label index="holiday.attr.holidayset">Holiday set</label>
@@ -201,7 +199,6 @@
 		<label index="weeknumberShortcut">KW</label>
 		<label index="event">Termin</label>
 		<label index="holidayset.attr.name">Name</label>
-		<label index="holidayset.attr.description">Beschreibung</label>
 		<label index="strftime.currentweek">%A %d.%m.%Y</label>
 		<label index="strftime.currentweekSeparator"> - </label>
 		<label index="strftime.currentday">%A, %e. %B %Y</label>

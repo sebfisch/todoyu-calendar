@@ -20,7 +20,7 @@
 				</field>
 
 				<field type="textarea" name="description">
-					<label>LLL:calendar.holidayset.attr.description</label>
+					<label>LLL:core.description</label>
 				</field>
 
 				<field type="button" name="expandall">

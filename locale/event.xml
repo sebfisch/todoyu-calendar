@@ -34,7 +34,6 @@
 		<label index="attr.enddate">Enddate</label>
 		<label index="attr.endtime">at</label>
 		<label index="attr.repeats">Recurrences</label>
-		<label index="attr.description">Description</label>
 		<label index="attr.place">Place</label>
 		<label index="attr.me">My event</label>
 		<label index="attr.assigned_to">Assigned to</label>

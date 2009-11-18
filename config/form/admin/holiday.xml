@@ -20,7 +20,7 @@
 				</field>
 
 				<field type="textarea" name="description">
-					<label>LLL:calendar.holiday.attr.description</label>
+					<label>LLL:core.description</label>
 				</field>
 
 				<field type="select" name="workinghours">
