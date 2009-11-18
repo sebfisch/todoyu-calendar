@@ -3,8 +3,8 @@
 	<div id="gridcontainer" class="monthMode">
 		<table class="mv-daynames-table"><tbody>
 			<tr>
-				{for daynum 0 6}<th title="{Label calendar.weekdayName$daynum}" class="mv-dayname {cycle values="odd,even"}">
-					{Label calendar.weekdayNameShort$daynum}
+				{for daynum 0 6}<th title="{weekdayName $timestamps[$daynum+1]}" class="mv-dayname {cycle values="odd,even"}">
+					{weekdayNameShort $timestamps[$daynum+1]}
 				</th>{/for}
 			</tr>
 		</tbody></table>

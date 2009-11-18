@@ -5,9 +5,5 @@
 		<label index="holidays">Holidays</label>
 		<label index="eventtypes">Event types</label>
 	</labels>
-	<labels lang="de">
-		<label index="title">Kalender Admin</label>
-		<label index="holidays">Gesetzliche Feiertage</label>
-		<label index="eventtypes">Termintypen</label>
-	</labels>
+	<labels lang="de"></labels>
 </locallang>

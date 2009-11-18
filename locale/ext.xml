@@ -10,37 +10,9 @@
 		<label index="goforward.title">Shift forward shown time extract</label>
 		<label index="gototoday.title">Center calendar view showing today</label>
 		<label index="gototoday">Today</label>
-		
-		<!-- @todo use labels from core/locale/date.xml -->
-		<label index="weekdayName0">Monday</label>
-		<label index="weekdayName1">Tuesday</label>
-		<label index="weekdayName2">Wednesday</label>
-		<label index="weekdayName3">Thursday</label>
-		<label index="weekdayName4">Friday</label>
-		<label index="weekdayName5">Saturday</label>
-		<label index="weekdayName6">Sunday</label>
-		<label index="weekdayNameShort0">Mon</label>
-		<label index="weekdayNameShort1">Tue</label>
-		<label index="weekdayNameShort2">Wed</label>
-		<label index="weekdayNameShort3">Thu</label>
-		<label index="weekdayNameShort4">Fri</label>
-		<label index="weekdayNameShort5">Sat</label>
-		<label index="weekdayNameShort6">Sun</label>
-		
-		<!-- @todo use labels from core/locale/date.xml -->
 		<label index="contentTab.day">Day</label>
 		<label index="contentTab.week">Week</label>
-		<label index="contentTab.month">Month</label>
-		
-		<!-- @todo use labels from core/locale/date.xml -->
-		<label index="weekdayshort.day0">Mon</label>
-		<label index="weekdayshort.day1">Tue</label>
-		<label index="weekdayshort.day2">Wed</label>
-		<label index="weekdayshort.day3">Thu</label>
-		<label index="weekdayshort.day4">Fri</label>
-		<label index="weekdayshort.day5">Sat</label>
-		<label index="weekdayshort.day6">Sun</label>
-				
+		<label index="contentTab.month">Month</label>				
 		<label index="showworkinghours">Show working hours (08h-18h)</label>
 		<label index="showfullday">Show hours of full day (00h-22h)</label>
 		<label index="applicableholidayset">Holidays set</label>
@@ -112,102 +84,5 @@
 		<label index="submenuentry.week">Calendar > Week</label>
 		<label index="submenuentry.month">Calendar > Month</label>
 	</labels>
-	<labels lang="de">
-		<label index="showworkinghours">Stunden eines Arbeitstages anzeigen (08h-18h)</label>
-		<label index="showfullday">Stunden eines vollen Tages anzeigen (00h-22h)</label>
-		<label index="gobackward.title">Im angezeigten Zeitraum rückwärts blättern</label>
-		<label index="goforward.title">Im angezeigten Zeitraum vorwärts blättern</label>
-		<label index="gototoday.title">Kalendar auf heutigen Tag zentrieren</label>
-		<label index="gototoday">Heute</label>
-		<label index="hrs">Std.</label>
-		<label index="yearsOld">Jahre alt</label>
-		<label index="holiday">Feiertag</label>
-		<label index="applicableholidayset">Feiertags-set</label>
-		<label index="holidays.submenu.label">Gesetzl. Feiertage</label>
-		<label index="holidays.worldwide">Weltweit</label>
-		<label index="holidays.countrywide">Landesweit</label>
-		<label index="page.title">Kalender</label>
-		<label index="tab.label">Planung</label>
-		<label index="tab.day">Tag</label>
-		<label index="submenu.label">Kalender</label>
-		<label index="appointments">Termine</label>
-		<label index="header.today">Heute</label>
-		<label index="newevent">Neuer Termin</label>
-		<label index="contentTab.day">Tag</label>
-		<label index="contentTab.week">Woche</label>
-		<label index="contentTab.month">Monat</label>
-		
-		<!-- @todo use labels from core/locale/date.xml -->
-		<label index="weekdayName0">Montag</label>
-		<label index="weekdayName1">Dienstag</label>
-		<label index="weekdayName2">Mittwoch</label>
-		<label index="weekdayName3">Donnerstag</label>
-		<label index="weekdayName4">Freitag</label>
-		<label index="weekdayName5">Samstag</label>
-		<label index="weekdayName6">Sonntag</label>
-		<label index="weekdayNameShort0">Mo</label>
-		<label index="weekdayNameShort1">Di</label>
-		<label index="weekdayNameShort2">Mi</label>
-		<label index="weekdayNameShort3">Do</label>
-		<label index="weekdayNameShort4">Fr</label>
-		<label index="weekdayNameShort5">Sa</label>
-		<label index="weekdayNameShort6">So</label>
-		<label index="weekdayshort.day0">Mo</label>
-		<label index="weekdayshort.day1">Di</label>
-		<label index="weekdayshort.day2">Mi</label>
-		<label index="weekdayshort.day3">Do</label>
-		<label index="weekdayshort.day4">Fr</label>
-		<label index="weekdayshort.day5">Sa</label>
-		<label index="weekdayshort.day6">So</label>
-				
-		<label index="daily">Täglich</label>
-		<label index="weekly">Wöchentlich</label>
-		<label index="monthly">Monatlich</label>
-		<label index="yearly">Jährlich</label>
-		<label index="project">Projekt</label>
-		<label index="task">Task</label>
-		<label index="assignedTo">Zugewiesen an</label>
-		<label index="assignedToMe">Zugewiesen an mich</label>
-		<label index="doesNotRepeat">Einmaliger Termin</label>
-		<label index="repeats">Wiederholungen</label>
-		<label index="busy">Nicht verfügbar</label>
-		<label index="private">Privater Termin</label>
-		<label index="until">bis</label>
-		<label index="willRepeat">Wiederholung</label>
-		<label index="area">Bereich</label>
-		<label index="start">Beginn</label>
-		<label index="ends">Endet</label>
-		<label index="never">Nie</label>
-		<label index="till">Bis</label>
-		<label index="check.title">Bitte geben Sie einen Titel ein</label>
-		<label index="check.eventtype">Bitte wählen Sie einen Typ</label>
-		<label index="check.startdate">Bitte geben Sie ein gültiges Startdatum ein</label>
-		<label index="check.starttime">Bitte geben Sie eine gültige Startzeit ein</label>
-		<label index="check.enddate">Bitte geben Sie ein gültiges Enddatum ein</label>
-		<label index="check.endtime">Bitte geben Sie eine gültige Endzeit ein</label>
-		<label index="check.time">Bitte geben Sie ein gültiges Zeitformat ein (h:m)</label>
-		<label index="check.privateEvent.starttimeAfterEndtime">Das Terminende ist vor oder gleichzeitig mit dem Terminstart</label>
-		<label index="check.privateEvent">Sie können private Termine nicht an andere Personen zuweisen</label>
-		<label index="check.assignedto">Der Termin nnenimuss entweder an Sie und/oder an eine andere Person zugeilt werden</label>
-		<label index="notify.subjectcreate">Neuer Termin für</label>
-		<label index="notify.subjectupdate">Terminänderung für</label>
-		<label index="notify.message">Ihnen wurde ein neuer Termin zugeteilt:</label>
-		<label index="workinghours">Arbeitszeit</label>
-		<label index="hour">Uhr</label>
-		<label index="owner">Ersteller</label>
-		<label index="weeknumber">Kalenderwoche</label>
-		<label index="weeknumberShortcut">KW</label>
-		<label index="event">Termin</label>
-		<label index="holidayset.attr.name">Name</label>
-		<label index="strftime.currentweek">%A %d.%m.%Y</label>
-		<label index="strftime.currentweekSeparator"> - </label>
-		<label index="strftime.currentday">%A, %e. %B %Y</label>
-		<label index="strftime.dateFormatForForms">%d.%m.%Y</label>
-		<label index="strftime.currentmonth">%B %Y</label>
-		<label index="strftime.monthInMonthview">%B</label>
-		<label index="strftime.dateDelimiter">.</label>
-		<label index="submenuentry.day">Kalender > Tag</label>
-		<label index="submenuentry.week">Kalender > Woche</label>
-		<label index="submenuentry.month">Kalender > Monat</label>
-	</labels>
+	<labels lang="de"></labels>
 </locallang>

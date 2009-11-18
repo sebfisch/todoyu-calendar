@@ -4,8 +4,5 @@
 		<label index="title">Quick-Event</label>
 		<label index="addNewEvent">Create Event</label>
 	</labels>
-	<labels lang="de">
-		<label index="title">Quick-Termin</label>
-		<label index="addNewEvent">Neuen Termin erstellen</label>
-	</labels>
+	<labels lang="de"></labels>
 </locallang>

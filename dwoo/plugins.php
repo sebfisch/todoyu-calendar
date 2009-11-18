@@ -49,9 +49,8 @@ function Dwoo_Plugin_EventTypeLabel(Dwoo $dwoo, $id) {
 }
 
 
-
 /**
- * Get short name label of week, e.g: 'Mon'
+ * Get short name label of day name, e.g: 'Mon'
  *
  * @package		Todoyu
  * @subpackage	Template
@@ -60,14 +59,27 @@ function Dwoo_Plugin_EventTypeLabel(Dwoo $dwoo, $id) {
  * @param 	Integer		$dayNum
  * @return	String
  */
-function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $num) {
-	$num	= intval($num);
+function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
+	$timestamp	= intval($timestamp);
 
-	if ($num > 6) {
-		$num = $num % 6;
-	}
+	return Label( 'date.weekday.' . strtolower(date('l', $timestamp)) );
+}
 
-	return Label( 'calendar.weekdayshort.day' . $num );
+
+/**
+ * Get short name label of day name, e.g: 'Mon'
+ *
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param 	Dwoo 		$dwoo
+ * @param 	Integer		$dayNum
+ * @return	String
+ */
+function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {
+	$timestamp	= intval($timestamp);
+
+	return Label( 'date.weekday.' . strtolower(date('D', $timestamp)) );
 }
 
 ?>
