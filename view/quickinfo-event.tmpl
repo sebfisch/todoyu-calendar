@@ -15,9 +15,9 @@
 		</tr><tr>
 			<td class="quickinfo_label"><div class="quickinfo_when">&nbsp;</div></td>
 			<td class="quickinfo_content">
-			{if $eventtype != 3}{* ----- not a birthday? ----- *}
+			{if $eventtype != 3}{* ---------- Not a birthday? ---------- *}
 				{dateFormat $date_start datetime} {Label calendar.hour}<br/>{dateFormat $date_end datetime} {Label calendar.hour}
-			{else}{* ----- birthday? ----- *}{dateFormat $date_start D2M2}{/if}
+			{else}{* ---------- Birthday? ---------- *}{dateFormat $date_start D2M2}{/if}
 			</td>
 		</tr>
 		{if $place != '' && $eventtype != 3}<tr>
@@ -28,7 +28,7 @@
 			<td class="quickinfo_label"><div class="quickinfo_description">&nbsp;</div></td>
 			<td class="quickinfo_content">{$description}</td>
 		</tr>{/if}
-		{if $eventtype != 3}{* ----- creation/ assigned user(s): not relevant for birthdays ----- *}<tr>
+		{if $eventtype != 3}{* ------- Creation/ assigned user(s): not relevant for birthdays ------- *}<tr>
 			<td class="quickinfo_label"><div class="quickinfo_owner">&nbsp;</div></td>
 			<td class="quickinfo_content">{userName $id_user_create}</td>
 		</tr><tr>

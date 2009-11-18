@@ -1,12 +1,11 @@
 <div id="topcontainerwk">
-	{* ----- start topcontainer ----- *}
 	<table class="wk-weektop">
 		<tbody>
 			<tr>
 				<td rowspan="3" class="wk-tzlabel">
 					<div id="toggleDayView" class="{if $fullDayView}full{/if}" title="{if $fullDayView}{Label calendar.showworkinghours}{else}{Label calendar.showfullday}{/if}" onclick="Todoyu.Ext.calendar.Navi.toggleFullDayView()"></div>
 				</td>
-				{* ----- header: dates of the rendered week ----- *}
+				{* ---------- Header: dates of the rendered week ------------ *}
 				{for weekday 0 6}
 					{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
 					<th scope="col" {if count($holidays[$dayDateKey]) == 0}title="{dateFormat $timestamps[$weekday] DlongD2MlongY4}{if $timestamps[$weekday] == $timestamp_today} ({Label calendar.today}){/if}"{/if}>
@@ -19,12 +18,12 @@
 				{/for}
 			</tr>
 			<tr>
-				{* -----  birthdays, fullday events ----- *}
+				{* ------------  Birthdays, fullday events ------------------ *}
 				<td class="wk-allday" colspan="7">
 					<div id="weekViewAllDaywk">
 						<table class="st-grid"><tbody>
 							<tr>{for i 0 6}<td style="width:86px; height:1px;"></td>{/for}</tr>
-							{* ----- birthdays ----- *}
+							{* --------------- Birthdays -------------------- *}
 							<tr>{for weekday 0 6}{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
 								<td class="noEventCell">{$birthdays[$dayDateKey]}</td>{/for}
 							</tr>
@@ -42,11 +41,11 @@
 					</td>
 			</tr>
 			<tr class="wk-webcontent">
-				{* ----- cells inside weekdays ----- *}
+				{* -------------------- Cells inside weekdays -------------- *}
 				{for weekday 0 5}
 					<td class="wk-webcontent-td">&nbsp;</td>
 				{/for}
-				<td class="wk-webcontent-td">{* ----- sunday ----- *}
+				<td class="wk-webcontent-td">{* ----------- Sunday --------- *}
 					<table class="st-grid">
 						<tbody>
 							<tr>

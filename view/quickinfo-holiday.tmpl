@@ -7,7 +7,7 @@
 
 	<ul>
 {foreach $holidays idHoliday holidayData}{if count($holidayData) > 0}
-{assign var=workHours value=$holidayData.workinghours/60}
+	{assign var=workHours value=$holidayData.workinghours/60}
 		<li>
 			<span>{$holidayData.holidaysettitle}:</span>
 			<span>{$holidayData.title}, {Label calendar.workinghours}: {$workHours} {Label calendar.hrs}</span>

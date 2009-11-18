@@ -1,11 +1,11 @@
 <div class="portalEventsList">
-	{include file="tab-portal-eventslist-header.tmpl"}{* ----- header with column titles ----- *}
-	<div class="events" id="events">{* ----- the actual list of events ----- *}
+	{include file="tab-portal-eventslist-header.tmpl"}{* ----- Header with column titles ----- *}
+	<div class="events" id="events">{* ----- The actual list of events ----- *}
 
 	{if count($events) == 0}
 			<br/><span class="contentMessage">{Label calendar.noEventsFound}</span>
 	{else}
-		{foreach $events idEvent event}{* ------- event entry ------- *}
+		{foreach $events idEvent event}{* ------- Event entry ------- *}
 			<div id="event-{$idEvent}" class="event {cycle values="odd,even"}">
 				<h3 id="event-{$idEvent}-header" class="contextmenuevent enumColBorLef{$color.id}" name="event-{$event.id}">
 					<a href="javascript:void(0)" onclick="Todoyu.Ext.calendar.Event.toggleDetails({$idEvent}); {if $event.is_acknowledged == 0}Todoyu.Ext.calendar.Event.acknowledgeEvent({$idEvent}, {$event.id_user});{/if}" class="title ">
@@ -18,7 +18,7 @@
 					</a><div class="clear"><!-- --></div>
 				</h3>
 				{$details}
-			</div>{* ------- end: event entry ------- *}
+			</div>{* ------- End: event entry ------- *}
 		{/foreach}
 	{/if}
 	</div>

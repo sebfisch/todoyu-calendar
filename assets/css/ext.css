@@ -134,6 +134,9 @@ form.formEvent button.buttonSave {}
 /* ----------------------
 	events types
    ---------------------- */
+.eventtype_icon {
+	padding-right:16px;
+}
 
 .eventtype_1 {
    background: url(../img/icons.png) no-repeat scroll 0 -660px;

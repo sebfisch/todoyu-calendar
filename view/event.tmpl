@@ -3,13 +3,15 @@
 	{if $calendarMode=='week'} height:{$height}px;{/if}{if intval($width)>0} width:{$width}px;{/if}">
 	<dl style="{if $calendarMode != 'month'}height:{$height}px;{/if}">
 		<dt class="{if $calendarMode == 'month'}{else}enumColBG{$colors.id}{/if}">
-			<span class="eventtype_{$eventtype}" style="width:{if $calendarMode=='week'}15{else}10{/if}px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<span class="eventtype_icon eventtype_{$eventtype}"><!--  --></span>
 			<span class="{if $calendarMode == 'month'}montheventTime{else}time{/if}">
 				{$title}{if count($assignedUsers)==1} {$assignedUsers[0][shortname]}{/if}
 			</span>
 		</dt>
 		<dd><span class="{if $calendarMode=='week'}ca-elp{/if}" style="{if $calendarMode != 'month'}color:{$colors.text|default:"#000"};{/if}">
-{if $is_private == 1}{* ----- only show title if event is not private ----- *}
+
+{* ---------- Only show title if event is not private ---------- *}
+{if $is_private == 1}
 	{if  $id_user == $current_user}
 			<span class="privateEvent"></span>
 			{if $is_repeated == 1}<span class="seriesEvent{if $calendarMode=='month'}Dark{/if}"></span>{/if}

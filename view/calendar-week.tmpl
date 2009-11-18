@@ -1,7 +1,7 @@
 <div class="mainGrid">
 	<div id="gridcontainer" class="weekMode">
 		{include ext/calendar/view/calendar-week-dayeventbar.tmpl}
-		{* ----- start scrolltimedevents ----- *}
+		{* --------------- Start scrolltimedevents ----------------------- *}
 		<div id="calendararea" class="wk-scrolltimedevents {if $fullDayView}full{/if} contextmenucalendararea">
 			<table class="tg-timedevents" id="tgTable">
 				<tbody>
@@ -9,7 +9,7 @@
 						<td colspan="7">
 							<div class="tg-hourmarkerwrapper">
 								<div class="tg-hourmarkers">
-								{* ----- render hour splitting lines ----- *}
+								{* --------- Hour splitting lines -------- *}
 								{for hourmarker 0 23}
 									<div class="tg-dualmarker"></div>
 								{/for}
@@ -24,7 +24,7 @@
 								<div class="tg-time">{if $hour < 10}0{/if}{$hour}:00</div>
 							{/for}
 						</td>
-						{* ----- render week event inserters ----- *}
+						{* -------- Week event inserters -------- *}
 						{for daycounter 0 6}
 							{assign var=dayDateKey value=date('Ymd', $timestamps[$daycounter])}
 							<td class="tg-col{$weekclass[$daycounter]}{if $timestamps[$daycounter] == $timestamp_today} tg-coltoday{/if}">
@@ -41,8 +41,7 @@
 				</tbody>
 			</table>
 		</div>
-		{* ----- end scrolltimedevents ------- *}
-	</div>{* ------ end gridcontainer ------ *}
+	</div>
 </div>
 
 <script language="javascript">
