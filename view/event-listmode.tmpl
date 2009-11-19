@@ -1,29 +1,35 @@
-<div id="event-{$id}-details" class="details enumColBor{$colors.id}">
-	<fieldset class="left">{$description}</fieldset>
-	<fieldset class="right">
-		<div class="properties">
-			<dl><dt>{Label LLL:event.attr.eventtype}</dt>
-				<dd><span class="eventtype">{EventTypeLabel $eventtype}</span></dd>
-				<dt>{Label LLL:event.attr.title}</dt>
-				<dd><span class="title">{$title}</span></dd>
-				<dt>&nbsp;</dt>
-				<dd><span class="time">{date_dmyHi $date_start} - {date_dmyHi $date_end}</span></dd>
-				<dt>{Label LLL:event.attr.place}</dt>
-				<dd><span class="place">{if $place}{$place}{else}&nbsp;{/if}</span></dd>
-				<dt>{Label LLL:event.attr.assigned_to}</dt>
-	{foreach $assignedUsers user name=users}
-		{if $dwoo.foreach.users.first == false}
-				<dt>&#8203;</dt>
-		{/if}
-				<dd>
-					<span class="user {if $user.is_acknowledged == 0 && $user.id != $currentUser}isNotAcknowledgedIcon{/if}">
-						{$user.lastname}, {$user.firstname}
-					</span>
-				</dd>
-	{/foreach}
-			</dl>
-		</div>
-		<div class="clear"></div>
-	</fieldset>
+<div id="event-{$id}-details" class="details eventDetails enumColBor{$colors.id}">
+	<div class="properties">
+		<dl>
+			<dt>{Label LLL:event.attr.eventtype}</dt>
+			<dd><span class="eventtype">{EventTypeLabel $eventtype}</span></dd>
+			
+			<dt>{Label LLL:core.title}</dt>
+			<dd><span class="title">{$title}</span></dd>
+			
+			<dt>{Label LLL:event.attr.timespan}</dt>
+			<dd>
+				<span class="time">
+					{date_dmyHi $date_start} - {date_dmyHi $date_end}
+				</span>
+			</dd>
+			
+			<dt>{Label LLL:event.attr.place}</dt>
+			<dd><span class="place">{if $place}{$place}{else}&nbsp;{/if}</span></dd>
+			
+			<dt>{Label LLL:event.attr.assigned_to}</dt>
+{foreach $assignedUsers user name=users}
+	{if $dwoo.foreach.users.first == false}
+			<dt>&#8203;</dt>
+	{/if}
+			<dd>
+				<span class="user {if $user.is_acknowledged == 0 && $user.id != $currentUser}isNotAcknowledgedIcon{/if}">
+					{$user.lastname}, {$user.firstname}
+				</span>
+			</dd>
+{/foreach}
+		</dl>
+	</div>
+	
 	<div class="clear"></div>
 </div>
