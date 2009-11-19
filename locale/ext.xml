@@ -63,9 +63,9 @@
 		<label index="strftime.currentmonth">%B %Y</label>
 		<label index="strftime.monthInMonthview">%B</label>
 		<label index="strftime.dateDelimiter">.</label>
-		<label index="submenuentry.day">Calendar > Day</label>
-		<label index="submenuentry.week">Calendar > Week</label>
-		<label index="submenuentry.month">Calendar > Month</label>
+		<label index="subMenuEntry.day">Calendar > Day</label>
+		<label index="subMenuEntry.week">Calendar > Week</label>
+		<label index="subMenuEntry.month">Calendar > Month</label>
 	</labels>
 	<labels lang="de"></labels>
 </locallang>
