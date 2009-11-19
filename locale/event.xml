@@ -2,6 +2,7 @@
 <locallang>
 	<labels lang="en">
 		<label index="event">Event</label>
+		<label index="events">Events</label>
 		<label index="search.label">Events</label>
 		<label index="eventType">Event type</label>
 		<label index="eventtypes.">No type given</label>
