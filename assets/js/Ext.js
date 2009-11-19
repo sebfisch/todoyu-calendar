@@ -48,7 +48,7 @@ Todoyu.Ext.calendar = {
 	 *	Extend scal options (weekdaystart = monday, yearprev = symbol to go backwards, yearnext = symbol to go forwards
 	 */
 	calOptions: {
-		weekdaystart:	0,
+		weekdaystart:	1,
 		yearprev:		'&laquo;&laquo;',
 		yearnext:		'&raquo;&raquo;'
 	},

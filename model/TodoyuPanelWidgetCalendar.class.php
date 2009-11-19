@@ -68,7 +68,7 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 		$code = "// Localize date object (for scal)\n"
 				. 'Object.extend(Date.prototype, {'
 				. 'monthnames:[\'' . Label('date.month.january') . '\',\'' . Label('date.month.february') . '\',\'' . Label('date.month.march') . '\',\'' . Label('date.month.april') . '\',\'' . Label('date.month.may') . "','" . Label('date.month.june') . "','" . Label('date.month.july') . '\',\'' . Label('date.month.august') . "','" . Label('date.month.september') . "','" . Label('date.month.october') . "','" . Label('date.month.november') . "','" . Label('date.month.december') . '\'],'
-				. 'daynames:[\'' . Label('date.weekday.monday') . '\', \'' . Label('date.weekday.tuesday') . '\',\'' . Label('date.weekday.wednesday') . "','" . Label('date.weekday.thursday') . "','" . Label('date.weekday.friday') . "','" . Label('date.weekday.saturday') . "','" . Label('date.weekday.sunday') . '\']'
+				. 'daynames:[\'' . Label('date.weekday.sunday') . '\',\'' . Label('date.weekday.monday') . '\', \'' . Label('date.weekday.tuesday') . '\',\'' . Label('date.weekday.wednesday') . "','" . Label('date.weekday.thursday') . "','" . Label('date.weekday.friday') . "','" . Label('date.weekday.saturday') . '\']'
 				. '});';
 
 		TodoyuPage::addJsInlines($code);
