@@ -66,8 +66,7 @@ class TodoyuEventRenderer {
 		$time		= intval($time);
 
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
-		$form 		= new TodoyuForm($xmlPath);
-		$form		= TodoyuFormHook::callBuildForm($xmlPath, $form, 0);
+		$form 		= TodoyuFormManager::getForm($xmlPath);
 
 		$dayRange	= TodoyuTime::getDayRange($time);
 

@@ -62,8 +62,7 @@ class TodoyuCalendarFormhandlingActionController extends TodoyuActionController 
 
 		}
 
-		$form 	= new TodoyuForm($xmlPath);
-		$form	= TodoyuFormHook::callBuildForm($xmlPath, $form, $index);
+		$form 	= TodoyuFormManager::getForm($xmlPath, $index);
 
 			// Load form data
 		$data	= TodoyuFormHook::callLoadData($xmlPath, array(), $idRecord);

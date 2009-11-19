@@ -60,13 +60,13 @@ $CONFIG['EXT']['calendar']['contentTabs'] = array(
 		'class'		=> 'month',
 		'hasIcon'	=> 1,
 		'label'		=> 'LLL:date.month'
-	),
+	)/*,
 	array(
 		'id'		=> 'add',
 		'class'		=> 'add',
 		'hasIcon'	=> 1,
 		'label'		=> 'LLL:calendar.tab.addEvent'
-	)/*,
+	),
 	array(
 		'id'		=> 'edit',
 		'class'		=> 'edit',

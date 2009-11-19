@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -71,7 +71,7 @@ class TodoyuPanelWidgetCalendarAdmin extends TodoyuPanelWidget implements Todoyu
 		$xmlPath	= 'ext/calendar/config/form/panelwidget-calendaradmin.xml';
 
 			// Construct form object
-		$form		= new TodoyuForm( $xmlPath );
+		$form		= TodoyuFormManager::getForm($xmlPath);
 		$form		= TodoyuFormHook::callBuildForm( $xmlPath, $form, 0 );
 
 			// Prepeare and set form data

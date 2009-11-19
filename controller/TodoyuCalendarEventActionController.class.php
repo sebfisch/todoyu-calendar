@@ -81,11 +81,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']['id']);
 
 		$xmlPath	= 'ext/calendar/config/form/event.xml';
-		$form		= new TodoyuForm($xmlPath);
+		$form		= TodoyuFormManager::getForm($xmlPath, $idEvent);
+
 		$form->setUseRecordID(false);
-
-		$form		= TodoyuFormHook::callBuildForm($xmlPath, $form, $idEvent);
-
 		$form->setFormData($eventData);
 
 			// Send idTask header for javascript

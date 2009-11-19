@@ -43,7 +43,7 @@ Todoyu.Ext.calendar.EventView = {
 		if( ! Todoyu.exists('calendar-tabhead-view') ) {
 			var tab = Todoyu.Tabs.build('calendar-tabhead-view', 'item bcg05 tabkey-view view', label, true);
 		
-			$('calendar-tabhead-add').insert({
+			$('calendar-tabhead-month').insert({
 				'after': tab
 			});
 		}		

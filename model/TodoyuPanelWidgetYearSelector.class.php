@@ -78,8 +78,7 @@ class TodoyuPanelWidgetYearSelector extends TodoyuPanelWidget implements TodoyuP
 		$xmlPath	= 'ext/calendar/config/form/panelwidget-yearselector-filter.xml';
 
 			// Construct form object
-		$form		= new TodoyuForm($xmlPath);
-		$form		= TodoyuFormHook::callBuildForm($xmlPath, $form, 0);
+		$form		= TodoyuFormManager::getForm($xmlPath);
 
 			// Load/ prepare form data
 		$form->setUseRecordID(false);

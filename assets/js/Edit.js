@@ -28,7 +28,7 @@ Todoyu.Ext.calendar.Edit = {
 
 	/**
 	 * Open edit view for an event
-	 * 
+	 *
 	 * @param	Integer		idEvent
 	 * @param	Integer		time
 	 */
@@ -42,7 +42,7 @@ Todoyu.Ext.calendar.Edit = {
 
 	/**
 	 * Load edit form for an event
-	 * 
+	 *
 	 * @param	Integer		idEvent
 	 * @param	Integer		time
 	 */
@@ -65,7 +65,7 @@ Todoyu.Ext.calendar.Edit = {
 
 	/**
 	 * Handler when edit form is loaded
-	 * 
+	 *
 	 * @param	Integer		idEvent
 	 * @param {Object} response
 	 */
@@ -75,19 +75,19 @@ Todoyu.Ext.calendar.Edit = {
 		this.setTabLabel(tabLabel);
 		this.show();
 	},
-	
-	
+
+
 
 	/**
 	 * Add the edit tab
-	 * 
+	 *
 	 * @param	String		label
 	 */
 	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tabhead-edit') ) {
 			var tab = Todoyu.Tabs.build('calendar-tabhead-edit', 'item bcg05 tabkey-edit edit edit', label, true);
 
-			$('calendar-tabhead-add').insert({
+			$('calendar-tabhead-month').insert({
 				'after': tab
 			});
 		}
@@ -107,14 +107,14 @@ Todoyu.Ext.calendar.Edit = {
 			this.hide();
 			this.ext.showCalendar();
 			$('calendar-edit').update('');
-		}		
+		}
 	},
 
 
-	
+
 	/**
 	 * Set edit tab label
-	 * 
+	 *
 	 * @param	String		label
 	 */
 	setTabLabel: function(label) {
@@ -131,7 +131,7 @@ Todoyu.Ext.calendar.Edit = {
 	},
 
 
-	
+
 	/**
 	 * Remove edit tab
 	 */
@@ -156,9 +156,9 @@ Todoyu.Ext.calendar.Edit = {
 	hide: function() {
 		$('calendar-edit').hide();
 	},
-	
-		
-		
+
+
+
 	/**
 	 * Save the event
 	 */
@@ -199,5 +199,5 @@ Todoyu.Ext.calendar.Edit = {
 		this.ext.show(this.ext.Tabs.active);
 		this.close();
 	}
-	
+
 };
