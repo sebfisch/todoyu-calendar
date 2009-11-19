@@ -18,7 +18,7 @@
 
 				<field type="textinput" name="title">
 					<label>LLL:core.title</label>
-					<required>1</required>
+					<required label="calendar.event.error.title" />
 				</field>
 
 				<field type="select" name="eventtype">
@@ -27,7 +27,7 @@
 						<function>TodoyuEventDataSource::getEventTypeOptions</function>
 					</source>
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.Edit.reload(this.form)"</extraAttributes>
-					<required>1</required>
+					<required />
 				</field>
 
 				<field type="checkbox" name="is_dayevent">
@@ -49,9 +49,9 @@
 
 				<field type="datetimeinput" name="date_start">
 					<label>LLL:event.attr.startdate</label>
-					<required />
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event');"</extraAttributes>
 					<class>datetime</class>
+					<required label="calendar.event.error.startdate" />
 				</field>
 
 				<field type="datetimeinput" name="date_end">

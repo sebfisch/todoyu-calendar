@@ -3,7 +3,7 @@
 		<tbody>
 			<tr>
 				<td rowspan="3" class="wk-tzlabel">
-					<div id="toggleDayView" class="{if $fullDayView}full{/if}" title="{if $fullDayView}{Label calendar.showworkinghours}{else}{Label calendar.showfullday}{/if}" onclick="Todoyu.Ext.calendar.Navi.toggleFullDayView()"></div>
+					<div id="toggleDayView" class="{if $fullDayView}full{/if}" title="{if $fullDayView}{Label calendar.dayview.workinghours}{else}{Label calendar.dayview.fullday}{/if}" onclick="Todoyu.Ext.calendar.Navi.toggleFullDayView()"></div>
 				</td>
 				{* ---------- Header: dates of the rendered week ------------ *}
 				{for weekday 0 6}
