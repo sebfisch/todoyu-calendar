@@ -15,7 +15,7 @@
 				</field>
 
 				<field type="dateinput" name="date">
-					<label>LLL:calendar.holiday.attr.date</label>
+					<label>LLL:date.date</label>
 					<required>1</required>
 				</field>
 

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
 	<labels lang="en">
-		<label index="privateEvent.info">(private)</label>
-		<label index="newevent">New event</label>
-		<label index="createevent">Create event</label>
-		<label index="updateevent">Update event</label>
-		<label index="dayevent">Day event</label>
+		<label index="event">Event</label>
+		<label index="search.label">Events</label>
 		<label index="eventType">Event type</label>
 		<label index="eventtypes.">No type given</label>
 		<label index="eventtypes.general">General</label>
@@ -21,6 +18,14 @@
 		<label index="eventtypes.compensation">Compensation</label>
 		<label index="eventtypes.milestone">Milestone</label>
 		<label index="eventtypes.reminder">Reminder</label>
+		<label index="privateEvent.info">(private)</label>
+		<label index="newevent">New event</label>
+		<label index="createevent">Create event</label>
+		<label index="updateevent">Update event</label>
+		<label index="editevent">Edit event</label>
+		<label index="dayevent">Day event</label>
+		<label index="event.deleteEvent">Delete Event</label>
+		<label index="event.deleteEvent.confirm">Do you want to delete this Event?</label>
 		<label index="attr.creator">Creator</label>
 		<label index="attr.eventtype">Event type</label>
 		<label index="attr.event_type">Event type</label>
@@ -44,15 +49,9 @@
 		<label index="attr.repetition.repetitionEnd.never">Never</label>
 		<label index="attr.repetition.repetitionEnd.until">Until</label>
 		<label index="attr.repetition.repetitionEndDate">Repetition enddate</label>
-		<label index="event.newEventLabel">New Event</label>
-		<label index="event.deleteEvent">Delete Event</label>
-		<label index="event.deleteEvent.confirm">Do you want to delete this Event?</label>
-		<label index="search.label">Events</label>
 		<label index="search.mode.label">Search events</label>
-		<label index="event">Event</label>
 		<label index="eventstree.header.title">Event title</label>
 		<label index="noEventsFound">No events found.</label>
-		<label index="editevent">Edit event</label>
 		<label index="eventslist.birthdaysWithinTheNextXweeks">Birthdays within the next XXX weeks</label>
 		<label index="eventslist.holidaysWithinTheNextXweeks">Holidays within the next XXX weeks</label>
 		<label index="createevent.popup.windowtitle">Create new Event</label>

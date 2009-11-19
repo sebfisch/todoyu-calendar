@@ -47,31 +47,31 @@ $CONFIG['EXT']['calendar']['contentTabs'] = array(
 		'id'		=> 'day',
 		'class'		=> 'day',
 		'hasIcon'	=> 1,
-		'label'		=> 'LLL:calendar.contentTab.day'
+		'label'		=> 'LLL:date.day'
 	),
 	array(
 		'id'		=> 'week',
 		'class'		=> 'week',
 		'hasIcon'	=> 1,
-		'label'		=> 'LLL:calendar.contentTab.week'
+		'label'		=> 'LLL:date.week'
 	),
 	array(
 		'id'		=> 'month',
 		'class'		=> 'month',
 		'hasIcon'	=> 1,
-		'label'		=> 'LLL:calendar.contentTab.month'
+		'label'		=> 'LLL:date.month'
 	),
 	array(
 		'id'		=> 'add',
 		'class'		=> 'add',
 		'hasIcon'	=> 1,
-		'label'		=> 'LLL:calendar.contentTab.add'
+		'label'		=> 'LLL:calendar.tab.addEvent'
 	)/*,
 	array(
 		'id'		=> 'edit',
 		'class'		=> 'edit',
 		'hasIcon'	=> 1,
-		'label'		=> 'LLL:calendar.contentTab.edit'
+		'label'		=> 'LLL:calendar.tab.editEvent'
 	)*/
 );
 
