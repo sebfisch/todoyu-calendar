@@ -82,3 +82,15 @@
 	float: left;
 	color: #999;
 }
+
+
+
+/* ---------------------------
+	Detail view
+   --------------------------- */
+
+table.eventView {
+	margin:12px 0 12px 0;
+	width: 100%;
+	line-height: 20px;	
+}

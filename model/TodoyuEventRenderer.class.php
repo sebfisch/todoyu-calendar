@@ -289,8 +289,10 @@ class TodoyuEventRenderer {
 
 		$tmpl		= 'ext/calendar/view/event-view.tmpl';
 		$data		= array(
-			'event'	=> $event->getTemplateData(),
-			'tabs'	=> self::renderEventViewTabs($idEvent)
+			'event'			=> $event->getTemplateData(),
+			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
+			'user_create'	=> TodoyuUserManager::getUserArray($event['id_user_create']),
+			'tabs'			=> self::renderEventViewTabs($idEvent)
 		);
 
 		return render($tmpl, $data);

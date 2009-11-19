@@ -1,11 +1,35 @@
 {Header title=cat(dateFormat($event.date_start DshortD2MlongY4) ": " $event.title)}
-
-<h2>{$event.title}</h2>
-<p>{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime}</p>
-<p> - {$event.description}</p>
-<br>
-<br>
-<br>
-<p>This view is just experimental, nicer view will follow =)</p>
-<br>
-<a href="javascript:Todoyu.Ext.calendar.Event.show({$event.id})">Reload</a>
+<table class="eventView">
+	<tr class="odd">
+		<td class="eventAttrTitle">{Label core.title}: </td>
+		<td class="eventValue">{$event.title}</td>
+	</tr>
+	<tr class="even">
+		<td class="eventAttrTitle">{Label event.attr.place}: </td>
+		<td class="eventValue">{$event.place}</td>
+	</tr>
+	<tr class="odd">
+		<td class="eventAttrTitle">{Label core.description}: </td>
+		<td class="eventValue">{$event.description|default:"-"}</td>
+	</tr>
+	<tr class="even">
+		<td class="eventAttrTitle">{Label event.attr.timespan}: </td>
+		<td class="eventValue">
+			{math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}
+			{math equation="d / 3600" d=$duration assign=duration}
+			{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} Hours)</td>
+	</tr>
+	<tr class="odd">
+		<td class="eventAttrTitle ">{Label event.attr.attendees}: </td>
+		<td class="eventValue">{foreach $attendees user userData}
+			{$userData.firstname} {$userData.lastname}
+			<br/>
+		{/foreach}</td>
+	</tr>
+	<tr class="even">
+		<td class="eventAttrTitle"> {Label event.attr.creator}: </td>
+		<td class="eventValue">
+			{$user_create.firstname} {$user_create.lastname}
+		</td>
+	</tr>
+</table>
