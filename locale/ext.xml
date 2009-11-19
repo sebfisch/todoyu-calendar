@@ -33,8 +33,6 @@
 		<label index="weekly">Weekly</label>
 		<label index="monthly">Monthly</label>
 		<label index="yearly">Yearly</label>
-		<label index="project">Project</label>
-		<label index="task">Task</label>
 		<label index="assignedTo">Assigned to</label>
 		<label index="eventForMe">Event for me</label>
 		<label index="assignedToMe">Assigned to me</label>
