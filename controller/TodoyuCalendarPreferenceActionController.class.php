@@ -117,7 +117,10 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function pwidgetAction(array $params) {
-		TodoyuPanelWidgetManager::saveCollapsedStatus(EXTID_CALENDAR, $this->item, $this->value);
+		$idWidget	= $params['item'];
+		$value		= $params['value'];
+
+		TodoyuPanelWidgetManager::saveCollapsedStatus(EXTID_CALENDAR, $idWidget, $value);
 	}
 
 }
