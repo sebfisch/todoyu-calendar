@@ -41,7 +41,6 @@ TodoyuLocale::register('panelwidget-calendar', PATH_EXT_CALENDAR . '/locale/pane
 TodoyuLocale::register('panelwidget-quickevent', PATH_EXT_CALENDAR . '/locale/panelwidget-quickevent.xml');
 TodoyuLocale::register('panelwidget-eventtypeselector', PATH_EXT_CALENDAR . '/locale/panelwidget-eventtypeselector.xml');
 TodoyuLocale::register('panelwidget-holidaysetselector', PATH_EXT_CALENDAR . '/locale/panelwidget-holidaysetselector.xml');
-TodoyuLocale::register('panelwidget-calendaradmin', PATH_EXT_CALENDAR . '/locale/panelwidget-calendaradmin.xml');
 
 	// Request configurations
 require_once( PATH_EXT_CALENDAR . '/config/constants.php' );
