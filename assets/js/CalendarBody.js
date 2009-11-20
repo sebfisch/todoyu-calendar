@@ -121,42 +121,55 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Get time of mouse coordinates
+	 *	Get resp. timestamp to mouse coordinates inside current calendar view (day / week / month) 
 	 *
 	 *	@param	Integer	x
 	 *	@param	Integer	y
 	 *	@return	Integer
 	 */
 	getTimeOfMouseCoordinates: function(x, y) {
-		var height	= 1010; //this.getHeight();
-		var top		= y - this.calendarBody.cumulativeOffset().top;
-		var left	= x - this.calendarBody.cumulativeOffset().left;
+		var calendarMode= this.ext.getActiveTab();
 
-			// If view is minimized, add invisible part
-		if( ! this.isFullHeight() ) {
-			top += (8 * 42);
-		}
-		
-		var percent	= top/height;
-		var seconds	= percent * Todoyu.Time.seconds.day;
-			// Round to quarter hours
-		var rounded		= Math.round(seconds/900)*900;
-		var timeInfo	= Todoyu.Time.getTimeParts(rounded);
-		var dayOffset	= timeInfo.hours * Todoyu.Time.seconds.hour + timeInfo.minutes * Todoyu.Time.seconds.minute;
-		
-		if( this.ext.getActiveTab() === 'day' ) {
-			var dayTime = this.ext.getDayStart();
-		} else {
-			var numDays	= Math.floor((left - 40)/89);
-			var dayTime	= this.ext.getWeekStart() + numDays * Todoyu.Time.seconds.day;
-		}
-		
-		var time = dayTime + dayOffset;
-		
-		return time;
-	},	
+			// Get top coordinate, if view is minimized, add invisible part to 'top'
+		var top			= y - this.calendarBody.cumulativeOffset().top + (this.isFullHeight() ? 0 : 8 * 42);
 
-	
+		switch(calendarMode) {
+			case 'day':
+				var timestamp	= this.ext.getDayStart() + this.getDayOffset(top, 1010);
+				break;
+
+			case 'week':
+				var left		= x - this.calendarBody.cumulativeOffset().left;
+				var numDays		= Math.floor((left - 40) / 89);
+				var timestamp	= this.ext.getWeekStart() + numDays * Todoyu.Time.seconds.day;
+				timestamp		+=this.getDayOffset(top, 1010);
+				break;
+		}
+
+		return timestamp;
+	},
+
+
+
+	/**
+	 *	Get pixel-offset of day display, used to comprehend visual margins of hours in day / week mode
+	 *
+	 *	@param	Integer	top
+	 *	@param	Integer	height
+	 *	@return	Integer
+	 */
+	getDayOffset: function(top, height) {
+		var seconds	= (top / height) * Todoyu.Time.seconds.day;
+		
+			// Round to quarter hours, get time parts (hours, minutes, seconds)
+		var seconds		= Math.round(seconds / 900) * 900;
+
+		var timeInfo	= Todoyu.Time.getTimeParts(seconds);
+		
+		return timeInfo.hours * Todoyu.Time.seconds.hour + timeInfo.minutes * Todoyu.Time.seconds.minute;
+	},
+
+
 
 	/**
 	 *	Install Observers

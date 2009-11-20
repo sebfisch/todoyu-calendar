@@ -108,7 +108,9 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 * Get day start of calendar time
+	 * Get day start of (selected day in) calendar
+	 * 
+	 * @return	Integer
 	 */
 	getDayStart: function() {
 		return Todoyu.Time.getDayStart(this.getTime());
@@ -117,7 +119,9 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 * Get weekstart of calendar time
+	 * Get starting day of week in calendar that contains the currently selected day
+	 * 
+	 * @return	Integer
 	 */
 	getWeekStart: function() {
 		return Todoyu.Time.getWeekStart(this.getTime());
@@ -127,6 +131,8 @@ Todoyu.Ext.calendar = {
 
 	/**
 	 * Get active tab in calendar
+	 * 
+	 * @return	String
 	 */
 	getActiveTab: function() {
 		return this.Tabs.getActive();

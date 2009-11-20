@@ -61,8 +61,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	 *	@param	Object	event
 	 */
 	load: function(event) {
-		var time = this.ext.CalendarBody.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
-		
+		var time 	= this.getClickedTime(event);
 		var url		= Todoyu.getUrl('calendar', 'contextmenu');
 		var options	= {
 			'parameters': {
@@ -78,6 +77,26 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 
 
 
+	/**
+	 * Get timestamp at clicked coordinates / element
+	 * 
+	 * @param	event
+	 * @return	Integer
+	 */
+	getClickedTime: function(event) {
+		var calendarMode= this.ext.getActiveTab();
+		
+		if (calendarMode == 'month') {
+			var time = event.element().id.replace('createEventAt-','');
+		} else {
+			var time = this.ext.CalendarBody.getTimeOfMouseCoordinates( event.pointerX(), event.pointerY() );
+		}
+		
+		return time;
+	},
+	
+	
+	
 	/**
 	 *	Attach task context menu to given element
 	 *

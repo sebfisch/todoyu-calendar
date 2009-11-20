@@ -94,13 +94,38 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 
 	/**
+	 * Get timestamp of first shown day
+	 * 
+	 * @return	Integer
+	 */
+	getFirstShownDay: function() {
+		var timestamp	= this.getDate();
+		var date		= new Date(timestamp);
+		
+			// Get first day of displayed month
+		var dayNum				= 1;
+		var date				= new Date( date.getFullYear(), date.getMonth(), dayNum );
+		var dateFirstShownDay	= date;
+		
+			// Go back to first monday before the 1st day of the displayed month
+		while(dateFirstShownDay.getDay() > 1) {
+			dayNum--;
+			dateFirstShownDay	= new Date( date.getFullYear(), date.getMonth(), dayNum );
+		}
+
+		return dateFirstShownDay.getTime() / 1000;			
+	},
+
+
+
+	/**
 	 *	Set time
 	 *
 	 *	@param	Integer	time
 	 *	@param	Boolean	noExternalUpdate
 	 */
 	setTime: function(time, noExternalUpdate) {
-		this.setDate(time*1000, noExternalUpdate);
+		this.setDate(time * 1000, noExternalUpdate);
 	},
 	
 
