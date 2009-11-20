@@ -25,46 +25,45 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 
-
-	
 	/**
-	 *	@todo	COMMENT
+	 * Get quickinfo for an event
 	 *
-	 *	@param array $params
+	 * @param	Array		$params
+	 * @return	String
 	 */
 	public function eventAction(array $params) {
 		$idEvent	= intval($params['key']);
-		$event		= TodoyuEventManager::getEventRecord($idEvent);
-		
-		$event['assignedUsers']	= TodoyuEventManager::getAssignedUsersOfEvent($idEvent);
-		
-		return render('ext/calendar/view/quickinfo-event.tmpl', $event);
+
+		$tmpl	= 'ext/calendar/view/quickinfo-event.tmpl';
+		$data	= TodoyuEventManager::getEventRecord($idEvent);
+
+		$data['assignedUsers']	= TodoyuEventManager::getAssignedUsersOfEvent($idEvent);
+
+		return render($tmpl, $data);
 	}
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 * Get quickinfo for a holiday
 	 *
-	 *	@param array $params
+	 * @param	Array		$params
 	 */
 	public function holidayAction(array $params) {
-		$dateStart	= intval($params['key']);
-		$dateEnd	= $dateStart + 86400 -1;
+		$timestamp	= intval($params['key']);
+		$holidays	= TodoyuCalendarManager::getHolidaysForDay($timestamp);
 
-		$holidays	= TodoyuCalendarManager::getHolidays($dateStart, $dateEnd);
-
-		$data = array(
-			'timestamp'	=> $dateStart,
-			'holidays'	=> $holidays[ date('Ymd', $dateStart) ],
+		$tmpl	= 'ext/calendar/view/quickinfo-holiday.tmpl';
+		$data 	= array(
+			'timestamp'	=> $timestamp,
+			'holidays'	=> $holidays,
 		);
 
-		echo render('ext/calendar/view/quickinfo-holiday.tmpl', $data);
+		echo render($tmpl, $data);
 	}
-		
+
 }
 
 ?>

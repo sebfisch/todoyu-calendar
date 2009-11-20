@@ -19,13 +19,13 @@
 ***************************************************************/
 
 Todoyu.Ext.calendar.Quickinfo = {
-	
+
 	ext: Todoyu.Ext.calendar,
-	
-	popUpID: 'quickinfo',
-		
+
+	popupID: 'quickinfo',
+
 	cache: {},
-		
+
 	loading: false,
 
 
@@ -38,9 +38,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 		if( ! Todoyu.exists(this.popUpID) ) {
 			this.insertQuickInfoElement();
 		}
-		
+
 		this.uninstallObservers();
-		
+
 		if( install === true ) {
 			this.installObservers();
 		}
@@ -74,15 +74,13 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *	Insert quick info elements container
 	 */
 	insertQuickInfoElement: function() {
-		if( ! Todoyu.exists(this.popUpID) ) {
+		if( ! Todoyu.exists(this.popupID) ) {
 			var quickInfo  = new Element('div', {
-				'id':	this.popUpID
-			}).setStyle({
-				'display': 'none'
-			});
-			
+				'id':	this.popupID
+			}).hide();
+
 			$(document.body).insert(quickInfo);
-		}		
+		}
 	},
 
 
@@ -97,11 +95,11 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 		if( this.loading === true ) {
 			return false;
-		}		
+		}
 		this.loading = true;
 
 		if( this.isCached(key) ) {
-			this.updateContent(this.getFromCache(key));
+			this.updatePopup(this.getFromCache(key));
 			this.showPopUp(x, y);
 			this.loading = false;
 		} else {
@@ -116,7 +114,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *
 	 */
 	showPopUp: function(x, y) {
-		$(this.popUpID).setStyle({
+		$(this.popupID).setStyle({
 			'top': y + 'px',
 			'left': x + 'px'
 		}).show();
@@ -129,7 +127,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *
 	 */
 	hide: function() {
-		$(this.popUpID).hide();
+		$(this.popupID).hide();
 	},
 
 
@@ -145,11 +143,10 @@ Todoyu.Ext.calendar.Quickinfo = {
 				'action':	type,
 				'key':		key
 			},
-			'onComplete': this.onQuickInfoLoaded.bind(this, key, mouseX, mouseY)		
+			'onComplete': this.onQuickInfoLoaded.bind(this, type, key, mouseX, mouseY)
 		};
-		
+
 		Todoyu.send(url, options);
-		
 	},
 
 
@@ -158,11 +155,10 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *	@todo	comment
 	 *
 	 */
-	onQuickInfoLoaded: function(key, x, y, response) {
+	onQuickInfoLoaded: function(type, key, x, y, response) {
 		this.addToCache(key, response.responseText);
-		this.updateContent(response.responseText);
-		this.showPopUp(x, y);
 		this.loading = false;
+		this.show(type, key, x, y);
 	},
 
 
@@ -213,8 +209,8 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *	@todo	comment
 	 *
 	 */
-	updateContent: function(content) {
-		$(this.popUpID).update(content);
+	updatePopup: function(content) {
+		$(this.popupID).update(content);
 	},
 
 
@@ -224,10 +220,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *
 	 */
 	Event: {
+		ext: Todoyu.Ext.calendar,
+
 		observers: [],
-
-		elementSelector:  'div.eventQuickInfoHotspot',
-
 
 
 		/**
@@ -235,7 +230,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 *
 		 */
 		installObservers: function() {
-			$$(this.elementSelector).each(this.installOnElement.bind(this));
+			$$('div.quickInfoEvent').each(this.installOnElement.bind(this));
 		},
 
 
@@ -244,7 +239,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 *	@todo	comment
 		 *
 		 */
-		installOnElement: function(element) {		
+		installOnElement: function(element) {
 			var idEvent	= element.readAttribute('id').split('-').last();
 
 				// Mouseover
@@ -283,7 +278,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 *
 		 */
 		onMouseOver: function(event, idEvent) {
-			Todoyu.Ext.calendar.Quickinfo.show('event', idEvent, event.pointerX(), event.pointerY());
+			this.ext.Quickinfo.show('event', idEvent, event.pointerX(), event.pointerY());
 		},
 
 
@@ -293,9 +288,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 *
 		 */
 		onMouseOut: function(event, idEvent) {
-			Todoyu.Ext.calendar.Quickinfo.hide();
-		}		
-		
+			this.ext.Quickinfo.hide();
+		}
+
 	},
 
 
@@ -305,10 +300,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *
 	 */
 	Holiday: {
-		observers: [],
+		ext: Todoyu.Ext.calendar,
 		
-		elementSelector:  'span.holidayQuickInfoHotspot',
-
+		observers: [],
 
 
 		/**
@@ -316,7 +310,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 *
 		 */
 		installObservers: function() {
-			$$(this.elementSelector).each(this.installOnElement.bind(this));
+			$$('span.quickInfoHoliday').each(this.installOnElement.bind(this));
 		},
 
 
@@ -325,19 +319,19 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 *	@todo	comment
 		 *
 		 */
-		installOnElement: function(element) {		
-			var dateStr	= element.readAttribute('id').split('-').last();
-			
+		installOnElement: function(element) {
+			var timestamp	= element.readAttribute('id').split('-').last();
+
 				// Mouseover
-			var observerOver= this.onMouseOver.bindAsEventListener(this, dateStr);
-			var observerOut	= this.onMouseOut.bindAsEventListener(this, dateStr);
-			
+			var observerOver= this.onMouseOver.bindAsEventListener(this, timestamp);
+			var observerOut	= this.onMouseOut.bindAsEventListener(this, timestamp);
+
 			this.observers.push({
 				'element': element,
 				'over': observerOver,
 				'out': observerOut
 			});
-			
+
 			element.observe('mouseover', observerOver);
 			element.observe('mouseout', observerOut);
 		},
@@ -353,7 +347,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 				Event.stopObserving(observer.element, 'mouseover', observer.over);
 				Event.stopObserving(observer.element, 'mouseout', observer.out);
 			});
-			
+
 			this.observers = [];
 		},
 
@@ -363,14 +357,8 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 *	@todo	comment
 		 *
 		 */
-		onMouseOver: function(event, dateStr) {
-			var year	= dateStr.substr(0,4);
-			var month	= dateStr.substr(4,2);
-			var day		= dateStr.substr(6,2);
-			var date	= new Date(year, month, day);
-			var time	= date.getTime()/1000;
-			
-			Todoyu.Ext.calendar.Quickinfo.show('holiday', time, event.pointerX(), event.pointerY());
+		onMouseOver: function(event, timestamp) {
+			this.ext.Quickinfo.show('holiday', timestamp, event.pointerX(), event.pointerY());
 		},
 
 
@@ -380,8 +368,8 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 *
 		 */
 		onMouseOut: function(event, dateStr) {
-			Todoyu.Ext.calendar.Quickinfo.hide();
-		}		
-		
+			this.ext.Quickinfo.hide();
+		}
+
 	}
 };

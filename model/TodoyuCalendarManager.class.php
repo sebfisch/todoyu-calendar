@@ -127,6 +127,23 @@ class TodoyuCalendarManager {
 
 
 	/**
+	 * Get holidays for a day
+	 *
+	 * @param	Integer		$timestamp
+	 * @return	Array
+	 */
+	public static function getHolidaysForDay($timestamp) {
+		$dayRange	= TodoyuTime::getDayRange($timestamp);
+		$holidays	= self::getHolidays($dayRange['start'], $dayRange['end']);
+
+		$today		= $holidays[date('Ymd', $timestamp)];
+
+		return is_array($today) ? $today : array();
+	}
+
+
+
+	/**
 	 * Get amount of days between two week-day numbers (0-6)
 	 *
 	 * @param	Integer 	$startDay			Timestamp of the startday

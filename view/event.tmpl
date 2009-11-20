@@ -1,4 +1,4 @@
-<div id="event-{$id}" class="event contextmenuevent eventQuickInfoHotspot{if $eventtype==3} birthdays{/if}{if $updateAllowed} updateAlloweDd{/if}{if $calendarMode=='month'} monthevent {/if} enumColBGFade{$colors.id}"
+<div id="event-{$id}" class="event contextmenuevent quickInfoEvent {if $eventtype==3}birthdays{/if}{if $updateAllowed} updateAlloweDd{/if}{if $calendarMode=='month'} monthevent {/if} enumColBGFade{$colors.id}"
 	style="{if $calendarMode!='month'}top:{$top}px; left:{$left}px;{/if}
 	{if $calendarMode=='week'} height:{$height}px;{/if}{if intval($width)>0} width:{$width}px;{/if}">
 	<dl style="{if $calendarMode != 'month'}height:{$height}px;{/if}">

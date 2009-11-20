@@ -210,7 +210,3 @@
 .tg-nowptr {
 	left:0;
 }
-
-.eventQuickInfoHotspot, .monthevent, .montheventTime, .dayevent, .eventQuickInfoHotspot dt dt dd span{
-	font-size:9px !important;
-}

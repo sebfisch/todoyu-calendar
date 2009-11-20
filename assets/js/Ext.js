@@ -209,12 +209,6 @@ Todoyu.Ext.calendar = {
 	 */
 	installEventObservers: function(el) {
 		this.Event.installObservers();
-		/*
-			// Install click for update
-		$('calendar-body').select('div.eventQuickInfoHotspot.updateAllowed').each(function(element) {
-				element.observe('click', this.onEventClick.bindAsEventListener(this));
-		}.bind(this));
-		*/
 	},
 
 

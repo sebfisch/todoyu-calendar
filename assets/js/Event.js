@@ -44,14 +44,6 @@ Todoyu.Ext.calendar.Event = {
 		}.bind(this));
 
 		this.ext.ContextMenuEvent.reattach();
-
-
-		/*
-			// Install click for update
-		$('calendar-body').select('div.eventQuickInfoHotspot.updateAllowed').each(function(element) {
-				element.observe('click', this.onEventClick.bindAsEventListener(this));
-		}.bind(this));
-		*/
 	},
 
 
