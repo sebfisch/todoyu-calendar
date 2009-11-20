@@ -126,8 +126,11 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 				
 		Todoyu.Pref.save('calendar', 'panelwidgeteventtypeselector', pref, 0, this.onPrefsSaved.bind(this));
 	},
-	
+
+
+
 	onPrefsSaved: function(response) {
 		Todoyu.PanelWidget.inform('eventtypeselector', this.getSelectedEventTypes());
 	}
+
 };

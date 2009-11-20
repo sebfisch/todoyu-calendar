@@ -1,33 +1,3 @@
-{assign var=selDay value=date('j',$date)}
-{assign var=selMonth value=date('n',$date)}
-{assign var=selYear value=date('Y',$date)}
-{assign var=lastDay value=date('t', $date)}
-
-<div id="panelwidget-{$id}-selectors">
-	<div class="dateDropDowns">
-
-		<select id="panelwidget-{$id}-sel-day">
-		{for day 1 31}
-			<option value="{$day}"{if $day == $dateDay} selected="selected"{/if} class="{if $day>$daysInMonth}hidden {/if}{cycle values="odd,even"}">{$day}</option>
-		{/for}
-		</select>
-
-		<select id="panelwidget-{$id}-sel-month" class="months">
-		{for month 1 12}
-			{assign var=monthTimestamp value=mktime(0,0,0,$month)}
-			<option value="{$month-1}"{if $dateMonth == $month} selected="selected"{/if} class="{cycle values="odd,even"}">{dateFormat $monthTimestamp Mlong}</option>
-		{/for}
-		</select>
-
-		<select id="panelwidget-{$id}-sel-year">
-		{for year 2000 2037}
-			<option value="{$year}"{if $year == $dateYear} selected="selected"{/if} class="{cycle values="odd,even"}">{$year}</option>
-		{/for}
-		</select>
-
-	</div>
-</div>
-
 <div id="panelwidget-{$id}-scal" class="{$class}">
 	{* The calendar will be renderer in here by javascript *}
 </div>

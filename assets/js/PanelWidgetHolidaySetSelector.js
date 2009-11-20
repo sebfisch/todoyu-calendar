@@ -57,10 +57,27 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	 *	@param	unknown	event
 	 */
 	onHolidaySetSelect: function(event) {
-		this.onUpdate( this.getSelectedHolidaySetIDs().join(',') );
+		var selectedSetIDs	= this.getSelectedHolidaySetIDs();
+		
+		this.verifySelectedSets(selectedSetIDs);
+		
+		this.onUpdate( selectedSetIDs.join(',') );
 	},
 
 
+
+	/**
+	 *	Check and verify current selection (e.g. 'none' override any selected sets)
+	 *
+	 *	@param	Array	selectedSetIDs
+	 */
+	verifySelectedSets: function(selectedSetIDs) {
+		if (selectedSetIDs.include(0)) {
+			this.selectNoSetOption();
+		}
+	},
+	
+ 
 
 	/**
 	 *	Update event handler
@@ -166,13 +183,22 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 		var url		= Todoyu.getUrl('calendar', 'preference');
 		var options	= {
 			'parameters': {
-				'action':						'panelwidgetholidaysetselector',
-				'preference':				this.key,
-				'area':						Todoyu.getArea(),
-				'value':					typeIDs
-			}
+				'action':		'panelwidgetholidaysetselector',
+				'preference':	this.key,
+				'area':			Todoyu.getArea(),
+				'value':		typeIDs
+			},
+			'onComplete': function(response)	{
+				this.onPrefsSaved(response);
+			}.bind(this)
 		};
 
 		Todoyu.send(url, options);
+	},
+
+
+
+	onPrefsSaved: function(response) {
+		Todoyu.Ext.calendar.refresh();		
 	}
 };

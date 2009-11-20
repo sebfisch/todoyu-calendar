@@ -62,7 +62,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 		$this->addClass('user');
 
 			// Init widget JS (observers)
-		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector.init.bind(Todoyu.Ext.calendar.PanelWidget.HolidaysetSelector)');
+		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector.init.bind(Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector)');
 	}
 
 
@@ -144,6 +144,5 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 	}
 
 }
-
 
 ?>

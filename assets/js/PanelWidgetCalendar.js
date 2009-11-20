@@ -55,18 +55,6 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 			// Initialize calendar (have sCal render the calender code to the DOM)
 		this.Calendar 	= new scal(this.calName, this.onDateSelected.bind(this), options);
-		
-		this.installSelectorObserver();
-	},
-
-
-	/**
-	 * Install observers for the date selector dropdowns
-	 */
-	installSelectorObserver: function() {
-		$('panelwidget-calendar-selectors').select('select').each(function(item){
-			item.observe('change', this.onSelectorChange.bindAsEventListener(this, item))
-		}.bind(this));		
 	},
 
 
@@ -139,48 +127,6 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	},
 
 
-	
-	/**
-	 *	Handle date change via dropdowns of widget
-	 */
-	onSelectorChange: function(event, selector) {
-		var	timestamp	= this.getSelectorTime();
-		this.setTime(timestamp, false);
-	//	this.onUpdate('month');
-	},
-
-	getSelectorTime: function() {
-		var day 	= $F('panelwidget-calendar-sel-day');
-		var month 	= $F('panelwidget-calendar-sel-month');
-		var year	= $F('panelwidget-calendar-sel-year');
-		
-		return parseInt((new Date(year, month, day, 0, 0, 0)).getTime()/1000, 10);
-	},
-
-
-
-	/**
-	 *	Refresh date dropdown
-	 */
-	updateDateSelector: function() {
-		var	date	=	new Date(this.getDate());
-		
-			// Set current date to selector
-		$('panelwidget-calendar-sel-day').value		= date.getDate();
-		$('panelwidget-calendar-sel-month').value	= date.getMonth();
-		$('panelwidget-calendar-sel-year').value	= date.getFullYear();
-				
-		var time		= this.getTime();		
-		var daysInMonth	= Todoyu.Time.getDaysInMonth(time);
-		
-			// Toggle the day options for the current month
-		$('panelwidget-calendar-sel-day').select('option').each(function(option) {
-			option.setStyle({
-				'display': (parseInt(option.value, 10) <= daysInMonth) ? 'block' : 'none'
-			})
-		});
-	},
-
 
 	/**
 	 *	'Date selected' event handler
@@ -204,7 +150,6 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 			'date': this.getDate()
 		});
 		
-		this.updateDateSelector();
 		//this.saveCurrentDate();
 	},
 

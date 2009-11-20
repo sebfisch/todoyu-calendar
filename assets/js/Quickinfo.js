@@ -142,7 +142,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 		var	url		= Todoyu.getUrl('calendar', 'quickinfo');
 		var options	= {
 			'parameters': {
-				'action':		type,
+				'action':	type,
 				'key':		key
 			},
 			'onComplete': this.onQuickInfoLoaded.bind(this, key, mouseX, mouseY)		
