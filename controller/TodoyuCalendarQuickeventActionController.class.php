@@ -28,17 +28,14 @@
 
 class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 
-
-
 	/**
-	 *	@todo	COMMENT
+	 *	Render quick event creation form in popup
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return	String
 	 */
 	public function popupAction(array $params) {
-		$time	= intval($params['time']);
-		$time	= TodoyuTime::getStartOfDay($time);
-		$time	= $time + 8 * 3600;
+		$time	= time();
 
 		return TodoyuEventRenderer::renderCreateQuickEvent($time);
 	}
@@ -48,9 +45,8 @@ class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 	/**
 	 * Save quickevent (quickevent popup)
 	 *
-	 *
-	 * @param array $params
-	 * @return unknown
+	 * @param	Array	$params
+	 * @return	String
 	 */
 	public function saveAction(array $params) {
 		$formData	= $params['quickevent'];

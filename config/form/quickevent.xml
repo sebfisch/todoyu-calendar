@@ -38,12 +38,18 @@
 
 				<field type="datetimeinput" name="date_start">
 					<label>LLL:event.attr.startdate</label>
-					<required />
+					<default>date_start</default>
+					<required label="calendar.event.error.startdate" />
 				</field>
 
 				<field type="datetimeinput" name="date_end">
 					<label>LLL:event.attr.enddate</label>
-					<required />
+					<default>date_end</default>
+					<validate>
+						<dateTimeNotBefore msg="LLL:calendar.check.starttimeAfterEndtime">
+							<field>date_start</field>
+						</dateTimeNotBefore>
+					</validate>
 				</field>
 
 				<field type="databaseRelation" name="user">

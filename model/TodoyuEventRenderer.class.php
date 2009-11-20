@@ -57,10 +57,10 @@ class TodoyuEventRenderer {
 
 
 	/**
-	 * Render create event popup form
+	 * Render create event form popup
 	 *
-	 * @param 	Array		$data
-	 * @return 	String		Form
+	 * @param 	Array	$data
+	 * @return 	String	Form
 	 */
 	public static function renderCreateQuickEvent($time, $isDayEvent = false) {
 		$time		= intval($time);
@@ -74,17 +74,15 @@ class TodoyuEventRenderer {
 			$timeStart	= $dayRange['start'];
 			$timeEnd	= $dayRange['end'];
 		} else {
-			$timeStart	= $time-$dayRange['start'];
-			$timeEnd	= $timeStart + 3600;
+			$timeStart	= $time;
+			$timeEnd	= $timeStart + 900;
 		}
 
 		$user	= TodoyuAuth::getUser()->getTemplateData();
 
 		$formData	= array(
-			'startdate' 	=> $time,
-			'enddate' 		=> $time,
-			'starttime' 	=> $timeStart,
-			'endtime' 		=> $timeEnd,
+			'date_start' 	=> $timeStart,
+			'date_end' 		=> $timeEnd,
 			'is_dayevent'	=> $isDayEvent,
 			'user'			=> array($user)
 		);
