@@ -40,12 +40,12 @@
  * @param 	Integer		$id
  * @return	String
  */
-function Dwoo_Plugin_EventTypeLabel(Dwoo $dwoo, $id) {
-	$id	= intval($id);
+function Dwoo_Plugin_EventTypeLabel(Dwoo $dwoo, $idEventType) {
+	$idEventType	= intval($idEventType);
 
-	$designation = $GLOBALS['CONFIG']['EXT']['calendar']['EVENTTYPE'][$id];
+	$designation = $GLOBALS['CONFIG']['EXT']['calendar']['EVENTTYPE'][$idEventType];
 
-	return Label('event.eventtypes.' . $designation);
+	return Label('event.eventtype.' . $designation);
 }
 
 

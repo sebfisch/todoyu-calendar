@@ -44,12 +44,6 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 	 * @param	Boolean		$expanded
 	 */
 	public function __construct(array $config, array $params = array(), $idArea = 0) {
-		$idArea	= intval($idArea);
-
-			// Have public ext. and widget specific assets added
-		TodoyuPage::addExtAssets('calendar', 'public');
-		TodoyuPage::addExtAssets('calendar', 'PanelWidgetHolidaysetSelector');
-
 			// Construct PanelWidget (init basic configuration)
 		parent::__construct(
 			'calendar',									// ext key
@@ -59,6 +53,10 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 			$params,									// widget params
 			$idArea										// area ID
 		);
+
+					// Have public ext. and widget specific assets added
+		TodoyuPage::addExtAssets('calendar', 'public');
+		TodoyuPage::addExtAssets('calendar', 'panelwidget-holidaysetselector');
 
 		$this->addHasIconClass();
 		$this->addClass('user');

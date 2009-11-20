@@ -18,7 +18,7 @@
 
 				<field type="textinput" name="title">
 					<label>LLL:core.title</label>
-					<required label="calendar.event.error.title" />
+					<required />
 				</field>
 
 				<field type="select" name="eventtype">
@@ -41,7 +41,7 @@
 				<field type="checkbox" name="is_private">
 					<label>LLL:event.attr.is_private</label>
 					<validate>
-						<user msg="LLL:calendar.check.privateEvent">
+						<user msg="LLL:event.error.privateEvent">
 							<function>TodoyuEventFormValidator::eventIsAssignableToCurrentUserOnly</function>
 						</user>
 					</validate>
@@ -57,7 +57,7 @@
 				<field type="datetimeinput" name="date_end">
 					<label>LLL:event.attr.enddate</label>
 					<validate>
-						<dateTimeNotBefore msg="LLL:calendar.check.starttimeAfterEndtime">
+						<dateTimeNotBefore msg="LLL:event.error.starttimeAfterEndtime">
 							<field>date_start</field>
 						</dateTimeNotBefore>
 					</validate>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<locallang>
-	<labels lang="en">
-		<label index="title">Calendar Admin</label>
-		<label index="holidays">Holidays</label>
-		<label index="eventtypes">Event types</label>
-	</labels>
-	<labels lang="de"></labels>
-</locallang>

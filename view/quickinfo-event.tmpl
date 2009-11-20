@@ -16,7 +16,7 @@
 			<td class="quickinfo_label"><div class="quickinfo_when">&nbsp;</div></td>
 			<td class="quickinfo_content">
 			{if $eventtype != 3}{* ---------- Not a birthday? ---------- *}
-				{dateFormat $date_start datetime} {Label calendar.hour}<br/>{dateFormat $date_end datetime} {Label calendar.hour}
+				{dateFormat $date_start datetime} {Label date.tim.hour}<br/>{dateFormat $date_end datetime} {Label date.time.hour}
 			{else}{* ---------- Birthday? ---------- *}{dateFormat $date_start D2M2}{/if}
 			</td>
 		</tr>

@@ -46,7 +46,7 @@ class TodoyuEventEditRenderer {
 	public static function renderEditView($idEvent)	{
 		$idEvent	= intval($idEvent);
 
-		$tabLabel	= Label('LLL:event.editevent');
+		$tabLabel	= Label('LLL:event.edit');
 		$headTab	= self::renderEventEditTab($tabLabel, 'edit');
 
 		$form		= self::renderEventForm($idEvent);

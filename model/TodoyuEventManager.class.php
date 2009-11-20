@@ -331,7 +331,7 @@ class TodoyuEventManager {
 	 		);
 
 	 		if( $parseLabels ) {
-	 			$eventType['label'] = Label('event.eventtypes.' . $key);
+	 			$eventType['label'] = Label('event.eventtype.' . $key);
 	 		}
 
 	 		$eventTypes[$index] = $eventType;

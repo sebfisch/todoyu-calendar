@@ -35,19 +35,19 @@ Todoyu.Ext.calendar.Event = {
 
 	/**
 	 * Install observers
-	 * 
+	 *
 	 */
 	installObservers: function() {
 			// View
 		$('calendararea').select('div.event').each(function(eventElement){
 			eventElement.observe('dblclick', this.onEventDblClick.bindAsEventListener(this));
 		}.bind(this));
-		
+
 		this.ext.ContextMenuEvent.reattach();
-		
-		
+
+
 		/*
-			// Install click for update		
+			// Install click for update
 		$('calendar-body').select('div.eventQuickInfoHotspot.updateAllowed').each(function(element) {
 				element.observe('click', this.onEventClick.bindAsEventListener(this));
 		}.bind(this));
@@ -58,23 +58,23 @@ Todoyu.Ext.calendar.Event = {
 
 	/**
 	 * Event double click handler
-	 * 
+	 *
 	 * @param	object	event
 	 */
 	onEventDblClick: function(event) {
 		event.stop();
-		
+
 		var eventElem	= event.findElement('div.event');
-		var idEvent		= eventElem.readAttribute('id').split('-').last();		
-		
+		var idEvent		= eventElem.readAttribute('id').split('-').last();
+
 		this.show(idEvent);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Show event
-	 * 
+	 *
 	 * @param	Integer	idEvent
 	 */
 	show: function(idEvent) {
@@ -86,7 +86,7 @@ Todoyu.Ext.calendar.Event = {
 
 	/**
 	 * Edit event
-	 * 
+	 *
 	 * @param	Integer	idEvent
 	 */
 	edit: function(idEvent) {
@@ -97,7 +97,7 @@ Todoyu.Ext.calendar.Event = {
 
 	/**
 	 * Remove event
-	 * 
+	 *
 	 * @param	Integer	idEvent
 	 */
 	remove: function(idEvent) {
@@ -115,7 +115,7 @@ Todoyu.Ext.calendar.Event = {
 				'onComplete': this.onRemoved.bind(this, idEvent)
 			};
 
-			Todoyu.send(url, options);			
+			Todoyu.send(url, options);
 		}
 	},
 
@@ -128,7 +128,7 @@ Todoyu.Ext.calendar.Event = {
 	 *	@param	Object	response
 	 */
 	onRemoved: function(idEvent, response) {
-		
+
 	},
 
 
@@ -230,7 +230,7 @@ Todoyu.Ext.calendar.Event = {
 					this.ext.Quickinfo.setQuickInfoElVisible(eventID);
 				}
 			};
-			
+
 			Todoyu.send(url, options);
 		}
 	},
@@ -440,7 +440,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 *	Evoked on change of selected eventType in quick-event form (toggle ir/relevant fields)
 	 *
-	 * @param	
+	 * @param
 	 */
 	onEventtypeChange: function(field) {
 		var basename	= 'formElement-quickevent-field-';
@@ -477,7 +477,7 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 */
 	deleteEvent: function(idEvent)	{
-		if(confirm('[LLL:calendar.event.deleteEvent.confirm]'))	{
+		if(confirm('[LLL:event.delete.confirm]'))	{
 			var url = Todoyu.getUrl('calendar' , 'event');
 
 			var options = {

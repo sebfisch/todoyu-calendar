@@ -180,19 +180,6 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 	),
 
 
-		// Admin widget (components selection menu)
-	'TodoyuPanelWidgetCalendarAdmin' => array(
-		'js' => array(),
-
-		'css' => array(
-			array(
-				'file' => 'ext/calendar/assets/css/panelwidget-calendaradmin.css',
-				'position' => 130
-			)
-		)
-	),
-
-
 		// Event type selector
 	'panelwidget-eventtypeselector' => array(
 		'js' => array(
@@ -212,7 +199,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 
 
 		// Holidayset selector
-	'PanelWidgetHolidaysetSelector' => array(
+	'panelwidget-holidaysetselector' => array(
 		'js' => array(
 			array(
 				'file' => 'ext/calendar/assets/js/PanelWidgetHolidaySetSelector.js',
