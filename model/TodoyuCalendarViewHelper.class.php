@@ -87,7 +87,6 @@ class TodoyuCalendarViewHelper {
 	/**
 	 * Gets an options array of working hours in percent
 	 *
-	 *
 	 * @param	TodoyuForm $field
 	 * @return	Array
 	 */
@@ -109,7 +108,6 @@ class TodoyuCalendarViewHelper {
 	/**
 	 * Gets an options array of all defined holidays
 	 *
-	 *
 	 * @param	TodoyuForm $source
 	 * @return	Array
 	 */
@@ -121,6 +119,28 @@ class TodoyuCalendarViewHelper {
 			$options[] = array(
 				'value'	=> $holiday['id'],
 				'label'	=> $holiday['title'] . ' (' . TodoyuTime::format($holiday['date'], 'D2M2Y4') . ')'
+			);
+		}
+
+		return $options;
+	}
+
+
+
+	/**
+	 * Gets an options array of all defined holidaySets
+	 *
+	 * @param	TodoyuForm $source
+	 * @return	Array
+	 */
+	public static function getHolidaySetOptions(TodoyuFormElement $field)	{
+		$options = array();
+
+		$holidaySets	= TodoyuHolidaySetManager::getAllHolidaySets();
+		foreach($holidaySets as $set)	{
+			$options[] = array(
+				'value'	=> $set['id'],
+				'label'	=> $set['title']
 			);
 		}
 

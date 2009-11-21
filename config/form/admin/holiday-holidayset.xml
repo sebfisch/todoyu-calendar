@@ -13,15 +13,11 @@
 			<elements>
 
 				<field type="select" name="id">
-						<label>LLL:calendar.holiday.attr.holidayset</label>
-						<source type="sql">
-							<fields>id,title</fields>
-							<tables>ext_calendar_holidayset</tables>
-							<where>deleted = 0</where>
-							<order>title</order>
-							<label>LLL:core.title</label>
-							<value>id</value>
-						</source>
+					<label>LLL:calendar.holiday.attr.holidayset</label>
+					<source type="function">
+						<function>TodoyuCalendarViewHelper::getHolidaySetOptions</function>
+					</source>
+					<required>1</required>
 				</field>
 
 			</elements>
