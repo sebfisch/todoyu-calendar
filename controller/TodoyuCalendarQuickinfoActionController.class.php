@@ -27,6 +27,10 @@
  */
 class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 
+	public function init() {
+		restrict('calendar', 'event:quickinfo');
+	}
+
 	/**
 	 * Get quickinfo for an event
 	 *

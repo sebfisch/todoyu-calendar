@@ -343,7 +343,16 @@ class TodoyuCalendarManager {
 	 *	@return	Array
 	 */
 	public static function getContextMenuItems($time, array $items) {
-		$items = array_merge_recursive($items, $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Area']);
+		$allowed= array();
+		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Area'];
+
+		$allowed[] = $own['header'];
+
+		if( allowed('calendar', 'event:add') ) {
+			$allowed[] = $own['add'];
+		}
+
+		$items	= array_merge_recursive($items, $allowed);
 
 		return $items;
 	}

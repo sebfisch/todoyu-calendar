@@ -34,7 +34,7 @@ class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function init(array $params) {
-		TodoyuHeader::sendHeaderJSON();
+
 	}
 
 
@@ -49,7 +49,7 @@ class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 		$time		= intval($params['time']);
 		$contextMenu= new TodoyuContextMenu('CalendarArea', $time);
 
-		return $contextMenu->getJSON();
+		return $contextMenu->printJSON();
 	}
 
 
@@ -64,7 +64,7 @@ class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$contextMenu= new TodoyuContextMenu('Event', $idEvent);
 
-		return $contextMenu->getJSON();
+		return $contextMenu->printJSON();
 	}
 
 }

@@ -87,34 +87,6 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 		);
 
 		return render($tmpl, $data);
-
-
-
-		$prefs	= self::getSelectedEventTypes();
-
-		$selectAll = false;
-		if ((count($prefs) == 0 || $prefs == array(0 => 0)) && $this->config['selectAllOnFirstRun']) {
-				// No type selected? check if this the first run
-			$isPrefSet	= TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'panelwidget-eventtypeselector', 0, null, AREA);
-			if (! $isPrefSet) {
-				$selectAll = true;
-			}
-		}
-
-		$types	= TodoyuEventManager::getEventTypes(true);
-		foreach($types as $idType => $typeData) {
-			if (in_array($idType, $prefs) || $selectAll) {
-				$types[ $idType ]['selected']	= 1;
-			}
-		}
-
-		$data	= array(
-			'config'			=> $this->config,
-			'currentUserID'		=> userid(),
-			'types'				=> $types,
-		);
-
-		return render('ext/calendar/view/panelwidgets/panelwidget-eventtypeselector.tmpl', $data);
 	}
 
 
@@ -196,6 +168,12 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 			userid()							// user ID
 		);
 
+	}
+
+
+
+	public static function isAllowed() {
+		return allowed('calendar', 'panelwidget:eventTypeSelector');
 	}
 }
 

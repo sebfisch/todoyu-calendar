@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rights labels="ext/calendar/locale/rights.xml">
+	<section key="general">
+		<allow right="use" />
+	</section>
+	<section key="event">
+		<allow right="event:see" />
+		<allow right="event:edit" />
+		<allow right="event:add" />
+		<allow right="event:delete" />
+		<allow right="event:deleteOwn" />
+		<allow right="event:assign" />
+		<allow right="event:quickinfo" />
+	</section>	
 	<section key="panelwidgets">
-		<allow right="PanelWidgetCalendar" comment="can see quicktaskwizard" />
-		<allow right="PanelWidgetQuickEvent" comment="can see quicktaskwizard" />
+		<allow right="panelwidget:calendar" />
+		<allow right="panelwidget:quickEvent" />
+		<allow right="panelwidget:eventTypeSelector" />
+		<allow right="panelwidget:holidaySetSelector" />
 	</section>
 </rights>

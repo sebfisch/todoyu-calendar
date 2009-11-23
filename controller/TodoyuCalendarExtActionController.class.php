@@ -25,10 +25,11 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarExtActionController extends TodoyuActionController {
 
 	public function defaultAction(array $params) {
+		restrict('calendar', 'use');
+
 			// Activate FE tab
 		TodoyuFrontend::setActiveTab('planning');
 				// Activate tab submenu entry

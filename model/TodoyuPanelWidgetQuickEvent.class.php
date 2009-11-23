@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -33,11 +33,10 @@ class TodoyuPanelWidgetQuickEvent extends TodoyuPanelWidget implements TodoyuPan
 	 *
 	 */
 	public function __construct( array $config, array $params = array(), $idArea = 0) {
-
 		// construct PanelWidget (init basic configuration)
 		parent::__construct(
 			'calendar',							// ext key
-			'event',							// panel widget ID
+			'quickevent',						// panel widget ID
 			'LLL:panelwidget-quickevent.title',	// widget title text
 			$config,							// widget config array
 			$params,							// widget params
@@ -45,6 +44,8 @@ class TodoyuPanelWidgetQuickEvent extends TodoyuPanelWidget implements TodoyuPan
 		);
 
 		$this->addHasIconClass();
+
+		TodoyuPage::addExtAssets('calendar', 'panelwidget-quickevent');
 	}
 
 
@@ -77,9 +78,12 @@ class TodoyuPanelWidgetQuickEvent extends TodoyuPanelWidget implements TodoyuPan
 	public function render() {
 		$this->renderContent();
 
-		TodoyuPage::addExtAssets('calendar', 'panelwidget-quickevent');
-
 		return parent::render();
+	}
+
+
+	public static function isAllowed() {
+		return allowed('calendar', 'panelwidget:quickEvent');
 	}
 
 }

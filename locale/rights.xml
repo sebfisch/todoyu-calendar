@@ -2,9 +2,20 @@
 <locallang>
 	<labels lang="en">
 		<label index="section.panelwidgets">Panel widgets</label>
-		<label index="right.PanelWidgetCalendar">See calendar widget</label>
-		<label index="right.PanelWidgetQuickEvent">See quickevent widget</label>
-<!--  ......................................... added after 20091122 -->
+		<label index="right.panelwidget:calendar">Use calendar widget</label>
+		<label index="right.panelwidget:quickEvent">Use quickevent widget</label>
+		<label index="right.panelwidget:eventTypeSelector">Use eventtype selector widget</label>
+		<label index="right.panelwidget:holidaySetSelector">Use holidayset selector widget</label>
+		<label index="section.general">General</label>
+		<label index="right.use">Use calendar</label>
+		<label index="section.event">Event</label>
+		<label index="right.event:see">See events</label>
+		<label index="right.event:edit">Edit event</label>
+		<label index="right.event:add">Add new event</label>
+		<label index="right.event:delete">Delete events</label>
+		<label index="right.event:deleteOwn">Delete own events</label>
+		<label index="right.event:assign">Assign events to other users</label>
+		<label index="right.event:quickinfo">Show quickinfo</label>
 	</labels>
 	<labels lang="de"></labels>
 </locallang>

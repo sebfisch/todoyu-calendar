@@ -26,10 +26,6 @@
  * @subpackage	Calendar
  */
 
-
-
-
-
 $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 	'header'	=> array(
 		'key'		=> 'header',
@@ -77,37 +73,6 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 		'position'	=> 30
 	)
 );
-
-
-
-
-	/**
-	 * Context menu configuration for event type selector panel widget
-	 */
-//
-//$CONFIG['EXT']['calendar']['ContextMenu']['panelwidget-eventtypeselector'] = array(
-//	'header'	=> array(
-//		'key'		=> 'header',
-//		'label'		=> 'TodoyuPanelWidgetEventTypeSelector::getContextMenuHeader',
-//		'jsAction'	=> 'void(0)',
-//		'class'		=> 'contextmenuHeader',
-//		'position'	=> 0
-//	),
-//	'selectall'	=> array(
-//		'key'		=> 'selectall',
-//		'label'		=> 'LLL:calendar.contextmenu.selectall',
-//		'jsAction'	=> '',
-//		'class'		=> 'calendarContextMenu selectAll',
-//		'position'	=> 20
-//	),
-//	'selectnone'	=> array(
-//		'key'		=> 'selectnone',
-//		'label'		=> 'LLL:calendar.contextmenu.selectnone',
-//		'jsAction'	=> '',
-//		'class'		=> 'calendarContextMenu selectNone',
-//		'position'	=> 20
-//	)
-//);
 
 
 ?>

@@ -35,6 +35,8 @@ class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 	 *	@return	String
 	 */
 	public function popupAction(array $params) {
+		restrict('calendar', 'event:add');
+
 		$time	= time();
 
 		return TodoyuEventRenderer::renderCreateQuickEvent($time);
@@ -49,6 +51,8 @@ class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public function saveAction(array $params) {
+		restrict('calendar', 'event:add');
+
 		$formData	= $params['quickevent'];
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
 		$form		= TodoyuFormManager::getForm($xmlPath);
