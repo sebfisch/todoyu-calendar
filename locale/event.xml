@@ -47,6 +47,7 @@
 		<label index="eventslist.holidaysWithinTheNextXweeks">Holidays within the next XXX weeks</label>
 		<label index="error.starttimeAfterEndtime">The event end is before or even with the event start</label>
 		<label index="error.privateEvent">You are not alloweo aessign a private event to someone else</label>
+<!--  ......................................... added after 20091122 -->
 	</labels>
 	<labels lang="de"></labels>
 </locallang>

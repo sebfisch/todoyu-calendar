@@ -4,10 +4,7 @@
 		<label index="section.panelwidgets">Panel widgets</label>
 		<label index="right.PanelWidgetCalendar">See calendar widget</label>
 		<label index="right.PanelWidgetQuickEvent">See quickevent widget</label>
+<!--  ......................................... added after 20091122 -->
 	</labels>
-	<labels lang="de">
-		<label index="section.panelwidgets">Panel widgets</label>
-		<label index="right.PanelWidgetCalendar">Kalender widget (anzeigen)</label>
-		<label index="right.PanelWidgetQuickEvent">Termin widget (anzeigen)</label>
-	</labels>
+	<labels lang="de"></labels>
 </locallang>

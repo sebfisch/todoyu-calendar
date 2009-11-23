@@ -22,6 +22,7 @@
 		<label index="holiday">Holiday</label>
 		<label index="holiday.attr.workinghours">Working hours</label>
 		<label index="holiday.attr.holidayset">Holiday set</label>
+<!--  ......................................... added after 20091122 -->
 	</labels>
 	<labels lang="de"></labels>
 </locallang>

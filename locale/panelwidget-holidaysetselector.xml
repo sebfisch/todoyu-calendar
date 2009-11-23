@@ -3,6 +3,7 @@
 	<labels lang="en">
 		<label index="title">Holiday regions</label>
 		<label index="showNoHolidays">Hide holidays</label>
+<!--  ......................................... added after 20091122 -->
 	</labels>
 	<labels lang="de"></labels>
 </locallang>
