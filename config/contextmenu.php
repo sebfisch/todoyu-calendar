@@ -26,6 +26,10 @@
  * @subpackage	Calendar
  */
 
+
+/**
+ * Contextmenu for calendar area
+ */
 $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 	'header'	=> array(
 		'key'		=> 'header',
@@ -43,6 +47,10 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 	)
 );
 
+
+/**
+ * Contextmenu for event
+ */
 $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 	'header'	=> array(
 		'key'		=> 'header',

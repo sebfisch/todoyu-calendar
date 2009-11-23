@@ -776,9 +776,30 @@ class TodoyuEventManager {
 	 *	@return	Array
 	 */
 	public static function getContextMenuItems($idEvent, array $items) {
-		$idEvent = intval($idEvent);
+		$idEvent= intval($idEvent);
+		$allowed= array();
+		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Event'];
 
-		$items = array_merge_recursive($items, $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Event']);
+		$allowed[]	= $own['header'];
+
+		if( allowed('calendar', 'event:see') ) {
+			$allowed['show'] = $own['show'];
+		}
+
+		if( allowed('calendar', 'event:edit') ) {
+			$allowed['edit'] = $own['edit'];
+		}
+
+		if( allowed('calendar', 'event:delete') ) {
+			$allowed['delete'] = $own['remove'];
+		} elseif( allowed('calendar', 'event:deleteOwn') ) {
+			$event	= TodoyuEventManager::getEvent($idEvent);
+			if( $event->get('id_user_create') == userid() ) {
+				$allowed['delete'] = $own['remove'];
+			}
+		}
+
+		$items = array_merge_recursive($items, $allowed);
 
 		return $items;
 	}

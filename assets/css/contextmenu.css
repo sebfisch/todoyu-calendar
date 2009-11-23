@@ -1,14 +1,23 @@
 /* ---------------------------
 	Event contextmenu
    ---------------------------  */
+a.eventContextMenu {
+	background-image:url(../img/contextmenu.png);
+	background-repeat:no-repeat;	
+}
+  
 a.eventContextMenu.eventEdit {
-	background:url(../img/contextmenu.png) no-repeat 5px 0px;
+	background-position:5px 2px;
 }
 
 a.eventContextMenu.eventShow {
-	background:url(../img/contextmenu.png) no-repeat 5px -28px;
+	background-position:5px -28px;
 }
 
 a.eventContextMenu.eventRemove {
-	background:url(../img/contextmenu.png) no-repeat 5px -58px;
+	background-position:5px -58px;
+}
+
+a.eventContextMenu.eventAdd {
+	background:url(../img/icons.png) 5px -298px;
 }
