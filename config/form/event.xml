@@ -49,7 +49,7 @@
 
 				<field type="datetimeinput" name="date_start">
 					<label>LLL:event.attr.startdate</label>
-					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event');"</extraAttributes>
+					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event')"</extraAttributes>
 					<class>datetime</class>
 					<required label="calendar.event.error.startdate" />
 				</field>
