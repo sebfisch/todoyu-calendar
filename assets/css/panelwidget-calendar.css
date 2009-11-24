@@ -1,5 +1,5 @@
 /* -----------------
-	calendar
+	Calendar widget
    ----------------- */
 
 #panelwidget-calendar {
@@ -12,15 +12,15 @@
 }
 
 #scalupdate {
-	display: none;
+	display:none;
 }
 
 #panelwidget-event-content {
-	padding: 6px 0 6px 5px;
+	padding:6px 0 6px 5px;
 }
 
 #panelwidget-calendar-content .calheader,
 #panelwidget-calendar-content .calcontrol {
-	font-weight: normal !important;
-	text-transform: uppercase;
+	font-weight:normal !important;
+	text-transform:uppercase;
 }

@@ -173,6 +173,7 @@ class TodoyuCalendarRenderer {
 		$users			= TodoyuCalendarManager::getSelectedUsers();
 
 		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($selectedDate);
+
 		$dateStart	= $monthRange['start'];
 		$dateEnd	= $monthRange['end'];
 

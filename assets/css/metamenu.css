@@ -3,11 +3,11 @@
    -------------------------- */
 
 ul.navilist li .itemcalendar a {
-	padding-left: 26px !important;
+	padding-left:26px !important;
 }
 
 ul.navilist li .itemcalendar a:hover {
-	background-color: #EFF3E5 !important;
+	background-color:#EFF3E5 !important;
 }
 
 a.linkplanningday {

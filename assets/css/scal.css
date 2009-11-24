@@ -11,16 +11,16 @@
 #panelwidget-calendar-content .calheader .calcontrol,
 #panelwidget-calendar-content .dayboxname {
 	font-size:10px;
-	letter-spacing: 0.3px;
+	letter-spacing:0.3px;
 }
 
 .todoyuskin {
 	margin:2px 1px 1px 2px;
 	padding:0;
 	border:0px none;
-	width: 253px;
+	width:253px;
 	display:block;
-	background-color: #fff;
+	background-color:#fff;
 	min-height:175px;
 }
 
@@ -38,10 +38,10 @@
 
 .todoyuskin .calheader {
 	position:relative;
-	display: block;
+	display:block;
 	width:100%;
 	text-align:center;
-	font-weight: bold;
+	font-weight:bold;
 	background:#D7DCC6;
 	margin:0 0 1px;
 }
@@ -54,7 +54,7 @@
 	}
 
 	.todoyuskin .calcontrol {
-		font-weight: bold;
+		font-weight:bold;
 		width:25px;
 	}
 
@@ -90,14 +90,14 @@
 
 .todoyuskin .daybox {
 	float:left;
-	background-color: white;
+	background-color:white;
 	width:35px;
 	padding:0;
 	text-align:center;
 }
 
 .todoyuskin .today {
-	background-color: #e4eace;
+	background-color:#e4eace;
 	font-weight:bold;
 }
 
@@ -105,18 +105,18 @@
 }
 
 .todoyuskin .dayboxvalue{
-	display: none;
+	display:none;
 }
 
 .todoyuskin .dayboxname{
-	background-color: #e4eace;
+	background-color:#e4eace;
 	font-size:10px !important;
 	text-transform:uppercase;
 }
 
 .todoyuskin .dayboxsunday,
 .todoyuskin .dayboxsaturday {
-	background-color: #f2f3ed;
+	background-color:#f2f3ed;
 }
 
 .todoyuskin .daybox:hover,
@@ -136,11 +136,11 @@
 .todoyuskin .dayinmonth {}
 
 .todoyuskin .dayoutmonth * {
-	color: #999;
+	color:#999;
 }
 
 .todoyuskin .dayselected{
-	background-color: #d3d9bf;
+	background-color:#d3d9bf;
 }
 
 .todoyuskin .daycurrent{
@@ -203,7 +203,7 @@
 }
 
 #gridcontainer.monthMode {
-	overflow: visible;
+	overflow:visible;
 }
 
 

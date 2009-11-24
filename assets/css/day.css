@@ -8,7 +8,7 @@
 	padding:2px 4px;
 	margin-left:4px;
 	white-space:nowrap;
-	text-align: center;
+	text-align:center;
 }
 
 .day-todaywk-dayname{
@@ -21,7 +21,7 @@
 	padding:1px 3px;
 	margin-left:0px;
 	white-space:nowrap;
-	text-align: center;
+	text-align:center;
 }
 
 
@@ -31,13 +31,13 @@
    ------------------------------- */
 
 #dayViewAllDaywk {
-	padding: 0px 0px 2px 0px;
-	background: none;
+	padding:0px 0px 2px 0px;
+	background:none;
 }
 
 .tg-time-day {
 	padding-left:2px;
-	color: #446688;
+	color:#446688;
 	border-top:1px solid #ddd;
 	background-color:#f2f3ed;
 	height:41px;
@@ -65,7 +65,7 @@
    ---------------------- */
 
 .dayevent {
-	padding-top: 1px;
+	padding-top:1px;
 }
 
 

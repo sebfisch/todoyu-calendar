@@ -1,5 +1,5 @@
 /* ------------
-	header
+	Header
    ------------ */
 
 .mv-daynames-table {
@@ -20,11 +20,13 @@
 	text-transform:uppercase;
 }
 
+
+
 /* --------------
-	month view
+	Month view
    -------------- */
 
-/* border color and style */
+	/* border color and style */
 .mv-daynames-table th,
 .st-grid td {
 	border-color:#d7dcc6;
@@ -88,8 +90,8 @@
 
 		.st-grid td.ttoday {
 			background-color:#f6f6c8 !important;
-			font-weight: bold;
-			color: #0a246a;
+			font-weight:bold;
+			color:#0a246a;
 		}
 
 	.st-grid td.content {
@@ -117,45 +119,47 @@
 	overflow:hidden;
 }
 
+
+
 /* --------------
-	event
+	Event
    -------------- */
 
 .monthevent {
-    padding: 1px;
-	margin-bottom: 1px;
+    padding:1px;
+	margin-bottom:1px;
 	overflow:hidden;
 	white-space:nowrap;
-	height: 14px;
+	height:14px;
 }
 
 .montheventTime{
 	font-family:Arial,sans-serif;
 	white-space:nowrap;
-	font-size: 9px !important;
+	font-size:9px !important;
 	line-height:1.2;
-	font-weight: normal !important;
+	font-weight:normal !important;
 }
 
 .st-bgtoday {
 	background-color:#ffffcc;
-	border-right: 1px solid #d7dcc6;
-	border-left: 1px solid #d7dcc6;
+	border-right:1px solid #d7dcc6;
+	border-left:1px solid #d7dcc6;
 }
 
 span.holiday,
 span.quickInfoHoliday {
 	background:url('../img/icons.png') no-repeat -1px -390px;
-	cursor: pointer;
+	cursor:pointer;
 }
 div.quickinfoHoliday_content span.holiday {
-	text-transform: uppercase;
+	text-transform:uppercase;
 }
 
 #mvEventContainer {
-	border-left: 1px dotted #9e9e9e;
+	border-left:1px dotted #9e9e9e;
 }
 
 th.mv-dayname.odd{
-  background-color: #edf3d9 !important;
+  background-color:#edf3d9 !important;
 }
