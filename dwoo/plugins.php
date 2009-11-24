@@ -82,4 +82,24 @@ function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {
 	return Label( 'date.weekday.' . strtolower(date('D', $timestamp)) );
 }
 
+
+
+/**
+ * Assign negative timestamps. Needed if first timestamp would be after first day of month
+ *
+ *	@param Dwoo		$dwoo
+ *	@param Array	$timestamps
+ */
+function Dwoo_Plugin_assignNegativeTimestamps(Dwoo $dwoo, $month, $timestamps) {
+	$year	= date('Y', $timestamps[1]);
+	$day	= 1;
+
+	for ($i = 7; $i > 0; $i--) {
+		$timestamps[(93 + $i)]	= mktime(0,0,0, $month, $day, $year);
+		$day -= 1;
+	}
+
+	$dwoo->assignInScope($timestamps, 'timestamps');
+}
+
 ?>
