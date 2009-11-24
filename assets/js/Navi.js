@@ -52,6 +52,7 @@ Todoyu.Ext.calendar.Navi = {
 	getDirectionDate: function(direction) {
 		var tab		= this.getActiveTab();
 		var time	= this.ext.getTime();
+
 		var newTime	= Todoyu.Time.getShiftedTime(time, tab, direction);
 
 		return newTime * 1000;

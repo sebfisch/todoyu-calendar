@@ -157,8 +157,10 @@
 
 .todoyuskin .weekboxname{}
 
+
+
 /* ----------------
-	border
+	Border
    ---------------- */
 .todoyuskin .calweekswrapper {
 	border-width:1px 1px 0 0;
@@ -194,8 +196,10 @@
 	border-style:solid;
 }
 
+
+
 /* -----------------------
-	gridcontainer
+	Gridcontainer
    ----------------------- */
 
 #gridcontainer.dayMode, #gridcontainer.weekMode {
