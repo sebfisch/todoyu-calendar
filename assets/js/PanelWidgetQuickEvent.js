@@ -41,8 +41,8 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 		var url		= Todoyu.getUrl('calendar',	'quickevent');
 		var options	= {
 			'parameters': {
-				'action': 'popup',
-				'time': time
+				'action':	'popup',
+				'time':		time
 			}
 		};
 		var idPopup	= 'quickevent';

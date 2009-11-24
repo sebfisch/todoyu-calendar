@@ -50,9 +50,9 @@ Todoyu.Ext.calendar.Edit = {
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
 			'parameters': {
-				'action': 'edit',
-				'event': idEvent,
-				'time': time
+				'action':	'edit',
+				'event':	idEvent,
+				'time':		time
 			},
 			'onComplete': this.onFormLoaded.bind(this, idEvent)
 		}

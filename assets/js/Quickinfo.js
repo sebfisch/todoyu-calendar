@@ -247,9 +247,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 			var observerOut	= this.onMouseOut.bindAsEventListener(this, idEvent);
 
 			this.observers.push({
-				'element': element,
-				'over': observerOver,
-				'out': observerOut
+				'element':	element,
+				'over':		observerOver,
+				'out':		observerOut
 			});
 
 			element.observe('mouseover', observerOver);

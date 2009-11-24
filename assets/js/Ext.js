@@ -325,9 +325,9 @@ Todoyu.Ext.calendar = {
 		var url 	= Todoyu.getUrl('calendar', 'calendar');
 		var options	= {
 			'parameters': {
-				'action': 'update',
-				'tab':	this.getActiveTab(),
-				'time':	this.getTime()
+				'action':	'update',
+				'tab':		this.getActiveTab(),
+				'time':		this.getTime()
 			},
 			'onComplete': this.onCalendarBodyUpdated.bind(this)
 		};

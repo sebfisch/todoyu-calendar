@@ -2,7 +2,7 @@
 {if count($timestamps) > 36}{assign var=weeks value=6}{else}{assign var=weeks value=5}{/if}
 {* --- Ensure to include 1st day of month / resp. the monday before that --- *}
 {assign var=dayFrom value=$weekFromNum*7-6}
-{if date('n', $timestamps.$dayFrom) >= $selMonth && date('n', $timestamps.$dayFrom) > 1}
+{if date('Y', $timestamps.$dayFrom) == $selYear && date('n', $timestamps.$dayFrom) >= $selMonth && date('d', $timestamps.$dayFrom) > 1}
 	{assign var=weekFromNum value=0}
 	{assign var=weeks value=6}
 	{assignNegativeTimestamps $selMonth $timestamps}
@@ -28,7 +28,7 @@
 					{for dayCounter $dayFrom $dayUntil}
 					{if $dayCounter < 1}{assign var=curDayCounter value=$dayCounter+100}{else}{assign var=curDayCounter value=$dayCounter}{/if}
 					{assign var=dayDateKey value=date('Ymd', $timestamps.$curDayCounter)}
-					{if date('nY', $timestamps.$curDayCounter) == $selMonthY}{assign var=inSelMonth value=true}{else}{assign var=inSelMonth value=false}{/if}
+					{if date('nY', $timestamps.$curDayCounter) == $selMonthYear}{assign var=inSelMonth value=true}{else}{assign var=inSelMonth value=false}{/if}
 						<td id="createEventAt-{$timestamps.$curDayCounter}" {if count($holidays.$dayDateKey) == 0}title="{dateFormat $timestamps.$curDayCounter DlongD2MlongY4}{if $timestamps.$curDayCounter == $timestamp_today} ({Label calendar.today}){/if}"{/if} class="{if count($holidays.$dayDateKey) > 0}dayTitleHoliday {/if}createEventHotspotOnTitle title t{if $timestamps.$curDayCounter == $timestamp_today}today{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if $inSelMonth} inSelMonthTitle{if date('d', $timestamps.$curDayCounter) == 1} selMonthStart{/if}{/if}">
 							{* ------ Week number ----- *}
 							{if $curDayCounter == $dayFrom}<span class="weekNumber" title="{dateFormat $timestamps.$curDayCounter calendarweek}">{dateFormat $timestamps.$curDayCounter calendarweek}</span>{/if}

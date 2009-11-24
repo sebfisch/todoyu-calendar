@@ -101,8 +101,8 @@ Todoyu.Ext.calendar.Event = {
 			var url		= Todoyu.getUrl('calendar', 'event');
 			var options	= {
 				'parameters': {
-					'action': 'delete',
-					'event': idEvent
+					'action':	'delete',
+					'event':	idEvent
 				},
 				'onComplete': this.onRemoved.bind(this, idEvent)
 			};
@@ -172,7 +172,7 @@ Todoyu.Ext.calendar.Event = {
 		url		= Todoyu.getUrl('calendar', 'event');
 		options	= {
 			'parameters': {
-				'action': 		'detail',
+				'action': 	'detail',
 				'mode':		mode,
 				'eventID': 	idEvent
 			},
@@ -211,7 +211,7 @@ Todoyu.Ext.calendar.Event = {
 			var url		= Todoyu.getUrl('calendar', 'quickinfo');
 			var options	= {
 				'parameters': {
-					'action':		'show',
+					'action':	'show',
 					'type':		'event',
 					'eventID':	eventID
 				},
@@ -244,7 +244,7 @@ Todoyu.Ext.calendar.Event = {
 			new Ajax.Request('?ext=calendar&controller=quickinfo', {
 				method: 'post',
 					'parameters': {
-					'action':		'show',
+					'action':	'show',
 					'type':		'holiday',
 					'date':		holidayDate
 				},
@@ -354,9 +354,9 @@ Todoyu.Ext.calendar.Event = {
 
 		var options = {
 			'parameters': {
-				'action': 'acknowledge',
-				'eventID': idEvent,
-				'idUser': idUser
+				'action':	'acknowledge',
+				'eventID':	idEvent,
+				'idUser':	idUser
 			},
 			'onComplete': this.onAcknowledged.bind(this)
 		};
@@ -374,8 +374,8 @@ Todoyu.Ext.calendar.Event = {
 	onAcknowledged: function(response)	{
 		var idEvent = response.getHeader('Todoyu-idEvent');
 
-		if($('acknowledge-'+idEvent))	{
-			$('acknowledge-'+idEvent).fade();
+		if($('acknowledge-' + idEvent))	{
+			$('acknowledge-' + idEvent).fade();
 		}
 	},
 
@@ -388,7 +388,7 @@ Todoyu.Ext.calendar.Event = {
 	 *	@return	Boolean
 	 */
 	isDetailsLoaded: function(idEvent)	{
-		return Todoyu.exists('event-'+idEvent+'-details');
+		return Todoyu.exists('event-' + idEvent + '-details');
 	},
 
 
@@ -474,8 +474,8 @@ Todoyu.Ext.calendar.Event = {
 
 			var options = {
 				'parameters': {
-					'action': 'delete',
-					'idEvent': idEvent
+					'action':	'delete',
+					'idEvent':	idEvent
 				},
 				'onComplete': this.onDeleted.bind(this)
 			};

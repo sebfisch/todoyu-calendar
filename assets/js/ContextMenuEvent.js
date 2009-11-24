@@ -67,8 +67,8 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 		var url		= Todoyu.getUrl('calendar', 'contextmenu');
 		var options	= {
 			'parameters': {
-				'action': 'event',
-				'event': idEvent
+				'action':	'event',
+				'event':	idEvent
 			}
 		};
 

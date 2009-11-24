@@ -176,7 +176,6 @@ class TodoyuCalendarRenderer {
 
 		$dateStart	= $monthRange['start'];
 		$dateEnd	= $monthRange['end'];
-		$selMonth	= date('n', $dateStart + TodoyuTime::SECONDS_WEEK);
 
 		$userColors	= TodoyuUserManager::getSelectedUsersColor($users);
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
@@ -186,8 +185,9 @@ class TodoyuCalendarRenderer {
 		$data		= array(
 			'timestamps'		=> TodoyuCalendarManager::getShownDaysTimestampsOfMonthView($selectedDate),
 			'timestamp'			=> $selectedDate,
-			'selMonth'				=> $selMonth,
-			'selMonthY'			=> date('nY', $dateStart + TodoyuTime::SECONDS_WEEK),
+			'selMonth'			=> date('n', $dateStart + TodoyuTime::SECONDS_WEEK),
+			'selYear'			=> date('Y', $dateStart + TodoyuTime::SECONDS_WEEK),
+			'selMonthYear'		=> date('nY', $dateStart + TodoyuTime::SECONDS_WEEK),
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('month', $dateStart, $dateEnd, $eventTypes, $users),//, $amountDays),
