@@ -213,8 +213,8 @@ class TodoyuEventRenderer {
 	/**
 	 * Get height of  starting hour
 	 *
-	 * @param 	Integer	$tstamp		UNIX Timestamp of the starttime or endtime
-	 * @return	Integer					Top-Y of starting hour
+	 * @param 	Integer	$dateStart	UNIX Timestamp of the starttime or endtime
+	 * @return	Integer				Top-Y of starting hour
 	 */
 	public static function getTimeCoordinate($dateStart) {
 		$dateStart		= intval($dateStart);

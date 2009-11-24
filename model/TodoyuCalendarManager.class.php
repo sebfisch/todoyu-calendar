@@ -70,7 +70,6 @@ class TodoyuCalendarManager {
 
 	/**
 	 * Render function for portal calendar tabs
-	 * @todo	add functionality
 	 *
 	 * @return Integer
 	 */
@@ -93,9 +92,11 @@ class TodoyuCalendarManager {
 			case 'day':
 				$days = 1;
 				break;
+
 			case 'week':
 				$days = 7;
 				break;
+
 			case 'month':
 				$days = 35;
 				break;
@@ -172,19 +173,19 @@ class TodoyuCalendarManager {
 	/**
 	 * Get various data related to month of given timestamp
 	 *
-	 * @param	Integer 	$tstamp		UNIX Timestamp of the selected date
+	 * @param	Integer 	$timestamp		UNIX Timestamp of the selected date
 	 * @return	Array
 	 */
-	public static function getMonthData($tstamp) {
-		$month					= date('m', $tstamp);
-		$year					= date('Y', $tstamp);
+	public static function getMonthData($timestamp) {
+		$month					= date('m', $timestamp);
+		$year					= date('Y', $timestamp);
 		$secondsOfMonth			= TodoyuTime::getDayRange(mktime(0, 0, 0, $month, 1, $year));
 
 		$shownDaysOfLastMonth	= date('w', mktime(0, 0, 0, $month, 1, $year)) - 1;
-		$shownDaysOfNextMonth	= 35 - (TodoyuTime::getAmountOfDaysInMonth($tstamp)) - (TodoyuTime::getAmountOfDaysInMonth($tstamp, -1));
+		$shownDaysOfNextMonth	= 35 - (TodoyuTime::getAmountOfDaysInMonth($timestamp)) - (TodoyuTime::getAmountOfDaysInMonth($timestamp, -1));
 
 		$eventsStart['date']	= $secondsOfMonth['start'] - $shownDaysOfLastMonth * 86400;
-		$eventsStart['days']	= TodoyuTime::getAmountOfDaysInMonth($tstamp) + $shownDaysOfLastMonth + $shownDaysOfNextMonth;
+		$eventsStart['days']	= TodoyuTime::getAmountOfDaysInMonth($timestamp) + $shownDaysOfLastMonth + $shownDaysOfNextMonth;
 
 		return $eventsStart;
 	}
@@ -198,16 +199,13 @@ class TodoyuCalendarManager {
 	 * @param	Integer		$time
 	 * @return	Array
 	 */
-	public static function getMonthDisplayRange($time) {
-		$time		= intval($time);
-		$monthRange	= TodoyuTime::getMonthRange($time);
-
-		$start		= TodoyuTime::getWeekStart($monthRange['start']);
-		$end		= TodoyuTime::getWeekStart($monthRange['end']) + 604799; //604799 = 7 * 86400 - 1;
+	public static function getMonthDisplayRange($timestamp) {
+		$timestamp	= intval($timestamp);
+		$monthRange	= TodoyuTime::getMonthRange($timestamp);
 
 		return array(
-			'start'	=> $start,
-			'end'	=> $end
+			'start'	=> TodoyuTime::getWeekStart($monthRange['start']),
+			'end'	=> TodoyuTime::getWeekStart($monthRange['end']) + 604799 //604799 = 7 * 86400 - 1;
 		);
 	}
 
@@ -265,12 +263,12 @@ class TodoyuCalendarManager {
 	 * As the month view of the calendar displays 5 weeks from monday to sunday, there are always some days
 	 * out of the months before and after the selected month being displayed, this function calculates their timestamps.
 	 *
-	 * @param	Integer	$tstamp		Unix timestamp (selected date)
+	 * @param	Integer	$timestamp	Unix timestamp (selected date)
 	 * @return	Array				Timestamps of days to be shown in month view of calendar
 	 */
-	public static function getShownDaysTimestampsOfMonthView($tstamp) {
-		$tstamp		= intval($tstamp);
-		$monthSpecs	= self::getMonthSpecs($tstamp);
+	public static function getShownDaysTimestampsOfMonthView($timestamp) {
+		$timestamp		= intval($timestamp);
+		$monthSpecs	= self::getMonthSpecs($timestamp);
 
 		$monthNum			= intval($monthSpecs['dateOfCurrentMonth']);
 		$nextMonthNum		= intval($monthSpecs['dateOfNextMonth']);
@@ -312,18 +310,18 @@ class TodoyuCalendarManager {
 	 * @param	Integer	$tstamp		UNIX Timestamp (selected date in calendar panel widget)
 	 * @return	Array	data		precalculated attributes of prev., selected and next month to be rendered
 	 */
-	public static function getMonthSpecs($tstamp) {
-		$tstamp	= intval($tstamp);
-		$month	= date('m', $tstamp);
-		$year	= date('Y', $tstamp);
+	public static function getMonthSpecs($timestamp) {
+		$timestamp	= intval($timestamp);
+		$month	= date('m', $timestamp);
+		$year	= date('Y', $timestamp);
 
 		$data	= array(
-			'daysOfMonth'			=> TodoyuTime::getAmountOfDaysInMonth($tstamp),
-			'daysOfLastMonth'		=> TodoyuTime::getAmountOfDaysInMonth($tstamp, -1),
+			'daysOfMonth'			=> TodoyuTime::getAmountOfDaysInMonth($timestamp),
+			'daysOfLastMonth'		=> TodoyuTime::getAmountOfDaysInMonth($timestamp, -1),
 			'numericDayOfWeek'		=> date('w', mktime(0, 0, 0, $month, 1, $year)),
 			'dateOfLastMonth'		=> $month == 1 ? 12 : $month - 1,
 			'dateOfCurrentMonth'	=> $month,
-			'dateOfNextMonth'		=> date('m', strtotime('+1 month', $tstamp)),
+			'dateOfNextMonth'		=> date('m', strtotime('+1 month', $timestamp)),
 			'selectedYear'			=> $year,
 		);
 
@@ -338,11 +336,11 @@ class TodoyuCalendarManager {
 	/**
 	 * 	Get context menu items
 	 *
-	 *	@param	unknown_type	$time
+	 *	@param	Integer	$timestamp
 	 *	@param	Array	$items
 	 *	@return	Array
 	 */
-	public static function getContextMenuItems($time, array $items) {
+	public static function getContextMenuItems($timestamp, array $items) {
 		$allowed= array();
 		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Area'];
 
@@ -352,9 +350,7 @@ class TodoyuCalendarManager {
 			$allowed[] = $own['add'];
 		}
 
-		$items	= array_merge_recursive($items, $allowed);
-
-		return $items;
+		return array_merge_recursive($items, $allowed);
 	}
 
 
@@ -388,11 +384,7 @@ class TodoyuCalendarManager {
 	public static function getSelectedUsers() {
 		$users	= TodoyuPanelWidgetStaffSelector::getSelectedUsers();
 
-		if(sizeof($users) === 0) {
-			$users = array(userid());
-		}
-
-		return $users;
+		return (sizeof($users) === 0) ? array(userid()) : $users;
 	}
 
 

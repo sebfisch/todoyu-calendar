@@ -31,6 +31,9 @@ class TodoyuPanelWidgetQuickEvent extends TodoyuPanelWidget implements TodoyuPan
 	/**
 	 * Constructor of the class Todoyu(initialize widget)
 	 *
+	 * @param	Array	$config
+	 * @param	Array	$params
+	 * @param	Integer	$idArea
 	 */
 	public function __construct( array $config, array $params = array(), $idArea = 0) {
 		// construct PanelWidget (init basic configuration)
@@ -71,7 +74,7 @@ class TodoyuPanelWidgetQuickEvent extends TodoyuPanelWidget implements TodoyuPan
 
 
 	/**
-	 * Render widget
+	 * Render quick event widget
 	 *
 	 * @return	String
 	 */
@@ -82,6 +85,12 @@ class TodoyuPanelWidgetQuickEvent extends TodoyuPanelWidget implements TodoyuPan
 	}
 
 
+
+	/**
+	 * Check access allowance
+	 *
+	 * @return	Boolean
+	 */
 	public static function isAllowed() {
 		return allowed('calendar', 'panelwidget:quickEvent');
 	}

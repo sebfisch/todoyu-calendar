@@ -8,17 +8,18 @@
 	height:461px;
 }
 
-#calendararea.month {
-	height:670px !important;
-}
-#calendararea.sixWeeks {
-	height:800px !important;
-}
+	#calendararea.month {
+		height:670px !important;
+	}
 
-#calendararea.full {
-	overflow:visible;
-	height:auto;
-}
+	#calendararea.sixWeeks {
+		height:790px !important;
+	}
+
+	#calendararea.full {
+		overflow:visible;
+		height:auto;
+	}
 
 #toggleDayView {
 	height:20px;
@@ -27,9 +28,9 @@
 	background:url(../img/icons.png) no-repeat 2px -58px;
 }
 
-#toggleDayView.full {
-	background-position:2px -88px;
-}
+	#toggleDayView.full {
+		background-position:2px -88px;
+	}
 
 
 #tgnowptr {
@@ -83,55 +84,55 @@
 	background-color:#fff;
 }
 
-#calendar h1 {
-	padding-left:10px !important;
-}
-
-#calendar #createevent {
-	margin-top:10px;
-	margin-left:10px;
-}
-
-
-#calendar #createevent .formelement {
-	margin-bottom:4px;
-	clear:both;
-}
-
-#calendar #createevent .formelement input,
-#calendar #createevent .formelement textarea,
-#calendar #createevent .formelement select {
-	border:1px solid #d3dabb;
-}
-
-#calendar #createevent .formelement select.large {
-	width:355px;
-}
-
-#calendar #createevent .formelement .small {
-	width:80px;
-}
-
-#calendar #createevent .formelement .large {
-	width:352px;
-}
-
-	#calendar-title {
-		position:absolute;
-		line-height:23px;
-		margin:0;
-		padding:0 0 0 10px;
-		text-transform:uppercase;
+	#calendar h1 {
+		padding-left:10px !important;
+	}
+	
+	#calendar #createevent {
+		margin-top:10px;
+		margin-left:10px;
+	}
+	
+	
+	#calendar #createevent .formelement {
+		margin-bottom:4px;
+		clear:both;
+	}
+	
+	#calendar #createevent .formelement input,
+	#calendar #createevent .formelement textarea,
+	#calendar #createevent .formelement select {
+		border:1px solid #d3dabb;
+	}
+	
+	#calendar #createevent .formelement select.large {
+		width:355px;
+	}
+	
+	#calendar #createevent .formelement .small {
+		width:80px;
+	}
+	
+	#calendar #createevent .formelement .large {
+		width:352px;
 	}
 
-	#calendar-quicknav {
-		position:absolute;
-		top:3px;
-		right:15px;
-		float:right;
-		margin:0;
-		padding:0;
-	}
+#calendar-title {
+	position:absolute;
+	line-height:23px;
+	margin:0;
+	padding:0 0 0 10px;
+	text-transform:uppercase;
+}
+
+#calendar-quicknav {
+	position:absolute;
+	top:3px;
+	right:15px;
+	float:right;
+	margin:0;
+	padding:0;
+}
 
 #calendar-body {
 	float:left;
@@ -164,8 +165,6 @@ li.editeventtab p.label span.icon {
 	color:white;
 }
 
-#createevent .deleteButton { }
-
 #createevent #repeatsChoices {
 	margin-left:130px;
 	margin-top:5px;
@@ -182,23 +181,6 @@ li.editeventtab p.label span.icon {
 #createevent #repeatsChoices_area {
 	margin-top:10px;
 	font-weight:bold;
-}
-
-
-
-/* ----------------------
-	Repetitions
-   ---------------------- */
-
-#repetitions_choices {
-	margin:5px 0 10px 150px;
-	padding:0 3px 0 3px;
-	background-color:#f2f3ed;
-	width:352px;
-}
-
-#repetitions_area {
-	margin-top:5px;
 }
 
 

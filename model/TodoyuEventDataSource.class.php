@@ -49,28 +49,6 @@ class TodoyuEventDataSource {
 		return $options;
 	}
 
-
-
-	/**
-	 * Get day repetition options
-	 *
-	 * @param	TodoyuForm	$form
-	 * @return	Array
-	 */
-	public static function getDayRepetitionOptions(TodoyuFormElement $field) {
-		$options	= array();
-		$maxDays	= 21;
-
-		for($days = 2; $days <= $maxDays; $days++) {
-			$options[] = array(
-				'value'	=> $days,
-				'label'	=> $days . ' Tage lang wiederholen'
-			);
-		}
-
-		return $options;
-	}
-
 }
 
 ?>

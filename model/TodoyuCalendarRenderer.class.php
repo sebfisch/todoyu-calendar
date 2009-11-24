@@ -185,6 +185,7 @@ class TodoyuCalendarRenderer {
 		$data		= array(
 			'timestamps'		=> TodoyuCalendarManager::getShownDaysTimestampsOfMonthView($selectedDate),
 			'timestamp'			=> $selectedDate,
+			'month'				=> date('n', $dateStart + TodoyuTime::SECONDS_WEEK),
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('month', $dateStart, $dateEnd, $eventTypes, $users),//, $amountDays),

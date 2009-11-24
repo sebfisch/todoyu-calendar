@@ -83,11 +83,7 @@ class TodoyuCalendarPreferences {
 	public static function getDate($idArea = 0) {
 		$date	= self::getPref('date', 0, $idArea);
 
-		if( $date === false ) {
-			$date = NOW;
-		}
-
-		return $date;
+		return $date === false ? NOW : $date;
 	}
 
 
@@ -146,9 +142,7 @@ class TodoyuCalendarPreferences {
 			$setIDs	= array(0);
 		}
 
-		$setIDs	= implode(',', $setIDs);
-
-		self::savePref('panelwidget-holidaysetselector', $setIDs, 0, true, AREA);
+		self::savePref('panelwidget-holidaysetselector', implode(',', $setIDs), 0, true, AREA);
 	}
 
 
@@ -160,11 +154,7 @@ class TodoyuCalendarPreferences {
 	public static function getActiveTab() {
 		$tab	= TodoyuPreferenceManager::getPreference(EXTID_CALENDAR, 'tab');
 
-		if( $tab === false ) {
-			$tab = $GLOBALS['CONFIG']['EXT']['calendar']['config']['defaultTab'];
-		}
-
-		return $tab;
+		return $tab === false ? $GLOBALS['CONFIG']['EXT']['calendar']['config']['defaultTab'] : $tab;
 	}
 
 
@@ -186,14 +176,10 @@ class TodoyuCalendarPreferences {
 	 * @param	Integer	$idArea
 	 * @return	Integer	Timestamp
 	 */
-	public static function getCalendarDate( $idArea = 0 ) {
-		$tstamp	= TodoyuPreferenceManager::getPreference(EXTID_CALENDAR, 'date', 0, $idArea);
+	public static function getCalendarDate($idArea = 0) {
+		$timestamp	= TodoyuPreferenceManager::getPreference(EXTID_CALENDAR, 'date', 0, $idArea);
 
-		if( $tstamp === false ) {
-			$tstamp = NOW;
-		}
-
-		return $tstamp;
+		return $timestamp === false ? NOW : $timestamp;
 	}
 
 
@@ -202,12 +188,12 @@ class TodoyuCalendarPreferences {
 	 * Saves the active calendar date.
 	 *
 	 * @param	Integer	$idArea
-	 * @param	Integer	$tstamp			UNIX Timestamp
+	 * @param	Integer	$timestamp	UNIX Timestamp
 	 */
-	public static function saveCalendarDate( $idArea, $tstamp ) {
-		$tstamp	= intval($tstamp);
+	public static function saveCalendarDate($idArea, $timestamp) {
+		$timestamp	= intval($timestamp);
 
-		TodoyuPreferenceManager::savePreference(EXTID_CALENDAR, 'date', $tstamp, 0, true, $idArea);
+		TodoyuPreferenceManager::savePreference(EXTID_CALENDAR, 'date', $timestamp, 0, true, $idArea);
 	}
 
 
