@@ -310,6 +310,8 @@ Todoyu.Ext.calendar = {
 		this.Tabs.closeSpecialTabs();
 			// Make sure calendar is visible
 		this.showCalendar();
+			// Hide quickinfo
+		this.Quickinfo.hide();
 
 			// Get active tab and set it
 		if( ! Object.isString(tab) ) {

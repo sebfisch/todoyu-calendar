@@ -160,20 +160,15 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 *	'acknowledge' action method
+	 *	Acknowledge an (not seen) event
 	 *
 	 *	@param	Array	$params
-	 *	@todo	remove echo / finish implementation
 	 */
 	public function acknowledgeAction(array $params) {
-		$idEvent= intval($params['eventID']);
+		$idEvent= intval($params['event']);
 		$idUser	= intval($params['idUser']);
 
 		TodoyuEventManager::acknowledgeEvent($idEvent, $idUser);
-
-		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
-
-		echo 'ok';
 	}
 
 

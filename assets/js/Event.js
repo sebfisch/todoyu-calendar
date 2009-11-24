@@ -22,16 +22,6 @@ Todoyu.Ext.calendar.Event = {
 
 	ext: Todoyu.Ext.calendar,
 
-	quickEventPopupAllowed:	true,
-
-
-	/**
-	* Object for Control window.setTimeout
-	* @see function showEventQuickinfo()
-	*/
-	objTimeControl: {},
-
-
 
 	/**
 	 * Install observers
@@ -198,152 +188,6 @@ Todoyu.Ext.calendar.Event = {
 
 
 	/**
-	 *	Create event quick info tooltip
-	 *
-	 *	@param	Integer		eventID
-	 */
-	createEventQuickinfo: function(eventID) {
-		if(! $('quickinfo')) {
-			Todoyu.Ext.calendar.Quickinfo.insertQuickInfoElement();
-		}
-
-		if(Todoyu.Ext.calendar.Event.objTimeControl[eventID]) {
-			var url		= Todoyu.getUrl('calendar', 'quickinfo');
-			var options	= {
-				'parameters': {
-					'action':	'show',
-					'type':		'event',
-					'eventID':	eventID
-				},
-				onSuccess: function(info) {
-					this.ext.Quickinfo.insertIdentifiedQuickInfoElement(eventID, info);
-				},
-				onComplete: function(info) {
-					this.ext.Quickinfo.setQuickInfoElVisible(eventID);
-				}
-			};
-
-			Todoyu.send(url, options);
-		}
-	},
-
-
-
-	/**
-	 *	Create holiday quick info tooltip
-	 *
-	 *	@param	String		holidayDate
-	 */
-	createHolidayQuickinfo: function(holidayDate) {
-		if(! $('quickinfo')) {
-			Todoyu.Ext.calendar.Quickinfo.insertQuickInfoElement();
-		}
-
-		if(Todoyu.Ext.calendar.Event.objTimeControl[holidayDate]) {
-				// Get quick info content
-			new Ajax.Request('?ext=calendar&controller=quickinfo', {
-				method: 'post',
-					'parameters': {
-					'action':	'show',
-					'type':		'holiday',
-					'date':		holidayDate
-				},
-				onSuccess: function(info) {
-					Todoyu.Ext.calendar.Quickinfo.insertIdentifiedQuickInfoElement(holidayDate, info);
-				},
-				onComplete: function(info) {
-					Todoyu.Ext.calendar.Quickinfo.setQuickInfoElVisible(holidayDate);
-				}
-			});
-		}
-	},
-
-
-
-	/**
-	 *	Shows / updates quick info (tooltip information) of event on mouseOver
-	 *
-	 *	@param	Integer		eventID		ID of the selected event
-	 *	@param	Integer		mouseX		Horizontal mouse coordinate
-	 *	@param	Integer		mouseY		Vertical mouse coordinate
-	 */
-	showEventQuickinfo: function(eventID, mouseX, mouseY) {
-			// First show
-		if(! $('quickinfo')) {
-			this.ext.Quickinfo.insertQuickInfoElement();
-		}
-		this.ext.Quickinfo.showQuickInfoAtPosition(mouseX, mouseY);
-
-			// Set visible, start timeout to update on mouse movement
-		if($('quickinfo-i' + eventID)) {
-			$('quickinfo-i' + eventID).setStyle({'display':'block'});
-		} else {
-				// Is timer not running? start timeout to show quick info after
-			if(! this.objTimeControl[eventID]) {
-				this.objTimeControl[eventID] = window.setTimeout("Todoyu.Ext.calendar.Event.createEventQuickinfo(" + eventID + ")", 500);
-			} else {
-					// Clear a new start (restart timeout)
-				window.clearTimeout(this.objTimeControl[eventID]);
-				this.objTimeControl[eventID] = window.setTimeout("Todoyu.Ext.calendar.Event.createEventQuickinfo(" + eventID + ")", 500);
-			}
-		}
-	},
-
-
-
-	/**
-	 *	Shows / updates quick info (tooltip information) of event on mouseOver
-	 *
-	 *	@param	String		holidayDate	Date of the holiday (YYYYMMDD)
-	 *	@param	Integer		mouseX		Horizontal mouse coordinate
-	 *	@param	Integer		mouseY		Vertical mouse coordinate
-	 */
-	showHolidayQuickinfo: function(holidayDate, mouseX, mouseY) {
-			// First show
-		if(! $('quickinfo')) {
-			this.ext.Quickinfo.insertQuickInfoElement();
-		}
-		this.ext.Quickinfo.showQuickInfoAtPosition(mouseX, mouseY);
-
-			// Set visible, start timeout to update on mouse movement
-		if($('quickinfo-i' + holidayDate)) {
-			$('quickinfo-i' + holidayDate).setStyle({'display':'block'});
-		} else {
-				// Is timer not running? start timeout to show quick info after
-			if(! this.objTimeControl[holidayDate]) {
-				this.objTimeControl[holidayDate] = window.setTimeout("Todoyu.Ext.calendar.Event.createHolidayQuickinfo(" + holidayDate + ")", 500);
-			} else {
-					// Clear a new start (restart timeout)
-				window.clearTimeout(this.objTimeControl[holidayDate]);
-				this.objTimeControl[holidayDate] = window.setTimeout("Todoyu.Ext.calendar.Event.createHolidayQuickinfo(" + holidayDate + ")", 500);
-			}
-		}
-	},
-
-
-
-	/**
-	 *	Hide event quick info tooltip
-	 *
-	 *	@param	Integer		eventID		ID of the selected event
-	 */
-	hideQuickinfo: function(timerID) {
-			// Timer run?
-		if(this.objTimeControl[timerID]) {
-			window.clearTimeout(this.objTimeControl[timerID]);
-		}
-
-		if($('quickinfo')) {
-			$('quickinfo').childElements('div').each(function(item) {
-				item.hide();
-			});
-			$('quickinfo').hide();
-		}
-	},
-
-
-
-	/**
 	 *	Set event acknowledged
 	 *
 	 *	@param	Integer		idEvent
@@ -355,10 +199,10 @@ Todoyu.Ext.calendar.Event = {
 		var options = {
 			'parameters': {
 				'action':	'acknowledge',
-				'eventID':	idEvent,
+				'event':	idEvent,
 				'idUser':	idUser
 			},
-			'onComplete': this.onAcknowledged.bind(this)
+			'onComplete': this.onAcknowledged.bind(this, idEvent, idUser)
 		};
 
 		Todoyu.send(url, options);
@@ -371,10 +215,8 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 *	@param	Response	response
 	 */
-	onAcknowledged: function(response)	{
-		var idEvent = response.getHeader('Todoyu-idEvent');
-
-		if($('acknowledge-' + idEvent))	{
+	onAcknowledged: function(idEvent, idUser, response)	{
+		if( $('acknowledge-' + idEvent) ) {
 			$('acknowledge-' + idEvent).fade();
 		}
 	},

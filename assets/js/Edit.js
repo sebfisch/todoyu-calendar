@@ -33,6 +33,7 @@ Todoyu.Ext.calendar.Edit = {
 	 * @param	Integer		time
 	 */
 	open: function(idEvent, time) {
+		Todoyu.Ui.scrollToTop();
 		this.addTab('Edit');
 		this.ext.hideCalendar();
 		this.loadForm(idEvent, time);
