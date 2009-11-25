@@ -6,7 +6,7 @@
 			<legend>Holidayset of address</legend>
 			<elements>
 				<field type="select" name="id_holidayset">
-					<label>LLL:calendar.holidayset</label>
+					<label>calendar.holidayset</label>
 					<source type="function">
 						<function>TodoyuHolidayViewHelper::getHolidaysetOptions</function>
 						<lazyInit/>

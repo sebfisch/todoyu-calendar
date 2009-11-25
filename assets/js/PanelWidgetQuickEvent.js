@@ -72,8 +72,6 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 			},
 			'onComplete': this.onSaved.bind(this)
 		});
-
-		return false;
 	},
 
 

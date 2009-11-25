@@ -10,28 +10,28 @@
 			<elements>
 
 				<field type="textinput" name="title">
-					<label>LLL:core.title</label>
+					<label>core.title</label>
 					<required>1</required>
 				</field>
 
 				<field type="dateinput" name="date">
-					<label>LLL:date.date</label>
+					<label>date.date</label>
 					<required>1</required>
 				</field>
 
 				<field type="textarea" name="description">
-					<label>LLL:core.description</label>
+					<label>core.description</label>
 				</field>
 
 				<field type="select" name="workinghours">
-					<label>LLL:calendar.holiday.attr.workinghours</label>
+					<label>calendar.holiday.attr.workinghours</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getWorkingHoursOptions</function>
 					</source>
 				</field>
 
 				<field type="databaseRelation" name="holidayset">
-					<label>LLL:calendar.holiday.attr.holidayset</label>
+					<label>calendar.holiday.attr.holidayset</label>
 					<foreignRecordConf>
 						<foreignformxml>ext/calendar/config/form/admin/holiday-holidayset.xml</foreignformxml>
 						<addSubformConfig>

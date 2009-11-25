@@ -17,12 +17,12 @@
 			<elements>
 
 				<field type="textinput" name="title">
-					<label>LLL:core.title</label>
+					<label>core.title</label>
 					<required />
 				</field>
 
 				<field type="select" name="eventtype">
-					<label>LLL:event.attr.eventtype</label>
+					<label>event.attr.eventtype</label>
 					<source type="function">
 						<function>TodoyuEventDataSource::getEventTypeOptions</function>
 					</source>
@@ -31,15 +31,15 @@
 				</field>
 
 				<field type="checkbox" name="is_dayevent">
-					<label>LLL:event.attr.is_dayevent</label>
+					<label>event.attr.is_dayevent</label>
 				</field>
 
 				<field type="checkbox" name="is_public">
-					<label>LLL:event.attr.is_public</label>
+					<label>event.attr.is_public</label>
 				</field>
 
 				<field type="checkbox" name="is_private">
-					<label>LLL:event.attr.is_private</label>
+					<label>event.attr.is_private</label>
 					<validate>
 						<user msg="LLL:event.error.privateEvent">
 							<function>TodoyuEventFormValidator::eventIsAssignableToCurrentUserOnly</function>
@@ -48,16 +48,16 @@
 				</field>
 
 				<field type="datetimeinput" name="date_start">
-					<label>LLL:event.attr.startdate</label>
+					<label>event.attr.startdate</label>
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event')"</extraAttributes>
 					<class>datetime</class>
-					<required label="calendar.event.error.startdate" />
+					<required label="event.error.date_start" />
 				</field>
 
 				<field type="datetimeinput" name="date_end">
-					<label>LLL:event.attr.enddate</label>
+					<label>event.attr.enddate</label>
 					<validate>
-						<dateTimeNotBefore msg="LLL:event.error.starttimeAfterEndtime">
+						<dateTimeNotBefore msg="form.error.endDateNotBeforeStart">
 							<field>date_start</field>
 						</dateTimeNotBefore>
 					</validate>
@@ -71,15 +71,15 @@
 			<elements>
 
 				<field type="textinput" name="place">
-					<label>LLL:event.attr.place</label>
+					<label>event.attr.place</label>
 				</field>
 
 				<field type="textarea" name="description">
-					<label>LLL:core.description</label>
+					<label>core.description</label>
 				</field>
 
 				<field type="databaseRelation" name="user">
-					<label>LLL:event.attr.assigned_to</label>
+					<label>event.attr.assigned_to</label>
 					<foreignRecordConf>
 						<foreignformxml>ext/calendar/config/form/event-user.xml</foreignformxml>
 						<addSubformConfig>
@@ -96,7 +96,7 @@
 				</field>
 
 				<field type="textinputAC" name="id_project">
-					<label>LLL:event.attr.id_project</label>
+					<label>event.attr.id_project</label>
 					<config>
 						<acListener>
 								<ext>calendar</ext>
@@ -108,7 +108,7 @@
 				</field>
 
 				<field type="textinputAC" name="id_task">
-					<label>LLL:event.attr.id_task</label>
+					<label>event.attr.id_task</label>
 					<config>
 						<acListener>
 								<ext>calendar</ext>
@@ -126,18 +126,10 @@
 			<legend>Actions</legend>
 			<class>buttons</class>
 			<elements>
-				<field type="button" name="save">
-					<text>LLL:form.field.save</text>
-					<type>submit</type>
-					<class>buttonSave</class>
-					<hasIcon>1</hasIcon>
+				<field type="saveButton" name="save">
 					<onclick>Todoyu.Ext.calendar.Edit.saveEvent()</onclick>
 				</field>
-				<field type="button" name="cancel">
-					<text>LLL:form.field.cancel</text>
-					<type>button</type>
-					<class>buttonCancel</class>
-					<hasIcon>1</hasIcon>
+				<field type="cancelButton" name="cancel">
 					<onclick>Todoyu.Ext.calendar.Edit.cancelEdit()</onclick>
 				</field>
 			</elements>

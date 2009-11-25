@@ -48,6 +48,7 @@
 		<label index="error.starttimeAfterEndtime">The event end is before or even with the event start</label>
 		<label index="error.privateEvent">You are not alloweo aessign a private event to someone else</label>
 <!--  ......................................... added after 20091122 -->
+		<label index="error.date_start">Please enter a valid startdate for the event</label>
 	</labels>
 	<labels lang="de"></labels>
 </locallang>
