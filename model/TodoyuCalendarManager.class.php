@@ -117,7 +117,7 @@ class TodoyuCalendarManager {
 	public static function getHolidays($dateStart, $dateEnd) {
 		$holidaySets	= self::getSelectedHolidaySets();
 
-		if(sizeof($holidaySets) > 0) {
+		if( sizeof($holidaySets) > 0 ) {
 			$holidays	= TodoyuHolidayManager::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySets);
 			$grouped	= TodoyuHolidayManager::groupHolidaysByDays($holidays);
 		}
