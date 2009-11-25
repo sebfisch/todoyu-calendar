@@ -151,7 +151,7 @@ class TodoyuEventRenderer {
 		$selectedUserIDs= TodoyuArray::intval($selectedUserIDs);
 		$event			= self::prepareEventRenderData($calendarMode, $event, $selectedUserIDs, $selectedUserColors);
 
-		if($calendarMode === 'list')	{
+		if( $calendarMode === 'list' )	{
 			$color = self::getEventColorData(userid());
 			$event['colors']		= $color[userid()];
 			$event['currentUser']	= userid();

@@ -336,7 +336,7 @@ class TodoyuHolidayManager {
 
 		if(count($swordArray) > 0)	{
 			$where = '';
-			if($swordArray[0] != '*')	{
+			if( $swordArray[0] != '*' )	{
 				$where = Todoyu::db()->buildLikeQuery($swordArray, array('title', 'description'));
 			}
 

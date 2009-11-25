@@ -596,12 +596,12 @@ class TodoyuEventManager {
 		$formData['is_dayevent']	= intval($formData['is_dayevent']);
 		$formData['eventtype']		= intval($formData['eventtype']);
 
-		if($formData['starttime'])	{
+		if( $formData['starttime'] )	{
 			$formData['date_start']	=	mktime(0, 0, 0, date('n', $formData['date_start']), date('j', $formData['date_start']), date('Y', $formData['date_start'])) + TodoyuTime::parseTime($formData['starttime']);
 			unset($formData['starttime']);
 		}
 
-		if($formData['endtime'])	{
+		if( $formData['endtime'] )	{
 			$formData['date_end']	=	mktime(0, 0, 0, date('n', $formData['date_end']), date('j', $formData['date_end']), date('Y', $formData['date_end'])) + TodoyuTime::parseTime($formData['endtime']);
 			unset($formData['endtime']);
 		}
@@ -647,7 +647,7 @@ class TodoyuEventManager {
 
 				Todoyu::db()->doInsert($table, $fields);
 
-				if($formData['send_notification'] === 1)	{
+				if( $formData['send_notification'] === 1 )	{
 					TodoyuCalendarMailer::sendEventNotification($idEvent, $idUser);
 				}
 			}

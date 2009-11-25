@@ -158,7 +158,7 @@ class TodoyuCalendarManager {
 			$amount = ($endDay == 0 ? 7 : $endDay) - ($startDay == 0 ? 7 : $startDay) + 1;
 		} else {
 				// Days are not within the same week (spanning over tow or more weeks)
-			if($endDay != '') {
+			if( $endDay != '' ) {
 				$amount	= $endDay == 0 ? 7 : $endDay;
 			} else {
 				$amount	= $startDay != '' ? ($startDay == 0 ? 1 : 8 - $startDay) : false;
@@ -227,25 +227,25 @@ class TodoyuCalendarManager {
 		$currentWeekNumber	= TodoyuTime::getWeeknumber($tstampSelDay);
 
 			// If start and end date is in the same week
-		if($startWeekNumber == $endWeekNumber) {
+		if( $startWeekNumber == $endWeekNumber ) {
 			$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums($startDayOfWeek, $endDayOfWeek, true);
 			$duration['blankTDBefore']	= $startDayOfWeek - 1;
 		} else {
 					// Is the current week the first one?
-				if($currentWeekNumber == $startWeekNumber) {
+				if( $currentWeekNumber == $startWeekNumber ) {
 
 					$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums($startDayOfWeek, '', false);
 					$duration['blankTDBefore']	= 7 - $duration['duration'];
 				}
 
 					// Is the current week the last one?
-				if($currentWeekNumber == $endWeekNumber) {
+				if( $currentWeekNumber == $endWeekNumber ) {
 					$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums('', $endDayOfWeek, false);
 					$duration['blankTDBefore']	= 0;
 				}
 
 					// Is the current week between the first and last one? Show the full week
-				if($currentWeekNumber != $startWeekNumber && $currentWeekNumber != $endWeekNumber) {
+				if( $currentWeekNumber != $startWeekNumber && $currentWeekNumber != $endWeekNumber ) {
 					$duration['duration']		= 7;
 					$duration['blankTDBefore']	= 0;
 				}
