@@ -72,7 +72,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	Integer	idEvent
 	 */
 	edit: function(idEvent) {
-		this.ext.Edit.open(idEvent);
+		this.ext.EventEdit.open(idEvent);
 	},
 
 
@@ -110,7 +110,7 @@ Todoyu.Ext.calendar.Event = {
 	 *	@param	Object	response
 	 */
 	onRemoved: function(idEvent, response) {
-
+		this.ext.refresh();
 	},
 
 
@@ -302,38 +302,6 @@ Todoyu.Ext.calendar.Event = {
 				}
 			});
 		}
-	},
-
-
-
-	/**
-	 * deletes event after confirmation
-	 *
-	 */
-	deleteEvent: function(idEvent)	{
-		if(confirm('[LLL:event.delete.confirm]'))	{
-			var url = Todoyu.getUrl('calendar' , 'event');
-
-			var options = {
-				'parameters': {
-					'action':	'delete',
-					'idEvent':	idEvent
-				},
-				'onComplete': this.onDeleted.bind(this)
-			};
-
-			Todoyu.send(url, options);
-		}
-	},
-
-
-
-	/**
-	 * Back to calendar view
-	 *
-	 */
-	onDeleted: function()	{
-		this.cancelEdit();
 	}
 
 };

@@ -27,6 +27,9 @@
  */
 class TodoyuCalendarEventActionController extends TodoyuActionController {
 
+	/**
+	 * Initialize (restrict rights)
+	 */
 	public function init() {
 		restrict('calendar', 'use');
 	}
@@ -56,8 +59,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 *	@return	String
 	 */
 	public function editAction(array $params) {
-
-
 		$idEvent	= intval($params['event']);
 		$time		= intval($params['time']);
 
@@ -66,8 +67,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		} else {
 			restrict('calendar', 'event:edit');
 		}
-
-
 
 			// Send tab label
 		if( $idEvent === 0 ) {

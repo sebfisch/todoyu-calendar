@@ -21,7 +21,7 @@
 /**
  * Functions for event edit
  */
-Todoyu.Ext.calendar.Edit = {
+Todoyu.Ext.calendar.EventEdit = {
 
 	ext: Todoyu.Ext.calendar,
 

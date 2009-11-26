@@ -39,7 +39,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 100
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/Event.js',
+				'file' => 'ext/calendar/assets/js/EventEdit.js',
 				'position' => 105
 			),
 		),
@@ -76,7 +76,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 106
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/Edit.js',
+				'file' => 'ext/calendar/assets/js/EventEdit.js',
 				'position' => 107
 			),
 			array(

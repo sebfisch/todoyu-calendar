@@ -44,10 +44,12 @@ Todoyu.Ext.calendar.Tabs = {
 			case 'edit':
 			case 'view':
 				break;
+				
 				// Click on add tab add a new edit tab
 			case 'add':
-				this.ext.Edit.open(0);
+				this.ext.EventEdit.open(0);
 				break;
+				
 				// Click on view tabs changes calendar view
 			default:
 				this.closeSpecialTabs();
@@ -57,9 +59,11 @@ Todoyu.Ext.calendar.Tabs = {
 		}
 	},
 
+
+
 	closeSpecialTabs: function() {
-		if( this.ext.Edit.isActive() ) {
-			this.ext.Edit.close();
+		if( this.ext.EventEdit.isActive() ) {
+			this.ext.EventEdit.close();
 		}
 		if( this.ext.EventView.isActive() ) {
 			this.ext.EventView.close();
