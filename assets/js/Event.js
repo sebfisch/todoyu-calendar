@@ -204,6 +204,8 @@ Todoyu.Ext.calendar.Event = {
 			},
 			'onComplete': this.onAcknowledged.bind(this, idEvent, idUser)
 		};
+		
+		$('acknowledge-' + idEvent).removeClassName('not');
 
 		Todoyu.send(url, options);
 	},
@@ -216,9 +218,7 @@ Todoyu.Ext.calendar.Event = {
 	 *	@param	Response	response
 	 */
 	onAcknowledged: function(idEvent, idUser, response)	{
-		if( $('acknowledge-' + idEvent) ) {
-			$('acknowledge-' + idEvent).fade();
-		}
+		
 	},
 
 

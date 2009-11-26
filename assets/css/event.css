@@ -93,31 +93,3 @@ table.eventView {
 	width:100%;
 	line-height:20px;	
 }
-
-
-
-/* ---------------------------
-	List view
-   --------------------------- */
-
-div.eventDetails dt {
-	float:left;
-	line-height:18px;
-	text-align:left;
-	clear:both;
-}
-
-div.eventDetails dd {
-	float:right;
-	line-height:18px;
-	width:520px;
-	text-align:left;
-}
-
-#events .event h3 .label {
-	
-}
-
-#events .event h3 .label .title {
-	padding-left:20px;
-}

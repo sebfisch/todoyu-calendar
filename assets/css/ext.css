@@ -112,12 +112,39 @@ form.createevent label, form.createeventMidcol label{
 	padding-left:13px;
 }
 
-#events .headLabel span.isNotAcknowledgedIcon {
-	background:transparent url(../../../project/assets/img/icons.png) no-repeat 0 -240px;
-	height:25px;
-	width:20px;
-	padding:0 0 0 16px;
+#events .headLabel span.acknowledge {
 	margin-right:10px;
+}
+
+#events .headLabel span.acknowledge.not {
+	background:url(../../../project/assets/img/icons.png) no-repeat 2px -240px;
+	cursor:pointer;
+}
+
+div.eventDetails dt {
+	float:left;
+	line-height:18px;
+	text-align:left;
+	clear:both;
+}
+
+div.eventDetails dd {
+	float:right;
+	line-height:18px;
+	width:520px;
+	text-align:left;
+}
+
+#events .event h3 .label {
+	cursor:pointer;
+}
+
+#events .event h3 .label .title {
+	padding-left:20px;
+}
+
+#events .event h3 .isNotAcknowledgedIcon {
+	
 }
 
 
@@ -129,6 +156,11 @@ form.createevent label, form.createeventMidcol label{
 	position:absolute;
 	right:10px;
 }
+
+
+
+
+
 
 	/* form */
 form.formEvent button.buttonSave {}

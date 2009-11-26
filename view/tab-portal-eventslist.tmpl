@@ -8,14 +8,17 @@
 		{foreach $events idEvent event}{* ------- Event entry ------- *}
 			<div id="event-{$idEvent}" class="event {cycle values="odd,even"}">
 				<h3 id="event-{$idEvent}-header" class="contextmenuevent enumColBorLef{$color.id}" name="event-{$event.id}">
-					<a href="javascript:void(0)" onclick="Todoyu.Ext.calendar.Event.toggleDetails({$idEvent}); {if $event.is_acknowledged == 0}Todoyu.Ext.calendar.Event.acknowledgeEvent({$idEvent}, {$event.id_user});{/if}" class="title ">
-						<span class="headLabel" title="{$event.title}">
-							<span class="icon eventtype_{$event.eventtype}" title="{EventTypeLabel $event.eventtype}"> </span>
-							{if $event.is_acknowledged == 0}<span id="acknowledge-{$event.id}" class="isNotAcknowledgedIcon"> </span>{/if}
-							<span><span>{date_dmyHi $event.date_start} - {date_dmyHi $event.date_end}</span></span>
-							{htmlencode $event.title}
+					<span class="headLabel" title="{$event.title}">
+						<span class="icon eventtype_{$event.eventtype}" title="{EventTypeLabel $event.eventtype}"> </span>
+
+							<span id="acknowledge-{$event.id}" class="icon acknowledge {if !$event.is_acknowledged}not{/if}" {if !$event.is_acknowledged}onclick="Todoyu.Ext.calendar.Event.acknowledgeEvent({$idEvent}, {$event.id_user})"{/if}> </span>
+
+						<span class="label" onclick="Todoyu.Ext.calendar.Event.toggleDetails({$idEvent})">
+							<span class="date">{date_dmyHi $event.date_start} - {date_dmyHi $event.date_end}</span>
+							<span class="title">{htmlencode $event.title}</span>
 						</span>
-					</a><div class="clear"><!-- --></div>
+					</span>
+					<div class="clear"><!-- --></div>
 				</h3>
 				{$details}
 			</div>{* ------- End: event entry ------- *}

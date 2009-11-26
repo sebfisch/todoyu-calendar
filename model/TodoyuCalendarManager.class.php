@@ -38,28 +38,26 @@ class TodoyuCalendarManager {
 			// Have calendar JS and CSS registered (for correct style and context menu handling)
 		TodoyuPage::addExtAssets('calendar', 'public');
 
-		$today		= mktime(0, 0, 0, date('n', NOW), date('j', NOW), date('Y', NOW));
 		$dateStart	= TodoyuTime::getStartOfDay(NOW);
-		$dateEnd	= NOW + 2 * 365 * 24 * 3600;
-
+		$dateEnd	= NOW + TodoyuTime::SECONDS_DAY * 365 * 2;
 
 		$events	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(userid()));
 		// @todo	add fetch/ mergin of day-events / non-day-events
 
-		if ($GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showHolidays']) {
+		if( $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showHolidays'] ) {
 				// Get holidays within the next X (see calendar/config/extension.php) weeks
 			$amountWeeksToLookToForHolidays = $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['holidaysLookAheadWeeks'];
-			$endTime	= $today + $amountWeeksToLookToForHolidays * 604800;	// 604800 == 24 * 60 * 60 * 7
-			$holidays	= TodoyuHolidayManager::getPersonHolidaysInTimespan(array($idUser), $today, $endTime);
+			$endTime	= $dateStart + $amountWeeksToLookToForHolidays * TodoyuTime::SECONDS_WEEK;
+			$holidays	= TodoyuHolidayManager::getPersonHolidaysInTimespan(array($idUser), $dateStart, $endTime);
 		} else {
 			$holidays	= array();
 		}
 
-		if ($GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showBirthdays']) {
+		if( $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showBirthdays'] ) {
 				// Get birthdays within the next X (see calendar/config/extension.php) weeks
 //			$amountWeeksToLookToForBirthdays = $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['birthdaysLookAheadWeeks'];
-			$endTime	= $today + $amountWeeksToLookToForHolidays * 604800;	// 604800 == 24 * 60 * 60 * 7
-			$birthdays	= TodoyuUserManager::getUsersByBirthdayInTimespan($today, $endTime);
+			$endTime	= $dateStart + $amountWeeksToLookToForHolidays * TodoyuTime::SECONDS_WEEK;
+			$birthdays	= TodoyuUserManager::getUsersByBirthdayInTimespan($dateStart, $endTime);
 		} else {
 			$birthdays	= array();
 		}

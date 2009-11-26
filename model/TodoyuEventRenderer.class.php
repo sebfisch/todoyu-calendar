@@ -40,6 +40,7 @@ class TodoyuEventRenderer {
 	public static function renderPortalTabEventsList(array $events, array $holidays, array $birthdays ) {
 		$color = self::getEventColorData(userid());
 
+		$tmpl	= 'ext/calendar/view/tab-portal-eventslist.tmpl';
 		$data	= array(
 			'events'						=> $events,
 			'showHolidays'					=> $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showHolidays'],
@@ -51,7 +52,7 @@ class TodoyuEventRenderer {
 			'color'							=> $color[userid()]
 		);
 
-		return render( 'ext/calendar/view/tab-portal-eventslist.tmpl', $data );
+		return render($tmpl, $data);
 	}
 
 
