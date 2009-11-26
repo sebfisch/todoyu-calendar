@@ -354,7 +354,7 @@ Todoyu.Ext.calendar = {
 	 * @param	Integer		time
 	 */
 	addEvent: function(time) {
-		this.Edit.open(0, time);
+		this.EventEdit.open(0, time);
 	},
 
 

@@ -38,7 +38,7 @@ class TodoyuCalendarManager {
 			// Have calendar JS and CSS registered (for correct style and context menu handling)
 		TodoyuPage::addExtAssets('calendar', 'public');
 
-		$today		=	mktime(0, 0, 0, date('n', NOW), date('j', NOW), date('Y', NOW));
+		$today		= mktime(0, 0, 0, date('n', NOW), date('j', NOW), date('Y', NOW));
 		$dateStart	= TodoyuTime::getStartOfDay(NOW);
 		$dateEnd	= NOW + 2 * 365 * 24 * 3600;
 

@@ -26,7 +26,7 @@
 					<source type="function">
 						<function>TodoyuEventDataSource::getEventTypeOptions</function>
 					</source>
-					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.Edit.reload(this.form)"</extraAttributes>
+					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.EventEdit.reload(this.form)"</extraAttributes>
 					<required />
 				</field>
 
@@ -127,10 +127,10 @@
 			<class>buttons</class>
 			<elements>
 				<field type="saveButton" name="save">
-					<onclick>Todoyu.Ext.calendar.Edit.saveEvent()</onclick>
+					<onclick>Todoyu.Ext.calendar.EventEdit.saveEvent()</onclick>
 				</field>
 				<field type="cancelButton" name="cancel">
-					<onclick>Todoyu.Ext.calendar.Edit.cancelEdit()</onclick>
+					<onclick>Todoyu.Ext.calendar.EventEdit.cancelEdit()</onclick>
 				</field>
 			</elements>
 		</fieldset>
