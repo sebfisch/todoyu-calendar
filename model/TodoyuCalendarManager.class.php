@@ -42,6 +42,7 @@ class TodoyuCalendarManager {
 		$dateStart	= TodoyuTime::getStartOfDay(NOW);
 		$dateEnd	= NOW + 2 * 365 * 24 * 3600;
 
+
 		$events	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(userid()));
 		// @todo	add fetch/ mergin of day-events / non-day-events
 
