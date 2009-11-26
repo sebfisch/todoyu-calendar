@@ -113,3 +113,11 @@ div.eventDetails dd {
 	width:520px;
 	text-align:left;
 }
+
+#events .event h3 .label {
+	
+}
+
+#events .event h3 .label .title {
+	padding-left:20px;
+}
