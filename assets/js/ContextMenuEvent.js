@@ -27,8 +27,10 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 
 	ext: Todoyu.Ext.calendar,
 
+
+
 	/**
-	 *	Attach task context menu
+	 *	Attach event context menu
 	 */
 	attach: function() {
 		Todoyu.ContextMenu.attachMenuToClass('contextmenuevent', this.load.bind(this));
@@ -37,7 +39,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 
 
 	/**
-	 *	Detach task context menu
+	 *	Detach event context menu
 	 */
 	detach: function() {
 		Todoyu.ContextMenu.detachAllMenus('contextmenuevent');
@@ -46,7 +48,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 
 
 	/**
-	 *	Reattach task context menu
+	 *	Reattach event context menu
 	 */
 	reattach: function() {
 		this.detach();
@@ -56,13 +58,20 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 
 
 	/**
-	 *	Load task context menu
+	 *	Load event context menu
 	 *
 	 *	@param	Object	event
 	 */
 	load: function(event) {
-		var eventElem	= event.findElement('div.event');
-		var idEvent		= eventElem.readAttribute('id').split('-').last();
+			// Event..
+		var eventElement	= event.findElement('div.event');
+		
+			// ..or is it a day-event?
+		if (typeof(eventElement) == "undefined" || eventElement == null) {
+			eventElement	= event.findElement('div.dayevent');
+		}		
+		
+		var idEvent		= eventElement.readAttribute('id').split('-').last();
 			
 		var url		= Todoyu.getUrl('calendar', 'contextmenu');
 		var options	= {
@@ -80,7 +89,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 
 
 	/**
-	 *	Attach task context menu to given element
+	 *	Attach event context menu to given element
 	 *
 	 *	@param	String	element
 	 */

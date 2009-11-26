@@ -35,7 +35,6 @@ TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManage
 
 TodoyuSearchManager::addSearchEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'event.search.label', 'event.search.mode.label', 50);
 
-
 	// Setup tabs in calendar area
 $CONFIG['EXT']['calendar']['config'] = array(
 	'defaultTab'	=> 'week'
@@ -62,7 +61,6 @@ $CONFIG['EXT']['calendar']['contentTabs'] = array(
 		'label'		=> 'LLL:date.month'
 	)
 );
-
 
 	// Register event types
 	// @see		referring constants are defined in constants.php
@@ -92,9 +90,9 @@ $CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'] = array(
 	// Default color preset for events being assigned to several users / none
 $CONFIG['EXT']['calendar']['defaultEventColors'] = array(
 	'id'		=> -1,
-	'border'	=> '#555555',
-	'text'		=> '#000000',
-	'faded'		=> '#555555',
+	'border'	=> '#555',
+	'text'		=> '#000',
+	'faded'		=> '#555',
 );
 
 	// Configure portal's events type tab, it's renderer, entries counter
@@ -120,6 +118,5 @@ $CONFIG['EXT']['calendar']['default']['eventDuration']	= 3600;		// 1 hour
 
 	// Register contextmenu
 //TodoyuContextMenuManager::registerFunction('Calendar', 'TodoyuPanelWidgetEventTypeSelector::getContextMenuItems', 10);
-
 
 ?>

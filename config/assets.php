@@ -37,11 +37,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			array(
 				'file' => 'ext/calendar/assets/js/Ext.js',
 				'position' => 100
-			),
-			array(
-				'file' => 'ext/calendar/assets/js/EventEdit.js',
-				'position' => 105
-			),
+			)
 		),
 		'css' => array(
 			array(
@@ -76,24 +72,28 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 106
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/EventEdit.js',
+				'file' => 'ext/calendar/assets/js/Event.js',
 				'position' => 107
 			),
 			array(
 				'file' => 'ext/calendar/assets/js/EventView.js',
-				'position' => 107
-			),
-			array(
-				'file' => 'ext/calendar/assets/js/CalendarBody.js',
 				'position' => 108
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/ContextMenuCalendarBody.js',
+				'file' => 'ext/calendar/assets/js/EventEdit.js',
 				'position' => 109
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/ContextMenuEvent.js',
+				'file' => 'ext/calendar/assets/js/CalendarBody.js',
 				'position' => 110
+			),
+			array(
+				'file' => 'ext/calendar/assets/js/ContextMenuCalendarBody.js',
+				'position' => 111
+			),
+			array(
+				'file' => 'ext/calendar/assets/js/ContextMenuEvent.js',
+				'position' => 112
 			)
 		),
 

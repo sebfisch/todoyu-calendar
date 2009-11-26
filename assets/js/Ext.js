@@ -66,6 +66,58 @@ Todoyu.Ext.calendar = {
 	},
 
 
+
+	/**
+	 *	Install general calendar observer
+	 */
+	installGeneralObservers: function() {
+		Todoyu.PanelWidget.observe('calendar', this.onDateChanged.bind(this));
+		Todoyu.PanelWidget.observe('staffselector', this.onStaffSelectionChanges.bind(this));
+		Todoyu.PanelWidget.observe('eventtypeselector', this.onEventTypeSelectionChanges.bind(this));
+	},
+
+
+
+	/**
+	 * Install calendar body observers
+	 */
+	installBodyObservers: function() {
+		this.Quickinfo.init(true);
+		this.installEventObservers();
+		this.CalendarBody.installObserversCreateEvent();
+	},
+
+
+
+	/**
+	 * Uninstall calendar body observers
+	 */
+	uninstallBodyObservers: function() {
+		this.Quickinfo.uninstallObservers();
+		this.uninstallEventObservers();
+	},
+
+
+
+	/**
+	 *	Install observers to event entries in calendar to show / hide quickinfo to when un / hovering them
+	 *
+	 *	@param	DOM-Element	el
+	 */
+	installEventObservers: function(el) {
+		this.Event.installObservers();
+	},
+
+
+
+	/**
+	 *	Uninstall event observers
+	 */
+	uninstallEventObservers: function() {
+
+	},
+
+
 	/**
 	 *	Get selected date timestamp
 	 *
@@ -166,58 +218,6 @@ Todoyu.Ext.calendar = {
 	afterUpdate: function() {
 		this.installBodyObservers();
 		this.CalendarBody.reInit();
-	},
-
-
-
-	/**
-	 *	Install general calendar observer
-	 */
-	installGeneralObservers: function() {
-		Todoyu.PanelWidget.observe('calendar', this.onDateChanged.bind(this));
-		Todoyu.PanelWidget.observe('staffselector', this.onStaffSelectionChanges.bind(this));
-		Todoyu.PanelWidget.observe('eventtypeselector', this.onEventTypeSelectionChanges.bind(this));
-	},
-
-
-
-	/**
-	 * Install calendar body observers
-	 */
-	installBodyObservers: function() {
-		this.Quickinfo.init(true);
-		this.installEventObservers();
-		this.CalendarBody.installObserversCreateEvent();
-	},
-
-
-
-	/**
-	 * Uninstall calendar body observers
-	 */
-	uninstallBodyObservers: function() {
-		this.Quickinfo.uninstallObservers();
-		this.uninstallEventObservers();
-	},
-
-
-
-	/**
-	 *	Install observers to event entries in calendar to show / hide quickinfo to when un / hovering them
-	 *
-	 *	@param	DOM-Element	el
-	 */
-	installEventObservers: function(el) {
-		this.Event.installObservers();
-	},
-
-
-
-	/**
-	 *	Uninstall event observers
-	 */
-	uninstallEventObservers: function() {
-
 	},
 
 
