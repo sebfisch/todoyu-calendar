@@ -26,11 +26,11 @@
 						</td>
 						{* -------- Week event inserters -------- *}
 						{for daycounter 0 6}
-							{assign var=dayDateKey value=date('Ymd', $timestamps[$daycounter])}
-							<td class="tg-col{$weekclass[$daycounter]}{if $timestamps[$daycounter] == $timestamp_today} tg-coltoday{/if}">
+							{assign var=dayDateKey value=date('Ymd', $timestamps.$daycounter)}
+							<td class="tg-col{$weekclass.$daycounter}{if $timestamps.$daycounter == $timestamp_today} tg-coltoday{/if}">
 								<div class="tg-colwrapper">
 									<div id="tgCol{$daycounter}">
-									{foreach $events[$dayDateKey] event}
+									{foreach $events.$dayDateKey event}
 										{$event}
 									{/foreach}
 									</div>

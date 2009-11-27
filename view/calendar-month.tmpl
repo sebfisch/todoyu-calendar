@@ -33,7 +33,7 @@
 							{* ------ Week number ----- *}
 							{if $curDayCounter == $dayFrom}<span class="weekNumber" title="{dateFormat $timestamps.$curDayCounter calendarweek}">{dateFormat $timestamps.$curDayCounter calendarweek}</span>{/if}
 							{* ----------- Holidays, Date inside Day-cell ---------- *}
-							<span {if count($holidays.$dayDateKey) > 0}id="holiday-{$timestamps.$curDayCounter}" class="holiday quickInfoHoliday"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;{if count($holidays[$dayDateKey]) == 0}</span>{/if}
+							<span {if count($holidays.$dayDateKey) > 0}id="holiday-{$timestamps.$curDayCounter}" class="holiday quickInfoHoliday"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;{if count($holidays.$dayDateKey) == 0}</span>{/if}
 							{if date('j', $timestamps.$curDayCounter) == 1}{dateFormat $timestamps.$curDayCounter MlongD2}{else}{date('j', $timestamps.$curDayCounter)}{/if}{if count($holidays.$dayDateKey) > 0}</span>{/if}
 						</td>
 					{/for}					

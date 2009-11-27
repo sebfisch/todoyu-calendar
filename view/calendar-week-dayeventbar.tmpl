@@ -7,12 +7,12 @@
 				</td>
 				{* ---------- Header: dates of the rendered week ------------ *}
 				{for weekday 0 6}
-					{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
-					<th scope="col" {if count($holidays[$dayDateKey]) == 0}title="{dateFormat $timestamps[$weekday] DlongD2MlongY4}{if $timestamps[$weekday] == $timestamp_today} ({Label calendar.today}){/if}"{/if}>
-						<div class="{$weekclass[$weekday]}wk-dayname{if $timestamps[$weekday] == $timestamp_today} todaywk-dayname{/if} {cycle values="odd,even"}">
+					{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
+					<th scope="col" {if count($holidays.$dayDateKey) == 0}title="{dateFormat $timestamps.$weekday DlongD2MlongY4}{if $timestamps.$weekday == $timestamp_today} ({Label calendar.today}){/if}"{/if}>
+						<div class="{$weekclass.$weekday}wk-dayname{if $timestamps.$weekday == $timestamp_today} todaywk-dayname{/if} {cycle values="odd,even"}">
 							{* ----- holidays ----- *}
-							<span {if count($holidays[$dayDateKey]) > 0}id="holiday-{$timestamps[$weekday]}" class="holiday quickInfoHoliday"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;{if count($holidays[$dayDateKey]) == 0}</span>{/if}
-							<span class="{$weekclass[$weekday]}wk-daylink">{dateFormat $timestamps[$weekday] DshortD2M2}</span>{if count($holidays[$dayDateKey]) > 0}</span>{/if}
+							<span {if count($holidays.$dayDateKey) > 0}id="holiday-{$timestamps.$weekday}" class="holiday quickInfoHoliday"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;{if count($holidays.$dayDateKey) == 0}</span>{/if}
+							<span class="{$weekclass.$weekday}wk-daylink">{dateFormat $timestamps.$weekday DshortD2M2}</span>{if count($holidays.$dayDateKey) > 0}</span>{/if}
 						</div>
 					</th>
 				{/for}
@@ -24,13 +24,13 @@
 						<table class="st-grid"><tbody>
 							<tr>{for i 0 6}<td style="width:86px; height:1px;"></td>{/for}</tr>
 							{* --------------- Birthdays -------------------- *}
-							<tr>{for weekday 0 6}{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
-								<td class="noEventCell">{$birthdays[$dayDateKey]}</td>{/for}
+							<tr>{for weekday 0 6}{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
+								<td class="noEventCell">{$birthdays.$dayDateKey}</td>{/for}
 							</tr>
 							<tr>
-							{for weekday 0 6}{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
+							{for weekday 0 6}{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
 								<td>
-								{foreach $dayEvents[$dayDateKey] dayEvent}
+								{foreach $dayEvents.$dayDateKey dayEvent}
 									{$dayEvent}
 								{/foreach}
 								</td>
