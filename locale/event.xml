@@ -56,12 +56,12 @@
 		<label index="eventtype.away">Abwesend</label>
 		<label index="eventtype.birthday">Geburtstag</label>
 		<label index="eventtype.vacation">Ferien</label>
-		<label index="eventtype.education">Laufende Ausbildung</label>
+		<label index="eventtype.education">Fortbildung</label>
 		<label index="eventtype.meeting">Sitzung</label>
 		<label index="eventtype.awayofficial">Externe Arbeit</label>
 		<label index="eventtype.homeoffice">Heimarbeit</label>
-		<label index="eventtype.paper">Altpapier Sammlung</label>
-		<label index="eventtype.carton">Karton Sammlung</label>
+		<label index="eventtype.paper">Altpapiersammlung</label>
+		<label index="eventtype.carton">Kartonsammlung</label>
 		<label index="eventtype.compensation">Kompensation</label>
 		<label index="eventtype.milestone">Milestone</label>
 		<label index="eventtype.reminder">Erinnerung</label>
@@ -70,17 +70,17 @@
 		<label index="edit">Ereignis bearbeiten</label>
 		<label index="delete">Ereignis löschen</label>
 		<label index="delete.confirm">Wollen Sie dieses Ereignis löschen?</label>
-		<label index="attr.creator">Urheber</label>
-		<label index="attr.eventtype">Ereignis Typ</label>
-		<label index="attr.event_type">Ereignis Typ</label>
+		<label index="attr.creator">Ersteller</label>
+		<label index="attr.eventtype">Ereignis-Typ</label>
+		<label index="attr.event_type">Ereignis-Typ</label>
 		<label index="attr.is_dayevent">Tages-Ereignis</label>
 		<label index="attr.is_public">Ist öffentlich?</label>
 		<label index="attr.is_private">Privates Ereignis</label>
 		<label index="attr.attendees">Teilnehmer</label>
 		<label index="attr.timespan">Zeitspanne</label>
-		<label index="attr.startdate">Start Datum</label>
+		<label index="attr.startdate">Start-Datum</label>
 		<label index="attr.starttime">am</label>
-		<label index="attr.enddate">Ende Datum</label>
+		<label index="attr.enddate">End-Datum</label>
 		<label index="attr.endtime">am</label>
 		<label index="attr.repeats">Wiederholungen</label>
 		<label index="attr.place">Ort</label>
@@ -88,12 +88,12 @@
 		<label index="attr.assigned_to">Zugewiesen</label>
 		<label index="attr.id_project">Projekt</label>
 		<label index="attr.id_task">Aufgabe</label>
-		<label index="search.mode.label">Ereignis Suche</label>
-		<label index="tree.header.title">Ereignis Titel</label>
+		<label index="search.mode.label">Ereignis-Suche</label>
+		<label index="tree.header.title">Ereignis-Titel</label>
 		<label index="noEventsFound">Kein Ereignis gefunden</label>
 		<label index="eventslist.birthdaysWithinTheNextXweeks">Geburtstage in den nächsten Wochen</label>
 		<label index="eventslist.holidaysWithinTheNextXweeks">Ferien in den nächsten Wochen</label>
 		<label index="error.starttimeAfterEndtime">Das Ereignis endet bevor oder zur gleichen Zeit wie es startet</label>
-		<label index="error.privateEvent">Sie können nicht private Ereignisse jemandem anderes zuweisen</label>
+		<label index="error.privateEvent">Private Ereignisse können nicht anderen Benutzern zugewiesen werden</label>
 	</labels>
 </locallang>

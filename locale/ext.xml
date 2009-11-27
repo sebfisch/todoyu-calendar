@@ -37,13 +37,13 @@
 		<label index="dayview.fullday">Zeige ganzen Tag (00h-24h)</label>
 		<label index="holidayset">Ferien Set</label>
 		<label index="yearsOld">Jahre alt</label>
-		<label index="applicableholidayset">Ferien Set</label>
+		<label index="applicableholidayset">Feiertags-Set</label>
 		<label index="workinghours">Arbeitsstunden</label>
 		<label index="owner">Eigner</label>
 		<label index="holidayset.attr.name">Name</label>
-		<label index="holidayset.attr.holiday">Ferien</label>
-		<label index="holiday">Ferien</label>
+		<label index="holidayset.attr.holiday">Feiertag</label>
+		<label index="holiday">Feiertag</label>
 		<label index="holiday.attr.workinghours">Arbeitsstunden</label>
-		<label index="holiday.attr.holidayset">Ferien Set</label>
+		<label index="holiday.attr.holidayset">Feiertags-Set</label>
 	</labels>	
 </locallang>

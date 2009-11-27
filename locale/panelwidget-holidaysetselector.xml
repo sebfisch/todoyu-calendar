@@ -5,7 +5,7 @@
 		<label index="showNoHolidays">Hide holiday</label>
 	</labels>
 	<labels lang="de">
-		<label index="title">Ferien-Regionen</label>
-		<label index="showNoHolidays">Keine Ferien anzeigen</label>
+		<label index="title">Feiertags-Regionen</label>
+		<label index="showNoHolidays">Keine Feiertage anzeigen</label>
 	</labels>	
 </locallang>
