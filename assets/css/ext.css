@@ -258,8 +258,9 @@ h1.holidaysforecast span.title {
 	Events with / without multiple user assignments inside calendar
    ------------------------------------------------------------------ */
 .enumColBGFademultiOrNone,
-.enumColBGmultiOrNone {
-	color:#191919;
+.enumColBGmultiOrNone,
+.enumColBgFgmultiOrNone {
+	color:#191919 !important;
 	background-color:#f2f3ed;
 }
 
