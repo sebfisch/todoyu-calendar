@@ -3,7 +3,6 @@
 	{if $calendarMode=='week'} height:{$height}px;{/if}{if intval($width)>0} width:{$width}px;{/if}">
 	<dl style="{if $calendarMode != 'month'}height:{$height}px;{/if}">
 		<dt class="{if $calendarMode == 'month'}{else}enumColBG{$colors.id}{/if}">
-			<span class="eventtype_icon eventtype_{$eventtype}"><!--  --></span>
 			<span class="{if $calendarMode == 'month'}montheventTime{else}time{/if}">
 				{$title}{if count($assignedUsers)==1} {$assignedUsers.0.shortname}{/if}
 			</span>
