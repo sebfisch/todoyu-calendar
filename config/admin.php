@@ -26,7 +26,7 @@
  * @subpackage	User
  */
 
-if( ! defined('TODOYU') ) die('NO ACCESS');
+
 
 // add holidaysets to record area of the sysadmin
 TodoyuExtManager::addRecordConfig('calendar', 'holidayset', array(

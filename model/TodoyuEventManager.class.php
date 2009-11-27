@@ -85,10 +85,11 @@ class TodoyuEventManager {
 					mmeu.is_acknowledged';
 		$tables	= 	self::TABLE  . ' e,
 					ext_calendar_mm_event_user mmeu';
-		$where	= '		e.id		= mmeu.id_event
-					AND e.deleted	= 0
-					AND (	e.date_start BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
-							e.date_end BETWEEN ' . $dateStart . ' AND ' . $dateEnd . '
+		$where	= '	e.id		= mmeu.id_event AND
+					e.deleted	= 0 AND
+					(	e.date_start BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
+						e.date_end BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
+						(e.date_start < ' . $dateStart . ' AND e.date_end > ' . $dateEnd . ')
 					)';
 		$group	= '';
 		$order	= 'e.date_start';

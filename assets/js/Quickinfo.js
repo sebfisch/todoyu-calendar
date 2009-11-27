@@ -92,14 +92,17 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 */
 	show: function(type, key, mouseX, mouseY) {
 		var x = mouseX + 16, y = mouseY-12;
+		var cacheID = type+key;
+		
+
 
 		if( this.loading === true ) {
 			return false;
 		}
 		this.loading = true;
 
-		if( this.isCached(key) ) {
-			this.updatePopup(this.getFromCache(key));
+		if( this.isCached(cacheID) ) {
+			this.updatePopup(this.getFromCache(cacheID));
 			this.showPopUp(x, y);
 			this.loading = false;
 		} else {
@@ -156,7 +159,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *
 	 */
 	onQuickInfoLoaded: function(type, key, x, y, response) {
-		this.addToCache(key, response.responseText);
+		this.addToCache(type+key, response.responseText);
 		this.loading = false;
 		this.show(type, key, x, y);
 	},
@@ -164,11 +167,24 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 	/**
-	 *	@todo	comment
-	 *
+	 * Add quickinfo content to cache
+	 * 
+	 * @param	String		cacheID
+	 * @param	String		content
 	 */
-	addToCache: function(key, content) {
-		this.cache[key] = content;
+	addToCache: function(cacheID, content) {
+		this.cache[cacheID] = content;
+	},
+
+
+	
+	/**
+	 * Get quickinfo from cache
+	 * 
+	 * @param	 key
+	 */
+	getFromCache: function(cacheID) {
+		return this.cache[cacheID];
 	},
 
 
@@ -177,19 +193,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *	@todo	comment
 	 *
 	 */
-	getFromCache: function(key) {
-		return this.cache[key];
-	},
-
-
-
-	/**
-	 *	@todo	comment
-	 *
-	 */
-	removeFromCache: function(key) {
-		if( this.cache[key] ) {
-			delete this.cache[key];
+	removeFromCache: function(cacheID) {
+		if( this.cache[cacheID] ) {
+			delete this.cache[cacheID];
 		}
 	},
 
@@ -199,8 +205,8 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *	@todo	comment
 	 *
 	 */
-	isCached: function(key) {
-		return typeof(this.cache[key]) === 'string';
+	isCached: function(cacheID) {
+		return typeof(this.cache[cacheID]) === 'string';
 	},
 
 
@@ -289,6 +295,10 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 */
 		onMouseOut: function(event, idEvent) {
 			this.ext.Quickinfo.hide();
+		},
+		
+		removeFromCache: function(idEvent) {
+			this.ext.Quickinfo.removeFromCache('event' + idEvent);
 		}
 
 	},
@@ -369,6 +379,10 @@ Todoyu.Ext.calendar.Quickinfo = {
 		 */
 		onMouseOut: function(event, dateStr) {
 			this.ext.Quickinfo.hide();
+		},
+		
+		removeFromCache: function(idHoliday) {
+			this.ext.Quickinfo.removeFromCache('holiday' + idHoliday);
 		}
 
 	}

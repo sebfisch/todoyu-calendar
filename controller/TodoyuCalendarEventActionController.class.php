@@ -110,6 +110,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			$event	= TodoyuEventManager::getEvent($idEvent);
 
 			TodoyuHeader::sendTodoyuHeader('time', $event->get('date_start'));
+			TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 		} else {
 			TodoyuHeader::sendTodoyuHeader('error', true);
 			return $form->render();

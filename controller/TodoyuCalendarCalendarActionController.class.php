@@ -25,7 +25,6 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarCalendarActionController extends TodoyuActionController {
 
 	/**

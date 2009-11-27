@@ -26,7 +26,7 @@
  * @subpackage	Calendar
  */
 
-if( ! defined('TODOYU') ) die('NO ACCESS');
+
 
 	// Set panelwidgets' configurations
 $panelWidgetConfigCalendar				= array('class'	=> 'todoyuskin');
