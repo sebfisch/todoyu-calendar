@@ -2,8 +2,8 @@
 <locallang>
 	<labels lang="en">
 		<label index="section.panelwidgets">Panel widgets</label>
-		<label index="right.panelwidget:calendar">Use calendar widget</label>
-		<label index="right.panelwidget:quickEvent">Use quickevent widget</label>
+		<label index="right.PanelWidgetCalendar">See calendar widget</label>
+		<label index="right.PanelWidgetQuickEvent">See quickevent widget</label>
 		<label index="right.panelwidget:eventTypeSelector">Use eventtype selector widget</label>
 		<label index="right.panelwidget:holidaySetSelector">Use holidayset selector widget</label>
 		<label index="section.general">General</label>
@@ -17,5 +17,21 @@
 		<label index="right.event:assign">Assign events to other users</label>
 		<label index="right.event:quickinfo">Show quickinfo</label>
 	</labels>
-	<labels lang="de"></labels>
+	<labels lang="de">
+		<label index="section.panelwidgets">Steuerelement</label>
+		<label index="right.PanelWidgetCalendar">Siehe Kalender Element</label>
+		<label index="right.PanelWidgetQuickEvent">Siehe Termin Element</label>
+		<label index="right.panelwidget:eventTypeSelector">Termintyp Wähler Verwenden</label>
+		<label index="right.panelwidget:holidaySetSelector">Ferien-Regionen Wähler anzeigen</label>
+		<label index="section.general">Allgemein</label>
+		<label index="right.use">Kalender Verwenden</label>
+		<label index="section.event">Ereignis</label>
+		<label index="right.event:see">Ereignis Sehen</label>
+		<label index="right.event:edit">Ereignis Editieren</label>
+		<label index="right.event:add">Neues Ereignis Erstellen</label>
+		<label index="right.event:delete">Ereignisse Löschen</label>
+		<label index="right.event:deleteOwn">Eigene Ereignisse Löschen</label>
+		<label index="right.event:assign">Ereignisse anderen Benutzern Zuweisen</label>
+		<label index="right.event:quickinfo">Schnell-Info Anzeigen</label>
+	</labels>
 </locallang>

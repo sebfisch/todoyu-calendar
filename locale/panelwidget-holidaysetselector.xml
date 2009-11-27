@@ -2,8 +2,10 @@
 <locallang>
 	<labels lang="en">
 		<label index="title">Holiday regions</label>
-		<label index="showNoHolidays">Hide holidays</label>
-<!--  ......................................... added after 20091122 -->
+		<label index="showNoHolidays">Hide holiday</label>
 	</labels>
-	<labels lang="de"></labels>
+	<labels lang="de">
+		<label index="title">Ferien-Regionen</label>
+		<label index="showNoHolidays">Keine Ferien anzeigen</label>
+	</labels>	
 </locallang>

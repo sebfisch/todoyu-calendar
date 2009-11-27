@@ -3,7 +3,9 @@
 	<labels lang="en">
 		<label index="title">Quick-Event</label>
 		<label index="addNewEvent">Create Event</label>
-<!--  ......................................... added after 20091122 -->
 	</labels>
-	<labels lang="de"></labels>
+	<labels lang="de">
+		<label index="title">Schnell-Ereignis</label>
+		<label index="addNewEvent">Ereignis erfassen</label>
+	</labels>	
 </locallang>

@@ -2,7 +2,8 @@
 <locallang>
 	<labels lang="en">
 		<label index="title">Event types</label>
-<!--  ......................................... added after 20091122 -->
 	</labels>
-	<labels lang="de"></labels>
+	<labels lang="de">
+		<label index="title">Ereignis Typen</label>
+	</labels>	
 </locallang>
