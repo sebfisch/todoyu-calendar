@@ -26,7 +26,7 @@
 					<source type="function">
 						<function>TodoyuEventDataSource::getEventTypeOptions</function>
 					</source>
-					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.EventEdit.reload(this.form)"</extraAttributes>
+<!-- 				<extraAttributes>onchange="Todoyu.Ext.calendar.Event.EventEdit.reload(this.form)"</extraAttributes> -->
 					<required />
 				</field>
 
