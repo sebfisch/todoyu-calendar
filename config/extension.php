@@ -33,7 +33,7 @@ TodoyuColors::generateColorsCSS();
 TodoyuContextMenuManager::registerFunction('Event', 'TodoyuEventManager::getContextMenuItems', 10);
 TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
-TodoyuSearchManager::addSearchEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'event.search.label', 'event.search.mode.label', 50);
+TodoyuSearchManager::addSearchEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
 
 	// Setup tabs in calendar area
 $CONFIG['EXT']['calendar']['config'] = array(

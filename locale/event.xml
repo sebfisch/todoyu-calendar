@@ -3,7 +3,6 @@
 	<labels lang="en">
 		<label index="event">Event</label>
 		<label index="events">Events</label>
-		<label index="search.label">Events</label>
 		<label index="eventtype.general">General</label>
 		<label index="eventtype.away">Absent</label>
 		<label index="eventtype.birthday">Birthday</label>
@@ -40,18 +39,19 @@
 		<label index="attr.assigned_to">Assigned to</label>
 		<label index="attr.id_project">Project</label>
 		<label index="attr.id_task">Task</label>
-		<label index="search.mode.label">Search Events</label>
 		<label index="tree.header.title">Event Title</label>
 		<label index="noEventsFound">No Events found.</label>
 		<label index="eventslist.birthdaysWithinTheNextXweeks">Birthdays within the next weeks</label>
 		<label index="eventslist.holidaysWithinTheNextXweeks">Holiday within the next weeks</label>
 		<label index="error.starttimeAfterEndtime">The event ends before or is the same as the event starts</label>
 		<label index="error.privateEvent">You are not allowed to assign a personal event to someone else</label>
+		<label index="contextmenu.showEvent">Show event</label>
+		<label index="contextmenu.editEvent">Edit event</label>
+		<label index="contextmenu.deleteEvent">Delete event</label>
 	</labels>
 	<labels lang="de">
 		<label index="event">Ereignis</label>
 		<label index="events">Ereignis</label>
-		<label index="search.label">Ereignis</label>
 		<label index="eventtype.general">Allgemein</label>
 		<label index="eventtype.away">Abwesend</label>
 		<label index="eventtype.birthday">Geburtstag</label>
@@ -88,12 +88,14 @@
 		<label index="attr.assigned_to">Zugewiesen</label>
 		<label index="attr.id_project">Projekt</label>
 		<label index="attr.id_task">Aufgabe</label>
-		<label index="search.mode.label">Ereignis-Suche</label>
 		<label index="tree.header.title">Ereignis-Titel</label>
 		<label index="noEventsFound">Kein Ereignis gefunden</label>
 		<label index="eventslist.birthdaysWithinTheNextXweeks">Geburtstage in den nächsten Wochen</label>
 		<label index="eventslist.holidaysWithinTheNextXweeks">Ferien in den nächsten Wochen</label>
 		<label index="error.starttimeAfterEndtime">Das Ereignis endet bevor oder zur gleichen Zeit wie es startet</label>
 		<label index="error.privateEvent">Private Ereignisse können nicht anderen Benutzern zugewiesen werden</label>
+		<label index="contextmenu.showEvent">Termin anzeigen</label>
+		<label index="contextmenu.editEvent">Termin bearbeiten</label>
+		<label index="contextmenu.deleteEvent">Termin löschen</label>
 	</labels>
 </locallang>

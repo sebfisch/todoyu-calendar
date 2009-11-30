@@ -61,21 +61,21 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 	),
 	'show'	=> array(
 		'key'		=> 'show',
-		'label'		=> 'Show event',
+		'label'		=> 'LLL:event.contextmenu.showEvent',
 		'jsAction'	=> 'Todoyu.Ext.calendar.Event.show(#ID#)',
 		'class'		=> 'eventContextMenu eventShow',
 		'position'	=> 10
 	),
 	'edit'	=> array(
 		'key'		=> 'edit',
-		'label'		=> 'Edit event',
+		'label'		=> 'LLL:event.contextmenu.editEvent',
 		'jsAction'	=> 'Todoyu.Ext.calendar.Event.edit(#ID#)',
 		'class'		=> 'eventContextMenu eventEdit',
 		'position'	=> 20
 	),
 	'remove'	=> array(
 		'key'		=> 'delete',
-		'label'		=> 'Delete event',
+		'label'		=> 'LLL:event.contextmenu.deleteEvent',
 		'jsAction'	=> 'Todoyu.Ext.calendar.Event.remove(#ID#)',
 		'class'		=> 'eventContextMenu eventRemove',
 		'position'	=> 30

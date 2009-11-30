@@ -22,6 +22,8 @@
 		<label index="holiday">Holiday</label>
 		<label index="holiday.attr.workinghours">Working Hours</label>
 		<label index="holiday.attr.holidayset">Holidayset</label>
+		<label index="search.label">Events</label>
+		<label index="search.mode.label">Search Events</label>
 	</labels>
 	<labels lang="de">
 		<label index="ext.title">Kalender</label>
@@ -29,7 +31,7 @@
 		<label index="maintab.label">Planung</label>
 		<label index="subMenuEntry.day">Kalender > Tag</label>
 		<label index="subMenuEntry.week">Kalender > Woche</label>
-		<label index="subMenuEntry.month">Kalender > Month</label>
+		<label index="subMenuEntry.month">Kalender > Monat</label>
 		<label index="quicknav.backward.title">Zurück</label>
 		<label index="quicknav.forward.title">Vorwärts</label>
 		<label index="quicknav.today.title">Aktuellen Tag anzeigen</label>
@@ -45,5 +47,7 @@
 		<label index="holiday">Feiertag</label>
 		<label index="holiday.attr.workinghours">Arbeitsstunden</label>
 		<label index="holiday.attr.holidayset">Feiertags-Set</label>
-	</labels>	
+		<label index="search.label">Termine</label>
+		<label index="search.mode.label">Termine suchen</label>
+	</labels>
 </locallang>

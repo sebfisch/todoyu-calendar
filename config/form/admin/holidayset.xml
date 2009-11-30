@@ -23,11 +23,8 @@
 					<label>core.description</label>
 				</field>
 
-				<field type="button" name="expandall">
-					<type>button</type>
-					<text>LLL:core.expandall</text>
-					<onclick>Todoyu.Form.expandAllForeignRecords(this.id);</onclick>
-					<class></class>
+				<field type="expandAllButton" name="expandAll">
+					<fields>holiday</fields>
 				</field>
 
 				<field type="databaseRelation" name="holiday">
