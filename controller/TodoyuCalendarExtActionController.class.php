@@ -27,6 +27,12 @@
  */
 class TodoyuCalendarExtActionController extends TodoyuActionController {
 
+	/**
+	 * Render default view of calendar when full page is reloaded
+	 *
+	 * @param	Array		$params
+	 * @return	String
+	 */
 	public function defaultAction(array $params) {
 		restrict('calendar', 'use');
 
@@ -46,6 +52,12 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 		if( empty($activeTab) ) {
 			$activeTab	= TodoyuCalendarPreferences::getActiveTab();
 		}
+
+			// Set date in preferences when given as parameter
+		if( is_numeric($params['date']) ) {
+			TodoyuPanelWidgetCalendar::saveDate($params['date']);
+		}
+
 
 			// Render the calendar
 		$calendar		= TodoyuCalendarRenderer::render($activeTab, $params);
