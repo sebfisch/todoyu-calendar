@@ -26,7 +26,7 @@ Todoyu.Ext.calendar.Tabs = {
 	ext: Todoyu.Ext.calendar,
 
 	/**
-	 *	Current active tab
+	 *	Current active tab (day, week, month, view)
 	 */
 	active: null,
 
@@ -93,6 +93,10 @@ Todoyu.Ext.calendar.Tabs = {
 	 *	@param	String	tab
 	 */
 	setActive: function(tab) {
+			// Make sure the given tab exists, otherwise use month tab by default
+		tab = $('calendar-tabhead-' + tab) ? tab : 'month';
+		
+			// Activate the tab
 		this.active = tab;
 		Todoyu.Tabs.setActive('calendar-tabhead-' + tab);
 	},

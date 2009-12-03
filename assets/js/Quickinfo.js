@@ -130,7 +130,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *
 	 */
 	hide: function() {
-		$(this.popupID).hide();
+		if ( $(this.popupID) ) {
+			$(this.popupID).hide();
+		}
 	},
 	
 	
