@@ -141,20 +141,15 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	public function detailAction(array $params) {
 		$idEvent	= intval($params['eventID']);
 
-		switch( $params['mode'] ) {
-			case 'listing':
-				$event	= TodoyuEventManager::getEvent($idEvent);
-				$data	= $event->getTemplateData();
-
-				return TodoyuEventRenderer::renderEvent($data, 'list');
-				break;
-
-				// Default: calendar view
-			case 'calendar':
-			default:
-					// ...
-				break;
-		}
+		$event	= TodoyuEventManager::getEvent($idEvent);
+		
+		$data		= array(
+			'event'			=> $event->getTemplateData(),
+			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
+			'user_create'	=> TodoyuUserManager::getUserArray($event['id_user_create']),
+		);
+		
+		return TodoyuEventRenderer::renderEvent($data, 'list');	
 	}
 
 

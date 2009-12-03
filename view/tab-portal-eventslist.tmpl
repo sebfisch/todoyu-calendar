@@ -7,7 +7,7 @@
 	{else}
 		{foreach $events idEvent event}{* ------- Event entry ------- *}
 			<div id="event-{$idEvent}" class="event {cycle values="odd,even"}">
-				<h3 id="event-{$idEvent}-header" class="contextmenuevent enumColBorLef{$color.id}" name="event-{$event.id}">
+				<h3 id="event-{$idEvent}-header" class="contextmenuEventPortal enumColBorLef{$color.id}" name="event-{$event.id}">
 					<span class="headLabel" title="{$event.title}">
 						<span class="icon eventtype_{$event.eventtype}" title="{EventTypeLabel $event.eventtype}"> </span>
 

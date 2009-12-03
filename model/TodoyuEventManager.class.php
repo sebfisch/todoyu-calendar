@@ -804,6 +804,28 @@ class TodoyuEventManager {
 
 		return $items;
 	}
+	
+	
+	
+	/**
+	 * 
+	 * @param unknown_type $idEvent
+	 * @param array $items
+	 * @return unknown_type
+	 */
+	public static function getContextMenuItemsPortal($idEvent, array $items)	{
+		$idEvent = intval($idEvent);
+		
+		$own = $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['EventPortal'];
+		
+		foreach($own['show']['submenu'] as $key => $config)	{
+			$own['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', TodoyuEventManager::getEvent($idEvent)->get('date_start'), $config['jsAction']);
+		}
+		
+		$items = array_merge_recursive($items, $own);
+		
+		return $items;
+	}
 
 }
 

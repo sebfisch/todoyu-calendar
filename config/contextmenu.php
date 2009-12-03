@@ -83,4 +83,48 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 );
 
 
+/**
+ * Contextmenu for event
+ */
+$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
+	'header'	=> array(
+		'key'		=> 'header',
+		'label'		=> 'TodoyuCalendarViewHelper::getContextMenuHeader',
+		'jsAction'	=> 'void(0)',
+		'class'		=> 'contextmenuHeader',
+		'position'	=> 0
+	),
+	'show'	=> array(
+		'key'		=> 'show',
+		'label'		=> 'LLL:event.contextmenu.showEventInCalendar',
+		'jsAction'	=> 'void(0)',
+		'class'		=> 'eventContextMenu eventShow',
+		'position'	=> 10,
+		'submenu'	=> array(
+				'day'	=> array(
+					'key'		=> 'day',
+					'label'		=> 'LLL:event.contextmenu.showEventInCalendar.day',
+					'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'day\')',
+					'class'		=> 'eventContextMenu showInCalendarDay',
+					'position'	=> 10
+				),
+				'week'	=> array(
+					'key'		=> 'week',
+					'label'		=> 'LLL:event.contextmenu.showEventInCalendar.week',
+					'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'week\')',
+					'class'		=> 'eventContextMenu showInCalendarWeek',
+					'position'	=> 20
+				),
+				'month'	=> array(
+					'key'		=> 'month',
+					'label'		=> 'LLL:event.contextmenu.showEventInCalendar.month',
+					'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'month\')',
+					'class'		=> 'eventContextMenu showInCalendarMonth',
+					'position'	=> 30
+				)
+			)
+	)
+);
+
+
 ?>

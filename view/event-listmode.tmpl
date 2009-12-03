@@ -1,35 +1,40 @@
-<div id="event-{$id}-details" class="details eventDetails enumColBor{$colors.id}">
-	<div class="properties">
-		<dl>
-			<dt>{Label LLL:event.attr.eventtype}</dt>
-			<dd><span class="eventtype">{EventTypeLabel $eventtype}</span></dd>
-			
-			<dt>{Label LLL:core.title}</dt>
-			<dd><span class="title">{$title}</span></dd>
-			
-			<dt>{Label LLL:event.attr.timespan}</dt>
-			<dd>
-				<span class="time">
-					{date_dmyHi $date_start} - {date_dmyHi $date_end}
+<div id="event-{$event.id}-details" class="details eventDetails enumColBor{$colors.id}">
+	<table class="eventView">
+		<tr class="odd">
+			<td class="eventAttrTitle">{Label core.title}: </td>
+			<td class="eventValue">{$event.title}</td>
+		</tr>
+		<tr class="even">
+			<td class="eventAttrTitle">{Label event.attr.place}: </td>
+			<td class="eventValue">{$event.place}</td>
+		</tr>
+		<tr class="odd">
+			<td class="eventAttrTitle">{Label core.description}: </td>
+			<td class="eventValue">{$event.description|default:"-"}</td>
+		</tr>
+		<tr class="even">
+			<td class="eventAttrTitle">{Label event.attr.timespan}: </td>
+			<td class="eventValue">
+				{math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}
+				{math equation="d / 3600" d=$duration assign=duration}
+				{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} Hours)</td>
+		</tr>
+		<tr class="odd">
+			<td class="eventAttrTitle ">{Label event.attr.attendees}: </td>
+			<td class="eventValue">{foreach $attendees user userData}
+				<span class="user{if $userData.is_acknowledged == 0 && $userData.id != $currentUser} isNotAcknowledgedIcon{/if}">
+					{$userData.firstname} {$userData.lastname}
 				</span>
-			</dd>
-			
-			<dt>{Label LLL:event.attr.place}</dt>
-			<dd><span class="place">{if $place}{$place}{else}&nbsp;{/if}</span></dd>
-			
-			<dt>{Label LLL:event.attr.assigned_to}</dt>
-{foreach $assignedUsers user name=users}
-	{if $dwoo.foreach.users.first == false}
-			<dt>&#8203;</dt>
-	{/if}
-			<dd>
-				<span class="user {if $user.is_acknowledged == 0 && $user.id != $currentUser}isNotAcknowledgedIcon{/if}">
-					{$user.lastname}, {$user.firstname}
-				</span>
-			</dd>
-{/foreach}
-		</dl>
-	</div>
-	
-	<div class="clear"></div>
+				<br/>
+			{/foreach}
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="eventAttrTitle"> {Label event.attr.creator}: </td>
+			<td class="eventValue">
+				{$user_create.firstname} {$user_create.lastname}
+			</td>
+		</tr>
+		
+	</table>
 </div>

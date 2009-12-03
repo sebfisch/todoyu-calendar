@@ -23,7 +23,7 @@
  *
 */
 
-Todoyu.Ext.calendar.ContextMenuEvent = {
+Todoyu.Ext.calendar.ContextMenuEventPortal = {
 
 	ext: Todoyu.Ext.calendar,
 
@@ -33,7 +33,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 	 *	Attach event context menu
 	 */
 	attach: function() {
-		Todoyu.ContextMenu.attachMenuToClass('contextmenuevent', this.load.bind(this));
+		Todoyu.ContextMenu.attachMenuToClass('contextmenuEventPortal', this.load.bind(this));
 	},
 
 
@@ -42,7 +42,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 	 *	Detach event context menu
 	 */
 	detach: function() {
-		Todoyu.ContextMenu.detachAllMenus('contextmenuevent');
+		Todoyu.ContextMenu.detachAllMenus('contextmenuEventPortal');
 	},
 
 
@@ -63,20 +63,12 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 	 *	@param	Object	event
 	 */
 	load: function(event) {
-			// Event..
-		var eventElement	= event.findElement('div.event');
-		
-			// ..or is it a day-event?
-		if (typeof(eventElement) == "undefined" || eventElement == null) {
-			eventElement	= event.findElement('div.dayevent');
-		}		
-		
-		var idEvent		= eventElement.readAttribute('id').split('-').last();
+		var idEvent		= event.findElement('div.event').readAttribute('id').split('-').last();
 		
 		var url		= Todoyu.getUrl('calendar', 'contextmenu');
 		var options	= {
 			'parameters': {
-				'action':	'event',
+				'action':	'eventPortal',
 				'event':	idEvent
 			}
 		};

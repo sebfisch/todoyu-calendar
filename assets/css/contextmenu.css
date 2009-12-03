@@ -21,3 +21,15 @@ a.eventContextMenu.eventRemove {
 a.eventContextMenu.eventAdd {
 	background:url(../img/icons.png) 5px -298px;
 }
+
+a.eventContextMenu.showInCalendarDay {
+	background:transparent url('../img/icons.png') no-repeat 6px -205px;
+}
+
+a.eventContextMenu.showInCalendarWeek {
+	background:transparent url('../img/icons.png') no-repeat 6px -235px;
+}
+
+a.eventContextMenu.showInCalendarMonth {
+	background:transparent url('../img/icons.png') no-repeat 6px -265px;
+}

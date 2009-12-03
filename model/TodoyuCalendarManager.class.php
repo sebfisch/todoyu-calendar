@@ -37,6 +37,7 @@ class TodoyuCalendarManager {
 
 			// Have calendar JS and CSS registered (for correct style and context menu handling)
 		TodoyuPage::addExtAssets('calendar', 'public');
+		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.ContextMenuEventPortal.attach.bind(Todoyu.Ext.calendar.ContextMenuEventPortal)');
 
 		$dateStart	= TodoyuTime::getStartOfDay(NOW);
 		$dateEnd	= NOW + TodoyuTime::SECONDS_DAY * 365 * 2;
@@ -77,7 +78,9 @@ class TodoyuCalendarManager {
 		$dateEnd	= NOW + 2 * 365 * 24 * 3600;
 
 		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(userid()));
-
+		
+		TodoyuPage::addExtAssets('calendar', 'public');
+		
 		return sizeof($events);
 	}
 

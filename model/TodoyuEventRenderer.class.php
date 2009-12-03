@@ -51,7 +51,7 @@ class TodoyuEventRenderer {
 			'birthdays'						=> $birthdays,
 			'color'							=> $color[userid()]
 		);
-
+		
 		return render($tmpl, $data);
 	}
 
@@ -149,8 +149,8 @@ class TodoyuEventRenderer {
 	 * @return	String	Div of the event
 	 */
 	public static function renderEvent(array $event, $calendarMode = 'month', array $selectedUserIDs = array(), $selectedUserColors = array() ) {
-		$selectedUserIDs= TodoyuArray::intval($selectedUserIDs);
-		$event			= self::prepareEventRenderData($calendarMode, $event, $selectedUserIDs, $selectedUserColors);
+		$selectedUserIDs = TodoyuArray::intval($selectedUserIDs);
+		$event			 = self::prepareEventRenderData($calendarMode, $event, $selectedUserIDs, $selectedUserColors);
 
 		if( $calendarMode === 'list' )	{
 			$color = self::getEventColorData(userid());
@@ -248,7 +248,13 @@ class TodoyuEventRenderer {
 		return ceil($timeDiffHour * CALENDAR_HEIGHT_HOUR);
 	}
 
-
+	
+	
+	/**
+	 * 
+	 * @param unknown_type $idEvent
+	 * @return unknown_type
+	 */
 	public static function renderEventViewTabs($idEvent) {
 		$idEvent	= intval($idEvent);
 		$activeTab	= 'detail';

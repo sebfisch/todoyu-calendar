@@ -62,8 +62,24 @@ class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 	 */
 	public function eventAction(array $params) {
 		$idEvent	= intval($params['event']);
+		
 		$contextMenu= new TodoyuContextMenu('Event', $idEvent);
-
+		
+		return $contextMenu->printJSON();
+	}
+	
+	
+	
+	/**
+	 * 
+	 * @param array $params
+	 * @return unknown_type
+	 */
+	public function eventPortalAction(array $params)	{
+		$idEvent	= intval($params['event']);
+		
+		$contextMenu= new TodoyuContextMenu('EventPortal', $idEvent);
+		
 		return $contextMenu->printJSON();
 	}
 

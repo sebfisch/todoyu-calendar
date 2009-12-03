@@ -94,6 +94,10 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			array(
 				'file' => 'ext/calendar/assets/js/ContextMenuEvent.js',
 				'position' => 112
+			),
+			array(
+				'file' => 'ext/calendar/assets/js/ContextMenuEventPortal.js',
+				'position' => 113
 			)
 		),
 

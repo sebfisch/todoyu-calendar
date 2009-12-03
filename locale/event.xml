@@ -48,6 +48,10 @@
 		<label index="contextmenu.showEvent">Show event</label>
 		<label index="contextmenu.editEvent">Edit event</label>
 		<label index="contextmenu.deleteEvent">Delete event</label>
+		<label index="contextmenu.showEventInCalendar">Show in calendar</label>
+		<label index="contextmenu.showEventInCalendar.day">Day</label>
+		<label index="contextmenu.showEventInCalendar.week">Week</label>
+		<label index="contextmenu.showEventInCalendar.month">Month</label>
 	</labels>
 	<labels lang="de">
 		<label index="event">Ereignis</label>
@@ -97,5 +101,9 @@
 		<label index="contextmenu.showEvent">Termin anzeigen</label>
 		<label index="contextmenu.editEvent">Termin bearbeiten</label>
 		<label index="contextmenu.deleteEvent">Termin löschen</label>
+		<label index="contextmenu.showEventInCalendar">Im Kalender anzeigen</label>
+		<label index="contextmenu.showEventInCalendar.day">Tag</label>
+		<label index="contextmenu.showEventInCalendar.week">Woche</label>
+		<label index="contextmenu.showEventInCalendar.month">Monat</label>
 	</labels>
 </locallang>
