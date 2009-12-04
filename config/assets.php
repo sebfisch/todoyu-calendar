@@ -45,7 +45,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position'	=> 80
 			),
 			array(
-				'file'		=> 'ext/calendar/assets/css/metamenu.css',
+				'file'		=> 'ext/calendar/assets/css/global.css',
 				'position'	=> 90
 			),
 		)

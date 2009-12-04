@@ -1,0 +1,20 @@
+/* --------------------------
+	Submenu
+   -------------------------- */
+
+#navi-main-list-planning li.itemCalendar a {
+	background-image:url(../img/icons.png) !important;
+	background-repeat:no-repeat;
+}
+
+#navi-main-list-planning li.itemCalendar a.linkplanningday {
+	background-position:6px -205px;
+}
+
+#navi-main-list-planning li.itemCalendar a.linkplanningweek {
+	background-position:6px -235px;
+}
+
+#navi-main-list-planning li.itemCalendar a.linkplanningmonth {
+	background-position:6px -265px;
+}
