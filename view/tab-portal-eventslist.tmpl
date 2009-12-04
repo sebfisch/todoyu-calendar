@@ -24,19 +24,25 @@
 			</div>{* ------- End: event entry ------- *}
 		{/foreach}
 	{/if}
-	</div>
+</div>
+
 {if $showHolidays && count($holidays)>0}
 	<br/>
-	{Header LabelReplace(event.eventslist.holidaysWithinTheNextXweeks null XXX $holidaysLookAheadWeeksAmount) "holidaysforecast"}
+	{Header title="event.eventslist.holidaysWithinTheNextweeks"}
 	<div id="holidays">
 		{include file="holidayslist.tmpl"}
 	</div>
 {/if}
+
 {if $showBirthdays && count($birthdays)>0}
 	<br/>
-	{Header LabelReplace(event.eventslist.birthdaysWithinTheNextXweeks null XXX $birthdaysLookAheadWeeksAmount) "birthdaysforecast"}
+	{Header title="event.eventslist.birthdaysWithinTheNextweeks"}
 	<div id="birthdays">
 		{include file="birthdayslist.tmpl"}
 	</div>
 {/if}
+
 </div>
+<script type="text/javascript">
+{$javascript}
+</script>

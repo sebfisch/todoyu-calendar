@@ -27,7 +27,9 @@
  */
 
 
-
+	/**
+	 * @todo	Right place for this function?
+	 */
 TodoyuColors::generateColorsCSS();
 
 TodoyuContextMenuManager::registerFunction('Event', 'TodoyuEventManager::getContextMenuItems', 10);
@@ -35,6 +37,9 @@ TodoyuContextMenuManager::registerFunction('EventPortal', 'TodoyuEventManager::g
 TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
 TodoyuSearchManager::addSearchEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
+
+TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50, array('calendar/public'));
+
 
 	// Setup tabs in calendar area
 $CONFIG['EXT']['calendar']['config'] = array(
@@ -97,20 +102,20 @@ $CONFIG['EXT']['calendar']['defaultEventColors'] = array(
 );
 
 	// Configure portal's events type tab, it's renderer, entries counter
-$CONFIG['EXT']['portal']['typetab']['calendar']			= 'calendar';
-$CONFIG['EXT']['portal']['typerenderer']['calendar']	= 'TodoyuCalendarManager::getPortalAppointmentList';
-$CONFIG['EXT']['portal']['entriescounter']['calendar']	= 'TodoyuCalendarManager::getPortalAppointmentsAmount';
+//$CONFIG['EXT']['portal']['typetab']['calendar']			= 'calendar';
+//$CONFIG['EXT']['portal']['typerenderer']['calendar']	= 'TodoyuCalendarManager::getPortalAppointmentList';
+//$CONFIG['EXT']['portal']['entriescounter']['calendar']	= 'TodoyuCalendarManager::getPortalAppointmentsAmount';
 
 
 	// Additional portal tab eventslisting specific config
-$CONFIG['EXT']['portal']['tabcontentconfig']['calendar'] = array(
+$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
 		// Show coming-up holidays in events tab of portal?
-	'showHolidays'				=> true,
-	'showBirthdays'				=> true,
-
+	'showHoliday'	=> true,
+	'showBirthday'	=> true,
 		// How many weeks to look ahead for coming-up holidays to be listed in events tab of portal?
-	'holidaysLookAheadWeeks'	=> 4,
-	'birthdaysLookAheadWeeks'	=> 4,
+	'weeksHoliday'	=> 4,
+	'weeksBirthday'	=> 4,
+	'weeksEvents'	=> 52 // 1 year
 );
 
 	// Default values for event editing

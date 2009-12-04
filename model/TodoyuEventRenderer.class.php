@@ -29,35 +29,6 @@
 class TodoyuEventRenderer {
 
 	/**
-	 * Render list of events to be displayed in events tab of portal
-	 *
-	 * @param	Array 	$events
-	 * @param	Array 	$holidays
-	 * @param	Array 	$birthdays
-	 * @return	String
-	 *
-	 */
-	public static function renderPortalTabEventsList(array $events, array $holidays, array $birthdays ) {
-		$color = self::getEventColorData(userid());
-
-		$tmpl	= 'ext/calendar/view/tab-portal-eventslist.tmpl';
-		$data	= array(
-			'events'						=> $events,
-			'showHolidays'					=> $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showHolidays'],
-			'holidaysLookAheadWeeksAmount'	=> $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['holidaysLookAheadWeeks'],
-			'holidays'						=> $holidays,
-			'showBirthdays'					=> $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['showBirthdays'],
-			'birthdaysLookAheadWeeksAmount'	=> $GLOBALS['CONFIG']['EXT']['portal']['tabcontentconfig']['calendar']['birthdaysLookAheadWeeks'],
-			'birthdays'						=> $birthdays,
-			'color'							=> $color[userid()]
-		);
-		
-		return render($tmpl, $data);
-	}
-
-
-
-	/**
 	 * Render create event form popup
 	 *
 	 * @param 	Array	$data
@@ -193,7 +164,7 @@ class TodoyuEventRenderer {
 	 * @param	Array $selectedUserColors
 	 * @return	Array
 	 */
-	private function getEventColorData($idAssignedUser) {
+	public static function getEventColorData($idAssignedUser) {
 		if ($idAssignedUser > 0) {
 				//  Unique user assigned to event?
 			$eventColorData	= TodoyuUserManager::getSelectedUsersColor(array($idAssignedUser));
@@ -248,10 +219,10 @@ class TodoyuEventRenderer {
 		return ceil($timeDiffHour * CALENDAR_HEIGHT_HOUR);
 	}
 
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * @param unknown_type $idEvent
 	 * @return unknown_type
 	 */
