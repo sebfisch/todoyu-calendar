@@ -79,7 +79,7 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	/**
 	 *	If saved, return to currently selected calendar view (day / week / month)
 	 *
-	 *  @param	Object	response	Response, containing startdate of the event
+	 *	@param	Object	response	Response, containing startdate of the event
 	 */
 	onSaved: function(response) {
 		var isError = response.getTodoyuHeader('error') == 1;

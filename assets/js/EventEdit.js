@@ -29,8 +29,8 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Open edit view for an event
 	 *
-	 * @param	Integer		idEvent
-	 * @param	Integer		time
+	 *	@param	Integer		idEvent
+	 *	@param	Integer		time
 	 */
 	open: function(idEvent, time) {
 		Todoyu.Ui.scrollToTop();
@@ -44,8 +44,8 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Load edit form for an event
 	 *
-	 * @param	Integer		idEvent
-	 * @param	Integer		time
+	 *	@param	Integer		idEvent
+	 *	@param	Integer		time
 	 */
 	loadForm: function(idEvent, time) {
 		var url		= Todoyu.getUrl('calendar', 'event');
@@ -67,8 +67,8 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Handler when edit form is loaded
 	 *
-	 * @param	Integer		idEvent
-	 * @param {Object} response
+	 *	@param	Integer	idEvent
+	 *	@param	Object	response
 	 */
 	onFormLoaded: function(idEvent, response) {
 		var tabLabel = response.getTodoyuHeader('tabLabel');
@@ -82,7 +82,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Add the edit tab
 	 *
-	 * @param	String		label
+	 *	@param	String		label
 	 */
 	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tabhead-edit') ) {
@@ -116,7 +116,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Set edit tab label
 	 *
-	 * @param	String		label
+	 *	@param	String		label
 	 */
 	setTabLabel: function(label) {
 		$('calendar-tabhead-edit').select('span.labeltext').first().update(label);

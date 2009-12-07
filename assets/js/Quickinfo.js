@@ -171,8 +171,8 @@ Todoyu.Ext.calendar.Quickinfo = {
 	/**
 	 * Add quickinfo content to cache
 	 * 
-	 * @param	String		cacheID
-	 * @param	String		content
+	 *	@param	String		cacheID
+	 *	@param	String		content
 	 */
 	addToCache: function(cacheID, content) {
 		this.cache[cacheID] = content;
@@ -183,7 +183,8 @@ Todoyu.Ext.calendar.Quickinfo = {
 	/**
 	 * Get quickinfo from cache
 	 * 
-	 * @param	 key
+	 *	@param	String	cacheID
+	 * 	@return	String
 	 */
 	getFromCache: function(cacheID) {
 		return this.cache[cacheID];
@@ -192,8 +193,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 	/**
-	 *	@todo	comment
-	 *
+	 *	Remove item of given ID from cache
+	 * 
+	 *	@param	String	cacheID
 	 */
 	removeFromCache: function(cacheID) {
 		if( this.cache[cacheID] ) {
@@ -204,8 +206,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 	/**
-	 *	@todo	comment
-	 *
+	 *	Check whether item with given ID is cached
+	 * 
+	 *	@return	Boolean
 	 */
 	isCached: function(cacheID) {
 		return typeof(this.cache[cacheID]) === 'string';
@@ -214,8 +217,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 	/**
-	 *	@todo	comment
-	 *
+	 *	Update popup content
+	 * 
+	 *	@param	String	content
 	 */
 	updatePopup: function(content) {
 		$(this.popupID).update(content);
@@ -223,9 +227,12 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 
+/* -----------------------------------------------
+	Todoyu.Ext.calendar.Quickinfo.Event
+-------------------------------------------------- */
+
 	/**
-	 *	@todo	comment
-	 *
+	 *	Calendar event quickinfo
 	 */
 	Event: {
 		ext: Todoyu.Ext.calendar,
@@ -234,8 +241,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 		/**
-		 *	@todo	comment
-		 *
+		 *	Install element observers on all calendar event elements
 		 */
 		installObservers: function() {
 			$$('div.quickInfoEvent').each(this.installOnElement.bind(this));
@@ -244,13 +250,15 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 		/**
-		 *	@todo	comment
-		 *
+		 *	Install rollover/out observers on calendar event element
+		 * 
+		 *	@param	Element	element
 		 */
 		installOnElement: function(element) {
+				// Extract event ID
 			var idEvent	= element.readAttribute('id').split('-').last();
 
-				// Mouseover
+				// Define over/out event listener methods
 			var observerOver= this.onMouseOver.bindAsEventListener(this, idEvent);
 			var observerOut	= this.onMouseOut.bindAsEventListener(this, idEvent);
 
@@ -260,6 +268,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 				'out':		observerOut
 			});
 
+				// Install the actual observers
 			element.observe('mouseover', observerOver);
 			element.observe('mouseout', observerOut);
 		},
@@ -267,8 +276,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 		/**
-		 *	@todo	comment
-		 *
+		 *	Stop and unregister calendar event element mouseover/out oberservers of all calendar event elements
 		 */
 		uninstallObservers: function() {
 			this.observers.each(function(observer){
@@ -282,8 +290,10 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 		/**
-		 *	@todo	comment
+		 *	Handle mouseOver event on calendar event-element: show event-quickinfo
 		 *
+		 * 	@param	Object	event
+		 * 	@param	Integer	idEvent
 		 */
 		onMouseOver: function(event, idEvent) {
 			this.ext.Quickinfo.show('event', idEvent, event.pointerX(), event.pointerY());
@@ -292,13 +302,20 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 		/**
-		 *	@todo	comment
+		 *	Handle mouseOut event on calendar event-element: hide event-quickinfo
 		 *
 		 */
 		onMouseOut: function(event, idEvent) {
 			this.ext.Quickinfo.hide();
 		},
-		
+
+
+
+		/**
+		 * Remove givben calendar event quickinfo element from cache
+		 * 
+		 *	@param	Integer	idEvent
+		 */
 		removeFromCache: function(idEvent) {
 			this.ext.Quickinfo.removeFromCache('event' + idEvent);
 		}
@@ -307,9 +324,12 @@ Todoyu.Ext.calendar.Quickinfo = {
 
 
 
+/* -----------------------------------------------
+	Todoyu.Ext.calendar.Quickinfo.Holiday
+-------------------------------------------------- */
+
 	/**
-	 *	@todo	comment
-	 *
+	 *	Calendar Holiday quickinfo (Todoyu.Ext.calendar.Quickinfo.Holiday)
 	 */
 	Holiday: {
 		ext: Todoyu.Ext.calendar,

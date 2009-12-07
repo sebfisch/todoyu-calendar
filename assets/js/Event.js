@@ -41,7 +41,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Event double click handler
 	 *
-	 * @param	object	event
+	 *	@param	object	event
 	 */
 	onEventDblClick: function(event) {
 		event.stop();
@@ -57,7 +57,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Show event
 	 *
-	 * @param	Integer	idEvent
+	 *	@param	Integer	idEvent
 	 */
 	show: function(idEvent) {
 		this.ext.EventView.open(idEvent);
@@ -69,7 +69,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Edit event
 	 *
-	 * @param	Integer	idEvent
+	 *	@param	Integer	idEvent
 	 */
 	edit: function(idEvent) {
 		this.ext.EventEdit.open(idEvent);
@@ -80,7 +80,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Remove event
 	 *
-	 * @param	Integer	idEvent
+	 *	@param	Integer	idEvent
 	 */
 	remove: function(idEvent) {
 		if(confirm('Remove event?')) {
@@ -118,7 +118,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Automatically set the enddate to the same value as the startdate in a form
 	 *
-	 * @param	String	formName	Name of the XML-form
+	 *	@param	String	formName	Name of the XML-form
 	*/
 	updateEnddate:function(formName) {
 		if ($(formName+'-0-field-enddate')) {
@@ -274,7 +274,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 *	Evoked on change of selected eventType in quick-event form (toggle ir/relevant fields)
 	 *
-	 * @param
+	 *	@param	String	field
 	 */
 	onEventtypeChange: function(field) {
 		var basename	= 'formElement-quickevent-field-';
