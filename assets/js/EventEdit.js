@@ -23,7 +23,11 @@
  */
 Todoyu.Ext.calendar.EventEdit = {
 
-	ext: Todoyu.Ext.calendar,
+	/**
+	 *	Ext shortcut
+	 */
+	ext:	Todoyu.Ext.calendar,
+
 
 
 	/**

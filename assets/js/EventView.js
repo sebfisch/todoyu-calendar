@@ -23,7 +23,11 @@
  */
 Todoyu.Ext.calendar.EventView = {
 
-	ext: Todoyu.Ext.calendar,
+	/**
+	 *	Ext shortcut
+	 */
+	ext:	Todoyu.Ext.calendar,
+
 
 
 	/**

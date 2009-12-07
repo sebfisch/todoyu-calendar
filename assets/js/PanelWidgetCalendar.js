@@ -24,17 +24,20 @@
  */
 Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
-	ext:	Todoyu.Ext.calendar,
+	/**
+	 *	Ext shortcut
+	 */
+	ext:				Todoyu.Ext.calendar,
 
-	key:	'calendar',
+	key:				'calendar',
 
-	//area:	Todoyu.getArea(),
+//	area:				Todoyu.getArea(),
 
-	calName: 'panelwidget-calendar-scal',
+	calName:			'panelwidget-calendar-scal',
 
-	Calendar:	null,
+	Calendar:			null,
 
-	prefSavingEnabled: true,
+	prefSavingEnabled:	true,
 
 
 

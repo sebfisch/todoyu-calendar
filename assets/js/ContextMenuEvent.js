@@ -25,7 +25,10 @@
 
 Todoyu.Ext.calendar.ContextMenuEvent = {
 
-	ext: Todoyu.Ext.calendar,
+	/**
+	 *	Ext shortcut
+	 */
+	ext:	Todoyu.Ext.calendar,
 
 
 

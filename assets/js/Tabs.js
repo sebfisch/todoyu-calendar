@@ -23,7 +23,7 @@ Todoyu.Ext.calendar.Tabs = {
 	/**
 	 *	Ext shortcut
 	 */
-	ext: Todoyu.Ext.calendar,
+	ext:	Todoyu.Ext.calendar,
 
 	/**
 	 *	Current active tab (day, week, month, view)
@@ -61,6 +61,9 @@ Todoyu.Ext.calendar.Tabs = {
 
 
 
+	/**
+	 * 
+	 */
 	closeSpecialTabs: function() {
 		if( this.ext.EventEdit.isActive() ) {
 			this.ext.EventEdit.close();

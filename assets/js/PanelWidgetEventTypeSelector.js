@@ -25,6 +25,9 @@
 
 Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
+	/**
+	 *	Ext shortcut
+	 */
 	ext:	Todoyu.Ext.calendar,
 
 	list:	null,

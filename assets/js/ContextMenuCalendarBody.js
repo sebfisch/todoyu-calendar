@@ -25,7 +25,12 @@
 
 Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 
-	ext: Todoyu.Ext.calendar,
+	/**
+	 *	Ext shortcut
+	 */
+	ext:	Todoyu.Ext.calendar,
+
+
 
 	/**
 	 *	Attach task context menu

@@ -20,11 +20,14 @@
 
 Todoyu.Ext.calendar.CalendarBody = {
 	
-	ext: Todoyu.Ext.calendar,
+	/**
+	 *	Ext shortcut
+	 */
+	ext:			Todoyu.Ext.calendar,
 	
-	idArea: 'calendararea',
+	idArea:			'calendararea',
 	
-	calendarBody: null,
+	calendarBody:	null,
 
 
 

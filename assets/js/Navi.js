@@ -20,7 +20,10 @@
 
 Todoyu.Ext.calendar.Navi = {
 
-	ext: Todoyu.Ext.calendar,
+	/**
+	 *	Ext shortcut
+	 */
+	ext:	Todoyu.Ext.calendar,
 
 
 

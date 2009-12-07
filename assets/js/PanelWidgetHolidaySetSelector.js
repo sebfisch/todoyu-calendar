@@ -25,6 +25,9 @@
 
 Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
+	/**
+	 *	Ext shortcut
+	 */
 	ext:			Todoyu.Ext.user,
 
 	key:			'panelwidget-holidaysetselector',
