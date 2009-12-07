@@ -99,7 +99,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get timestamp of first shown day
 	 *
-	 * @return	Integer
+	 *	@return	Integer
 	 */
 	getFirstShownDay: function() {
 		var timestamp	= this.getDate();
