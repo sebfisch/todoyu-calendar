@@ -117,7 +117,7 @@ class TodoyuCalendarRenderer {
 			'dateKey'		=> date('Ymd', $dateStart),
 			'events'		=> self::preRenderEventsForDay($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'		=> self::preRenderDayevents('day', $dateStart, $dateEnd, $eventTypes, $users),
-			'birthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('day', $dateStart, $dateEnd) : '',
+			'birthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderBirthdays($dateStart, $dateEnd) : '',
 			'holidays'		=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'			=> TodoyuCalendarViewHelper::getCalendarTitle('day', $dateStart, $dateEnd)
 		);
@@ -152,7 +152,7 @@ class TodoyuCalendarRenderer {
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsDayAndWeek('week', $dateStart, $dateEnd, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('week', $dateStart, $dateEnd, $eventTypes, $users),
-			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('week', $dateStart, $dateEnd) : array(),
+			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderBirthdays($dateStart, $dateEnd) : array(),
 			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('week', $dateStart, $dateEnd)
 		);
@@ -181,7 +181,6 @@ class TodoyuCalendarRenderer {
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-month.tmpl';
-
 		$data		= array(
 			'timestamps'		=> TodoyuCalendarManager::getShownDaysTimestampsOfMonthView($selectedDate),
 			'timestamp'			=> $selectedDate,
@@ -191,7 +190,7 @@ class TodoyuCalendarRenderer {
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('month', $dateStart, $dateEnd, $eventTypes, $users),//, $amountDays),
-			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderCalendarBirthdays('month', $dateStart, $dateEnd) : array(),
+			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderBirthdays($dateStart, $dateEnd) : array(),
 			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('month', $dateStart, $dateEnd)
 		);
@@ -367,36 +366,31 @@ class TodoyuCalendarRenderer {
 
 
 	/**
-	 * (Pre-)Render birthdays  of current month / week / day.
-	 * -These are birthdays from person-data, NOT regular event records
+	 * Render all birthdays in the range
+	 * Prerendered birthdays are stored as elements of their dateKey
+	 * $birthdays[20091231][0] = array('id'=>)
+	 * The birthday records are user records with the following special keys: age, birthyear
 	 *
-	 * @param	Integer	$tstampFirstDay		UNIX timestamp 1st day of timespan
-	 * @param	Integer	$tstampLastDay		UNIX timestamp last day of timespan
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
 	 * @return	Array
 	 */
-	public static function preRenderCalendarBirthdays($calendarMode = 'month', $tstampFirstDay, $tstampLastDay) {
-		$birthdaysUngrouped   = TodoyuUserManager::getUsersByBirthdayInTimespan($tstampFirstDay, $tstampLastDay);
+	public static function preRenderBirthdays($dateStart, $dateEnd) {
+		$dateStart	= intval($dateStart);
+		$dateEnd	= intval($dateEnd);
 
-			// Recompile birthdays into an array of days with their birthdays pre-rendered
-		$birthdays		= array();
-		for($tstamp = $tstampFirstDay; $tstamp <= $tstampLastDay; $tstamp += 86400) {
-			$birthdaysPerDay = '';
-			$dateMD = date('m-d', $tstamp);
-			foreach($birthdaysUngrouped as $key => $bdayData) {
-				if ($bdayData['birthday_md'] == $dateMD) {
-					$bdayData['calendarMode']	= $calendarMode;
-					$bdayData['id_user_create']	= -1;
-					$bdayData['date_start']		= $tstamp;
-					$bdayData['title']			= $bdayData['firstname'] . ' ' . $bdayData['lastname'];
+		$tmpl			= 'ext/calendar/view/birthday.tmpl';
+		$birthdaysByDay	= TodoyuCalendarManager::getBirthdaysByDay($dateStart, $dateEnd);
 
-					$birthdaysPerDay	.= render('ext/calendar/view/birthday.tmpl', $bdayData);
-					unset($birthdaysUngrouped[$key]);
+		foreach($birthdaysByDay as $dateKey => $birthdaysOfTheDay) {
+			if( is_array($birthdaysOfTheDay) ) {
+				foreach($birthdaysOfTheDay as $index => $birthday) {
+					$birthdaysByDay[$dateKey][$index] = render($tmpl, $birthday);
 				}
 			}
-			$birthdays[ date('Ymd', $tstamp) ]	= $birthdaysPerDay;
 		}
 
-		return $calendarMode == 'day' ? implode('', $birthdays) : $birthdays;
+		return $birthdaysByDay;
 	}
 
 

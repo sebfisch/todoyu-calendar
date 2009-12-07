@@ -36,7 +36,7 @@ class TodoyuCalendarPortalManager {
 		$weeksEvents= intval($GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig']['weeksEvents']);
 
 		$dateStart	= TodoyuTime::getStartOfDay(NOW);
-	
+
 		$dateEnd	= NOW + ($weeksEvents * TodoyuTime::SECONDS_WEEK);
 
 		return TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd);
@@ -65,9 +65,10 @@ class TodoyuCalendarPortalManager {
 	 */
 	public static function getBirthdays() {
 		$weeksBirthday 	= intval($GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig']['weeksBirthday']);
-		$endTime		= $dateStart + $weeksBirthday * TodoyuTime::SECONDS_WEEK;
+		$dateStart		= TodoyuTime::getStartOfDay();
+		$dateEnd		= $dateStart + $weeksBirthday * TodoyuTime::SECONDS_WEEK;
 
-		return TodoyuUserManager::getUsersByBirthdayInTimespan($dateStart, $endTime);
+		return TodoyuUserManager::getBirthdayUsers($dateStart, $dateEnd);
 	}
 
 }

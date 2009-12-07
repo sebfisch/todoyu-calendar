@@ -206,7 +206,7 @@ li.editeventtab p.label span.icon {
    ---------------------- */
 
 .birthdays {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -410px;
+	background:url(../img/icons.png) no-repeat scroll 1px -419px;
 	padding:0 0 0 18px;
 	margin:0 0 2px 1px;
 	color:#000;

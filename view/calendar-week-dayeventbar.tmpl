@@ -24,8 +24,13 @@
 						<table class="st-grid"><tbody>
 							<tr>{for i 0 6}<td style="width:86px; height:1px;"></td>{/for}</tr>
 							{* --------------- Birthdays -------------------- *}
-							<tr>{for weekday 0 6}{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
-								<td class="noEventCell">{$birthdays.$dayDateKey}</td>{/for}
+							<tr>
+							{for weekday 0 6}
+								{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
+								<td class="noEventCell">
+								{if $birthdays[$dayDateKey]}{foreach $birthdays[$dayDateKey] birthday}{$birthday}{/foreach}{/if}
+								</td>
+							{/for}
 							</tr>
 							<tr>
 							{for weekday 0 6}{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}

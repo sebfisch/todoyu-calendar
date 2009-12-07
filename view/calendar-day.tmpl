@@ -17,7 +17,7 @@
 								&nbsp;&nbsp;&nbsp;&nbsp; {$holidays.$dateKey.0.title}
 							</span>
 						{/if}
-							{$birthdays}
+							{if $birthdays[$dateKey]}{foreach $birthdays[$dateKey] birthday}{$birthday}{/foreach}{/if}
 							{foreach $dayEvents.$dateKey dayEvent}{$dayEvent}{/foreach}
 						</div>
 					</td>

@@ -350,6 +350,31 @@ class TodoyuCalendarManager {
 		return $form;
 	}
 
+
+
+	/**
+	 * Get birthday users in timestamp, grouped by day
+	 * Subgroups are datekeys in format Ymd
+	 *
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
+	 * @return	Array
+	 */
+	public static function getBirthdaysByDay($dateStart, $dateEnd) {
+		$dateStart	= intval($dateStart);
+		$dateEnd	= intval($dateEnd);
+
+		$birthdayUsers	= TodoyuUserManager::getBirthdayUsers($dateStart, $dateEnd);
+
+		foreach($birthdayUsers as $birthdayUser) {
+			$dateKey = date('Ymd', $birthdayUser['date']);
+
+			$birthdaysByDay[$dateKey][] = $birthdayUser;
+		}
+
+		return $birthdaysByDay;
+	}
+
 }
 
 ?>

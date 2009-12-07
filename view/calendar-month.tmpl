@@ -19,11 +19,11 @@
 		</tbody></table>
 		<div id="mvEventContainer" class="mv-event-container contextmenucalendararea">
 		{for monthrowCounter $weekFromNum $weeks}
-			{assign var=dayFrom value=$monthrowCounter*7-6}		
+			{assign var=dayFrom value=$monthrowCounter*7-6}
 			{assign var=dayUntil value=$monthrowCounter*7}
 			<div class="month-row">
 				<table class="st-grid"><tbody>
-					<tr>					
+					<tr>
 					{* -------------------- Days cells (+ event creation hotspots)  ---------------------- *}
 					{for dayCounter $dayFrom $dayUntil}
 					{if $dayCounter < 1}{assign var=curDayCounter value=$dayCounter+100}{else}{assign var=curDayCounter value=$dayCounter}{/if}
@@ -36,18 +36,32 @@
 							<span {if count($holidays.$dayDateKey) > 0}id="holiday-{$timestamps.$curDayCounter}" class="holiday quickInfoHoliday"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;{if count($holidays.$dayDateKey) == 0}</span>{/if}
 							{if date('j', $timestamps.$curDayCounter) == 1}{dateFormat $timestamps.$curDayCounter MlongD2}{else}{date('j', $timestamps.$curDayCounter)}{/if}{if count($holidays.$dayDateKey) > 0}</span>{/if}
 						</td>
-					{/for}					
+					{/for}
 					</tr>
 					<tr>
 					{* --------------------------- Birthdays, Day-events, Events  ------------------------- *}
 					{for dayCounter $dayFrom $dayUntil}
-					{if $dayCounter < 1}{assign var=curDayCounter value=$dayCounter+100}{else}{assign var=curDayCounter value=$dayCounter}{/if}
+					{if $dayCounter < 1}
+						{assign var=curDayCounter value=$dayCounter+100}
+					{else}
+						{assign var=curDayCounter value=$dayCounter}
+					{/if}
 						<td id="createEventAt-{$timestamps.$curDayCounter}" class="content c{if $timestamps.$curDayCounter == $timestamp_today}today{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if date('ny', $timestamps.$curDayCounter)==date('ny', $timestamp_today)} inSelMonth{/if}">
-							{assign var=dayDateKey value=date('Ymd', $timestamps.$curDayCounter)}
-							{$birthdays.$dayDateKey}
-							{foreach $dayEvents.$dayDateKey dayEvent}{$dayEvent}{/foreach}
-							{foreach $events.$dayDateKey event}{$event}{/foreach}
-							{if $curDayCounter == $dayUntil}<br/>{/if}
+							{assign var=dayDateKey value=date('Ymd', $timestamps[$curDayCounter])}
+							{if $birthdays[$dayDateKey]}
+								{foreach $birthdays[$dayDateKey] birthday}
+									{$birthday}
+								{/foreach}
+							{/if}
+							{foreach $dayEvents[$dayDateKey] dayEvent}
+								{$dayEvent}
+							{/foreach}
+							{foreach $events[$dayDateKey] event}
+								{$event}
+							{/foreach}
+							{if $curDayCounter == $dayUntil}
+								<br/>
+							{/if}
 						</td>
 					{/for}
 					</tr>

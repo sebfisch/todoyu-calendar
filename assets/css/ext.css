@@ -249,7 +249,7 @@ form.formEvent button.buttonSave {}
    ------------------------ */
 #birthdays h3 {
 	background-color:#fff;
-	background:transparent url(../img/icons.png) no-repeat scroll 4px -420px;
+	background:transparent url(../img/icons.png) no-repeat scroll 4px -415px;
 	border-bottom:1px dotted #848484;
 	border-left:5px solid #bbb;
 	padding-left:35px;
@@ -259,14 +259,10 @@ form.formEvent button.buttonSave {}
 	background-color:#f3f3f3;
 }
 
-h1.birthdaysforecast span.title {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -420px;
-	padding-left:20px;
+#birthdays h3 span.date {
+	padding-right:10px;
 }
-h1.holidaysforecast span.title {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -990px;
-	padding-left:20px;
-}
+
 
 
 
