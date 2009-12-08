@@ -21,17 +21,17 @@
 		<label index="section.panelwidgets">Steuerelement</label>
 		<label index="right.PanelWidgetCalendar">Siehe Kalender Element</label>
 		<label index="right.PanelWidgetQuickEvent">Siehe Termin Element</label>
-		<label index="right.panelwidget:eventTypeSelector">Termintyp Wähler Verwenden</label>
-		<label index="right.panelwidget:holidaySetSelector">Ferien-Regionen Wähler anzeigen</label>
+		<label index="right.panelwidget:eventTypeSelector">Termintyp Wï¿½hler Verwenden</label>
+		<label index="right.panelwidget:holidaySetSelector">Ferien-Regionen Wï¿½hler anzeigen</label>
 		<label index="section.general">Allgemein</label>
 		<label index="right.use">Kalender Verwenden</label>
-		<label index="section.event">Ereignis</label>
-		<label index="right.event:see">Ereignis Sehen</label>
-		<label index="right.event:edit">Ereignis Editieren</label>
-		<label index="right.event:add">Neues Ereignis Erstellen</label>
-		<label index="right.event:delete">Ereignisse Löschen</label>
-		<label index="right.event:deleteOwn">Eigene Ereignisse Löschen</label>
-		<label index="right.event:assign">Ereignisse anderen Benutzern Zuweisen</label>
+		<label index="section.event">Termin</label>
+		<label index="right.event:see">Termin Sehen</label>
+		<label index="right.event:edit">Termin Editieren</label>
+		<label index="right.event:add">Neuen Termin Erstellen</label>
+		<label index="right.event:delete">Termine Lï¿½schen</label>
+		<label index="right.event:deleteOwn">Eigene Termine Lï¿½schen</label>
+		<label index="right.event:assign">Termine anderen Benutzern Zuweisen</label>
 		<label index="right.event:quickinfo">Schnell-Info Anzeigen</label>
 	</labels>
 </locallang>

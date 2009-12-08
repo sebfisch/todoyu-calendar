@@ -247,6 +247,10 @@ form.formEvent button.buttonSave {}
 /* ------------------------
 	Portal events list
    ------------------------ */
+.portalEventsList #events .event h3	{
+	border-left:0;
+}
+
 #birthdays h3 {
 	background-color:#fff;
 	background:transparent url(../img/icons.png) no-repeat scroll 4px -415px;
