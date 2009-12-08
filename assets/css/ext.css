@@ -28,7 +28,7 @@
    ------------------------- */
 
 #admin-tabs li.tabkey-holidays span.icon {
-	background:url('../img/icons.png') no-repeat 0 -404px;
+	background:url(../img/icons.png) no-repeat 0 -404px;
 }
 
 table.holidayList {

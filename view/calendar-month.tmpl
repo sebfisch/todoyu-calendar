@@ -1,5 +1,9 @@
 {assign var=weekFromNum value=1}
-{if count($timestamps) > 36}{assign var=weeks value=6}{else}{assign var=weeks value=5}{/if}
+{if count($timestamps) > 36}
+	{assign var=weeks value=6}
+{else}
+	{assign var=weeks value=5}
+{/if}
 {* --- Ensure to include 1st day of month / resp. the monday before that --- *}
 {assign var=dayFrom value=$weekFromNum*7-6}
 {if date('Y', $timestamps.$dayFrom) == $selYear && date('n', $timestamps.$dayFrom) >= $selMonth && date('d', $timestamps.$dayFrom) > 1}

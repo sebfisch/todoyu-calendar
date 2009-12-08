@@ -29,15 +29,17 @@
 class TodoyuCalendarRenderer {
 
 	/**
-	 * Render the whole calendar (full page, including header, tabs and the actual calendar)
+	 * Render the whole calendar (header, tabs and the actual calendar grid)
 	 *
-	 * @param	String	$activeTab
+	 * @param	String	$activeTab		Displayed tab
+	 * @param	Array	$params			Request parameters sub functions
 	 * @return	String	Code of the calendar
 	 */
 	public static function render($activeTab = '', array $params = array()) {
 		$currentDate= TodoyuPanelWidgetCalendar::getDate(EXTID_CALENDAR);
 
-		if ($activeTab == '') {
+			// Get tab from preferences if not set
+		if( empty($activeTab) ) {
 			$activeTab	= TodoyuCalendarPreferences::getActiveTab();
 		}
 
@@ -49,8 +51,10 @@ class TodoyuCalendarRenderer {
 			'showCalendar'	=> $activeTab === 'day' || $activeTab === 'week' || $activeTab === 'month'
 		);
 
+			// If event-view is selected, set date and add it to data array
 		if( $activeTab === 'view' ) {
 			$event	= TodoyuEventManager::getEvent($params['event']);
+			TodoyuPanelWidgetCalendar::saveDate($event->getStartDate());
 			$data['date']	= $event->getStartDate();
 		}
 
