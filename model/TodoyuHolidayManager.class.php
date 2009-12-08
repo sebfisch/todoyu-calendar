@@ -63,7 +63,6 @@ class TodoyuHolidayManager {
 	/**
 	 * Save holiday
 	 *
-	 *
 	 * @param	Array		$data
 	 * @return	Integer
 	 */
@@ -78,13 +77,7 @@ class TodoyuHolidayManager {
 		$data	= self::saveHolidayForeignRecords($data, $idHoliday);
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idHoliday);
 
-
-//		TodoyuDebug::printInFirebug($data, 'holiday');
-
-		self::updateHoliday($idHoliday, $data);
-
-			//	@todo	fix - $idRecord is not defined
-		return $idRecord;
+		return self::updateHoliday($idHoliday, $data);
 	}
 
 

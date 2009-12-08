@@ -28,19 +28,21 @@
 
 class TodoyuCalendarRecordsActionController extends TodoyuActionController {
 
-	
-	
+
+
 	/**
-	 *	@todo	COMMENT
+	 *	Render sub part to calendar admin form for record types added/ used by calendar (holiday, holidayset)
 	 *
-	 *	@param array $params
+	 *	@param	Array	$params
+	 *	@return	String
 	 */
 	public static function addSubformAction(array $params) {
+		$xmlBase 	= 'ext/calendar/config/form/admin';
+
 		$index		= intval($params['index']);
 		$fieldName	= $params['field'];
 		$formName	= $params['form'];
 		$idRecord	= intval($params['record']);
-		$xmlBase 	= 'ext/calendar/config/form/admin';
 
 		switch($fieldName) {
 			case 'holiday':
@@ -57,8 +59,6 @@ class TodoyuCalendarRecordsActionController extends TodoyuActionController {
 
 		return TodoyuFormManager::renderSubformRecord($xmlPath, $fieldName, $formName, $index, $idRecord, $data);
 	}
-
-
 
 }
 
