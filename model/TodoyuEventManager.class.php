@@ -242,18 +242,16 @@ class TodoyuEventManager {
 	 *	@param	Boolean $getUserData	get also user data (not only the ID)?
 	 *	@return	Array
 	 */
-	public static function getAssignedUsersOfEvent( $idEvent, $getUsersData = false ) {
-		$users = array();
-
+	public static function getAssignedUsersOfEvent($idEvent, $getUsersData = false) {
 		$idEvent	= intval( $idEvent );
 
 		$fields	= 'id_user, is_acknowledged';
 		$tables	= 'ext_calendar_mm_event_user';
-		$where	= 'id_event = ' . intval( $idEvent );
+		$where	= 'id_event = ' . $idEvent;
 		$group	= 'id_user';
 
+		$users = array();
 		$result	= Todoyu::db()->doSelect( $fields, $tables, $where, $group, '', '', 'id_user');
-
 		while($row = Todoyu::db()->fetchAssoc($result))	{
 			$user = $row;
 
@@ -308,8 +306,8 @@ class TodoyuEventManager {
 			// Delete event
 		Todoyu::db()->deleteRecord(self::TABLE , $idEvent);
 
-			// Remove assigned users
-		self::removeAssignedEventUsers($idEvent);
+			// Remove user-assignments
+		self::removeAllUserAssignments($idEvent);
 	}
 
 
@@ -370,7 +368,7 @@ class TodoyuEventManager {
 			// Update the event with the definitive data
 		self::updateEvent($idEvent, $data);
 			// Remove already assigned users
-		self::removeAssignedEventUsers($idEvent);
+		self::removeAllUserAssignments($idEvent);
 
 			// Add users
 		if( is_array($users) ) {
@@ -385,6 +383,7 @@ class TodoyuEventManager {
 	}
 
 
+
 	/**
 	 *	Save quick event
 	 *
@@ -393,7 +392,6 @@ class TodoyuEventManager {
 	 */
 	public static function saveQuickEvent(array $data) {
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
-
 		$idEvent	= self::addEvent(array());
 
 			// Add users
@@ -480,8 +478,9 @@ class TodoyuEventManager {
 
 		$table	= 'ext_calendar_mm_event_user';
 		$data	= array(
-			'id_event'	=> $idEvent,
-			'id_user'	=> $idUser
+			'id_event'			=> $idEvent,
+			'id_user'			=> $idUser,
+			'is_acknowledged'	=> userid() == $idUser ? 1 : 0
 		);
 
 		Todoyu::db()->addRecord($table, $data);
@@ -490,12 +489,13 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Remove all assigned users of an event
+	 *	Remove all user-assignments from an event
 	 *
 	 *	@param	Integer		$idEvent
 	 */
-	public static function removeAssignedEventUsers($idEvent) {
+	public static function removeAllUserAssignments($idEvent) {
 		$idEvent= intval($idEvent);
+
 		$table	= 'ext_calendar_mm_event_user';
 		$where	= 'id_event = ' . $idEvent;
 
@@ -510,7 +510,7 @@ class TodoyuEventManager {
 	 *	@param	Integer		$idEvent
 	 *	@param	Integer		$idUser
 	 */
-	public static function removeAssignedEventUser($idEvent, $idUser) {
+	public static function removeUserAssignment($idEvent, $idUser) {
 		$idEvent	= intval($idEvent);
 		$idUser		= intval($idUser);
 
@@ -530,9 +530,9 @@ class TodoyuEventManager {
 	 */
 	protected static function createNewEvent()	{
 		$insertArray	= array(
-			'date_create'		=> NOW,
-			'id_user_create'	=> userid(),
-			'deleted'			=> 0
+			'date_create'	=> NOW,
+			'id_user_create'=> userid(),
+			'deleted'		=> 0
 		);
 
 		return Todoyu::db()->doInsert( self::TABLE , $insertArray );
@@ -643,7 +643,7 @@ class TodoyuEventManager {
 				$fields	=	array(
 					'id_event'			=> $idEvent,
 					'id_user'			=> $idUser,
-					'is_acknowledged'	=> 0,
+					'is_acknowledged'	=> $idUser == userid() ? 1 : 0,
 				);
 
 				Todoyu::db()->doInsert($table, $fields);
@@ -711,9 +711,11 @@ class TodoyuEventManager {
 	 *	@param	Integer	$idUser
 	 */
 	public static function acknowledgeEvent($idEvent, $idUser)	{
-		$updateArray = array('is_acknowledged' => 1);
+		$idEvent	= intval($idEvent);
+		$idUser		= intval($idUser);
 
-		$where = 'id_event = '.intval($idEvent). ' AND id_user = '.intval($idUser);
+		$where = 'id_event = ' . $idEvent . ' AND id_user = ' . $idUser;
+		$updateArray= array('is_acknowledged' => 1);
 
 		Todoyu::db()->doUpdate('ext_calendar_mm_event_user', $where, $updateArray);
 	}
@@ -723,12 +725,11 @@ class TodoyuEventManager {
 	/**
 	 *	Create new event object with default data
 	 *
-	 *	@param	Integer	$timeStamp
+	 *	@param	Integer	$timestamp
 	 */
-	public static function createNewEventWithDefaultsInCache($date)	{
-		$date		= intval($date);
-
-		$defaultData= self::getEventDefaultData($date);
+	public static function createNewEventWithDefaultsInCache($timestamp)	{
+		$timestamp	= intval($timestamp);
+		$defaultData= self::getEventDefaultData($timestamp);
 
 		$idCache	= TodoyuCache::makeClassKey('TodoyuEvent', 0);
 		$event		= self::getEvent(0);
@@ -744,13 +745,13 @@ class TodoyuEventManager {
 	 *	@param	Integer	$timeStamp
 	 *	@return	Array
 	 */
-	protected static function getEventDefaultData($timeStamp)	{
-		$timeStamp	= $timeStamp == 0 ? NOW : intval($timeStamp);
+	protected static function getEventDefaultData($timestamp)	{
+		$timestamp	= $timestamp == 0 ? NOW : intval($timestamp);
 
-		if( date('Hi', $timeStamp) === '0000' ) {
-			$dateStart	= $timeStamp + intval($GLOBALS['CONFIG']['EXT']['calendar']['default']['timeStart']);
+		if( date('Hi', $timestamp) === '0000' ) {
+			$dateStart	= $timestamp + intval($GLOBALS['CONFIG']['EXT']['calendar']['default']['timeStart']);
 		} else {
-			$dateStart	= $timeStamp;
+			$dateStart	= $timestamp;
 		}
 
 		$dateEnd = $dateStart + intval($GLOBALS['CONFIG']['EXT']['calendar']['default']['eventDuration']);
@@ -778,6 +779,7 @@ class TodoyuEventManager {
 	 */
 	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent= intval($idEvent);
+
 		$allowed= array();
 		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Event'];
 
@@ -804,26 +806,26 @@ class TodoyuEventManager {
 
 		return $items;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * 
+	 *
 	 * @param unknown_type $idEvent
 	 * @param array $items
 	 * @return unknown_type
 	 */
 	public static function getContextMenuItemsPortal($idEvent, array $items)	{
 		$idEvent = intval($idEvent);
-		
+
 		$own = $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['EventPortal'];
-		
+
 		foreach($own['show']['submenu'] as $key => $config)	{
 			$own['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', TodoyuEventManager::getEvent($idEvent)->get('date_start'), $config['jsAction']);
 		}
-		
+
 		$items = array_merge_recursive($items, $own);
-		
+
 		return $items;
 	}
 

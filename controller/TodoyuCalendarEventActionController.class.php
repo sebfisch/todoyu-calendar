@@ -37,7 +37,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 *	'add' action method
+	 *	Add event action: render event creation content (tab head and form)
 	 *
 	 *	@param	Array	$params
 	 *	@return	String
@@ -83,7 +83,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 *	'save' action method
+	 *	Save event action: validate data and save or return failure feedback
 	 *
 	 *	@param	Array	$params
 	 *	@return	String
@@ -142,14 +142,14 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['eventID']);
 
 		$event	= TodoyuEventManager::getEvent($idEvent);
-		
+
 		$data		= array(
 			'event'			=> $event->getTemplateData(),
 			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
 			'user_create'	=> TodoyuUserManager::getUserArray($event['id_user_create']),
 		);
-		
-		return TodoyuEventRenderer::renderEvent($data, 'list');	
+
+		return TodoyuEventRenderer::renderEvent($data, 'list');
 	}
 
 
