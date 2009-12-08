@@ -1,80 +1,45 @@
 #quickinfo {
-	background-color:transparent;
-	border:1px solid #B9BCAE;
+	display:block;
+	left:200px;
 	position:absolute;
-	left:0;
-	top:0;
-	z-index:100;
+	top:200px;
+	width:152px;
+	border: 1px solid #B9BCAE;
+	background-color:#D3DABB;
 }
 
-.quickinfo {
-	background-color:#edf1e0;
+#quickinfo dl {
+	
+}
+
+#quickinfo dl dt {
+	float:left;	
+	width:20px;
+	height:15px;
+	padding:2px;
+}
+
+#quickinfo dl dd {
+	float:left;	
+	width:120px;
+	padding:3px 4px;
+	background-color:#EDF1E0;
 	text-align:left;
-}
-
-.quickinfo_label {
-	background-color:#d3dabb;
-	padding:0;
-}
-
-.quickinfo_label span {
-	width:600px;
-}
-
-.quickinfo_content {
-	font-weight:bold;
-	white-space:nowrap;
 	font-size:10px;
 }
 
-.quickinfo_content span {
-	font-weight:normal;
+#quickinfo dt.typeIcon {
+	background:url(../img/icons.png) no-repeat 4px -478px;
 }
 
-.quickinfoHoliday_content {
-	white-space:nowrap;
-	font-size:10px;
-	font-weight:normal;
-	background-color:#edf1e0;
-	margin:0;
-	padding:6px 12px 16px 12px;
+#quickinfo dt.dateIcon {
+	background:url(../img/icons.png) no-repeat 4px -568px;
 }
 
-
-
-/* ------------------------------------------
-	Quickinfo inline event attribute icons
-   ------------------------------------------*/
-
-.quickinfo_what,
-.quickinfo_when,
-.quickinfo_where,
-.quickinfo_description,
-.quickinfo_owner,
-.quickinfo_assignedto {
-	width:28px;	
+#quickinfo dt.usersIcon {
+	background:url(../img/icons.png) no-repeat 4px -628px;
 }
 
-.quickinfo_what {
-	background:transparent url(../img/icons.png) no-repeat scroll 2px -480px;
-}
-
-.quickinfo_when {
-	background:transparent url(../img/icons.png) no-repeat scroll 2px -570px;
-}
-
-.quickinfo_where {
-	background:transparent url(../img/icons.png) no-repeat scroll 2px -540px;
-}
-
-.quickinfo_description {
-	background:transparent url(../img/icons.png) no-repeat scroll 2px -598px;
-}
-
-.quickinfo_owner {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -510px;
-}
-
-.quickinfo_assignedto {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -630px;
+#quickinfo dt.placeIcon {
+	background:url(../img/icons.png) no-repeat 4px -538px;
 }

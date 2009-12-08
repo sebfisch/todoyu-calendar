@@ -27,9 +27,15 @@
  */
 class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 
+	/**
+	 * Check if quickinfos are allowed
+	 *
+	 */
 	public function init() {
 		restrict('calendar', 'event:quickinfo');
 	}
+
+
 
 	/**
 	 * Get quickinfo for an event
@@ -40,12 +46,42 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 	public function eventAction(array $params) {
 		$idEvent	= intval($params['key']);
 
-		$tmpl	= 'ext/calendar/view/quickinfo-event.tmpl';
-		$data	= TodoyuEventManager::getEventRecord($idEvent);
+		$event		= TodoyuEventManager::getEvent($idEvent);
+		$quickInfo	= new TodoyuCalendarQuickinfo();
 
-		$data['assignedUsers']	= TodoyuEventManager::getAssignedUsersOfEvent($idEvent);
+			// Build event date info
+		if( $event->isMultiDay() ) {
+			$dateInfo  = TodoyuTime::format($event->getStartDate(), 'D2MshortTime');
+			$dateInfo .= '<br />';
+			$dateInfo .= TodoyuTime::format($event->getEndDate(), 'D2MshortTime');
+		} else {
+			$dateInfo  = TodoyuTime::format($event->getStartDate(), 'D2MshortTime');
+			$dateInfo .= ' - ';
+			$dateInfo .= TodoyuTime::format($event->getEndDate(), 'time');
+		}
 
-		return render($tmpl, $data);
+			// Build users info
+		$usersInfo	= array();
+		$users		= $event->getAssignedUserData();
+
+		foreach($users as $user) {
+			$usersInfo[] = '- ' . $user['lastname'] . ' ' . $user['firstname'];
+		}
+
+		$quickInfo->addInfo('title', $event->getTitle(), 10);
+		$quickInfo->addInfo('type', $event->getTypeLabel(), 20);
+		$quickInfo->addInfo('date', $dateInfo, 30);
+
+		if( $event->getPlace() !== '' ) {
+			$quickInfo->addInfo('place', $event->getPlace(), 40);
+		}
+
+			// Only add users info when assigned to at least one user
+		if( sizeof($usersInfo) > 0 ) {
+			$quickInfo->addInfo('users', implode('<br />', $usersInfo), 50);
+		}
+
+		$quickInfo->printInfoJSON();
 	}
 
 
@@ -59,13 +95,41 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$timestamp	= intval($params['key']);
 		$holidays	= TodoyuCalendarManager::getHolidaysForDay($timestamp);
 
-		$tmpl	= 'ext/calendar/view/quickinfo-holiday.tmpl';
-		$data 	= array(
-			'timestamp'	=> $timestamp,
-			'holidays'	=> $holidays,
-		);
+		$holiday	= array_shift($holidays);
 
-		echo render($tmpl, $data);
+		$quickInfo	= new TodoyuCalendarQuickinfo();
+
+		$quickInfo->addInfo('title', $holiday['title']);
+		$quickInfo->addInfo('date', TodoyuTime::format($holiday['date'], 'date'));
+		$quickInfo->addInfo('work', $holiday['workinghours'] . ' ' . Label('date.time.hours'));
+
+
+		$quickInfo->printInfoJSON();
+	}
+
+
+
+	/**
+	 * Get quickinfo for birthdays
+	 *
+	 * @param	Array		$params
+	 */
+	public function birthdayAction(array $params) {
+		$idUser		= intval($params['key']);
+		$user		= TodoyuUserManager::getUser($idUser);
+		$viewDate	= TodoyuCalendarPreferences::getCalendarDate(AREA);
+
+		$quickInfo	= new TodoyuCalendarQuickinfo();
+
+		$birthday		= $user->getBirthday();
+		$viewBirthday	= mktime(0, 0, 0, date('n', $birthday), date('j', $birthday), date('Y', $viewDate));
+		$age			= date('Y', $viewDate) - date('Y', $birthday);
+
+		$quickInfo->addInfo('name', $user->getFullName());
+		$quickInfo->addInfo('date', TodoyuTime::format($viewBirthday, 'date'));
+		$quickInfo->addInfo('age', $age . ' ' . Label('calendar.yearsOld'));
+
+		$quickInfo->printInfoJSON();
 	}
 
 }

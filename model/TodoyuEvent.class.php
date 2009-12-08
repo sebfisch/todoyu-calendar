@@ -25,7 +25,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  *
-*/
+ */
 class TodoyuEvent extends TodoyuBaseObject {
 
 	/**
@@ -50,10 +50,86 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Get end date of event
+	 *
+	 * @return	Integer
+	 */
+	public function getEndDate() {
+		return $this->get('date_end');
+	}
+
+
+
+	/**
+	 * Check if event start and end is on different days
+	 *
+	 * @return	Bool
+	 */
+	public function isMultiDay() {
+		return $this->isSingleDay() === false;
+	}
+
+
+
+	/**
+	 * Check if event start and end is on the same day
+	 *
+	 * @return	Bool
+	 */
+	public function isSingleDay() {
+		return date('Ymd', $this->getStartDate()) === date('Ymd', $this->getEndDate());
+	}
+
+
+
+	/**
+	 * Get event type (ID)
+	 *
+	 * @return	String
+	 */
+	public function getType() {
+		return $this->get('eventtype');
+	}
+
+
+
+	/**
+	 * Get type key
+	 *
+	 * @return	String
+	 */
+	public function getTypeKey() {
+		return $GLOBALS['CONFIG']['EXT']['calendar']['EVENTTYPE'][$this->getType()];
+	}
+
+
+
+	/**
+	 * Get type label
+	 *
+	 * @return unknown
+	 */
+	public function getTypeLabel() {
+		return TodoyuLocale::getLabel('event.eventtype.' . $this->getTypeKey());
+	}
+
+
+	public function getAssignedUserIDs() {
+		return TodoyuEventManager::getAssignedUsersOfEvent($this->getID());
+	}
+
+
+	public function getAssignedUserData() {
+		return TodoyuEventManager::getAssignedUsersOfEvent($this->getID(), true);
+	}
+
+
+
+	/**
 	 * Load event foreign data (assigned users)
 	 *
 	 */
-	public function loadForeignData()	{
+	protected function loadForeignData()	{
 		if( ! is_array($this->data['user']) ) {
 			$this->data['user'] = TodoyuEventManager::getAssignedUsersOfEvent($this->id, true);
 		}
@@ -74,6 +150,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 		return parent::getTemplateData();
 	}
+
 }
 
 ?>

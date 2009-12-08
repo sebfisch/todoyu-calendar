@@ -31,17 +31,26 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 	key:				'calendar',
 
-//	area:				Todoyu.getArea(),
-
 	calName:			'panelwidget-calendar-scal',
 
+	/**
+	 * Scal object
+	 */
 	Calendar:			null,
 
 	prefSavingEnabled:	true,
 	
+	/**
+	 * Update of the calender is delayed. Timeout is stored here
+	 * @param	Function
+	 */
 	updateTimeout:		null,
 	
-	updateTimeoutWait:	0.3,
+	/**
+	 * Seconds for update delay
+	 * @param	Float
+	 */
+	updateTimeoutWait:	0.2,
 
 
 
@@ -154,14 +163,8 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		if( element.hasClassName('caltitle') ) {
 			mode = 'today';
 		}
-		
-		if( this.updateTimeout !== null ) {
-			window.clearTimeout(this.updateTimeout);
-		}
-		
-		//this.updateTimeout = this.onUpdate.bind(this).delay(this.updateTimeoutWait, mode);
 
-		//this.onUpdate(mode);
+		this.onUpdate(mode, true);
 	},
 
 
@@ -172,7 +175,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 *	@param	unknown	currentDate
 	 */
 	onDateSelected: function(currentDate) {
-		//this.onUpdate('day');
+		this.onUpdate('day', true);
 	},
 
 
@@ -182,13 +185,19 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 *
 	 *	@param	String	mode
 	 */
-	onUpdate: function(mode) {
-		Todoyu.PanelWidget.inform(this.key, {
-			'mode':	mode,
-			'date': this.getDate()
-		});
-
-		//this.saveCurrentDate();
+	onUpdate: function(mode, delay) {
+		if( this.updateTimeout !== null ) {
+			window.clearTimeout(this.updateTimeout);
+		}
+		
+		if( delay ) {
+			this.updateTimeout = this.onUpdate.bind(this).delay(this.updateTimeoutWait, mode, false);
+		} else {
+			Todoyu.PanelWidget.inform(this.key, {
+				'mode':	mode,
+				'date': this.getDate()
+			});
+		}
 	},
 
 

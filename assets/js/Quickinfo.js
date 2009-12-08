@@ -32,6 +32,8 @@ Todoyu.Ext.calendar.Quickinfo = {
 	loading:	false,
 	
 	hidden:		false,
+	
+	template:	null,
 
 
 
@@ -58,6 +60,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 	installObservers: function() {
 		this.Event.installObservers();
 		this.Holiday.installObservers();
+		this.Birthday.installObservers();
 	},
 
 
@@ -179,13 +182,34 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 * 	@param	Object	response
 	 */
 	onQuickInfoLoaded: function(type, key, x, y, response) {
-		this.addToCache(type + key, response.responseText);
+		this.addToCache(type + key, this.buildQuickinfo(response.responseJSON));
 		this.loading = false;
 		if ( ! this.hidden ) {
 			this.show(type, key, x, y);
 		}
 	},
-
+	
+	
+	
+	/**
+	 * Build html code based on json data
+	 * 
+	 * @param	JSON	json
+	 */
+	buildQuickinfo: function(json) {
+		if( this.template === null ) {
+			this.template = new Template('<dt class="#{key}Icon">&nbsp;</dt><dd class="#{key}Label">#{label}&nbsp;</dd>');
+		}
+		
+		var content	= '';
+		
+		json.each(function(item){
+			content += this.template.evaluate(item);
+		}.bind(this));
+		
+		return '<dl>' + content + '</dl>';		
+	},
+	
 
 
 	/**
@@ -447,5 +471,104 @@ Todoyu.Ext.calendar.Quickinfo = {
 			this.ext.Quickinfo.removeFromCache('holiday' + idHoliday);
 		}
 
+	},
+	
+/* -----------------------------------------------
+	Todoyu.Ext.calendar.Quickinfo.Birthday
+-------------------------------------------------- */
+
+	/**
+	 *	Calendar birthday quickinfo (Todoyu.Ext.calendar.Quickinfo.Birthday)
+	 */
+	Birthday: {
+		/**
+	 	 *	Ext shortcut
+	 	 */
+		ext:		Todoyu.Ext.calendar,
+		
+		observers:	[],
+
+
+		/**
+		 *	Install observers on all calendar holiday elements. 
+		 */
+		installObservers: function() {
+			$$('div.quickInfoBirthday').each(this.installOnElement.bind(this));
+		},
+
+
+
+		/**
+		 *	Install mouseOver/Out obeserver on given calendar holiday element
+		 * 
+		 *	@param	Element	element
+		 */
+		installOnElement: function(element) {
+			var idUser	= element.readAttribute('id').split('-').last();
+
+				// Mouseover
+			var observerOver= this.onMouseOver.bindAsEventListener(this, idUser);
+			var observerOut	= this.onMouseOut.bindAsEventListener(this, idUser);
+
+			this.observers.push({
+				'element':	element,
+				'over':		observerOver,
+				'out':		observerOut
+			});
+
+			element.observe('mouseover', observerOver);
+			element.observe('mouseout', observerOut);
+		},
+
+
+
+		/**
+		 *	Uninstall registered holiday elements' mouseOver and -Out observers
+		 */
+		uninstallObservers: function() {
+			this.observers.each(function(observer){
+				Event.stopObserving(observer.element, 'mouseover', observer.over);
+				Event.stopObserving(observer.element, 'mouseout', observer.out);
+			});
+
+			this.observers = [];
+		},
+
+
+
+		/**
+		 *	Evoked upon mouseOver event upon holiday element. Show quick info.
+		 * 
+		 *	@param	Object	event		the DOM-event
+		 *	@param	Integer	idUser		User ID
+		 */
+		onMouseOver: function(event, idUser) {
+			this.ext.Quickinfo.show('birthday', idUser, event.pointerX(), event.pointerY());
+		},
+
+
+
+		/**
+		 *	Evoked upon mouseOut event upon holiday element. Show quick info.
+		 * 
+		 *	@param	Object	event		the DOM-event
+		 *	@param	Integer	idUser		User ID
+		 */
+		onMouseOut: function(event, idUser) {
+			this.ext.Quickinfo.hide();
+		},
+
+
+
+		/**
+		 * Evoke removal of given holiday quickinfo entry from cache
+		 * 
+		 *	@param	Integer	idHoliday
+		 */
+		removeFromCache: function(idUser) {
+			this.ext.Quickinfo.removeFromCache('birthday' + idUser);
+		}
+
 	}
+	
 };
