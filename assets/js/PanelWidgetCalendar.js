@@ -38,6 +38,10 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	Calendar:			null,
 
 	prefSavingEnabled:	true,
+	
+	updateTimeout:		null,
+	
+	updateTimeoutWait:	0.3,
 
 
 
@@ -150,8 +154,14 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		if( element.hasClassName('caltitle') ) {
 			mode = 'today';
 		}
+		
+		if( this.updateTimeout !== null ) {
+			window.clearTimeout(this.updateTimeout);
+		}
+		
+		//this.updateTimeout = this.onUpdate.bind(this).delay(this.updateTimeoutWait, mode);
 
-		this.onUpdate(mode);
+		//this.onUpdate(mode);
 	},
 
 
@@ -162,7 +172,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 *	@param	unknown	currentDate
 	 */
 	onDateSelected: function(currentDate) {
-		this.onUpdate('day');
+		//this.onUpdate('day');
 	},
 
 
