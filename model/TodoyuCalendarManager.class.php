@@ -353,7 +353,7 @@ class TodoyuCalendarManager {
 
 
 	/**
-	 * Get birthday users in timestamp, grouped by day
+	 * Get birthday users in time range, grouped by day
 	 * Subgroups are datekeys in format Ymd
 	 *
 	 * @param	Integer		$dateStart
@@ -363,6 +363,8 @@ class TodoyuCalendarManager {
 	public static function getBirthdaysByDay($dateStart, $dateEnd) {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
+
+		$birthdaysByDay	= array();
 
 		$birthdayUsers	= TodoyuUserManager::getBirthdayUsers($dateStart, $dateEnd);
 
