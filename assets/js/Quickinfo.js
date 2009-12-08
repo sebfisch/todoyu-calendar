@@ -30,6 +30,8 @@ Todoyu.Ext.calendar.Quickinfo = {
 	cache:		{},
 
 	loading:	false,
+	
+	hidden:		false,
 
 
 
@@ -93,6 +95,8 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *	@param	Integer		mouseY
 	 */
 	show: function(type, key, mouseX, mouseY) {
+		this.hidden	= false;
+		
 		var x = mouseX + 16, y = mouseY-12;
 		var cacheID = type + key;
 
@@ -117,10 +121,13 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 *
 	 */
 	showPopUp: function(x, y) {
-		$(this.popupID).setStyle({
-			'top': y + 'px',
-			'left': x + 'px'
-		}).show();
+			// Check hide-flag (prevent lapse due to running request while mouseOut happened)
+		if (! this.hidden) {
+			$(this.popupID).setStyle({
+				'top':	y + 'px',
+				'left':	x + 'px'
+			}).show();
+		}
 	},
 
 
@@ -131,6 +138,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 	hide: function() {
 		if ( $(this.popupID) ) {
 			$(this.popupID).hide();
+			
+				// hide-flag: comprehend overlapping of mouseOut and running show request
+			this.hidden	= true;
 		}
 	},
 	
@@ -171,7 +181,9 @@ Todoyu.Ext.calendar.Quickinfo = {
 	onQuickInfoLoaded: function(type, key, x, y, response) {
 		this.addToCache(type + key, response.responseText);
 		this.loading = false;
-		this.show(type, key, x, y);
+		if ( ! this.hidden ) {
+			this.show(type, key, x, y);
+		}
 	},
 
 
