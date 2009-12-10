@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rights labels="ext/calendar/locale/rights.xml">
-	<section key="general">
-		<allow right="use" />
+<rights>
+	
+	<section name="general">
+		<right name="use" />
 	</section>
-	<section key="event">
-		<allow right="event:see" />
-		<allow right="event:edit" />
-		<allow right="event:add" />
-		<allow right="event:delete" />
-		<allow right="event:deleteOwn" />
-		<allow right="event:assign" />
-		<allow right="event:quickinfo" />
-	</section>	
-	<section key="panelwidgets">
-		<allow right="panelwidget:calendar" />
-		<allow right="panelwidget:quickEvent" />
-		<allow right="panelwidget:eventTypeSelector" />
-		<allow right="panelwidget:holidaySetSelector" />
+	
+	<section name="event" require="use">
+		<right name="event:see" />
+		<right name="event:edit" />
+		<right name="event:add" />
+		<right name="event:delete" />
+		<right name="event:deleteOwn" />
+		<right name="event:assign" />
+		<right name="event:quickinfo" />
 	</section>
+	
+	<section name="panelwidgets">
+		<right name="panelwidget:calendar" />
+		<right name="panelwidget:quickEvent" />
+		<right name="panelwidget:eventTypeSelector" />
+		<right name="panelwidget:holidaySetSelector" />
+	</section>
+	
 </rights>
