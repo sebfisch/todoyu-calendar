@@ -12,7 +12,7 @@
 						<span class="icon eventtype_{$event.eventtype}" title="{Label event.attr.event_type}: {EventTypeLabel $event.eventtype}"> </span>
 						<span id="acknowledge-{$event.id}" class="icon acknowledge {if ! $event.is_acknowledged}not{/if}" {if !$event.is_acknowledged}onclick="Todoyu.Ext.calendar.Event.acknowledgeEvent({$idEvent}, {$event.id_user})"{/if}> </span>
 						<span class="label" onclick="Todoyu.Ext.calendar.Event.toggleDetails({$idEvent})">
-							<span class="date">{date_dmyHi $event.date_start} - {date_dmyHi $event.date_end}</span>
+							<span class="date">{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime}</span>
 							<span class="title">{htmlencode $event.title}</span>
 						</span>
 					</span>
