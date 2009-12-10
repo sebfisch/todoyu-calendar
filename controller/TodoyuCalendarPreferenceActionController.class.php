@@ -25,11 +25,20 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
+	/**
+	 * Preference value
+	 *
+	 * @var	String
+	 */
 	protected $value	= '';
 
+	/**
+	 * Preference item
+	 *
+	 * @var	Integer
+	 */
 	protected $item		= 0;
 
 
@@ -40,6 +49,8 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function init(array $params) {
+		restrict('calendar', 'use');
+
 		$this->value	= $params['value'];
 		$this->item		= intval($params['item']);
 	}
@@ -47,9 +58,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	'tab' action method, saves active tab preference
+	 * Save current active tab
 	 *
-	 *	@param	Array $params
+	 * @param	Array		$params
 	 */
 	public function tabAction(array $params) {
 		$tabKey	= trim($params['tab']);
@@ -60,9 +71,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	'date' action method, saves date preference
+	 * Save current date
 	 *
-	 *	@param array $params
+	 * @param	Array		$params
 	 */
 	public function dateAction(array $params) {
 		$date	= intval($this->value);

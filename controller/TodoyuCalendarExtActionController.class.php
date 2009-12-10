@@ -34,7 +34,7 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public function defaultAction(array $params) {
-		restrict('calendar', 'use');
+		restrict('calendar', 'view');
 
 			// Activate FE tab
 		TodoyuFrontend::setActiveTab('planning');

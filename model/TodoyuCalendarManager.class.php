@@ -302,9 +302,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getSelectedUsers() {
-		$users	= TodoyuPanelWidgetStaffSelector::getSelectedUsers();
-
-		return (sizeof($users) === 0) ? array(userid()) : $users;
+		return TodoyuPanelWidgetStaffSelector::getSelectedUsers();
 	}
 
 

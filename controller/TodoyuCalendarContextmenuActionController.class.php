@@ -25,7 +25,6 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 
 	/**
@@ -34,53 +33,51 @@ class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function init(array $params) {
-
+		restrict('calendar', 'use');
 	}
 
 
 
 	/**
-	 *	Area action method
+	 * Contextmenu for calendar area
 	 *
-	 *	@param	Array	$params
-	 *	@return	String (JSON)
+	 * @param	Array		$params
 	 */
 	public function areaAction(array $params) {
 		$time		= intval($params['time']);
 		$contextMenu= new TodoyuContextMenu('CalendarArea', $time);
 
-		return $contextMenu->printJSON();
+		$contextMenu->printJSON();
 	}
 
 
 
 	/**
-	 *	Event action method
+	 * Contextmenu for events in calendar
 	 *
-	 *	@param	Array	$params
-	 *	@return	String	(JSON)
+	 * @param	Array		$params
 	 */
 	public function eventAction(array $params) {
 		$idEvent	= intval($params['event']);
-		
+
 		$contextMenu= new TodoyuContextMenu('Event', $idEvent);
-		
-		return $contextMenu->printJSON();
+
+		$contextMenu->printJSON();
 	}
-	
-	
-	
+
+
+
 	/**
-	 * 
-	 * @param array $params
-	 * @return unknown_type
+	 * Contextmenu for events in portal
+	 *
+	 * @param	Array		$params
 	 */
 	public function eventPortalAction(array $params)	{
 		$idEvent	= intval($params['event']);
-		
+
 		$contextMenu= new TodoyuContextMenu('EventPortal', $idEvent);
-		
-		return $contextMenu->printJSON();
+
+		$contextMenu->printJSON();
 	}
 
 }

@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
 	<labels lang="en">
-		<label index="section.panelwidgets">Panel widgets</label>
-		<label index="right.PanelWidgetCalendar">See calendar widget</label>
-		<label index="right.PanelWidgetQuickEvent">See quickevent widget</label>
-		<label index="right.panelwidget:eventTypeSelector">Use eventtype selector widget</label>
-		<label index="right.panelwidget:holidaySetSelector">Use holidayset selector widget</label>
 		<label index="section.general">General</label>
 		<label index="right.use">Use calendar</label>
+		<label index="right.view">See calendar view</label>
 		<label index="section.event">Event</label>
-		<label index="right.event:see">See events</label>
-		<label index="right.event:edit">Edit event</label>
+		<label index="right.event:seeAll">See all events</label>
+		<label index="right.event:editAssigned">Edit assigned events</label>
+		<label index="right.event:editAll">Edit all events</label>
+		<label index="right.event:deleteAssigned">Delete assigned events</label>
+		<label index="right.event:deleteAll">Delete all events</label>
 		<label index="right.event:add">Add new event</label>
-		<label index="right.event:delete">Delete events</label>
-		<label index="right.event:deleteOwn">Delete own events</label>
-		<label index="right.event:assign">Assign events to other users</label>
-		<label index="right.event:quickinfo">Show quickinfo</label>
+		<label index="right.event:assignOthers">Assign events to other users</label>
+		<label index="section.panelwidgets">Panel widgets</label>
+		<label index="right.panelwidget:calendar">See calendar widget</label>
+		<label index="right.panelwidget:quickEvent">See quickevent widget</label>
+		<label index="right.panelwidget:eventTypeSelector">Use eventtype selector widget</label>
+		<label index="right.panelwidget:holidaySetSelector">Use holidayset selector widget</label>
 	</labels>
 	<labels lang="de">
-		<label index="section.panelwidgets">Steuerelement</label>
-		<label index="right.PanelWidgetCalendar">Siehe Kalender Element</label>
-		<label index="right.PanelWidgetQuickEvent">Siehe Termin Element</label>
-		<label index="right.panelwidget:eventTypeSelector">Termintyp W�hler Verwenden</label>
-		<label index="right.panelwidget:holidaySetSelector">Ferien-Regionen W�hler anzeigen</label>
 		<label index="section.general">Allgemein</label>
 		<label index="right.use">Kalender Verwenden</label>
+		<label index="right.view">Kalenderansicht anzeigen</label>
 		<label index="section.event">Termin</label>
-		<label index="right.event:see">Termin Sehen</label>
-		<label index="right.event:edit">Termin Editieren</label>
+		<label index="right.event:seeAll">Alle Termin Sehen</label>
+		<label index="right.event:editAssigned">Zugewiesenen Termin Editieren</label>
+		<label index="right.event:editAll">Alle Termin Editieren</label>
+		<label index="right.event:deleteAssigned">Zugewiesene Termine Löschen</label>
+		<label index="right.event:deleteAll">Alle Termine Löschen</label>
 		<label index="right.event:add">Neuen Termin Erstellen</label>
-		<label index="right.event:delete">Termine L�schen</label>
-		<label index="right.event:deleteOwn">Eigene Termine L�schen</label>
-		<label index="right.event:assign">Termine anderen Benutzern Zuweisen</label>
-		<label index="right.event:quickinfo">Schnell-Info Anzeigen</label>
+		<label index="right.event:assignOthers">Termine anderen Benutzern Zuweisen</label>
+		<label index="section.panelwidgets">Steuerelement</label>
+		<label index="right.panelwidget:calendar">Siehe Kalender Element</label>
+		<label index="right.panelwidget:quickEvent">Siehe Termin Element</label>
+		<label index="right.panelwidget:eventTypeSelector">Termintyp Wähler Verwenden</label>
+		<label index="right.panelwidget:holidaySetSelector">Ferien-Regionen Wähler anzeigen</label>
 	</labels>
 </locallang>

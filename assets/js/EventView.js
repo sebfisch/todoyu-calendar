@@ -32,21 +32,21 @@ Todoyu.Ext.calendar.EventView = {
 
 	/**
 	 * Open event
-	 * 
+	 *
 	 *	@param	Integer	idEvent
 	 */
 	open: function(idEvent) {
 		this.addTab('');
 		this.loadDetails(idEvent);
 		this.ext.hideCalendar();
-		this.show();		
+		this.show();
 	},
 
 
 
 	/**
 	 * Load event details
-	 * 
+	 *
 	 * 	@param	Integer	idEvent
 	 */
 	loadDetails: function(idEvent) {
@@ -56,10 +56,10 @@ Todoyu.Ext.calendar.EventView = {
 				'action':	'show',
 				'event':	idEvent
 			},
-			'onComplete': this.onDetailsLoaded.bind(this, idEvent)	
+			'onComplete': this.onDetailsLoaded.bind(this, idEvent)
 		};
 		var target	= 'calendar-view';
-		
+
 		Todoyu.Ui.update(target, url, options);
 	},
 
@@ -67,23 +67,21 @@ Todoyu.Ext.calendar.EventView = {
 
 	onDetailsLoaded: function(idEvent, response) {
 		var tabLabel = response.getTodoyuHeader('tabLabel');
-		
-		console.log(tabLabel);
-		
+
 		this.setTabLabel(tabLabel);
-	},	
+	},
 
 
 
 	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tabhead-view') ) {
 			var tab = Todoyu.Tabs.build('calendar-tabhead-view', 'item bcg05 tabkey-view view', label, true);
-		
+
 			$('calendar-tabhead-month').insert({
 				'after': tab
 			});
-		}		
-		
+		}
+
 			// Delay activation, because tabhandler activates add tab after this function
 		Todoyu.Tabs.setActive.defer('calendar-tabhead-view');
 	},
@@ -126,5 +124,5 @@ Todoyu.Ext.calendar.EventView = {
 		this.ext.showCalendar();
 		$('calendar-view').update('');
 	}
-	
+
 };

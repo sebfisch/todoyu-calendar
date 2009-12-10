@@ -25,7 +25,6 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarViewHelper {
 
 	/**
@@ -38,7 +37,7 @@ class TodoyuCalendarViewHelper {
 		$idEvent	= intval($idEvent);
 		$event		= TodoyuEventManager::getEvent($idEvent);
 
-		return $event->getTitle();
+		return TodoyuDiv::cropText($event->getTitle(), 24, '...', false);
 	}
 
 

@@ -25,7 +25,6 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarAutocompletionActionController extends TodoyuActionController {
 
 	/**
@@ -43,6 +42,8 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 	 *	@param	Array	$params
 	 */
 	public function init(array $params) {
+		restrict('calendar', 'use');
+
 		$this->sword = trim($params['sword']);
 	}
 

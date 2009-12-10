@@ -26,10 +26,6 @@
  * @subpackage	Calendar
  */
 
-
-
-
-
 	// Declare ext ID, path
 define('EXTID_CALENDAR', 104);
 define('PATH_EXT_CALENDAR', PATH_EXT . '/calendar');
@@ -49,6 +45,5 @@ require_once( PATH_EXT_CALENDAR . '/config/panelwidgets.php' );
 require_once( PATH_EXT_CALENDAR . '/config/admin.php' );
 require_once( PATH_EXT_CALENDAR . '/config/hooks.php' );
 require_once( PATH_EXT_CALENDAR . '/dwoo/plugins.php');
-
 
 ?>

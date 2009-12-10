@@ -168,7 +168,7 @@ Todoyu.Ext.calendar.Event = {
 			'parameters': {
 				'action': 	'detail',
 				'mode':		mode,
-				'eventID': 	idEvent
+				'event': 	idEvent
 			},
 			'asynchronous': false
 		};
@@ -208,7 +208,7 @@ Todoyu.Ext.calendar.Event = {
 			},
 			'onComplete': this.onAcknowledged.bind(this, idEvent, idUser)
 		};
-		
+
 		$('acknowledge-' + idEvent).removeClassName('not');
 
 		Todoyu.send(url, options);
@@ -222,7 +222,7 @@ Todoyu.Ext.calendar.Event = {
 	 *	@param	Response	response
 	 */
 	onAcknowledged: function(idEvent, idUser, response)	{
-		
+
 	},
 
 
@@ -307,7 +307,7 @@ Todoyu.Ext.calendar.Event = {
 			});
 		}
 	},
-	
+
 	goToEventInCalendar: function(idEvent, date, view) {
 		var params = {
 			'date': date,

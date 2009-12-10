@@ -34,8 +34,12 @@ class TodoyuEventRenderer {
 	 * @param 	Array	$data
 	 * @return 	String	Form
 	 */
-	public static function renderCreateQuickEvent($time, $isDayEvent = false) {
+	public static function renderCreateQuickEvent($time = 0, $isDayEvent = false) {
 		$time		= intval($time);
+
+		if( $time === 0 ) {
+			$time = time();
+		}
 
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
 		$form 		= TodoyuFormManager::getForm($xmlPath);

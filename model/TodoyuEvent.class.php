@@ -114,13 +114,64 @@ class TodoyuEvent extends TodoyuBaseObject {
 	}
 
 
+
+	/**
+	 * Get the IDs if the assigned users
+	 *
+	 * @return	Array
+	 */
 	public function getAssignedUserIDs() {
-		return TodoyuEventManager::getAssignedUsersOfEvent($this->getID());
+		$assignedUsers	= TodoyuEventManager::getAssignedUsersOfEvent($this->getID(), false);
+
+		return TodoyuArray::getColumn($assignedUsers, 'id_user');
 	}
 
 
+
+	/**
+	 * Get data of the assigned users
+	 *
+	 * @return	Array
+	 */
 	public function getAssignedUserData() {
 		return TodoyuEventManager::getAssignedUsersOfEvent($this->getID(), true);
+	}
+
+
+
+	/**
+	 * Check if a user is assigned
+	 *
+	 * @param	Integer		$idUser
+	 * @return	Bool
+	 */
+	public function isUserAssigned($idUser) {
+		$idUser	= intval($idUser);
+		$userIDs= $this->getAssignedUserIDs();
+
+		return in_array($idUser, $userIDs);
+	}
+
+
+
+	/**
+	 * Check if current user is assigned
+	 *
+	 * @return	Bool
+	 */
+	public function isCurrentUserAssigned() {
+		return $this->isUserAssigned(userid());
+	}
+
+
+
+	/**
+	 * Check if current user is the creator
+	 *
+	 * @return	Bool
+	 */
+	public function isCurrentUserCreator() {
+		return $this->getUserID('create') == userid();
 	}
 
 
@@ -131,7 +182,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 */
 	protected function loadForeignData()	{
 		if( ! is_array($this->data['user']) ) {
-			$this->data['user'] = TodoyuEventManager::getAssignedUsersOfEvent($this->id, true);
+			$this->data['user'] = $this->getAssignedUserData();
 		}
 	}
 

@@ -3,19 +3,20 @@
 	
 	<section name="general">
 		<right name="use" />
+		<right name="view" require="use" />
 	</section>
 	
 	<section name="event" require="use">
-		<right name="event:see" />
-		<right name="event:edit" />
+		<right name="event:seeAll" />
+		<right name="event:editAssigned" />
+		<right name="event:editAll" />
+		<right name="event:deleteAssigned" />
+		<right name="event:deleteAll" />
 		<right name="event:add" />
-		<right name="event:delete" />
-		<right name="event:deleteOwn" />
-		<right name="event:assign" />
-		<right name="event:quickinfo" />
+		<right name="event:assignOthers" />
 	</section>
 	
-	<section name="panelwidgets">
+	<section name="panelwidgets" require="use">
 		<right name="panelwidget:calendar" />
 		<right name="panelwidget:quickEvent" />
 		<right name="panelwidget:eventTypeSelector" />

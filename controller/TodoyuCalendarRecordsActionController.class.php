@@ -25,10 +25,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarRecordsActionController extends TodoyuActionController {
-
-
 
 	/**
 	 *	Render sub part to calendar admin form for record types added/ used by calendar (holiday, holidayset)

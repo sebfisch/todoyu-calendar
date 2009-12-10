@@ -37,45 +37,35 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 *	Add event action: render event creation content (tab head and form)
+	 * Edit an event. If event ID is 0, a empty form is rendered to create a new event
 	 *
-	 *	@param	Array	$params
-	 *	@return	String
-	 */
-	public function addAction(array $params) {
-		restrict('calendar', 'event:add');
-
-		$time	= TodoyuCalendarPreferences::getDate(AREA);
-
-		return TodoyuEventEditRenderer::renderAddView($time);
-	}
-
-
-
-	/**
-	 *	'edit' action method
-	 *
-	 *	@param	Array	$params
-	 *	@return	String
+	 * @param	Array		$params
+	 * @return	String
 	 */
 	public function editAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$time		= intval($params['time']);
+		$event		= TodoyuEventManager::getEvent($idEvent);
 
+			// Check rights
 		if( $idEvent === 0 ) {
 			restrict('calendar', 'event:add');
 		} else {
-			restrict('calendar', 'event:edit');
+			if( $event->isCurrentUserAssigned() ) {
+				restrict('calendar', 'event:editAssigned');
+			} else {
+				restrict('calendar', 'event:editAll');
+			}
 		}
 
 			// Send tab label
 		if( $idEvent === 0 ) {
-			$tabLabel	= 'New Event';
+			$tabLabel	= Label('event.newevent');
 		} else {
-			$event		= TodoyuEventManager::getEvent($idEvent);
-			$tabLabel	= TodoyuDiv::cropText($event->getTitle(), 20, '...', false);
+			$tabLabel	= Label('event.edit') . ': ' . TodoyuDiv::cropText($event->getTitle(), 20, '...', false);
 		}
-		TodoyuHeader::sendTodoyuHeader('tabLabel', 'Edit: ' . $tabLabel);
+
+		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel);
 
 		return TodoyuEventEditRenderer::renderEventForm($idEvent, $time);
 	}
@@ -89,30 +79,47 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 *	@return	String
 	 */
 	public function saveAction(array $params) {
-		$eventData	= $params['event'];
-		$idEvent	= intval($params['event']['id']);
+		$data	= $params['event'];
+		$idEvent= intval($data['id']);
+
+			// Check rights
+		if( $idEvent === 0 ) {
+				// New task
+			restrict('calendar', 'event:add');
+		} else {
+				// Edit task
+			$event	= TodoyuEventManager::getEvent($idEvent);
+
+			if( $event->isCurrentUserAssigned() ) {
+				restrict('calendar', 'event:editAssigned');
+			} else {
+				restrict('calendar', 'event:editAll');
+			}
+		}
+
 
 		$xmlPath	= 'ext/calendar/config/form/event.xml';
 		$form		= TodoyuFormManager::getForm($xmlPath, $idEvent);
 
-		$form->setUseRecordID(false);
-		$form->setFormData($eventData);
+		$form->setFormData($data);
 
 			// Send idTask header for javascript
 		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 
 		if( $form->isValid() ) {
-			$eventData	= $form->getStorageData();
-			$eventData	= TodoyuFormHook::callSaveData($xmlPath, $eventData, $idEvent);
+			$data	= $form->getStorageData();
 
 				// Save or update event
-			$idEvent= TodoyuEventManager::saveEvent($eventData);
+			$idEvent= TodoyuEventManager::saveEvent($data);
 			$event	= TodoyuEventManager::getEvent($idEvent);
 
 			TodoyuHeader::sendTodoyuHeader('time', $event->get('date_start'));
 			TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 		} else {
 			TodoyuHeader::sendTodoyuHeader('error', true);
+
+			$form->setUseRecordID(false);
+
 			return $form->render();
 		}
 	}
@@ -125,7 +132,16 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function deleteAction(array $params) {
-		$idEvent = intval($params['event']);
+		$idEvent= intval($params['event']);
+
+		$event	= TodoyuEventManager::getEvent($idEvent);
+
+			// Check right
+		if( $event->isCurrentUserAssigned() ) {
+			restrict('calendar', 'deleteAssigned');
+		} else {
+			restrict('calendar', 'deleteAll');
+		}
 
 		TodoyuEventManager::deleteEvent($idEvent);
 	}
@@ -139,9 +155,12 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 *	@return	String
 	 */
 	public function detailAction(array $params) {
-		$idEvent	= intval($params['eventID']);
-
+		$idEvent= intval($params['event']);
 		$event	= TodoyuEventManager::getEvent($idEvent);
+
+		if( ! $event->isCurrentUserAssigned() ) {
+			restrict('calendar', 'seeAll');
+		}
 
 		$data		= array(
 			'event'			=> $event->getTemplateData(),
@@ -176,13 +195,15 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function showAction(array $params) {
 		$idEvent	= intval($params['event']);
+		$event		= TodoyuEventManager::getEvent($idEvent);
+
+		if( ! $event->isCurrentUserAssigned() ) {
+			restrict('calendar', 'seeAll');
+		}
 
 			// Send tab label
-		$event		= TodoyuEventManager::getEvent($idEvent);
 		$tabLabel	= TodoyuDiv::cropText($event->getTitle(), 20, '...', false);
-
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel, true);
-
 
 		return TodoyuEventRenderer::renderEventView($idEvent);
 	}

@@ -223,23 +223,6 @@ class TodoyuCalendarRenderer {
 
 
 	/**
-	 * Render event for week view in array elements
-	 *
-	 * @param	Integer		$dateStart
-	 * @param	Array		$eventTypes
-	 * @param	Array		$users
-	 * @param	Array		$userColors
-	 * @return	Array
-	 */
-	public static function preRenderEventsForWeek($dateStart, array $eventTypes, array $users, array $userColors) {
-		$weekRange	= TodoyuTime::getWeekRange($dateStart);
-
-		return self::preRenderEventsDayAndWeek('week', $weekRange['start'], $weekRange['end'], $eventTypes, $users, $userColors);
-	}
-
-
-
-	/**
 	 * Render events for month view in array elements
 	 *
 	 * @param	Integer		$dateStart

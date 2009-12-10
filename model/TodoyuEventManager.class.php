@@ -76,10 +76,6 @@ class TodoyuEventManager {
 		$users		= TodoyuArray::intval($users, true, true);
 		$eventTypes	= TodoyuArray::intval($eventTypes, true, true);
 
-		if( sizeof($users) === 0 ) {
-			$users	= array(userid());
-		}
-
 		$fields	= '	e.*,
 					mmeu.id_user,
 					mmeu.is_acknowledged';
@@ -103,11 +99,19 @@ class TodoyuEventManager {
 		}
 
 			// Users
-		$where	.= ' AND mmeu.id_user IN(' . implode(',', $users) . ')';
+		if( sizeof($users) > 0 ) {
+			$where	.= ' AND mmeu.id_user IN(' . implode(',', $users) . ')';
+		}
+
 
 			// Event types
 		if( sizeof($eventTypes) ) {
 			$where .= ' AND e.eventtype IN(' . implode(',', $eventTypes) . ')';
+		}
+
+			// Rights
+		if( ! allowed('calendar', 'event:seeAll') ) {
+			$where .= ' AND mmeu.id_user = ' . userid();
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
@@ -255,7 +259,7 @@ class TodoyuEventManager {
 		while($row = Todoyu::db()->fetchAssoc($result))	{
 			$user = $row;
 
-			if ($getUsersData) {
+			if( $getUsersData ) {
 				$userArray = TodoyuUserManager::getUserArray($user['id_user']);
 				if (is_array($userArray)) {
 					$user = array_merge($user, $userArray);
@@ -779,27 +783,24 @@ class TodoyuEventManager {
 	 */
 	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent= intval($idEvent);
+		$event	= TodoyuEventManager::getEvent($idEvent);
 
 		$allowed= array();
 		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Event'];
 
 		$allowed[]	= $own['header'];
 
-		if( allowed('calendar', 'event:see') ) {
+		if( allowed('calendar', 'event:seeAll') || $event->isCurrentUserAssigned() ) {
 			$allowed['show'] = $own['show'];
 		}
 
-		if( allowed('calendar', 'event:edit') ) {
+			// Edit event: right:editAll OR is assigned and right editAssigned OR is creater
+		if( $event->isCurrentUserCreator() || allowed('calendar', 'event:editAll') || ($event->isCurrentUserAssigned() && allowed('calendar','event:editAssigned')) ) {
 			$allowed['edit'] = $own['edit'];
 		}
 
-		if( allowed('calendar', 'event:delete') ) {
+		if( allowed('calendar', 'event:deleteAll') || ($event->isCurrentUserAssigned() && allowed('calendar','event:deleteAssigned')) ) {
 			$allowed['delete'] = $own['remove'];
-		} elseif( allowed('calendar', 'event:deleteOwn') ) {
-			$event	= TodoyuEventManager::getEvent($idEvent);
-			if( $event->get('id_user_create') == userid() ) {
-				$allowed['delete'] = $own['remove'];
-			}
 		}
 
 		$items = array_merge_recursive($items, $allowed);

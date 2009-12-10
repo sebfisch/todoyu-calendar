@@ -25,7 +25,6 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 
 	/**
@@ -37,9 +36,7 @@ class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 	public function popupAction(array $params) {
 		restrict('calendar', 'event:add');
 
-		$time	= time();
-
-		return TodoyuEventRenderer::renderCreateQuickEvent($time);
+		return TodoyuEventRenderer::renderCreateQuickEvent();
 	}
 
 

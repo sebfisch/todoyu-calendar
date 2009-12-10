@@ -25,52 +25,34 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuCalendarFormhandlingActionController extends TodoyuActionController {
 
-
-
 	/**
-	 *	'addSubForm' action method
+	 * Add subform to a form
 	 *
-	 *	@param	Array	$params
-	 *	@return String
+	 * @param	Array		$params
+	 * @return	String
 	 */
 	public static function addSubformAction(array $params) {
+		restrictIfNone('calendar', 'event:editAll,event:editAssigned');
+
 		$index		= intval($params['index']);
 		$fieldName	= $params['field'];
 		$formName	= $params['form'];
 		$idRecord	= intval($params['record']);
 
-		if( $formName === 'record' ) {
-			$xmlBase	= 'ext/calendar/config/form/admin/';
+		$xmlBase	= 'ext/calendar/config/form/';
 
-			switch($fieldName) {
-				case 'holidayset':
-					$xmlPath = $xmlBase . 'holiday.xml';
-					break;
-			}
-
-		} else {
-			$xmlBase	= 'ext/calendar/config/form/';
-
-			switch($fieldName) {
-				case 'user':
-					$xmlPath = $xmlBase . $formName . '.xml';
-					break;
-			}
-
+		switch($fieldName) {
+			case 'user':
+				$xmlPath = $xmlBase . $formName . '.xml';
+				break;
 		}
-
-		$form 	= TodoyuFormManager::getForm($xmlPath, $index);
 
 			// Load form data
 		$data	= TodoyuFormHook::callLoadData($xmlPath, array(), $idRecord);
 
-		$form->setName($formName);
-		$form->setFormData($data);
-
-		return $form->getField($fieldName)->renderNewRecord($index);
+		return TodoyuFormManager::renderSubformRecord($xmlPath, $fieldName, $formName, $index, $idRecord, $data);
 	}
 
 }
