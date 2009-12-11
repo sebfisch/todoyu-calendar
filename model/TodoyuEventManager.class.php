@@ -168,27 +168,27 @@ class TodoyuEventManager {
 			// Loop through all days to check the events of the day
 		foreach($eventsByDay as $dayKey => $eventsOfDay) {
 				// Find overlapings between events
-			foreach($eventsOfDay as $index => $event) {
+			foreach($eventsOfDay as $idEvent => $event) {
 					// Compare each to all other events
-				foreach($eventsOfDay as $compareIndex => $compareEvent) {
+				foreach($eventsOfDay as $idEventCompare => $compareEvent) {
 						// Don't check overlaping with itself
-					if( $compareIndex != $index ) {
+					if( $idEventCompare != $idEvent ) {
 						if( self::areEventsOverlaping($event, $compareEvent) ) {
 								// Set own in own _overlap
-							if( ! in_array($index, $eventsByDay[$dayKey][$index]['_overlap']) ) {
-								$eventsByDay[$dayKey][$index]['_overlap'][]	= $index;
+							if( ! in_array($idEvent, $eventsByDay[$dayKey][$idEvent]['_overlap']) ) {
+								$eventsByDay[$dayKey][$idEvent]['_overlap'][]	= $idEvent;
 							}
 								// Set compare in own _overlap
-							if( ! in_array($compareIndex, $eventsByDay[$dayKey][$index]['_overlap']) ) {
-								$eventsByDay[$dayKey][$index]['_overlap'][]	= $compareIndex;
+							if( ! in_array($idEventCompare, $eventsByDay[$dayKey][$idEvent]['_overlap']) ) {
+								$eventsByDay[$dayKey][$idEvent]['_overlap'][]	= $idEventCompare;
 							}
 								// Set own in compare _overlap
-							if( ! in_array($index, $eventsByDay[$dayKey][$compareIndex]['_overlap']) ) {
-								$eventsByDay[$dayKey][$compareIndex]['_overlap'][]	= $index;
+							if( ! in_array($idEvent, $eventsByDay[$dayKey][$idEventCompare]['_overlap']) ) {
+								$eventsByDay[$dayKey][$idEventCompare]['_overlap'][]	= $idEvent;
 							}
 								// Set compare in compare _overlap
-							if( ! in_array($compareIndex, $eventsByDay[$dayKey][$compareIndex]['_overlap']) ) {
-								$eventsByDay[$dayKey][$compareIndex]['_overlap'][]	= $compareIndex;
+							if( ! in_array($idEventCompare, $eventsByDay[$dayKey][$idEventCompare]['_overlap']) ) {
+								$eventsByDay[$dayKey][$idEventCompare]['_overlap'][]	= $idEventCompare;
 							}
 						}
 					}
@@ -207,7 +207,6 @@ class TodoyuEventManager {
 				}
 			}
 		}
-
 		return $eventsByDay;
 	}
 
