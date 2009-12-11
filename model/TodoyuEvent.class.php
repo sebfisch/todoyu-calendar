@@ -166,17 +166,6 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Check if current user is the creator
-	 *
-	 * @return	Bool
-	 */
-	public function isCurrentUserCreator() {
-		return $this->getUserID('create') == userid();
-	}
-
-
-
-	/**
 	 * Load event foreign data (assigned users)
 	 *
 	 */
