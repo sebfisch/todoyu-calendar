@@ -94,7 +94,7 @@
 					</foreignRecordConf>
 					<required />
 				</field>
-
+<!--
 				<field type="textinputAC" name="id_project">
 					<label>event.attr.id_project</label>
 					<config>
@@ -118,7 +118,7 @@
 						<acLabelFunc>TodoyuTaskManager::getLabel</acLabelFunc>
 					</config>
 				</field>
-
+-->
 			</elements>
 		</fieldset>
 
