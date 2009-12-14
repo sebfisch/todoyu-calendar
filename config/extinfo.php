@@ -36,7 +36,7 @@ $CONFIG['EXT']['calendar']['info'] = array(
 	),
 	'conflicts'			=> '',
 	'state' 			=> 'beta',
-	'version' => '0.2.0',
+	'version' => '0.1.0',
 	'constraints' => array(
 		'depends' => array(
 			'user'			=> '0.1.0',
