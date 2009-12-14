@@ -36,10 +36,9 @@ class TodoyuCalendarPortalManager {
 		$weeksEvents= intval($GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig']['weeksEvents']);
 
 		$dateStart	= TodoyuTime::getStartOfDay(NOW);
-
 		$dateEnd	= NOW + ($weeksEvents * TodoyuTime::SECONDS_WEEK);
 
-		return TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd);
+		return TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(userid()));
 	}
 
 

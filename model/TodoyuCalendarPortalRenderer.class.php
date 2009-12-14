@@ -37,14 +37,7 @@ class TodoyuCalendarPortalRenderer {
 		$label		= TodoyuLocale::getLabel('portal.tab.appointments');
 
 		if( $count ) {
-			$config		= $GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig'];
-			$weeksEvents= intval($config['weeksEvents']);
-
-			$dateStart	= TodoyuTime::getStartOfDay(NOW);
-			$dateEnd	= NOW + $weeksEvents + TodoyuTime::SECONDS_WEEK;
-			$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd);
-
-			TodoyuDebug::printLastQueryInFirebug();
+			$events	= TodoyuCalendarPortalManager::getAppointments();
 
 			$label		= $label . '(' . sizeof($events) . ')';
 		}
@@ -63,6 +56,7 @@ class TodoyuCalendarPortalRenderer {
 		$config	= $GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig'];
 		$idUser	= userid();
 
+			// Get events
 		$events	= TodoyuCalendarPortalManager::getAppointments();
 
 		if( $config['showHoliday'] ) {
