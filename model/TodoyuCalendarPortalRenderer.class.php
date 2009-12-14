@@ -44,6 +44,8 @@ class TodoyuCalendarPortalRenderer {
 			$dateEnd	= NOW + $weeksEvents + TodoyuTime::SECONDS_WEEK;
 			$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd);
 
+			TodoyuDebug::printLastQueryInFirebug();
+
 			$label		= $label . '(' . sizeof($events) . ')';
 		}
 
