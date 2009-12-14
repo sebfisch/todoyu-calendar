@@ -60,7 +60,7 @@ CREATE TABLE `ext_calendar_holidayset` (
 -- Table structure for table `ext_calendar_mm_holiday_holidayset`
 --
 
-CREATE TABLE IF NOT EXISTS `ext_calendar_mm_holiday_holidayset` (
+CREATE TABLE `ext_calendar_mm_holiday_holidayset` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_holiday` int(10) unsigned NOT NULL DEFAULT '0',
   `id_holidayset` int(10) unsigned NOT NULL DEFAULT '0',
