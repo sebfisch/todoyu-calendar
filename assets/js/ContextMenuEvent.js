@@ -66,21 +66,23 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 	 *	@param	Object	event
 	 */
 	load: function(event) {
-			// Event..
+		var time 			= this.ext.ContextMenuCalendarBody.getClickedTime(event);
+
 		var eventElement	= event.findElement('div.event');
-		
+
 			// ..or is it a day-event?
 		if (typeof(eventElement) == "undefined" || eventElement == null) {
 			eventElement	= event.findElement('div.dayevent');
-		}		
-		
+		}
+
 		var idEvent		= eventElement.readAttribute('id').split('-').last();
 		
 		var url		= Todoyu.getUrl('calendar', 'contextmenu');
 		var options	= {
 			'parameters': {
 				'action':	'event',
-				'event':	idEvent
+				'event':	idEvent,
+				'time':		time
 			}
 		};
 

@@ -45,9 +45,11 @@
 		<label index="eventslist.holidaysWithinTheNextweeks">Holiday within the next weeks</label>
 		<label index="error.starttimeAfterEndtime">The event ends before or is the same as the event starts</label>
 		<label index="error.privateEvent">You are not allowed to assign a personal event to someone else</label>
+		<label index="contextmenu.manageEvents">Manage events</label>
 		<label index="contextmenu.showEvent">Show event</label>
 		<label index="contextmenu.editEvent">Edit event</label>
 		<label index="contextmenu.deleteEvent">Delete event</label>
+		<label index="contextmenu.addEvent">Add event</label>
 		<label index="contextmenu.showEventInCalendar">Show in calendar</label>
 		<label index="contextmenu.showEventInCalendar.day">Day</label>
 		<label index="contextmenu.showEventInCalendar.week">Week</label>
@@ -98,9 +100,11 @@
 		<label index="eventslist.holidaysWithinTheNextweeks">Ferien in den nächsten Wochen</label>
 		<label index="error.starttimeAfterEndtime">Der Termin endet vor seinem Anfang</label>
 		<label index="error.privateEvent">Private Termine können nicht anderen Benutzern zugewiesen werden</label>
+		<label index="contextmenu.manageEvents">Termine verwalten</label>
 		<label index="contextmenu.showEvent">Termin anzeigen</label>
 		<label index="contextmenu.editEvent">Termin bearbeiten</label>
 		<label index="contextmenu.deleteEvent">Termin löschen</label>
+		<label index="contextmenu.addEvent">Termin hinzufügen</label>
 		<label index="contextmenu.showEventInCalendar">Im Kalender anzeigen</label>
 		<label index="contextmenu.showEventInCalendar.day">Tag</label>
 		<label index="contextmenu.showEventInCalendar.week">Woche</label>

@@ -308,10 +308,19 @@ Todoyu.Ext.calendar.Event = {
 		}
 	},
 
+
+
+	/**
+	 * Show given event in given view (day / week / month) of calendar
+	 * 
+	 *	@param	Integer	idEvent 
+	 *	@param	Integer	date 
+	 *	@param	String	view 
+	 */
 	goToEventInCalendar: function(idEvent, date, view) {
 		var params = {
-			'date': date,
-			'tab': view ? view : 'day'
+			'date':	date,
+			'tab':	view ? view : 'day'
 		};
 
 		Todoyu.goTo('calendar', 'ext', params, 'event-' + idEvent);

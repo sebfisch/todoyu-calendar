@@ -33,14 +33,14 @@
 $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 	'header'	=> array(
 		'key'		=> 'header',
-		'label'		=> 'Manage events',
+		'label'		=> 'LLL:event.contextmenu.manageEvents',
 		'jsAction'	=> 'void(0)',
 		'class'		=> 'contextmenuHeader',
 		'position'	=> 0
 	),
 	'add'	=> array(
 		'key'		=> 'add',
-		'label'		=> 'Add event',
+		'label'		=> 'LLL:event.contextmenu.addEvent',
 		'jsAction'	=> 'Todoyu.Ext.calendar.addEvent(#ID#)',
 		'class'		=> 'eventContextMenu eventAdd',
 		'position'	=> 10
@@ -79,7 +79,14 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 		'jsAction'	=> 'Todoyu.Ext.calendar.Event.remove(#ID#)',
 		'class'		=> 'eventContextMenu eventRemove',
 		'position'	=> 30
-	)
+	),
+	'add'	=> array(
+		'key'		=> 'add',
+		'label'		=> 'LLL:event.contextmenu.addEvent',
+		'jsAction'	=> 'Todoyu.Ext.calendar.addEvent(Todoyu.Ext.calendar.ContextMenuCalendarBody.getClickedTime(event))',
+		'class'		=> 'eventContextMenu eventAdd',
+		'position'	=> 40
+	),
 );
 
 
@@ -125,6 +132,5 @@ $CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
 			)
 	)
 );
-
 
 ?>

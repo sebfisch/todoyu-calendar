@@ -802,6 +802,10 @@ class TodoyuEventManager {
 			$allowed['delete'] = $own['remove'];
 		}
 
+		if( allowed('calendar', 'event:add') ) {
+			$allowed['add'] = $own['add'];
+		}
+
 		$items = array_merge_recursive($items, $allowed);
 
 		return $items;
