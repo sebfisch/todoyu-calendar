@@ -135,7 +135,7 @@ div.eventDetails dd {
 }
 
 #events .event h3 .isNotAcknowledgedIcon {
-	
+
 }
 
 
@@ -284,7 +284,7 @@ form.formEvent button.buttonSave {}
 	#calendar-quicknav .buttonToday {
 		float:left;
 		margin-right:8px;
-		margin-top:-1px;
+		margin-top:-3px;
 	}
 
 	#calendar-quicknav .buttonToday span.rgt {
@@ -293,5 +293,5 @@ form.formEvent button.buttonSave {}
 
 	#calendar-quicknav button.buttonToday span.icon {
 		cursor:pointer;
-		background:url(../img/icons.png) no-repeat scroll 2px -148px;
+		background:url(../img/icons.png) no-repeat scroll 2px -146px;
 	}
