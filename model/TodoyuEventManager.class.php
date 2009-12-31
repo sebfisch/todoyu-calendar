@@ -78,7 +78,8 @@ class TodoyuEventManager {
 
 		$fields	= '	e.*,
 					mmeu.id_user,
-					mmeu.is_acknowledged';
+					mmeu.is_acknowledged,
+					date_end - date_start as duration';
 		$tables	= 	self::TABLE  . ' e,
 					ext_calendar_mm_event_user mmeu';
 		$where	= '	e.id		= mmeu.id_event AND
@@ -88,7 +89,7 @@ class TodoyuEventManager {
 						(e.date_start < ' . $dateStart . ' AND e.date_end > ' . $dateEnd . ')
 					)';
 		$group	= '';
-		$order	= 'e.date_start';
+		$order	= 'e.date_start, duration DESC';
 		$limit	= '';
 
 			// DayEvents: null = both, true = only, false = without
@@ -158,55 +159,57 @@ class TodoyuEventManager {
 	 *	@param	String	$dateKey	date of currently rendered day (YYYYMMDD)
 	 */
 	public static function addOverlapInformationToEvents(array $eventsByDay) {
-			// Add overlap key to each event
-		foreach($eventsByDay as $dayKey => $eventsOfDay) {
-			foreach($eventsOfDay as $index => $event) {
-				$eventsByDay[$dayKey][$index]['_overlap'] = array();
-			}
-		}
-
-			// Loop through all days to check the events of the day
-		foreach($eventsByDay as $dayKey => $eventsOfDay) {
-				// Find overlapings between events
-			foreach($eventsOfDay as $idEvent => $event) {
-					// Compare each to all other events
-				foreach($eventsOfDay as $idEventCompare => $compareEvent) {
-						// Don't check overlaping with itself
-					if( $idEventCompare != $idEvent ) {
-						if( self::areEventsOverlaping($event, $compareEvent) ) {
-								// Set own in own _overlap
-							if( ! in_array($idEvent, $eventsByDay[$dayKey][$idEvent]['_overlap']) ) {
-								$eventsByDay[$dayKey][$idEvent]['_overlap'][]	= $idEvent;
-							}
-								// Set compare in own _overlap
-							if( ! in_array($idEventCompare, $eventsByDay[$dayKey][$idEvent]['_overlap']) ) {
-								$eventsByDay[$dayKey][$idEvent]['_overlap'][]	= $idEventCompare;
-							}
-								// Set own in compare _overlap
-							if( ! in_array($idEvent, $eventsByDay[$dayKey][$idEventCompare]['_overlap']) ) {
-								$eventsByDay[$dayKey][$idEventCompare]['_overlap'][]	= $idEvent;
-							}
-								// Set compare in compare _overlap
-							if( ! in_array($idEventCompare, $eventsByDay[$dayKey][$idEventCompare]['_overlap']) ) {
-								$eventsByDay[$dayKey][$idEventCompare]['_overlap'][]	= $idEventCompare;
-							}
+		foreach($eventsByDay as $dayKey => $eventsOfDay)	{
+			$leftPositionArray = array();
+			$currentPosition   = 0;
+			$index			   = 0;
+			
+			//1st step: get left position of each event
+			foreach($eventsOfDay as $idEvent => $eventArray)	{
+				if(sizeof($leftPositionArray) == 0)	{
+					$leftPositionArray[$currentPosition][] 				= $idEvent;
+					$eventsByDay[$dayKey][$idEvent]['_overlapIndex']	= $currentPosition;
+				} else {
+					$eventOK = false;
+					while($eventOK == false)	{
+						if(!isset($leftPositionArray[$currentPosition][$index])){
+							$leftPositionArray[$currentPosition][$index] = $idEvent;
+							$eventsByDay[$dayKey][$idEvent]['_overlapIndex'] = $currentPosition;
+							$currentPosition = 0;
+							$index = 0;
+							$eventOK = true;
+						} elseif(self::areEventsOverlaping($eventsByDay[$dayKey][$leftPositionArray[$currentPosition][$index]], $eventArray)){
+							$currentPosition++;
+							$index = 0;
+						} else {
+							$index++;
 						}
 					}
 				}
 			}
-		}
-
-			// Find intersection(s amount and) index (basis for later left-positioning) of each event
-		foreach($eventsByDay as $dayKey => $eventsOfDay) {
-			foreach($eventsOfDay as $index => $event) {
-				$eventsByDay[$dayKey][$index]['_overlapNum']	= sizeof($event['_overlap']);
-
-				if( $eventsByDay[$dayKey][$index]['_overlapNum'] > 0 ) {
-					$overlapIndexes	= array_flip($event['_overlap']);
-					$eventsByDay[$dayKey][$index]['_overlapIndex'] = $overlapIndexes[$index];
+			
+			//2nd step: get width of each event
+			foreach($eventsOfDay as $idEvent => $eventArray)	{
+				
+				foreach($eventsOfDay as $idEventCompare => $eventArrayCompare)	{
+					if(!isset($eventsByDay[$dayKey][$idEvent]['_overlapNum']))	{
+						$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = 0;
+						$eventsByDay[$dayKey][$idEvent]['_maxPosition'] = sizeof($leftPositionArray);
+					}
+					
+					if(self::areEventsOverlaping($eventArrayCompare, $eventArray) && $idEvent != $idEventCompare)	{
+						$eventsByDay[$dayKey][$idEvent]['_overlapNum']++;
+					}
+				}
+				
+				if($eventsByDay[$dayKey][$idEvent]['_overlapNum'] >= sizeof($leftPositionArray))	{
+					$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = sizeof($leftPositionArray) - sizeof($leftPositionArray) + 1;
+				} else if($eventsByDay[$dayKey][$idEvent]['_overlapNum'] < sizeof($leftPositionArray)) {
+					$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = sizeof($leftPositionArray) - $eventsByDay[$dayKey][$idEvent]['_overlapNum'];
 				}
 			}
 		}
+		
 		return $eventsByDay;
 	}
 

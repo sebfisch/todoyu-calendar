@@ -191,13 +191,13 @@ class TodoyuCalendarRenderer {
 			'selYear'			=> date('Y', $dateStart + TodoyuTime::SECONDS_WEEK),
 			'selMonthYear'		=> date('nY', $dateStart + TodoyuTime::SECONDS_WEEK),
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
-			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors),
+			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors, $dateEnd),
 			'dayEvents'			=> self::preRenderDayevents('month', $dateStart, $dateEnd, $eventTypes, $users),//, $amountDays),
 			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderBirthdays($dateStart, $dateEnd) : array(),
 			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('month', $dateStart, $dateEnd)
 		);
-
+		
 		return render($tmpl, $data);
 	}
 
@@ -231,10 +231,10 @@ class TodoyuCalendarRenderer {
 	 * @param	Array		$userColors
 	 * @return	Array
 	 */
-	public static function preRenderEventsForMonth($dateStart, array $eventTypes, array $users, array $userColors) {
+	public static function preRenderEventsForMonth($dateStart, array $eventTypes, array $users, array $userColors, $monthEndAlternative = 0) {
 		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($dateStart);
 		$dateStart	= $monthRange['start'];
-		$dateEnd	= $monthRange['end'];
+		$dateEnd	= $monthEndAlternative > 0 ? $monthEndAlternative : $monthRange['end'];
 
 		$renderedEvents	= array();
 
@@ -244,7 +244,7 @@ class TodoyuCalendarRenderer {
 			// Group the events by day
 		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
 			// Add overlap informations to events for each day
-		$eventsByDay= TodoyuEventManager::addOverlapInformationToEvents($eventsByDay);
+		//$eventsByDay= TodoyuEventManager::addOverlapInformationToEvents($eventsByDay);
 
 			// Render events array
 		foreach($eventsByDay as $dateKey => $eventsOfDay) {
@@ -291,8 +291,8 @@ class TodoyuCalendarRenderer {
 
 				if( $event['_overlapNum'] > 0 ) {
 						// Event intersects with other events
-					$event['width']	= $eventFullWidth / ($event['_overlapNum'] );
-					$event['left']	= $event['width'] * $event['_overlapIndex'];
+					$event['width']	= $eventFullWidth / ( $event['_maxPosition'] ) * ( $event['_overlapNum'] );
+					$event['left']	= ( $eventFullWidth / ($event['_maxPosition'] ) ) * $event['_overlapIndex'];
 				} else {
 						// No intersections to this event
 					$event['width']	= $eventFullWidth;
@@ -312,7 +312,7 @@ class TodoyuCalendarRenderer {
 				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, $mode, $users, $userColors);
 			}
 		}
-
+		
 		return $renderedEvents;
 	}
 
