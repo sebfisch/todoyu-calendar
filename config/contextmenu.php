@@ -33,14 +33,14 @@
 $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 	'header'	=> array(
 		'key'		=> 'header',
-		'label'		=> 'LLL:event.contextmenu.manageEvents',
+		'label'		=> 'event.contextmenu.manageEvents',
 		'jsAction'	=> 'void(0)',
 		'class'		=> 'contextmenuHeader',
 		'position'	=> 0
 	),
 	'add'	=> array(
 		'key'		=> 'add',
-		'label'		=> 'LLL:event.contextmenu.addEvent',
+		'label'		=> 'event.contextmenu.addEvent',
 		'jsAction'	=> 'Todoyu.Ext.calendar.addEvent(#ID#)',
 		'class'		=> 'eventContextMenu eventAdd',
 		'position'	=> 10
@@ -61,28 +61,28 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 	),
 	'show'	=> array(
 		'key'		=> 'show',
-		'label'		=> 'LLL:event.contextmenu.showEvent',
+		'label'		=> 'event.contextmenu.showEvent',
 		'jsAction'	=> 'Todoyu.Ext.calendar.Event.show(#ID#)',
 		'class'		=> 'eventContextMenu eventShow',
 		'position'	=> 10
 	),
 	'edit'	=> array(
 		'key'		=> 'edit',
-		'label'		=> 'LLL:event.contextmenu.editEvent',
+		'label'		=> 'event.contextmenu.editEvent',
 		'jsAction'	=> 'Todoyu.Ext.calendar.Event.edit(#ID#)',
 		'class'		=> 'eventContextMenu eventEdit',
 		'position'	=> 20
 	),
 	'remove'	=> array(
 		'key'		=> 'delete',
-		'label'		=> 'LLL:event.contextmenu.deleteEvent',
+		'label'		=> 'event.contextmenu.deleteEvent',
 		'jsAction'	=> 'Todoyu.Ext.calendar.Event.remove(#ID#)',
 		'class'		=> 'eventContextMenu eventRemove',
 		'position'	=> 30
 	),
 	'add'	=> array(
 		'key'		=> 'add',
-		'label'		=> 'LLL:event.contextmenu.addEvent',
+		'label'		=> 'event.contextmenu.addEvent',
 		'jsAction'	=> 'Todoyu.Ext.calendar.addEvent(Todoyu.Ext.calendar.ContextMenuCalendarBody.getClickedTime(event))',
 		'class'		=> 'eventContextMenu eventAdd',
 		'position'	=> 40
@@ -103,28 +103,28 @@ $CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
 	),
 	'show'	=> array(
 		'key'		=> 'show',
-		'label'		=> 'LLL:event.contextmenu.showEventInCalendar',
+		'label'		=> 'event.contextmenu.showEventInCalendar',
 		'jsAction'	=> 'void(0)',
 		'class'		=> 'eventContextMenu eventShow',
 		'position'	=> 10,
 		'submenu'	=> array(
 				'day'	=> array(
 					'key'		=> 'day',
-					'label'		=> 'LLL:event.contextmenu.showEventInCalendar.day',
+					'label'		=> 'event.contextmenu.showEventInCalendar.day',
 					'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'day\')',
 					'class'		=> 'eventContextMenu showInCalendarDay',
 					'position'	=> 10
 				),
 				'week'	=> array(
 					'key'		=> 'week',
-					'label'		=> 'LLL:event.contextmenu.showEventInCalendar.week',
+					'label'		=> 'event.contextmenu.showEventInCalendar.week',
 					'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'week\')',
 					'class'		=> 'eventContextMenu showInCalendarWeek',
 					'position'	=> 20
 				),
 				'month'	=> array(
 					'key'		=> 'month',
-					'label'		=> 'LLL:event.contextmenu.showEventInCalendar.month',
+					'label'		=> 'event.contextmenu.showEventInCalendar.month',
 					'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'month\')',
 					'class'		=> 'eventContextMenu showInCalendarMonth',
 					'position'	=> 30
