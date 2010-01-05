@@ -276,46 +276,11 @@ Todoyu.Ext.calendar.Event = {
 
 
 	/**
-	 *	Evoked on change of selected eventType in quick-event form (toggle ir/relevant fields)
-	 *
-	 *	@param	String	field
-	 */
-	onEventtypeChange: function(field) {
-		var basename	= 'formElement-quickevent-field-';
-		var idEventType	= $F(field);
-		var fieldsToHide= {
-			3: ['is-dayevent', 'enddate', 'starttime', 'endtime', 'user'], // Birthday
-			13: ['is-dayevent', 'enddate', 'starttime', 'endtime'], // Reminder
-			4: ['is-dayevent', 'starttime', 'endtime'] // Vacation
-		};
-
-			// First show all fields which may be hidden by an action before
-		$H(fieldsToHide).each(function(typeFields){
-			typeFields.value.each(function(fieldname){
-				if( Todoyu.exists(basename + fieldname) ) {
-					$(basename + fieldname).show();
-				}
-			});
-		});
-
-			// Hide fields for current type if defined
-		if( fieldsToHide[idEventType] ) {
-			fieldsToHide[idEventType].each(function(fieldname){
-				if( Todoyu.exists(basename + fieldname) ) {
-					$(basename + fieldname).hide();
-				}
-			});
-		}
-	},
-
-
-
-	/**
 	 * Show given event in given view (day / week / month) of calendar
-	 * 
-	 *	@param	Integer	idEvent 
-	 *	@param	Integer	date 
-	 *	@param	String	view 
+	 *
+	 *	@param	Integer	idEvent
+	 *	@param	Integer	date
+	 *	@param	String	view
 	 */
 	goToEventInCalendar: function(idEvent, date, view) {
 		var params = {

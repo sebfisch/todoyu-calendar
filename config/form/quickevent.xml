@@ -29,7 +29,6 @@
 					<source type="function">
 						<function>TodoyuEventViewHelper::getEventTypeOptions</function>
 					</source>
-					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.onEventtypeChange(this)"</extraAttributes>
 				</field>
 
 				<field type="checkbox" name="is_dayevent">

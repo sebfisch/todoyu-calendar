@@ -89,7 +89,7 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function panelwidgeteventtypeselectorAction(array $params) {
-		$eventTypes	= TodoyuDiv::intExplode(',', $this->value, true, true);
+		$eventTypes	= TodoyuDiv::trimExplode(',', $this->value, true);
 
 		TodoyuCalendarPreferences::saveEventTypes($eventTypes);
 	}

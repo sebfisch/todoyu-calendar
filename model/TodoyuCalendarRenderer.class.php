@@ -120,8 +120,8 @@ class TodoyuCalendarRenderer {
 			'dateKey'		=> date('Ymd', $dateStart),
 			'events'		=> self::preRenderEventsForDay($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'		=> self::preRenderDayevents('day', $dateStart, $dateEnd, $eventTypes, $users),
-			'birthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderBirthdays($dateStart, $dateEnd) : '',
-			'holidays'		=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
+//			'birthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderBirthdays($dateStart, $dateEnd) : '',
+//			'holidays'		=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'			=> TodoyuCalendarViewHelper::getCalendarTitle('day', $dateStart, $dateEnd)
 		);
 
@@ -153,10 +153,10 @@ class TodoyuCalendarRenderer {
 			'fullDayView'		=> TodoyuCalendarPreferences::getFullDayView(),
 			'timestamp'			=> $currentDate,
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
-			'events'			=> self::preRenderEventsDayAndWeek('week', $dateStart, $dateEnd, $eventTypes, $users, $userColors),
+			'events'			=> self::preRenderEventsForWeek($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('week', $dateStart, $dateEnd, $eventTypes, $users),
-			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderBirthdays($dateStart, $dateEnd) : array(),
-			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
+			'userBirthdays'		=> in_array('birthday', $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : array(),
+//			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('week', $dateStart, $dateEnd)
 		);
 
@@ -193,11 +193,11 @@ class TodoyuCalendarRenderer {
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors, $dateEnd),
 			'dayEvents'			=> self::preRenderDayevents('month', $dateStart, $dateEnd, $eventTypes, $users),//, $amountDays),
-			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderBirthdays($dateStart, $dateEnd) : array(),
-			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
+			'userBirthdays'		=> in_array('birthday', $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : array(),
+//			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('month', $dateStart, $dateEnd)
 		);
-		
+
 		return render($tmpl, $data);
 	}
 
@@ -218,6 +218,17 @@ class TodoyuCalendarRenderer {
 		$events		= self::preRenderEventsDayAndWeek('day', $dayRange['start'], $dayRange['end'], $eventTypes, $users, $userColors);
 
 		return $events[$dateKey];
+	}
+
+
+	public static function preRenderEventsForWeek($dateStart, array $eventTypes, array $users, array $userColors) {
+		$weekRange	= TodoyuTime::getWeekRange($dateStart);
+		$dateStart	= $weekRange['start'];
+		$dateEnd	= $weekRange['end'];
+
+		$events		= self::preRenderEventsDayAndWeek('week', $weekRange['start'], $weekRange['end'], $eventTypes, $users, $userColors);
+
+		return $events;
 	}
 
 
@@ -278,6 +289,7 @@ class TodoyuCalendarRenderer {
 
 			// Get all events in current view
 		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $users, $eventTypes, false );
+
 			// Group the events by day
 		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
 			// Add overlap informations to events for each day
@@ -312,7 +324,7 @@ class TodoyuCalendarRenderer {
 				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, $mode, $users, $userColors);
 			}
 		}
-		
+
 		return $renderedEvents;
 	}
 
@@ -361,7 +373,7 @@ class TodoyuCalendarRenderer {
 	 * @param	Integer		$dateEnd
 	 * @return	Array
 	 */
-	public static function preRenderBirthdays($dateStart, $dateEnd) {
+	public static function preRenderUserBirthdays($dateStart, $dateEnd) {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
 

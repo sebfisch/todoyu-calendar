@@ -24,9 +24,8 @@
 				<field type="select" name="eventtype">
 					<label>event.attr.eventtype</label>
 					<source type="function">
-						<function>TodoyuEventDataSource::getEventTypeOptions</function>
+						<function>TodoyuCalendarViewHelper::getEventTypeOptions</function>
 					</source>
-<!-- 				<extraAttributes>onchange="Todoyu.Ext.calendar.Event.EventEdit.reload(this.form)"</extraAttributes> -->
 					<required />
 				</field>
 

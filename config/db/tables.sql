@@ -4,11 +4,10 @@
 
 CREATE TABLE `ext_calendar_event` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_series` int(10) unsigned NOT NULL,
-  `date_update` int(10) unsigned NOT NULL,
   `date_create` int(10) unsigned NOT NULL DEFAULT '0',
-  `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `date_update` int(10) unsigned NOT NULL DEFAULT '0',
   `id_user_create` int(10) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `id_project` smallint(6) NOT NULL DEFAULT '0',
   `id_task` int(10) unsigned NOT NULL,
   `eventtype` tinyint(3) unsigned NOT NULL DEFAULT '1',
@@ -19,8 +18,7 @@ CREATE TABLE `ext_calendar_event` (
   `date_end` int(10) unsigned NOT NULL DEFAULT '0',
   `is_private` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `is_dayevent` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `is_public` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `is_repeated` tinyint(3) unsigned NOT NULL,
+  `is_public` tinyint(1) unsigned NOT NULL DEFAULT '0'
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -30,9 +28,9 @@ CREATE TABLE `ext_calendar_event` (
 
 CREATE TABLE `ext_calendar_holiday` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date_update` int(10) unsigned NOT NULL,
-  `id_user_create` smallint(5) unsigned NOT NULL,
   `date_create` int(10) unsigned NOT NULL DEFAULT '0',
+  `date_update` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_user_create` smallint(5) unsigned NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   `date` int(11) NOT NULL DEFAULT '0',
   `title` varchar(48) NOT NULL,
@@ -47,9 +45,9 @@ CREATE TABLE `ext_calendar_holiday` (
 
 CREATE TABLE `ext_calendar_holidayset` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date_update` int(10) unsigned NOT NULL,
-  `id_user_create` smallint(5) unsigned NOT NULL,
   `date_create` int(10) unsigned NOT NULL DEFAULT '0',
+  `date_update` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_user_create` smallint(5) unsigned NOT NULL,
   `deleted` tinyint(2) NOT NULL,
   `title` varchar(32) NOT NULL,
   `description` varchar(128) NOT NULL,

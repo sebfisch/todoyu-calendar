@@ -165,55 +165,54 @@ form.formEvent button.buttonSave {}
 	padding-right:16px;
 }
 
-.eventtype_1 {
+.eventtype_general {
 	background:url(../img/icons.png) no-repeat scroll 1px -660px;
 }
 
-.eventtype_2 {
+.eventtype_away {
 	background:url(../img/icons.png) no-repeat scroll 1px -690px;
 }
 
-.eventtype_3 {
+.eventtype_birthday {
 	background:url(../img/icons.png) no-repeat scroll 1px -420px;
 }
 
-.eventtype_4 {
+.eventtype_vacation {
 	background:url(../img/icons.png) no-repeat scroll 1px -390px;
 }
 
-.eventtype_5 {
+.eventtype_education {
 	background:url(../img/icons.png) no-repeat scroll 1px -720px;
 }
 
-.eventtype_6 {
+.eventtype_meeting {
 	background:url(../img/icons.png) no-repeat scroll 1px -750px;
 }
 
-.eventtype_7 {
+.eventtype_awayofficial {
 	background:url(../img/icons.png) no-repeat scroll 1px -780px;
 }
 
-.eventtype_8 {
+.eventtype_homeoffice {
 	background:url(../img/icons.png) no-repeat scroll 1px -810px;
 }
-
-.eventtype_9 {
+/*
+.eventtype_paper {
 	background:url(../img/icons.png) no-repeat scroll 1px -840px;
 }
-
 .eventtype_10 {
 	background:url(../img/icons.png) no-repeat scroll 1px -870px;
 }
 
-.eventtype_11 {
+*/
+.eventtype_compensation {
 	background:url(../img/icons.png) no-repeat scroll 1px -900px;
 }
-
-.eventtype_12 {
+.eventtype_milestone {
 	background:url(../img/icons.png) no-repeat scroll 1px -930px;
 }
 
-.eventtype_13 {
+.eventtype_reminder {
 	background:url(../img/icons.png) no-repeat scroll 1px -960px;
 }
 

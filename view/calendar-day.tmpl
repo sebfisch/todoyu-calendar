@@ -17,8 +17,14 @@
 								&nbsp;&nbsp;&nbsp;&nbsp; {$holidays.$dateKey.0.title}
 							</span>
 						{/if}
-							{if $birthdays[$dateKey]}{foreach $birthdays[$dateKey] birthday}{$birthday}{/foreach}{/if}
-							{foreach $dayEvents.$dateKey dayEvent}{$dayEvent}{/foreach}
+							{if $userBirthdays[$dateKey]}
+								{foreach $userBirthdays[$dateKey] birthday}
+									{$birthday}
+								{/foreach}
+							{/if}
+							{foreach $dayEvents.$dateKey dayEvent}
+								{$dayEvent}
+							{/foreach}
 						</div>
 					</td>
 				</tr>
@@ -42,11 +48,14 @@
 					<td class="tg-times">
 						<div style="top:644px;" class="tg-nowptr" id="tgnowptr"/>
 						{assign var=hourTimestamp value=$timestamp}
-						{for hourcounter 0 23}{if $hourcounter == 8}<div id="dayStart"></div>{/if}
+						{for hourcounter 0 23}
+							{if $hourcounter == 8}
+								<div id="dayStart"></div>
+							{/if}
 							<div title="{dateFormat $timestamp DlongD2MlongY4} - {if $hourcounter < 10}0{/if}{$hourcounter}:00" id="createEventAt-{$hourTimestamp}" class="tg-time-day">
 								{if $hourcounter < 10}0{/if}{$hourcounter}:00
 							</div>
-						{assign var=hourTimestamp value=$hourTimestamp+3600}
+							{assign var=hourTimestamp value=$hourTimestamp+3600}
 						{/for}
 					</td>
 					<td class="tg-col dayview{if date('d.m.y', $tstamp) == date('d.m.y', time())}today{/if}">

@@ -43,7 +43,8 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 			'parameters': {
 				'action':	'popup',
 				'time':		time
-			}
+			},
+			'onComplete': this.onPopupOpened.bind(this, time)
 		};
 		var idPopup	= 'quickevent';
 		var title	= 'Create event';
@@ -56,7 +57,10 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	closePopup: function() {
 		this.popup.close();
 	},
-
+	
+	onPopupOpened: function(time) {
+		$('quickevent-field-eventtype').observe('change', this.onEventTypeChange.bindAsEventListener(this,time));
+	},
 
 
 	/**
@@ -90,6 +94,54 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 			Todoyu.Popup.close('quickevent');
 			this.ext.refresh();
 		}
+	},
+	
+		/**
+	 *	Evoked on change of selected eventType in quick-event form (toggle ir/relevant fields)
+	 *
+	 *	@param	String	field
+	 */
+	onEventTypeChange: function(event, time) {
+		var eventType	= $F('quickevent-field-eventtype');
+		var allFields	= $('quickevent-form').select('div.fElement');
+		var fieldsToHide= [];
+		
+		// Show all fields
+		allFields.invoke('show');
+		
+			// Extract fieldnames
+		var allFieldNames = allFields.collect(function(field){
+			return field.id.replace('formElement-quickevent-field-', '');
+		});
+		
+			// Get all check hook functions
+		var checkHooks	= Todoyu.Hook.get('eventtype');
+				
+			// Check all fields, if a hooks wants to hide it
+		allFieldNames.each(function(checkHooks, fieldsToHide, eventType, fieldname){
+				// Check all hooks if they want to hide the field
+			checkHooks.each(function(fieldsToHide, fieldname, eventType, hook){
+				if( hook(fieldname, eventType) ) {
+					fieldsToHide.push(fieldname);
+					return;
+				}
+			}.bind(this, fieldsToHide, fieldname, eventType));
+		}.bind(this, checkHooks, fieldsToHide, eventType));
+		
+		fieldsToHide.each(this.hideField, this);
+	},
+	
+	
+	/**
+	 * Hide a field in the event form
+	 * 
+	 * @param	String		fieldname
+	 */
+	hideField: function(fieldname) {
+		var field	= 'formElement-quickevent-field-' + fieldname;
+		
+		if( Todoyu.exists(field) ) {
+			$(field).hide();
+		}
 	}
-
 };

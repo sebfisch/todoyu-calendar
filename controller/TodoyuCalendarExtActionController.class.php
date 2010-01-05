@@ -58,10 +58,9 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 			TodoyuPanelWidgetCalendar::saveDate($params['date']);
 		}
 
-
 			// Render the calendar
-		$calendar		= TodoyuCalendarRenderer::render($activeTab, $params);
 		$panelWidgets	= TodoyuCalendarRenderer::renderPanelWidgets();
+		$calendar		= TodoyuCalendarRenderer::render($activeTab, $params);
 
 			// Set calendar as active page
 		TodoyuPage::set('calendar', $calendar);

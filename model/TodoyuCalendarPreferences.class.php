@@ -120,11 +120,10 @@ class TodoyuCalendarPreferences {
 	 *
 	 * @param	Array		$types
 	 */
-	public static function saveEventTypes($types) {
-		$types	= TodoyuArray::intval($types);
-		$types	= implode(',', $types);
+	public static function saveEventTypes(array $eventTypes) {
+		$eventTypes	= implode(',', $eventTypes);
 
-		self::savePref('panelwidget-eventtypeselector', $types, 0, true, AREA);
+		self::savePref('panelwidget-eventtypeselector', $eventTypes, 0, true, AREA);
 	}
 
 

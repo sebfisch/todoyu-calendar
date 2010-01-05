@@ -52,8 +52,8 @@
 					{/if}
 						<td id="createEventAt-{$timestamps.$curDayCounter}" class="content c{if $timestamps.$curDayCounter == $timestamp_today}today{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if date('ny', $timestamps.$curDayCounter)==date('ny', $timestamp_today)} inSelMonth{/if}">
 							{assign var=dayDateKey value=date('Ymd', $timestamps[$curDayCounter])}
-							{if $birthdays[$dayDateKey]}
-								{foreach $birthdays[$dayDateKey] birthday}
+							{if $userBirthdays[$dayDateKey]}
+								{foreach $userBirthdays[$dayDateKey] birthday}
 									{$birthday}
 								{/foreach}
 							{/if}

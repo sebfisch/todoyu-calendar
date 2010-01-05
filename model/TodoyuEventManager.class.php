@@ -74,12 +74,11 @@ class TodoyuEventManager {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
 		$users		= TodoyuArray::intval($users, true, true);
-		$eventTypes	= TodoyuArray::intval($eventTypes, true, true);
 
 		$fields	= '	e.*,
 					mmeu.id_user,
 					mmeu.is_acknowledged,
-					date_end - date_start as duration';
+					e.date_end - e.date_start as duration';
 		$tables	= 	self::TABLE  . ' e,
 					ext_calendar_mm_event_user mmeu';
 		$where	= '	e.id		= mmeu.id_event AND
@@ -101,18 +100,19 @@ class TodoyuEventManager {
 
 			// Users
 		if( sizeof($users) > 0 ) {
-			$where	.= ' AND mmeu.id_user IN(' . implode(',', $users) . ')';
+			$where	.= ' AND mmeu.id_user IN(' . implode(',', $users) . ',0)';
 		}
 
 
 			// Event types
-		if( sizeof($eventTypes) ) {
-			$where .= ' AND e.eventtype IN(' . implode(',', $eventTypes) . ')';
+		if( sizeof($eventTypes) > 0 ) {
+			$where .= ' AND e.eventtype IN(\'' . implode("','", $eventTypes) . '\')';
 		}
 
-			// Rights
+
+			// Assigned users
 		if( ! allowed('calendar', 'event:seeAll') ) {
-			$where .= ' AND mmeu.id_user = ' . userid();
+			$where .= ' AND mmeu.id_user IN(' . userid() . ',0)';
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
@@ -141,6 +141,7 @@ class TodoyuEventManager {
 			$groupedEvents[$dayKey]	= array();
 
 			foreach($events as $event) {
+//				TodoyuDebug::printHtml($event, 'event');
 				if( TodoyuTime::rangeOverlaps($dayRange['start'], $dayRange['end'], $event['date_start'], $event['date_end']) ) {
 					$groupedEvents[$dayKey][] = $event;
 				}
@@ -163,7 +164,7 @@ class TodoyuEventManager {
 			$leftPositionArray = array();
 			$currentPosition   = 0;
 			$index			   = 0;
-			
+
 			//1st step: get left position of each event
 			foreach($eventsOfDay as $idEvent => $eventArray)	{
 				if(sizeof($leftPositionArray) == 0)	{
@@ -187,21 +188,21 @@ class TodoyuEventManager {
 					}
 				}
 			}
-			
+
 			//2nd step: get width of each event
 			foreach($eventsOfDay as $idEvent => $eventArray)	{
-				
+
 				foreach($eventsOfDay as $idEventCompare => $eventArrayCompare)	{
 					if(!isset($eventsByDay[$dayKey][$idEvent]['_overlapNum']))	{
 						$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = 0;
 						$eventsByDay[$dayKey][$idEvent]['_maxPosition'] = sizeof($leftPositionArray);
 					}
-					
+
 					if(self::areEventsOverlaping($eventArrayCompare, $eventArray) && $idEvent != $idEventCompare)	{
 						$eventsByDay[$dayKey][$idEvent]['_overlapNum']++;
 					}
 				}
-				
+
 				if($eventsByDay[$dayKey][$idEvent]['_overlapNum'] >= sizeof($leftPositionArray))	{
 					$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = sizeof($leftPositionArray) - sizeof($leftPositionArray) + 1;
 				} else if($eventsByDay[$dayKey][$idEvent]['_overlapNum'] < sizeof($leftPositionArray)) {
@@ -209,7 +210,7 @@ class TodoyuEventManager {
 				}
 			}
 		}
-		
+
 		return $eventsByDay;
 	}
 
@@ -358,29 +359,36 @@ class TodoyuEventManager {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 
 		$idEvent= intval($data['id']);
-		$users	= $data['user'];
-
-		unset($data['id']);
-		unset($data['user']);
 
 			// Add empty event
 		if( $idEvent === 0 )	{
 			$idEvent = self::addEvent(array());
 		}
 
+			// Extract user IDs from foreign data array (easier to handle)
+		$data['user'] = TodoyuArray::getColumn(TodoyuArray::assure($data['user']), 'id');
+
 			// Call save data hooks
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
 
-			// Update the event with the definitive data
-		self::updateEvent($idEvent, $data);
 			// Remove already assigned users
 		self::removeAllUserAssignments($idEvent);
 
-			// Add users
-		if( is_array($users) ) {
-			$users	= TodoyuArray::getColumn($users, 'id');
-			self::assignUsersToEvent($idEvent, $users);
+			// If no users assigned, assign to user "0"
+		if( sizeof($data['user']) === 0 ) {
+			$data['user'][] = 0;
 		}
+
+		TodoyuDebug::printInFirebug($data['user']);
+
+			// Add users
+		self::assignUsersToEvent($idEvent, $data['user']);
+
+			// Remove not needed fields
+		unset($data['user']);
+
+			// Update the event with the definitive data
+		self::updateEvent($idEvent, $data);
 
 			// Remove record and query from cache
 		self::removeEventFromCache($idEvent);
@@ -401,13 +409,21 @@ class TodoyuEventManager {
 		$idEvent	= self::addEvent(array());
 
 			// Add users
-		if( is_array($data['user']) ) {
-			$users	= TodoyuArray::getColumn($data['user'], 'id');
-			self::assignUsersToEvent($idEvent, $users);
-			unset($data['user']);
-		}
+		$data['user'] = TodoyuArray::getColumn(TodoyuArray::assure($data['user']), 'id');
 
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
+
+			// If no users assigned, assign to user "0"
+		if( sizeof($data['user']) === 0 ) {
+			$data['user'][] = 0;
+		}
+
+		self::assignUsersToEvent($idEvent, $data['user']);
+
+		unset($data['user']);
+
+
+		TodoyuDebug::printInFirebug($data);
 
 			// Update the event with the definitive data
 		self::updateEvent($idEvent, $data);
@@ -445,12 +461,7 @@ class TodoyuEventManager {
 	 *	@return	Boolean
 	 */
 	public static function updateEvent($idEvent, array $data) {
-		$idEvent	= intval($idEvent);
-		unset($data['id']);
-
-		$data['date_update']	= NOW;
-
-		return Todoyu::db()->updateRecord('ext_calendar_event', $idEvent, $data) === 1;
+		return TodoyuRecordManager::updateRecord(self::TABLE, $idEvent, $data);
 	}
 
 
@@ -463,7 +474,7 @@ class TodoyuEventManager {
 	 */
 	public static function assignUsersToEvent($idEvent, array $userIDs) {
 		$idEvent	= intval($idEvent);
-		$userIDs	= TodoyuArray::intval($userIDs, true, true);
+		$userIDs	= TodoyuArray::intval($userIDs, true, false);
 
 		foreach($userIDs as $idUser) {
 			self::assignUserToEvent($idEvent, $idUser);
@@ -818,9 +829,9 @@ class TodoyuEventManager {
 
 	/**
 	 *
-	 * @param unknown_type $idEvent
-	 * @param array $items
-	 * @return unknown_type
+	 * @param	Integer		$idEvent
+	 * @param	Array		$items
+	 * @return	Array
 	 */
 	public static function getContextMenuItemsPortal($idEvent, array $items)	{
 		$idEvent = intval($idEvent);
@@ -834,6 +845,28 @@ class TodoyuEventManager {
 		$items = array_merge_recursive($items, $own);
 
 		return $items;
+	}
+
+
+
+	/**
+	 * Hook when saving event data.
+	 * Modify data looking at the event type
+	 *
+	 * @param	Array		$data
+	 * @param	Integer		$idEvent
+	 * @return	Array
+	 */
+	public static function hookSaveEvent(array $data, $idEvent) {
+			// Birthday
+		if( $data['eventtype'] === 'birthday' ) {
+			$data['date_start']	= TodoyuTime::getStartOfDay($data['date_start']);
+			$data['date_end']	= $data['date_start'] + TodoyuTime::SECONDS_HOUR; // Fix, so event is in day period
+			$data['user']		= array();
+			$data['is_dayevent']= 1;
+		}
+
+		return $data;
 	}
 
 }

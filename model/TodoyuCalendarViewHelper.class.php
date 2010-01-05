@@ -146,6 +146,22 @@ class TodoyuCalendarViewHelper {
 		return $options;
 	}
 
+
+
+	public static function getEventTypeOptions(TodoyuFormElement $field) {
+		$eventTypes	= TodoyuEventTypeManager::getEventTypes(true); // TodoyuEventManager::getEventTypes(true);
+		$options	= array();
+
+		foreach($eventTypes as $eventType) {
+			$options[] = array(
+				'value'	=> $eventType['key'],
+				'label'	=> $eventType['label'],
+			);
+		}
+
+		return $options;
+	}
+
 }
 
 ?>

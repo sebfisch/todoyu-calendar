@@ -1,31 +1,25 @@
-<div id="event-{$id}" class="event contextmenuevent quickInfoEvent {if $eventtype==3}birthdays{/if}{if $updateAllowed} updateAlloweDd{/if}{if $calendarMode=='month'} monthevent {/if} enumColBGFade{$colors.id}"
+<div id="event-{$id}" class="event contextmenuevent quickInfoEvent {if $eventtype=='birthday'}birthdays{/if}{if $updateAllowed} updateAllowed{/if}{if $calendarMode=='month'} monthevent {/if} enumColBGFade{$colors.id}"
 	style="{if $calendarMode!='month'}top:{$top}px; left:{$left}px;{/if}
 	{if $calendarMode=='week'} height:{$height}px;{/if}{if intval($width)>0} width:{$width}px;{/if}">
 	<dl style="{if $calendarMode != 'month'}height:{$height}px;{/if}">
-		<dt class="{if $calendarMode == 'month'}{else}enumColBG{$colors.id}{/if}">
+		<dt class="{if $calendarMode != 'month'}enumColBG{$colors.id}{/if}">
 			<span class="{if $calendarMode == 'month'}montheventTime{else}time{/if}">
-				{$title}{if count($assignedUsers)==1} {$assignedUsers.0.shortname}{/if}
+				{$title}
+				{if count($assignedUsers)==1}
+					{$assignedUsers.0.shortname}
+				{/if}
 			</span>
 		</dt>
 		<dd><span class="{if $calendarMode=='week'}ca-elp{/if}" style="{if $calendarMode != 'month'}color:{$colors.text|default:"#000"};{/if}">
 
 {* ---------- Only show title if event is not private ---------- *}
 {if $is_private == 1}
+	<span class="privateEvent"></span>
 	{if  $id_user == $current_user}
-			<span class="privateEvent"></span>
-			{if $is_repeated == 1}<span class="seriesEvent{if $calendarMode=='month'}Dark{/if}"></span>{/if}
-			{$title}
-	{else}
-			<span class="privateEvent"></span>
-		{if $is_repeated == 1}
-			<span class="seriesEvent{if $calendarMode=='month'}Dark{/if}"></span>
-		{/if}
+		{$title}
 	{/if}
 {else}
-		{if $is_repeated == 1}
-			<span class="seriesEvent{if $calendarMode=='month'}Dark{/if}"></span>
-		{/if}
-			{$title}
+	{$title}
 {/if}
 		</span></dd>
 	</dl>

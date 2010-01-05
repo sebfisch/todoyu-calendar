@@ -63,6 +63,9 @@ Todoyu.Ext.calendar = {
 
 		this.installGeneralObservers();
 		this.installBodyObservers();
+		
+			// Add event edit hooks for event type
+		Todoyu.Hook.add('eventtype', this.EventEdit.checkHideField.bind(this.EventEdit));
 	},
 
 
