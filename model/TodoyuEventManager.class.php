@@ -330,17 +330,19 @@ class TodoyuEventManager {
 	 	$types		= $GLOBALS['CONFIG']['EXT']['calendar']['EVENTTYPE'];
 	 	$eventTypes	= array();
 
-	 	foreach($types as $index => $key) {
-	 		$eventType = array(
-	 			'index'	=> $index,
-	 			'key'	=> $key
-	 		);
+	 	if (count($types) > 0) {
+		 	foreach($types as $index => $key) {
+		 		$eventType = array(
+		 			'index'	=> $index,
+		 			'key'	=> $key
+		 		);
 
-	 		if( $parseLabels ) {
-	 			$eventType['label'] = Label('event.eventtype.' . $key);
-	 		}
+		 		if( $parseLabels ) {
+		 			$eventType['label'] = Label('event.eventtype.' . $key);
+		 		}
 
-	 		$eventTypes[$index] = $eventType;
+		 		$eventTypes[$index] = $eventType;
+		 	}
 	 	}
 
 	 	return $eventTypes;
