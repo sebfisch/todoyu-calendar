@@ -92,6 +92,14 @@
 						<validateRequired>TodoyuUserViewHelper::validateRequiredUserAC</validateRequired>
 					</foreignRecordConf>
 					<required />
+					
+					<validate>
+						<user msg="LLL:event.error.overbooked">
+							<function>TodoyuEventFormValidator::usersAreBookable</function>
+							
+						</user>
+					</validate>
+					
 				</field>
 <!--
 				<field type="textinputAC" name="id_project">

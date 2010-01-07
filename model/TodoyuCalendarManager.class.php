@@ -254,6 +254,19 @@ class TodoyuCalendarManager {
 
 
 	/**
+	 * Check whether overbooking (more than one event assigned to one person at the same time) is allowed
+	 *
+	 * @return	Boolean
+	 */
+	public static function isOverbookingAllowed() {
+		$extConf	= TodoyuExtConfManager::getExtConf('calendar');
+
+		return $extConf['allowoverbooking'] == 1 ? true : false;
+	}
+
+
+
+	/**
 	 * 	Get context menu items
 	 *
 	 *	@param	Integer	$timestamp

@@ -165,7 +165,7 @@ class TodoyuEventManager {
 			$currentPosition   = 0;
 			$index			   = 0;
 
-			//1st step: get left position of each event
+				//1st step: get left position of each event
 			foreach($eventsOfDay as $idEvent => $eventArray)	{
 				if(sizeof($leftPositionArray) == 0)	{
 					$leftPositionArray[$currentPosition][] 				= $idEvent;
@@ -189,7 +189,7 @@ class TodoyuEventManager {
 				}
 			}
 
-			//2nd step: get width of each event
+				//2nd step: get width of each event
 			foreach($eventsOfDay as $idEvent => $eventArray)	{
 
 				foreach($eventsOfDay as $idEventCompare => $eventArrayCompare)	{
@@ -298,6 +298,42 @@ class TodoyuEventManager {
 		}
 
 		return $eventUsers;
+	}
+
+
+
+	/**
+	 * Check which users are already booked during the given timespan (excluding the given event)
+	 *
+	 * @param	Array	$userIDs
+	 * @param	Integer	$dateStart
+	 * @param	Integer	$dateEnd
+	 * @param	Integer	$idEvent
+	 * @return	Array
+	 */
+	public static function getOverbookedEventUsers(array $userIDs, $dateStart, $dateEnd, $idEvent) {
+		$overbookedUserIDs	= array();
+
+			// Get events of involved users during timespan
+		$overlaps	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $userIDs);
+		unset($overlaps[$idEvent]);
+
+		if ( count($overlaps) > 0 ) {
+			foreach($overlaps as $idOverlapEvent => $overlapEventData) {
+					// Get user assignments of overlapping event
+				$overlaps[$idOverlapEvent]['assigned_users']	= array();
+				$assignedUsers	= TodoyuEventManager::getAssignedUsersOfEvent($idOverlapEvent);
+				foreach ($assignedUsers as $user) {
+					if ( in_array($user['id_user'], $userIDs) ) {
+						$overbookedUserIDs[]	= $user['id_user'];
+					}
+				}
+			}
+
+			$overbookedUserIDs	= array_unique($overbookedUserIDs);
+		}
+
+		return $overbookedUserIDs;
 	}
 
 
@@ -779,8 +815,8 @@ class TodoyuEventManager {
 			'id'			=>	0,
 			'date_start'	=>	$dateStart,
 			'date_end'		=>	$dateEnd,
-			'user' => array(
-				0 => TodoyuUserManager::getUser(userid())->getTemplateData()
+			'user' 			=> array(
+				0	=> TodoyuUserManager::getUser(userid())->getTemplateData()
 			)
 		);
 

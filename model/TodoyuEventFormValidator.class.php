@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -98,6 +98,40 @@ class TodoyuEventFormValidator {
 		}
 	}
 
+
+
+	/**
+	 * Validate given users of event to be bookable at that time (if configured to be validated)
+	 *
+	 * @param	unknown_type	$value
+	 * @param	Array			$config
+	 * @param	unknown_type	$formElement
+	 * @param	unknown_type		$formData
+	 */
+	public static function usersAreBookable($value, array $config = array (), $formElement, $formData) {
+		$bookable	= true;
+
+			// Check if calendar is configured to prevent overbooking
+		if ( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
+				// check which (any?) event users are overbooked
+			$idEvent	= intval($formData['id']);
+			$event		= TodoyuEventManager::getEvent($idEvent);
+
+			$userIDs	= array();
+			foreach ($value as $user) {
+				$userIDs[]	= intval($user['id']);
+			}
+
+			$overbookedUsers	= TodoyuEventManager::getOverbookedEventUsers($userIDs, $event['date_start'], $event['date_end'], $idEvent);
+
+			if ( count($overbookedUsers) > 0 ) {
+					// @todo enhance form-error notification to list users which have no time
+				$bookable	= false;
+			}
+		}
+
+		return $bookable;
+	}
 
 }
 

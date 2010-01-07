@@ -73,10 +73,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 *	Save event action: validate data and save or return failure feedback
+	 * Save event action: validate data and save or return failure feedback
 	 *
-	 *	@param	Array	$params
-	 *	@return	String
+	 * @param	Array	$params
+	 * @return	String
 	 */
 	public function saveAction(array $params) {
 		$data	= $params['event'];
@@ -97,7 +97,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			}
 		}
 
-
+			// Set form data
 		$xmlPath	= 'ext/calendar/config/form/event.xml';
 		$form		= TodoyuFormManager::getForm($xmlPath, $idEvent);
 
@@ -127,9 +127,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 *	'delete' action method
+	 * 'delete' action method
 	 *
-	 *	@param	Array	$params
+	 * @param	Array	$params
 	 */
 	public function deleteAction(array $params) {
 		$idEvent= intval($params['event']);
@@ -149,10 +149,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 *	'detail' action method
+	 * 'detail' action method
 	 *
-	 *	@param	Array	$params
-	 *	@return	String
+	 * @param	Array	$params
+	 * @return	String
 	 */
 	public function detailAction(array $params) {
 		$idEvent= intval($params['event']);
@@ -174,9 +174,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 *	Acknowledge an (not seen) event
+	 * Acknowledge an (not seen) event
 	 *
-	 *	@param	Array	$params
+	 * @param	Array	$params
 	 */
 	public function acknowledgeAction(array $params) {
 		$idEvent= intval($params['event']);
@@ -188,10 +188,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 *	'show' action method
+	 * 'show' action method
 	 *
-	 *	@param	Array $params
-	 *	@return	String
+	 * @param	Array $params
+	 * @return	String
 	 */
 	public function showAction(array $params) {
 		$idEvent	= intval($params['event']);

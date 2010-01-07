@@ -37,9 +37,9 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 
 
 	/**
-	 *	Init
+	 * Init
 	 *
-	 *	@param	Array	$params
+	 * @param	Array	$params
 	 */
 	public function init(array $params) {
 		restrict('calendar', 'use');
@@ -50,10 +50,10 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 
 
 	/**
-	 *	User action method
+	 * User action method
 	 *
-	 *	@param	Array $params
-	 *	@return	String
+	 * @param	Array $params
+	 * @return	String
 	 */
 	public function userAction(array $params) {
 		$results = TodoyuUserFilterDataSource::autocompleteUsers($this->sword);
@@ -64,10 +64,10 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 
 
 	/**
-	 *	Project action method
+	 * Project action method
 	 *
-	 *	@param	Array	$params
-	 *	@return	String
+	 * @param	Array	$params
+	 * @return	String
 	 */
 	public function projectAction(array $params) {
 		$results = TodoyuProjectFilterDataSource::autocompleteProjects($this->sword);
@@ -78,10 +78,10 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 
 
 	/**
-	 *	Get task autocomplete
+	 * Get task autocomplete
 	 *
-	 *	@param	Array	$params
-	 *	@return	String
+	 * @param	Array	$params
+	 * @return	String
 	 */
 	public function taskAction(array $params) {
 		$idProject	= intval($params['event']['id_project']);
@@ -110,10 +110,10 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 
 
 	/**
-	 *	Holiday action method
+	 * Holiday action method
 	 *
-	 *	@param	Array	$params
-	 *	@return	String
+	 * @param	Array	$params
+	 * @return	String
 	 */
 	public function holidayAction(array $params) {
 		$results = TodoyuHolidayManager::autocompleteHolidays($this->sword);
@@ -124,10 +124,10 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 
 
 	/**
-	 *	HolidaySet action method
+	 * HolidaySet action method
 	 *
-	 *	@param	Array	$params
-	 *	@return	String
+	 * @param	Array	$params
+	 * @return	String
 	 */
 	public function holidaysetAction(array $params) {
 		$results = TodoyuHolidaySetManager::autocompleteHolidaySet($this->sword);

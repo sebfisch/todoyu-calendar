@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<attributes>
+		<attribute name="name">config</attribute>
+	</attributes>
+	<fieldsets>
+
+		<fieldset name="config">
+
+			<elements>
+				
+				<field type="checkbox" name="allowoverbooking">
+					<label>calendar.extconf.allowoverbooking.label</label>
+				</field>
+
+			</elements>
+
+		</fieldset>
+
+	</fieldsets>
+</form>

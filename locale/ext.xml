@@ -25,6 +25,7 @@
 		<label index="search.label">Events</label>
 		<label index="search.mode.label">Search Events</label>
 		<label index="portal.tab.appointments">Appointments</label>
+		<label index="extconf.allowoverbooking.label">Allow overbooking?</label>
 	</labels>
 	<labels lang="de">
 		<label index="ext.title">Kalender</label>
@@ -51,5 +52,6 @@
 		<label index="search.label">Termine</label>
 		<label index="search.mode.label">Termine suchen</label>
 		<label index="portal.tab.appointments">Termine</label>
+		<label index="extconf.allowoverbooking.label">Überbuchung erlauben?</label>
 	</labels>
 </locallang>
