@@ -103,10 +103,10 @@ class TodoyuEventFormValidator {
 	/**
 	 * Validate given users of event to be bookable at that time (if configured to be validated)
 	 *
-	 * @param	unknown_type	$value
-	 * @param	Array			$config
-	 * @param	unknown_type	$formElement
-	 * @param	unknown_type		$formData
+	 * @param	String				$value
+	 * @param	Array				$config
+	 * @param	TodoyuFormElement	$formElement
+	 * @param	Array				$formData
 	 */
 	public static function usersAreBookable($value, array $config = array (), $formElement, $formData) {
 		$bookable	= true;
