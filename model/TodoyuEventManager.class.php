@@ -230,19 +230,6 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Fix event overlap
-	 *
-	 *	@param	Array	$events
-	 *	@return	Array
-	 */
-	public static function fixEventOverlap(array $events) {
-
-		return $events;
-	}
-
-
-
-	/**
 	 *	Get all users assigned to an event
 	 *
 	 *	@param	Integer $idEvent
