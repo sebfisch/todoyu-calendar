@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rights>
-	
+
 	<section name="general">
 		<right name="use" />
-		<right name="view" require="use" />
+		<right name="view" require="general:use" />
 	</section>
-	
-	<section name="event" require="use">
-		<right name="event:seeAll" />
-		<right name="event:editAssigned" />
-		<right name="event:editAll" />
-		<right name="event:deleteAssigned" />
-		<right name="event:deleteAll" />
-		<right name="event:add" />
-		<right name="event:assignOthers" />
+
+	<section name="event" require="general:use">
+		<right name="seeAll" />
+		<right name="editAssigned" />
+		<right name="editAll" />
+		<right name="deleteAssigned" />
+		<right name="deleteAll" />
+		<right name="add" />
+		<right name="assignOthers" />
 	</section>
-	
-	<section name="panelwidgets" require="use">
-		<right name="panelwidget:calendar" />
-		<right name="panelwidget:quickEvent" />
-		<right name="panelwidget:eventTypeSelector" />
-		<right name="panelwidget:holidaySetSelector" />
+
+	<section name="panelwidgets" require="general:use">
+		<right name="calendar" />
+		<right name="quickEvent" />
+		<right name="eventTypeSelector" />
+		<right name="holidaySetSelector" />
 	</section>
-	
+
 </rights>

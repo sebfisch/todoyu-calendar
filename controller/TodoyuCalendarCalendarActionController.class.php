@@ -34,7 +34,7 @@ class TodoyuCalendarCalendarActionController extends TodoyuActionController {
 	 *	@return	String
 	 */
 	public function updateAction(array $params) {
-		restrict('calendar', 'use');
+		restrict('calendar', 'general:use');
 
 		$time	= intval($params['time']);
 		$tab	= $params['tab'];

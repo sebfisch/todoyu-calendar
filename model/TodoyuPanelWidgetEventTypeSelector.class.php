@@ -172,7 +172,7 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 
 
 	public static function isAllowed() {
-		return allowed('calendar', 'panelwidget:eventTypeSelector');
+		return allowed('calendar', 'panelwidgets:eventTypeSelector');
 	}
 }
 

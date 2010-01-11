@@ -42,7 +42,7 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 	 * @param	Array	$params
 	 */
 	public function init(array $params) {
-		restrict('calendar', 'use');
+		restrict('calendar', 'general:use');
 
 		$this->sword = trim($params['sword']);
 	}

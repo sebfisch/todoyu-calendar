@@ -33,7 +33,7 @@ class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function init(array $params) {
-		restrict('calendar', 'use');
+		restrict('calendar', 'general:use');
 	}
 
 

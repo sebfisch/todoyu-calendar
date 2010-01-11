@@ -92,7 +92,7 @@ class TodoyuPanelWidgetQuickEvent extends TodoyuPanelWidget implements TodoyuPan
 	 * @return	Boolean
 	 */
 	public static function isAllowed() {
-		return allowed('calendar', 'panelwidget:quickEvent');
+		return allowed('calendar', 'panelwidgets:quickEvent');
 	}
 
 }

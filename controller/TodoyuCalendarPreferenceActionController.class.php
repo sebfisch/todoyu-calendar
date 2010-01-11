@@ -49,7 +49,7 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function init(array $params) {
-		restrict('calendar', 'use');
+		restrict('calendar', 'general:use');
 
 		$this->value	= $params['value'];
 		$this->item		= intval($params['item']);

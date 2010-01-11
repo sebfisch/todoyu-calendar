@@ -145,8 +145,14 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 	}
 
 
+
+	/**
+	 * Check if panelwidget is allowed
+	 *
+	 * @return	Bool
+	 */
 	public static function isAllowed() {
-		return allowed('calendar', 'panelwidget:calendar');
+		return allowed('calendar', 'panelwidgets:calendar');
 	}
 
 }

@@ -31,7 +31,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * Initialize (restrict rights)
 	 */
 	public function init() {
-		restrict('calendar', 'use');
+		restrict('calendar', 'general:use');
 	}
 
 
@@ -138,9 +138,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 			// Check right
 		if( $event->isCurrentUserAssigned() ) {
-			restrict('calendar', 'deleteAssigned');
+			restrict('calendar', 'event:deleteAssigned');
 		} else {
-			restrict('calendar', 'deleteAll');
+			restrict('calendar', 'event:deleteAll');
 		}
 
 		TodoyuEventManager::deleteEvent($idEvent);
@@ -159,7 +159,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$event	= TodoyuEventManager::getEvent($idEvent);
 
 		if( ! $event->isCurrentUserAssigned() ) {
-			restrict('calendar', 'seeAll');
+			restrict('calendar', 'event:seeAll');
 		}
 
 		$data		= array(
@@ -198,7 +198,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$event		= TodoyuEventManager::getEvent($idEvent);
 
 		if( ! $event->isCurrentUserAssigned() ) {
-			restrict('calendar', 'seeAll');
+			restrict('calendar', 'event:seeAll');
 		}
 
 			// Send tab label
