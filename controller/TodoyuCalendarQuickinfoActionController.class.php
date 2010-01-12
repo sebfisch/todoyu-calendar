@@ -40,7 +40,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$quickInfo	= new TodoyuCalendarQuickinfo();
 
 			// Build event date info
-		if( $event->isMultiDay() ) {
+		if ( $event->isMultiDay() ) {
 			$dateInfo  = TodoyuTime::format($event->getStartDate(), 'D2MshortTime');
 			$dateInfo .= '<br />';
 			$dateInfo .= TodoyuTime::format($event->getEndDate(), 'D2MshortTime');
@@ -62,12 +62,12 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$quickInfo->addInfo('type', $event->getTypeLabel(), 20);
 		$quickInfo->addInfo('date', $dateInfo, 30);
 
-		if( $event->getPlace() !== '' ) {
+		if ( $event->getPlace() !== '' ) {
 			$quickInfo->addInfo('place', $event->getPlace(), 40);
 		}
 
 			// Only add users info when assigned to at least one user
-		if( sizeof($usersInfo) > 0 ) {
+		if ( sizeof($usersInfo) > 0 ) {
 			$quickInfo->addInfo('users', implode('<br />', $usersInfo), 50);
 		}
 

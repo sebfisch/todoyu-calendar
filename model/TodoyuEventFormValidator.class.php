@@ -39,7 +39,7 @@ class TodoyuEventFormValidator {
 	 */
 	public static function eventIsAssignableToCurrentUserOnly($value, array $config = array ()) {
 			// If the flag is_private is set, the event is only allowed to be assigned to the current user
-		if( $config['formdata']['is_private'] == 1 &&
+		if ( $config['formdata']['is_private'] == 1 &&
 			(count($config['formdata']['user']) > 1 || $config['formdata']['user']['0']['id'] != userid() ) ){
 
 			return false;
@@ -63,7 +63,7 @@ class TodoyuEventFormValidator {
 			$endtime	= strtotime( $config['formdata']['enddate'] . ' ' . $config['formdata']['endtime'] );
 
 				// Starttime must be before the endtime
-			if( $endtime <= $starttime ) {
+			if ( $endtime <= $starttime ) {
 				return false;
 			}
 		} else {
@@ -71,7 +71,7 @@ class TodoyuEventFormValidator {
 			$startdate	= strtotime( $config['formdata']['startdate'] );
 			$enddate	= strtotime( $config['formdata']['enddate'] );
 
-			if( $startdate > $enddate ) {
+			if ( $startdate > $enddate ) {
 				return false;
 			}
 		}
@@ -91,7 +91,7 @@ class TodoyuEventFormValidator {
 		$regexp	= '(\d{1,2}(\:|\s)\d{1,2})';
 
 			// Check starttime format with regular expression
-		if( ! preg_match( $regexp, $config['formdata']['starttime'] ) ) {
+		if ( ! preg_match( $regexp, $config['formdata']['starttime'] ) ) {
 			return false;
 		} elseif ( ! preg_match( $regexp, $config['formdata']['endtime'] ) ) {
 			return false;
@@ -125,7 +125,12 @@ class TodoyuEventFormValidator {
 			$overbookedUsers	= TodoyuEventManager::getOverbookedEventUsers($userIDs, $event['date_start'], $event['date_end'], $idEvent);
 
 			if ( count($overbookedUsers) > 0 ) {
-					// @todo enhance form-error notification to list users which have no time
+				$errorMessage = Label('LLL:event.error.usersOverbooked') . '<br />';
+				foreach($overbookedUsers as $idUser) {
+					$errorMessage	.= TodoyuUserManager::getLabel($idUser) . '<br />';
+				}
+				$formElement->setErrorMessage($errorMessage);
+
 				$bookable	= false;
 			}
 		}

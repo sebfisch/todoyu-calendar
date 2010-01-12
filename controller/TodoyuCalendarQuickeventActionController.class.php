@@ -56,7 +56,7 @@ class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 
 		$form->setFormData($formData);
 
-		if( $form->isValid() ) {
+		if ( $form->isValid() ) {
 			$storageData	= $form->getStorageData();
 
 				// Save or update event

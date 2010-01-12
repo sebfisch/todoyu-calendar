@@ -36,7 +36,7 @@ class TodoyuCalendarPortalRenderer {
 	public static function getAppointmentTabLabel($count = true) {
 		$label		= TodoyuLocale::getLabel('portal.tab.appointments');
 
-		if( $count ) {
+		if ( $count ) {
 			$events	= TodoyuCalendarPortalManager::getAppointments();
 
 			$label		= $label . '(' . sizeof($events) . ')';
@@ -59,13 +59,13 @@ class TodoyuCalendarPortalRenderer {
 			// Get events
 		$events	= TodoyuCalendarPortalManager::getAppointments();
 
-		if( $config['showHoliday'] ) {
+		if ( $config['showHoliday'] ) {
 			$holidays		= TodoyuCalendarPortalManager::getHolidays();
 		} else {
 			$holidays	= array();
 		}
 
-		if( $config['showBirthday'] ) {
+		if ( $config['showBirthday'] ) {
 			$birthdays		= TodoyuCalendarPortalManager::getBirthdays();
 		} else {
 			$birthdays	= array();
