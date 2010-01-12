@@ -343,37 +343,6 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Get all defined event types
-	 *	@see		ext/calendar/config/extension.php
-	 *
-	 *	@param	Bool	$parseLabels
-	 *	@return	Array	Event types
-	 */
-	 public static function getEventTypes($parseLabels = false) {
-	 	$types		= $GLOBALS['CONFIG']['EXT']['calendar']['EVENTTYPE'];
-	 	$eventTypes	= array();
-
-	 	if (count($types) > 0) {
-		 	foreach($types as $index => $key) {
-		 		$eventType = array(
-		 			'index'	=> $index,
-		 			'key'	=> $key
-		 		);
-
-		 		if( $parseLabels ) {
-		 			$eventType['label'] = Label('event.eventtype.' . $key);
-		 		}
-
-		 		$eventTypes[$index] = $eventType;
-		 	}
-	 	}
-
-	 	return $eventTypes;
-	}
-
-
-
-	/**
 	 *	Save a new event
 	 *
 	 *	@param	Array	$formData	Eventdata
@@ -625,36 +594,6 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Manipulate (precalculate adv. values) event form data
-	 *
-	 *	@param	Array	$formData
-	 *	@return	Array
-	 */
-	protected static function manipulateFormData(array $formData)	{
-		$formData['title']			= trim($formData['title']);
-		$formData['date_start']		= TodoyuTime::parseDateString($formData['date_start']);
-		$formData['date_end']		= TodoyuTime::parseDateString($formData['date_end']);
-		$formData['is_private']		= intval($formData['is_private']);
-		$formData['is_public']		= intval($formData['is_public']);
-		$formData['is_dayevent']	= intval($formData['is_dayevent']);
-		$formData['eventtype']		= intval($formData['eventtype']);
-
-		if( $formData['starttime'] )	{
-			$formData['date_start']	=	mktime(0, 0, 0, date('n', $formData['date_start']), date('j', $formData['date_start']), date('Y', $formData['date_start'])) + TodoyuTime::parseTime($formData['starttime']);
-			unset($formData['starttime']);
-		}
-
-		if( $formData['endtime'] )	{
-			$formData['date_end']	=	mktime(0, 0, 0, date('n', $formData['date_end']), date('j', $formData['date_end']), date('Y', $formData['date_end'])) + TodoyuTime::parseTime($formData['endtime']);
-			unset($formData['endtime']);
-		}
-
-		return $formData;
-	}
-
-
-
-	/**
 	 *	Remove event from cache
 	 *
 	 *	@param	Integer	$idEvent
@@ -705,48 +644,6 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Remove fields based on the selected
-	 *
-	 *	@param	TodoyuForm	$form
-	 *	@param	Integer	$idEvent
-	 *	@return	TodoyuForm
-	 */
-	public static function removeFieldByType(TodoyuForm $form, $idEvent) {
-		$formData	= $form->getFormData();
-		$type		= intval($formData['event_type']);
-
-		switch($type) {
-
-			case EVENTTYPE_BIRTHDAY:
-				$form->removeField('is_dayevent', true);
-				$form->removeField('is_public', true);
-				$form->removeField('date_end', true);
-				$form->removeField('place', true);
-				$form->removeField('user', true);
-				$form->removeField('id_project', true);
-				$form->removeField('id_task', true);
-			break;
-
-			case EVENTTYPE_VACATION:
-				$form->removeField('is_dayevent', true);
-				$form->removeField('is_private', true);
-				$form->removeField('id_project', true);
-				$form->removeField('id_task', true);
-			break;
-
-			case EVENTTYPE_REMINDER:
-				$form->removeField('is_dayevent', true);
-				$form->removeField('date_end', true);
-			break;
-
-		}
-
-		return $form;
-	}
-
-
-
-	/**
 	 *	Set given event acknowledged
 	 *
 	 *	@param	Integer	$idEvent
@@ -756,10 +653,13 @@ class TodoyuEventManager {
 		$idEvent	= intval($idEvent);
 		$idUser		= intval($idUser);
 
-		$where = 'id_event = ' . $idEvent . ' AND id_user = ' . $idUser;
-		$updateArray= array('is_acknowledged' => 1);
+		$where 	= '	id_event= ' . $idEvent . ' AND
+					id_user	= ' . $idUser;
+		$update	= array(
+			'is_acknowledged' => 1
+		);
 
-		Todoyu::db()->doUpdate('ext_calendar_mm_event_user', $where, $updateArray);
+		Todoyu::db()->doUpdate('ext_calendar_mm_event_user', $where, $update);
 	}
 
 
@@ -884,7 +784,7 @@ class TodoyuEventManager {
 	 */
 	public static function hookSaveEvent(array $data, $idEvent) {
 			// Birthday
-		if( $data['eventtype'] === 'birthday' ) {
+		if( $data['eventtype'] == EVENTTYPE_BIRTHDAY ) {
 			$data['date_start']	= TodoyuTime::getStartOfDay($data['date_start']);
 			$data['date_end']	= $data['date_start'] + TodoyuTime::SECONDS_HOUR; // Fix, so event is in day period
 			$data['user']		= array();

@@ -68,50 +68,27 @@ $CONFIG['EXT']['calendar']['contentTabs'] = array(
 	)
 );
 
-	// Register event types
-	// @see		referring constants are defined in constants.php
-//$CONFIG['EXT']['calendar']['EVENTTYPE'] = array(
-//	EVENTTYPE_GENERAL		=> 'general',
-//	EVENTTYPE_AWAY			=> 'away',
-//	EVENTTYPE_AWAYOFFICIAL	=> 'awayofficial',
-//	EVENTTYPE_BIRTHDAY		=> 'birthday',
-//	EVENTTYPE_VACATION		=> 'vacation',
-//	EVENTTYPE_EDUCATION		=> 'education',
-//	EVENTTYPE_MEETING		=> 'meeting',
-//	EVENTTYPE_HOMEOFFICE	=> 'homeoffice',
-//	EVENTTYPE_PAPER			=> 'paper',
-//	EVENTTYPE_CARTON		=> 'carton',
-//	EVENTTYPE_COMPENSATION	=> 'compensation',
-//	EVENTTYPE_MILESTONE		=> 'milestone',
-//	EVENTTYPE_REMINDER		=> 'reminder'
-//);
 
 
-$CONFIG['EXT']['calendar']['eventtypes'] = array();
-
-
-TodoyuEventTypeManager::addEventType('general', 'event.eventtype.general');
-TodoyuEventTypeManager::addEventType('away', 'event.eventtype.away');
-TodoyuEventTypeManager::addEventType('awayofficial', 'event.eventtype.awayofficial');
-TodoyuEventTypeManager::addEventType('birthday', 'event.eventtype.birthday');
-TodoyuEventTypeManager::addEventType('vacation', 'event.eventtype.vacation');
-TodoyuEventTypeManager::addEventType('education', 'event.eventtype.education');
-TodoyuEventTypeManager::addEventType('meeting', 'event.eventtype.meeting');
-TodoyuEventTypeManager::addEventType('homeoffice', 'event.eventtype.homeoffice');
-TodoyuEventTypeManager::addEventType('compensation', 'event.eventtype.compensation');
-TodoyuEventTypeManager::addEventType('milestone', 'event.eventtype.milestone');
-TodoyuEventTypeManager::addEventType('reminder', 'event.eventtype.reminder');
-
-
-
-
+	// Add eventtypes
+TodoyuEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'event.eventtype.general');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'event.eventtype.away');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'event.eventtype.awayofficial');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_BIRTHDAY, 'birthday', 'event.eventtype.birthday');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_VACATION, 'vacation', 'event.eventtype.vacation');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_EDUCATION, 'education', 'event.eventtype.education');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_MEETING, 'meeting', 'event.eventtype.meeting');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'event.eventtype.homeoffice');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'event.eventtype.compensation');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'event.eventtype.milestone');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.eventtype.reminder');
 
 
 
 
 	// Which event types define absences?
 $CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'] = array(
-	'away',
+	EVENTTYPE_AWAY,
 	EVENTTYPE_VACATION,
 	EVENTTYPE_COMPENSATION
 );

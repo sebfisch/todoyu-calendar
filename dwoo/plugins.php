@@ -43,9 +43,7 @@
 function Dwoo_Plugin_EventTypeLabel(Dwoo $dwoo, $idEventType) {
 	$idEventType	= intval($idEventType);
 
-	$designation = $GLOBALS['CONFIG']['EXT']['calendar']['EVENTTYPE'][$idEventType];
-
-	return Label('event.eventtype.' . $designation);
+	return TodoyuEventTypeManager::getEventTypeLabel($idEventType);
 }
 
 

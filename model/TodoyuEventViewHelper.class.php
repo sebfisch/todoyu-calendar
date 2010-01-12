@@ -12,15 +12,12 @@ class TodoyuEventViewHelper {
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
 		$options	= array();
 		$eventTypes	= TodoyuEventTypeManager::getEventTypes(true);
+		$reform		= array(
+			'index'	=> 'value',
+			'label'	=> 'label'
+		);
 
-		foreach($eventTypes as $index => $eventType)  {
-			$options[] = array(
-				'value'		=> $eventType['key'],
-				'label'		=> $eventType['label']
-			);
-		}
-
-		return $options;
+		return TodoyuArray::reform($eventTypes, $reform, false);
 	}
 
 }

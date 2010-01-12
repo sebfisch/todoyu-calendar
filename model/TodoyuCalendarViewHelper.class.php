@@ -149,12 +149,12 @@ class TodoyuCalendarViewHelper {
 
 
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
-		$eventTypes	= TodoyuEventTypeManager::getEventTypes(true); // TodoyuEventManager::getEventTypes(true);
+		$eventTypes	= TodoyuEventTypeManager::getEventTypes(true);
 		$options	= array();
 
 		foreach($eventTypes as $eventType) {
 			$options[] = array(
-				'value'	=> $eventType['key'],
+				'value'	=> $eventType['index'],
 				'label'	=> $eventType['label'],
 			);
 		}

@@ -99,7 +99,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 * @return	String
 	 */
 	public function getTypeKey() {
-		return $GLOBALS['CONFIG']['EXT']['calendar']['EVENTTYPE'][$this->getType()];
+		return TodoyuEventTypeManager::getEventTypeKey($this->getType());
 	}
 
 
@@ -107,10 +107,10 @@ class TodoyuEvent extends TodoyuBaseObject {
 	/**
 	 * Get type label
 	 *
-	 * @return unknown
+	 * @return	String
 	 */
 	public function getTypeLabel() {
-		return TodoyuLocale::getLabel('event.eventtype.' . $this->getTypeKey());
+		return TodoyuEventTypeManager::getEventTypeLabel($this->getType(), true);
 	}
 
 

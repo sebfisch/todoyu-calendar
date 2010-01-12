@@ -10,7 +10,7 @@ CREATE TABLE `ext_calendar_event` (
   `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `id_project` smallint(6) NOT NULL DEFAULT '0',
   `id_task` int(10) unsigned NOT NULL,
-  `eventtype` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `eventtype` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `title` varchar(255) NOT NULL,
   `description` text,
   `place` varchar(255) NOT NULL,

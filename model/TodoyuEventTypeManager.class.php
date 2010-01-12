@@ -30,11 +30,14 @@ class TodoyuEventTypeManager {
 	/**
 	 * Add a new eventtype
 	 *
-	 * @param	String		$key
+	 * @param	Integer		$index
 	 * @param	String		$label
 	 */
-	public static function addEventType($key, $label) {
-		$GLOBALS['CONFIG']['EXT']['calendar']['eventtypes'][$key] = array(
+	public static function addEventType($index, $key, $label) {
+		$index	= intval($index);
+
+		$GLOBALS['CONFIG']['EXT']['calendar']['eventtypes'][$index] = array(
+			'index'		=> $index,
 			'key'		=> $key,
 			'label'		=> $label
 		);
@@ -45,11 +48,45 @@ class TodoyuEventTypeManager {
 	/**
 	 * Get eventtype data
 	 *
-	 * @param	String		$key
+	 * @param	String		$index
 	 * @return	Array
 	 */
-	public static function getEventType($key) {
-		return TodoyuArray::assure($GLOBALS['CONFIG']['EXT']['calendar']['eventtypes'][$key]);
+	public static function getEventType($index) {
+		return TodoyuArray::assure($GLOBALS['CONFIG']['EXT']['calendar']['eventtypes'][$index]);
+	}
+
+
+
+	/**
+	 * Get label of the event type
+	 *
+	 * @param	Integer		$index
+	 * @param	Bool		$parsed
+	 * @return	String
+	 */
+	public static function getEventTypeLabel($index, $parsed = true) {
+		$eventType	= self::getEventType($index);
+		$label		= $eventType['label'];
+
+		if( $parsed ) {
+			$label = TodoyuLocale::getLabel($label);
+		}
+
+		return $label;
+	}
+
+
+
+	/**
+	 * Get the key of an eventtype
+	 *
+	 * @param	Integer		$index
+	 * @return	String
+	 */
+	public static function getEventTypeKey($index) {
+		$eventType	= self::getEventType($index);
+
+		return $eventType['key'];
 	}
 
 
@@ -75,7 +112,20 @@ class TodoyuEventTypeManager {
 
 
 	/**
-	 * Get all eventtype keys
+	 * Get all eventtype indexed (numerical)
+	 *
+	 * @return	Array
+	 */
+	public static function getEventTypeIndexes() {
+		$eventTypes	= self::getEventTypes(false);
+
+		return TodoyuArray::getColumn($eventTypes, 'index');
+	}
+
+
+
+	/**
+	 * Get event type keys (textual)
 	 *
 	 * @return	Array
 	 */

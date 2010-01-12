@@ -78,10 +78,10 @@ Todoyu.Ext.calendar.EventEdit = {
 		var tabLabel = response.getTodoyuHeader('tabLabel');
 
 		this.setTabLabel(tabLabel);
-		
+
 		this.updateVisibleFields();
 		this.observeEventType();
-		this.show();		
+		this.show();
 	},
 
 	observeEventType: function() {
@@ -89,28 +89,28 @@ Todoyu.Ext.calendar.EventEdit = {
 	},
 
 
-	
+
 	/**
 	 * Update the field visibility in the form for the selected event type
-	 * 
+	 *
 	 * @param	DomEvent	event
 	 */
 	updateVisibleFields: function(event) {
 		var eventType	= $F('event-field-eventtype');
 		var allFields	= $('event-form').select('div.fElement');
 		var fieldsToHide= [];
-		
+
 		// Show all fields
 		allFields.invoke('show');
-		
+
 			// Extract fieldnames
 		var allFieldNames = allFields.collect(function(field){
 			return field.id.replace('formElement-event-field-', '');
 		});
-		
+
 			// Get all check hook functions
 		var checkHooks	= Todoyu.Hook.get('eventtype');
-				
+
 			// Check all fields, if a hooks wants to hide it
 		allFieldNames.each(function(checkHooks, fieldsToHide, eventType, fieldname){
 				// Check all hooks if they want to hide the field
@@ -121,45 +121,47 @@ Todoyu.Ext.calendar.EventEdit = {
 				}
 			}.bind(this, fieldsToHide, fieldname, eventType));
 		}.bind(this, checkHooks, fieldsToHide, eventType));
-		
+
 		fieldsToHide.each(this.hideField, this);
 	},
-	
-	
+
+
+
 	/**
 	 * Check if a field has to be hidden for an eventtype
-	 * 
+	 *
 	 * @param	String		fieldname
 	 * @param	String		eventtype
 	 */
 	checkHideField: function(fieldname, eventtype) {
-		var fields = [];
-		
+		var fields	= [];
+		eventtype	= parseInt(eventtype, 10);
+
 		switch(eventtype) {
-			case 'birthday':
+			case 3: // birthday
 				fields = ['is-dayevent', 'date-end', 'user'];
 				break;
-			case 'reminder':
+			case 13: // reminder
 				fields = ['is-dayevent', 'date-end'];
 				break;
-			case 'vacation':
+			case 4: // vacation
 				fields = ['is-dayevent'];
 				break;
 		}
-		
+
 		return fields.include(fieldname);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Hide a field in the event form
-	 * 
+	 *
 	 * @param	String		fieldname
 	 */
 	hideField: function(fieldname) {
 		var field	= 'formElement-event-field-' + fieldname;
-		
+
 		if( Todoyu.exists(field) ) {
 			$(field).hide();
 		}
