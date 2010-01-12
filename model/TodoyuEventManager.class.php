@@ -581,7 +581,7 @@ class TodoyuEventManager {
 	 *	@param	Integer		$tstampLastShownDay		UNIX timestamp last shown day
 	 *	@return	Integer
 	 */
-	public function calcEventEndingDayNumInWeek($tstampEnd, $tstampLastShownDay) {
+	public static function calcEventEndingDayNumInWeek($tstampEnd, $tstampLastShownDay) {
 		if ($tstampEnd > $tstampLastShownDay) {
 			$dayNum = 7;
 		} else {
