@@ -31,20 +31,35 @@
 
 
 /**
- * Get short name label of week, e.g: 'Mon'
+ * Get label of eventtype
  *
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param 	Dwoo 		$dwoo
- * @param 	Integer		$id
- * @return	String
+ * @param 		Dwoo_Compiler 	$compiler
+ * @param 		Integer			$idEventIndex
+ * @return		String
  */
-function Dwoo_Plugin_EventTypeLabel(Dwoo $dwoo, $idEventType) {
-	$idEventType	= intval($idEventType);
-
-	return TodoyuEventTypeManager::getEventTypeLabel($idEventType);
+function Dwoo_Plugin_EventTypeLabel_compile(Dwoo_Compiler $compiler, $idEventIndex) {
+	return 'TodoyuEventTypeManager::getEventTypeLabel(' . $idEventIndex . ')';
 }
+
+
+
+/**
+ * Get key of eventtype
+ *
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param 		Dwoo_Compiler 	$compiler
+ * @param		Integer			$idEventIndex
+ * @return		String
+ */
+function Dwoo_Plugin_EventTypeKey_compile(Dwoo_Compiler $compiler, $idEventIndex) {
+	return 'TodoyuEventTypeManager::getEventTypeKey(' . $idEventIndex . ')';
+}
+
 
 
 /**
@@ -53,9 +68,9 @@ function Dwoo_Plugin_EventTypeLabel(Dwoo $dwoo, $idEventType) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param 	Dwoo 		$dwoo
- * @param 	Integer		$dayNum
- * @return	String
+ * @param 		Dwoo 		$dwoo
+ * @param 		Integer		$dayNum
+ * @return		String
  */
 function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
 	$timestamp	= intval($timestamp);
@@ -70,9 +85,9 @@ function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param 	Dwoo 		$dwoo
- * @param 	Integer		$dayNum
- * @return	String
+ * @param 		Dwoo 		$dwoo
+ * @param 		Integer		$dayNum
+ * @return		String
  */
 function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {
 	$timestamp	= intval($timestamp);
@@ -85,8 +100,11 @@ function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {
 /**
  * Assign negative timestamps. Needed if first timestamp would be after first day of month
  *
- *	@param Dwoo		$dwoo
- *	@param Array	$timestamps
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param 		Dwoo		$dwoo
+ * @param 		Array		$timestamps
  */
 function Dwoo_Plugin_assignNegativeTimestamps(Dwoo $dwoo, $month, $timestamps) {
 	$year	= date('Y', $timestamps[1]);
