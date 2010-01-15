@@ -373,8 +373,6 @@ class TodoyuEventManager {
 			$data['user'][] = 0;
 		}
 
-		TodoyuDebug::printInFirebug($data['user']);
-
 			// Add users
 		self::assignUsersToEvent($idEvent, $data['user']);
 
@@ -415,9 +413,6 @@ class TodoyuEventManager {
 		self::assignUsersToEvent($idEvent, $data['user']);
 
 		unset($data['user']);
-
-
-		TodoyuDebug::printInFirebug($data);
 
 			// Update the event with the definitive data
 		self::updateEvent($idEvent, $data);

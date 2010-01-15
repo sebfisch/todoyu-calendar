@@ -112,7 +112,7 @@ class TodoyuCalendarRenderer {
 
 		$userColors	= TodoyuUserManager::getSelectedUsersColor($users);
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
-
+		
 		$tmpl		= 'ext/calendar/view/calendar-day.tmpl';
 		$data		= array(
 			'timestamp'		=> $currentDate,
@@ -120,7 +120,7 @@ class TodoyuCalendarRenderer {
 			'dateKey'		=> date('Ymd', $dateStart),
 			'events'		=> self::preRenderEventsForDay($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'		=> self::preRenderDayevents('day', $dateStart, $dateEnd, $eventTypes, $users),
-//			'birthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderBirthdays($dateStart, $dateEnd) : '',
+			'userBirthdays'	=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : '',
 //			'holidays'		=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'			=> TodoyuCalendarViewHelper::getCalendarTitle('day', $dateStart, $dateEnd)
 		);
@@ -146,7 +146,7 @@ class TodoyuCalendarRenderer {
 
 		$userColors	= TodoyuUserManager::getSelectedUsersColor($users);
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
-
+		
 		$tmpl		= 'ext/calendar/view/calendar-week.tmpl';
 		$data		= array(
 			'timestamps'		=> TodoyuTime::getDayTimesOfWeek($currentDate),
@@ -155,7 +155,7 @@ class TodoyuCalendarRenderer {
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsForWeek($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('week', $dateStart, $dateEnd, $eventTypes, $users),
-			'userBirthdays'		=> in_array('birthday', $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : array(),
+			'userBirthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : array(),
 //			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('week', $dateStart, $dateEnd)
 		);
@@ -193,11 +193,11 @@ class TodoyuCalendarRenderer {
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors, $dateEnd),
 			'dayEvents'			=> self::preRenderDayevents('month', $dateStart, $dateEnd, $eventTypes, $users),//, $amountDays),
-			'userBirthdays'		=> in_array('birthday', $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : array(),
+			'userBirthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : array(),
 //			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('month', $dateStart, $dateEnd)
 		);
-
+		
 		return render($tmpl, $data);
 	}
 
