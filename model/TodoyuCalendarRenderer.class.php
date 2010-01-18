@@ -44,7 +44,7 @@ class TodoyuCalendarRenderer {
 
 		$tmpl	= 'ext/calendar/view/main.tmpl';
 		$data	= array(
-			'tabs'			=> self::renderTabs($activeTab),
+//			'tabs'			=> self::renderTabs($activeTab),
 			'active'		=> $activeTab,
 			'content'		=> self::renderCalendar($currentDate, $activeTab, $params),
 			'showCalendar'	=> $activeTab === 'day' || $activeTab === 'week' || $activeTab === 'month'
@@ -112,7 +112,7 @@ class TodoyuCalendarRenderer {
 
 		$userColors	= TodoyuUserManager::getSelectedUsersColor($users);
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
-		
+
 		$tmpl		= 'ext/calendar/view/calendar-day.tmpl';
 		$data		= array(
 			'timestamp'		=> $currentDate,
@@ -146,7 +146,7 @@ class TodoyuCalendarRenderer {
 
 		$userColors	= TodoyuUserManager::getSelectedUsersColor($users);
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
-		
+
 		$tmpl		= 'ext/calendar/view/calendar-week.tmpl';
 		$data		= array(
 			'timestamps'		=> TodoyuTime::getDayTimesOfWeek($currentDate),
@@ -197,7 +197,7 @@ class TodoyuCalendarRenderer {
 //			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('month', $dateStart, $dateEnd)
 		);
-		
+
 		return render($tmpl, $data);
 	}
 
