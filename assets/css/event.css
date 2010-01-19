@@ -57,10 +57,6 @@
 	border:1px dotted #fff;
 }
 
-.updateAllowed {
-	cursor:pointer;
-}
-
 .ca-elp {
 	color:#fff;
 	display:inline;
@@ -96,5 +92,5 @@
 table.eventView {
 	margin:12px 0 12px 0;
 	width:100%;
-	line-height:20px;	
+	line-height:20px;
 }

@@ -121,6 +121,14 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	}
 
 
+	public function portalEventExpandedAction(array $params) {
+		$idEvent	= $this->item;
+		$expanded	= intval($this->value) === 1;
+
+		TodoyuCalendarPreferences::savePortalEventExpandedStatus($idEvent, $expanded);
+	}
+
+
 
 	/**
 	 *	General panelWidget action, saves collapse status

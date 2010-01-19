@@ -26,12 +26,6 @@
  * @subpackage	Calendar
  */
 
-
-	/**
-	 * @todo	Right place for this function?
-	 */
-TodoyuColors::generateColorsCSS();
-
 TodoyuContextMenuManager::registerFunction('Event', 'TodoyuEventManager::getContextMenuItems', 10);
 TodoyuContextMenuManager::registerFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManager::getContextMenuItems', 10);

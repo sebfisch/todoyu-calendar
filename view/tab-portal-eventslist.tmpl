@@ -3,7 +3,7 @@
 	<div class="events" id="events">{* ----- The actual list of events ----- *}
 
 	{if count($events) == 0}
-			<br/><span class="contentMessage">{Label event.noEventsFound}</span>
+		<p class="contentMessage">{Label event.noEventsFound}</p>
 	{else}
 		{foreach $events idEvent event}{* ------- Event entry ------- *}
 			<div id="event-{$idEvent}" class="event {cycle values="odd,even"}">
@@ -11,14 +11,14 @@
 					<span class="headLabel" title="{$event.title}">
 						<span class="icon eventtype_{EventTypeKey $event.eventtype}" title="{Label event.attr.event_type}: {EventTypeLabel $event.eventtype}"> </span>
 						<span id="acknowledge-{$event.id}" class="icon acknowledge {if ! $event.is_acknowledged}not{/if}" {if !$event.is_acknowledged}onclick="Todoyu.Ext.calendar.Event.acknowledgeEvent({$idEvent}, {$event.id_user})"{/if}> </span>
-						<span class="label" onclick="Todoyu.Ext.calendar.Event.toggleDetails({$idEvent})">
+						<span class="label" onclick="Todoyu.Ext.calendar.EventPortal.toggleDetails({$idEvent})">
 							<span class="date">{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime}</span>
 							<span class="title">{htmlencode $event.title}</span>
 						</span>
 					</span>
 					<div class="clear"><!-- --></div>
 				</h3>
-				{$details}
+				{$event.details}
 			</div>{* ------- End: event entry ------- *}
 		{/foreach}
 	{/if}

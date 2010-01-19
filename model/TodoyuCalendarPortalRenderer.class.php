@@ -73,6 +73,14 @@ class TodoyuCalendarPortalRenderer {
 
 		$color = TodoyuEventRenderer::getEventColorData($idUser);
 
+			// Add details if expanded
+		foreach($events as $idEvent => $eventData) {
+			if( TodoyuCalendarPreferences::getPortalEventExpandedStatus($eventData['id']) ) {
+				$events[$idEvent]['details'] = TodoyuEventRenderer::renderEventDetailsInList($eventData['id']);
+			}
+		}
+
+
 		$tmpl	= 'ext/calendar/view/tab-portal-eventslist.tmpl';
 		$data	= array(
 			'events'						=> $events,
@@ -83,6 +91,8 @@ class TodoyuCalendarPortalRenderer {
 			'color'							=> $color[$idUser],
 			'javascript'					=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();'
 		);
+
+//		TodoyuDebug::printHtml($data['events']);
 
 		return render($tmpl, $data);
 	}

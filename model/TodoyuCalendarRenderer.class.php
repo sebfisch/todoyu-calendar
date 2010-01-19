@@ -261,7 +261,7 @@ class TodoyuCalendarRenderer {
 		foreach($eventsByDay as $dateKey => $eventsOfDay) {
 //			$dayTime = mktime(0, 0, 0, substr($dateKey, 4, 2), substr($dateKey, 6, 2), substr($dateKey, 0, 4) );
 			foreach($eventsOfDay as $event) {
-				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, 'month', $users, $userColors);
+				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, 'month');
 			}
 		}
 
@@ -321,7 +321,7 @@ class TodoyuCalendarRenderer {
 				$event['height']	= TodoyuEventRenderer::getEventHeight($dayTime, $event['date_start'], $event['date_end'] );
 
 					// Render
-				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, $mode, $users, $userColors);
+				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, $mode);
 			}
 		}
 
@@ -353,7 +353,7 @@ class TodoyuCalendarRenderer {
 					$rendered[] = $event['id'];
 
 					$event['tstamp_lastDay']	= $dateEnd;
-					$dayEvents[$dateKey][]		= TodoyuEventRenderer::renderFulldayEvent($mode, $event, $users);
+					$dayEvents[$dateKey][]		= TodoyuEventRenderer::renderFulldayEvent($mode, $event);
 				}
 			}
 		}

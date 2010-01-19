@@ -376,16 +376,8 @@ Todoyu.Ext.calendar = {
 	 *	@param	String	name	Name of the preference
 	 *	@param	Mixed	value	Value to be saved
 	 */
-	savePref: function(action, value) {
-		var url		= Todoyu.getUrl('calendar', 'preference');
-		var options	= {
-			'parameters': {
-				'action':	action,
-				'value':	value
-			}
-		};
-
-		Todoyu.send(url, options);
+	savePref: function(action, value, idItem, onComplete) {
+		Todoyu.Pref.save('calendar', action, value, idItem, onComplete);
 	},
 
 

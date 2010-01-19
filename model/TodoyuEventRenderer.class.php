@@ -79,26 +79,17 @@ class TodoyuEventRenderer {
 	 * @param	Array	$selectedUserIDs
 	 * @return	Array
 	 */
-	public static function prepareEventRenderData($calendarMode = 'month', array $data, array $selectedUserIDs = array()) {
-		$selectedUserIDs	= TodoyuArray::intval($selectedUserIDs);
+	public static function prepareEventRenderData($calendarMode = 'month', array $data) {
 		$assignedUsers 		= TodoyuEventManager::getAssignedUsersOfEvent( $data['id'] , true );
-
-		$idCurrentUser		= userid();
-//		$groupsCurrentUser	= TodoyuAuth::getGroupIDs();
-
 		$idAssignedUser		= count($assignedUsers) == 1 ? $assignedUsers[0]['id_user'] : 0;
 
 		$color = self::getEventColorData($idAssignedUser);
 
 			// Build event render data
 		$data	= array_merge($data, array(
-			'calendarMode'			=> $calendarMode,
-			'current_user'			=> $idCurrentUser,
-			'assignedUsers'			=> $assignedUsers,
-			'updateAllowed'			=> 		TodoyuAuth::isAdmin()
-										||	$data['id_user_create'] == $idCurrentUser
-								 		||	in_array($idCurrentUser, $assignedUsers) ? 1 : 0,
-			'colors'				=> $color[$idAssignedUser],
+			'calendarMode'	=> $calendarMode,
+			'assignedUsers'	=> $assignedUsers,
+			'color'			=> $color[$idAssignedUser],
 		));
 
 		if ($calendarMode == 'week') {
@@ -123,9 +114,36 @@ class TodoyuEventRenderer {
 	 * @param	Array	$selectedUserIDs
 	 * @return	String	Div of the event
 	 */
-	public static function renderEvent(array $event, $calendarMode = 'month', array $selectedUserIDs = array(), $selectedUserColors = array() ) {
-		$selectedUserIDs = TodoyuArray::intval($selectedUserIDs);
-		$event			 = self::prepareEventRenderData($calendarMode, $event, $selectedUserIDs, $selectedUserColors);
+	public static function renderEvent(array $event, $calendarMode = 'month') {
+		$tmpl	= 'ext/calendar/view/event.tmpl';
+		$data	= self::prepareEventRenderData($calendarMode, $event);
+
+		return render($tmpl, $data);
+	}
+
+
+	public static function renderEventDetailsInList($idEvent) {
+		$idEvent= intval($idEvent);
+		$event	= TodoyuEventManager::getEvent($idEvent);
+		$colors = self::getEventColorData(userid());
+
+		$eventData	= $event->getTemplateData(true);
+		$eventData	= self::prepareEventRenderData('list', $eventData);
+
+		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
+		$data	= array(
+			'event'			=> $eventData,
+			'color'			=> $colors[userid()],
+			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
+			'user_create'	=> $event->getUser('create')->getTemplateData()// TodoyuUserManager::getUserArray($event->getUserID('create')),
+		);
+
+		return render($tmpl, $data);
+	}
+
+
+	public static function renderEventORIG(array $event, $calendarMode = 'month') {
+		$event			 = self::prepareEventRenderData($calendarMode, $event);
 
 		if( $calendarMode === 'list' )	{
 			$color = self::getEventColorData(userid());
@@ -151,11 +169,11 @@ class TodoyuEventRenderer {
 	 * @param	Array	$selectedUserColors
 	 * @return	String
 	 */
-	public static function renderFulldayEvent($calendarMode = 'day', array $data = array(), array $selectedUserIDs) {
-		$selectedUserIDs	= TodoyuArray::intval($selectedUserIDs);
-		$data				= self::prepareEventRenderData($calendarMode, $data, $selectedUserIDs );
+	public static function renderFulldayEvent($calendarMode = 'day', array $data = array()) {
+		$tmpl	= 'ext/calendar/view/event-fullday.tmpl';
+		$data	= self::prepareEventRenderData($calendarMode, $data);
 
-		return render('ext/calendar/view/event-fullday.tmpl', $data);
+		return render($tmpl, $data);
 	}
 
 

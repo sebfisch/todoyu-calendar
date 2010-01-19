@@ -1,4 +1,4 @@
-<div id="event-{$event.id}-details" class="details eventDetails enumColBor{$colors.id}">
+<div id="event-{$event.id}-details" class="details eventDetails enumColBor{$color.id}">
 	<table class="eventView">
 		<tr class="odd">
 			<td class="eventAttrTitle">{Label core.title}: </td>
@@ -22,7 +22,7 @@
 		<tr class="odd">
 			<td class="eventAttrTitle ">{Label event.attr.attendees}: </td>
 			<td class="eventValue">{foreach $attendees user userData}
-				<span class="user{if $userData.is_acknowledged == 0 && $userData.id != $currentUser} isNotAcknowledgedIcon{/if}">
+				<span class="user{if $userData.is_acknowledged == 0 && ! isUserID($userData.id)} isNotAcknowledgedIcon{/if}">
 					{$userData.firstname} {$userData.lastname}
 				</span>
 				<br/>
@@ -35,6 +35,6 @@
 				{$user_create.firstname} {$user_create.lastname}
 			</td>
 		</tr>
-		
+
 	</table>
 </div>

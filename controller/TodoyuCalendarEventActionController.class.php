@@ -162,13 +162,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			restrict('calendar', 'event:seeAll');
 		}
 
-		$data		= array(
-			'event'			=> $event->getTemplateData(),
-			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
-			'user_create'	=> TodoyuUserManager::getUserArray($event['id_user_create']),
-		);
-
-		return TodoyuEventRenderer::renderEvent($data, 'list');
+		return TodoyuEventRenderer::renderEventDetailsInList($idEvent);
 	}
 
 

@@ -196,6 +196,21 @@ class TodoyuCalendarPreferences {
 	}
 
 
+	public static function savePortalEventExpandedStatus($idEvent, $expanded = true) {
+		$idEvent= intval($idEvent);
+		$value	= $expanded ? 1 : 0;
+
+		self::savePref('portal-event-expanded', $value, $idEvent);
+	}
+
+
+	public static function getPortalEventExpandedStatus($idEvent) {
+		$idEvent= intval($idEvent);
+
+		return intval(self::getPref('portal-event-expanded', $idEvent)) === 1;
+	}
+
+
  }
 
 ?>
