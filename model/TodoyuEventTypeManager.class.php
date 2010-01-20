@@ -69,7 +69,7 @@ class TodoyuEventTypeManager {
 		$label		= $eventType['label'];
 
 		if( $parsed ) {
-			$label = TodoyuLocale::getLabel($label);
+			$label = TodoyuLanguage::getLabel($label);
 		}
 
 		return $label;

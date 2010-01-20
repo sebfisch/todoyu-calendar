@@ -31,12 +31,12 @@ define('EXTID_CALENDAR', 104);
 define('PATH_EXT_CALENDAR', PATH_EXT . '/calendar');
 
 	// Register module locales
-TodoyuLocale::register('calendar', PATH_EXT_CALENDAR . '/locale/ext.xml');
-TodoyuLocale::register('event', PATH_EXT_CALENDAR . '/locale/event.xml');
-TodoyuLocale::register('panelwidget-calendar', PATH_EXT_CALENDAR . '/locale/panelwidget-calendar.xml');
-TodoyuLocale::register('panelwidget-quickevent', PATH_EXT_CALENDAR . '/locale/panelwidget-quickevent.xml');
-TodoyuLocale::register('panelwidget-eventtypeselector', PATH_EXT_CALENDAR . '/locale/panelwidget-eventtypeselector.xml');
-TodoyuLocale::register('panelwidget-holidaysetselector', PATH_EXT_CALENDAR . '/locale/panelwidget-holidaysetselector.xml');
+TodoyuLanguage::register('calendar', PATH_EXT_CALENDAR . '/locale/ext.xml');
+TodoyuLanguage::register('event', PATH_EXT_CALENDAR . '/locale/event.xml');
+TodoyuLanguage::register('panelwidget-calendar', PATH_EXT_CALENDAR . '/locale/panelwidget-calendar.xml');
+TodoyuLanguage::register('panelwidget-quickevent', PATH_EXT_CALENDAR . '/locale/panelwidget-quickevent.xml');
+TodoyuLanguage::register('panelwidget-eventtypeselector', PATH_EXT_CALENDAR . '/locale/panelwidget-eventtypeselector.xml');
+TodoyuLanguage::register('panelwidget-holidaysetselector', PATH_EXT_CALENDAR . '/locale/panelwidget-holidaysetselector.xml');
 
 	// Request configurations
 require_once( PATH_EXT_CALENDAR . '/config/constants.php' );

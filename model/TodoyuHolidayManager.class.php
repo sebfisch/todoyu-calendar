@@ -336,7 +336,7 @@ class TodoyuHolidayManager {
 			$res = Todoyu::db()->doSelect('id, title, date', self::TABLE, $where, '', 'date DESC');
 
 			while($row = Todoyu::db()->fetchAssoc($res))	{
-				$results[$row['id']] = $row['title'] . ' - ' . date(TodoyuLocale::getLabel('core.dateFormat'), $row['date']);
+				$results[$row['id']] = $row['title'] . ' - ' . date(TodoyuLanguage::getLabel('core.dateFormat'), $row['date']);
 			}
 
 			return $results;
