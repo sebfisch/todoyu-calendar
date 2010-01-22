@@ -55,7 +55,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$users		= $event->getAssignedUserData();
 
 		foreach($users as $user) {
-			$usersInfo[] = '- ' . $user['lastname'] . ' ' . $user['firstname'];
+			$usersInfo[] = '- ' . TodoyuUserManager::getLabel($user['id']);
 		}
 
 		$quickInfo->addInfo('title', $event->getTitle(), 10);
