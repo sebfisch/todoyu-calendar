@@ -121,7 +121,7 @@ class TodoyuCalendarRenderer {
 			'events'		=> self::preRenderEventsForDay($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'		=> self::preRenderDayevents('day', $dateStart, $dateEnd, $eventTypes, $users),
 			'userBirthdays'	=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : '',
-//			'holidays'		=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
+			'holidays'		=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'			=> TodoyuCalendarViewHelper::getCalendarTitle('day', $dateStart, $dateEnd)
 		);
 
@@ -156,7 +156,7 @@ class TodoyuCalendarRenderer {
 			'events'			=> self::preRenderEventsForWeek($dateStart, $eventTypes, $users, $userColors),
 			'dayEvents'			=> self::preRenderDayevents('week', $dateStart, $dateEnd, $eventTypes, $users),
 			'userBirthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : array(),
-//			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
+			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('week', $dateStart, $dateEnd)
 		);
 
@@ -194,7 +194,7 @@ class TodoyuCalendarRenderer {
 			'events'			=> self::preRenderEventsForMonth($dateStart, $eventTypes, $users, $userColors, $dateEnd),
 			'dayEvents'			=> self::preRenderDayevents('month', $dateStart, $dateEnd, $eventTypes, $users),//, $amountDays),
 			'userBirthdays'		=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderUserBirthdays($dateStart, $dateEnd) : array(),
-//			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
+			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('month', $dateStart, $dateEnd)
 		);
 
