@@ -90,6 +90,8 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 
 		if( response.hasTodoyuError() ) {
 			Todoyu.Popup.setContent('quickevent', response.responseText);
+			//fix to reactivate the jscalendar scripts. Maybe theres a better solution ?
+			$('quickevent-form').innerHTML.evalScripts();
 		} else {
 			Todoyu.Popup.close('quickevent');
 			this.ext.refresh();
