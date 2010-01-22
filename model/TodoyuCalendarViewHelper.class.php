@@ -84,27 +84,6 @@ class TodoyuCalendarViewHelper {
 
 
 	/**
-	 * Gets an options array of working hours in percent
-	 *
-	 * @param	TodoyuForm $field
-	 * @return	Array
-	 */
-	public static function getWorkingHoursOptions(TodoyuFormElement $field)	{
-		$options = array();
-
-		for($index = 0; $index <= 24; $index += 0.5)	{
-			$options[] = array(
-				'value'	=> $index * 60,
-				'label'	=> sprintf('%.1f', $index) . ' ' . Label('LLL:date.time.hours')
-			);
-		}
-
-		return $options;
-	}
-
-
-
-	/**
 	 * Gets an options array of all defined holidays
 	 *
 	 * @param	TodoyuForm $source

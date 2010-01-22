@@ -35,7 +35,7 @@ CREATE TABLE `ext_calendar_holiday` (
   `date` int(11) NOT NULL DEFAULT '0',
   `title` varchar(48) NOT NULL,
   `description` varchar(256) NOT NULL,
-  `workinghours` varchar(48) NOT NULL,
+  `workingtime` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

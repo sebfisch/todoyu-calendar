@@ -76,7 +76,7 @@ class TodoyuHolidayManager {
 
 		$data	= self::saveHolidayForeignRecords($data, $idHoliday);
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idHoliday);
-
+		
 		return self::updateHoliday($idHoliday, $data);
 	}
 

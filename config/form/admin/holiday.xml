@@ -23,11 +23,8 @@
 					<label>core.description</label>
 				</field>
 
-				<field type="select" name="workinghours">
-					<label>calendar.holiday.attr.workinghours</label>
-					<source type="function">
-						<function>TodoyuCalendarViewHelper::getWorkingHoursOptions</function>
-					</source>
+				<field type="duration" name="workingtime">
+					<label>calendar.holiday.attr.workingtime</label>
 				</field>
 
 				<field type="databaseRelation" name="holidayset">
@@ -36,7 +33,7 @@
 						<foreignformxml>ext/calendar/config/form/admin/holiday-holidayset.xml</foreignformxml>
 						<addSubformConfig>
 							<ext>calendar</ext>
-							<controller>formhandling</controller>
+							<controller>records</controller>
 						</addSubformConfig>
 						<label type="field">
 							<field>title</field>
