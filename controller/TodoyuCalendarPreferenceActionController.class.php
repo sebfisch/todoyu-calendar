@@ -89,7 +89,7 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function panelwidgeteventtypeselectorAction(array $params) {
-		$eventTypes	= TodoyuDiv::intExplode(',', $this->value, true, true);
+		$eventTypes	= TodoyuArray::intExplode(',', $this->value, true, true);
 
 		TodoyuCalendarPreferences::saveEventTypes($eventTypes);
 	}
@@ -102,7 +102,7 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 *	@param	Array	$params
 	 */
 	public function panelwidgetholidaysetselectorAction(array $params) {
-		$holidaySets	= TodoyuDiv::intExplode(',', $this->value, true, false);
+		$holidaySets	= TodoyuArray::intExplode(',', $this->value, true, false);
 
 		TodoyuCalendarPreferences::saveHolidaySets($holidaySets);
 	}

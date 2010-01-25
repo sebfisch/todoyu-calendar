@@ -76,7 +76,7 @@ class TodoyuHolidayManager {
 
 		$data	= self::saveHolidayForeignRecords($data, $idHoliday);
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idHoliday);
-		
+
 		return self::updateHoliday($idHoliday, $data);
 	}
 
@@ -324,7 +324,7 @@ class TodoyuHolidayManager {
 	 * @return	Array
 	 */
 	public static function autocompleteHolidays($sword)	{
-		$swordArray = TodoyuDiv::trimExplode(' ', $sword, true);
+		$swordArray = TodoyuArray::trimExplode(' ', $sword, true);
 		$results	= array();
 
 		if(count($swordArray) > 0)	{

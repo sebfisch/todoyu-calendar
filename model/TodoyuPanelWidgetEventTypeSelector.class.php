@@ -138,7 +138,7 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 		if( $eventTypes === false || $eventTypes === '' ) {
 			$eventTypes	= TodoyuEventTypeManager::getEventTypeIndexes();
 		} else {
-			$eventTypes	= TodoyuDiv::intExplode(',', $eventTypes, true, true);
+			$eventTypes	= TodoyuArray::intExplode(',', $eventTypes, true, true);
 		}
 
 		return $eventTypes;
