@@ -23,7 +23,6 @@
 		<label index="delete.confirm">Do you want to delete this Event?</label>
 		<label index="attr.creator">Creator</label>
 		<label index="attr.eventtype">Event Type</label>
-		<label index="attr.event_type">Event Type</label>
 		<label index="attr.is_dayevent">Dayevent</label>
 		<label index="attr.is_public">Is public?</label>
 		<label index="attr.is_private">Personal Event</label>
@@ -37,6 +36,7 @@
 		<label index="attr.place">Place</label>
 		<label index="attr.me">My Event</label>
 		<label index="attr.assigned_to">Assigned to</label>
+		<label index="attr.assigned_to.noLabel">[No user selected]</label>
 		<label index="attr.id_project">Project</label>
 		<label index="attr.id_task">Task</label>
 		<label index="tree.header.title">Event Title</label>
@@ -79,7 +79,6 @@
 		<label index="delete.confirm">Wollen Sie diesen Termin löschen?</label>
 		<label index="attr.creator">Ersteller</label>
 		<label index="attr.eventtype">Terminart</label>
-		<label index="attr.event_type">Terminart</label>
 		<label index="attr.is_dayevent">Tages-Termin</label>
 		<label index="attr.is_public">Ist öffentlich?</label>
 		<label index="attr.is_private">Privater Termin</label>
@@ -93,6 +92,7 @@
 		<label index="attr.place">Ort</label>
 		<label index="attr.me">Mein Termin</label>
 		<label index="attr.assigned_to">Zugewiesen</label>
+		<label index="attr.assigned_to.noLabel">[Kein Benutzer ausgewählt]</label>
 		<label index="attr.id_project">Projekt</label>
 		<label index="attr.id_task">Aufgabe</label>
 		<label index="tree.header.title">Termin-Titel</label>

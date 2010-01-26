@@ -87,19 +87,18 @@
 						</addSubformConfig>
 						<label type="function">
 							<function>TodoyuUserViewHelper::getUserLabel</function>
-							<noLabel>Neuer Benutzer</noLabel>
+							<noLabel>event.attr.assigned_to.noLabel</noLabel>
 						</label>
 						<validateRequired>TodoyuUserViewHelper::validateRequiredUserAC</validateRequired>
 					</foreignRecordConf>
 					<required />
-					
+
 					<validate>
 						<user msg="LLL:event.error.overbooked">
 							<function>TodoyuEventFormValidator::usersAreBookable</function>
-							
 						</user>
 					</validate>
-					
+
 				</field>
 <!--
 				<field type="textinputAC" name="id_project">

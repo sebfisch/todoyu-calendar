@@ -10,16 +10,16 @@
 			<elements>
 
 				<field type="textinputAC" name="id">
-						<label>event.attr.assigned_to</label>
-						<config>
-							<acListener>
-								<ext>calendar</ext>
-								<controller>autocompletion</controller>
-								<action>user</action>
-							</acListener>
-							<acLabelFunc>TodoyuUserManager::getLabel</acLabelFunc>
-						</config>
-						<required />
+					<label>event.attr.assigned_to</label>
+					<config>
+						<acListener>
+							<ext>calendar</ext>
+							<controller>autocompletion</controller>
+							<action>user</action>
+						</acListener>
+						<acLabelFunc>TodoyuUserManager::getLabel</acLabelFunc>
+					</config>
+					<required />
 				</field>
 
 			</elements>
