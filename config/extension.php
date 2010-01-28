@@ -65,17 +65,17 @@ $CONFIG['EXT']['calendar']['contentTabs'] = array(
 
 
 	// Add eventtypes
-TodoyuEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'event.eventtype.general');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'event.eventtype.away');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'event.eventtype.awayofficial');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_BIRTHDAY, 'birthday', 'event.eventtype.birthday');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_VACATION, 'vacation', 'event.eventtype.vacation');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_EDUCATION, 'education', 'event.eventtype.education');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_MEETING, 'meeting', 'event.eventtype.meeting');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'event.eventtype.homeoffice');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'event.eventtype.compensation');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'event.eventtype.milestone');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.eventtype.reminder');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'event.type.general');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'event.type.away');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'event.type.awayofficial');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_BIRTHDAY, 'birthday', 'event.type.birthday');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_VACATION, 'vacation', 'event.type.vacation');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_EDUCATION, 'education', 'event.type.education');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_MEETING, 'meeting', 'event.type.meeting');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'event.type.homeoffice');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'event.type.compensation');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'event.type.milestone');
+TodoyuEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.type.reminder');
 
 
 

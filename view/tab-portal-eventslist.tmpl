@@ -3,7 +3,7 @@
 	<div class="events" id="events">{* ----- The actual list of events ----- *}
 
 	{if count($events) == 0}
-		<p class="contentMessage">{Label event.noEventsFound}</p>
+		<p class="contentMessage">{Label event.error.noneFound}</p>
 	{else}
 		{foreach $events idEvent event}{* ------- Event entry ------- *}
 			<div id="event-{$idEvent}" class="event {cycle values="odd,even"}">

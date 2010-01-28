@@ -60,7 +60,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 			// Send tab label
 		if( $idEvent === 0 ) {
-			$tabLabel	= Label('event.newevent');
+			$tabLabel	= Label('event.new');
 		} else {
 			$tabLabel	= Label('event.edit') . ': ' . TodoyuDiv::cropText($event->getTitle(), 20, '...', false);
 		}

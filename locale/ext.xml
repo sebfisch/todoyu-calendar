@@ -4,6 +4,11 @@
 		<label index="ext.title">Calendar</label>
 		<label index="page.title">Calendar</label>
 		<label index="maintab.label">Planning</label>
+		<label index="holidayset">Holidayset</label>
+		<label index="yearsold">Years old</label>
+		<label index="applicableholidayset">Holidayset</label>
+		<label index="workingtime">Working Hours</label>
+		<label index="owner">Owner</label>
 		<label index="subMenuEntry.day">Calendar > Day</label>
 		<label index="subMenuEntry.week">Calendar > Week</label>
 		<label index="subMenuEntry.month">Calendar > Month</label>
@@ -12,11 +17,6 @@
 		<label index="quicknav.today.title">Jump to current day</label>
 		<label index="dayview.workingtime">Show working hours (08h-18h)</label>
 		<label index="dayview.fullday">Show hours of full day (00h-24h)</label>
-		<label index="holidayset">Holidayset</label>
-		<label index="yearsOld">Years old</label>
-		<label index="applicableholidayset">Holidayset</label>
-		<label index="workingtime">Working Hours</label>
-		<label index="owner">Owner</label>
 		<label index="holidayset.attr.name">Name</label>
 		<label index="holidayset.attr.holiday">Holiday</label>
 		<label index="holiday">Holiday</label>
@@ -31,6 +31,11 @@
 		<label index="ext.title">Kalender</label>
 		<label index="page.title">Kalender</label>
 		<label index="maintab.label">Planung</label>
+		<label index="holidayset">Ferien Set</label>
+		<label index="yearsold">Jahre alt</label>
+		<label index="applicableholidayset">Feiertags-Set</label>
+		<label index="workingtime">Arbeitsstunden</label>
+		<label index="owner">Eigner</label>
 		<label index="subMenuEntry.day">Kalender > Tag</label>
 		<label index="subMenuEntry.week">Kalender > Woche</label>
 		<label index="subMenuEntry.month">Kalender > Monat</label>
@@ -39,11 +44,6 @@
 		<label index="quicknav.today.title">Aktuellen Tag anzeigen</label>
 		<label index="dayview.workingtime">Zeige Dienstzeit  (08h-18h)</label>
 		<label index="dayview.fullday">Zeige ganzen Tag (00h-24h)</label>
-		<label index="holidayset">Ferien Set</label>
-		<label index="yearsOld">Jahre alt</label>
-		<label index="applicableholidayset">Feiertags-Set</label>
-		<label index="workingtime">Arbeitsstunden</label>
-		<label index="owner">Eigner</label>
 		<label index="holidayset.attr.name">Name</label>
 		<label index="holidayset.attr.holiday">Feiertag</label>
 		<label index="holiday">Feiertag</label>

@@ -28,7 +28,7 @@ class TodoyuEventEditRenderer {
 	 * @return	String	HTML
 	 */
 	public static function renderAddView($time = 0) {
-		$tabLabel	= Label('LLL:event.newevent');
+		$tabLabel	= Label('LLL:event.new');
 		$headTab	= self::renderEventEditTab($tabLabel, 'add');
 		$form		= self::renderEventForm(0, $time);
 
