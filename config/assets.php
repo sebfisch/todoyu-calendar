@@ -28,10 +28,9 @@
 
 
 
-
 $CONFIG['EXT']['calendar']['assets'] = array(
 
-	// Default assets: loaded all over the installation always
+		// Default assets: loaded all over the installation always
 	'default' => array(
 		'js' => array(
 			array(
@@ -50,6 +49,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			),
 		)
 	),
+
 
 
 		// Public assets: basis assets for this extension
@@ -111,7 +111,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			array(
 				'file'		=> 'ext/calendar/assets/css/ext.css',
 				'position'	=> 100
-	            ),
+			),
 			array(
 				'file'		=> 'ext/calendar/assets/css/calendarbody.css',
 				'poisition' => 101
@@ -188,6 +188,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 	),
 
 
+
 		// Event type selector
 	'panelwidget-eventtypeselector' => array(
 		'js' => array(
@@ -204,6 +205,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			)
 		)
 	),
+
 
 
 		// Holidayset selector
