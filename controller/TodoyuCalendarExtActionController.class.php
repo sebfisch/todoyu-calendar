@@ -71,6 +71,9 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 			// Add extension assets
 		TodoyuPage::addExtAssets('calendar');
 
+			// Generate colors css and sprite
+		TodoyuColors::generate();
+
 			// Get current settings
 		$currentDate= TodoyuCalendarPreferences::getCalendarDate(AREA);
 		$fullHeight	= TodoyuCalendarPreferences::getFullDayView() ? 'true' : 'false';
