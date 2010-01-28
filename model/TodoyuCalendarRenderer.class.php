@@ -160,6 +160,8 @@ class TodoyuCalendarRenderer {
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('week', $dateStart, $dateEnd)
 		);
 
+//		TodoyuDebug::printHtml($data['holidays']);
+
 		return render($tmpl, $data);
 	}
 

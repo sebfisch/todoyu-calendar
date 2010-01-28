@@ -12,11 +12,11 @@
 				</tr><tr>
 					<td class="wk-allday">
 						<div id="dayViewAllDaywk">
-						{if count($holidays.$dateKey) > 0}
-							<span id="holiday-{$timestamp}" class="holiday quickInfoHoliday">
-								&nbsp;&nbsp;&nbsp;&nbsp; {$holidays.$dateKey.0.title}
-							</span>
-						{/if}
+							{if count($holidays[$dateKey]) > 0}
+								<span id="holiday-{$timestamp}" class="holiday quickInfoHoliday">
+									{$holidays[$dateKey].0.title}
+								</span>
+							{/if}
 							{if $userBirthdays[$dateKey]}
 								{foreach $userBirthdays[$dateKey] birthday}
 									{$birthday}

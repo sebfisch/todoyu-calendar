@@ -12,6 +12,7 @@
 		<label index="subMenuEntry.day">Calendar > Day</label>
 		<label index="subMenuEntry.week">Calendar > Week</label>
 		<label index="subMenuEntry.month">Calendar > Month</label>
+		<label index="today">Today</label>
 		<label index="quicknav.backward.title">Go back</label>
 		<label index="quicknav.forward.title">Go forward</label>
 		<label index="quicknav.today.title">Jump to current day</label>
@@ -39,6 +40,7 @@
 		<label index="subMenuEntry.day">Kalender > Tag</label>
 		<label index="subMenuEntry.week">Kalender > Woche</label>
 		<label index="subMenuEntry.month">Kalender > Monat</label>
+		<label index="today">Heute</label>
 		<label index="quicknav.backward.title">Zurück</label>
 		<label index="quicknav.forward.title">Vorwärts</label>
 		<label index="quicknav.today.title">Aktuellen Tag anzeigen</label>

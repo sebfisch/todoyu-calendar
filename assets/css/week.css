@@ -49,15 +49,13 @@
 	white-space:nowrap;
 }
 
-.todaywk-dayname{
-	background-color:#d7dcc6;
+.wk-dayname.today {
 	border-color:#9F9F9F #ebebeb #ebebeb #9F9F9F;
 	border-style:solid;
 	border-width:1px;
-	color:#fff;
+	font-weight:bold;
 	padding:1px 3px;
 	margin-left:0px;
-	white-space:nowrap;
 }
 
 
@@ -202,7 +200,11 @@ td.noEventCell {
 	background-image:url(../img/background-noevent.png);
 	background-repeat:repeat-x;
 }
-
-div.wk-dayname.odd {
+th.wk-dayname {
+	text-align:center;
+	cursor:pointer;
+	color:#000;
+}
+th.wk-dayname.odd {
 	background-color:#edf3d9;
 }

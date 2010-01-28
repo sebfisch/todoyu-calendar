@@ -14,13 +14,12 @@
 						</td>
 						{* ---------- Header: dates of the rendered week ------------ *}
 						{for weekday 0 6}
-							{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
-							<th scope="col" {if count($holidays.$dayDateKey) == 0}title="{dateFormat $timestamps.$weekday DlongD2MlongY4}{if $timestamps.$weekday == $timestamp_today} ({Label calendar.today}){/if}"{/if}>
-								<div class="{$weekclass.$weekday}wk-dayname{if $timestamps.$weekday == $timestamp_today} todaywk-dayname{/if} {cycle values="odd,even"}">
-									{* ----- holidays ----- *}
-									<span {if count($holidays.$dayDateKey) > 0}id="holiday-{$timestamps.$weekday}" class="holiday quickInfoHoliday"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;{if count($holidays.$dayDateKey) == 0}</span>{/if}
-									<span class="{$weekclass.$weekday}wk-daylink">{dateFormat $timestamps.$weekday DshortD2M2}</span>{if count($holidays.$dayDateKey) > 0}</span>{/if}
-								</div>
+							{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
+							<th class="wk-dayname {if $timestamps[$weekday] == $timestamp_today}today todaywk-dayname{/if} {cycle values="odd,even"}" title="{dateFormat $timestamps.$weekday DlongD2MlongY4}{if $timestamps.$weekday == $timestamp_today} ({Label calendar.today}){/if}" scope="col" onclick="Todoyu.Ext.calendar.show('day', {$timestamps[$weekday]*1000})">
+								{dateFormat $timestamps.$weekday DshortD2M2}
+								{if sizeof($holidays[$dayDateKey])>0}
+									<span id="holiday-{$timestamps.$weekday}" class="holiday quickInfoHoliday"></span>
+								{/if}
 							</th>
 						{/for}
 					</tr>
@@ -44,15 +43,15 @@
 										</td>
 									{/for}
 									</tr>
-									
+
 									{for weekday 0 6}{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
-										
+
 										{foreach $dayEvents.$dayDateKey dayEvent}
 											{$dayEvent}
 										{/foreach}
-										
+
 									{/for}
-									
+
 								</tbody></table>
 							</div>
 							</td>
@@ -107,7 +106,7 @@
 						{* -------- Week event inserters -------- *}
 						{for daycounter 0 6}
 							{assign var=dayDateKey value=date('Ymd', $timestamps.$daycounter)}
-							<td class="tg-col{$weekclass.$daycounter}{if $timestamps.$daycounter == $timestamp_today} tg-coltoday{/if}">
+							<td class="tg-col {if $timestamps.$daycounter == $timestamp_today}tg-coltoday{/if}">
 								<div class="tg-colwrapper">
 									<div id="tgCol{$daycounter}">
 									{foreach $events.$dayDateKey event}

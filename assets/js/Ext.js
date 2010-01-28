@@ -396,5 +396,6 @@ Todoyu.Ext.calendar = {
 	 */
 	showCalendar: function() {
 		$('calendar').show();
-	}
+	}	
+	
 };
