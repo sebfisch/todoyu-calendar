@@ -117,7 +117,7 @@ class TodoyuEventRenderer {
 	public static function renderEvent(array $event, $calendarMode = 'month') {
 		$tmpl	= 'ext/calendar/view/event.tmpl';
 		$data	= self::prepareEventRenderData($calendarMode, $event);
-
+		
 		return render($tmpl, $data);
 	}
 
@@ -172,7 +172,7 @@ class TodoyuEventRenderer {
 	public static function renderFulldayEvent($calendarMode = 'day', array $data = array()) {
 		$tmpl	= 'ext/calendar/view/event-fullday.tmpl';
 		$data	= self::prepareEventRenderData($calendarMode, $data);
-
+		
 		return render($tmpl, $data);
 	}
 

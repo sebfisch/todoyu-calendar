@@ -1,7 +1,6 @@
 .dayMode .event,
 .weekMode .event {
 	-moz-user-select:none;
-	color:#fff;
 	overflow:hidden;
 	position:absolute;
 }
