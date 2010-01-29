@@ -91,11 +91,11 @@ class TodoyuEventRenderer {
 			'assignedUsers'	=> $assignedUsers,
 			'color'			=> $color[$idAssignedUser],
 		));
-
+		
 		if ($calendarMode == 'week') {
 			$shownStartingDayNum	= TodoyuEventManager::calcEventStartingDayNumInWeek($data['date_start'], $data['tstamp_firstDay']);
 			$shownEndingDayNum		= TodoyuEventManager::calcEventEndingDayNumInWeek($data['date_end'], $data['tstamp_lastDay']);
-
+			
 			$data['shownStartingDayNum']	= $shownStartingDayNum;
 			$data['shownEndingDayNum']		= $shownEndingDayNum;
 			$data['shownDaysDuration']		= $shownEndingDayNum - $shownStartingDayNum;

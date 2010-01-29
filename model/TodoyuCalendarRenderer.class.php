@@ -160,8 +160,6 @@ class TodoyuCalendarRenderer {
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle('week', $dateStart, $dateEnd)
 		);
 
-//		TodoyuDebug::printHtml($data['holidays']);
-
 		return render($tmpl, $data);
 	}
 
@@ -345,7 +343,7 @@ class TodoyuCalendarRenderer {
 	public function preRenderDayevents($mode, $dateStart, $dateEnd, array $eventTypes, array $users) {
 		$events	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $users, $eventTypes, true);
 		$grouped= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
-
+	
 		$dayEvents	= array();
 		$rendered	= array();
 
@@ -355,11 +353,12 @@ class TodoyuCalendarRenderer {
 					$rendered[] = $event['id'];
 
 					$event['tstamp_lastDay']	= $dateEnd;
+					$event['tstamp_firstDay']	= $dateStart;
 					$dayEvents[$dateKey][]		= TodoyuEventRenderer::renderFulldayEvent($mode, $event);
 				}
 			}
 		}
-
+		
 		return $dayEvents;
 	}
 
