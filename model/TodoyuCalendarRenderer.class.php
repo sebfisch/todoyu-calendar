@@ -250,7 +250,7 @@ class TodoyuCalendarRenderer {
 		$renderedEvents	= array();
 
 			// Get all events in current view
-		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $users, $eventTypes);
+		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $users, $eventTypes, false);
 
 			// Group the events by day
 		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
@@ -343,7 +343,7 @@ class TodoyuCalendarRenderer {
 	public function preRenderDayevents($mode, $dateStart, $dateEnd, array $eventTypes, array $users) {
 		$events	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $users, $eventTypes, true);
 		$grouped= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
-	
+
 		$dayEvents	= array();
 		$rendered	= array();
 
@@ -358,7 +358,7 @@ class TodoyuCalendarRenderer {
 				}
 			}
 		}
-		
+
 		return $dayEvents;
 	}
 

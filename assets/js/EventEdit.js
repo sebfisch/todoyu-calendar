@@ -84,6 +84,10 @@ Todoyu.Ext.calendar.EventEdit = {
 		this.show();
 	},
 
+
+	/**
+	 * Event type change observer
+	 */
 	observeEventType: function() {
 		$('event-field-eventtype').observe('change', this.updateVisibleFields.bindAsEventListener(this));
 	},
@@ -100,7 +104,7 @@ Todoyu.Ext.calendar.EventEdit = {
 		var allFields	= $('event-form').select('div.fElement');
 		var fieldsToHide= [];
 
-		// Show all fields
+			// Show all fields
 		allFields.invoke('show');
 
 			// Extract fieldnames

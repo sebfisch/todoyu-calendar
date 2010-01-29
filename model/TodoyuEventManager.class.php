@@ -786,6 +786,11 @@ class TodoyuEventManager {
 			$data['is_dayevent']= 1;
 		}
 
+			// Holiday
+		if ( $data['eventtype'] == EVENTTYPE_VACATION ) {
+			$data['is_dayevent']= 1;
+		}
+
 		return $data;
 	}
 
