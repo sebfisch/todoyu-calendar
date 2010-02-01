@@ -294,6 +294,20 @@ Todoyu.Ext.calendar.EventEdit = {
 	cancelEdit: function(){
 		this.ext.show(this.ext.Tabs.active);
 		this.close();
+	},
+
+
+
+	/**
+	 * Handler when event user assignment field is autocompleted
+	 *
+	 * @param	Ajax.Response			response
+	 * @param	Todoyu.Autocompleter	autocompleter
+	 */
+	onUserAssignmentAutocomplete: function(response, autocompleter) {
+		if( response.getTodoyuHeader('acElements') == 0 ) {
+			Todoyu.notifyInfo('[LLL:event.ac.userassignment.notFoundInfo]');
+		}
 	}
 
 };

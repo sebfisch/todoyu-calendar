@@ -55,6 +55,7 @@
 		<label index="contextmenu.showEventInCalendar.day">Day</label>
 		<label index="contextmenu.showEventInCalendar.week">Week</label>
 		<label index="contextmenu.showEventInCalendar.month">Month</label>
+		<label index="ac.userassignment.notFoundInfo">No persons with names containing this text were found.</label>
 	</labels>
 	<labels lang="de">
 		<label index="event">Termin</label>
@@ -111,5 +112,6 @@
 		<label index="contextmenu.showEventInCalendar.day">Tag</label>
 		<label index="contextmenu.showEventInCalendar.week">Woche</label>
 		<label index="contextmenu.showEventInCalendar.month">Monat</label>
+		<label index="ac.userassignment.notFoundInfo">Es wurden keine Personen gefunden, deren Namen diesen Text enthalten.</label>
 	</labels>
 </locallang>
