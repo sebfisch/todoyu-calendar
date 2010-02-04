@@ -21,7 +21,7 @@
 Todoyu.Ext.calendar = {
 
 	/**
-	 *	Instantiate panel widgets
+	 * Instantiate panel widgets
 	 */
 	PanelWidget: {},
 
@@ -32,7 +32,7 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	List of observed elements (to be easy able to stop observing)
+	 * List of observed elements (to be easy able to stop observing)
 	 */
 	createEventObserverElements:			[],
 
@@ -45,7 +45,7 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	Extend scal options (weekdaystart = monday, yearprev = symbol to go backwards, yearnext = symbol to go forwards
+	 * Extend scal options (weekdaystart = monday, yearprev = symbol to go backwards, yearnext = symbol to go forwards
 	 */
 	calOptions: {
 		weekdaystart:	1,
@@ -56,7 +56,7 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	Initialization
+	 * Initialization
 	 */
 	init: function(fullHeight) {
 		this.CalendarBody.init(fullHeight);
@@ -71,7 +71,7 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	Install general calendar observer
+	 * Install general calendar observer
 	 */
 	installGeneralObservers: function() {
 		Todoyu.PanelWidget.observe('calendar', this.onDateChanged.bind(this));
@@ -103,9 +103,9 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	Install observers to event entries in calendar to show / hide quickinfo to when un / hovering them
+	 * Install observers to event entries in calendar to show / hide quickinfo to when un / hovering them
 	 *
-	 *	@param	DOM-Element	el
+	 * @param	DOM-Element	el
 	 */
 	installEventObservers: function(el) {
 		this.Event.installObservers();
@@ -114,7 +114,7 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	Uninstall event observers
+	 * Uninstall event observers
 	 */
 	uninstallEventObservers: function() {
 
@@ -122,9 +122,9 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	Get selected date timestamp
+	 * Get selected date timestamp
 	 *
-	 *	@return	Integer	timestamp	Unix-Timestamp
+	 * @return	Integer	timestamp	Unix-Timestamp
 	 */
 	getDate: function() {
 		return this.PanelWidget.Calendar.getDate();
@@ -133,9 +133,9 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	Set selected date timestamp
+	 * Set selected date timestamp
 	 *
-	 *	@param	Integer	timestamp	Unix-Timestamp
+	 * @param	Integer	timestamp	Unix-Timestamp
 	 */
 	setDate: function(date) {
 		this.PanelWidget.Calendar.setDate(date, true);
@@ -154,7 +154,8 @@ Todoyu.Ext.calendar = {
 
 	/**
 	 * Set calendar time (timestamp
-	 *	@param	Integer		time
+	 * 
+	 * @param	Integer		time
 	 */
 	setTime: function(time, noExternalUpdate) {
 		this.PanelWidget.Calendar.setTime(time, noExternalUpdate);
@@ -165,7 +166,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Get day start of (selected day in) calendar
 	 *
-	 *	@return	Integer
+	 * @return	Integer
 	 */
 	getDayStart: function() {
 		return Todoyu.Time.getDayStart(this.getTime());
@@ -176,7 +177,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Get starting day of week in calendar that contains the currently selected day
 	 * 
-	 *	@return	Integer
+	 * @return	Integer
 	 */
 	getWeekStart: function() {
 		return Todoyu.Time.getWeekStart(this.getTime());
@@ -187,7 +188,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Get active tab in calendar
 	 *
-	 *	@return	String
+	 * @return	String
 	 */
 	getActiveTab: function() {
 		return this.Tabs.getActive();
@@ -198,7 +199,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Set active tab in calenar (only set data, no update)
 	 * 
-	 *	@param	Object	tab
+	 * @param	Object	tab
 	 */
 	setActiveTab: function(tab) {
 		this.Tabs.setActive(tab);
@@ -227,10 +228,10 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	Event handler: onDateChanged
+	 * Event handler: onDateChanged
 	 *
-	 *	@param	String	widgetName
-	 *	@param	Object	update
+	 * @param	String	widgetName
+	 * @param	Object	update
 	 */
 	onDateChanged: function(widgetName, update) {
 		this.show(null, update.date);
@@ -241,8 +242,8 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Handler for staff selection changes
 	 * 
-	 *	@param	String		widgetName
-	 *	@param	Array		users
+	 * @param	String		widgetName
+	 * @param	Array		users
 	 */
 	onStaffSelectionChanges: function(widgetName, users) {
 		this.refresh();
@@ -253,8 +254,8 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Handler for eventType selection changes
 	 * 
-	 *	@param	String		widgetName
-	 *	@param	Array		eventTypes
+	 * @param	String		widgetName
+	 * @param	Array		eventTypes
 	 */
 	onEventTypeSelectionChanges: function(widgetName, eventTypes) {
 		this.refresh();
@@ -263,9 +264,9 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 * Ecent click handler
+	 * Event click handler
 	 * 
-	 *	@param	Event		event
+	 * @param	Event		event
 	 */
 	onEventClick: function(event) {
 		var idEvent = event.findElement('div').id.split('-').last();
@@ -278,7 +279,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Callback for calendar body update
 	 * 
-	 *	@param	Response		response
+	 * @param	Response		response
 	 */
 	onCalendarBodyUpdated: function(response) {
 		this.afterUpdate();
@@ -288,8 +289,9 @@ Todoyu.Ext.calendar = {
 
 	/**
 	 * Update the calendar body area
-	 *	@param	String		url
-	 *	@param	Hash		options
+	 * 
+	 * @param	String		url
+	 * @param	Hash		options
 	 */
 	updateCalendarBody: function(url, options) {
 		this.beforeUpdate();
@@ -311,8 +313,8 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Update calendar body with new config
 	 * 
-	 *	@param	String		tab
-	 *	@param	Integer		date
+	 * @param	String		tab
+	 * @param	Integer		date
 	 */
 	show: function(tab, date) {
 			// Close special tabs (edit,view)
@@ -351,7 +353,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Set calendar title
 	 * 
-	 *	@param	String		title
+	 * @param	String		title
 	 */
 	setTitle: function(title) {
 		this.Navi.setTitle(title);
@@ -362,7 +364,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Add event with popup
 	 * 
-	 *	@param	Integer		time
+	 * @param	Integer		time
 	 */
 	addEvent: function(time) {
 		this.EventEdit.open(0, time);
@@ -371,10 +373,10 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 *	Save user preferences
+	 * Save user preferences
 	 *
-	 *	@param	String	name	Name of the preference
-	 *	@param	Mixed	value	Value to be saved
+	 * @param	String	name	Name of the preference
+	 * @param	Mixed	value	Value to be saved
 	 */
 	savePref: function(action, value, idItem, onComplete) {
 		Todoyu.Pref.save('calendar', action, value, idItem, onComplete);

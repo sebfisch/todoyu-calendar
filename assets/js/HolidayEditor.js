@@ -26,7 +26,7 @@
  Todoyu.Ext.calendar.HolidayEditor = {
 
  	/**
-	 *	Initialization
+	 * Initialization
 	 */
 	init: function() {
 		this.observeHolidaySelector();
@@ -35,7 +35,7 @@
 
 
 	/**
-	 *	Holiday selector observer initialization
+	 * Holiday selector observer initialization
 	 */
 	observeHolidaySelector: function() {
 		Todoyu.PanelWidget.observe('holidayselector', this.onHolidaySelect.bind(this));
@@ -44,10 +44,10 @@
 
 
 	/**
-	 *	'on holiday select' Event handler
+	 * 'on holiday select' Event handler
 	 *
-	 *	@param	unknown	widget
-	 *	@param	unknown	value
+	 * @param	unknown	widget
+	 * @param	unknown	value
 	 */
 	onHolidaySelect: function(widget, value) {
 		this.loadHoliday(value);
@@ -56,9 +56,9 @@
 
 
 	/**
-	 *	Load holiday
+	 * Load holiday
 	 *
-	 *	@param	Integer	idHoliday
+	 * @param	Integer	idHoliday
 	 */
 	loadHoliday: function(idHoliday) {
 		var url		= Todoyu.getUrl('calendar', 'calendar');
@@ -75,10 +75,10 @@
 
 
 	/**
-	 *	Save holiday
+	 * Save holiday
 	 *
-	 *	@param	String	form
-	 *	@return	Bolean
+	 * @param	String	form
+	 * @return	Bolean
 	 */
 	save: function(form) {
 		$(form).request({
@@ -94,9 +94,9 @@
 
 
 	/**
-	 *	'on saved' Event handler
+	 * 'on saved' Event handler
 	 *
-	 *	@param	Object	response
+	 * @param	Object	response
 	 */
 	onSaved: function(response) {
 		Todoyu.notify('success', response.responseText);

@@ -72,36 +72,48 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 106
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/Event.js',
+				'file' => 'ext/calendar/assets/js/QuickinfoBirthday.js',
 				'position' => 107
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/EventView.js',
+				'file' => 'ext/calendar/assets/js/QuickinfoEvent.js',
 				'position' => 108
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/EventEdit.js',
+				'file' => 'ext/calendar/assets/js/QuickinfoHoliday.js',
 				'position' => 109
+			),
+			array(
+				'file' => 'ext/calendar/assets/js/Event.js',
+				'position' => 117
+			),
+			array(
+				'file' => 'ext/calendar/assets/js/EventView.js',
+				'position' => 118
+			),
+			array(
+				'file' => 'ext/calendar/assets/js/EventEdit.js',
+				'position' => 119
 			),
 			array(
 				'file' => 'ext/calendar/assets/js/EventPortal.js',
-				'position' => 109
+				'position' => 119
 			),
 			array(
 				'file' => 'ext/calendar/assets/js/CalendarBody.js',
-				'position' => 110
+				'position' => 120
 			),
 			array(
 				'file' => 'ext/calendar/assets/js/ContextMenuCalendarBody.js',
-				'position' => 111
+				'position' => 121
 			),
 			array(
 				'file' => 'ext/calendar/assets/js/ContextMenuEvent.js',
-				'position' => 112
+				'position' => 122
 			),
 			array(
 				'file' => 'ext/calendar/assets/js/ContextMenuEventPortal.js',
-				'position' => 113
+				'position' => 123
 			)
 		),
 

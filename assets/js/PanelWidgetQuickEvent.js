@@ -54,20 +54,33 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 		this.popup = Todoyu.Popup.openWindow(idPopup, title, width, height, url, options);
 	},
 
-	closePopup: function() {
-		this.popup.close();
-	},
-	
-	onPopupOpened: function(time) {
-		$('quickevent-field-eventtype').observe('change', this.onEventTypeChange.bindAsEventListener(this,time));
-	},
 
 
 	/**
-	 *	Is only used for the event popup. Check the inputs and handle it accordingly
+	 * Close popup
+	 */
+	closePopup: function() {
+		this.popup.close();
+	},
+
+
+
+	/**
+	 * Handler after popup opened: install change-observer
+	 * 
+	 * @param	Integer		time
+	 */
+	onPopupOpened: function(time) {
+		$('quickevent-field-eventtype').observe('change', this.onEventTypeChange.bindAsEventListener(this, time));
+	},
+
+
+
+	/**
+	 * Is only used for the event popup. Check the inputs and handle it accordingly
 	 *
-	 *	@param	Element		form		Form element
-	 *	@return	Boolean
+	 * @param	Element		form		Form element
+	 * @return	Boolean
 	 */
 	save: function(form) {
 		$(form).request({
@@ -81,9 +94,9 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 
 
 	/**
-	 *	If saved, return to currently selected calendar view (day / week / month)
+	 * If saved, return to currently selected calendar view (day / week / month)
 	 *
-	 *	@param	Object	response	Response, containing startdate of the event
+	 * @param	Object	response	Response, containing startdate of the event
 	 */
 	onSaved: function(response) {
 		var isError = response.getTodoyuHeader('error') == 1;
@@ -97,25 +110,28 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 			this.ext.refresh();
 		}
 	},
-	
-		/**
-	 *	Evoked on change of selected eventType in quick-event form (toggle ir/relevant fields)
+
+
+
+	/**
+	 * Evoked on change of selected eventType in quick-event form (toggle ir/relevant fields)
 	 *
-	 *	@param	String	field
+	 * @param	unknwon_type	event
+	 * @param	Integer			time
 	 */
 	onEventTypeChange: function(event, time) {
 		var eventType	= $F('quickevent-field-eventtype');
 		var allFields	= $('quickevent-form').select('div.fElement');
 		var fieldsToHide= [];
-		
+
 		// Show all fields
 		allFields.invoke('show');
-		
+
 			// Extract fieldnames
 		var allFieldNames = allFields.collect(function(field){
 			return field.id.replace('formElement-quickevent-field-', '');
 		});
-		
+
 			// Get all check hook functions
 		var checkHooks	= Todoyu.Hook.get('eventtype');
 				
@@ -132,8 +148,9 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 		
 		fieldsToHide.each(this.hideField, this);
 	},
-	
-	
+
+
+
 	/**
 	 * Hide a field in the event form
 	 * 
@@ -141,7 +158,7 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	 */
 	hideField: function(fieldname) {
 		var field	= 'formElement-quickevent-field-' + fieldname;
-		
+
 		if( Todoyu.exists(field) ) {
 			$(field).hide();
 		}
