@@ -47,7 +47,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 			// Construct PanelWidget (init basic configuration)
 		parent::__construct(
 			'calendar',									// ext key
-			'holidaySetSelector',						// panel widget ID
+			'holidaysetselector',						// panel widget ID
 			'LLL:panelwidget-holidaysetselector.title',	// widget title text
 			$config,									// widget config array
 			$params,									// widget params
@@ -68,26 +68,51 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 
 
 	/**
-	 * Render panel content (holidaySet selector)
+	 * Get <option>s config array of all holidaysets
+	 *
+	 * @return	Array
+	 */
+	public static function getHolidaySetsOptions() {
+		$sets		= TodoyuHolidaySetManager::getAllHolidaySets();
+		$selected	= self::getSelectedHolidaySetIDs();
+
+		$options	= array(
+			'0'	=> array(
+				'index'		=> 0,
+				'value'		=> 0,
+				'label'		=> Label('panelwidget-holidaysetselector.showNoHolidays'),
+				'classname'	=> 'holidayset_none',
+				'selected'	=> count($selected) === 0
+			)
+		);
+
+		foreach( $sets as $index => $option ) {
+			$index	= $index + 1;
+			$options[$index]				= $option;
+			$options[$index]['value']		= $option['id'];
+			$options[$index]['label']		= $option['title'];
+			$options[$index]['classname']	= 'holidayset_' . $option['id'];
+			$options[$index]['selecetd']	= ( in_array($index, $selected) ) ? true : false;
+		}
+
+		return $options;
+	}
+
+
+
+	/**
+	 * Render widget content
 	 *
 	 * @return	String
 	 */
 	public function renderContent() {
 		require_once(PATH_EXT_CALENDAR . '/config/panelwidgets.php');
 
-		$prefs	= self::getSelectedHolidaySetIDs();
-		$sets	= TodoyuHolidaySetManager::getAllHolidaySets();
-
-		foreach($sets as $idSet => $typeData) {
-			if (in_array($idSet, $prefs)) {
-				$sets[ $idSet ]['selected']	= 1;
-			}
-		}
-
 		$data	= array(
+			'id'		=> $this->getID(),
 			'config'	=> $this->config,
-			'sets'		=> $sets,
-			'prefs'		=> $prefs
+			'options'	=> self::getHolidaySetsOptions(),
+			'selected'	=> self::getSelectedHolidaySetIDs()
 		);
 
 		return render('ext/calendar/view/panelwidgets/panelwidget-holidaysetselector.tmpl', $data);
@@ -144,10 +169,15 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 	}
 
 
+
+	/**
+	 * Check whether usage of panelwidget is allowed to current user
+	 *
+	 * @return	Boolean
+	 */
 	public static function isAllowed() {
 		return allowed('calendar', 'panelwidgets:holidaySetSelector');
 	}
-
 
 }
 

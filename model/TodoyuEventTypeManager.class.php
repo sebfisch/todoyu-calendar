@@ -100,10 +100,14 @@ class TodoyuEventTypeManager {
 	public static function getEventTypes($parseLabels = false) {
 		$eventTypes = TodoyuArray::assure($GLOBALS['CONFIG']['EXT']['calendar']['eventtypes']);
 
-		if( $parseLabels ) {
-			foreach($eventTypes as $index => $eventType) {
-				$eventTypes[$index]['label'] = Label($eventType['label']);
+		foreach($eventTypes as $index => $eventType) {
+			$eventTypes[$index]['value'] 	= $index;
+
+			if( $parseLabels ) {
+				$eventTypes[$index]['label'] 	= Label($eventType['label']);
 			}
+
+			$eventTypes[$index]['classname'] = 'eventtype_' . $eventType['key'];
 		}
 
 		return $eventTypes;

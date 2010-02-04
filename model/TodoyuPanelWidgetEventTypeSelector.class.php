@@ -74,7 +74,7 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 	 */
 	public function renderContent() {
 		$selectedEventTypes	= $this->getSelectedEventTypes();
-		$eventTypes			= TodoyuEventTypeManager::getEventTypes(); // TodoyuEventManager::getEventTypes(true);
+		$eventTypes			= TodoyuEventTypeManager::getEventTypes(true);
 
 		$tmpl	= 'ext/calendar/view/panelwidgets/panelwidget-eventtypeselector.tmpl';
 		$data	= array(

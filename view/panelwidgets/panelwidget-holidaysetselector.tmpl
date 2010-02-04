@@ -1,8 +1,1 @@
-<select id="panelwidget-holidaysetselector-list" name="holidaysets" multiple="true"/>
-	<option class="holidayset_none" value="0" {if count($prefs) == 0} selected="selected"{/if}>{Label panelwidget-holidaysetselector.showNoHolidays}</option>
-{foreach $sets numSet setData}
-	<option value="{$setData.id}" class="holidayset_{$setData.id} {cycle values="odd,even"}{if $setData.selected == 1} selected" selected="selected"{else}"{/if}>
-		{$setData.title}
-	</option>
-{/foreach}
-</select>
+{select options=$options value=$selected name="holidaysets" id="panelwidget-$id-list" multiple=true size=sizeof($options)}

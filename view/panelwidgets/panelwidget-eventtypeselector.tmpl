@@ -1,7 +1,1 @@
-<select id="panelwidget-{$id}-list" name="eventtypes" multiple="multiple" />
-{foreach $eventtypes eventtype}
-	<option value="{$eventtype.index}" class="eventtype_{$eventtype.key} {cycle values="odd,even"}" {if in_array($eventtype.index, $selected)}selected="selected"{/if}>
-		{Label $eventtype.label}
-	</option>
-{/foreach}
-</select>
+{select options=$eventtypes value=$selected name="eventtypes" id="panelwidget-$id-list" multiple=true size=sizeof($options)}
