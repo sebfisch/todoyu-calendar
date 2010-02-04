@@ -91,11 +91,11 @@ class TodoyuEventRenderer {
 			'assignedUsers'	=> $assignedUsers,
 			'color'			=> $color[$idAssignedUser],
 		));
-		
+
 		if ($calendarMode == 'week') {
 			$shownStartingDayNum	= TodoyuEventManager::calcEventStartingDayNumInWeek($data['date_start'], $data['tstamp_firstDay']);
 			$shownEndingDayNum		= TodoyuEventManager::calcEventEndingDayNumInWeek($data['date_end'], $data['tstamp_lastDay']);
-			
+
 			$data['shownStartingDayNum']	= $shownStartingDayNum;
 			$data['shownEndingDayNum']		= $shownEndingDayNum;
 			$data['shownDaysDuration']		= $shownEndingDayNum - $shownStartingDayNum;
@@ -117,7 +117,7 @@ class TodoyuEventRenderer {
 	public static function renderEvent(array $event, $calendarMode = 'month') {
 		$tmpl	= 'ext/calendar/view/event.tmpl';
 		$data	= self::prepareEventRenderData($calendarMode, $event);
-		
+
 		return render($tmpl, $data);
 	}
 
@@ -142,21 +142,27 @@ class TodoyuEventRenderer {
 	}
 
 
-	public static function renderEventORIG(array $event, $calendarMode = 'month') {
-		$event			 = self::prepareEventRenderData($calendarMode, $event);
 
-		if( $calendarMode === 'list' )	{
-			$color = self::getEventColorData(userid());
-			$event['colors']		= $color[userid()];
-			$event['currentUser']	= userid();
-
-			$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
-		} else {
-			$tmpl	= 'ext/calendar/view/event.tmpl';
-		}
-
-		return render($tmpl, $event);
-	}
+//	/**
+//	 * @todo	remove
+//	 * @param	$event
+//	 * @param	$calendarMode
+//	 */
+//	public static function renderEventORIG(array $event, $calendarMode = 'month') {
+//		$event			 = self::prepareEventRenderData($calendarMode, $event);
+//
+//		if( $calendarMode === 'list' )	{
+//			$color = self::getEventColorData(userid());
+//			$event['colors']		= $color[userid()];
+//			$event['currentUser']	= userid();
+//
+//			$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
+//		} else {
+//			$tmpl	= 'ext/calendar/view/event.tmpl';
+//		}
+//
+//		return render($tmpl, $event);
+//	}
 
 
 
@@ -172,7 +178,7 @@ class TodoyuEventRenderer {
 	public static function renderFulldayEvent($calendarMode = 'day', array $data = array()) {
 		$tmpl	= 'ext/calendar/view/event-fullday.tmpl';
 		$data	= self::prepareEventRenderData($calendarMode, $data);
-		
+
 		return render($tmpl, $data);
 	}
 
@@ -244,9 +250,10 @@ class TodoyuEventRenderer {
 
 
 	/**
+	 * Render event tabs, including detail viewing tab
 	 *
-	 * @param unknown_type $idEvent
-	 * @return unknown_type
+	 * @param	Integer	$idEvent
+	 * @return	String
 	 */
 	public static function renderEventViewTabs($idEvent) {
 		$idEvent	= intval($idEvent);
@@ -276,10 +283,10 @@ class TodoyuEventRenderer {
 
 
 	/**
-	 *	Render event view
+	 * Render event view
 	 *
-	 *	@param	Integer	$idEvent
-	 *	@return	String
+	 * @param	Integer	$idEvent
+	 * @return	String
 	 */
 	public static function renderEventView($idEvent) {
 		$idEvent	= intval($idEvent);

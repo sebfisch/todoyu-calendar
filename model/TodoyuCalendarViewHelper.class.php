@@ -28,10 +28,10 @@
 class TodoyuCalendarViewHelper {
 
 	/**
-	 *	Get context menu header
+	 * Get context menu header
 	 *
-	 *	@param	Integer	$idEvent
-	 *	@return	String
+	 * @param	Integer	$idEvent
+	 * @return	String
 	 */
 	public static function getContextMenuHeader($idEvent) {
 		$idEvent	= intval($idEvent);
@@ -43,12 +43,12 @@ class TodoyuCalendarViewHelper {
 
 
 	/**
-	 *	Get calendar title
+	 * Get calendar title
 	 *
-	 *	@param	String	$mode
-	 *	@param	Integer	$dateStart
-	 *	@param	Integer	$dateEnd
-	 *	@return	String
+	 * @param	String	$mode
+	 * @param	Integer	$dateStart
+	 * @param	Integer	$dateEnd
+	 * @return	String
 	 */
 	public static function getCalendarTitle($mode, $dateStart, $dateEnd) {
 		$dateStart	= intval($dateStart);
@@ -127,6 +127,12 @@ class TodoyuCalendarViewHelper {
 
 
 
+	/**
+	 * Get options of event types
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
 		$eventTypes	= TodoyuEventTypeManager::getEventTypes(true);
 		$options	= array();

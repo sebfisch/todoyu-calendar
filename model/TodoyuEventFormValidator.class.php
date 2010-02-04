@@ -101,19 +101,20 @@ class TodoyuEventFormValidator {
 
 
 	/**
-	 * Validate given users of event to be bookable at that time (if configured to be validated)
+	 * Check given users of event being assignable, call hooked validators
 	 *
 	 * @param	String				$value
 	 * @param	Array				$config
 	 * @param	TodoyuFormElement	$formElement
 	 * @param	Array				$formData
+	 * @return	Boolean
 	 */
 	public static function usersAreBookable($value, array $config = array (), $formElement, $formData) {
 		$bookable	= true;
 
 			// Check if calendar is configured to prevent overbooking
 		if ( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
-				// check which (any?) event users are overbooked
+				// Check which (any?) event users are overbooked
 			$idEvent	= intval($formData['id']);
 			$event		= TodoyuEventManager::getEvent($idEvent);
 

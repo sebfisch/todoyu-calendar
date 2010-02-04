@@ -86,8 +86,8 @@ class TodoyuEventEditRenderer {
 	/**
 	 * Render event form
 	 *
-	 * @param	Integer	$idEvent
-	 * @param	Integer	$time
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$time
 	 * @return	TodoyuForm
 	 */
 	public static function renderEventForm($idEvent, $time = 0) {

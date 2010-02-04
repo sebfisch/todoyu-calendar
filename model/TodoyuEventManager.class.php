@@ -32,10 +32,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Get event object
+	 * Get event object
 	 *
-	 *	@param	Integer		$idEvent
-	 *	@return	TodoyuEvent
+	 * @param	Integer		$idEvent
+	 * @return	TodoyuEvent
 	 */
 	public static function getEvent($idEvent) {
 		$idEvent = intval($idEvent);
@@ -46,10 +46,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Get event record from database
+	 * Get event record from database
 	 *
-	 *	@param	Integer		$idEvent
-	 *	@return	Array
+	 * @param	Integer		$idEvent
+	 * @return	Array
 	 */
 	public static function getEventRecord($idEvent) {
 		$idEvent = intval($idEvent);
@@ -60,15 +60,15 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Get all events within given timestamps
+	 * Get all events within given timestamps
 	 *
-	 *	@param	Integer		$dateStart		timestamp at beginning of timespan
-	 *	@param	Integer		$dateEnd		timestamp at end of timespan	(optionally 0, will be set to 5 years after today than)
-	 *	@param	Array		$users
-	 *	@param	Array		$eventTypes
-	 *	@param	Mixed		$dayEvents		null = both types, true = only dayevents, false = only non-dayevents
-	 *	@param	String		$indexField
-	 *	@return	Array
+	 * @param	Integer		$dateStart		timestamp at beginning of timespan
+	 * @param	Integer		$dateEnd		timestamp at end of timespan	(optionally 0, will be set to 5 years after today than)
+	 * @param	Array		$users
+	 * @param	Array		$eventTypes
+	 * @param	Mixed		$dayEvents		null = both types, true = only dayevents, false = only non-dayevents
+	 * @param	String		$indexField
+	 * @return	Array
 	 */
 	public static function getEventsInTimespan($dateStart, $dateEnd, array $users = array(), array $eventTypes = array(), $dayEvents = null, $indexField = 'id') {
 		$dateStart	= intval($dateStart);
@@ -121,13 +121,13 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Group the events in subarray. The key for each subarray is a datekey (YYYYMMDD)
-	 *	An event appears in each subarray, the event is running on
+	 * Group the events in subarray. The key for each subarray is a datekey (YYYYMMDD)
+	 * An event appears in each subarray, the event is running on
 	 *
-	 *	@param	Array		$events			Array of event records
-	 *	@param	Integer		$dateStart		Date of first day group
-	 *	@param	Integer		$dateEnd		Date of last day group
-	 *	@return	Array		Events grouped by datekey
+	 * @param	Array		$events			Array of event records
+	 * @param	Integer		$dateStart		Date of first day group
+	 * @param	Integer		$dateEnd		Date of last day group
+	 * @return	Array		Events grouped by datekey
 	 */
 	public static function groupEventsByDay(array $events, $dateStart, $dateEnd) {
 		$dateStart		= TodoyuTime::getStartOfDay($dateStart);
@@ -141,7 +141,6 @@ class TodoyuEventManager {
 			$groupedEvents[$dayKey]	= array();
 
 			foreach($events as $event) {
-//				TodoyuDebug::printHtml($event, 'event');
 				if( TodoyuTime::rangeOverlaps($dayRange['start'], $dayRange['end'], $event['date_start'], $event['date_end']) ) {
 					$groupedEvents[$dayKey][] = $event;
 				}
@@ -154,10 +153,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Calculate events' intersections / proximation (have events with overlapping time be arranged hor. parallel)
+	 * Calculate events' intersections / proximation (have events with overlapping time be arranged hor. parallel)
 	 *
-	 *	@param	Array	$events
-	 *	@param	String	$dateKey	date of currently rendered day (YYYYMMDD)
+	 * @param	Array	$events
+	 * @param	String	$dateKey	date of currently rendered day (YYYYMMDD)
 	 */
 	public static function addOverlapInformationToEvents(array $eventsByDay) {
 		foreach($eventsByDay as $dayKey => $eventsOfDay)	{
@@ -217,11 +216,11 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Check if two events are overlapping, compare date_start and date_end keys in both arrays
+	 * Check if two events are overlapping, compare date_start and date_end keys in both arrays
 	 *
-	 *	@param	Array		$event1
-	 *	@param	Array		$event2
-	 *	@return	Bool
+	 * @param	Array		$event1
+	 * @param	Array		$event2
+	 * @return	Boolean
 	 */
 	public static function areEventsOverlaping(array $event1, array $event2) {
 		return TodoyuTime::rangeOverlaps($event1['date_start'], $event1['date_end'], $event2['date_start'], $event2['date_end']);
@@ -230,11 +229,11 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Get all users assigned to an event
+	 * Get all users assigned to an event
 	 *
-	 *	@param	Integer $idEvent
-	 *	@param	Boolean $getUserData	get also user data (not only the ID)?
-	 *	@return	Array
+	 * @param	Integer $idEvent
+	 * @param	Boolean $getUserData	get also user data (not only the ID)?
+	 * @return	Array
 	 */
 	public static function getAssignedUsersOfEvent($idEvent, $getUsersData = false) {
 		$idEvent	= intval( $idEvent );
@@ -265,10 +264,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Get all users assigned to given array of events
+	 * Get all users assigned to given array of events
 	 *
-	 *	@param	Array $eventIDs
-	 *	@return	Array
+	 * @param	Array $eventIDs
+	 * @return	Array
 	 */
 	public static function getAssignedUsersOfEvents(array $eventIDs ) {
 		$eventIDs	= array_unique( TodoyuArray::intval($eventIDs) );
@@ -326,9 +325,9 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Delete event
+	 * Delete event
 	 *
-	 *	@param	Integer		$idEvent
+	 * @param	Integer		$idEvent
 	 */
 	public static function deleteEvent($idEvent) {
 		$idEvent	= intval($idEvent);
@@ -343,11 +342,11 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Save a new event
+	 * Save a new event
 	 *
-	 *	@param	Array	$formData	Eventdata
-	 *	@param	Integer	$seriesID	If a series is updated, use the same seriesID again
-	 *	@return	Date
+	 * @param	Array	$formData	Eventdata
+	 * @param	Integer	$seriesID	If a series is updated, use the same seriesID again
+	 * @return	Integer
 	 */
 	public static function saveEvent(array $data) {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
@@ -391,10 +390,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Save quick event
+	 * Save quick event
 	 *
-	 *	@param	Array		$data
-	 *	@return	Integer		Event ID
+	 * @param	Array		$data
+	 * @return	Integer		Event ID
 	 */
 	public static function saveQuickEvent(array $data) {
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
@@ -426,10 +425,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Add an event to database. Add date_create and id_user_create values
+	 * Add an event to database. Add date_create and id_user_create values
 	 *
-	 *	@param	Array		$data
-	 *	@return	Integer
+	 * @param	Array		$data
+	 * @return	Integer
 	 */
 	public static function addEvent(array $data) {
 		unset($data['id']);
@@ -443,11 +442,11 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Update an event in the database
+	 * Update an event in the database
 	 *
-	 *	@param	Integer		$idEvent
-	 *	@param	Array		$data
-	 *	@return	Boolean
+	 * @param	Integer		$idEvent
+	 * @param	Array		$data
+	 * @return	Boolean
 	 */
 	public static function updateEvent($idEvent, array $data) {
 		return TodoyuRecordManager::updateRecord(self::TABLE, $idEvent, $data);
@@ -456,10 +455,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Assign multiple users to an event
+	 * Assign multiple users to an event
 	 *
-	 *	@param	Integer		$idEvent
-	 *	@param	Array		$userIDs
+	 * @param	Integer		$idEvent
+	 * @param	Array		$userIDs
 	 */
 	public static function assignUsersToEvent($idEvent, array $userIDs) {
 		$idEvent	= intval($idEvent);
@@ -473,10 +472,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Assign a single user to an event
+	 * Assign a single user to an event
 	 *
-	 *	@param	Integer		$idEvent
-	 *	@param	Integer		$idUser
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idUser
 	 */
 	public static function assignUserToEvent($idEvent, $idUser) {
 		$idEvent= intval($idEvent);
@@ -495,9 +494,9 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Remove all user-assignments from an event
+	 * Remove all user-assignments from an event
 	 *
-	 *	@param	Integer		$idEvent
+	 * @param	Integer		$idEvent
 	 */
 	public static function removeAllUserAssignments($idEvent) {
 		$idEvent= intval($idEvent);
@@ -511,10 +510,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Remove a user assignement for an event
+	 * Remove a user assignement for an event
 	 *
-	 *	@param	Integer		$idEvent
-	 *	@param	Integer		$idUser
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idUser
 	 */
 	public static function removeUserAssignment($idEvent, $idUser) {
 		$idEvent	= intval($idEvent);
@@ -530,9 +529,9 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Create new event record in DB
+	 * Create new event record in DB
 	 *
-	 *	@return	Integer		Autogenerated ID
+	 * @return	Integer		Autogenerated ID
 	 */
 	protected static function createNewEvent()	{
 		$insertArray	= array(
@@ -547,13 +546,13 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Calculate number of day the event starts, relative to shown days of current week-view
+	 * Calculate number of day the event starts, relative to shown days of current week-view
 	 *
-	 *	@param	Integer		$start					UNIX timestamp event start
-	 *	@param	Integer		$end					UNIX timestamp event end
-	 *	@param	Integer		$tstampFirstShownDay	UNIX timestamp first shown day
-	 *	@param	Integer		$tstampLastShownDay		UNIX timestamp last shown day
-	 *	@return	Integer
+	 * @param	Integer		$start					UNIX timestamp event start
+	 * @param	Integer		$end					UNIX timestamp event end
+	 * @param	Integer		$tstampFirstShownDay	UNIX timestamp first shown day
+	 * @param	Integer		$tstampLastShownDay		UNIX timestamp last shown day
+	 * @return	Integer
 	 */
 	public function calcEventStartingDayNumInWeek($tstampStart, $tstampFirstShownDay) {
 		if ($tstampStart < $tstampFirstShownDay) {
@@ -568,13 +567,13 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Calculate number of day the event ends, relative to shown days of current week-view
+	 * Calculate number of day the event ends, relative to shown days of current week-view
 	 *
-	 *	@param	Integer		$start					UNIX timestamp event start
-	 *	@param	Integer		$end					UNIX timestamp event end
-	 *	@param	Integer		$tstampFirstShownDay	UNIX timestamp first shown day
-	 *	@param	Integer		$tstampLastShownDay		UNIX timestamp last shown day
-	 *	@return	Integer
+	 * @param	Integer		$start					UNIX timestamp event start
+	 * @param	Integer		$end					UNIX timestamp event end
+	 * @param	Integer		$tstampFirstShownDay	UNIX timestamp first shown day
+	 * @param	Integer		$tstampLastShownDay		UNIX timestamp last shown day
+	 * @return	Integer
 	 */
 	public static function calcEventEndingDayNumInWeek($tstampEnd, $tstampLastShownDay) {
 		if ($tstampEnd > $tstampLastShownDay) {
@@ -589,9 +588,9 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Remove event from cache
+	 * Remove event from cache
 	 *
-	 *	@param	Integer	$idEvent
+	 * @param	Integer	$idEvent
 	 */
 	public static function removeEventFromCache($idEvent) {
 		$idEvent = intval($idEvent);
@@ -603,10 +602,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Assign users to an event
+	 * Assign users to an event
 	 *
-	 *	@param	Integer		$idEvent
-	 *	@param	Array		$userIDs
+	 * @param	Integer		$idEvent
+	 * @param	Array		$userIDs
 	 */
 	public static function addAssignedEventUsersAndSendMail($idEvent, array $formData) {
 		$idEvent	= intval($idEvent);
@@ -639,10 +638,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Set given event acknowledged
+	 * Set given event acknowledged
 	 *
-	 *	@param	Integer	$idEvent
-	 *	@param	Integer	$idUser
+	 * @param	Integer	$idEvent
+	 * @param	Integer	$idUser
 	 */
 	public static function acknowledgeEvent($idEvent, $idUser)	{
 		$idEvent	= intval($idEvent);
@@ -660,9 +659,9 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Create new event object with default data
+	 * Create new event object with default data
 	 *
-	 *	@param	Integer	$timestamp
+	 * @param	Integer	$timestamp
 	 */
 	public static function createNewEventWithDefaultsInCache($timestamp)	{
 		$timestamp	= intval($timestamp);
@@ -677,10 +676,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Creates event default data
+	 * Create event default data
 	 *
-	 *	@param	Integer	$timeStamp
-	 *	@return	Array
+	 * @param	Integer	$timeStamp
+	 * @return	Array
 	 */
 	protected static function getEventDefaultData($timestamp)	{
 		$timestamp	= $timestamp == 0 ? NOW : intval($timestamp);
@@ -708,11 +707,11 @@ class TodoyuEventManager {
 
 
 	/**
-	 *	Add default context menu item for event
+	 * Add default context menu item for event
 	 *
-	 *	@param	Integer		$idEvent
-	 *	@param	Array		$items
-	 *	@return	Array
+	 * @param	Integer		$idEvent
+	 * @param	Array		$items
+	 * @return	Array
 	 */
 	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent= intval($idEvent);
@@ -748,6 +747,7 @@ class TodoyuEventManager {
 
 
 	/**
+	 * Get event context menu items for display in portal
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$items
@@ -770,8 +770,7 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Hook when saving event data.
-	 * Modify data looking at the event type
+	 * Hook when saving event data. Modify data looking at the event type
 	 *
 	 * @param	Array		$data
 	 * @param	Integer		$idEvent

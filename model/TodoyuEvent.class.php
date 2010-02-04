@@ -42,6 +42,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	/**
 	 * Get start date
 	 *
+	 * @return	Integer
 	 */
 	public function getStartDate() {
 		return $this->get('date_start');
@@ -180,7 +181,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	/**
 	 *	Get template data
 	 *
-	 *	@param	Boolean	$loadForeignData
+	 *	@param	Boolean		$loadForeignData
 	 *	@return	Array
 	 */
 	public function getTemplateData($loadForeignData = false) {
