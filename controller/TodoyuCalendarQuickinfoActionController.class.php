@@ -37,7 +37,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$idEvent	= intval($params['key']);
 
 		$event		= TodoyuEventManager::getEvent($idEvent);
-		$quickInfo	= new TodoyuCalendarQuickinfo();
+		$quickInfo	= new TodoyuQuickinfo();
 
 			// Build event date info
 		if ( $event->isMultiDay() ) {
@@ -87,7 +87,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 
 		$holiday	= array_shift($holidays);
 
-		$quickInfo	= new TodoyuCalendarQuickinfo();
+		$quickInfo	= new TodoyuQuickinfo();
 
 		$quickInfo->addInfo('title', $holiday['title']);
 		$quickInfo->addInfo('date', TodoyuTime::format($holiday['date'], 'date'));
@@ -109,7 +109,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$user		= TodoyuUserManager::getUser($idUser);
 		$viewDate	= TodoyuCalendarPreferences::getCalendarDate(AREA);
 
-		$quickInfo	= new TodoyuCalendarQuickinfo();
+		$quickInfo	= new TodoyuQuickinfo();
 
 		$birthday		= $user->getBirthday();
 		$viewBirthday	= mktime(0, 0, 0, date('n', $birthday), date('j', $birthday), date('Y', $viewDate));

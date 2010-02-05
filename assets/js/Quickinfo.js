@@ -71,6 +71,7 @@ Todoyu.Ext.calendar.Quickinfo = {
 	uninstallObservers: function() {
 		this.Event.uninstallObservers();
 		this.Holiday.uninstallObservers();
+		this.Birthday.uninstallObservers();
 	},
 
 
