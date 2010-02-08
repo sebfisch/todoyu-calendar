@@ -68,19 +68,19 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 104
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/Quickinfo.js',
+				'file' => 'ext/calendar/assets/js/QuickInfo.js',
 				'position' => 106
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/QuickinfoBirthday.js',
+				'file' => 'ext/calendar/assets/js/QuickInfoBirthday.js',
 				'position' => 107
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/QuickinfoEvent.js',
+				'file' => 'ext/calendar/assets/js/QuickInfoEvent.js',
 				'position' => 108
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/QuickinfoHoliday.js',
+				'file' => 'ext/calendar/assets/js/QuickInfoHoliday.js',
 				'position' => 109
 			),
 			array(
