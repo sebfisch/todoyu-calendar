@@ -30,16 +30,19 @@ Todoyu.Ext.calendar.Quickinfo = {
 	 */
 	ext:		Todoyu.Ext.calendar,
 
+	subTypes:	[],
+
 
 
 	/**
 	 * Init calendar quickinfo: evoke insertion of quickinfo element, start element observers
 	 */
 	init: function(install) {
-		subTypes	= [this.Event, this.Holiday, this.Birthday];
+		this.subTypes	= [this.Event, this.Holiday, this.Birthday];
 
-		Todoyu.QuickInfo.init(subTypes, install);
+		Todoyu.QuickInfo.init(this.subTypes, install);
 	},
+
 
 
 	/**
@@ -75,4 +78,5 @@ Todoyu.Ext.calendar.Quickinfo = {
 	hide: function() {
 		Todoyu.QuickInfo.hide();
 	}
+
 };
