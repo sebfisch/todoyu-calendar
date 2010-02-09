@@ -44,6 +44,14 @@ Todoyu.Ext.calendar.Quickinfo = {
 	},
 
 
+	/**
+	 * Uninstall observers of calendar quick-info types
+	 */
+	uninstallObservers: function() {
+		Todoyu.QuickInfo.uninstallObservers(this.subTypes);
+	},
+
+
 
 	/**
 	 * Evoke loading of quickinfo tooltip content
