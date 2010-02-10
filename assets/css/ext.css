@@ -17,6 +17,7 @@ span.holiday {
 }
 
 
+
 /* -------------------------
 	Holidays admin module
    ------------------------- */
@@ -169,9 +170,6 @@ div.eventDetails dd {
 
 
 
-
-
-
 	/* form */
 form.formEvent button.buttonSave {}
 
@@ -193,7 +191,7 @@ form.formEvent button.buttonSave {}
 }
 
 .eventtype_birthday {
-	background:url(../img/icons.png) no-repeat scroll 1px -420px;
+	background:url(../../../user/assets/img/icons.png) no-repeat 1px -359px;
 }
 
 .eventtype_vacation {
@@ -246,7 +244,7 @@ form.formEvent button.buttonSave {}
 
 #birthdays h3 {
 	background-color:#fff;
-	background:transparent url(../img/icons.png) no-repeat scroll 4px -415px;
+	background:url(../../../user/assets/img/icons.png) no-repeat scroll 4px -355px;
 	border-bottom:1px dotted #848484;
 	border-left:5px solid #bbb;
 	padding-left:35px;
@@ -259,7 +257,6 @@ form.formEvent button.buttonSave {}
 #birthdays h3 span.date {
 	padding-right:10px;
 }
-
 
 
 
