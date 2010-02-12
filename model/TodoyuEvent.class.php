@@ -158,7 +158,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	/**
 	 * Check if current user is assigned
 	 *
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public function isCurrentUserAssigned() {
 		return $this->isUserAssigned(userid());
@@ -168,7 +168,6 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 	/**
 	 * Load event foreign data (assigned users)
-	 *
 	 */
 	protected function loadForeignData()	{
 		if( ! is_array($this->data['user']) ) {
@@ -179,10 +178,10 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
-	 *	Get template data
+	 * Get template data
 	 *
-	 *	@param	Boolean		$loadForeignData
-	 *	@return	Array
+	 * @param	Boolean		$loadForeignData
+	 * @return	Array
 	 */
 	public function getTemplateData($loadForeignData = false) {
 		if( $loadForeignData ) {

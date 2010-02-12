@@ -28,10 +28,10 @@
 class TodoyuCalendarCalendarActionController extends TodoyuActionController {
 
 	/**
-	 *	Calendar update action method: Saves date and active tab and rerenders the calendar
+	 * Calendar update action method: Saves date and active tab and rerenders the calendar
 	 *
-	 *	@param	Array	$params
-	 *	@return	String
+	 * @param	Array	$params
+	 * @return	String
 	 */
 	public function updateAction(array $params) {
 		restrict('calendar', 'general:use');

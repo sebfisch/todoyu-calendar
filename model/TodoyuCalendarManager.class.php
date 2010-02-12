@@ -267,11 +267,11 @@ class TodoyuCalendarManager {
 
 
 	/**
-	 * 	Get context menu items
+	 * Get context menu items
 	 *
-	 *	@param	Integer	$timestamp
-	 *	@param	Array	$items
-	 *	@return	Array
+	 * @param	Integer	$timestamp
+	 * @param	Array	$items
+	 * @return	Array
 	 */
 	public static function getContextMenuItems($timestamp, array $items) {
 		$allowed= array();

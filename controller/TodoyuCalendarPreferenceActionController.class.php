@@ -44,9 +44,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	Init
+	 * Init
 	 *
-	 *	@param	Array	$params
+	 * @param	Array	$params
 	 */
 	public function init(array $params) {
 		restrict('calendar', 'general:use');
@@ -84,9 +84,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	Saves eventTypeSelector widget preferences (selected event types)
+	 * Saves eventTypeSelector widget preferences (selected event types)
 	 *
-	 *	@param	Array	$params
+	 * @param	Array	$params
 	 */
 	public function panelwidgeteventtypeselectorAction(array $params) {
 		$eventTypes	= TodoyuArray::intExplode(',', $this->value, true, true);
@@ -97,9 +97,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	Saves HolidaySetSelector widget preferences (selected holidaySets)
+	 * Saves HolidaySetSelector widget preferences (selected holidaySets)
 	 *
-	 *	@param	Array	$params
+	 * @param	Array	$params
 	 */
 	public function panelwidgetholidaysetselectorAction(array $params) {
 		$holidaySets	= TodoyuArray::intExplode(',', $this->value, true, false);
@@ -110,9 +110,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	'fulldayview' action method, saves viewing mode (full / half) day
+	 * 'fulldayview' action method, saves viewing mode (full / half) day
 	 *
-	 *	@param	Array	$params
+	 * @param	Array	$params
 	 */
 	public function fulldayviewAction(array $params) {
 		$fullDay	= intval($this->value) === 1;
@@ -131,9 +131,9 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 *	General panelWidget action, saves collapse status
+	 * General panelWidget action, saves collapse status
 	 *
-	 *	@param	Array	$params
+	 * @param	Array	$params
 	 */
 	public function pwidgetAction(array $params) {
 		$idWidget	= $params['item'];

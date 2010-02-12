@@ -28,10 +28,10 @@
 class TodoyuCalendarRecordsActionController extends TodoyuActionController {
 
 	/**
-	 *	Render sub part to calendar admin form for record types added/ used by calendar (holiday, holidayset)
+	 * Render sub part to calendar admin form for record types added/ used by calendar (holiday, holidayset)
 	 *
-	 *	@param	Array	$params
-	 *	@return	String
+	 * @param	Array	$params
+	 * @return	String
 	 */
 	public static function addSubformAction(array $params) {
 		$xmlBase 	= 'ext/calendar/config/form/admin';
@@ -52,7 +52,7 @@ class TodoyuCalendarRecordsActionController extends TodoyuActionController {
 		}
 
 		$form		= TodoyuFormManager::getForm($xmlPath, $idRecord);
-		
+
 			// Load form data
 		$formData	= $form->getFormData();
 		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idRecord);

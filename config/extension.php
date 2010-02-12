@@ -30,10 +30,14 @@ TodoyuContextMenuManager::registerFunction('Event', 'TodoyuEventManager::getCont
 TodoyuContextMenuManager::registerFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
-TodoyuSearchManager::addSearchEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
 
-TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50, array('calendar/public'));
+if ( allowed('calendar', 'event:search') ) {
+	TodoyuSearchManager::addSearchEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
+}
 
+if ( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:portaltab') ) {
+	TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50, array('calendar/public'));
+}
 
 	// Setup tabs in calendar area
 $CONFIG['EXT']['calendar']['config'] = array(
