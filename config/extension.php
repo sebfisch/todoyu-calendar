@@ -30,9 +30,12 @@ TodoyuContextMenuManager::registerFunction('Event', 'TodoyuEventManager::getCont
 TodoyuContextMenuManager::registerFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
+	// Add quick create types
+TodoyuCreateManager::addEngine('event', 'event.create.label', 50);
 
+	// Add search type engines
 if ( allowed('calendar', 'event:search') ) {
-	TodoyuSearchManager::addSearchEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
+	TodoyuSearchManager::addEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
 }
 
 if ( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:portaltab') ) {
