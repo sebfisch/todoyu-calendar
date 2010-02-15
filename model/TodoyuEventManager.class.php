@@ -249,7 +249,7 @@ class TodoyuEventManager {
 			$user = $row;
 
 			if( $getUsersData ) {
-				$userArray = TodoyuUserManager::getUserArray($user['id_user']);
+				$userArray = TodoyuPersonManager::getUserArray($user['id_user']);
 				if (is_array($userArray)) {
 					$user = array_merge($user, $userArray);
 				}
@@ -697,7 +697,7 @@ class TodoyuEventManager {
 			'date_start'	=>	$dateStart,
 			'date_end'		=>	$dateEnd,
 			'user' 			=> array(
-				0	=> TodoyuUserManager::getUser(userid())->getTemplateData()
+				0	=> TodoyuPersonManager::getUser(userid())->getTemplateData()
 			)
 		);
 

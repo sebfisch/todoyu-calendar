@@ -110,7 +110,7 @@ class TodoyuCalendarRenderer {
 		$dateStart	= $dayRange['start'];
 		$dateEnd	= $dayRange['end'];
 
-		$userColors	= TodoyuUserManager::getSelectedUsersColor($users);
+		$userColors	= TodoyuPersonManager::getSelectedUsersColor($users);
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-day.tmpl';
@@ -144,7 +144,7 @@ class TodoyuCalendarRenderer {
 		$dateStart	= $weekRange['start'];
 		$dateEnd	= $weekRange['end'];
 
-		$userColors	= TodoyuUserManager::getSelectedUsersColor($users);
+		$userColors	= TodoyuPersonManager::getSelectedUsersColor($users);
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-week.tmpl';
@@ -180,7 +180,7 @@ class TodoyuCalendarRenderer {
 		$dateStart	= $monthRange['start'];
 		$dateEnd	= $monthRange['end'];
 
-		$userColors	= TodoyuUserManager::getSelectedUsersColor($users);
+		$userColors	= TodoyuPersonManager::getSelectedUsersColor($users);
 		$eventTypes	= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-month.tmpl';

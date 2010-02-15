@@ -235,7 +235,7 @@ class TodoyuHolidayManager {
 		$addressIDs		= TodoyuArray::intval($addressIDs, true, true);
 
 		$fields	= 'id,id_holidayset';
-		$table	= 'ext_user_address';
+		$table	= 'ext_contact_address';
 		$where	= ' deleted	= 0' . (count($addressIDs) > 0 ? (' AND id IN (' . implode(',', $addressIDs) . ') ') : '');
 
 		$res	= Todoyu::db()->getArray($fields, $table, $where);
@@ -304,7 +304,7 @@ class TodoyuHolidayManager {
 		$dateEnd		= intval($dateEnd);
 
 			// Get working locations (company addresses) of given persons, affected holidaySets of given address IDs
-		$addressIDs		= TodoyuUserManager::getWorkaddressIDsOfUsers($userIDs);
+		$addressIDs		= TodoyuPersonManager::getWorkaddressIDsOfUsers($userIDs);
 		$holidaySetIDs	= self::getHolidaySetsOfAddresses($addressIDs);
 
 			// Get all holidays affected holidaySets in given timespan

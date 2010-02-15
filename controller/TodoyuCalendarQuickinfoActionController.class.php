@@ -55,7 +55,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$users		= $event->getAssignedUserData();
 
 		foreach($users as $user) {
-			$usersInfo[] = '- ' . TodoyuUserManager::getLabel($user['id']);
+			$usersInfo[] = '- ' . TodoyuPersonManager::getLabel($user['id']);
 		}
 
 		$quickInfo->addInfo('title', $event->getTitle(), 10);
@@ -106,7 +106,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 	 */
 	public function birthdayAction(array $params) {
 		$idUser		= intval($params['key']);
-		$user		= TodoyuUserManager::getUser($idUser);
+		$user		= TodoyuPersonManager::getUser($idUser);
 		$viewDate	= TodoyuCalendarPreferences::getCalendarDate(AREA);
 
 		$quickInfo	= new TodoyuQuickinfo();

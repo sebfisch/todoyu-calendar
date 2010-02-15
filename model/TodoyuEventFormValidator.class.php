@@ -128,7 +128,7 @@ class TodoyuEventFormValidator {
 			if ( count($overbookedUsers) > 0 ) {
 				$errorMessage = Label('LLL:event.error.usersOverbooked') . '<br />';
 				foreach($overbookedUsers as $idUser) {
-					$errorMessage	.= TodoyuUserManager::getLabel($idUser) . '<br />';
+					$errorMessage	.= TodoyuPersonManager::getLabel($idUser) . '<br />';
 				}
 				$formElement->setErrorMessage($errorMessage);
 

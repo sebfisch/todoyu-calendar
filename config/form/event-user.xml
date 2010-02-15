@@ -17,7 +17,7 @@
 							<controller>autocompletion</controller>
 							<action>user</action>
 						</acListener>
-						<acLabelFunc>TodoyuUserManager::getLabel</acLabelFunc>
+						<acLabelFunc>TodoyuPersonManager::getLabel</acLabelFunc>
 						<options>
 							<onCompleteCustom>Todoyu.Ext.calendar.EventEdit.onUserAssignmentAutocomplete</onCompleteCustom>
 						</options>
