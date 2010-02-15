@@ -6,7 +6,7 @@
 		<label index="new">New Event</label>
 		<label index="edit">Edit Event</label>
 		<label index="delete">Delete Event</label>
-		<label index="create.label">Event</label>
+		<label index="create.label">New Event</label>
 		<label index="type.general">General</label>
 		<label index="type.away">Absent</label>
 		<label index="type.birthday">Birthday</label>
@@ -64,7 +64,7 @@
 		<label index="new">Neuer Termin</label>
 		<label index="edit">Termin bearbeiten</label>
 		<label index="delete">Termin löschen</label>
-		<label index="create.label">Termin</label>
+		<label index="create.label">Neuer Termin</label>
 		<label index="type.general">Allgemein</label>
 		<label index="type.away">Abwesend</label>
 		<label index="type.birthday">Geburtstag</label>

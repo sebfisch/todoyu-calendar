@@ -31,7 +31,7 @@ TodoyuContextMenuManager::registerFunction('EventPortal', 'TodoyuEventManager::g
 TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
 	// Add quick create types
-TodoyuCreateManager::addEngine('event', 'event.create.label', 50);
+TodoyuQuickCreateManager::addEngine('event', 'event.create.label', 50);
 
 	// Add search type engines
 if ( allowed('calendar', 'event:search') ) {
