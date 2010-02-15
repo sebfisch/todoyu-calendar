@@ -377,7 +377,7 @@ class TodoyuCalendarManager {
 
 		$birthdaysByDay	= array();
 
-		$birthdayUsers	= TodoyuPersonManager::getBirthdayUsers($dateStart, $dateEnd);
+		$birthdayUsers	= TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
 
 		foreach($birthdayUsers as $birthdayUser) {
 			$dateKey = date('Ymd', $birthdayUser['date']);

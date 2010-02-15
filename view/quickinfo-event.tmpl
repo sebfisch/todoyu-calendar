@@ -5,7 +5,7 @@
 			<td class="quickinfo_content quickinfo_title">
 				{if $is_private == 1}
 					<span class="privateEvent"></span>
-					{if isUserId($id_user_create)}
+					{if isUserId($id_person_create)}
 						{$title}{else}{Label event.privateEvent.info}
 					{/if}
 				{else}
@@ -39,13 +39,13 @@
 			{* ------- Creation/ assigned user(s): not relevant for birthdays ------- *}
 		<tr>
 			<td class="quickinfo_label"><div class="quickinfo_owner">&nbsp;</div></td>
-			<td class="quickinfo_content">{userName $id_user_create}</td>
+			<td class="quickinfo_content">{userName $id_person_create}</td>
 		</tr>
 		<tr>
 			<td class="quickinfo_label"><div class="quickinfo_assignedto">&nbsp;</div></td>
 			<td class="quickinfo_content">
 				{foreach $assignedUsers num userData}
-					<span class="{if $userData.is_acknowledged != 1}isNotAcknowledgedIcon{/if}">{userName $userData.id_user}</span><br/>
+					<span class="{if $userData.is_acknowledged != 1}isNotAcknowledgedIcon{/if}">{userName $userData.id_person}</span><br/>
 				{/foreach}
 			</td>
 		</tr>

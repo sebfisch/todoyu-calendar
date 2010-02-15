@@ -9,7 +9,7 @@
 				<span class="eventtype_{$eventtype}" style="width:10px; margin-right: 2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				{if $is_private == 1}
 					{* -------------- Only show title if event is not private ------------- *}
-					{if isUserID($id_user)}
+					{if isUserID($id_person)}
 						<span class="privateEvent"></span>
 						{if $is_repeated == 1}<span class="seriesEvent"></span>{/if}
 						{$title}
@@ -34,7 +34,7 @@
 	<div id="event-{$id}" class="event contextmenuevent quickInfoEvent dayevent enumColBGFade{$color.id} enumColBor{$color.id} {if $updateAllowed} updateAllowed{/if}">
 		<span class="eventtype_{$eventtype}" style="width: 10px; margin-right: 2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		{if $is_private == 1}{* ----- only show title, if event is not private ----- *}
-			{if  $id_user == $current_user}
+			{if  $id_person == $current_user}
 				<span class="privateEvent"></span>
 				{if $is_repeated == 1}<span class="seriesEvent"></span>{/if}
 					{if $calendarMode == 'day'}

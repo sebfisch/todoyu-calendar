@@ -67,7 +67,7 @@ class TodoyuCalendarPortalManager {
 		$dateStart		= TodoyuTime::getStartOfDay();
 		$dateEnd		= $dateStart + $weeksBirthday * TodoyuTime::SECONDS_WEEK;
 
-		return TodoyuPersonManager::getBirthdayUsers($dateStart, $dateEnd);
+		return TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
 	}
 
 }

@@ -124,7 +124,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	public function getAssignedUserIDs() {
 		$assignedUsers	= TodoyuEventManager::getAssignedUsersOfEvent($this->getID(), false);
 
-		return TodoyuArray::getColumn($assignedUsers, 'id_user');
+		return TodoyuArray::getColumn($assignedUsers, 'id_person');
 	}
 
 

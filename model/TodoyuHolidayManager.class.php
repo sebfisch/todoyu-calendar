@@ -304,7 +304,7 @@ class TodoyuHolidayManager {
 		$dateEnd		= intval($dateEnd);
 
 			// Get working locations (company addresses) of given persons, affected holidaySets of given address IDs
-		$addressIDs		= TodoyuPersonManager::getWorkaddressIDsOfUsers($userIDs);
+		$addressIDs		= TodoyuPersonManager::getWorkaddressIDsOfPersons($userIDs);
 		$holidaySetIDs	= self::getHolidaySetsOfAddresses($addressIDs);
 
 			// Get all holidays affected holidaySets in given timespan

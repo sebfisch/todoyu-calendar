@@ -76,11 +76,11 @@ class TodoyuEventManager {
 		$users		= TodoyuArray::intval($users, true, true);
 
 		$fields	= '	e.*,
-					mmeu.id_user,
+					mmeu.id_person,
 					mmeu.is_acknowledged,
 					e.date_end - e.date_start as duration';
 		$tables	= 	self::TABLE  . ' e,
-					ext_calendar_mm_event_user mmeu';
+					ext_calendar_mm_event_person mmeu';
 		$where	= '	e.id		= mmeu.id_event AND
 					e.deleted	= 0 AND
 					(	e.date_start BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
@@ -100,7 +100,7 @@ class TodoyuEventManager {
 
 			// Users
 		if( sizeof($users) > 0 ) {
-			$where	.= ' AND mmeu.id_user IN(' . implode(',', $users) . ',0)';
+			$where	.= ' AND mmeu.id_person IN(' . implode(',', $users) . ',0)';
 		}
 
 
@@ -112,7 +112,7 @@ class TodoyuEventManager {
 
 			// Assigned users
 		if( ! allowed('calendar', 'event:seeAll') ) {
-			$where .= ' AND mmeu.id_user IN(' . personid() . ',0)';
+			$where .= ' AND mmeu.id_person IN(' . personid() . ',0)';
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
@@ -238,18 +238,18 @@ class TodoyuEventManager {
 	public static function getAssignedUsersOfEvent($idEvent, $getUsersData = false) {
 		$idEvent	= intval( $idEvent );
 
-		$fields	= 'id_user, is_acknowledged';
-		$tables	= 'ext_calendar_mm_event_user';
+		$fields	= 'id_person, is_acknowledged';
+		$tables	= 'ext_calendar_mm_event_person';
 		$where	= 'id_event = ' . $idEvent;
-		$group	= 'id_user';
+		$group	= 'id_person';
 
 		$users = array();
-		$result	= Todoyu::db()->doSelect( $fields, $tables, $where, $group, '', '', 'id_user');
+		$result	= Todoyu::db()->doSelect( $fields, $tables, $where, $group, '', '', 'id_person');
 		while($row = Todoyu::db()->fetchAssoc($result))	{
 			$user = $row;
 
 			if( $getUsersData ) {
-				$userArray = TodoyuPersonManager::getUserArray($user['id_user']);
+				$userArray = TodoyuPersonManager::getUserArray($user['id_person']);
 				if (is_array($userArray)) {
 					$user = array_merge($user, $userArray);
 				}
@@ -272,15 +272,15 @@ class TodoyuEventManager {
 	public static function getAssignedUsersOfEvents(array $eventIDs ) {
 		$eventIDs	= array_unique( TodoyuArray::intval($eventIDs) );
 
-		$fields	= 'id_event, id_user';
-		$tables	= 'ext_calendar_mm_event_user';
+		$fields	= 'id_event, id_person';
+		$tables	= 'ext_calendar_mm_event_person';
 		$where	= 'id_event IN (' . TodoyuArray::intImplode( $eventIDs ) . ') ';
 
 		$res	= Todoyu::db()->getArray( $fields, $tables, $where, '', 'id_event', '' );
 
 		$eventUsers = array();
 		foreach($res as $vals) {
-			$eventUsers[ $vals['id_event'] ][] = $vals['id_user'];
+			$eventUsers[ $vals['id_event'] ][] = $vals['id_person'];
 		}
 
 		return $eventUsers;
@@ -310,8 +310,8 @@ class TodoyuEventManager {
 				$overlaps[$idOverlapEvent]['assigned_users']	= array();
 				$assignedUsers	= TodoyuEventManager::getAssignedUsersOfEvent($idOverlapEvent);
 				foreach ($assignedUsers as $user) {
-					if ( in_array($user['id_user'], $userIDs) ) {
-						$overbookedUserIDs[]	= $user['id_user'];
+					if ( in_array($user['id_person'], $userIDs) ) {
+						$overbookedUserIDs[]	= $user['id_person'];
 					}
 				}
 			}
@@ -425,7 +425,7 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Add an event to database. Add date_create and id_user_create values
+	 * Add an event to database. Add date_create and id_person_create values
 	 *
 	 * @param	Array		$data
 	 * @return	Integer
@@ -434,7 +434,7 @@ class TodoyuEventManager {
 		unset($data['id']);
 
 		$data['date_create']	= NOW;
-		$data['id_user_create']	= TodoyuAuth::getPersonID();
+		$data['id_person_create']	= TodoyuAuth::getPersonID();
 
 		return Todoyu::db()->addRecord('ext_calendar_event', $data);
 	}
@@ -481,10 +481,10 @@ class TodoyuEventManager {
 		$idEvent= intval($idEvent);
 		$idUser	= intval($idUser);
 
-		$table	= 'ext_calendar_mm_event_user';
+		$table	= 'ext_calendar_mm_event_person';
 		$data	= array(
 			'id_event'			=> $idEvent,
-			'id_user'			=> $idUser,
+			'id_person'			=> $idUser,
 			'is_acknowledged'	=> personid() == $idUser ? 1 : 0
 		);
 
@@ -501,7 +501,7 @@ class TodoyuEventManager {
 	public static function removeAllUserAssignments($idEvent) {
 		$idEvent= intval($idEvent);
 
-		$table	= 'ext_calendar_mm_event_user';
+		$table	= 'ext_calendar_mm_event_person';
 		$where	= 'id_event = ' . $idEvent;
 
 		Todoyu::db()->doDelete($table, $where);
@@ -521,7 +521,7 @@ class TodoyuEventManager {
 
 		$table		= self::TABLE;
 		$where		= '	id_event	= ' . $idEvent . ' AND
-						id_user		= ' . $idUser;
+						id_person		= ' . $idUser;
 
 		Todoyu::db()->doDelete($table, $where);
 	}
@@ -536,7 +536,7 @@ class TodoyuEventManager {
 	protected static function createNewEvent()	{
 		$insertArray	= array(
 			'date_create'	=> NOW,
-			'id_user_create'=> personid(),
+			'id_person_create'=> personid(),
 			'deleted'		=> 0
 		);
 
@@ -611,13 +611,13 @@ class TodoyuEventManager {
 		$idEvent	= intval($idEvent);
 
 		if(array_key_exists('user', $formData))	{
-			$table = 'ext_calendar_mm_event_user';
+			$table = 'ext_calendar_mm_event_person';
 
 			foreach($formData['user'] as $userArray)	{
 				$idUser	= $userArray['id'];
 				$fields	=	array(
 					'id_event'			=> $idEvent,
-					'id_user'			=> $idUser,
+					'id_person'			=> $idUser,
 					'is_acknowledged'	=> $idUser == personid() ? 1 : 0,
 				);
 
@@ -648,12 +648,12 @@ class TodoyuEventManager {
 		$idUser		= intval($idUser);
 
 		$where 	= '	id_event= ' . $idEvent . ' AND
-					id_user	= ' . $idUser;
+					id_person	= ' . $idUser;
 		$update	= array(
 			'is_acknowledged' => 1
 		);
 
-		Todoyu::db()->doUpdate('ext_calendar_mm_event_user', $where, $update);
+		Todoyu::db()->doUpdate('ext_calendar_mm_event_person', $where, $update);
 	}
 
 

@@ -81,7 +81,7 @@ class TodoyuEventRenderer {
 	 */
 	public static function prepareEventRenderData($calendarMode = 'month', array $data) {
 		$assignedUsers 		= TodoyuEventManager::getAssignedUsersOfEvent( $data['id'] , true );
-		$idAssignedUser		= count($assignedUsers) == 1 ? $assignedUsers[0]['id_user'] : 0;
+		$idAssignedUser		= count($assignedUsers) == 1 ? $assignedUsers[0]['id_person'] : 0;
 
 		$color = self::getEventColorData($idAssignedUser);
 
@@ -172,7 +172,7 @@ class TodoyuEventRenderer {
 	public static function getEventColorData($idAssignedUser) {
 		if ($idAssignedUser > 0) {
 				//  Unique user assigned to event?
-			$eventColorData	= TodoyuPersonManager::getSelectedUsersColor(array($idAssignedUser));
+			$eventColorData	= TodoyuPersonManager::getSelectedPersonColor(array($idAssignedUser));
 		} else {
 			// Multiple / no users assigned?
 			$eventColorData = array(
@@ -273,7 +273,7 @@ class TodoyuEventRenderer {
 		$data		= array(
 			'event'			=> $event->getTemplateData(),
 			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
-			'user_create'	=> TodoyuPersonManager::getPersonArray($event['id_user_create']),
+			'user_create'	=> TodoyuPersonManager::getPersonArray($event['id_person_create']),
 			'tabs'			=> self::renderEventViewTabs($idEvent)
 		);
 
