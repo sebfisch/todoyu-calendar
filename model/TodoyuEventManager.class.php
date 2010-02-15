@@ -112,7 +112,7 @@ class TodoyuEventManager {
 
 			// Assigned users
 		if( ! allowed('calendar', 'event:seeAll') ) {
-			$where .= ' AND mmeu.id_user IN(' . userid() . ',0)';
+			$where .= ' AND mmeu.id_user IN(' . personid() . ',0)';
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
@@ -434,7 +434,7 @@ class TodoyuEventManager {
 		unset($data['id']);
 
 		$data['date_create']	= NOW;
-		$data['id_user_create']	= TodoyuAuth::getUserID();
+		$data['id_user_create']	= TodoyuAuth::getPersonID();
 
 		return Todoyu::db()->addRecord('ext_calendar_event', $data);
 	}
@@ -485,7 +485,7 @@ class TodoyuEventManager {
 		$data	= array(
 			'id_event'			=> $idEvent,
 			'id_user'			=> $idUser,
-			'is_acknowledged'	=> userid() == $idUser ? 1 : 0
+			'is_acknowledged'	=> personid() == $idUser ? 1 : 0
 		);
 
 		Todoyu::db()->addRecord($table, $data);
@@ -536,7 +536,7 @@ class TodoyuEventManager {
 	protected static function createNewEvent()	{
 		$insertArray	= array(
 			'date_create'	=> NOW,
-			'id_user_create'=> userid(),
+			'id_user_create'=> personid(),
 			'deleted'		=> 0
 		);
 
@@ -618,7 +618,7 @@ class TodoyuEventManager {
 				$fields	=	array(
 					'id_event'			=> $idEvent,
 					'id_user'			=> $idUser,
-					'is_acknowledged'	=> $idUser == userid() ? 1 : 0,
+					'is_acknowledged'	=> $idUser == personid() ? 1 : 0,
 				);
 
 				Todoyu::db()->doInsert($table, $fields);
@@ -697,7 +697,7 @@ class TodoyuEventManager {
 			'date_start'	=>	$dateStart,
 			'date_end'		=>	$dateEnd,
 			'user' 			=> array(
-				0	=> TodoyuPersonManager::getUser(userid())->getTemplateData()
+				0	=> TodoyuAuth::getPerson()->getTemplateData()
 			)
 		);
 

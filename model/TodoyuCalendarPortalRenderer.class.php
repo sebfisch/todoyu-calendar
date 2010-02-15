@@ -54,7 +54,7 @@ class TodoyuCalendarPortalRenderer {
 	 */
 	public static function getAppointmentTabContent() {
 		$config	= $GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig'];
-		$idUser	= userid();
+		$idUser	= personid();
 
 			// Get events
 		$events	= TodoyuCalendarPortalManager::getAppointments();

@@ -54,7 +54,7 @@ class TodoyuEventRenderer {
 			$timeEnd	= $timeStart + 900;
 		}
 
-		$user	= TodoyuAuth::getUser()->getTemplateData();
+		$user	= TodoyuAuth::getPerson()->getTemplateData();
 
 		$formData	= array(
 			'date_start' 	=> $timeStart,
@@ -125,7 +125,7 @@ class TodoyuEventRenderer {
 	public static function renderEventDetailsInList($idEvent) {
 		$idEvent= intval($idEvent);
 		$event	= TodoyuEventManager::getEvent($idEvent);
-		$colors = self::getEventColorData(userid());
+		$colors = self::getEventColorData(personid());
 
 		$eventData	= $event->getTemplateData(true);
 		$eventData	= self::prepareEventRenderData('list', $eventData);
@@ -133,9 +133,9 @@ class TodoyuEventRenderer {
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(
 			'event'			=> $eventData,
-			'color'			=> $colors[userid()],
+			'color'			=> $colors[personid()],
 			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
-			'user_create'	=> $event->getUser('create')->getTemplateData()// TodoyuPersonManager::getUserArray($event->getUserID('create')),
+			'user_create'	=> $event->getUser('create')->getTemplateData()
 		);
 
 		return render($tmpl, $data);
@@ -273,7 +273,7 @@ class TodoyuEventRenderer {
 		$data		= array(
 			'event'			=> $event->getTemplateData(),
 			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
-			'user_create'	=> TodoyuPersonManager::getUserArray($event['id_user_create']),
+			'user_create'	=> TodoyuPersonManager::getPersonArray($event['id_user_create']),
 			'tabs'			=> self::renderEventViewTabs($idEvent)
 		);
 

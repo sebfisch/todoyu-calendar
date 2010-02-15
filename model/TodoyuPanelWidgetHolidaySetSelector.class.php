@@ -149,7 +149,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 			0,									// item ID
 			true,								// unique?
 			$idArea,							// area ID
-			userid()							// user ID
+			personid()							// user ID
 		);
 
 	}

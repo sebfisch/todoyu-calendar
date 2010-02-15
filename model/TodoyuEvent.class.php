@@ -161,7 +161,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 * @return	Boolean
 	 */
 	public function isCurrentUserAssigned() {
-		return $this->isUserAssigned(userid());
+		return $this->isUserAssigned(personid());
 	}
 
 

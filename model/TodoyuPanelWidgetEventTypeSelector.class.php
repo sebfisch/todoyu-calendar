@@ -162,7 +162,7 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 			0,									// item ID
 			true,								// unique?
 			$idArea,							// area ID
-			userid()							// user ID
+			personid()							// user ID
 		);
 
 	}
