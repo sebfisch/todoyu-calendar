@@ -56,7 +56,7 @@ class TodoyuCalendarAutocompletionActionController extends TodoyuActionControlle
 	 * @return	String
 	 */
 	public function userAction(array $params) {
-		$results = TodoyuUserFilterDataSource::autocompleteUsers($this->sword);
+		$results = TodoyuPersonFilterDataSource::autocompleteUsers($this->sword);
 
 		return TodoyuRenderer::renderAutocompleteList($results);
 	}
