@@ -25,7 +25,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
+class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionController {
 
 	/**
 	 * Render quick event creation form in popup
@@ -50,8 +50,8 @@ class TodoyuCalendarQuickeventActionController extends TodoyuActionController {
 	public function saveAction(array $params) {
 		restrict('calendar', 'event:add');
 
-		$formData	= $params['quickevent'];
-		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
+		$formData	= $params['quickcreateevent'];
+		$xmlPath	= 'ext/calendar/config/form/quickcreateevent.xml';
 		$form		= TodoyuFormManager::getForm($xmlPath);
 
 		$form->setFormData($formData);

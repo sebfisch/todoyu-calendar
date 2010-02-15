@@ -18,7 +18,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
+Todoyu.Ext.calendar.QuickCreateEvent = {
 
 	ext: Todoyu.Ext.calendar,
 
@@ -94,7 +94,7 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 
 
 	/**
-	 * If saved, return to currently selected calendar view (day / week / month)
+	 * If saved, close the creation wizard popup
 	 *
 	 * @param	Object	response	Response, containing startdate of the event
 	 */
@@ -102,12 +102,11 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 		var isError = response.getTodoyuHeader('error') == 1;
 
 		if( response.hasTodoyuError() ) {
-			Todoyu.Popup.setContent('quickevent', response.responseText);
+			Todoyu.Popup.setContent('quickcreate', response.responseText);
 			//fix to reactivate the jscalendar scripts. Maybe theres a better solution ?
-			$('quickevent-form').innerHTML.evalScripts();
+			$('quickcreateevent-form').innerHTML.evalScripts();
 		} else {
-			Todoyu.Popup.close('quickevent');
-			this.ext.refresh();
+			Todoyu.Popup.close('quickcreate');
 		}
 	},
 
@@ -121,7 +120,7 @@ Todoyu.Ext.calendar.PanelWidget.QuickEvent = {
 	 */
 	onEventTypeChange: function(event, time) {
 		var eventType	= $F('quickevent-field-eventtype');
-		var allFields	= $('quickevent-form').select('div.fElement');
+		var allFields	= $('quickcreateevent-form').select('div.fElement');
 		var fieldsToHide= [];
 
 		// Show all fields

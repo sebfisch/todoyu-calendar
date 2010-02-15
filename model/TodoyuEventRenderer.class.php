@@ -41,7 +41,7 @@ class TodoyuEventRenderer {
 			$time = time();
 		}
 
-		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
+		$xmlPath	= 'ext/calendar/config/form/quickcreateevent.xml';
 		$form 		= TodoyuFormManager::getForm($xmlPath);
 
 		$dayRange	= TodoyuTime::getDayRange($time);
@@ -140,29 +140,6 @@ class TodoyuEventRenderer {
 
 		return render($tmpl, $data);
 	}
-
-
-
-//	/**
-//	 * @todo	remove
-//	 * @param	$event
-//	 * @param	$calendarMode
-//	 */
-//	public static function renderEventORIG(array $event, $calendarMode = 'month') {
-//		$event			 = self::prepareEventRenderData($calendarMode, $event);
-//
-//		if( $calendarMode === 'list' )	{
-//			$color = self::getEventColorData(userid());
-//			$event['colors']		= $color[userid()];
-//			$event['currentUser']	= userid();
-//
-//			$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
-//		} else {
-//			$tmpl	= 'ext/calendar/view/event.tmpl';
-//		}
-//
-//		return render($tmpl, $event);
-//	}
 
 
 

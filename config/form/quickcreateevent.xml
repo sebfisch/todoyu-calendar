@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
 	<attributes>
-		<attribute name="action">?ext=calendar&amp;controller=quickevent</attribute>
-		<attribute name="name">quickevent</attribute>
+		<attribute name="action">?ext=calendar&amp;controller=quickcreateevent</attribute>
+		<attribute name="name">quickcreateevent</attribute>
 		<attribute name="onsubmit">return false</attribute>
 		<attribute name="class">formQuickEvent</attribute>
 	</attributes>
@@ -74,10 +74,10 @@
 			<class>buttons</class>
 			<elements>
 				<field type="saveButton" name="save">
-					<onclick>Todoyu.Ext.calendar.PanelWidget.QuickEvent.save(this.form)</onclick>
+					<onclick>Todoyu.Ext.calendar.QuickCreateEvent.save(this.form)</onclick>
 				</field>
 				<field type="cancelButton" name="cancel">
-					<onclick>Todoyu.Ext.calendar.PanelWidget.QuickEvent.closePopup()</onclick>
+					<onclick>Todoyu.Ext.calendar.QuickCreateEvent.closePopup()</onclick>
 				</field>
 			</elements>
 		</fieldset>
