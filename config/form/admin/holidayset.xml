@@ -29,17 +29,17 @@
 
 				<field type="databaseRelation" name="holiday">
 					<label>calendar.holidayset.attr.holiday</label>
-					<foreignRecordConf>
-						<foreignformxml>ext/calendar/config/form/admin/holidayset-holiday.xml</foreignformxml>
-						<addSubformConfig>
+					<record>
+						<form>ext/calendar/config/form/admin/holidayset-holiday.xml</form>
+						<url>
 							<ext>calendar</ext>
 							<controller>records</controller>
-						</addSubformConfig>
+						</url>
 						<label type="field">
 							<field>title</field>
 							<noLabel>Neuer Feiertag</noLabel>
 						</label>
-					</foreignRecordConf>
+					</record>
 				</field>
 
 			</elements>

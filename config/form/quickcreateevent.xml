@@ -3,8 +3,6 @@
 	<attributes>
 		<attribute name="action">?ext=calendar&amp;controller=quickcreateevent</attribute>
 		<attribute name="name">quickcreateevent</attribute>
-		<attribute name="onsubmit">return false</attribute>
-		<attribute name="class">formQuickEvent</attribute>
 	</attributes>
 	<hiddenFields>
 
@@ -51,18 +49,18 @@
 
 				<field type="databaseRelation" name="user">
 					<label>event.attr.assigned_to</label>
-					<foreignRecordConf>
-						<foreignformxml>ext/calendar/config/form/event-user.xml</foreignformxml>
-						<addSubformConfig>
+					<record>
+						<form>ext/calendar/config/form/event-user.xml</form>
+						<url>
 							<ext>calendar</ext>
 							<controller>formhandling</controller>
-						</addSubformConfig>
+						</url>
 						<label type="function">
 							<function>TodoyuUserViewHelper::getUserLabel</function>
 							<noLabel>Neuer Benutzer</noLabel>
 						</label>
 						<validateRequired>TodoyuUserViewHelper::validateRequiredUserAC</validateRequired>
-					</foreignRecordConf>
+					</record>
 					<required />
 				</field>
 
