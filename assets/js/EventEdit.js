@@ -178,16 +178,16 @@ Todoyu.Ext.calendar.EventEdit = {
 	 * @param	String		label
 	 */
 	addTab: function(label) {
-		if( ! Todoyu.exists('calendar-tabhead-edit') ) {
-			var tab = Todoyu.Tabs.build('calendar-tabhead-edit', 'item bcg05 tabkey-edit edit edit', label, true);
+		if( ! Todoyu.exists('calendar-tab-edit') ) {
+			var tab = Todoyu.Tabs.build('calendar', 'edit', 'item bcg05 tabkey-edit', label, true);
 
-			$('calendar-tabhead-month').insert({
+			$('calendar-tab-month').insert({
 				'after': tab
 			});
 		}
 
 			// Delay activation, because tabhandler activates add tab after this function
-		Todoyu.Tabs.setActive.defer('calendar-tabhead-edit');
+		Todoyu.Tabs.setActive.defer('calendar' ,'edit');
 	},
 
 
@@ -196,7 +196,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	 * Close edit view
 	 */
 	close: function() {
-		if( Todoyu.exists('calendar-tabhead-edit') ) {
+		if( Todoyu.exists('calendar-tab-edit') ) {
 			this.removeTab();
 			this.hide();
 			this.ext.showCalendar();
@@ -212,7 +212,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	 * @param	String		label
 	 */
 	setTabLabel: function(label) {
-		$('calendar-tabhead-edit').select('span.labeltext').first().update(label);
+		Todoyu.Tabs.setLabel('calendar', 'edit', label);
 	},
 
 
@@ -221,7 +221,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	 * Check if edit view is active
 	 */
 	isActive: function() {
-		return Todoyu.exists('calendar-tabhead-edit');
+		return Todoyu.exists('calendar-tab-edit');
 	},
 
 
@@ -230,7 +230,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	 * Remove edit tab
 	 */
 	removeTab: function() {
-		$('calendar-tabhead-edit').remove();
+		$('calendar-tab-edit').remove();
 	},
 
 

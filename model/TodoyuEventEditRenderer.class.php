@@ -63,8 +63,7 @@ class TodoyuEventEditRenderer {
 	 * @return	String	HTML
 	 */
 	public static function renderEventEditTab($label, $idTab) {
-		$listID		= 'eventedit-tabs';
-		$class		= 'tabs';
+		$name		= 'eventedit';
 		$jsHandler	= 'Prototype.emptyFunction';
 		$active		= $idTab;
 		$tabs		= array(
@@ -78,7 +77,7 @@ class TodoyuEventEditRenderer {
 			)
 		);
 
-		return TodoyuTabheadRenderer::renderTabs($listID, $class, $jsHandler, $tabs, $active);
+		return TodoyuTabheadRenderer::renderTabs($name, $tabs, $jsHandler, $active);
 	}
 
 

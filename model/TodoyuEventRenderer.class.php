@@ -80,7 +80,7 @@ class TodoyuEventRenderer {
 	 * @return	Array
 	 */
 	public static function prepareEventRenderData($calendarMode = 'month', array $data) {
-		$assignedUsers 		= TodoyuEventManager::getAssignedUsersOfEvent( $data['id'] , true );
+		$assignedUsers 		= TodoyuEventManager::getAssignedPersonsOfEvent( $data['id'] , true );
 		$idAssignedUser		= count($assignedUsers) == 1 ? $assignedUsers[0]['id_person'] : 0;
 
 		$color = self::getEventColorData($idAssignedUser);
@@ -134,7 +134,7 @@ class TodoyuEventRenderer {
 		$data	= array(
 			'event'			=> $eventData,
 			'color'			=> $colors[personid()],
-			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
+			'attendees'		=> TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true),
 			'user_create'	=> $event->getUser('create')->getTemplateData()
 		);
 
@@ -235,8 +235,7 @@ class TodoyuEventRenderer {
 	public static function renderEventViewTabs($idEvent) {
 		$idEvent	= intval($idEvent);
 		$activeTab	= 'detail';
-		$tabsID		= 'calendar-tabs';
-		$class		= 'tabs';
+		$name		= 'calendar';
 		$jsHandler	= 'Todoyu.Ext.calendar.Tabs.onSelect.bind(Todoyu.Ext.calendar.Tabs)';
 		$tabs		= TodoyuCalendarManager::getCalendarTabsConfig();
 
@@ -244,17 +243,12 @@ class TodoyuEventRenderer {
 
 		$detailTab	= array(
 			'id'		=> 'detail',
-			'class'		=> 'detail',
-			'hasIcon'	=> 0,
-			'label'		=> 'Detail: ' . $event->getTitle(),
-			'htmlId'	=> 'calendar-tabhead-detail',
-			'key'		=> 'detail',
-			'classKey'	=> 'detail'
+			'label'		=> 'Detail: ' . $event->getTitle()
 		);
 
 		array_unshift($tabs, $detailTab);
 
-		return TodoyuTabheadRenderer::renderTabs($tabsID, $class, $jsHandler, $tabs, $activeTab);
+		return TodoyuTabheadRenderer::renderTabs($name, $tabs, $jsHandler, $activeTab);
 	}
 
 
@@ -272,7 +266,7 @@ class TodoyuEventRenderer {
 		$tmpl		= 'ext/calendar/view/event-view.tmpl';
 		$data		= array(
 			'event'			=> $event->getTemplateData(),
-			'attendees'		=> TodoyuEventManager::getAssignedUsersOfEvent($idEvent, true),
+			'attendees'		=> TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true),
 			'user_create'	=> TodoyuPersonManager::getPersonArray($event['id_person_create']),
 			'tabs'			=> self::renderEventViewTabs($idEvent)
 		);

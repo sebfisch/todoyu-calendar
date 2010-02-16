@@ -53,7 +53,7 @@
 /* --------------------------
  	Portal tab appointment
    --------------------------*/
-#portal-tabs li.appointment span.icon {
+#portal-tab-appointment span.icon {
 	background:url(../img/icons.png) no-repeat 0 5px;
 }
  

@@ -74,28 +74,28 @@ Todoyu.Ext.calendar.EventView = {
 
 
 	addTab: function(label) {
-		if( ! Todoyu.exists('calendar-tabhead-view') ) {
-			var tab = Todoyu.Tabs.build('calendar-tabhead-view', 'item bcg05 tabkey-view view', label, true);
+		if( ! Todoyu.exists('calendar-tab-view') ) {
+			var tab = Todoyu.Tabs.build('calendar', 'view', 'item bcg05 tabkey-view', label, true);
 
-			$('calendar-tabhead-month').insert({
+			$('calendar-tab-month').insert({
 				'after': tab
 			});
 		}
 
 			// Delay activation, because tabhandler activates add tab after this function
-		Todoyu.Tabs.setActive.defer('calendar-tabhead-view');
+		Todoyu.Tabs.setActive.defer('calendar', 'view');
 	},
 
 
 
 	removeTab: function() {
-		$('calendar-tabhead-view').remove();
+		$('calendar-tab-view').remove();
 	},
 
 
 
 	setTabLabel: function(label) {
-		Todoyu.Tabs.setLabel('calendar-tabhead-view', label);
+		Todoyu.Tabs.setLabel('calendar', 'view', label);
 	},
 
 
@@ -113,7 +113,7 @@ Todoyu.Ext.calendar.EventView = {
 
 
 	isActive: function() {
-		return Todoyu.exists('calendar-tabhead-view');
+		return Todoyu.exists('calendar-tab-view');
 	},
 
 

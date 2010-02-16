@@ -294,16 +294,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getCalendarTabsConfig() {
-		$tabs	= $GLOBALS['CONFIG']['EXT']['calendar']['contentTabs'];
-
-		foreach($tabs as $index => $tab) {
-			$tabs[$index]['htmlId'] 	= 'calendar-tabhead-' . $tab['id'];
-			$tabs[$index]['key']		= $tab['id'];
-			$tabs[$index]['classKey'] 	= $tab['id'];
-			$tabs[$index]['hasIcon'] 	= 1;
-		}
-
-		return $tabs;
+		return TodoyuArray::assure($GLOBALS['CONFIG']['EXT']['calendar']['tabs']);
 	}
 
 

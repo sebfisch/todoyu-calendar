@@ -412,29 +412,23 @@ class TodoyuCalendarRenderer {
 	 *
 	 * @return	String	HTML
 	 */
-	public function renderTabs($activeTab = null)	{
-		if( is_null($activeTab) ) {
+	public function renderTabs($activeTab = '')	{
+		if( empty($activeTab) ) {
 			$activeTab = TodoyuCalendarPreferences::getActiveTab();
 		}
 
+		$name		= 'calendar';
 		$tabs		= TodoyuCalendarManager::getCalendarTabsConfig();
-		$tabsID		= 'calendar-tabs';
-		$class		= 'tabs';
 		$jsHandler	= 'Todoyu.Ext.calendar.Tabs.onSelect.bind(Todoyu.Ext.calendar.Tabs)';
 
 		if( $activeTab === 'view' ) {
 			$tabs[] = array(
 				'id'		=> 'view',
-				'class'		=> 'view',
-				'hasIcon'	=> true,
-				'label'		=> 'Details',
-				'htmlId'	=> 'calendar-tabhead-view',
-				'key'		=> 'view',
-				'classKey'	=> 'view'
+				'label'		=> 'Details'
 			);
 		}
 
-		return TodoyuTabheadRenderer::renderTabs($tabsID, $class, $jsHandler, $tabs, $activeTab);
+		return TodoyuTabheadRenderer::renderTabs($name, $tabs, $jsHandler, $activeTab);
 	}
 }
 

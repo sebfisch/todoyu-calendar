@@ -235,30 +235,22 @@ class TodoyuEventManager {
 	 * @param	Boolean $getUserData	get also user data (not only the ID)?
 	 * @return	Array
 	 */
-	public static function getAssignedUsersOfEvent($idEvent, $getUsersData = false) {
-		$idEvent	= intval( $idEvent );
+	public static function getAssignedPersonsOfEvent($idEvent, $getPersonData = false) {
+		$idEvent	= intval($idEvent);
 
-		$fields	= 'id_person, is_acknowledged';
-		$tables	= 'ext_calendar_mm_event_person';
-		$where	= 'id_event = ' . $idEvent;
-		$group	= 'id_person';
+		$fields	= '	mm.id_person,
+					mm.is_acknowledged';
+		$tables	= '	ext_calendar_mm_event_person mm';
+		$where	= '	mm.id_event = ' . $idEvent;
+		$group	= ' mm.id_person';
 
-		$users = array();
-		$result	= Todoyu::db()->doSelect( $fields, $tables, $where, $group, '', '', 'id_person');
-		while($row = Todoyu::db()->fetchAssoc($result))	{
-			$user = $row;
-
-			if( $getUsersData ) {
-				$userArray = TodoyuPersonManager::getUserArray($user['id_person']);
-				if (is_array($userArray)) {
-					$user = array_merge($user, $userArray);
-				}
-			}
-
-			$users[] 	= $user;
+		if( $getPersonData ) {
+			$fields .= ',p.*';
+			$tables	.= ', ext_contact_person p';
+			$where	.= ' AND mm.id_person = p.id';
 		}
 
-		return $users;
+		return Todoyu::db()->getArray($fields, $tables, $where, $group);
 	}
 
 
@@ -308,7 +300,7 @@ class TodoyuEventManager {
 			foreach($overlaps as $idOverlapEvent => $overlapEventData) {
 					// Get user assignments of overlapping event
 				$overlaps[$idOverlapEvent]['assigned_users']	= array();
-				$assignedUsers	= TodoyuEventManager::getAssignedUsersOfEvent($idOverlapEvent);
+				$assignedUsers	= TodoyuEventManager::getAssignedPersonsOfEvent($idOverlapEvent);
 				foreach ($assignedUsers as $user) {
 					if ( in_array($user['id_person'], $userIDs) ) {
 						$overbookedUserIDs[]	= $user['id_person'];

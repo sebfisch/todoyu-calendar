@@ -44,35 +44,33 @@
 /* ----------------------
 	Area tabs
    ---------------------- */
+/*
 #calendar-tabs li span.icon {
 	margin-right:2px;
 }
-#calendar-tabs li.day span.icon {
-	background:url(../img/icons.png) no-repeat scroll 2px -204px;
+*/
+#calendar-tabs span.icon {
+	background-image:url(../img/icons.png);
 }
-#calendar-tabs li.week span.icon {
-	background:url(../img/icons.png) no-repeat scroll 2px -234px;
+#calendar-tab-day span.icon {
+	background-position:2px -204px;
 }
-#calendar-tabs li.month span.icon {
-	background:url(../img/icons.png) no-repeat scroll 2px -264px;
+#calendar-tab-week span.icon {
+	background-position:2px -234px;
 }
-#calendar-tabs li.add {
-	float:right;
+#calendar-tab-month span.icon {
+	background-position:2px -264px;
 }
-#calendar-tabs li.add span.icon {
-	background:url(../img/icons.png) no-repeat scroll 2px -294px;
+
+#calendar-tab-edit,
+#calendar-tab-view {
+	float:right !important;
 }
-#calendar-tabs li.edit {
-	float:right;
+#calendar-tab-edit span.icon {
+	background-position:2px -24px;
 }
-#calendar-tabs li.edit span.icon {
-	background:url(../img/icons.png) no-repeat scroll 2px -24px;
-}
-#calendar-tabs li.view {
-	float:right;
-}
-#calendar-tabs li.view span.icon {
-	background:url(../img/icons.png) no-repeat scroll 2px 6px;
+#calendar-tab-view span.icon {
+	background-position:2px 6px;
 }
 
 

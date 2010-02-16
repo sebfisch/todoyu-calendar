@@ -48,23 +48,17 @@ $CONFIG['EXT']['calendar']['config'] = array(
 );
 
 	// Tabs used in calendar
-$CONFIG['EXT']['calendar']['contentTabs'] = array(
+$CONFIG['EXT']['calendar']['tabs'] = array(
 	array(
 		'id'		=> 'day',
-		'class'		=> 'day',
-		'hasIcon'	=> 1,
 		'label'		=> 'LLL:date.day'
 	),
 	array(
 		'id'		=> 'week',
-		'class'		=> 'week',
-		'hasIcon'	=> 1,
 		'label'		=> 'LLL:date.week'
 	),
 	array(
 		'id'		=> 'month',
-		'class'		=> 'month',
-		'hasIcon'	=> 1,
 		'label'		=> 'LLL:date.month'
 	)
 );
