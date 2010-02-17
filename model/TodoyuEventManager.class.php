@@ -35,12 +35,15 @@ class TodoyuEventManager {
 	/**
 	 * Get form object form quick create
 	 *
+	 * @param	Integer		$idEvent
 	 * @return
 	 */
-	public static function getQuickCreateForm() {
+	public static function getQuickCreateForm($idEvent = 0) {
+		$idEvent	= intval($idEvent);
+
 			// Create form object
 		$xmlPath	= 'ext/calendar/config/form/event.xml';
-		$form		= TodoyuFormManager::getForm($xmlPath);
+		$form		= TodoyuFormManager::getForm($xmlPath, $idEvent);
 
 			// Adjust form to needs of quick creation wizard
 		$form->setAttribute('action', '?ext=calendar&amp;controller=quickcreateevent');
