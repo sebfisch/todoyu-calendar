@@ -50,10 +50,11 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 	public function saveAction(array $params) {
 		restrict('calendar', 'event:add');
 
-		$formData	= $params['quickevent'];
-		$xmlPath	= 'ext/calendar/config/form/event.xml';
-		$form		= TodoyuFormManager::getForm($xmlPath);
+		$formData	= $params['event'];
 
+			// Get form object, call save hooks, set data
+		$form		= TodoyuEventManager::getQuickCreateForm();
+		$formData	= TodoyuFormHook::callSaveData('ext/calendar/config/form/event.xml', $formData, 0);
 		$form->setFormData($formData);
 
 		if ( $form->isValid() ) {

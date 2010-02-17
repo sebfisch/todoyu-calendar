@@ -31,6 +31,28 @@ class TodoyuEventManager {
 	const TABLE = 'ext_calendar_event';
 
 
+
+	/**
+	 * Get form object form quick create
+	 *
+	 * @return
+	 */
+	public static function getQuickCreateForm() {
+			// Create form object
+		$xmlPath	= 'ext/calendar/config/form/event.xml';
+		$form		= TodoyuFormManager::getForm($xmlPath);
+
+			// Adjust form to needs of quick creation wizard
+		$form->setAttribute('action', '?ext=calendar&amp;controller=quickcreateevent');
+		$form->setAttribute('onsubmit', 'return false');
+		$form->getFieldset('buttons')->getField('save')->setAttribute('onclick', 'Todoyu.Headlet.QuickCreate.Event.save(this.form)');
+		$form->getFieldset('buttons')->getField('cancel')->setAttribute('onclick', 'Todoyu.Popup.close(\'quickcreate\')');
+
+		return $form;
+	}
+
+
+
 	/**
 	 * Get event object
 	 *

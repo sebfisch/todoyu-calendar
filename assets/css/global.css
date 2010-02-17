@@ -32,6 +32,17 @@
 
 
 
+/* ------------------------
+	Quick create wizard popup styling
+   ------------------------ */
+
+#quickcreate.dialog.event div#quickcreate_top.dialog_title {
+	padding:0 0 0 22px;
+	background:url(../img/icons.png) no-repeat 0 0px;
+}
+
+
+
 /* -------------------
    Create mode
    ------------------- */
