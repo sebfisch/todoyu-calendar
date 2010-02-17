@@ -26,8 +26,6 @@
  * @subpackage	Calendar
  */
 
-
-
 $CONFIG['EXT']['calendar']['assets'] = array(
 
 		// Default assets: loaded all over the installation always
@@ -57,8 +55,6 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			)
 		)
 	),
-
-
 
 		// Public assets: basis assets for this extension
 	'public' => array(
@@ -161,7 +157,8 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 
 
 
-		// Assets of panel widgets
+	// Assets of panel widgets
+
 		// Calendar
 	'panelwidget-calendar' => array(
 		'js' => array(
