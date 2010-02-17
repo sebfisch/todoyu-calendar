@@ -43,18 +43,18 @@
 
 
 
-/* -------------------
-   Create mode
-   ------------------- */
+/* ------------------------------
+   Create mode option in headlet
+   ------------------------------ */
 .createmode-event {
-	background:url(../img/icons.png) no-repeat 4px -298px !important;
+	background:url(../img/icons.png) no-repeat 11px -298px !important;
 }
 
 
 
-/* -------------------
-   Search mode
-   ------------------- */
+/* ------------------------------
+   Search mode opiton in headlet
+   ------------------------------ */
 .searchmode-event {
 	background:url(../img/icons.png) no-repeat 3px 3px !important;
 }

@@ -33,6 +33,9 @@ TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManage
 	// Add quick create types
 TodoyuQuickCreateManager::addEngine('calendar', 'event', 'event.create.label', 50);
 
+	// Add area related primary engines
+TodoyuQuickCreateManager::addAreaEngine(EXTID_CALENDAR, 'calendar', 'event', 'event.create.label', 10);
+
 	// Add search type engines
 if ( allowed('calendar', 'event:search') ) {
 	TodoyuSearchManager::addEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
