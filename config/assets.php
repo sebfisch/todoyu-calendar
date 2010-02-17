@@ -38,7 +38,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 100
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/QuickCreateEvent.js',
+				'file' => 'ext/calendar/assets/js/HeadletQuickCreateEvent.js',
 				'position' => 100
 			),
 		),
@@ -186,22 +186,6 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 			)
 		)
 	),
-
-		// Quickevent wizard
-//	'panelwidget-quickevent' => array(
-//		'js' => array(
-//			array(
-//				'file' => 'ext/calendar/assets/js/PanelWidgetQuickEvent.js',
-//				'position' => 120
-//			)
-//		),
-//		'css' => array(
-//			array(
-//				'file' => 'ext/calendar/assets/css/panelwidget-quickevent.css',
-//				'position' => 120
-//			)
-//		)
-//	),
 
 
 

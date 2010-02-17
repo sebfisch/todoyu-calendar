@@ -41,7 +41,7 @@ class TodoyuEventRenderer {
 			$time = time();
 		}
 
-		$xmlPath	= 'ext/calendar/config/form/quickcreateevent.xml';
+		$xmlPath	= 'ext/calendar/config/form/event.xml';
 		$form 		= TodoyuFormManager::getForm($xmlPath);
 
 		$dayRange	= TodoyuTime::getDayRange($time);
@@ -65,6 +65,12 @@ class TodoyuEventRenderer {
 
 		$form->setFormData($formData);
 		$form->setUseRecordID(false);
+
+			// Adjust form to needs of quick creation wizard
+		$form->setAttribute('name', 'quickevent');
+		$form->setAttribute('onsubmit', 'return false');
+		$form->setAttribute('class', 'formEvent');
+		$form->getFieldset('buttons')->getField('cancel')->setAttribute('onclick', 'Todoyu.Popup.close(\'quickcreate\')');
 
 		return $form->render();
 	}
@@ -122,6 +128,11 @@ class TodoyuEventRenderer {
 	}
 
 
+
+	/**
+	 *
+	 * @param	Integer		$idEvent
+	 */
 	public static function renderEventDetailsInList($idEvent) {
 		$idEvent= intval($idEvent);
 		$event	= TodoyuEventManager::getEvent($idEvent);
