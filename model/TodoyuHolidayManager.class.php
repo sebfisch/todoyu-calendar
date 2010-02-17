@@ -183,7 +183,7 @@ class TodoyuHolidayManager {
 		$idHoliday		= intval($idHoliday);
 		$idHolidaySet	= intval($idHolidaySet);
 
-		TodoyuDbHelper::addMMrelation('ext_calendar_mm_holiday_holidayset', 'id_holiday', 'id_holidayset', $idHoliday, $idHolidaySet);
+		TodoyuDbHelper::addMMLink('ext_calendar_mm_holiday_holidayset', 'id_holiday', 'id_holidayset', $idHoliday, $idHolidaySet);
 	}
 
 

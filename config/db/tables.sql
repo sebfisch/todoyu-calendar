@@ -6,7 +6,7 @@ CREATE TABLE `ext_calendar_event` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `date_create` int(10) unsigned NOT NULL DEFAULT '0',
   `date_update` int(10) unsigned NOT NULL DEFAULT '0',
-  `id_person_create` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_person_create` smallint(5) unsigned NOT NULL DEFAULT '0',
   `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `id_project` smallint(6) NOT NULL DEFAULT '0',
   `id_task` int(10) unsigned NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE `ext_calendar_mm_holiday_holidayset` (
 CREATE TABLE `ext_calendar_mm_event_person` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_event` int(10) unsigned NOT NULL DEFAULT '0',
-  `id_person` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_person` smallint(5) unsigned NOT NULL,
   `is_acknowledged` tinyint(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `uid_local` (`id_event`),
