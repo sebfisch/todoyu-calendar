@@ -85,6 +85,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	},
 
 
+
 	/**
 	 * Event type change observer
 	 */

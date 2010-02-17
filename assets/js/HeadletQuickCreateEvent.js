@@ -28,8 +28,9 @@ Todoyu.Headlet.QuickCreate.Event = {
 	 * Evoked upon opening of event quick create wizard popup
 	 */
 	onPopupOpened: function() {
-		time	= 0; //Todoyu.Ext.calendar.getTime();
+		time	= 0;
 
+//		Todoyu.Ext.calendar.getTime();
 //		$('quickevent-field-eventtype').observe('change', this.onEventTypeChange.bindAsEventListener(this, time));
 	},
 
@@ -62,10 +63,15 @@ Todoyu.Headlet.QuickCreate.Event = {
 
 		if( response.hasTodoyuError() ) {
 			Todoyu.Popup.setContent('quickcreate', response.responseText);
+			
 				//fix to reactivate the jscalendar scripts. Maybe theres a better solution ?
 			$('quickcreateevent-form').innerHTML.evalScripts();
 		} else {
-			Todoyu.Headlet.QuickCreate.closePopup();
+			var idEvent	= response.getTodoyuHeader('idEvent');
+			Todoyu.Hook.exec('onEventSaved', idEvent);
+
+			Todoyu.Popup.close('quickcreate');
+			Todoyu.notifySuccess('[LLL:event.save.success]');
 		}
 	},
 

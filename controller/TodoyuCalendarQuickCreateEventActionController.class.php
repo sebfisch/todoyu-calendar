@@ -63,9 +63,12 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 				// Save or update event
 			$idEvent	= TodoyuEventManager::saveQuickEvent($storageData);
 			$event		= TodoyuEventManager::getEvent($idEvent);
+			$startDate	= $event->getStartDate();
 
-				// Send back start date to jump in the calendar view
-			return $event->getStartDate();
+			TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
+
+				// Send back start date to enable jumping in the calendar view
+			TodoyuHeader::sendTodoyuHeader('startDate', $startDate);
 		} else {
 			TodoyuHeader::sendTodoyuErrorHeader();
 
