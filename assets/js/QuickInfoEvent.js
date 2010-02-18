@@ -18,22 +18,21 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-Todoyu.Ext.calendar.Quickinfo.Event = {
+Todoyu.Ext.calendar.QuickInfoEvent = {
 
 	/**
 	 *	Ext shortcut
 	 */
 	ext:		Todoyu.Ext.calendar,
 
-	observers:	[],
 
 
 
 	/**
 	 * Install element observers on all calendar event quickinfo elements
 	 */
-	installObservers: function() {
-		$$('div.quickInfoEvent').each(this.installOnElement.bind(this));
+	init: function() {
+		$$('div.quickInfoEvent').each(this.install.bind(this));
 	},
 
 
@@ -43,37 +42,13 @@ Todoyu.Ext.calendar.Quickinfo.Event = {
 	 * 
 	 * @param	Element	element
 	 */
-	installOnElement: function(element) {
+	install: function(element) {
 			// Extract event ID
-		var idEvent	= element.readAttribute('id').split('-').last();
-
-			// Define over/out event listener methods
-		var observerOver= this.onMouseOver.bindAsEventListener(this, idEvent);
-		var observerOut	= this.onMouseOut.bindAsEventListener(this, idEvent);
-
-		this.observers.push({
-			'element':	element,
-			'over':		observerOver,
-			'out':		observerOut
-		});
+		var idEvent	= $(element).id.split('-').last();
 
 			// Install the actual observers
-		element.observe('mouseover', observerOver);
-		element.observe('mouseout', observerOut);
-	},
-
-
-
-	/**
-	 * Stop and unregister calendar event element mouseover/out oberservers of all calendar event elements
-	 */
-	uninstallObservers: function() {
-		this.observers.each(function(observer){
-			Event.stopObserving(observer.element, 'mouseover', observer.over);
-			Event.stopObserving(observer.element, 'mouseout', observer.out);
-		});
-
-		this.observers = [];
+		$(element).observe('mouseover', this.onMouseOver.bindAsEventListener(this, idEvent));
+		$(element).observe('mouseout', this.onMouseOut.bindAsEventListener(this, idEvent));
 	},
 
 
@@ -85,7 +60,7 @@ Todoyu.Ext.calendar.Quickinfo.Event = {
 	 * @param	Integer	idEvent
 	 */
 	onMouseOver: function(event, idEvent) {
-		this.ext.Quickinfo.show('event', idEvent, event.pointerX(), event.pointerY());
+		Todoyu.QuickInfo.show('calendar', 'event', idEvent, event.pointerX(), event.pointerY());
 	},
 
 
@@ -98,7 +73,7 @@ Todoyu.Ext.calendar.Quickinfo.Event = {
 	 *
 	 */
 	onMouseOut: function(event, idEvent) {
-		this.ext.Quickinfo.hide();
+		Todoyu.QuickInfo.hide();
 	},
 
 
@@ -109,7 +84,7 @@ Todoyu.Ext.calendar.Quickinfo.Event = {
 	 * @param	Integer	idEvent
 	 */
 	removeFromCache: function(idEvent) {
-		this.ext.Quickinfo.removeFromCache('event' + idEvent);
+		Todoyu.QuickInfo.removeFromCache('event' + idEvent);
 	}
 
 };

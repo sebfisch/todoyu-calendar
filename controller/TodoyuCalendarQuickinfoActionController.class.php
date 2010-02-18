@@ -68,7 +68,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 
 			// Only add users info when assigned to at least one user
 		if ( sizeof($usersInfo) > 0 ) {
-			$quickInfo->addInfo('users', implode('<br />', $usersInfo), 50);
+			$quickInfo->addInfo('persons', implode('<br />', $usersInfo), 50);
 		}
 
 		$quickInfo->printInfoJSON();
@@ -115,7 +115,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$viewBirthday	= mktime(0, 0, 0, date('n', $birthday), date('j', $birthday), date('Y', $viewDate));
 		$age			= date('Y', $viewDate) - date('Y', $birthday);
 
-		$quickInfo->addInfo('user',		$person->getFullName());
+		$quickInfo->addInfo('name',		$person->getFullName());
 		$quickInfo->addInfo('date',		TodoyuTime::format($viewBirthday, 'date'));
 		$quickInfo->addInfo('birthday',	$age . ' ' . Label('calendar.yearsold'));
 

@@ -1,10 +1,19 @@
 /* -------------------------------------
 	QuickInfo icons for calendar infos
    ------------------------------------- */
+
+#quickinfo dt.titleIcon {
+	background:url(../img/icons.png) no-repeat 4px 4px;
+}
+  
 #quickinfo dt.dateIcon {
 	background:url(../img/icons.png) no-repeat 4px -568px;
 }
 
 #quickinfo dt.placeIcon {
 	background:url(../img/icons.png) no-repeat 4px -538px;
+}
+
+#quickinfo dt.personsIcon {
+	background:url(../../../contact/assets/img/icons.png) no-repeat 4px 2px;
 }

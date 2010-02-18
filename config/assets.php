@@ -72,10 +72,6 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 104
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/QuickInfo.js',
-				'position' => 106
-			),
-			array(
 				'file' => 'ext/calendar/assets/js/QuickInfoBirthday.js',
 				'position' => 107
 			),

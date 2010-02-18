@@ -22,7 +22,7 @@
 		<tr class="odd">
 			<td class="eventAttrTitle ">{Label event.attr.attendees}: </td>
 			<td class="eventValue">{foreach $attendees user userData}
-				<span class="user{if $userData.is_acknowledged == 0 && ! isUserID($userData.id)} isNotAcknowledgedIcon{/if}">
+				<span class="user{if $userData.is_acknowledged == 0 && ! isPersonID($userData.id)} isNotAcknowledgedIcon{/if}">
 					{$userData.firstname} {$userData.lastname}
 				</span>
 				<br/>

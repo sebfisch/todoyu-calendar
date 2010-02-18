@@ -18,22 +18,19 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-Todoyu.Ext.calendar.Quickinfo.Holiday = {
+Todoyu.Ext.calendar.QuickInfoHoliday = {
 
 	/**
 	 * Ext shortcut
 	 */
 	ext:		Todoyu.Ext.calendar,
 
-	observers:	[],
-
-
 
 	/**
 	 * Install observers on all calendar holiday elements. 
 	 */
-	installObservers: function() {
-		$$('span.quickInfoHoliday').each(this.installOnElement.bind(this));
+	init: function() {
+		$$('span.quickInfoHoliday').each(this.install.bind(this));
 	},
 
 
@@ -43,37 +40,12 @@ Todoyu.Ext.calendar.Quickinfo.Holiday = {
 	 * 
 	 * @param	Element	element
 	 */
-	installOnElement: function(element) {
-		var timestamp	= element.readAttribute('id').split('-').last();
+	install: function(element) {
+		var timestamp	= $(element).id.split('-').last();
 
-			// Mouseover
-		var observerOver= this.onMouseOver.bindAsEventListener(this, timestamp);
-		var observerOut	= this.onMouseOut.bindAsEventListener(this, timestamp);
-
-		this.observers.push({
-			'element':	element,
-			'over':		observerOver,
-			'out':		observerOut
-		});
-
-		element.observe('mouseover', observerOver);
-		element.observe('mouseout', observerOut);
+		$(element).observe('mouseover', this.onMouseOver.bindAsEventListener(this, timestamp));
+		$(element).observe('mouseout', this.onMouseOut.bindAsEventListener(this, timestamp));
 	},
-
-
-
-	/**
-	 * Uninstall registered holiday elements' mouseOver and -Out observers
-	 */
-	uninstallObservers: function() {
-		this.observers.each(function(observer){
-			Event.stopObserving(observer.element, 'mouseover', observer.over);
-			Event.stopObserving(observer.element, 'mouseout', observer.out);
-		});
-
-		this.observers = [];
-	},
-
 
 
 	/**
@@ -83,7 +55,7 @@ Todoyu.Ext.calendar.Quickinfo.Holiday = {
 	 * @param	Integer	timestamp		timestamp of the holiday
 	 */
 	onMouseOver: function(event, timestamp) {
-		this.ext.Quickinfo.show('holiday', timestamp, event.pointerX(), event.pointerY());
+		Todoyu.QuickInfo.show('calendar', 'holiday', timestamp, event.pointerX(), event.pointerY());
 	},
 
 
@@ -95,7 +67,7 @@ Todoyu.Ext.calendar.Quickinfo.Holiday = {
 	 * @param	Integer	timestamp		timestamp of the holiday
 	 */
 	onMouseOut: function(event, timestamp) {
-		this.ext.Quickinfo.hide();
+		Todoyu.QuickInfo.hide();
 	},
 
 
@@ -106,7 +78,7 @@ Todoyu.Ext.calendar.Quickinfo.Holiday = {
 	 * @param	Integer	idHoliday
 	 */
 	removeFromCache: function(idHoliday) {
-		this.ext.Quickinfo.removeFromCache('holiday' + idHoliday);
+		Todoyu.QuickInfo.removeFromCache('holiday' + idHoliday);
 	}
 
 };

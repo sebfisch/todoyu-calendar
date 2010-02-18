@@ -15,7 +15,7 @@
 {* ---------- Only show title if event is not private ---------- *}
 {if $is_private == 1}
 	<span class="privateEvent"></span>
-	{if isUserID($id_person)}
+	{if isPersonID($id_person)}
 		{$title}
 	{/if}
 {else}
