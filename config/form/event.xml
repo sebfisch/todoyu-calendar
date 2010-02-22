@@ -87,7 +87,6 @@
 							<function>TodoyuUserViewHelper::getUserLabel</function>
 							<noLabel>event.attr.assigned_to.noLabel</noLabel>
 						</label>
-						<validateRequired>TodoyuUserViewHelper::validateRequiredUserAC</validateRequired>
 					</record>
 					<required />
 

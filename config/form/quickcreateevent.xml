@@ -59,7 +59,6 @@
 							<function>TodoyuUserViewHelper::getUserLabel</function>
 							<noLabel>Neuer Benutzer</noLabel>
 						</label>
-						<validateRequired>TodoyuUserViewHelper::validateRequiredUserAC</validateRequired>
 					</record>
 					<required />
 				</field>
