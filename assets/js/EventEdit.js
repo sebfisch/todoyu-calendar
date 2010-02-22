@@ -144,7 +144,7 @@ Todoyu.Ext.calendar.EventEdit = {
 
 		switch(eventtype) {
 			case 3: // birthday
-				fields = ['is-dayevent', 'date-end', 'user'];
+				fields = ['is-dayevent', 'date-end', 'person'];
 				break;
 			case 13: // reminder
 				fields = ['is-dayevent', 'date-end'];
@@ -300,14 +300,14 @@ Todoyu.Ext.calendar.EventEdit = {
 
 
 	/**
-	 * Handler when event user assignment field is autocompleted
+	 * Handler when event person assignment field is autocompleted
 	 *
 	 * @param	Ajax.Response			response
 	 * @param	Todoyu.Autocompleter	autocompleter
 	 */
-	onUserAssignmentAutocomplete: function(response, autocompleter) {
+	onPersonAssignmentAutocomplete: function(response, autocompleter) {
 		if( response.getTodoyuHeader('acElements') == 0 ) {
-			Todoyu.notifyInfo('[LLL:event.ac.userassignment.notFoundInfo]');
+			Todoyu.notifyInfo('[LLL:event.ac.personassignment.notFoundInfo]');
 		}
 	}
 

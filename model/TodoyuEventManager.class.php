@@ -89,16 +89,16 @@ class TodoyuEventManager {
 	 *
 	 * @param	Integer		$dateStart		timestamp at beginning of timespan
 	 * @param	Integer		$dateEnd		timestamp at end of timespan	(optionally 0, will be set to 5 years after today than)
-	 * @param	Array		$users
+	 * @param	Array		$persons
 	 * @param	Array		$eventTypes
 	 * @param	Mixed		$dayEvents		null = both types, true = only dayevents, false = only non-dayevents
 	 * @param	String		$indexField
 	 * @return	Array
 	 */
-	public static function getEventsInTimespan($dateStart, $dateEnd, array $users = array(), array $eventTypes = array(), $dayEvents = null, $indexField = 'id') {
+	public static function getEventsInTimespan($dateStart, $dateEnd, array $persons = array(), array $eventTypes = array(), $dayEvents = null, $indexField = 'id') {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
-		$users		= TodoyuArray::intval($users, true, true);
+		$persons	= TodoyuArray::intval($persons, true, true);
 
 		$fields	= '	e.*,
 					mmeu.id_person,
@@ -123,9 +123,9 @@ class TodoyuEventManager {
 			$where .= ' AND e.is_dayevent = 0';
 		}
 
-			// Users
-		if( sizeof($users) > 0 ) {
-			$where	.= ' AND mmeu.id_person IN(' . implode(',', $users) . ',0)';
+			// Persons
+		if( sizeof($persons) > 0 ) {
+			$where	.= ' AND mmeu.id_person IN(' . implode(',', $persons) . ',0)';
 		}
 
 
@@ -135,7 +135,7 @@ class TodoyuEventManager {
 		}
 
 
-			// Assigned users
+			// Assigned persons
 		if( ! allowed('calendar', 'event:seeAll') ) {
 			$where .= ' AND mmeu.id_person IN(' . personid() . ',0)';
 		}
@@ -254,10 +254,10 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Get all users assigned to an event
+	 * Get all persons assigned to an event
 	 *
-	 * @param	Integer $idEvent
-	 * @param	Boolean $getUserData	get also user data (not only the ID)?
+	 * @param	Integer 	$idEvent
+	 * @param	Boolean 	$getPersonData	get also person data (not only the ID)?
 	 * @return	Array
 	 */
 	public static function getAssignedPersonsOfEvent($idEvent, $getPersonData = false) {
@@ -281,62 +281,62 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Get all users assigned to given array of events
+	 * Get all persons assigned to given array of events
 	 *
 	 * @param	Array $eventIDs
 	 * @return	Array
 	 */
-	public static function getAssignedUsersOfEvents(array $eventIDs ) {
-		$eventIDs	= array_unique( TodoyuArray::intval($eventIDs) );
+	public static function getAssignedPersonsOfEvents(array $eventIDs) {
+		$eventIDs	= array_unique(TodoyuArray::intval($eventIDs));
 
 		$fields	= 'id_event, id_person';
 		$tables	= 'ext_calendar_mm_event_person';
-		$where	= 'id_event IN (' . TodoyuArray::intImplode( $eventIDs ) . ') ';
+		$where	= 'id_event IN (' . TodoyuArray::intImplode($eventIDs) . ') ';
 
-		$res	= Todoyu::db()->getArray( $fields, $tables, $where, '', 'id_event', '' );
+		$epLinks= Todoyu::db()->getArray($fields, $tables, $where, '', 'id_event', '' );
 
-		$eventUsers = array();
-		foreach($res as $vals) {
-			$eventUsers[ $vals['id_event'] ][] = $vals['id_person'];
+		$eventPersons = array();
+		foreach($epLinks as $epLink) {
+			$eventPersons[ $epLink['id_event'] ][] = $epLink['id_person'];
 		}
 
-		return $eventUsers;
+		return $eventPersons;
 	}
 
 
 
 	/**
-	 * Check which users are already booked during the given timespan (excluding the given event)
+	 * Check which persons are already booked during the given timespan (excluding the given event)
 	 *
-	 * @param	Array	$userIDs
-	 * @param	Integer	$dateStart
-	 * @param	Integer	$dateEnd
-	 * @param	Integer	$idEvent
+	 * @param	Array		$personIDs
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
+	 * @param	Integer		$idEvent
 	 * @return	Array
 	 */
-	public static function getOverbookedEventUsers(array $userIDs, $dateStart, $dateEnd, $idEvent) {
-		$overbookedUserIDs	= array();
+	public static function getOverbookedEventPersons(array $personIDs, $dateStart, $dateEnd, $idEvent) {
+		$overbookedPersonIDs	= array();
 
-			// Get events of involved users during timespan
-		$overlaps	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $userIDs);
+			// Get events of involved persons during timespan
+		$overlaps	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs);
 		unset($overlaps[$idEvent]);
 
 		if ( count($overlaps) > 0 ) {
 			foreach($overlaps as $idOverlapEvent => $overlapEventData) {
-					// Get user assignments of overlapping event
-				$overlaps[$idOverlapEvent]['assigned_users']	= array();
-				$assignedUsers	= TodoyuEventManager::getAssignedPersonsOfEvent($idOverlapEvent);
-				foreach ($assignedUsers as $user) {
-					if ( in_array($user['id_person'], $userIDs) ) {
-						$overbookedUserIDs[]	= $user['id_person'];
+					// Get person assignments of overlapping event
+				$overlaps[$idOverlapEvent]['assigned_persons']	= array();
+				$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($idOverlapEvent);
+				foreach($assignedPersons as $person) {
+					if ( in_array($person['id_person'], $person) ) {
+						$overbookedPersonIDs[]	= $person['id_person'];
 					}
 				}
 			}
 
-			$overbookedUserIDs	= array_unique($overbookedUserIDs);
+			$overbookedPersonIDs = array_unique($overbookedPersonIDs);
 		}
 
-		return $overbookedUserIDs;
+		return $overbookedPersonIDs;
 	}
 
 
@@ -352,8 +352,8 @@ class TodoyuEventManager {
 			// Delete event
 		Todoyu::db()->deleteRecord(self::TABLE , $idEvent);
 
-			// Remove user-assignments
-		self::removeAllUserAssignments($idEvent);
+			// Remove perso-assignments
+		self::removeAllPersonAssignments($idEvent);
 	}
 
 
@@ -375,25 +375,25 @@ class TodoyuEventManager {
 			$idEvent = self::addEvent(array());
 		}
 
-			// Extract user IDs from foreign data array (easier to handle)
-		$data['user'] = TodoyuArray::getColumn(TodoyuArray::assure($data['user']), 'id');
+			// Extract person IDs from foreign data array (easier to handle)
+		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
 
 			// Call save data hooks
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
 
-			// Remove already assigned users
-		self::removeAllUserAssignments($idEvent);
+			// Remove already assigned person
+		self::removeAllPersonAssignments($idEvent);
 
-			// If no users assigned, assign to user "0"
-		if( sizeof($data['user']) === 0 ) {
-			$data['user'][] = 0;
+			// If no persons assigned, assign to person "0"
+		if( sizeof($data['persons']) === 0 ) {
+			$data['persons'][] = 0;
 		}
 
-			// Add users
-		self::assignUsersToEvent($idEvent, $data['user']);
+			// Add persons
+		self::assignPersonsToEvent($idEvent, $data['persons']);
 
 			// Remove not needed fields
-		unset($data['user']);
+		unset($data['persons']);
 
 			// Update the event with the definitive data
 		self::updateEvent($idEvent, $data);
@@ -416,19 +416,19 @@ class TodoyuEventManager {
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
 		$idEvent	= self::addEvent(array());
 
-			// Add users
-		$data['user'] = TodoyuArray::getColumn(TodoyuArray::assure($data['user']), 'id');
+			// Add person
+		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['person']), 'id');
 
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
 
-			// If no users assigned, assign to user "0"
-		if( sizeof($data['user']) === 0 ) {
-			$data['user'][] = 0;
+			// If no persons assigned, assign to person "0"
+		if( sizeof($data['persons']) === 0 ) {
+			$data['persons'][] = 0;
 		}
 
-		self::assignUsersToEvent($idEvent, $data['user']);
+		self::assignPersonsToEvent($idEvent, $data['persons']);
 
-		unset($data['user']);
+		unset($data['persons']);
 
 			// Update the event with the definitive data
 		self::updateEvent($idEvent, $data);
@@ -472,37 +472,37 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Assign multiple users to an event
+	 * Assign multiple persons to an event
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Array		$userIDs
+	 * @param	Array		$personIDs
 	 */
-	public static function assignUsersToEvent($idEvent, array $userIDs) {
+	public static function assignPersonsToEvent($idEvent, array $personIDs) {
 		$idEvent	= intval($idEvent);
-		$userIDs	= TodoyuArray::intval($userIDs, true, false);
+		$personIDs	= TodoyuArray::intval($personIDs, true, false);
 
-		foreach($userIDs as $idUser) {
-			self::assignUserToEvent($idEvent, $idUser);
+		foreach($personIDs as $idPerson) {
+			self::assignPersonToEvent($idEvent, $idPerson);
 		}
 	}
 
 
 
 	/**
-	 * Assign a single user to an event
+	 * Assign a single person to an event
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 */
-	public static function assignUserToEvent($idEvent, $idUser) {
-		$idEvent= intval($idEvent);
-		$idUser	= intval($idUser);
+	public static function assignPersonToEvent($idEvent, $idPerson) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= intval($idPerson);
 
 		$table	= 'ext_calendar_mm_event_person';
 		$data	= array(
 			'id_event'			=> $idEvent,
-			'id_person'			=> $idUser,
-			'is_acknowledged'	=> personid() == $idUser ? 1 : 0
+			'id_person'			=> $idPerson,
+			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0
 		);
 
 		Todoyu::db()->addRecord($table, $data);
@@ -511,11 +511,11 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Remove all user-assignments from an event
+	 * Remove all person-assignments from an event
 	 *
 	 * @param	Integer		$idEvent
 	 */
-	public static function removeAllUserAssignments($idEvent) {
+	public static function removeAllPersonAssignments($idEvent) {
 		$idEvent= intval($idEvent);
 
 		$table	= 'ext_calendar_mm_event_person';
@@ -527,18 +527,18 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Remove a user assignement for an event
+	 * Remove a person assignement for an event
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 */
-	public static function removeUserAssignment($idEvent, $idUser) {
+	public static function removePersonAssignment($idEvent, $idPerson) {
 		$idEvent	= intval($idEvent);
-		$idUser		= intval($idUser);
+		$idPerson	= intval($idPerson);
 
 		$table		= self::TABLE;
 		$where		= '	id_event	= ' . $idEvent . ' AND
-						id_person		= ' . $idUser;
+						id_person	= ' . $idPerson;
 
 		Todoyu::db()->doDelete($table, $where);
 	}
@@ -619,33 +619,33 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Assign users to an event
+	 * Assign persons to an event
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Array		$userIDs
+	 * @param	Array		$formData
 	 */
-	public static function addAssignedEventUsersAndSendMail($idEvent, array $formData) {
+	public static function addAssignedEventPersonsAndSendMail($idEvent, array $formData) {
 		$idEvent	= intval($idEvent);
 
-		if(array_key_exists('user', $formData))	{
+		if(array_key_exists('persons', $formData))	{
 			$table = 'ext_calendar_mm_event_person';
 
-			foreach($formData['user'] as $userArray)	{
-				$idUser	= $userArray['id'];
+			foreach($formData['persons'] as $person)	{
+				$idPerson	= $person['id'];
 				$fields	=	array(
 					'id_event'			=> $idEvent,
-					'id_person'			=> $idUser,
-					'is_acknowledged'	=> $idUser == personid() ? 1 : 0,
+					'id_person'			=> $idPerson,
+					'is_acknowledged'	=> $idPerson == personid() ? 1 : 0,
 				);
 
 				Todoyu::db()->doInsert($table, $fields);
 
 				if( $formData['send_notification'] === 1 )	{
-					TodoyuCalendarMailer::sendEventNotification($idEvent, $idUser);
+					TodoyuCalendarMailer::sendEventNotification($idEvent, $idPerson);
 				}
 			}
 
-			unset($formData['user']);
+			unset($formData['persons']);
 			unset($formData['send_notification']);
 		}
 
@@ -657,15 +657,15 @@ class TodoyuEventManager {
 	/**
 	 * Set given event acknowledged
 	 *
-	 * @param	Integer	$idEvent
-	 * @param	Integer	$idUser
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
 	 */
-	public static function acknowledgeEvent($idEvent, $idUser)	{
+	public static function acknowledgeEvent($idEvent, $idPerson)	{
 		$idEvent	= intval($idEvent);
-		$idUser		= intval($idUser);
+		$idPerson	= intval($idPerson);
 
-		$where 	= '	id_event= ' . $idEvent . ' AND
-					id_person	= ' . $idUser;
+		$where 	= '	id_event	= ' . $idEvent . ' AND
+					id_person	= ' . $idPerson;
 		$update	= array(
 			'is_acknowledged' => 1
 		);
@@ -713,8 +713,8 @@ class TodoyuEventManager {
 			'id'			=>	0,
 			'date_start'	=>	$dateStart,
 			'date_end'		=>	$dateEnd,
-			'user' 			=> array(
-				0	=> TodoyuAuth::getPerson()->getTemplateData()
+			'persons' 		=> array(
+				TodoyuAuth::getPerson()->getTemplateData()
 			)
 		);
 
@@ -739,16 +739,16 @@ class TodoyuEventManager {
 
 		$allowed[]	= $own['header'];
 
-		if( allowed('calendar', 'event:seeAll') || $event->isCurrentUserAssigned() ) {
+		if( allowed('calendar', 'event:seeAll') || $event->isCurrentPersonAssigned() ) {
 			$allowed['show'] = $own['show'];
 		}
 
 			// Edit event: right:editAll OR is assigned and right editAssigned OR is creater
-		if( $event->isCurrentUserCreator() || allowed('calendar', 'event:editAll') || ($event->isCurrentUserAssigned() && allowed('calendar','event:editAssigned')) ) {
+		if( $event->isCurrentPersonCreator() || allowed('calendar', 'event:editAll') || ($event->isCurrentPersonAssigned() && allowed('calendar','event:editAssigned')) ) {
 			$allowed['edit'] = $own['edit'];
 		}
 
-		if( allowed('calendar', 'event:deleteAll') || ($event->isCurrentUserAssigned() && allowed('calendar','event:deleteAssigned')) ) {
+		if( allowed('calendar', 'event:deleteAll') || ($event->isCurrentPersonAssigned() && allowed('calendar','event:deleteAssigned')) ) {
 			$allowed['delete'] = $own['remove'];
 		}
 
@@ -798,7 +798,7 @@ class TodoyuEventManager {
 		if( $data['eventtype'] == EVENTTYPE_BIRTHDAY ) {
 			$data['date_start']	= TodoyuTime::getStartOfDay($data['date_start']);
 			$data['date_end']	= $data['date_start'] + TodoyuTime::SECONDS_HOUR; // Fix, so event is in day period
-			$data['user']		= array();
+			$data['person']		= array();
 			$data['is_dayevent']= 1;
 		}
 

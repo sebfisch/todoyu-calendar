@@ -53,8 +53,8 @@ class TodoyuCalendarPortalRenderer {
 	 * @return	String
 	 */
 	public static function getAppointmentTabContent() {
-		$config	= $GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig'];
-		$idUser	= personid();
+		$config		= $GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig'];
+		$idPerson	= TodoyuAuth::getPersonID();
 
 			// Get events
 		$events	= TodoyuCalendarPortalManager::getAppointments();
@@ -71,7 +71,7 @@ class TodoyuCalendarPortalRenderer {
 			$birthdays	= array();
 		}
 
-		$color = TodoyuEventRenderer::getEventColorData($idUser);
+		$color = TodoyuEventRenderer::getEventColorData($idPerson);
 
 			// Add details if expanded
 		foreach($events as $idEvent => $eventData) {
@@ -88,7 +88,7 @@ class TodoyuCalendarPortalRenderer {
 			'holidays'						=> $holidays,
 			'showBirthdays'					=> $config['showBirthday'],
 			'birthdays'						=> $birthdays,
-			'color'							=> $color[$idUser],
+			'color'							=> $color[$idPerson],
 			'javascript'					=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();'
 		);
 

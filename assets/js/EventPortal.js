@@ -73,18 +73,18 @@ Todoyu.Ext.calendar.EventPortal = {
 	 *	Set event acknowledged
 	 *
 	 *	@param	Integer		idEvent
-	 *	@param	Integer		idUser
+	 *	@param	Integer		idPerson
 	 */
-	acknowledgeEvent: function(idEvent, idUser)	{
+	acknowledgeEvent: function(idEvent, idPerson)	{
 		var url = Todoyu.getUrl('calendar', 'event');
 
 		var options = {
 			'parameters': {
 				'action':	'acknowledge',
 				'event':	idEvent,
-				'idUser':	idUser
+				'idUser':	idPerson
 			},
-			'onComplete': this.onAcknowledged.bind(this, idEvent, idUser)
+			'onComplete': this.onAcknowledged.bind(this, idEvent, idPerson)
 		};
 
 		$('acknowledge-' + idEvent).removeClassName('not');

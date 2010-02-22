@@ -59,7 +59,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 		TodoyuPage::addExtAssets('calendar', 'panelwidget-holidaysetselector');
 
 		$this->addHasIconClass();
-		$this->addClass('user');
+//		$this->addClass('user');
 
 			// Init widget JS (observers)
 		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector.init.bind(Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector)', 100);
@@ -147,9 +147,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 			'panelwidget-holidaysetselector', 	// preference
 			$prefVals, 							// value
 			0,									// item ID
-			true,								// unique?
-			$idArea,							// area ID
-			personid()							// user ID
+			true								// unique?
 		);
 
 	}
@@ -171,7 +169,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 
 
 	/**
-	 * Check whether usage of panelwidget is allowed to current user
+	 * Check if panelwidget is allowed
 	 *
 	 * @return	Boolean
 	 */

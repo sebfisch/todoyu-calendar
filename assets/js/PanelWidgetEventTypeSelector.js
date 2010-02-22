@@ -39,7 +39,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	 */
 	init: function() {
 		this.list	= $('panelwidget-eventtypeSelector-list');
-						
+
 		this.installObservers();
 	},
 
@@ -126,7 +126,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	 */
 	savePrefs: function() {
 		var pref = this.getSelectedEventTypes().join(',');
-				
+
 		Todoyu.Pref.save('calendar', 'panelwidgeteventtypeselector', pref, 0, this.onPrefsSaved.bind(this));
 	},
 
@@ -134,11 +134,11 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
 	 * Hanlder after prefs have been saved: send updtate info
-	 * 
+	 *
 	 * @param	Object	response
 	 */
 	onPrefsSaved: function(response) {
-		Todoyu.PanelWidget.inform('eventtypeselector', this.getSelectedEventTypes());
+		Todoyu.PanelWidget.fire('eventtypeselector', this.getSelectedEventTypes());
 	}
 
 };

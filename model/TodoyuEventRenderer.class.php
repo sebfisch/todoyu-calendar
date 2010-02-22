@@ -56,14 +56,14 @@ class TodoyuEventRenderer {
 		}
 
 			// Get person data
-		$user	= TodoyuAuth::getPerson()->getTemplateData();
+		$person	= TodoyuAuth::getPerson()->getTemplateData();
 
 			// Set form data
 		$formData	= array(
 			'date_start' 	=> $timeStart,
 			'date_end' 		=> $timeEnd,
 			'is_dayevent'	=> $isDayEvent,
-			'user'			=> array($user)
+			'persons'		=> array($person)
 		);
 
 		$form->setFormData($formData);
@@ -77,22 +77,23 @@ class TodoyuEventRenderer {
 	/**
 	 * Prepare event rendering data array
 	 *
-	 * @param	String	$calendarMode			day / week / month
-	 * @param	Array	$data					event parameters
-	 * @param	Array	$selectedUserIDs
+	 * @todo	This functions seems wrong (only one person per event?)
+	 * @param	String		$calendarMode			day / week / month
+	 * @param	Array		$data					event parameters
 	 * @return	Array
 	 */
 	public static function prepareEventRenderData($calendarMode = 'month', array $data) {
-		$assignedUsers 		= TodoyuEventManager::getAssignedPersonsOfEvent( $data['id'] , true );
-		$idAssignedUser		= count($assignedUsers) == 1 ? $assignedUsers[0]['id_person'] : 0;
+		$idEvent			= intval($data['id']);
+		$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true );
+		$idAssignedPerson	= count($assignedPersons) == 1 ? $assignedPersons[0]['id_person'] : 0;
 
-		$color = self::getEventColorData($idAssignedUser);
+		$color = self::getEventColorData($idAssignedPerson);
 
 			// Build event render data
 		$data	= array_merge($data, array(
-			'calendarMode'	=> $calendarMode,
-			'assignedUsers'	=> $assignedUsers,
-			'color'			=> $color[$idAssignedUser],
+			'calendarMode'		=> $calendarMode,
+			'assignedPersons'	=> $assignedPersons,
+			'color'				=> $color[$idAssignedPerson],
 		));
 
 		if ($calendarMode == 'week') {
@@ -112,10 +113,9 @@ class TodoyuEventRenderer {
 	/**
 	 * Render event entry
 	 *
-	 * @param	Array	$data				Event details
-	 * @param	String	$calendarMode		'month' / 'week' / 'day'
-	 * @param	Array	$selectedUserIDs
-	 * @return	String	Div of the event
+	 * @param	Array		$event				Event details
+	 * @param	String		$calendarMode		'month' / 'week' / 'day'
+	 * @return	String
 	 */
 	public static function renderEvent(array $event, $calendarMode = 'month') {
 		$tmpl	= 'ext/calendar/view/event.tmpl';
@@ -143,7 +143,7 @@ class TodoyuEventRenderer {
 			'event'			=> $eventData,
 			'color'			=> $colors[personid()],
 			'attendees'		=> TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true),
-			'user_create'	=> $event->getUser('create')->getTemplateData()
+			'person_create'	=> $event->getPerson('create')->getTemplateData()
 		);
 
 		return render($tmpl, $data);
@@ -154,10 +154,8 @@ class TodoyuEventRenderer {
 	/**
 	 * Render day event (events that span a whole day or more than that)
 	 *
-	 * @param	Array	$data					Event details
-	 * @return	String	Div of the day-event
-	 * @param	Array	$selectedUserIDs
-	 * @param	Array	$selectedUserColors
+	 * @param	String		$calendarMode
+	 * @param	Array		$data
 	 * @return	String
 	 */
 	public static function renderFulldayEvent($calendarMode = 'day', array $data = array()) {
@@ -172,17 +170,15 @@ class TodoyuEventRenderer {
 	/**
 	 * Get event rendering color data
 	 *
-	 * @param	Integer	$idAssignedUser
-	 * @param	Array	$selectedUserIDs
-	 * @param	Array $selectedUserColors
+	 * @param	Integer		$idAssignedPerson
 	 * @return	Array
 	 */
-	public static function getEventColorData($idAssignedUser) {
-		if ($idAssignedUser > 0) {
-				//  Unique user assigned to event?
-			$eventColorData	= TodoyuPersonManager::getSelectedPersonColor(array($idAssignedUser));
+	public static function getEventColorData($idAssignedPerson) {
+		if( $idAssignedPerson > 0 ) {
+				//  Unique person assigned to event?
+			$eventColorData	= TodoyuPersonManager::getSelectedPersonColor(array($idAssignedPerson));
 		} else {
-			// Multiple / no users assigned?
+			// Multiple / no person assigned?
 			$eventColorData = array(
 				'0'	=> array(
 					'id'		=> 'multiOrNone',
@@ -275,7 +271,7 @@ class TodoyuEventRenderer {
 		$data		= array(
 			'event'			=> $event->getTemplateData(),
 			'attendees'		=> TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true),
-			'user_create'	=> TodoyuPersonManager::getPersonArray($event['id_person_create']),
+			'person_create'	=> TodoyuPersonManager::getPersonArray($event['id_person_create']),
 			'tabs'			=> self::renderEventViewTabs($idEvent)
 		);
 

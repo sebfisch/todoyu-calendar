@@ -117,62 +117,60 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Get the IDs if the assigned users
+	 * Get the IDs if the assigned persons
 	 *
 	 * @return	Array
 	 */
-	public function getAssignedUserIDs() {
-		$assignedUsers	= TodoyuEventManager::getAssignedPersonsOfEvent($this->getID(), false);
+	public function getAssignedPersonIDs() {
+		$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($this->getID(), false);
 
-		return TodoyuArray::getColumn($assignedUsers, 'id_person');
+		return TodoyuArray::getColumn($assignedPersons, 'id_person');
 	}
 
 
 
 	/**
-	 * Get data of the assigned users
+	 * Get data of the assigned persons
 	 *
 	 * @return	Array
 	 */
-	public function getAssignedUserData() {
+	public function getAssignedPersonsData() {
 		return TodoyuEventManager::getAssignedPersonsOfEvent($this->getID(), true);
 	}
 
 
 
 	/**
-	 * Check if a user is assigned
+	 * Check if a person is assigned
 	 *
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 * @return	Bool
 	 */
-	public function isUserAssigned($idUser) {
-		$idUser	= intval($idUser);
-		$userIDs= $this->getAssignedUserIDs();
+	public function isPersonAssigned($idPerson) {
+		$idPerson	= intval($idPerson);
+		$personIDs	= $this->getAssignedPersonIDs();
 
-		return in_array($idUser, $userIDs);
+		return in_array($idPerson, $personIDs);
 	}
 
 
 
 	/**
-	 * Check if current user is assigned
+	 * Check if current person is assigned
 	 *
 	 * @return	Boolean
 	 */
-	public function isCurrentUserAssigned() {
-		return $this->isUserAssigned(personid());
+	public function isCurrentPersonAssigned() {
+		return $this->isPersonAssigned(personid());
 	}
 
 
 
 	/**
-	 * Load event foreign data (assigned users)
+	 * Load event foreign data (assigned persons)
 	 */
 	protected function loadForeignData()	{
-		if( ! is_array($this->data['user']) ) {
-			$this->data['user'] = $this->getAssignedUserData();
-		}
+		$this->data['persons'] = $this->getAssignedPersonsData();
 	}
 
 

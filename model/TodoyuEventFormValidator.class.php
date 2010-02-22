@@ -30,17 +30,17 @@
 class TodoyuEventFormValidator {
 
 	/**
-	 * Check if the event is only assigned to the current user if the event is private
+	 * Check if the event is only assigned to the current person if the event is private
 	 * defined in the $config array
 	 *
-	 * @param	String		$value			Assigned users
+	 * @param	String		$value			Assigned persons
 	 * @param	Array		$config			Field config array
 	 * @return	Bool
 	 */
-	public static function eventIsAssignableToCurrentUserOnly($value, array $config = array ()) {
-			// If the flag is_private is set, the event is only allowed to be assigned to the current user
+	public static function eventIsAssignableToCurrentPersonOnly($value, array $config = array ()) {
+			// If the flag is_private is set, the event is only allowed to be assigned to the current person
 		if ( $config['formdata']['is_private'] == 1 &&
-			(count($config['formdata']['user']) > 1 || $config['formdata']['user']['0']['id'] != personid() ) ){
+			(count($config['formdata']['persons']) > 1 || $config['formdata']['persons']['0']['id'] != personid() ) ){
 
 			return false;
 		}
@@ -51,7 +51,7 @@ class TodoyuEventFormValidator {
 	/**
 	 * Check if the event starttime is befor endtime
 	 *
-	 * @param	String		$value			Assigned users
+	 * @param	String		$value			Assigned persons
 	 * @param	Array		$config			Field config array
 	 * @return	Bool
 	 */
@@ -82,7 +82,7 @@ class TodoyuEventFormValidator {
 	 /**
 	 * Check wheter the time format is correct
 	 *
-	 * @param	String		$value			Assigned users
+	 * @param	String		$value			Assigned persons
 	 * @param	Array		$config			Field config array
 	 * @return	Bool
 	 */
@@ -101,7 +101,7 @@ class TodoyuEventFormValidator {
 
 
 	/**
-	 * Check given users of event being assignable, call hooked validators
+	 * Check given persons of event being assignable, call hooked validators
 	 *
 	 * @param	String				$value
 	 * @param	Array				$config
@@ -109,26 +109,26 @@ class TodoyuEventFormValidator {
 	 * @param	Array				$formData
 	 * @return	Boolean
 	 */
-	public static function usersAreBookable($value, array $config = array (), $formElement, $formData) {
+	public static function personsAreBookable($value, array $config = array (), $formElement, $formData) {
 		$bookable	= true;
 
 			// Check if calendar is configured to prevent overbooking
 		if ( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
-				// Check which (any?) event users are overbooked
+				// Check which (any?) event persons are overbooked
 			$idEvent	= intval($formData['id']);
 			$event		= TodoyuEventManager::getEvent($idEvent);
 
-			$userIDs	= array();
-			foreach ($value as $user) {
-				$userIDs[]	= intval($user['id']);
+			$personIDs	= array();
+			foreach($value as $person) {
+				$personIDs[]	= intval($person['id']);
 			}
 
-			$overbookedUsers	= TodoyuEventManager::getOverbookedEventUsers($userIDs, $event['date_start'], $event['date_end'], $idEvent);
+			$overbookedPersons	= TodoyuEventManager::getOverbookedEventPersons($personIDs, $event['date_start'], $event['date_end'], $idEvent);
 
-			if ( count($overbookedUsers) > 0 ) {
-				$errorMessage = Label('LLL:event.error.usersOverbooked') . '<br />';
-				foreach($overbookedUsers as $idUser) {
-					$errorMessage	.= TodoyuPersonManager::getLabel($idUser) . '<br />';
+			if( count($overbookedPersons) > 0 ) {
+				$errorMessage = Label('LLL:event.error.personsOverbooked') . '<br />';
+				foreach($overbookedPersons as $idPerson) {
+					$errorMessage	.= TodoyuPersonManager::getLabel($idPerson) . '<br />';
 				}
 				$formElement->setErrorMessage($errorMessage);
 

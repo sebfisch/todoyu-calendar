@@ -85,32 +85,32 @@
 	#calendar h1 {
 		padding-left:10px !important;
 	}
-	
+
 	#calendar #createevent {
 		margin-top:10px;
 		margin-left:10px;
 	}
-	
-	
+
+
 	#calendar #createevent .formelement {
 		margin-bottom:4px;
 		clear:both;
 	}
-	
+
 	#calendar #createevent .formelement input,
 	#calendar #createevent .formelement textarea,
 	#calendar #createevent .formelement select {
 		border:1px solid #d3dabb;
 	}
-	
+
 	#calendar #createevent .formelement select.large {
 		width:355px;
 	}
-	
+
 	#calendar #createevent .formelement .small {
 		width:80px;
 	}
-	
+
 	#calendar #createevent .formelement .large {
 		width:352px;
 	}
@@ -179,40 +179,4 @@ li.editeventtab p.label span.icon {
 #createevent #repeatsChoices_area {
 	margin-top:10px;
 	font-weight:bold;
-}
-
-
-
-/* ----------------------
-	Holidays
-   ---------------------- */
-
-.holidays {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -390px;
-	padding:0 0 0 15px;
-	margin:0 0 2px 1px;
-	color:#fff;
-	background-color:#9b9b9b;
-	overflow:hidden;
-	min-height:17px;
-}
-
-
-
-/* ----------------------
-	Birthdays
-   ---------------------- */
-
-.birthdays {
-	background:url(../../../user/assets/img/icons.png) no-repeat scroll 1px -359px;
-	padding:0 0 0 18px;
-	margin:0 0 2px 1px;
-	color:#000;
-	background-color:#d7dcc6;
-	overflow:hidden;
-	min-height:17px;
-}
-
-.birthdays_update {
-	cursor:pointer;
 }

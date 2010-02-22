@@ -22,7 +22,7 @@
 class TodoyuCalendarMailer {
 
 
-	public static function sendEventNotification($idEvent, $idUser, $new = false) {
+	public static function sendEventNotification($idEvent, $idPerson, $new = false) {
 
 		// Send email
 		//	@todo	implement	IMPORTANT!!!

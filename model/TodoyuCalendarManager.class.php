@@ -300,13 +300,13 @@ class TodoyuCalendarManager {
 
 
 	/**
-	 * Get currently selected users (defined by the panel widget)
-	 * If no user is selected, the current user will automaticly be selected
+	 * Get currently selected personss (defined by the panel widget)
+	 * If no person is selected, the current person will automaticly be selected
 	 *
 	 * @return	Array
 	 */
-	public static function getSelectedUsers() {
-		return TodoyuPanelWidgetStaffSelector::getSelectedUsers();
+	public static function getSelectedPersons() {
+		return TodoyuPanelWidgetStaffSelector::getSelectedPersons();
 	}
 
 
@@ -355,7 +355,7 @@ class TodoyuCalendarManager {
 
 
 	/**
-	 * Get birthday users in time range, grouped by day
+	 * Get birthday persons in time range, grouped by day
 	 * Subgroups are datekeys in format Ymd
 	 *
 	 * @param	Integer		$dateStart
@@ -368,12 +368,12 @@ class TodoyuCalendarManager {
 
 		$birthdaysByDay	= array();
 
-		$birthdayUsers	= TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
+		$birthdayPersons= TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
 
-		foreach($birthdayUsers as $birthdayUser) {
-			$dateKey = date('Ymd', $birthdayUser['date']);
+		foreach($birthdayPersons as $birthdayPerson) {
+			$dateKey = date('Ymd', $birthdayPerson['date']);
 
-			$birthdaysByDay[$dateKey][] = $birthdayUser;
+			$birthdaysByDay[$dateKey][] = $birthdayPerson;
 		}
 
 		return $birthdaysByDay;

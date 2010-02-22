@@ -39,7 +39,7 @@
 					<label>event.attr.is_private</label>
 					<validate>
 						<user msg="LLL:event.error.privateEvent">
-							<function>TodoyuEventFormValidator::eventIsAssignableToCurrentUserOnly</function>
+							<function>TodoyuEventFormValidator::eventIsAssignableToCurrentPersonOnly</function>
 						</user>
 					</validate>
 				</field>
@@ -75,10 +75,10 @@
 					<label>core.description</label>
 				</field>
 
-				<field type="databaseRelation" name="user">
+				<field type="databaseRelation" name="persons">
 					<label>event.attr.assigned_to</label>
 					<record>
-						<form>ext/calendar/config/form/event-user.xml</form>
+						<form>ext/calendar/config/form/event-person.xml</form>
 						<url>
 							<ext>calendar</ext>
 							<controller>formhandling</controller>
@@ -92,7 +92,7 @@
 
 					<validate>
 						<user msg="LLL:event.error.overbooked">
-							<function>TodoyuEventFormValidator::usersAreBookable</function>
+							<function>TodoyuEventFormValidator::personsAreBookable</function>
 						</user>
 					</validate>
 

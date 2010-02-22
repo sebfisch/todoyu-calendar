@@ -61,9 +61,9 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	 */
 	onHolidaySetSelect: function(event) {
 		var selectedSetIDs	= this.getSelectedHolidaySetIDs();
-		
+
 		this.verifySelectedSets(selectedSetIDs);
-		
+
 		this.onUpdate( selectedSetIDs.join(',') );
 	},
 
@@ -89,7 +89,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	 */
 	onUpdate: function(value) {
 		this.savePrefs();
-		Todoyu.PanelWidget.inform(this.key, value);
+		Todoyu.PanelWidget.fire(this.key, value);
 	},
 
 
@@ -203,10 +203,10 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	/**
 	 * Handler after prefs saved: evoke refresh
-	 * 
+	 *
 	 * @param	Object	response
 	 */
 	onPrefsSaved: function(response) {
-		Todoyu.Ext.calendar.refresh();		
+		Todoyu.Ext.calendar.refresh();
 	}
 };

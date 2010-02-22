@@ -293,18 +293,18 @@ class TodoyuHolidayManager {
 	/**
 	 * Get holidays of given persons in given timespan
 	 *
-	 * @param	Array	$userIDs
-	 * @param	Integer	$tstampFrom		UNIX timestamp of day at beginning of timespan
-	 * @param	Integer	$tstampUntil	UNIX timestamp of day at ending of timespan
+	 * @param	Array		$personIDs
+	 * @param	Integer		$dateStart		UNIX timestamp of day at beginning of timespan
+	 * @param	Integer		$dateEnd		UNIX timestamp of day at ending of timespan
 	 * @return	Array
 	 */
-	public static function getPersonHolidaysInTimespan(array $userIDs, $dateStart = 0, $dateEnd = 0) {
-		$userIDs		= TodoyuArray::intval($userIDs, true, true);
+	public static function getPersonHolidaysInTimespan(array $personIDs, $dateStart = 0, $dateEnd = 0) {
+		$personIDs		= TodoyuArray::intval($personIDs, true, true);
 		$dateStart		= intval($dateStart);
 		$dateEnd		= intval($dateEnd);
 
 			// Get working locations (company addresses) of given persons, affected holidaySets of given address IDs
-		$addressIDs		= TodoyuPersonManager::getWorkaddressIDsOfPersons($userIDs);
+		$addressIDs		= TodoyuPersonManager::getWorkaddressIDsOfPersons($personIDs);
 		$holidaySetIDs	= self::getHolidaySetsOfAddresses($addressIDs);
 
 			// Get all holidays affected holidaySets in given timespan
