@@ -71,7 +71,7 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 				. 'daynames:[\'' . Label('date.weekday.sunday') . '\',\'' . Label('date.weekday.monday') . '\', \'' . Label('date.weekday.tuesday') . '\',\'' . Label('date.weekday.wednesday') . "','" . Label('date.weekday.thursday') . "','" . Label('date.weekday.friday') . "','" . Label('date.weekday.saturday') . '\']'
 				. '});';
 
-		TodoyuPage::addJsInlines($code);
+		TodoyuPage::addJsInline($code);
 	}
 
 
