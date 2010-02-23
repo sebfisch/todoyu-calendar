@@ -196,9 +196,9 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		if( delay ) {
 			this.updateTimeout = this.onUpdate.bind(this).delay(this.updateTimeoutWait, mode, false);
 		} else {
-			Todoyu.PanelWidget.inform(this.key, {
+			Todoyu.PanelWidget.fire(this.key, {
 				'mode':	mode,
-				'date': this.getDate()
+				'date':	this.getDate()
 			});
 		}
 	},
