@@ -58,10 +58,10 @@ class TodoyuCalendarPortalActionController extends TodoyuActionController {
 	 * @param	Array	$params
 	 */
 	public function acknowledgeAction(array $params) {
-		$idEvent= intval($params['event']);
-		$idUser	= intval($params['idUser']);
+		$idEvent	= intval($params['event']);
+		$idPerson	= intval($params['person']);
 
-		TodoyuEventManager::acknowledgeEvent($idEvent, $idUser);
+		TodoyuEventManager::acknowledgeEvent($idEvent, $idPerson);
 	}
 
 }

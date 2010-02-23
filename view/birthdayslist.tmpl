@@ -1,7 +1,7 @@
-{foreach $birthdays userData}
-<h3 class="birthdaysList {cycle values="odd,even"}" title="{Label event.type.birthday} {$userData.firstname} {$userData.lastname} ({$userData.age} {Label calendar.yearsold})">
-	<span class="date">{dateFormat $userData.date D2Mshort}</span>
-	<span class="name">{personLabel idPrefix='birthdayperson' idRecord=0 idPerson=$userData.id}</span>
-	<span class="age">({$userData.age} {Label calendar.yearsold})</span>
+{foreach $birthdays personData}
+<h3 class="birthdaysList {cycle values="odd,even"}" title="{Label event.type.birthday} {$personData.firstname} {$personData.lastname} ({$personData.age} {Label calendar.yearsold})">
+	<span class="date">{dateFormat $personData.date D2Mshort}</span>
+	<span class="name">{personLabel idPrefix='birthdayperson' idRecord=0 idPerson=$personData.id}</span>
+	<span class="age">({$personData.age} {Label calendar.yearsold})</span>
 </h3>
 {/foreach}

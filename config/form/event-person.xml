@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
-	<attributes>
-		<attribute name="name">user</attribute>
-	</attributes>
 	<fieldsets>
 
 		<fieldset name="main">
-			<legend>User of event</legend>
+			<legend>Event Persons</legend>
 			<elements>
 
 				<field type="textinputAC" name="id">
@@ -15,11 +12,11 @@
 						<acListener>
 							<ext>calendar</ext>
 							<controller>autocompletion</controller>
-							<action>user</action>
+							<action>person</action>
 						</acListener>
 						<acLabelFunc>TodoyuPersonManager::getLabel</acLabelFunc>
 						<options>
-							<onCompleteCustom>Todoyu.Ext.calendar.EventEdit.onUserAssignmentAutocomplete</onCompleteCustom>
+							<onCompleteCustom>Todoyu.Ext.calendar.EventEdit.onPersonAssignmentAutocomplete</onCompleteCustom>
 						</options>
 					</config>
 					<required />

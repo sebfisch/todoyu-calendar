@@ -82,7 +82,7 @@ Todoyu.Ext.calendar.EventPortal = {
 			'parameters': {
 				'action':	'acknowledge',
 				'event':	idEvent,
-				'idUser':	idPerson
+				'person':	idPerson
 			},
 			'onComplete': this.onAcknowledged.bind(this, idEvent, idPerson)
 		};
@@ -99,7 +99,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	 *
 	 *	@param	Response	response
 	 */
-	onAcknowledged: function(idEvent, idUser, response)	{
+	onAcknowledged: function(idEvent, idPerson, response)	{
 
 	}
 

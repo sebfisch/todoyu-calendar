@@ -84,7 +84,7 @@
 							<controller>formhandling</controller>
 						</url>
 						<label type="function">
-							<function>TodoyuUserViewHelper::getUserLabel</function>
+							<function>TodoyuContactViewHelper::getPersonLabel</function>
 							<noLabel>event.attr.assigned_to.noLabel</noLabel>
 						</label>
 					</record>

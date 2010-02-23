@@ -5,8 +5,8 @@
 		<dt class="{if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
 			<span class="{if $calendarMode == 'month'}montheventTime{else}time{/if}">
 				{$title}
-				{if count($assignedUsers)==1}
-					{$assignedUsers.0.shortname}
+				{if count($assignedPersons)==1}
+					{$assignedPersons.0.shortname}
 				{/if}
 			</span>
 		</dt>

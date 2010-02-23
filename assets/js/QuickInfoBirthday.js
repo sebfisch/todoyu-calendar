@@ -22,15 +22,15 @@
  * Calendar birthday quickinfo (Todoyu.Ext.calendar.Quickinfo.Birthday)
  */
 Todoyu.Ext.calendar.QuickInfoBirthday = {
-	
+
 	/**
  	 * Ext shortcut
  	 */
 	ext:		Todoyu.Ext.calendar,
-	
-	
+
+
 	/**
-	 * Install observers on all calendar holiday elements. 
+	 * Install observers on all calendar holiday elements.
 	 */
 	init: function() {
 		$$('div.quickInfoBirthday').each(this.install.bind(this));
@@ -40,7 +40,7 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 
 	/**
 	 * Install mouseOver/Out obeserver on given calendar holiday element
-	 * 
+	 *
 	 * @param	Element	element
 	 */
 	install: function(element) {
@@ -54,7 +54,7 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 
 	/**
 	 * Evoked upon mouseOver event upon holiday element. Show quick info.
-	 * 
+	 *
 	 * @param	Object	event		the DOM-event
 	 * @param	Integer	idPerson		idPerson
 	 */
@@ -66,7 +66,7 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 
 	/**
 	 * Evoked upon mouseOut event upon holiday element. Show quick info.
-	 * 
+	 *
 	 * @param	Object	event			the DOM-event
 	 * @param	Integer	idPerson		idPerson
 	 */
@@ -78,8 +78,8 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 
 	/**
 	 * Evoke removal of given holiday quickinfo entry from cache
-	 * 
-	 * @param	Integer	idUser
+	 *
+	 * @param	Integer		idPerson
 	 */
 	removeFromCache: function(idPerson) {
 		Todoyu.QuickInfo.removeFromCache('birthday' + idPerson);

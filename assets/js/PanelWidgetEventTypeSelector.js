@@ -122,7 +122,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 
 	/**
-	 * Store user prefs
+	 * Store prefs
 	 */
 	savePrefs: function() {
 		var pref = this.getSelectedEventTypes().join(',');

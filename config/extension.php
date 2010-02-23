@@ -91,7 +91,7 @@ $CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'] = array(
 	EVENTTYPE_COMPENSATION
 );
 
-	// Default color preset for events being assigned to several users / none
+	// Default color preset for events being assigned to several persons / none
 $CONFIG['EXT']['calendar']['defaultEventColors'] = array(
 	'id'		=> -1,
 	'border'	=> '#555',

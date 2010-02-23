@@ -44,15 +44,15 @@ class TodoyuCalendarFormhandlingActionController extends TodoyuActionController 
 		$xmlBase	= 'ext/calendar/config/form/';
 
 		switch($fieldName) {
-			case 'user':
+			case 'person':
 				$xmlPath = $xmlBase . $formName . '.xml';
 				break;
-			default: 
+			default:
 				return '';
 		}
-		
+
 		$form 	= TodoyuFormManager::getForm($xmlPath, $index);
-		
+
 			// Load form data
 		$formData	= $form->getFormData();
 		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idRecord);

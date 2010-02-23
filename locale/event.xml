@@ -39,7 +39,7 @@
 		<label index="attr.place">Place</label>
 		<label index="attr.me">My Event</label>
 		<label index="attr.assigned_to">Assigned to</label>
-		<label index="attr.assigned_to.noLabel">[No user selected]</label>
+		<label index="attr.assigned_to.noLabel">[No person selected]</label>
 		<label index="attr.id_project">Project</label>
 		<label index="attr.id_task">Task</label>
 		<label index="tree.header.title">Event Title</label>
@@ -48,7 +48,7 @@
 		<label index="error.noneFound">No Events found.</label>
 		<label index="error.starttimeAfterEndtime">The event ends before or is the same as the event starts</label>
 		<label index="error.privateEvent">You are not allowed to assign a personal event to someone else</label>
-		<label index="error.usersOverbooked">The following users already have events assigned at the given time:</label>
+		<label index="error.personsOverbooked">The following persons already have events assigned at the given time:</label>
 		<label index="contextmenu.manageEvents">Manage events</label>
 		<label index="contextmenu.showEvent">Show event</label>
 		<label index="contextmenu.editEvent">Edit event</label>
@@ -58,7 +58,7 @@
 		<label index="contextmenu.showEventInCalendar.day">Day</label>
 		<label index="contextmenu.showEventInCalendar.week">Week</label>
 		<label index="contextmenu.showEventInCalendar.month">Month</label>
-		<label index="ac.userassignment.notFoundInfo">No persons with names containing this text were found.</label>
+		<label index="ac.personassignment.notFoundInfo">No persons with names containing this text were found.</label>
 	</labels>
 	<labels lang="de">
 		<label index="event">Termin</label>
@@ -108,7 +108,7 @@
 		<label index="error.noneFound">Keine Termine gefunden</label>
 		<label index="error.starttimeAfterEndtime">Der Termin endet vor seinem Anfang</label>
 		<label index="error.privateEvent">Private Termine können nicht anderen Benutzern zugewiesen werden</label>
-		<label index="error.usersOverbooked">Die folgenden Personen haben bereits Termine am angegebenen Zeitpunkt:</label>
+		<label index="error.personsOverbooked">Die folgenden Personen haben bereits Termine am angegebenen Zeitpunkt:</label>
 		<label index="contextmenu.manageEvents">Termine verwalten</label>
 		<label index="contextmenu.showEvent">Termin anzeigen</label>
 		<label index="contextmenu.editEvent">Termin bearbeiten</label>
@@ -118,6 +118,6 @@
 		<label index="contextmenu.showEventInCalendar.day">Tag</label>
 		<label index="contextmenu.showEventInCalendar.week">Woche</label>
 		<label index="contextmenu.showEventInCalendar.month">Monat</label>
-		<label index="ac.userassignment.notFoundInfo">Es wurden keine Personen gefunden, deren Namen diesen Text enthalten.</label>
+		<label index="ac.personassignment.notFoundInfo">Es wurden keine Personen gefunden, deren Namen diesen Text enthalten.</label>
 	</labels>
 </locallang>

@@ -51,7 +51,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		if( $idEvent === 0 ) {
 			restrict('calendar', 'event:add');
 		} else {
-			if( $event->isCurrentUserAssigned() ) {
+			if( $event->isCurrentPersonAssigned() ) {
 				restrict('calendar', 'event:editAssigned');
 			} else {
 				restrict('calendar', 'event:editAll');
@@ -90,7 +90,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				// Edit task
 			$event	= TodoyuEventManager::getEvent($idEvent);
 
-			if( $event->isCurrentUserAssigned() ) {
+			if( $event->isCurrentPersonAssigned() ) {
 				restrict('calendar', 'event:editAssigned');
 			} else {
 				restrict('calendar', 'event:editAll');
@@ -137,7 +137,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$event	= TodoyuEventManager::getEvent($idEvent);
 
 			// Check right
-		if( $event->isCurrentUserAssigned() ) {
+		if( $event->isCurrentPersonAssigned() ) {
 			restrict('calendar', 'event:deleteAssigned');
 		} else {
 			restrict('calendar', 'event:deleteAll');
@@ -158,7 +158,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent= intval($params['event']);
 		$event	= TodoyuEventManager::getEvent($idEvent);
 
-		if( ! $event->isCurrentUserAssigned() ) {
+		if( ! $event->isCurrentPersonAssigned() ) {
 			restrict('calendar', 'event:seeAll');
 		}
 
@@ -173,10 +173,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * @param	Array	$params
 	 */
 	public function acknowledgeAction(array $params) {
-		$idEvent= intval($params['event']);
-		$idUser	= intval($params['idUser']);
+		$idEvent	= intval($params['event']);
+		$idPerson	= intval($params['person']);
 
-		TodoyuEventManager::acknowledgeEvent($idEvent, $idUser);
+		TodoyuEventManager::acknowledgeEvent($idEvent, $idPerson);
 	}
 
 
@@ -191,7 +191,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$event		= TodoyuEventManager::getEvent($idEvent);
 
-		if( ! $event->isCurrentUserAssigned() ) {
+		if( ! $event->isCurrentPersonAssigned() ) {
 			restrict('calendar', 'event:seeAll');
 		}
 

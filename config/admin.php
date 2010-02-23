@@ -23,7 +23,7 @@
  * Administration for calendar extension
  *
  * @package		Todoyu
- * @subpackage	User
+ * @subpackage	Calendar
  */
 
 

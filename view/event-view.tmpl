@@ -21,15 +21,16 @@
 	</tr>
 	<tr class="odd">
 		<td class="eventAttrTitle ">{Label event.attr.attendees}: </td>
-		<td class="eventValue">{foreach $attendees user userData}
-			{$userData.firstname} {$userData.lastname}
-			<br/>
-		{/foreach}</td>
+		<td class="eventValue">
+			{foreach $attendees id personData}
+				{$personData.firstname} {$personData.lastname}<br/>
+			{/foreach}
+		</td>
 	</tr>
 	<tr class="even">
 		<td class="eventAttrTitle"> {Label event.attr.creator}: </td>
 		<td class="eventValue">
-			{$user_create.firstname} {$user_create.lastname}
+			{$person_create.firstname} {$person_create.lastname}
 		</td>
 	</tr>
 	<tr>

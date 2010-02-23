@@ -50,12 +50,12 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 			$dateInfo .= TodoyuTime::format($event->getEndDate(), 'time');
 		}
 
-			// Build users info
-		$usersInfo	= array();
-		$users		= $event->getAssignedUserData();
+			// Build persons info
+		$personInfo	= array();
+		$persons	= $event->getAssignedPersonsData();
 
-		foreach($users as $user) {
-			$usersInfo[] = '- ' . TodoyuPersonManager::getLabel($user['id']);
+		foreach($persons as $person) {
+			$personInfo[] = '- ' . TodoyuPersonManager::getLabel($person['id']);
 		}
 
 		$quickInfo->addInfo('title', $event->getTitle(), 10);
@@ -66,9 +66,9 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 			$quickInfo->addInfo('place', $event->getPlace(), 40);
 		}
 
-			// Only add users info when assigned to at least one user
-		if ( sizeof($usersInfo) > 0 ) {
-			$quickInfo->addInfo('persons', implode('<br />', $usersInfo), 50);
+			// Only add persons info when assigned to at least one person
+		if ( sizeof($personInfo) > 0 ) {
+			$quickInfo->addInfo('persons', implode('<br />', $personInfo), 50);
 		}
 
 		$quickInfo->printInfoJSON();

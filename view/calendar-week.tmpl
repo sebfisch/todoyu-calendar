@@ -34,8 +34,8 @@
 									{for weekday 0 6}
 										{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
 										<td class="noEventCell">
-										{if $userBirthdays[$dayDateKey]}
-											{foreach $userBirthdays[$dayDateKey] birthday}
+										{if $personBirthdays[$dayDateKey]}
+											{foreach $personBirthdays[$dayDateKey] birthday}
 												{$birthday}
 											{/foreach}
 										{/if}

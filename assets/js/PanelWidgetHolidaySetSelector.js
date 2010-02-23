@@ -28,7 +28,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 *	Ext shortcut
 	 */
-	ext:			Todoyu.Ext.user,
+	ext:			Todoyu.Ext.calendar,
 
 	key:			'panelwidget-holidaysetselector',
 
@@ -178,7 +178,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 
 	/**
-	 * Store user prefs
+	 * Store prefs
 	 */
 	savePrefs: function() {
 		var typeIDs	= this.getSelectedHolidaySetIDs().join(',');

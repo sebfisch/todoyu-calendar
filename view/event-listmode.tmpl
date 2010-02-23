@@ -21,9 +21,9 @@
 		</tr>
 		<tr class="odd">
 			<td class="eventAttrTitle ">{Label event.attr.attendees}: </td>
-			<td class="eventValue">{foreach $attendees user userData}
-				<span class="user{if $userData.is_acknowledged == 0 && ! isPersonID($userData.id)} isNotAcknowledgedIcon{/if}">
-					{$userData.firstname} {$userData.lastname}
+			<td class="eventValue">{foreach $attendees person personData}
+				<span class="person{if $personData.is_acknowledged == 0 && ! isPersonID($personData.id)} isNotAcknowledgedIcon{/if}">
+					{$personData.firstname} {$personData.lastname}
 				</span>
 				<br/>
 			{/foreach}
@@ -32,7 +32,7 @@
 		<tr class="even">
 			<td class="eventAttrTitle"> {Label event.attr.creator}: </td>
 			<td class="eventValue">
-				{$user_create.firstname} {$user_create.lastname}
+				{$person_create.firstname} {$person_create.lastname}
 			</td>
 		</tr>
 

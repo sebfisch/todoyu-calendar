@@ -13,7 +13,7 @@
 		<label index="event.deleteAll">Delete all events</label>
 		<label index="event.add">Add new event</label>
 		<label index="event.search">Search for events</label>
-		<label index="event.assignOthers">Assign events to other users</label>
+		<label index="event.assignOthers">Assign events to other persons</label>
 		<label index="panelwidgets">Panel widgets</label>
 		<label index="panelwidgets.calendar">See calendar widget</label>
 		<label index="panelwidgets.quickEvent">See quickevent widget</label>

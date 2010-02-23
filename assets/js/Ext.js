@@ -256,9 +256,9 @@ Todoyu.Ext.calendar = {
 	 * Handler for staff selection changes
 	 *
 	 * @param	String		widgetName
-	 * @param	Array		users
+	 * @param	Array		persons
 	 */
-	onStaffSelectionChanges: function(widgetName, users) {
+	onStaffSelectionChanges: function(widgetName, persons) {
 		this.refresh();
 	},
 
@@ -386,7 +386,7 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 * Save user preferences
+	 * Save preferences
 	 *
 	 * @param	String	name	Name of the preference
 	 * @param	Mixed	value	Value to be saved
