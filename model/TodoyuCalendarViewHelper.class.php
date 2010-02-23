@@ -28,26 +28,11 @@
 class TodoyuCalendarViewHelper {
 
 	/**
-	 * Get context menu header
-	 *
-	 * @param	Integer	$idEvent
-	 * @return	String
-	 */
-	public static function getContextMenuHeader($idEvent) {
-		$idEvent	= intval($idEvent);
-		$event		= TodoyuEventManager::getEvent($idEvent);
-
-		return TodoyuDiv::cropText($event->getTitle(), 24, '...', false);
-	}
-
-
-
-	/**
 	 * Get calendar title
 	 *
-	 * @param	String	$mode
-	 * @param	Integer	$dateStart
-	 * @param	Integer	$dateEnd
+	 * @param	String		$mode
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
 	 * @return	String
 	 */
 	public static function getCalendarTitle($mode, $dateStart, $dateEnd) {

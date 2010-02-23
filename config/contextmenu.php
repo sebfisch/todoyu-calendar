@@ -31,13 +31,6 @@
  * Contextmenu for calendar area
  */
 $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
-	'header'	=> array(
-		'key'		=> 'header',
-		'label'		=> 'event.contextmenu.manageEvents',
-		'jsAction'	=> 'void(0)',
-		'class'		=> 'contextmenuHeader',
-		'position'	=> 0
-	),
 	'add'	=> array(
 		'key'		=> 'add',
 		'label'		=> 'event.contextmenu.addEvent',
@@ -52,13 +45,6 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
  * Contextmenu for event
  */
 $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
-	'header'	=> array(
-		'key'		=> 'header',
-		'label'		=> 'TodoyuCalendarViewHelper::getContextMenuHeader',
-		'jsAction'	=> 'void(0)',
-		'class'		=> 'contextmenuHeader',
-		'position'	=> 0
-	),
 	'show'	=> array(
 		'key'		=> 'show',
 		'label'		=> 'event.contextmenu.showEvent',
@@ -94,13 +80,6 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
  * Contextmenu for event
  */
 $CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
-	'header'	=> array(
-		'key'		=> 'header',
-		'label'		=> 'TodoyuCalendarViewHelper::getContextMenuHeader',
-		'jsAction'	=> 'void(0)',
-		'class'		=> 'contextmenuHeader',
-		'position'	=> 0
-	),
 	'show'	=> array(
 		'key'		=> 'show',
 		'label'		=> 'event.contextmenu.showEventInCalendar',

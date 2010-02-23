@@ -30,7 +30,6 @@ Todoyu.Ext.calendar = {
 	 */
 	Headlet: {},
 
-
 	/**
 	 * List of observed elements (to be easy able to stop observing)
 	 */
@@ -335,7 +334,7 @@ Todoyu.Ext.calendar = {
 			// Make sure calendar is visible
 		this.showCalendar();
 			// Hide quickinfo
-		this.Quickinfo.hide();
+		Todoyu.QuickInfo.hide();
 
 			// Get active tab and set it
 		if( ! Object.isString(tab) ) {
