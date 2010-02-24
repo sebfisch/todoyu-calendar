@@ -30,12 +30,6 @@ TodoyuContextMenuManager::registerFunction('Event', 'TodoyuEventManager::getCont
 TodoyuContextMenuManager::registerFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
-	// Add quick create types
-TodoyuQuickCreateManager::addEngine('calendar', 'event', 'event.create.label', 50);
-
-	// Add area related primary engines
-TodoyuQuickCreateManager::addAreaEngine(EXTID_CALENDAR, 'calendar', 'event', 'event.create.label', 10);
-
 if ( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:portaltab') ) {
 	TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50, array('calendar/public'));
 }
