@@ -36,11 +36,6 @@ TodoyuQuickCreateManager::addEngine('calendar', 'event', 'event.create.label', 5
 	// Add area related primary engines
 TodoyuQuickCreateManager::addAreaEngine(EXTID_CALENDAR, 'calendar', 'event', 'event.create.label', 10);
 
-	// Add search type engines
-if ( allowed('calendar', 'event:search') ) {
-	TodoyuSearchManager::addEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
-}
-
 if ( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:portaltab') ) {
 	TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50, array('calendar/public'));
 }

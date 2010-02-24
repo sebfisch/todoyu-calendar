@@ -28,15 +28,23 @@
 class TodoyuEventSearch implements TodoyuSearchEngineIf {
 
 	/**
+	 * Default table for database requests
+	 *
+	 */
+	const TABLE = 'ext_calendar_event';
+
+
+
+	/**
 	 * Search project in fulltext mode. Return the ID of the matching projects
 	 *
-	 * @param	Array		$find		Keywords which have to be in the projects
-	 * @param	Array		$ignore		Keywords which must not be in the project
+	 * @param	Array		$find		Keywords which have to be in the events
+	 * @param	Array		$ignore		Keywords which must not be in the event
 	 * @param	Integer		$limit
 	 * @return	Array		Project IDs
 	 */
 	public static function searchEvents(array $find, array $ignore = array(), $limit = 100) {
-		$table	= 'ext_calendar_event';
+		$table	= self::TABLE;
 		$fields	= array('title', 'description', 'place');
 
 		return TodoyuSearch::searchTable($table, $fields, $find, $ignore, $limit);
@@ -72,14 +80,14 @@ class TodoyuEventSearch implements TodoyuSearchEngineIf {
 
 		$eventIDs		= self::searchEvents($find, $ignore, $limit);
 
-			// Get comment details
+			// Get event details
 		if( sizeof($eventIDs) > 0 ) {
 			$fields	= '	e.id,
 						e.date_start,
 						e.date_end,
 						e.title,
 						e.description';
-			$table	= '	ext_calendar_event e';
+			$table	= self::TABLE . '	e';
 			$where	= '	e.id IN(' . implode(',', $eventIDs) . ')';
 			$order	= '	e.date_start DESC';
 

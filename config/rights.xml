@@ -15,7 +15,6 @@
 		<right name="deleteAll" />
 		<right name="add" />
 		<right name="assignOthers" />
-		<right name="search" />
 	</section>
 
 	<section name="panelwidgets" require="general:use">

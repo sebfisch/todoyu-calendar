@@ -24,7 +24,7 @@
 		<label index="holiday.attr.workingtime">Working Hours</label>
 		<label index="holiday.attr.holidayset">Holidayset</label>
 		<label index="search.label">Events</label>
-		<label index="search.mode.label">Search Events</label>
+		<label index="search.mode.label">Find Events</label>
 		<label index="portal.tab.appointments">Appointments</label>
 		<label index="extconf.allowoverbooking.label">Allow overbooking?</label>
 	</labels>
@@ -52,7 +52,7 @@
 		<label index="holiday.attr.workingtime">Arbeitsstunden</label>
 		<label index="holiday.attr.holidayset">Feiertags-Set</label>
 		<label index="search.label">Termine</label>
-		<label index="search.mode.label">Termine suchen</label>
+		<label index="search.mode.label">Termine finden</label>
 		<label index="portal.tab.appointments">Termine</label>
 		<label index="extconf.allowoverbooking.label">Überbuchung erlauben?</label>
 	</labels>
