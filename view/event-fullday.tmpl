@@ -5,21 +5,21 @@
 			{for counter 1 $shownStartingDayNum}<td class="noEventCell">&nbsp;</td>{/for}
 		{/if}
 		<td colspan="{$shownDaysDuration+1}">
-			<div id="event-{$id}" class="quickInfoEvent contextmenuevent enumColBGFade{$color.id} enumColBor{$color.id} rb-n dayevent {if $updateAllowed} updateAllowed{/if}">
-				<span class="eventtype_{$eventtype}" style="width:10px; margin-right: 2px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				{if $is_private == 1}
-					{* -------------- Only show title if event is not private ------------- *}
-					{if isPersonID($id_person)}
-						<span class="privateEvent"></span>
-						{if $is_repeated == 1}<span class="seriesEvent"></span>{/if}
-						{$title}
+			<div id="event-{$id}" class="event quickInfoEvent contextmenuevent enumColBGFade{$color.id} enumColBor{$color.id} rb-n dayevent type{ucfirst $eventtypeKey}">
+				<div class="head">
+					{if $is_private == 1}
+						{* -------------- Only show title if event is not private ------------- *}
+						{if isPersonID($id_person)}
+							<span class="privateEvent"></span>
+							{$title}
+						{else}
+							<span class="privateEvent"></span>
+							{Label event.privateEvent.info}
+						{/if}
 					{else}
-						<span class="privateEvent"></span>
-						{Label event.privateEvent.info}
+						{$title}
 					{/if}
-				{else}
-					{$title}
-				{/if}
+				</div>
 			</div>
 		</td>
 		{* -------- Add empty event cells after events having ended already: -------- *}

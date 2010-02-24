@@ -281,7 +281,7 @@ Todoyu.Ext.calendar.EventEdit = {
 			Todoyu.notifySuccess('Event saved');
 			var time	= response.getTodoyuHeader('time');
 			var idEvent	= response.getTodoyuHeader('idEvent');
-			this.ext.Quickinfo.Event.removeFromCache(idEvent);
+			this.ext.QuickInfoEvent.removeFromCache(idEvent);
 			this.ext.show(this.ext.Tabs.active, time*1000);
 			this.close();
 		}

@@ -122,7 +122,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 * @return	Array
 	 */
 	public function getAssignedPersonIDs() {
-		$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($this->getID(), false);
+		$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($this->id, false);
 
 		return TodoyuArray::getColumn($assignedPersons, 'id_person');
 	}
@@ -135,7 +135,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 * @return	Array
 	 */
 	public function getAssignedPersonsData() {
-		return TodoyuEventManager::getAssignedPersonsOfEvent($this->getID(), true);
+		return TodoyuEventManager::getAssignedPersonsOfEvent($this->id, true);
 	}
 
 
@@ -169,8 +169,10 @@ class TodoyuEvent extends TodoyuBaseObject {
 	/**
 	 * Load event foreign data (assigned persons)
 	 */
-	protected function loadForeignData()	{
-		$this->data['persons'] = $this->getAssignedPersonsData();
+	protected function loadForeignData() {
+		if( ! isset($this->data['persons']) ) {
+			$this->data['persons'] 	= $this->getAssignedPersonsData();
+		}
 	}
 
 

@@ -89,12 +89,11 @@ class TodoyuEventRenderer {
 
 		$color = self::getEventColorData($idAssignedPerson);
 
-			// Build event render data
-		$data	= array_merge($data, array(
-			'calendarMode'		=> $calendarMode,
-			'assignedPersons'	=> $assignedPersons,
-			'color'				=> $color[$idAssignedPerson],
-		));
+		$data['calendarMode']	= $calendarMode;
+		$data['assignedPersons']= $assignedPersons;
+		$data['color']			= $color[$idAssignedPerson];
+		$data['eventtypeKey']	= TodoyuEventTypeManager::getEventTypeKey($data['eventtype']);
+
 
 		if ($calendarMode == 'week') {
 			$shownStartingDayNum	= TodoyuEventManager::calcEventStartingDayNumInWeek($data['date_start'], $data['tstamp_firstDay']);
@@ -120,6 +119,8 @@ class TodoyuEventRenderer {
 	public static function renderEvent(array $event, $calendarMode = 'month') {
 		$tmpl	= 'ext/calendar/view/event.tmpl';
 		$data	= self::prepareEventRenderData($calendarMode, $event);
+
+		TodoyuDebug::printInFirebug($data);
 
 		return render($tmpl, $data);
 	}

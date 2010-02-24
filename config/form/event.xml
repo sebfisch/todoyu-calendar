@@ -24,6 +24,7 @@
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getEventTypeOptions</function>
 					</source>
+					<noPleaseSelect />
 					<required />
 				</field>
 
@@ -81,7 +82,7 @@
 						<form>ext/calendar/config/form/event-person.xml</form>
 						<url>
 							<ext>calendar</ext>
-							<controller>formhandling</controller>
+							<controller>event</controller>
 						</url>
 						<label type="function">
 							<function>TodoyuContactViewHelper::getPersonLabel</function>

@@ -5,23 +5,18 @@
 	position:absolute;
 }
 
-.dayMode .event dt,
-.weekMode .event dt {
-	padding:1px;
-	white-space:nowrap;
+.weekMode .wk-weektop .event,
+.dayMode .wk-weektop .event {
+	position:relative;
 }
 
-.dayMode .event dt span.time,
-.weekMode .event dt span.time {
-	padding:2px;
-	font-family:Verdana,Helvetica,sans-serif;
-	font-size:9px;
-	font-style:normal;
-	font-variant:normal;
-	font-weight:bold;
-	line-height:normal;
-	text-align:left;
+.event .head {
+	line-height:1.2;
+	font-family:Arial,sans-serif;
+	font-size:9px !important;
+	font-weight:normal !important;
 	white-space:nowrap;
+	padding-left:18px;
 }
 
 .dayMode .event dd,
@@ -87,58 +82,61 @@
 /* ----------------------
 	Events types
    ---------------------- */
-.eventtype_icon {
+.eventtypeicon {
 	padding-right:16px;
 }
 
-.eventtype_general {
+.event.typeGeneral .head,
+.event.typeGeneral .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -660px;
 }
 
-.eventtype_away {
+.event.typeAway .head,
+.event.typeAway .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -690px;
 }
 
-.eventtype_birthday {
+.event.typeBirthday .head,
+.event.typeBirthday .type {
 	background:url(../../../contact/assets/img/icons.png) no-repeat 1px -330px;
 }
 
-.eventtype_vacation {
+.event.typeVacation .head,
+.event.typeVacation .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -390px;
 }
 
-.eventtype_education {
+.event.typeEducation .head,
+.event.typeEducation .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -720px;
 }
 
-.eventtype_meeting {
+.event.typeMeeting .head,
+.event.typeMeeting .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -750px;
 }
 
-.eventtype_awayofficial {
+.event.typeAwayofficial .head,
+.event.typeAwayofficial .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -780px;
 }
 
-.eventtype_homeoffice {
+.event.typeHomeoffice .head,
+.event.typeHomeoffice .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -810px;
 }
-/*
-.eventtype_paper {
-	background:url(../img/icons.png) no-repeat scroll 1px -840px;
-}
-.eventtype_10 {
-	background:url(../img/icons.png) no-repeat scroll 1px -870px;
-}
 
-*/
-.eventtype_compensation {
+.event.typeCompensation .head,
+.event.typeCompensation .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -900px;
 }
-.eventtype_milestone {
+.event.typeMilestone .head,
+.event.typeMilestone .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -930px;
 }
 
-.eventtype_reminder {
+.event.typeReminder .head,
+.event.typeReminder .type {
 	background:url(../img/icons.png) no-repeat scroll 1px -960px;
 }
 
@@ -151,11 +149,35 @@
 	border-left:0;
 }
 
+#birthdays div.event {
+	background-color:#FFF !important;
+	border-bottom:1px dotted #848484;
+}
+#birthdays div.event div {
+	display:inline-block;
+	padding:5px 0;
+}
+#birthdays div.event div.type {
+	background-position:0 -325px;
+	height:16px;
+	width:30px;
+	margin-left:20px;
+}
+#birthdays div.event div.date {
+	width:50px;
+}
+#birthdays div.event div.name {
+	width:150px;
+}
+#birthdays div.event div.age {
+	width:100px;
+}
+
 #birthdays h3 {
 	background-color:#fff;
 	background:url(../../../user/assets/img/icons.png) no-repeat scroll 4px -355px;
-	border-bottom:1px dotted #848484;
-	border-left:5px solid #bbb;
+	
+	
 	padding-left:35px;
 }
 
@@ -284,3 +306,37 @@ table.eventView {
 	width:100%;
 	line-height:20px;
 }
+
+
+
+
+/* ----------------------
+	Holidays
+   ---------------------- */
+
+.holidays {
+	background:transparent url(../img/icons.png) no-repeat scroll 0 -390px;
+	padding:0 0 0 15px;
+	margin:0 0 2px 1px;
+	color:#fff;
+	background-color:#9b9b9b;
+	overflow:hidden;
+	min-height:17px;
+}
+
+
+
+/* ----------------------
+	Birthdays
+   ---------------------- */
+/*
+.event.typeBirthday {
+	background:url(../../../contact/assets/img/icons.png) no-repeat scroll 1px -330px;
+	padding:0 0 0 18px;
+	margin:0 0 2px 1px;
+	color:#000;
+	background-color:#d7dcc6;
+	overflow:hidden;
+	min-height:17px;
+}
+*/

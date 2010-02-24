@@ -202,6 +202,33 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		return TodoyuEventRenderer::renderEventView($idEvent);
 	}
 
+
+
+	/**
+	 * Add subform to a form
+	 *
+	 * @param	Array		$params
+	 * @return	String
+	 */
+	public static function addSubformAction(array $params) {
+		restrictIfNone('calendar', 'event:editAll,event:editAssigned');
+
+		$index		= intval($params['index']);
+		$fieldName	= $params['field'];
+		$formName	= $params['form'];
+		$idRecord	= intval($params['record']);
+
+		$xmlPath	= 'ext/calendar/config/form/event.xml';
+		$form 		= TodoyuFormManager::getForm($xmlPath, $index);
+
+			// Load form data
+		$formData	= $form->getFormData();
+		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idRecord);
+
+		return TodoyuFormManager::renderSubformRecord($xmlPath, $fieldName, $formName, $index, $idRecord, $formData);
+	}
+
+
 }
 
 ?>

@@ -63,8 +63,6 @@ class TodoyuEventManager {
 	 * @return	TodoyuEvent
 	 */
 	public static function getEvent($idEvent) {
-		$idEvent = intval($idEvent);
-
 		return TodoyuCache::getRecord('TodoyuEvent', $idEvent);
 	}
 

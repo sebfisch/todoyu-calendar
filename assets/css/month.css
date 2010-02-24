@@ -1,3 +1,12 @@
+/* ---------------
+	Event
+   --------------- */
+.monthMode .event.typeBirthday .head {
+	background-color:#D7DCC6;
+	height:16px;
+}
+
+
 /* ------------
 	Header
    ------------ */
@@ -125,20 +134,12 @@
 	Event
    -------------- */
 
-.monthevent {
+.event.month {
     padding:1px;
 	margin-bottom:1px;
 	overflow:hidden;
 	white-space:nowrap;
 	height:14px;
-}
-
-.montheventTime{
-	font-family:Arial,sans-serif;
-	white-space:nowrap;
-	font-size:9px !important;
-	line-height:1.2;
-	font-weight:normal !important;
 }
 
 .st-bgtoday {
