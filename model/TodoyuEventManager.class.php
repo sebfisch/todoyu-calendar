@@ -451,7 +451,7 @@ class TodoyuEventManager {
 		$data['date_create']	= NOW;
 		$data['id_person_create']	= TodoyuAuth::getPersonID();
 
-		return Todoyu::db()->addRecord('ext_calendar_event', $data);
+		return Todoyu::db()->addRecord(self::TABLE, $data);
 	}
 
 

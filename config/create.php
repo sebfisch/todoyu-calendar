@@ -21,10 +21,7 @@
 
 if ( allowed('calendar', 'general:use') ) {
 		// Add quick create types
-	TodoyuQuickCreateManager::addEngine('calendar', 'event', 'event.create.label', 50);
-
-		// Add area related primary engines
-	TodoyuQuickCreateManager::addAreaEngine(EXTID_CALENDAR, 'calendar', 'event', 'event.create.label', 10);
+	TodoyuQuickCreateManager::addEngine('calendar', 'event', 'event.create.label', 50, EXTID_CALENDAR);
 }
 
 ?>
