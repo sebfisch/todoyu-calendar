@@ -31,9 +31,13 @@
 .dayevent {
 	margin:0px;
 	margin-bottom:1px;
-	height:14px;
+	height:16px;
 	padding-top:1px;
 	border: 1px solid;
+}
+
+.dayevent .head {
+	height:16px;
 }
 
 #topcontainerwk .dayevent {
@@ -88,7 +92,7 @@
 
 .event.typeGeneral .head,
 .event.typeGeneral .type {
-	background:url(../img/icons.png) no-repeat scroll 1px -660px;
+	background:url(../img/icons.png) no-repeat scroll 1px -659px;
 }
 
 .event.typeAway .head,
@@ -103,7 +107,7 @@
 
 .event.typeVacation .head,
 .event.typeVacation .type {
-	background:url(../img/icons.png) no-repeat scroll 1px -390px;
+	background:url(../img/icons.png) no-repeat scroll 1px -391px;
 }
 
 .event.typeEducation .head,
@@ -137,7 +141,7 @@
 
 .event.typeReminder .head,
 .event.typeReminder .type {
-	background:url(../img/icons.png) no-repeat scroll 1px -960px;
+	background:url(../img/icons.png) no-repeat scroll 0 -960px;
 }
 
 

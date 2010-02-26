@@ -363,9 +363,8 @@ class TodoyuEventManager {
 	/**
 	 * Save a new event
 	 *
-	 * @param	Array	$formData	Eventdata
-	 * @param	Integer	$seriesID	If a series is updated, use the same seriesID again
-	 * @return	Integer
+	 * @param	Array	$data	Eventdata
+	 * @return	Integer			ID of event
 	 */
 	public static function saveEvent(array $data) {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
@@ -395,6 +394,7 @@ class TodoyuEventManager {
 		self::assignPersonsToEvent($idEvent, $data['persons']);
 
 			// Remove not needed fields
+		unset($data['person']);
 		unset($data['persons']);
 
 			// Update the event with the definitive data
