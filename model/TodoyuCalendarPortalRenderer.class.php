@@ -34,7 +34,7 @@ class TodoyuCalendarPortalRenderer {
 	 * @return	String
 	 */
 	public static function getAppointmentTabLabel($count = true) {
-		$label		= TodoyuLanguage::getLabel('portal.tab.appointments');
+		$label		= TodoyuLanguage::getLabel('calendar.portal.tab.appointments');
 
 		if ( $count ) {
 			$events	= TodoyuCalendarPortalManager::getAppointments();
