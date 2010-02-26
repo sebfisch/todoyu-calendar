@@ -102,14 +102,16 @@ class TodoyuEventManager {
 					mmeu.id_person,
 					mmeu.is_acknowledged,
 					e.date_end - e.date_start as duration';
-		$tables	= 	self::TABLE  . ' e,
-					ext_calendar_mm_event_person mmeu';
-		$where	= '	e.id		= mmeu.id_event AND
-					e.deleted	= 0 AND
-					(	e.date_start BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
-						e.date_end BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
-						(e.date_start < ' . $dateStart . ' AND e.date_end > ' . $dateEnd . ')
+
+		$tables	= 	self::TABLE  . ' e,	ext_calendar_mm_event_person mmeu';
+
+		$where	= '		e.id		= mmeu.id_event
+					AND e.deleted	= 0
+					AND (	e.date_start BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
+							e.date_end BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
+							(e.date_start < ' . $dateStart . ' AND e.date_end > ' . $dateEnd . ')
 					)';
+
 		$group	= '';
 		$order	= 'e.date_start, duration DESC';
 		$limit	= '';
@@ -138,7 +140,9 @@ class TodoyuEventManager {
 			$where .= ' AND mmeu.id_person IN(' . personid() . ',0)';
 		}
 
-		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
+		$res	= Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
+//		TodoyuDebug::printHtml($res);
+		return $res;
 	}
 
 

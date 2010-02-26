@@ -120,8 +120,6 @@ class TodoyuEventRenderer {
 		$tmpl	= 'ext/calendar/view/event.tmpl';
 		$data	= self::prepareEventRenderData($calendarMode, $event);
 
-		TodoyuDebug::printInFirebug($data);
-
 		return render($tmpl, $data);
 	}
 

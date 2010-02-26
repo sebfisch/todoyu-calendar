@@ -144,8 +144,6 @@ class TodoyuCalendarRenderer {
 		$dateStart	= $weekRange['start'];
 		$dateEnd	= $weekRange['end'];
 
-		TodoyuDebug::printInFirebug(date('r', $time));
-
 		$personColors	= TodoyuPersonManager::getSelectedPersonColor($persons);
 		$eventTypes		= TodoyuCalendarManager::getSelectedEventTypes();
 
@@ -390,8 +388,6 @@ class TodoyuCalendarRenderer {
 				}
 			}
 		}
-
-		TodoyuDebug::printInFirebug($birthdaysByDay);
 
 		return $birthdaysByDay;
 	}

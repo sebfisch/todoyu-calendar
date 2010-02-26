@@ -106,12 +106,7 @@ class TodoyuEventEditRenderer {
 		$event	= TodoyuEventManager::getEvent($idEvent);
 
 		$data	= $event->getTemplateData(true);
-
-		TodoyuDebug::printInFirebug($data, 'data');
-
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
-
-
 
 		$form->setFormData($data);
 
