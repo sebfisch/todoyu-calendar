@@ -42,7 +42,6 @@ TodoyuLanguage::register('panelwidget-holidaysetselector', PATH_EXT_CALENDAR . '
 require_once( PATH_EXT_CALENDAR . '/config/constants.php' );
 require_once( PATH_EXT_CALENDAR . '/config/extension.php' );
 require_once( PATH_EXT_CALENDAR . '/config/panelwidgets.php' );
-require_once( PATH_EXT_CALENDAR . '/config/admin.php' );
 require_once( PATH_EXT_CALENDAR . '/config/hooks.php' );
 require_once( PATH_EXT_CALENDAR . '/dwoo/plugins.php');
 
