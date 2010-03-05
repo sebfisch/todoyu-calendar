@@ -45,7 +45,7 @@
 		<label index="tree.header.title">Event Title</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Birthdays within the next weeks</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Holiday within the next weeks</label>
-		<label index="error.noneFound">No Events found.</label>
+		<label index="error.noneFound">Currently no Upcoming Events for you</label>
 		<label index="error.starttimeAfterEndtime">The event ends before or is the same as the event starts</label>
 		<label index="error.privateEvent">You are not allowed to assign a personal event to someone else</label>
 		<label index="error.personsOverbooked">The following persons already have events assigned at the given time:</label>
@@ -105,7 +105,7 @@
 		<label index="tree.header.title">Termin-Titel</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Geburtstage in den nächsten Wochen</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Ferien in den nächsten Wochen</label>
-		<label index="error.noneFound">Keine Termine gefunden</label>
+		<label index="error.noneFound">Zur Zeit keine ausstehende Termine für Sie</label>
 		<label index="error.starttimeAfterEndtime">Der Termin endet vor seinem Anfang</label>
 		<label index="error.privateEvent">Private Termine können nicht anderen Benutzern zugewiesen werden</label>
 		<label index="error.personsOverbooked">Die folgenden Personen haben bereits Termine am angegebenen Zeitpunkt:</label>
