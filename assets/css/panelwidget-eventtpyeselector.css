@@ -5,3 +5,56 @@
 #panelwidget-eventtypeSelector-list option {
 	padding:4px 0 2px 20px;
 }
+
+
+
+/* --------------------------------------------
+	Event type options
+   -------------------------------------------- */
+#panelwidget-eventtypeSelector-list option {
+	background:url(../img/icons.png) no-repeat scroll;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_general {
+	background-position:1px -659px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_away {
+	background-position:1px -690px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_birthday {
+	background-position:1px -628px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_vacation {
+	background-position:1px -389px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_education {
+	background-position:1px -720px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_meeting {
+	background-position:1px -750px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_awayofficial {
+	background-position:1px -780px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_homeoffice {
+	background-position:1px -810px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_compensation {
+	background-position:1px -900px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_milestone {
+	background-position:1px -930px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_reminder {
+	background-position:0 -960px;
+}

@@ -166,17 +166,6 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 		return $selectedSetIDs;
 	}
 
-
-
-	/**
-	 * Check if panelwidget is allowed
-	 *
-	 * @return	Boolean
-	 */
-	public static function isAllowed() {
-		return allowed('calendar', 'panelwidgets:holidaySetSelector');
-	}
-
 }
 
 ?>

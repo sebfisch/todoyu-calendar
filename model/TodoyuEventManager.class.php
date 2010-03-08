@@ -668,6 +668,7 @@ class TodoyuEventManager {
 
 		$where 	= '	id_event	= ' . $idEvent . ' AND
 					id_person	= ' . $idPerson;
+
 		$update	= array(
 			'is_acknowledged' => 1
 		);
@@ -739,8 +740,7 @@ class TodoyuEventManager {
 		$allowed= array();
 		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Event'];
 
-		$allowed[]	= $own['header'];
-
+			// Option: show event
 		if( allowed('calendar', 'event:seeAll') || $event->isCurrentPersonAssigned() ) {
 			$allowed['show'] = $own['show'];
 		}
@@ -750,10 +750,12 @@ class TodoyuEventManager {
 			$allowed['edit'] = $own['edit'];
 		}
 
+			// Option: delete event
 		if( allowed('calendar', 'event:deleteAll') || ($event->isCurrentPersonAssigned() && allowed('calendar','event:deleteAssigned')) ) {
 			$allowed['delete'] = $own['remove'];
 		}
 
+			// Option: add event
 		if( allowed('calendar', 'event:add') ) {
 			$allowed['add'] = $own['add'];
 		}
@@ -778,7 +780,8 @@ class TodoyuEventManager {
 		$own = $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['EventPortal'];
 
 		foreach($own['show']['submenu'] as $key => $config)	{
-			$own['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', TodoyuEventManager::getEvent($idEvent)->get('date_start'), $config['jsAction']);
+			$eventStart	= TodoyuEventManager::getEvent($idEvent)->get('date_start');
+			$own['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', $eventStart, $config['jsAction']);
 		}
 
 		$items = array_merge_recursive($items, $own);

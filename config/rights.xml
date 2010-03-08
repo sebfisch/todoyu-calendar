@@ -3,25 +3,17 @@
 
 	<section name="general">
 		<right name="use" />
-		<right name="usearea" require="general:use" />
-		<right name="portaltab" require="general:use" />
+		<right name="area" require="general:use" />
 	</section>
 
 	<section name="event" require="general:use">
 		<right name="seeAll" />
+		<right name="add" />
+		<right name="assignOthers" />
 		<right name="editAssigned" />
 		<right name="editAll" />
 		<right name="deleteAssigned" />
 		<right name="deleteAll" />
-		<right name="add" />
-		<right name="assignOthers" />
-	</section>
-
-	<section name="panelwidgets" require="general:use">
-		<right name="calendar" />
-		<right name="quickEvent" />
-		<right name="eventTypeSelector" />
-		<right name="holidaySetSelector" />
 	</section>
 
 </rights>

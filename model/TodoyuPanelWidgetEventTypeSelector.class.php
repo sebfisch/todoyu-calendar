@@ -103,31 +103,6 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 
 
 	/**
-	 * Get context menu items
-	 *
-	 * @param	Integer	$idProject
-	 * @return	Array
-	 */
-	public static function getContextMenuItems($idProject, array $items) {
-//		$idProject	= intval($idProject);
-//		$isExpanded	= TodoyuProjectPreferences::isProjectDetailsExpanded($idProject);
-//
-//		$ownItems	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['panelwidget-eventtypeselector'];
-//
-//		if( $isExpanded ) {
-//			unset($ownItems['showdetails']);
-//		} else {
-//			unset($ownItems['hidedetails']);
-//		}
-//
-//		$items	= array_merge_recursive($items, $ownItems);
-//
-//		return $items;
-	}
-
-
-
-	/**
 	 * Get current event types selection (from prefs)
 	 *
 	 * @return array
@@ -163,12 +138,6 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 			true								// unique?
 		);
 
-	}
-
-
-
-	public static function isAllowed() {
-		return allowed('calendar', 'panelwidgets:eventTypeSelector');
 	}
 }
 

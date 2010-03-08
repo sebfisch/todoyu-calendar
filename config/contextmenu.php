@@ -27,8 +27,9 @@
  */
 
 
+
 /**
- * Contextmenu for calendar area
+ * Contextmenu for calendar area (not clicked on event)
  */
 $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 	'add'	=> array(
@@ -41,8 +42,9 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 );
 
 
+
 /**
- * Contextmenu for event
+ * General event contextmenu
  */
 $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 	'show'	=> array(
@@ -76,8 +78,9 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 );
 
 
+
 /**
- * Contextmenu for event
+ * Contextmenu for events in portal area
  */
 $CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
 	'show'	=> array(
@@ -87,28 +90,28 @@ $CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
 		'class'		=> 'eventContextMenu eventShow',
 		'position'	=> 10,
 		'submenu'	=> array(
-				'day'	=> array(
-					'key'		=> 'day',
-					'label'		=> 'event.contextmenu.showEventInCalendar.day',
-					'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'day\')',
-					'class'		=> 'eventContextMenu showInCalendarDay',
-					'position'	=> 10
-				),
-				'week'	=> array(
-					'key'		=> 'week',
-					'label'		=> 'event.contextmenu.showEventInCalendar.week',
-					'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'week\')',
-					'class'		=> 'eventContextMenu showInCalendarWeek',
-					'position'	=> 20
-				),
-				'month'	=> array(
-					'key'		=> 'month',
-					'label'		=> 'event.contextmenu.showEventInCalendar.month',
-					'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'month\')',
-					'class'		=> 'eventContextMenu showInCalendarMonth',
-					'position'	=> 30
-				)
+			'day'	=> array(
+				'key'		=> 'day',
+				'label'		=> 'event.contextmenu.showEventInCalendar.day',
+				'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'day\')',
+				'class'		=> 'eventContextMenu showInCalendarDay',
+				'position'	=> 10
+			),
+			'week'	=> array(
+				'key'		=> 'week',
+				'label'		=> 'event.contextmenu.showEventInCalendar.week',
+				'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'week\')',
+				'class'		=> 'eventContextMenu showInCalendarWeek',
+				'position'	=> 20
+			),
+			'month'	=> array(
+				'key'		=> 'month',
+				'label'		=> 'event.contextmenu.showEventInCalendar.month',
+				'jsAction'	=> 'Todoyu.Ext.calendar.Event.goToEventInCalendar(#ID#, #DATE#, \'month\')',
+				'class'		=> 'eventContextMenu showInCalendarMonth',
+				'position'	=> 30
 			)
+		)
 	)
 );
 

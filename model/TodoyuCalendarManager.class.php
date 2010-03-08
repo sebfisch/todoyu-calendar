@@ -277,8 +277,6 @@ class TodoyuCalendarManager {
 		$allowed= array();
 		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Area'];
 
-		$allowed[] = $own['header'];
-
 		if ( allowed('calendar', 'event:add') ) {
 			$allowed[] = $own['add'];
 		}

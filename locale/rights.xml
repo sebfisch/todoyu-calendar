@@ -2,42 +2,30 @@
 <locallang>
 	<labels lang="en">
 		<label index="general">General</label>
-		<label index="general.use">Use calendar</label>
-		<label index="general.usearea">Use calendars area</label>
-		<label index="general.portaltab">Use events tab in portal</label>
+		<label index="general.use">Allowed to use/see calendar functionalities</label>
+		<label index="general.area">Use calendars area</label>
 		<label index="event">Event</label>
 		<label index="event.seeAll">See all events</label>
-		<label index="event.editAssigned">Edit assigned events</label>
+		<label index="event.editAssigned">Edit assigned (or created by this user) events</label>
 		<label index="event.editAll">Edit all events</label>
-		<label index="event.deleteAssigned">Delete assigned events</label>
+		<label index="event.deleteAssigned">Delete assigned (or created by this user) events</label>
 		<label index="event.deleteAll">Delete all events</label>
 		<label index="event.add">Add new event</label>
 		<label index="event.search">Search for events</label>
 		<label index="event.assignOthers">Assign events to other persons</label>
-		<label index="panelwidgets">Panel widgets</label>
-		<label index="panelwidgets.calendar">See calendar widget</label>
-		<label index="panelwidgets.quickEvent">See quickevent widget</label>
-		<label index="panelwidgets.eventTypeSelector">Use eventtype selector widget</label>
-		<label index="panelwidgets.holidaySetSelector">Use holidayset selector widget</label>
 	</labels>
 	<labels lang="de">
 		<label index="general">Allgemein</label>
-		<label index="general.use">Kalender Verwenden</label>
-		<label index="general.usearea">Kalender-Bereich Verwenden</label>
-		<label index="general.portaltab">Termin-Tab im Portal Verwenden</label>
+		<label index="general.use">Kalender-Funktionalitäten Verwenden</label>
+		<label index="general.area">Kalender-Bereich Verwenden</label>
 		<label index="event">Termin</label>
 		<label index="event.seeAll">Alle Termine Sehen</label>
-		<label index="event.editAssigned">Zugewiesenen Termin Editieren</label>
+		<label index="event.editAssigned">Zugewiesenen oder selbst erstellten Termin Editieren</label>
 		<label index="event.editAll">Alle Termine Editieren</label>
-		<label index="event.deleteAssigned">Zugewiesene Termine Löschen</label>
+		<label index="event.deleteAssigned">Zugewiesene oder selbst erstellte Termine Löschen</label>
 		<label index="event.deleteAll">Alle Termine Löschen</label>
 		<label index="event.add">Neuen Termin Erstellen</label>
 		<label index="event.assignOthers">Termine anderen Benutzern Zuweisen</label>
 		<label index="event.search">Nach Terminen Suchen</label>
-		<label index="panelwidgets">Steuerelement</label>
-		<label index="panelwidgets.calendar">Siehe Kalender Element</label>
-		<label index="panelwidgets.quickEvent">Siehe Termin Element</label>
-		<label index="panelwidgets.eventTypeSelector">Termintyp Wähler Verwenden</label>
-		<label index="panelwidgets.holidaySetSelector">Ferien-Regionen Wähler anzeigen</label>
 	</labels>
 </locallang>

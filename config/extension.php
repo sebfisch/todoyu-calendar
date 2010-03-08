@@ -30,7 +30,7 @@ TodoyuContextMenuManager::registerFunction('Event', 'TodoyuEventManager::getCont
 TodoyuContextMenuManager::registerFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
-if ( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:portaltab') ) {
+if ( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:use') ) {
 	TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50, array('calendar/public'));
 }
 
@@ -69,7 +69,6 @@ TodoyuEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'event.
 TodoyuEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'event.type.compensation');
 TodoyuEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'event.type.milestone');
 TodoyuEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.type.reminder');
-
 
 
 

@@ -107,7 +107,7 @@ class TodoyuEventTypeManager {
 				$eventTypes[$index]['label'] 	= Label($eventType['label']);
 			}
 
-			$eventTypes[$index]['classname'] = 'eventtype_' . $eventType['key'];
+			$eventTypes[$index]['class'] = 'eventtype_' . $eventType['key'];
 		}
 
 		return $eventTypes;
