@@ -84,7 +84,7 @@
 
 
 /* ----------------------
-	Events types
+	Event types
    ---------------------- */
 .eventtypeicon {
 	padding-right:16px;
@@ -180,8 +180,6 @@
 #birthdays h3 {
 	background-color:#fff;
 	background:url(../../../user/assets/img/icons.png) no-repeat scroll 4px -355px;
-	
-	
 	padding-left:35px;
 }
 
@@ -194,6 +192,8 @@
 }
 
 /* @todo clean up: merge sections "portal events list" and "list mode in portal" */
+
+
 
 /*-------------------------
 	List mode in portal

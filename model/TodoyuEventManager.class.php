@@ -737,22 +737,25 @@ class TodoyuEventManager {
 		$idEvent= intval($idEvent);
 		$event	= TodoyuEventManager::getEvent($idEvent);
 
+			// Current person assigned to event?
+		$curPersonAssigned	= $event->isCurrentPersonAssigned();
+			// Current person created event?
+		$curPersonCreator	= $event->isCurrentPersonCreator();
+
 		$allowed= array();
 		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Event'];
 
 			// Option: show event
-		if( allowed('calendar', 'event:seeAll') || $event->isCurrentPersonAssigned() ) {
+		if( allowed('calendar', 'event:seeAll') || $curPersonAssigned == true ) {
 			$allowed['show'] = $own['show'];
 		}
 
+			// Options: edit event, delete event
 			// Edit event: right:editAll OR is assigned and right editAssigned OR is creater
-		if( $event->isCurrentPersonCreator() || allowed('calendar', 'event:editAll') || ($event->isCurrentPersonAssigned() && allowed('calendar','event:editAssigned')) ) {
-			$allowed['edit'] = $own['edit'];
-		}
-
-			// Option: delete event
-		if( allowed('calendar', 'event:deleteAll') || ($event->isCurrentPersonAssigned() && allowed('calendar','event:deleteAssigned')) ) {
-			$allowed['delete'] = $own['remove'];
+		if( allowed('calendar', 'event:editAndDeleteAll')
+			|| ( ($curPersonAssigned || $curPersonCreator) && allowed('calendar','event:editAndDeleteAssigned') ) ) {
+			$allowed['edit']	= $own['edit'];
+			$allowed['delete']	= $own['remove'];
 		}
 
 			// Option: add event

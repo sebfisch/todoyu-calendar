@@ -10,10 +10,8 @@
 		<right name="seeAll" />
 		<right name="add" />
 		<right name="assignOthers" />
-		<right name="editAssigned" />
-		<right name="editAll" />
-		<right name="deleteAssigned" />
-		<right name="deleteAll" />
+		<right name="editAndDeleteAssigned" />
+		<right name="editAndDeleteAll" />
 	</section>
 
 </rights>

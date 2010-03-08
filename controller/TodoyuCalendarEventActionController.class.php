@@ -52,9 +52,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			restrict('calendar', 'event:add');
 		} else {
 			if( $event->isCurrentPersonAssigned() ) {
-				restrict('calendar', 'event:editAssigned');
+				restrict('calendar', 'event:editAndDeleteAssigned');
 			} else {
-				restrict('calendar', 'event:editAll');
+				restrict('calendar', 'event:editAndDeleteAll');
 			}
 		}
 
@@ -91,9 +91,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			$event	= TodoyuEventManager::getEvent($idEvent);
 
 			if( $event->isCurrentPersonAssigned() ) {
-				restrict('calendar', 'event:editAssigned');
+				restrict('calendar', 'event:editAndDeleteAssigned');
 			} else {
-				restrict('calendar', 'event:editAll');
+				restrict('calendar', 'event:editAndDeleteAll');
 			}
 		}
 
@@ -138,9 +138,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 			// Check right
 		if( $event->isCurrentPersonAssigned() ) {
-			restrict('calendar', 'event:deleteAssigned');
+			restrict('calendar', 'event:editAndDeleteAssigned');
 		} else {
-			restrict('calendar', 'event:deleteAll');
+			restrict('calendar', 'event:editAndDeleteAll');
 		}
 
 		TodoyuEventManager::deleteEvent($idEvent);
@@ -211,7 +211,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public static function addSubformAction(array $params) {
-		restrictIfNone('calendar', 'event:editAll,event:editAssigned');
+		restrictIfNone('calendar', 'event:editAll,event:editAndDeleteAssigned');
 
 		$index		= intval($params['index']);
 		$fieldName	= $params['field'];
@@ -227,7 +227,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 		return TodoyuFormManager::renderSubformRecord($xmlPath, $fieldName, $formName, $index, $idRecord, $formData);
 	}
-
 
 }
 

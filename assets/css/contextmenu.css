@@ -3,33 +3,41 @@
    ---------------------------  */
 a.eventContextMenu {
 	background-image:url(../img/contextmenu.png);
-	background-repeat:no-repeat;	
+	background-repeat:no-repeat;
 }
   
 a.eventContextMenu.eventEdit {
-	background-position:5px 2px;
+	background-position:5px 4px;
 }
 
 a.eventContextMenu.eventShow {
-	background-position:5px -28px;
+	background-position:5px -26px;
 }
 
 a.eventContextMenu.eventRemove {
-	background-position:5px -58px;
+	background-position:5px -57px;
+}
+
+a.eventContextMenu.eventAdd,
+a.eventContextMenu.showInCalendarDay,
+a.eventContextMenu.showInCalendarWeek,
+a.eventContextMenu.showInCalendarMonth {
+	background-image:url(../img/icons.png);
+	background-repeat:no-repeat;
 }
 
 a.eventContextMenu.eventAdd {
-	background:url(../img/icons.png) 5px -298px;
+	background-position:5px -298px;
 }
 
 a.eventContextMenu.showInCalendarDay {
-	background:transparent url('../img/icons.png') no-repeat 6px -205px;
+	background-position:6px -205px;
 }
 
 a.eventContextMenu.showInCalendarWeek {
-	background:transparent url('../img/icons.png') no-repeat 6px -235px;
+	background-position:6px -235px;
 }
 
 a.eventContextMenu.showInCalendarMonth {
-	background:transparent url('../img/icons.png') no-repeat 6px -265px;
+	background-position:6px -265px;
 }
