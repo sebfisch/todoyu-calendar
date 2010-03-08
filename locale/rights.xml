@@ -2,7 +2,7 @@
 <locallang>
 	<labels lang="en">
 		<label index="general">General</label>
-		<label index="general.use">Allowed to use/see calendar functionalities</label>
+		<label index="general.use">Use calendar functionalities</label>
 		<label index="general.area">Use calendars area</label>
 		<label index="event">Event</label>
 		<label index="event.seeAll">See all events</label>
