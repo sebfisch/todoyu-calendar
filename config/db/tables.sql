@@ -18,9 +18,8 @@ CREATE TABLE `ext_calendar_event` (
   `date_end` int(10) unsigned NOT NULL DEFAULT '0',
   `is_private` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `is_dayevent` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `is_public` tinyint(1) unsigned NOT NULL DEFAULT '0'
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 --
@@ -38,7 +37,7 @@ CREATE TABLE `ext_calendar_holiday` (
   `description` varchar(256) NOT NULL,
   `workingtime` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 --
@@ -54,7 +53,7 @@ CREATE TABLE `ext_calendar_holidayset` (
   `title` varchar(32) NOT NULL,
   `description` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 --
@@ -68,7 +67,7 @@ CREATE TABLE `ext_calendar_mm_holiday_holidayset` (
   PRIMARY KEY (`id`),
   KEY `holiday` (`id_holiday`),
   KEY `holidayset` (`id_holidayset`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 --
@@ -83,4 +82,4 @@ CREATE TABLE `ext_calendar_mm_event_person` (
   PRIMARY KEY (`id`),
   KEY `uid_local` (`id_event`),
   KEY `uid_foreign` (`id_person`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
