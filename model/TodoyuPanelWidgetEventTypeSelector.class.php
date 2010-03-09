@@ -25,7 +25,6 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
 
 	/**
@@ -137,7 +136,11 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 			0,									// item ID
 			true								// unique?
 		);
+	}
 
+
+	public static function isAllowed() {
+		return allowed('calendar', 'general:use');
 	}
 }
 

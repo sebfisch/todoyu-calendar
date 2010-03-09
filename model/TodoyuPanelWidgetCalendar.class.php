@@ -144,6 +144,16 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 		TodoyuCalendarPreferences::saveDate($time, AREA);
 	}
 
+
+	/**
+	 * Check if panelwidget is allowed
+	 *
+	 * @return	Bool
+	 */
+	public static function isAllowed() {
+		return allowed('calendar', 'general:use');
+	}
+
 }
 
 
