@@ -28,6 +28,24 @@
 class TodoyuCalendarManager {
 
 	/**
+	 * Get name of calendar mode from mode constant
+	 *
+	 * @param	Integer	$mode
+	 * @return	String
+	 */
+	public static function getModeName($mode = CALENDAR_MODE_DAY) {
+		$modes	= array(
+			CALENDAR_MODE_DAY	=> 'day',
+			CALENDAR_MODE_WEEK	=> 'week',
+			CALENDAR_MODE_MONTH	=> 'month',
+		);
+
+		return	$modes[$mode];
+	}
+
+
+
+	/**
 	 * Get holidays in a timespan for the current holiday sets
 	 *
 	 * @param	Integer		$dateStart

@@ -77,25 +77,24 @@ class TodoyuEventRenderer {
 	/**
 	 * Prepare event rendering data array
 	 *
-	 * @todo	This functions seems wrong (only one person per event?)
-	 * @param	String		$calendarMode			day / week / month
+	 * @param	Integer		$calendarMode			CALENDAR_MODE_DAY / ..WEEK / ..MONTH
 	 * @param	Array		$data					event parameters
 	 * @return	Array
 	 */
-	public static function prepareEventRenderData($calendarMode = 'month', array $data) {
+	public static function prepareEventRenderData($mode = CALENDAR_MODE_MONTH, array $data) {
 		$idEvent			= intval($data['id']);
 		$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true );
 		$idAssignedPerson	= count($assignedPersons) == 1 ? $assignedPersons[0]['id_person'] : 0;
 
 		$color = self::getEventColorData($idAssignedPerson);
 
-		$data['calendarMode']	= $calendarMode;
+		$data['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
 		$data['assignedPersons']= $assignedPersons;
 		$data['color']			= $color[$idAssignedPerson];
 		$data['eventtypeKey']	= TodoyuEventTypeManager::getEventTypeKey($data['eventtype']);
 
 
-		if ($calendarMode == 'week') {
+		if ( $mode == CALENDAR_MODE_WEEK ) {
 			$shownStartingDayNum	= TodoyuEventManager::calcEventStartingDayNumInWeek($data['date_start'], $data['tstamp_firstDay']);
 			$shownEndingDayNum		= TodoyuEventManager::calcEventEndingDayNumInWeek($data['date_end'], $data['tstamp_lastDay']);
 
@@ -113,12 +112,12 @@ class TodoyuEventRenderer {
 	 * Render event entry
 	 *
 	 * @param	Array		$event				Event details
-	 * @param	String		$calendarMode		'month' / 'week' / 'day'
+	 * @param	Integer		$calendarMode		CALENDAR_MODE_MONTH / ..WEEK / ..DAY
 	 * @return	String
 	 */
-	public static function renderEvent(array $event, $calendarMode = 'month') {
+	public static function renderEvent(array $event, $mode = CALENDAR_MODE_MONTH) {
 		$tmpl	= 'ext/calendar/view/event.tmpl';
-		$data	= self::prepareEventRenderData($calendarMode, $event);
+		$data	= self::prepareEventRenderData($mode, $event);
 
 		return render($tmpl, $data);
 	}
@@ -153,13 +152,13 @@ class TodoyuEventRenderer {
 	/**
 	 * Render day event (events that span a whole day or more than that)
 	 *
-	 * @param	String		$calendarMode
+	 * @param	Integer		$calendarMode
 	 * @param	Array		$data
 	 * @return	String
 	 */
-	public static function renderFulldayEvent($calendarMode = 'day', array $data = array()) {
+	public static function renderFulldayEvent($mode = CALENDAR_MODE_DAY, array $data = array()) {
 		$tmpl	= 'ext/calendar/view/event-fullday.tmpl';
-		$data	= self::prepareEventRenderData($calendarMode, $data);
+		$data	= self::prepareEventRenderData($mode, $data);
 
 		return render($tmpl, $data);
 	}

@@ -30,21 +30,21 @@ class TodoyuCalendarViewHelper {
 	/**
 	 * Get calendar title
 	 *
-	 * @param	String		$mode
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$dateEnd
+	 * @param	Integer		$mode			CALENDAR_MODE_DAY / ..WEEK / ..MONTH
 	 * @return	String
 	 */
-	public static function getCalendarTitle($mode, $dateStart, $dateEnd) {
+	public static function getCalendarTitle($dateStart, $dateEnd, $mode = CALENDAR_MODE_DAY) {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
 
 		switch($mode) {
-			case 'day':
+			case CALENDAR_MODE_DAY:
 				$title	= TodoyuTime::format($dateStart, 'DlongD2MlongY4') . ' (' . TodoyuTime::format($dateStart, 'calendarweek') . ')';
 				break;
 
-			case 'week':
+			case CALENDAR_MODE_WEEK:
 				if( date('n', $dateStart) === date('n', $dateEnd) ) {
 					$title = date('j.', $dateStart) . ' - ' . TodoyuTime::format($dateEnd, 'D2MlongY4') . ' (' . TodoyuTime::format($dateStart, 'calendarweek') . ')';
 				} else {
@@ -52,7 +52,7 @@ class TodoyuCalendarViewHelper {
 				}
 				break;
 
-			case 'month':
+			case CALENDAR_MODE_MONTH:
 				$date	= $dateStart + TodoyuTime::SECONDS_WEEK;
 				$kw1	= TodoyuTime::format($dateStart, 'calendarweek');
 				$kw2	= TodoyuTime::format($dateEnd, 'calendarweek');
@@ -119,17 +119,7 @@ class TodoyuCalendarViewHelper {
 	 * @return	Array
 	 */
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
-		$eventTypes	= TodoyuEventTypeManager::getEventTypes(true);
-		$options	= array();
-
-		foreach($eventTypes as $eventType) {
-			$options[] = array(
-				'value'	=> $eventType['index'],
-				'label'	=> $eventType['label'],
-			);
-		}
-
-		return $options;
+		return TodoyuEventViewHelper::getEventTypeOptions($field);
 	}
 
 }

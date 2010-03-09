@@ -26,6 +26,14 @@
  * @subpackage	Calendar
  */
 
+	// Calendar viewing modes
+define('CALENDAR_MODE_DAY', 		1);
+define('CALENDAR_MODE_WEEK', 		2);
+define('CALENDAR_MODE_MONTH', 		3);
+define('CALENDAR_MODE_EVENTVIEW', 	4);
+
+
+
 	// Event types
 	// @see	referring keys are defined in extension.php
 define('EVENTTYPE_GENERAL', 	1);

@@ -35,40 +35,26 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 	 */
 	public function eventAction(array $params) {
 		$idEvent	= intval($params['key']);
-
 		$event		= TodoyuEventManager::getEvent($idEvent);
+
 		$quickInfo	= new TodoyuQuickinfo();
 
-			// Build event date info
-		if ( $event->isMultiDay() ) {
-			$dateInfo  = TodoyuTime::format($event->getStartDate(), 'D2MshortTime');
-			$dateInfo .= '<br />';
-			$dateInfo .= TodoyuTime::format($event->getEndDate(), 'D2MshortTime');
-		} else {
-			$dateInfo  = TodoyuTime::format($event->getStartDate(), 'D2MshortTime');
-			$dateInfo .= ' - ';
-			$dateInfo .= TodoyuTime::format($event->getEndDate(), 'time');
-		}
-
-			// Build persons info
-		$personInfo	= array();
-		$persons	= $event->getAssignedPersonsData();
-
-		foreach($persons as $person) {
-			$personInfo[] = '- ' . TodoyuPersonManager::getLabel($person['id']);
-		}
+			// Build event infos: date, persons
+		$dateInfo	= TodoyuEventViewHelper::getQuickinfoDateInfo($event);
+		$personInfo	= TodoyuEventViewHelper::getQuickinfoPersonInfo($event);
 
 		$quickInfo->addInfo('title', $event->getTitle(), 10);
 		$quickInfo->addInfo('type', $event->getTypeLabel(), 20);
 		$quickInfo->addInfo('date', $dateInfo, 30);
 
+			// Add conditionally displayed (only if set) infos
 		if ( $event->getPlace() !== '' ) {
 			$quickInfo->addInfo('place', $event->getPlace(), 40);
 		}
 
-			// Only add persons info when assigned to at least one person
-		if ( sizeof($personInfo) > 0 ) {
-			$quickInfo->addInfo('persons', implode('<br />', $personInfo), 50);
+		$amountAssignedPersons	= count( $event->getAssignedPersonsData() );
+		if ( $amountAssignedPersons > 0 ) {
+			$quickInfo->addInfo('persons', $personInfo, 50);
 		}
 
 		$quickInfo->printInfoJSON();
