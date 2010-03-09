@@ -59,7 +59,6 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 		TodoyuPage::addExtAssets('calendar', 'panelwidget-holidaysetselector');
 
 		$this->addHasIconClass();
-//		$this->addClass('user');
 
 			// Init widget JS (observers)
 		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector.init.bind(Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector)', 100);
@@ -68,34 +67,14 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 
 
 	/**
-	 * Get <option>s config array of all holidaysets
+	 * Render the whole widget
 	 *
-	 * @return	Array
+	 * @return	String
 	 */
-	public static function getHolidaySetsOptions() {
-		$sets		= TodoyuHolidaySetManager::getAllHolidaySets();
-		$selected	= self::getSelectedHolidaySetIDs();
+	public function render() {
+		$this->setContent( $this->renderContent() );
 
-		$options	= array(
-			'0'	=> array(
-				'index'		=> 0,
-				'value'		=> 0,
-				'label'		=> Label('panelwidget-holidaysetselector.showNoHolidays'),
-				'classname'	=> 'holidayset_none',
-				'selected'	=> count($selected) === 0
-			)
-		);
-
-		foreach( $sets as $index => $option ) {
-			$index	= $index + 1;
-			$options[$index]				= $option;
-			$options[$index]['value']		= $option['id'];
-			$options[$index]['label']		= $option['title'];
-			$options[$index]['classname']	= 'holidayset_' . $option['id'];
-			$options[$index]['selecetd']	= ( in_array($index, $selected) ) ? true : false;
-		}
-
-		return $options;
+		return parent::render();
 	}
 
 
@@ -121,14 +100,48 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 
 
 	/**
-	 * Render widget (get evoked)
+	 * Get <option>s config array of all holidaysets
 	 *
-	 * @return	String
+	 * @return	Array
 	 */
-	public function render() {
-		$this->setContent( $this->renderContent() );
+	public static function getHolidaySetsOptions() {
+		$sets		= TodoyuHolidaySetManager::getAllHolidaySets();
+		$selected	= self::getSelectedHolidaySetIDs();
 
-		return parent::render();
+		$options	= array(
+			'0'	=> array(
+				'index'		=> 0,
+				'value'		=> 0,
+				'label'		=> Label('panelwidget-holidaysetselector.showNoHolidays'),
+				'class'		=> 'holidayset_none',
+				'selected'	=> count($selected) === 0 ? true : false
+			)
+		);
+
+		foreach( $sets as $index => $option ) {
+			$index	= $index + 1;
+			$options[$index]				= $option;
+			$options[$index]['value']		= $option['id'];
+			$options[$index]['label']		= $option['title'];
+			$options[$index]['class']		= 'holidayset_' . $option['id'];
+			$options[$index]['selecetd']	= ( in_array($index, $selected) ) ? true : false;
+		}
+
+		return $options;
+	}
+
+
+
+	/**
+	 * Get IDs of selected holidaySets
+	 *
+	 * @return	Array
+	 */
+	public function getSelectedHolidaySetIDs($area = AREA) {
+		$selectorPref	= TodoyuCalendarPreferences::getPref('panelwidget-holidaysetselector', 0, $area);
+		$selectedSetIDs	= TodoyuArray::intExplode(',', $selectorPref);
+
+		return $selectedSetIDs;
 	}
 
 
@@ -149,21 +162,6 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 			0,									// item ID
 			true								// unique?
 		);
-
-	}
-
-
-
-	/**
-	 * Get IDs of selected holidaySets
-	 *
-	 * @return	Array
-	 */
-	public function getSelectedHolidaySetIDs($area = AREA) {
-		$selectorPref	= TodoyuCalendarPreferences::getPref('panelwidget-holidaysetselector', 0, $area);
-		$selectedSetIDs	= TodoyuArray::intExplode(',', $selectorPref);
-
-		return $selectedSetIDs;
 	}
 
 }
