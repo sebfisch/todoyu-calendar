@@ -27,12 +27,12 @@
  */
 
 $CONFIG['EXT']['calendar']['info'] = array(
-	'title'				=> 'Events and holidays management',
-	'description' 		=> 'Events and holidays management in day-, week- and month-viewing mode',
+	'title'				=> 'Events and Holidays Management',
+	'description' 		=> 'Events and Holidays Management in Day-, Week- and Month-viewing Mode',
 	'author' 			=> array(
-		'name'		=> 'Todoyu Core Team',
+		'name'		=> 'todoyu Core Developer Team',
 		'email'		=> 'team@todoyu.com',
-		'company'	=> 'Snowflake Productions, Zürich'
+		'company'	=> 'snowflake productions GmbH, Zurich'
 	),
 	'state' 			=> 'beta',
 	'version' => '0.2.0',
