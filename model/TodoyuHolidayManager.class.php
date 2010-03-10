@@ -39,7 +39,7 @@ class TodoyuHolidayManager {
 	public static function getHoliday($idHoliday) {
 		$idHoliday	= intval($idHoliday);
 
-		return TodoyuCache::getRecord('TodoyuHoliday', $idHoliday);
+		return TodoyuRecordManager::getRecord('TodoyuHoliday', $idHoliday);
 	}
 
 

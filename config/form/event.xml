@@ -32,10 +32,6 @@
 					<label>event.attr.is_dayevent</label>
 				</field>
 
-				<field type="checkbox" name="is_public">
-					<label>event.attr.is_public</label>
-				</field>
-
 				<field type="checkbox" name="is_private">
 					<label>event.attr.is_private</label>
 					<validate>

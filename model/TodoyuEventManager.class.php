@@ -63,7 +63,7 @@ class TodoyuEventManager {
 	 * @return	TodoyuEvent
 	 */
 	public static function getEvent($idEvent) {
-		return TodoyuCache::getRecord('TodoyuEvent', $idEvent);
+		return TodoyuRecordManager::getRecord('TodoyuEvent', $idEvent);
 	}
 
 
@@ -614,8 +614,8 @@ class TodoyuEventManager {
 	public static function removeEventFromCache($idEvent) {
 		$idEvent = intval($idEvent);
 
-		TodoyuCache::removeRecord('Event', $idEvent);
-		TodoyuCache::removeRecordQuery(self::TABLE, $idEvent);
+		TodoyuRecordManager::removeRecordCache('TodoyuEvent', $idEvent);
+		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idEvent);
 	}
 
 
@@ -687,7 +687,7 @@ class TodoyuEventManager {
 		$timestamp	= intval($timestamp);
 		$defaultData= self::getEventDefaultData($timestamp);
 
-		$idCache	= TodoyuCache::makeClassKey('TodoyuEvent', 0);
+		$idCache	= TodoyuRecordManager::makeClassKey('TodoyuEvent', 0);
 		$event		= self::getEvent(0);
 		$event->injectData($defaultData);
 		TodoyuCache::set($idCache, $event);
