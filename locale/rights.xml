@@ -6,7 +6,7 @@
 		<label index="general.area">Use calendars area</label>
 		<label index="event">Event</label>
 		<label index="event.seeAll">See all events</label>
-		<label index="event.editAndDeleteAssigned">Edit and delete assigned (or created by this user) events</label>
+		<label index="event.editAndDeleteAssigned">Edit and delete assigned (or created by this person) events</label>
 		<label index="event.editAndDeleteAll">Edit and delete all events</label>
 		<label index="event.add">Add new event</label>
 		<label index="event.search">Search for events</label>
