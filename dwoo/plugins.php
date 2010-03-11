@@ -24,8 +24,6 @@
  *
  * @package		Todoyu
  * @subpackage	Template
- *
- *
  */
 
 
@@ -111,7 +109,7 @@ function Dwoo_Plugin_assignNegativeTimestamps(Dwoo $dwoo, $month, $timestamps) {
 	$day	= 1;
 
 	for ($i = 7; $i > 0; $i--) {
-		$timestamps[(93 + $i)]	= mktime(0,0,0, $month, $day, $year);
+		$timestamps[(93 + $i)]	= mktime(0, 0, 0, $month, $day, $year);
 		$day -= 1;
 	}
 

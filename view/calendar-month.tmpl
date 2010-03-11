@@ -52,7 +52,7 @@
 							{if sizeof($holidays[$dayDateKey])>0}
 								<span id="holiday-{$timestamps[$curDayCounter]}" class="holiday quickInfoHoliday"></span>
 							{/if}
-							{* ------- Date ------- *}
+							{* ------- Numeric date, full date if 1st day of month ------- *}
 							<span class="month-date" onclick="Todoyu.Ext.calendar.show('day', {$timestamps[$curDayCounter]*1000})">
 							{if date('j', $timestamps[$curDayCounter]) == 1}
 								{dateFormat $timestamps[$curDayCounter] MlongD2}

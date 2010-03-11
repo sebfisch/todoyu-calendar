@@ -46,7 +46,7 @@ class TodoyuCalendarRenderer {
 		$data	= array(
 			'active'		=> $activeTab,
 			'content'		=> self::renderCalendar($time, $activeTab, $params),
-			'showCalendar'	=> $activeTab === 'day' || $activeTab === 'week' || $activeTab === 'month'
+			'showCalendar'	=> ( in_array($activeTab, array('day', 'week', 'month')) ) ? true : false
 		);
 
 			// If event-view is selected, set date and add it to data array
