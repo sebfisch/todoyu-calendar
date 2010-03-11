@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
 	<labels lang="en">
-		<label index="title">Event types</label>
+		<label index="title">Event Types</label>
 	</labels>
 	<labels lang="de">
 		<label index="title">Termin-Typen</label>

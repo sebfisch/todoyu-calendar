@@ -2,8 +2,8 @@
 <locallang>
 	<labels lang="en">
 		<label index="general">General</label>
-		<label index="general.use">Use calendar functionalities</label>
-		<label index="general.area">Use calendars area</label>
+		<label index="general.use">Use Calendar Functionalities</label>
+		<label index="general.area">Use Calendars Area</label>
 		<label index="event">Event</label>
 		<label index="event.seeAll">See all events</label>
 		<label index="event.editAndDeleteAssigned">Edit and delete assigned (or created by this person) events</label>
@@ -14,14 +14,14 @@
 	</labels>
 	<labels lang="de">
 		<label index="general">Allgemein</label>
-		<label index="general.use">Kalender-Funktionalitäten Verwenden</label>
-		<label index="general.area">Kalender-Bereich Verwenden</label>
+		<label index="general.use">Kalender-Funktionalitäten verwenden</label>
+		<label index="general.area">Kalender-Bereich verwenden</label>
 		<label index="event">Termin</label>
-		<label index="event.seeAll">Alle Termine Sehen</label>
-		<label index="event.editAndDeleteAssigned">Zugewiesenen oder selbst erstellten Termin Editieren und Löschen</label>
-		<label index="event.editAndDeleteAll">Alle Termine Editieren und Löschen</label>
+		<label index="event.seeAll">Alle Termine sehen</label>
+		<label index="event.editAndDeleteAssigned">Zugewiesenen oder selbst erstellten Termin editieren und löschen</label>
+		<label index="event.editAndDeleteAll">Alle Termine editieren und löschen</label>
 		<label index="event.add">Neuen Termin Erstellen</label>
-		<label index="event.assignOthers">Termine anderen Benutzern Zuweisen</label>
-		<label index="event.search">Nach Terminen Suchen</label>
+		<label index="event.assignOthers">Termine anderen Benutzern zuweisen</label>
+		<label index="event.search">Nach Terminen suchen</label>
 	</labels>
 </locallang>

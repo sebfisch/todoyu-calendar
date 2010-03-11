@@ -5,7 +5,7 @@
 		<label index="page.title">Calendar</label>
 		<label index="maintab.label">Planning</label>
 		<label index="holidayset">Holidayset</label>
-		<label index="yearsold">Years old</label>
+		<label index="yearsold">Years Old</label>
 		<label index="applicableholidayset">Holidayset</label>
 		<label index="workingtime">Working Hours</label>
 		<label index="owner">Owner</label>
@@ -13,11 +13,11 @@
 		<label index="subMenuEntry.week">Calendar > Week</label>
 		<label index="subMenuEntry.month">Calendar > Month</label>
 		<label index="today">Today</label>
-		<label index="quicknav.backward.title">Go back</label>
-		<label index="quicknav.forward.title">Go forward</label>
-		<label index="quicknav.today.title">Jump to current day</label>
-		<label index="dayview.workingtime">Show working hours (08h-18h)</label>
-		<label index="dayview.fullday">Show hours of full day (00h-24h)</label>
+		<label index="quicknav.backward.title">Back</label>
+		<label index="quicknav.forward.title">Forward</label>
+		<label index="quicknav.today.title">Jump To Current Day</label>
+		<label index="dayview.workingtime">Show Working Hours (08h-18h)</label>
+		<label index="dayview.fullday">Show Hours Of Full Day (00h-24h)</label>
 		<label index="holidayset.attr.name">Name</label>
 		<label index="holidayset.attr.holiday">Holiday</label>
 		<label index="holiday">Holiday</label>
@@ -26,7 +26,7 @@
 		<label index="search.label">Events</label>
 		<label index="search.mode.label">Find Events</label>
 		<label index="portal.tab.appointments">Appointments</label>
-		<label index="extconf.allowoverbooking.label">Allow overbooking?</label>
+		<label index="extconf.allowoverbooking.label">Allow Overbooking?</label>
 		<label index="portal.tab.appointments">Appointments</label>
 	</labels>
 	<labels lang="de">

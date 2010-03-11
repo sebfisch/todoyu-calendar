@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
 	<labels lang="en">
-		<label index="title">Event assistant</label>
+		<label index="title">Event Assistant</label>
 		<label index="addNewEvent">Create Event</label>
 	</labels>
 	<labels lang="de">
