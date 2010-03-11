@@ -46,7 +46,7 @@
 /* ------------------------------
    Create mode option in headlet
    ------------------------------ */
-#headlet-quickcreate-menu li.itemEvent {
+#headlet-quickcreate-menu li.itemCalendarEvent {
 	background:url(../img/icons.png) no-repeat 11px -296px;
 }
 

@@ -18,17 +18,16 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-Todoyu.Headlet.QuickCreate.Event = {
+Todoyu.Ext.calendar.QuickCreateEvent = {
 
-	time: null,
-
+	//time: null,
 
 
 	/**
 	 * Evoked upon opening of event quick create wizard popup
 	 */
 	onPopupOpened: function() {
-		time	= 0;
+		//var time	= 0;
 
 //		Todoyu.Ext.calendar.getTime();
 //		$('quickevent-field-eventtype').observe('change', this.onEventTypeChange.bindAsEventListener(this, time));

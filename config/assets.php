@@ -36,7 +36,7 @@ $CONFIG['EXT']['calendar']['assets'] = array(
 				'position' => 100
 			),
 			array(
-				'file' => 'ext/calendar/assets/js/HeadletQuickCreateEvent.js',
+				'file' => 'ext/calendar/assets/js/QuickCreateEvent.js',
 				'position' => 100
 			),
 		),
