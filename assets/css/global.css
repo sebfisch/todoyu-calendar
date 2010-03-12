@@ -55,7 +55,8 @@
 /* ------------------------------
    Search mode opiton in headlet
    ------------------------------ */
-#headlet-quicksearch-modes .searchmode-event a {
+#headlet-quicksearch-content form.searchmodeEvent a.mode,
+#headlet-quicksearch-modes li.searchmodeEvent a {
 	background:url(../img/icons.png) no-repeat 3px 3px !important;
 }
 
