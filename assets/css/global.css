@@ -46,7 +46,7 @@
 /* ------------------------------
    Create mode option in headlet
    ------------------------------ */
-#headlet-quickcreate-content a.itemCalendarEvent {
+#headlet-quickcreate-content li.itemCalendarEvent a {
 	background:url(../img/icons.png) no-repeat 5px -296px;
 }
 
@@ -55,7 +55,7 @@
 /* ------------------------------
    Search mode opiton in headlet
    ------------------------------ */
-.searchmode-event {
+#headlet-quicksearch-modes .searchmode-event a {
 	background:url(../img/icons.png) no-repeat 3px 3px !important;
 }
 
