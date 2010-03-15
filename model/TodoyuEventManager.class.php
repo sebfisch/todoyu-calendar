@@ -450,12 +450,7 @@ class TodoyuEventManager {
 	 * @return	Integer
 	 */
 	public static function addEvent(array $data) {
-		unset($data['id']);
-
-		$data['date_create']	= NOW;
-		$data['id_person_create']	= TodoyuAuth::getPersonID();
-
-		return Todoyu::db()->addRecord(self::TABLE, $data);
+		return TodoyuRecordManager::addRecord(self::TABLE, $data);
 	}
 
 

@@ -23,10 +23,6 @@
 					<label>core.description</label>
 				</field>
 
-				<field type="expandAllButton" name="expandAll">
-					<fields>holiday</fields>
-				</field>
-
 				<field type="databaseRelation" name="holiday">
 					<label>calendar.holidayset.attr.holiday</label>
 					<record>

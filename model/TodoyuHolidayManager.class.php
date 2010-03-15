@@ -89,9 +89,7 @@ class TodoyuHolidayManager {
 	 * @return	Integer
 	 */
 	public static function addHoliday(array $data = array()) {
-		unset($data['id']);
-
-		return Todoyu::db()->addRecord(self::TABLE, $data);
+		return TodoyuRecordManager::addRecord(self::TABLE , $data);
 	}
 
 
@@ -104,10 +102,7 @@ class TodoyuHolidayManager {
 	 * @return	Bool
 	 */
 	public static function updateHoliday($idHoliday, array $data) {
-		$idHoliday	= intval($idHoliday);
-		unset($data['id']);
-
-		return Todoyu::db()->updateRecord(self::TABLE, $idHoliday, $data);
+		return TodoyuRecordManager::updateRecord(self::TABLE , $idHoliday, $data);
 	}
 
 
