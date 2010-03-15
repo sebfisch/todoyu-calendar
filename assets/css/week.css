@@ -75,6 +75,12 @@
 
 }
 
+.weekdayForceWid {
+	width:86px;
+	height:-1px;
+	border:none;
+}
+
 .wk-allday{
 	background-color:#f2f3ed;
 	font-size:11px;

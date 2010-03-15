@@ -28,7 +28,11 @@
 						<td class="wk-allday" colspan="7">
 							<div id="weekViewAllDaywk">
 								<table class="st-grid"><tbody>
-									<tr>{for i 0 6}<td style="width:86px; height:-1px; border: none;"></td>{/for}</tr>
+									<tr>
+									{for i 0 6}
+										<td class="weekdayForceWid"></td>
+									{/for}
+									</tr>
 									{* --------------- Birthdays -------------------- *}
 									<tr>
 									{for weekday 0 6}
@@ -43,7 +47,8 @@
 									{/for}
 									</tr>
 
-									{for weekday 0 6}{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
+									{for weekday 0 6}
+										{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
 										{foreach $dayEvents.$dayDateKey dayEvent}
 											{$dayEvent}
 										{/foreach}
@@ -95,7 +100,7 @@
 					</tr>
 					<tr>
 						<td class="tg-times">
-							<div style="top:430px;" class="tg-nowptr" id="tgnowptr" />
+							<div class="tg-nowptr" id="tgnowptr" />
 							{for hour 0 23}
 								<div class="tg-time">{if $hour < 10}0{/if}{$hour}:00</div>
 							{/for}

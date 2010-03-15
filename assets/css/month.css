@@ -4,10 +4,12 @@
 .monthMode .event .head {
 	height:18px;
 }
-.monthMode .event.typeBirthday .head {
-	background-color:#D7DCC6;
-	height:18px;
-}
+
+	.monthMode .event.typeBirthday .head {
+		background-color:#D7DCC6;
+		height:18px;
+	}
+
 
 
 /* ------------

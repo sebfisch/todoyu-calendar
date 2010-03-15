@@ -1,16 +1,16 @@
 <div id="event-{$id}" class="event contextmenuevent quickInfoEvent type{ucfirst $eventtypeKey} {$calendarMode} enumColBGFade{$color.id}"
-	style="{if $calendarMode!='month'}top:{$top}px; left:{$left}px;{/if}
-	{if $calendarMode=='week'} height:{$height}px;{/if}{if intval($width)>0} width:{$width}px;{/if}">
+	style="{if $calendarMode != 'month'}top:{$top}px; left:{$left}px;{/if}
+	{if $calendarMode == 'week'} height:{$height}px;{/if}{if intval($width)>0} width:{$width}px;{/if}">
 	
 	<dl {if $calendarMode != 'month'}style="height:{$height}px"{/if}>
 		<dt class="head {if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
 			{$title}
-			{if count($assignedPersons)==1}
+			{if count($assignedPersons) == 1}
 				{$assignedPersons.0.shortname}
 			{/if}
 		</dt>
 		<dd>
-			<span class="{if $calendarMode=='week'}ca-elp{/if}" style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"};{/if}">
+			<span class="{if $calendarMode == 'week'}ca-elp{/if}" style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"};{/if}">
 
 			{* ---------- Only show title if event is not private ---------- *}
 			{if $is_private == 1}

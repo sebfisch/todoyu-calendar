@@ -39,14 +39,16 @@
 					<td>
 						<div class="tg-hourmarkerwrapper">
 							<div class="tg-hourmarkers">
-								{for markercounter 0 23}<div class="tg-dualmarker"></div>{/for}
+							{for markercounter 0 23}
+								<div class="tg-dualmarker"></div>
+							{/for}
 							</div>
 						</div>
 					</td>
 				</tr><tr>
 					{* ---------------- Textual hour (00:00 to 23:00)  -------------------------- *}
 					<td class="tg-times">
-						<div style="top:644px;" class="tg-nowptr" id="tgnowptr"/>
+						<div class="tg-nowptr" id="tgnowptr"/>
 						{assign var=hourTimestamp value=$timestamp}
 						{for hourcounter 0 23}
 							{if $hourcounter == 8}

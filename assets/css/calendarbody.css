@@ -39,6 +39,14 @@
 	background-color:#f2f3ed;
 }
 
+	.dayMode #tgnowptr {
+		top:644px;
+	}
+
+	.weekMode #tgnowptr {
+		top:430px;
+	}
+
 
 
 /* ----------------------
