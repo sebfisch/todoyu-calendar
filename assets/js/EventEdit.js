@@ -46,6 +46,18 @@ Todoyu.Ext.calendar.EventEdit = {
 
 
 	/**
+	 * Open edit view for event from detail view
+	 * 
+	 * @param	Integer		idEvent
+	 */
+	openFromDetailView: function(idEvent) {
+		this.cancelEdit();
+		this.open(idEvent, 0);
+	},
+	
+	
+	
+	/**
 	 * Load edit form for an event
 	 *
 	 * @param	Integer		idEvent

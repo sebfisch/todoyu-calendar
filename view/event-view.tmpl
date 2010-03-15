@@ -35,8 +35,10 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<br/><br/>
-			{Button label="core.close" class="button cancelButton cancel" onclick="Todoyu.Ext.calendar.EventEdit.cancelEdit()"}
+			<fieldset class="buttons">
+				{Button label="event.edit" class="button editButton editEvent" onclick="Todoyu.Ext.calendar.EventEdit.openFromDetailView($event.id)"}
+				{Button label="core.close" class="button cancelButton cancel" onclick="Todoyu.Ext.calendar.EventEdit.cancelEdit()"}
+			</fieldset>
 		</td>
 	</tr>
 </table>
