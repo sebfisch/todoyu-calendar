@@ -2,15 +2,15 @@
 <table class="eventView">
 	<tr class="odd">
 		<td class="eventAttrTitle">{Label core.title}: </td>
-		<td class="eventValue">{$event.title}</td>
+		<td class="eventValue">{htmlencode $event.title}</td>
 	</tr>
 	<tr class="even">
 		<td class="eventAttrTitle">{Label event.attr.place}: </td>
-		<td class="eventValue">{$event.place}</td>
+		<td class="eventValue">{htmlencode $event.place}</td>
 	</tr>
 	<tr class="odd">
 		<td class="eventAttrTitle">{Label core.description}: </td>
-		<td class="eventValue">{$event.description|default:"-"}</td>
+		<td class="eventValue">{htmlencode $event.description|default:"-"}</td>
 	</tr>
 	<tr class="even">
 		<td class="eventAttrTitle">{Label event.attr.timespan}: </td>
@@ -23,14 +23,14 @@
 		<td class="eventAttrTitle ">{Label event.attr.attendees}: </td>
 		<td class="eventValue">
 			{foreach $attendees id personData}
-				{$personData.firstname} {$personData.lastname}<br/>
+				{htmlencode $personData.firstname} {htmlencode $personData.lastname}<br/>
 			{/foreach}
 		</td>
 	</tr>
 	<tr class="even">
 		<td class="eventAttrTitle"> {Label event.attr.creator}: </td>
 		<td class="eventValue">
-			{$person_create.firstname} {$person_create.lastname}
+			{htmlencode $person_create.firstname} {htmlencode $person_create.lastname}
 		</td>
 	</tr>
 	<tr>

@@ -1,10 +1,10 @@
 <div id="event-{$id}" class="event contextmenuevent quickInfoEvent type{ucfirst $eventtypeKey} {$calendarMode} enumColBGFade{$color.id}"
 	style="{if $calendarMode != 'month'}top:{$top}px; left:{$left}px;{/if}
 	{if $calendarMode == 'week'} height:{$height}px;{/if}{if intval($width)>0} width:{$width}px;{/if}">
-	
+
 	<dl {if $calendarMode != 'month'}style="height:{$height}px"{/if}>
 		<dt class="head {if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
-			{$title}
+			{htmlencode $title}
 			{if count($assignedPersons) == 1}
 				{$assignedPersons.0.shortname}
 			{/if}
@@ -16,13 +16,13 @@
 			{if $is_private == 1}
 				<span class="privateEvent"></span>
 				{if isPersonID($id_person)}
-					{$title}
+					{htmlencode $title}
 				{/if}
 			{else}
-				{$title}
+				{htmlencode $title}
 			{/if}
 			</span>
 		</dd>
 	</dl>
-	
+
 </div>
