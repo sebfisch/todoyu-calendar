@@ -27,7 +27,11 @@
  */
 class TodoyuHolidaySetManager {
 
+	/**
+	 * Default table for database requests
+	 */
 	const TABLE = 'ext_calendar_holidayset';
+
 
 
 	/**
