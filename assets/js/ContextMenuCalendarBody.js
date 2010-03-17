@@ -26,14 +26,14 @@
 Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 
 	/**
-	 *	Ext shortcut
+	 * Ext shortcut
 	 */
 	ext:	Todoyu.Ext.calendar,
 
 
 
 	/**
-	 *	Attach task context menu
+	 * Attach task context menu
 	 */
 	attach: function() {
 		Todoyu.ContextMenu.attachMenuToClass('contextmenucalendararea', this.load.bind(this));
@@ -42,7 +42,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 
 
 	/**
-	 *	Detach task context menu
+	 * Detach task context menu
 	 */
 	detach: function() {
 		Todoyu.ContextMenu.detachAllMenus('contextmenucalendararea');
@@ -51,7 +51,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 
 
 	/**
-	 *	Reattach task context menu
+	 * Reattach task context menu
 	 */
 	reattach: function() {
 		this.detach();
@@ -61,9 +61,10 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 
 
 	/**
-	 *	Load task context menu
+	 * Load task context menu
 	 *
-	 *	@param	Object	event
+	 * @param	Event		event
+	 * @return	Boolean		false
 	 */
 	load: function(event) {
 		var time 	= this.getClickedTime(event);
@@ -85,8 +86,8 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	/**
 	 * Get timestamp at clicked coordinates / element
 	 * 
-	 *	@param	Object	event
-	 *	@return	Integer
+	 * @param	Event		event
+	 * @return	Integer
 	 */
 	getClickedTime: function(event) {
 		var calendarMode= this.ext.getActiveTab();
@@ -103,11 +104,12 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	
 	
 	/**
-	 *	Attach task context menu to given element
+	 * Attach task context menu to given element
 	 *
-	 *	@param	String	element
+	 * @param	String	element
 	 */
 	attachToElement: function(element) {
 		Todoyu.ContextMenu.attachMenuToElement(element, this.load.bind(this));
 	}
+
 };

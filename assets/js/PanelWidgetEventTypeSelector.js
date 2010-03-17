@@ -26,7 +26,7 @@
 Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
-	 *	Ext shortcut
+	 * Ext shortcut
 	 */
 	ext:	Todoyu.Ext.calendar,
 
@@ -57,7 +57,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Event type select event handler
 	 *
-	 * @param	unknown	event
+	 * @param	Event		event
 	 */
 	onSelectionChange: function(event) {
 		this.onUpdate();
@@ -78,6 +78,9 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
 	 * Select all event types
+	 * 
+	 * @param	Boolean		select
+	 * @todo	remove param 'select'?
 	 */
 	selectAllEventTypes: function(select) {
 		var selected = select === true;

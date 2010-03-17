@@ -79,7 +79,7 @@ class TodoyuEventViewHelper {
 		$personInfo	= array();
 
 		foreach($persons as $person) {
-			$personInfo[] = '- ' . TodoyuPersonManager::getLabel($person['id']);
+			$personInfo[] = TodoyuPersonManager::getLabel($person['id']);
 		}
 
 		return implode('<br />', $personInfo);

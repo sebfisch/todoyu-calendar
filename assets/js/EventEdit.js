@@ -24,7 +24,7 @@
 Todoyu.Ext.calendar.EventEdit = {
 
 	/**
-	 *	Ext shortcut
+	 * Ext shortcut
 	 */
 	ext:	Todoyu.Ext.calendar,
 
@@ -232,6 +232,8 @@ Todoyu.Ext.calendar.EventEdit = {
 
 	/**
 	 * Check if edit view is active
+	 * 
+	 * @return	Boolean
 	 */
 	isActive: function() {
 		return Todoyu.exists('calendar-tab-edit');
@@ -281,9 +283,9 @@ Todoyu.Ext.calendar.EventEdit = {
 
 
 	/**
-	 *	Handler when event saved
+	 * Handler after event saved
 	 *
-	 *	@param	Object	response
+	 * @param	Object	response
 	 */
 	onEventSaved: function(response) {
 		if( response.hasTodoyuError() ) {
@@ -302,7 +304,7 @@ Todoyu.Ext.calendar.EventEdit = {
 
 
 	/**
-	 *	Close event form
+	 * Close event form
 	 */
 	cancelEdit: function(){
 		this.ext.show(this.ext.Tabs.active);

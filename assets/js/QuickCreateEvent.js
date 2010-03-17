@@ -20,15 +20,14 @@
 
 Todoyu.Ext.calendar.QuickCreateEvent = {
 
-	//time: null,
-
-
 	/**
 	 * Evoked upon opening of event quick create wizard popup
+	 * 
+	 * @todo	check usage / remove?
 	 */
 	onPopupOpened: function() {
-		//var time	= 0;
-
+//		var time	= 0;
+//
 //		Todoyu.Ext.calendar.getTime();
 //		$('quickevent-field-eventtype').observe('change', this.onEventTypeChange.bindAsEventListener(this, time));
 	},

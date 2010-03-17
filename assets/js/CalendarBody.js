@@ -19,7 +19,7 @@
 ***************************************************************/
 
 Todoyu.Ext.calendar.CalendarBody = {
-	
+
 	/**
 	 *	Ext shortcut
 	 */
@@ -32,9 +32,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Init calendar body
+	 * Init calendar body
 	 *
-	 *	@param	Integer	fullHeight
+	 * @param	Boolean		fullHeight
 	 */
 	init: function(fullHeight) {
 		this.calendarBody = $(this.idArea);
@@ -48,7 +48,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Reinitialize calendar boy
+	 * Reinitialize calendar boy
 	 */
 	reInit: function() {
 		this.calendarBody = $(this.idArea);
@@ -58,7 +58,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Install calendar body context menu
+	 * Install calendar body context menu
 	 */
 	installContextMenu: function() {
 		this.ext.ContextMenuCalendarBody.reattach();
@@ -67,7 +67,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Toggle full day view mode
+	 * Toggle full day view mode
 	 */
 	toggleFullDayView: function() {
 		this.setFullHeight(!this.isFullHeight(), true);
@@ -76,7 +76,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Check whether calendar body is set to full height
+	 * Check whether calendar body is set to full height
 	 */
 	isFullHeight: function() {
 		return this.calendarBody.hasClassName('full');
@@ -85,9 +85,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Get calendar body height
+	 * Get calendar body height
 	 *
-	 *	@return	Integer
+	 * @return	Integer
 	 */
 	getHeight: function() {
 		return this.calendarBody.getHeight();
@@ -96,7 +96,10 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Set calendar body display mode to full day height
+	 * Set calendar body display mode to full day height
+	 * 
+	 * @param	Boolean		fullHeight
+	 * @param	Boolean		savePref
 	 */
 	setFullHeight: function(fullHeight, savePref) {
 		if( fullHeight ) {
@@ -126,8 +129,8 @@ Todoyu.Ext.calendar.CalendarBody = {
 	/**
 	 *	Get resp. timestamp to mouse coordinates inside current calendar view (day / week / month) 
 	 *
-	 *	@param	Integer	x
-	 *	@param	Integer	y
+	 *	@param	Integer		x
+	 *	@param	Integer		y
 	 *	@return	Integer
 	 */
 	getTimeOfMouseCoordinates: function(x, y) {
@@ -157,8 +160,8 @@ Todoyu.Ext.calendar.CalendarBody = {
 	/**
 	 *	Get pixel-offset of day display, used to comprehend visual margins of hours in day / week mode
 	 *
-	 *	@param	Integer	top
-	 *	@param	Integer	height
+	 *	@param	Integer		top
+	 *	@param	Integer		height
 	 *	@return	Integer
 	 */
 	getDayOffset: function(top, height) {
@@ -200,9 +203,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Handle event creation in day or week viewing mode
+	 * Handle event creation in day or week viewing mode
 	 *
-	 * 	@param	unknown	event
+	 * @param	Event	event
 	 */
 	onEventCreateDayWeek: function(event) {
 		if( event.findElement('td.tg-col') ) {
@@ -215,9 +218,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 *	Handle event creation in month viewing mode
+	 * Handle event creation in month viewing mode
 	 *
-	 *	@param	unknown	event
+	 * @param	Event	event
 	 */
 	onEventCreateMonth: function(event) {
 		var cell	= event.findElement('td');

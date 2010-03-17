@@ -3,9 +3,9 @@ Todoyu.Ext.calendar.EventPortal = {
 	ext: Todoyu.Ext.calendar,
 
 	/**
-	 *	Toggle details of listed event entry (in listing of e.g portal's events tab). Used for eventslist only
+	 * Toggle details of listed event entry (in listing of e.g portal's events tab). Used for eventslist only
 	 *
-	 *	@param	Integer	idEvent
+	 * @param	Integer	idEvent
 	 */
 	toggleDetails: function(idEvent) {
 			// If detail is not loaded yet, send request
@@ -20,10 +20,9 @@ Todoyu.Ext.calendar.EventPortal = {
 
 
 	/**
-	 *	Load event details
+	 * Load event details
 	 *
-	 *	@param	Intger	idEvent
-	 *	@param	String	mode	'day' / 'week' / 'month'
+	 * @param	Intger		idEvent
 	 */
 	loadDetails: function(idEvent) {
 		var url		= Todoyu.getUrl('calendar', 'portal');
@@ -44,28 +43,30 @@ Todoyu.Ext.calendar.EventPortal = {
 
 	},
 
+
+
 	/**
-	 *	Check whether event details are loaded
+	 * Check whether event details are loaded
 	 *
-	 *	@param	Integer		idEvent
-	 *	@return	Boolean
+	 * @param	Integer		idEvent
+	 * @return	Boolean
 	 */
 	isDetailsLoaded: function(idEvent)	{
 		return Todoyu.exists('event-' + idEvent + '-details');
 	},
 
 
+
 	/**
 	 *	Save event details
 	 *
-	 *	@param	Intger	idEvent
-	 *	@param	Boolean	open
+	 *	@param	Intger		idEvent
+	 *	@param	Boolean		expanded
 	 */
 	saveEventExpandedStatus: function(idEvent, expanded) {
 		var value = expanded ? 1 : 0;
 		this.ext.savePref('portalEventExpanded', value, idEvent);
 	},
-
 
 
 
@@ -95,9 +96,10 @@ Todoyu.Ext.calendar.EventPortal = {
 
 
 	/**
-	 *	'On acknowledged' event handler
+	 * 'On acknowledged' event handler
 	 *
-	 *	@param	Response	response
+	 * @param	Object		response
+	 * @todo	implement or remove
 	 */
 	onAcknowledged: function(idEvent, idPerson, response)	{
 

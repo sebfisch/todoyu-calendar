@@ -24,7 +24,7 @@
 Todoyu.Ext.calendar.EventView = {
 
 	/**
-	 *	Ext shortcut
+	 * Ext shortcut
 	 */
 	ext:	Todoyu.Ext.calendar,
 
@@ -33,7 +33,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Open event
 	 *
-	 *	@param	Integer	idEvent
+	 * @param	Integer	idEvent
 	 */
 	open: function(idEvent) {
 		this.addTab('');
@@ -47,7 +47,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Load event details
 	 *
-	 * 	@param	Integer	idEvent
+	 * @param	Integer	idEvent
 	 */
 	loadDetails: function(idEvent) {
 		var url		= Todoyu.getUrl('calendar', 'event');
@@ -65,6 +65,12 @@ Todoyu.Ext.calendar.EventView = {
 
 
 
+	/**
+	 * Handler being evoked upon completion of loading of details: set tab label
+	 * 
+	 * @param	Integer		idEvent
+	 * @param	Object		response
+	 */
 	onDetailsLoaded: function(idEvent, response) {
 		var tabLabel = response.getTodoyuHeader('tabLabel');
 
@@ -73,6 +79,11 @@ Todoyu.Ext.calendar.EventView = {
 
 
 
+	/**
+	 * If not yet there: add and activate event view tab
+	 * 
+	 * @param	String		label
+	 */
 	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tab-view') ) {
 			var tab = Todoyu.Tabs.build('calendar', 'view', 'item bcg05 tabkey-view', label, true);
@@ -88,36 +99,58 @@ Todoyu.Ext.calendar.EventView = {
 
 
 
+	/**
+	 * Remove event viewing tab
+	 */
 	removeTab: function() {
 		$('calendar-tab-view').remove();
 	},
 
 
 
+	/**
+	 * Set event viewing tab label
+	 * 
+	 * @param	String		label
+	 */
 	setTabLabel: function(label) {
 		Todoyu.Tabs.setLabel('calendar', 'view', label);
 	},
 
 
 
+	/**
+	 * Hide event viewing tab
+	 */
 	hide: function() {
 		$('calendar-view').hide();
 	},
 
 
 
+	/**
+	 * Set event viewing tab shown
+	 */
 	show: function() {
 		$('calendar-view').show();
 	},
 
 
 
+	/**
+	 * Check whether event viewing tab exists in DOM
+	 * 
+	 * @return	Boolean
+	 */
 	isActive: function() {
 		return Todoyu.exists('calendar-tab-view');
 	},
 
 
 
+	/**
+	 * Close event viewing tab and update calendar view
+	 */
 	close: function() {
 		this.removeTab();
 		this.hide();

@@ -26,14 +26,14 @@
 Todoyu.Ext.calendar.ContextMenuEventPortal = {
 
 	/**
-	 *	Ext shortcut
+	 * Ext shortcut
 	 */
 	ext:	Todoyu.Ext.calendar,
 
 
 
 	/**
-	 *	Attach event context menu
+	 * Attach event context menu
 	 */
 	attach: function() {
 		Todoyu.ContextMenu.attachMenuToClass('contextmenuEventPortal', this.load.bind(this));
@@ -42,7 +42,7 @@ Todoyu.Ext.calendar.ContextMenuEventPortal = {
 
 
 	/**
-	 *	Detach event context menu
+	 * Detach event context menu
 	 */
 	detach: function() {
 		Todoyu.ContextMenu.detachAllMenus('contextmenuEventPortal');
@@ -51,7 +51,7 @@ Todoyu.Ext.calendar.ContextMenuEventPortal = {
 
 
 	/**
-	 *	Reattach event context menu
+	 * Reattach event context menu
 	 */
 	reattach: function() {
 		this.detach();
@@ -61,9 +61,10 @@ Todoyu.Ext.calendar.ContextMenuEventPortal = {
 
 
 	/**
-	 *	Load event context menu
+	 * Load event context menu
 	 *
-	 *	@param	Object	event
+	 * @param	Event		event
+	 * @return	Boolean		false
 	 */
 	load: function(event) {
 		var idEvent		= event.findElement('div.event').readAttribute('id').split('-').last();
@@ -84,9 +85,9 @@ Todoyu.Ext.calendar.ContextMenuEventPortal = {
 
 
 	/**
-	 *	Attach event context menu to given element
+	 * Attach event context menu to given element
 	 *
-	 *	@param	String	element
+	 * @param	String		element
 	 */
 	attachToElement: function(element) {
 		Todoyu.ContextMenu.attachMenuToElement(element, this.load.bind(this));

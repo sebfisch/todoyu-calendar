@@ -30,15 +30,16 @@ Todoyu.Ext.calendar.Navi = {
 	/**
 	 * Set calendar title
 	 *
+	 * @param	String		title
 	 */
 	setTitle: function(title) {
 		$('calendar-title').update(title);
 	},
 
 
+
 	/**
-	 * Get active tab
-	 *
+	 * Get current active calendar tab
 	 */
 	getActiveTab: function() {
 		return this.ext.Tabs.getActive();
@@ -49,7 +50,7 @@ Todoyu.Ext.calendar.Navi = {
 	/**
 	 * Get up-/ down-shifted date
 	 *
-	 * @param	String	direction	'up' / 'down'
+	 * @param	String		direction		'up' / 'down'
 	 * @return	Integer
 	 */
 	getDirectionDate: function(direction) {

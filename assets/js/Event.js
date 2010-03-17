@@ -21,7 +21,7 @@
 Todoyu.Ext.calendar.Event = {
 
 	/**
-	 *	Ext shortcut
+	 * Ext shortcut
 	 */
 	ext:	Todoyu.Ext.calendar,
 
@@ -44,7 +44,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Event double click handler
 	 *
-	 * @param	object	event
+	 * @param	Event		event
 	 */
 	onEventDblClick: function(event) {
 		event.stop();
@@ -60,7 +60,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Show event
 	 *
-	 * @param	Integer	idEvent
+	 * @param	Integer		idEvent
 	 */
 	show: function(idEvent) {
 		this.ext.EventView.open(idEvent);
@@ -72,7 +72,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Edit event
 	 *
-	 * @param	Integer	idEvent
+	 * @param	Integer		idEvent
 	 */
 	edit: function(idEvent) {
 		this.ext.EventEdit.open(idEvent);
@@ -83,7 +83,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Remove event
 	 *
-	 * @param	Integer	idEvent
+	 * @param	Integer		idEvent
 	 */
 	remove: function(idEvent) {
 		if(confirm('[LLL:event.delete.confirm]')) {
@@ -109,8 +109,8 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Handle 'on removed' event
 	 *
-	 * @param	Integer	idEvent
-	 * @param	Object	response
+	 * @param	Integer		idEvent
+	 * @param	Object		response
 	 */
 	onRemoved: function(idEvent, response) {
 		this.ext.refresh();
@@ -134,25 +134,25 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Calculate timestamp from given given mouse coordinates
 	 *
-	 * @param	String	idTab	'day' / 'week' / 'month'
-	 * @param	Integer	eventPointerX
-	 * @param	Integer	eventPointerY
-	 * @return	Integer	UNIX timestamp
+	 * @param	String		idTab	'day' / 'week' / 'month'
+	 * @param	Integer		x		event pointer x coordinate
+	 * @param	Integer		y		event pointer y coordinate
+	 * @return	Integer		UNIX timestamp
 	 */
-	calcTimestampFromMouseCoords: function(idTab, eventPointerX, eventPointerY) {
+	calcTimestampFromMouseCoords: function(idTab, x, y) {
 		var timestamp 		= Todoyu.Ext.calendar.getDate();
 		var calLeftCoord	= Element.cumulativeOffset($('calendararea'))[0] + 43;
 		var calTopCoord		= Element.cumulativeOffset($('calendararea'))[1];
 
 			// Calculate time of day in 30 minute steps from mouse-Y
-		var halfHours	= (eventPointerY - calTopCoord) / 21.5 + '';
+		var halfHours	= (y - calTopCoord) / 21.5 + '';
 		halfHours		= parseInt(halfHours.split('.')[0], 10);
 
 		timestamp	+= halfHours * 1800;
 
 			// Calculate day of week from mouse-X
 		if (idTab == 'week') {
-			var day	= (eventPointerX - calLeftCoord) / 88 + '';
+			var day	= (x - calLeftCoord) / 88 + '';
 			day		= parseInt(day.split('.')[0], 10);
 			timestamp	+= day * 86400;
 		}
@@ -170,9 +170,9 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Show given event in given view (day / week / month) of calendar
 	 *
-	 * @param	Integer	idEvent
-	 * @param	Integer	date
-	 * @param	String	view
+	 * @param	Integer		idEvent
+	 * @param	Integer		date
+	 * @param	String		view
 	 */
 	goToEventInCalendar: function(idEvent, date, view) {
 		var params = {

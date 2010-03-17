@@ -57,7 +57,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * HolidaySet select event handler
 	 *
-	 * @param	unknown	event
+	 * @param	Event		event
 	 */
 	onHolidaySetSelect: function(event) {
 		var selectedSetIDs	= this.getSelectedHolidaySetIDs();
@@ -72,7 +72,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Check and verify current selection (e.g. 'none' override any selected sets)
 	 *
-	 * @param	Array	selectedSetIDs
+	 * @param	Array		selectedSetIDs
 	 */
 	verifySelectedSets: function(selectedSetIDs) {
 		if (selectedSetIDs.include(0)) {
@@ -85,7 +85,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Update event handler
 	 *
-	 * @param	String	value
+	 * @param	String		value
 	 */
 	onUpdate: function(value) {
 		this.savePrefs();
@@ -209,4 +209,5 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	onPrefsSaved: function(response) {
 		Todoyu.Ext.calendar.refresh();
 	}
+
 };
