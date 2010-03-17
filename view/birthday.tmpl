@@ -1,3 +1,9 @@
 <div title="{dateFormat $date DlongD2Mlong} - {Label event.type.birthday} {$title} ({$age} {Label calendar.yearsold})" id="birthday-{$id}" class="event typeBirthday quickInfoBirthday">
-	<div class="head">{$lastname}, {$firstname}</div>
+	<div class="head">
+		{if $calendarMode == 'day'}
+			{$fullname}
+		{else}
+			{$fullname|truncate:9}
+		{/if}
+	</div>
 </div>

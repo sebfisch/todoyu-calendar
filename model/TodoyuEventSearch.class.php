@@ -95,7 +95,7 @@ class TodoyuEventSearch implements TodoyuSearchEngineIf {
 			foreach($events as $event) {
 				$suggestions[] = array(
 					'labelTitle'=> TodoyuTime::format($event['date_start'], 'datetime') . ': ' . $event['title'],
-					'labelInfo'	=> TodoyuDiv::getSubstring($event['description'], $find[0], 20, 30, false),
+					'labelInfo'	=> TodoyuString::getSubstring($event['description'], $find[0], 20, 30, false),
 					'title'		=> TodoyuTime::format($event['date_start'], 'datetime') . ' - ' . TodoyuTime::format($event['date_end'], 'datetime'),
 					'onclick'	=> 'location.href=\'?ext=calendar&amp;tab=view&amp;event=' . $event['id'] . '\''
 				);

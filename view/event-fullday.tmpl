@@ -1,8 +1,11 @@
 {if $calendarMode == 'week'}
+	{* ------------------------ Fullday events in WEEK viewing mode ------------------- *}
 	<tr>
 		{* ------------ Stretch fullday events over 2 or more days if needed ------------ *}
 		{if $shownStartingDayNum >= 1}
-			{for counter 1 $shownStartingDayNum}<td class="noEventCell">&nbsp;</td>{/for}
+			{for counter 1 $shownStartingDayNum}
+				<td class="noEventCell">&nbsp;</td>
+			{/for}
 		{/if}
 		<td colspan="{$shownDaysDuration+1}">
 			<div id="event-{$id}" class="event quickInfoEvent contextmenuevent enumColBGFade{$color.id} enumColBor{$color.id} rb-n dayevent type{ucfirst $eventtypeKey}">
@@ -11,13 +14,13 @@
 						{* -------------- Only show title if event is not private ------------- *}
 						{if isPersonID($id_person)}
 							<span class="privateEvent"></span>
-							{$title}
+							{$title|truncate:12}
 						{else}
 							<span class="privateEvent"></span>
 							{Label event.privateEvent.info}
 						{/if}
-					{else}
-						{$title}
+					{else}{* ------ event is not private ----- *} 
+						{$title|truncate:12}
 					{/if}
 				</div>
 			</div>
@@ -29,7 +32,7 @@
 			{/for}
 		{/if}
 	</tr>
-{else}
+{else}{* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *}
 	{* ------------------------ Fullday events in DAY and MONTH viewing mode ------------------- *}
 	<div id="event-{$id}" class="event contextmenuevent quickInfoEvent dayevent enumColBGFade{$color.id} enumColBor{$color.id} {if $updateAllowed} updateAllowed{/if}">
 		<span class="type{ucfirst $eventtypeKey} eventtype_{$eventtype}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -45,25 +48,23 @@
 							{/if}
 						{/foreach}
 					{/if}:
-					{$title}
+					{$title|truncate:12}
 					{if $calendarMode == 'day'}
 					 ({dateFormat $date_start datetime} - {dateFormat $date_end datetime})
 					{/if}
 			{else}
 				<span class="privateEvent"></span>
 			{/if}
-		{else}
+		{else}{* ----- not a private event ------ *}
 			{if $calendarMode == 'day'}
 				{foreach $assignedPersons num personData}
 					{$personData.shortname}
-					{if $dwoo.foreach.default.last}
-					{else},
-					{/if}
+					{if $dwoo.foreach.default.last}{else},{/if}
 				{/foreach}
 			{/if}:
-			{$title}
+			{$title|truncate:12}
 			{if $calendarMode == 'day'}
-			 ({dateFormat $date_start datetime} - {dateFormat $date_end datetime})
+				({dateFormat $date_start datetime} - {dateFormat $date_end datetime})
 			{/if}
 		{/if}
 	</div>

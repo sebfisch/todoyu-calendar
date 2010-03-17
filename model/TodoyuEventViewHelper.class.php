@@ -72,6 +72,7 @@ class TodoyuEventViewHelper {
 	 * Build preformated person(s) info for event quickinfo tooltip
 	 *
 	 * @param	TodoyuEvent	$event
+	 * @param	Integer		$maxLenPersonLabel
 	 * @return	String
 	 */
 	public static function getQuickinfoPersonInfo($event) {
@@ -79,10 +80,12 @@ class TodoyuEventViewHelper {
 		$personInfo	= array();
 
 		foreach($persons as $person) {
-			$personInfo[] = TodoyuPersonManager::getLabel($person['id']);
+			$label	= TodoyuPersonManager::getLabel($person['id']);
+
+			$personInfo[]	= TodoyuString::crop($label, 15, '...', false);
 		}
 
-		return implode('<br />', $personInfo);
+		return implode("\n", $personInfo);
 	}
 
 }

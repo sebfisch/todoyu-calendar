@@ -43,9 +43,9 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$dateInfo	= TodoyuEventViewHelper::getQuickinfoDateInfo($event);
 		$personInfo	= TodoyuEventViewHelper::getQuickinfoPersonInfo($event);
 
-		$quickInfo->addInfo('title', $event->getTitle(), 10);
-		$quickInfo->addInfo('type', $event->getTypeLabel(), 20);
-		$quickInfo->addInfo('date', $dateInfo, 30);
+		$quickInfo->addInfo('title',	$event->getTitle(), 10);
+		$quickInfo->addInfo('type',		$event->getTypeLabel(), 20);
+		$quickInfo->addInfo('date',		$dateInfo, 30);
 
 			// Add conditionally displayed (only if set) infos
 		if ( $event->getPlace() !== '' ) {
@@ -101,7 +101,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$viewBirthday	= mktime(0, 0, 0, date('n', $birthday), date('j', $birthday), date('Y', $viewDate));
 		$age			= date('Y', $viewDate) - date('Y', $birthday);
 
-		$quickInfo->addInfo('name',		$person->getFullName());
+		$quickInfo->addInfo('name',		TodoyuString::crop($person->getFullName(), 20, '...', false));
 		$quickInfo->addInfo('date',		TodoyuTime::format($viewBirthday, 'date'));
 		$quickInfo->addInfo('birthday',	$age . ' ' . Label('calendar.yearsold'));
 
