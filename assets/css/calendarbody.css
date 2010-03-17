@@ -52,11 +52,6 @@
 /* ----------------------
 	Area tabs
    ---------------------- */
-/*
-#calendar-tabs li span.icon {
-	margin-right:2px;
-}
-*/
 #calendar-tabs span.icon {
 	background-image:url(../img/icons.png);
 }
@@ -90,10 +85,6 @@
 	background-color:#fff;
 }
 
-	#calendar h1 {
-		padding-left:10px !important;
-	}
-
 	#calendar #createevent {
 		margin-top:10px;
 		margin-left:10px;
@@ -123,21 +114,10 @@
 		width:352px;
 	}
 
-#calendar-title {
-	position:absolute;
-	line-height:23px;
-	margin:0;
-	padding:0 0 0 10px;
-	text-transform:uppercase;
-}
-
 #calendar-quicknav {
 	position:absolute;
-	top:3px;
-	right:15px;
-	float:right;
-	margin:0;
-	padding:0;
+	top:2px;
+	right:5px;
 }
 
 #calendar-body {
@@ -147,9 +127,6 @@
 	background-color:#fff;
 	padding-bottom:10px;
 }
-
-
-
 
 
 /* ------------------------

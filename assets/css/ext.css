@@ -92,24 +92,27 @@ form.formEvent button.buttonSave {}
 	height:24px;
 }
 
-	#calendar-quicknav .goback {
-		min-width:28px;
-		width:28px;
-		cursor:pointer;
-		background:transparent url(../img/icons.png) no-repeat scroll 2px -115px;
+	#calendar-quicknav span.rgt {
+		display: none;
 	}
 
+	#calendar-quicknav .goback,
 	#calendar-quicknav .goforward {
 		min-width:28px;
 		width:28px;
 		cursor:pointer;
-		background:transparent url(../img/icons.png) no-repeat scroll 2px -175px;
+		background:transparent url(../img/icons.png) no-repeat scroll 0 0;
+	}
+	#calendar-quicknav .goback {
+		background-position: 4px -115px;
+	}
+
+	#calendar-quicknav .goforward {
+		background-position: 4px -175px;
 	}
 
 	#calendar-quicknav .buttonToday {
 		float:left;
-		margin-right:8px;
-		margin-top:-3px;
 	}
 
 	#calendar-quicknav .buttonToday span.rgt {

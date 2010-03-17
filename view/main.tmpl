@@ -1,7 +1,7 @@
 <div id="calendar" {if ! $showCalendar}style="display:none"{/if}>
 
 	{* ----------------- Calendar header ----------------- *}
-	<div id="calendar-header" class="headerLine">
+	<h1 id="calendar-header" class="headerLine">
 		<span id="calendar-title"></span>
 		<div id="calendar-quicknav">
 			<div id="calendar-quicknav-backward" title="{Label calendar.quicknav.backward.title}" class="icon goback" onclick="Todoyu.Ext.calendar.Navi.goBackward()"></div>
@@ -9,7 +9,7 @@
 			<div id="calendar-quicknav-forward" title="{Label calendar.quicknav.forward.title}" class="icon goforward" onclick="Todoyu.Ext.calendar.Navi.goForward()"></div>
 		</div>
 		<span class="rgt"><!-- right --></span>
-	</div>
+	</h1>
 
 	{* -------------- Calendar body --------------------- *}
 	<div id="calendar-body">
