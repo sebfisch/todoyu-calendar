@@ -53,10 +53,6 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 			$idArea										// area ID
 		);
 
-					// Have public ext. and widget specific assets added
-		TodoyuPage::addExtAssets('calendar', 'public');
-		TodoyuPage::addExtAssets('calendar', 'panelwidget-holidaysetselector');
-
 		$this->addHasIconClass();
 
 			// Init widget JS (observers)

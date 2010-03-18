@@ -53,12 +53,7 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 			$idArea										// area ID
 		);
 
-			// Add assets
-		TodoyuPage::addExtAssets('calendar', 'public');
-		TodoyuPage::addExtAssets('calendar', 'panelwidget-eventtypeselector');
-
 		$this->addHasIconClass();
-//		$this->addClass('user');
 
 			// init widget JS (observers)
 		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.EventTypeSelector.init.bind(Todoyu.Ext.calendar.PanelWidget.EventTypeSelector)', 100);

@@ -48,10 +48,6 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 			$idArea								// area ID
 		);
 
-			// Have public ext. and widget specific assets added
-		TodoyuPage::addExtAssets('calendar', 'public');
-		TodoyuPage::addExtAssets('calendar', 'panelwidget-calendar');
-
 		$this->addHasIconClass();
 
 			// Init widget JS (observers)
