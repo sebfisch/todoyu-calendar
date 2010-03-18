@@ -51,7 +51,7 @@
 				<field type="datetimeinput" name="date_end">
 					<label>event.attr.enddate</label>
 					<validate>
-						<dateTimeNotBefore msg="form.error.endDateNotBeforeStart">
+						<dateTimeNotBefore msg="event.error.starttimeAfterEndtime">
 							<field>date_start</field>
 						</dateTimeNotBefore>
 					</validate>
