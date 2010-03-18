@@ -89,17 +89,11 @@ form.formEvent button.buttonSave {}
 /* --------------------------------------------------------------------
 	Date navigational buttons (center on today, go forward / backward)
    -------------------------------------------------------------------- */
-#calendar-header {
-
-}
 #calendar-quicknav div.icon {
-	height:24px;
+	height:16px;
 }
 
-	#calendar-quicknav span.rgt {
-		display: none;
-	}
-
+	#calendar-quicknav .today,
 	#calendar-quicknav .goback,
 	#calendar-quicknav .goforward {
 		min-width:28px;
@@ -107,23 +101,17 @@ form.formEvent button.buttonSave {}
 		cursor:pointer;
 		background:transparent url(../img/icons.png) no-repeat scroll 0 0;
 	}
+
+	#calendar-quicknav .today {
+		border:1px solid #bbb;
+		border-width: 0 1px;
+		background-position:7px -149px;
+	}
+
 	#calendar-quicknav .goback {
-		background-position: 4px -115px;
+		background-position:4px -119px;
 	}
 
 	#calendar-quicknav .goforward {
-		background-position: 4px -175px;
-	}
-
-	#calendar-quicknav .buttonToday {
-		float:left;
-	}
-
-	#calendar-quicknav .buttonToday span.rgt {
-		background-color:#e7e7e7;
-	}
-
-	#calendar-quicknav button.buttonToday span.icon {
-		cursor:pointer;
-		background:url(../img/icons.png) no-repeat scroll 2px -146px;
+		background-position:7px -179px;
 	}

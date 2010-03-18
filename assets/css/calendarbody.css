@@ -116,8 +116,16 @@
 
 #calendar-quicknav {
 	position:absolute;
-	top:2px;
+	top:3px;
 	right:5px;
+	height:16px;
+	padding: 2px 15px;
+	border:1px solid #bbb;
+	background:#fff;
+
+	-moz-border-radius:13px;
+	-webkit-border-radius:13px;
+	border-radius:13px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
 }
 
 #calendar-body {
