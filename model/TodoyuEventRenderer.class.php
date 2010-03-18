@@ -218,8 +218,8 @@ class TodoyuEventRenderer {
 		$dateEnd	= intval($dateEnd);
 		$viewRange	= TodoyuTime::getDayRange($dateView);
 
-		$dateStart	= TodoyuMath::intInRange($dateStart, $viewRange['start'], $viewRange['end']);
-		$dateEnd	= TodoyuMath::intInRange($dateEnd, $viewRange['start'], $viewRange['end']);
+		$dateStart	= TodoyuNumeric::intInRange($dateStart, $viewRange['start'], $viewRange['end']);
+		$dateEnd	= TodoyuNumeric::intInRange($dateEnd, $viewRange['start'], $viewRange['end']);
 
 		$timeDiffHour	= ($dateEnd - $dateStart)/TodoyuTime::SECONDS_HOUR;
 
