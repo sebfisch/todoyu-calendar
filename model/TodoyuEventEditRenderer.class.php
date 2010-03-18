@@ -108,6 +108,10 @@ class TodoyuEventEditRenderer {
 		$data	= $event->getTemplateData(true);
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
 
+//		$data['title']			= html_entity_encode($data['title']);
+//		$data['description']	= html_entity_encode($data['description']);
+//		$data['place']			= html_entity_encode($data['place']);
+
 		$form->setFormData($data);
 
 		return $form->render();
