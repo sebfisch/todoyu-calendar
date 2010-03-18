@@ -1,3 +1,7 @@
+h1.extIconCalendar .title {
+	background:url('../img/exticon.png') no-repeat 0 5px;
+}
+
 span.holiday {
 	display:inline-block;
 	width:13px;
