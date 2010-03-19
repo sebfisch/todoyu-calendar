@@ -53,11 +53,16 @@ Todoyu.Ext.calendar = {
 	},
 
 
+	init: function() {
+
+	},
+
+
 
 	/**
 	 * Initialization
 	 */
-	init: function(fullHeight) {
+	initCalendar: function(fullHeight) {
 		this.CalendarBody.init(fullHeight);
 
 		this.installGeneralObservers();
