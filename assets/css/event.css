@@ -62,7 +62,7 @@
 }
 
 .privateEvent {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -405px;
+	background:transparent url(../img/icons.png) no-repeat scroll 0 -406px;
 	padding:0 0 0 15px;
 }
 
@@ -94,7 +94,7 @@
 .event.typeGeneral .type,
 .dayMode .event .typeGeneral,
 .monthMode .event .typeGeneral {
-	background:url(../img/icons.png) no-repeat scroll 1px -659px;
+	background:url(../img/icons.png) no-repeat scroll 1px -660px;
 }
 
 .event.typeAway .head,
