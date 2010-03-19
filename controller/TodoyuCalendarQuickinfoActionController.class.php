@@ -39,12 +39,13 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 
 		$quickInfo	= new TodoyuQuickinfo();
 
-			// Build event infos: date, persons
+			// Build event infos: title, type, date, place, assigned persons
 		$dateInfo	= TodoyuEventViewHelper::getQuickinfoDateInfo($event);
 		$personInfo	= TodoyuEventViewHelper::getQuickinfoPersonInfo($event);
+		$typeInfo	= TodoyuEventViewHelper::getQuickinfoTypeInfo($event);
 
 		$quickInfo->addInfo('title',	$event->getTitle(), 10);
-		$quickInfo->addInfo('type',		$event->getTypeLabel(), 20);
+		$quickInfo->addInfo('type',		$typeInfo, 20);
 		$quickInfo->addInfo('date',		$dateInfo, 30);
 
 			// Add conditionally displayed (only if set) infos

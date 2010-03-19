@@ -49,7 +49,7 @@ class TodoyuEventViewHelper {
 	/**
 	 * Build preformated date info for event quickinfo tooltip
 	 *
-	 * @param	TodoyuEvent	$event
+	 * @param	TodoyuEvent		$event
 	 * @return	String
 	 */
 	public static function getQuickinfoDateInfo($event) {
@@ -71,8 +71,8 @@ class TodoyuEventViewHelper {
 	/**
 	 * Build preformated person(s) info for event quickinfo tooltip
 	 *
-	 * @param	TodoyuEvent	$event
-	 * @param	Integer		$maxLenPersonLabel
+	 * @param	TodoyuEvent		$event
+	 * @param	Integer			$maxLenPersonLabel
 	 * @return	String
 	 */
 	public static function getQuickinfoPersonInfo($event) {
@@ -86,6 +86,24 @@ class TodoyuEventViewHelper {
 		}
 
 		return implode("\n", $personInfo);
+	}
+
+
+
+	/**
+	 * Build preformated type info for event quickinfo tooltip
+	 *
+	 * @param	TodoyuEvent		$event
+	 * @return	String
+	 */
+	public static function getQuickinfoTypeInfo($event) {
+		$typeInfo	= $event->getTypeLabel();
+
+		if ( $event->data['is_private'] === '1' ) {
+			$typeInfo	.= ', ' . Label('event.attr.is_private');
+		}
+
+		return $typeInfo;
 	}
 
 }

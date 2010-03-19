@@ -62,28 +62,6 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Check if event start and end is on different days
-	 *
-	 * @return	Bool
-	 */
-	public function isMultiDay() {
-		return $this->isSingleDay() === false;
-	}
-
-
-
-	/**
-	 * Check if event start and end is on the same day
-	 *
-	 * @return	Bool
-	 */
-	public function isSingleDay() {
-		return date('Ymd', $this->getStartDate()) === date('Ymd', $this->getEndDate());
-	}
-
-
-
-	/**
 	 * Get event type (ID)
 	 *
 	 * @return	String
@@ -151,6 +129,28 @@ class TodoyuEvent extends TodoyuBaseObject {
 		$personIDs	= $this->getAssignedPersonIDs();
 
 		return in_array($idPerson, $personIDs);
+	}
+
+
+
+	/**
+	 * Check if event start and end is on different days
+	 *
+	 * @return	Bool
+	 */
+	public function isMultiDay() {
+		return $this->isSingleDay() === false;
+	}
+
+
+
+	/**
+	 * Check if event start and end is on the same day
+	 *
+	 * @return	Bool
+	 */
+	public function isSingleDay() {
+		return date('Ymd', $this->getStartDate()) === date('Ymd', $this->getEndDate());
 	}
 
 

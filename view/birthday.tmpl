@@ -1,9 +1,9 @@
-<div title="{dateFormat $date DlongD2Mlong} - {Label event.type.birthday} {$title} ({$age} {Label calendar.yearsold})" id="birthday-{$id}" class="event typeBirthday quickInfoBirthday">
+<div title="{dateFormat $date DlongD2Mlong} - {Label event.type.birthday} {htmlencode $title} ({$age} {Label calendar.yearsold})" id="birthday-{$id}" class="event typeBirthday quickInfoBirthday">
 	<div class="head">
 		{if $calendarMode == 'day'}
-			{$fullname}
+			{htmlencode $fullname}
 		{else}
-			{$fullname|truncate:9}
+			{htmlencode $fullname|truncate:16}
 		{/if}
 	</div>
 </div>
