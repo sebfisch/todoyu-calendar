@@ -7,8 +7,8 @@
 		<label index="edit">Edit Event</label>
 		<label index="delete">Delete Event</label>
 		<label index="create.label">New Event</label>
-		<label index="save.success">Event Saved</label>
-		<label index="save.failed">Saving Event Failed</label>
+		<label index="saved.ok">Event Saved</label>
+		<label index="saved.error">Saving Event Failed</label>
 		<label index="type.general">General</label>
 		<label index="type.away">Absent</label>
 		<label index="type.birthday">Birthday</label>
@@ -66,8 +66,8 @@
 		<label index="new">Neuer Termin</label>
 		<label index="edit">Termin bearbeiten</label>
 		<label index="delete">Termin löschen</label>
-		<label index="save.success">Termin gespeichert</label>
-		<label index="save.failed">Terminspeicherung fehlgeschlagen</label>
+		<label index="saved.success">Termin gespeichert</label>
+		<label index="saved.failed">Terminspeicherung fehlgeschlagen</label>
 		<label index="create.label">Neuer Termin</label>
 		<label index="type.general">Allgemein</label>
 		<label index="type.away">Abwesend</label>

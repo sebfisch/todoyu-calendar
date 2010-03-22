@@ -72,7 +72,7 @@ Todoyu.Ext.calendar.EventEdit = {
 				'time':		time
 			},
 			'onComplete': this.onFormLoaded.bind(this, idEvent)
-		}
+		};
 		var target	= 'calendar-edit';
 
 		Todoyu.Ui.update(target, url, options);
@@ -289,10 +289,10 @@ Todoyu.Ext.calendar.EventEdit = {
 	 */
 	onEventSaved: function(response) {
 		if( response.hasTodoyuError() ) {
-			Todoyu.notifyError('Invalid form data');
+			Todoyu.notifyError('[LLL:event.saved.error]');
 			$('event-form').replace(response.responseText);
 		} else {
-			Todoyu.notifySuccess('Event saved');
+			Todoyu.notifySuccess('[LLL:event.saved.ok]');
 			var time	= response.getTodoyuHeader('time');
 			var idEvent	= response.getTodoyuHeader('idEvent');
 			this.ext.QuickInfoEvent.removeFromCache(idEvent);

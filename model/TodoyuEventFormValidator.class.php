@@ -117,11 +117,8 @@ class TodoyuEventFormValidator {
 				// Check which (any?) event persons are overbooked
 			$idEvent	= intval($formData['id']);
 			$event		= TodoyuEventManager::getEvent($idEvent);
-
-			$personIDs	= array();
-			foreach($value as $person) {
-				$personIDs[]	= intval($person['id']);
-			}
+			$personIDs	= TodoyuArray::getColumn($value, 'id');
+			$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
 			$overbookedPersons	= TodoyuEventManager::getOverbookedEventPersons($personIDs, $event['date_start'], $event['date_end'], $idEvent);
 

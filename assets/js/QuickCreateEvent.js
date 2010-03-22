@@ -22,7 +22,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 
 	/**
 	 * Evoked upon opening of event quick create wizard popup
-	 * 
+	 *
 	 * @todo	check usage / remove?
 	 */
 	onPopupOpened: function() {
@@ -57,19 +57,17 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	 * @param	Object	response	Response, containing startdate of the event
 	 */
 	onSaved: function(response) {
-		var isError = response.getTodoyuHeader('error') == 1;
-
 		if( response.hasTodoyuError() ) {
+			Todoyu.notifySuccess('[LLL:event.saved.error]');
+
 			Todoyu.Popup.setContent('quickcreate', response.responseText);
-			
-				//fix to reactivate the jscalendar scripts. Maybe theres a better solution ?
-			$('quickcreateevent-form').innerHTML.evalScripts();
 		} else {
 			var idEvent	= response.getTodoyuHeader('idEvent');
+
 			Todoyu.Hook.exec('onEventSaved', idEvent);
 
 			Todoyu.Popup.close('quickcreate');
-			Todoyu.notifySuccess('[LLL:event.save.success]');
+			Todoyu.notifySuccess('[LLL:event.saved.ok]');
 		}
 	},
 
@@ -96,7 +94,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 
 			// Get all check hook functions
 		var checkHooks	= Todoyu.Hook.get('eventtype');
-				
+
 			// Check all fields, if a hooks wants to hide it
 		allFieldNames.each(function(checkHooks, fieldsToHide, eventType, fieldname){
 				// Check all hooks if they want to hide the field
@@ -107,7 +105,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 				}
 			}.bind(this, fieldsToHide, fieldname, eventType));
 		}.bind(this, checkHooks, fieldsToHide, eventType));
-		
+
 		fieldsToHide.each(this.hideField, this);
 	},
 
@@ -115,7 +113,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 
 	/**
 	 * Hide a field in the event form
-	 * 
+	 *
 	 * @param	String		fieldname
 	 */
 	hideField: function(fieldname) {
