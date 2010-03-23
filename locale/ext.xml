@@ -20,9 +20,11 @@
 		<label index="dayview.fullday">Show Hours Of Full Day (00h-24h)</label>
 		<label index="holidayset.attr.name">Name</label>
 		<label index="holidayset.attr.holiday">Holiday</label>
+		<label index="holidayset.attr.holiday.new">New Holiday</label>
 		<label index="holiday">Holiday</label>
 		<label index="holiday.attr.workingtime">Working Hours</label>
 		<label index="holiday.attr.holidayset">Holidayset</label>
+		<label index="holiday.attr.holidayset.new">New Holidayset</label>
 		<label index="search.label">Events</label>
 		<label index="search.mode.label">Find Events</label>
 		<label index="portal.tab.appointments">Appointments</label>
@@ -49,9 +51,11 @@
 		<label index="dayview.fullday">Zeige ganzen Tag (00h-24h)</label>
 		<label index="holidayset.attr.name">Name</label>
 		<label index="holidayset.attr.holiday">Feiertag</label>
+		<label index="holidayset.attr.holiday.new">Neuer Feiertag</label>
 		<label index="holiday">Feiertag</label>
 		<label index="holiday.attr.workingtime">Arbeitsstunden</label>
 		<label index="holiday.attr.holidayset">Feiertags-Set</label>
+		<label index="holiday.attr.holidayset.new">Neues Feiertags-Set</label>
 		<label index="search.label">Termine</label>
 		<label index="search.mode.label">Termine finden</label>
 		<label index="portal.tab.appointments">Termine</label>

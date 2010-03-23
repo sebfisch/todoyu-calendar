@@ -25,6 +25,7 @@
 
 				<field type="databaseRelation" name="holiday">
 					<label>calendar.holidayset.attr.holiday</label>
+					<addLabel>calendar.holidayset.attr.holiday.new</addLabel>
 					<record>
 						<form>ext/calendar/config/form/admin/holidayset-holiday.xml</form>
 						<url>

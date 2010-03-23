@@ -311,37 +311,40 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Check which persons are already booked during the given timespan (excluding the given event)
+	 * Check for conflicts with other events for the assigned persons if overbooking is not allowed
 	 *
-	 * @param	Array		$personIDs
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$dateEnd
+	 * @param	Array		$personIDs
 	 * @param	Integer		$idEvent
-	 * @return	Array
+	 * @return	Array		Infos if conflicts found, empty if no conflicts
 	 */
-	public static function getOverbookedEventPersons(array $personIDs, $dateStart, $dateEnd, $idEvent) {
-		$overbookedPersonIDs	= array();
+	public static function getOverbookingInfos($dateStart, $dateEnd, array $personIDs, $idEvent = 0) {
+		$dateStart	= intval($dateStart);
+		$dateEnd	= intval($dateEnd);
+		$personIDs	= TodoyuArray::intval($personIDs, true, true);
+		$idEvent	= intval($idEvent);
 
-			// Get events of involved persons during timespan
-		$overlaps	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs);
-		unset($overlaps[$idEvent]);
+			// Make empty overbooking data
+		$overbooked	= array();
+			// Get all events in the duration of the event
+		$otherEvents= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs);
+			// Remove current event
+		unset($otherEvents[$idEvent]);
 
-		if ( count($overlaps) > 0 ) {
-			foreach($overlaps as $idOverlapEvent => $overlapEventData) {
-					// Get person assignments of overlapping event
-				$overlaps[$idOverlapEvent]['assigned_persons']	= array();
-				$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($idOverlapEvent);
-				foreach($assignedPersons as $person) {
-					if ( in_array($person['id_person'], $person) ) {
-						$overbookedPersonIDs[]	= $person['id_person'];
-					}
+		foreach($otherEvents as $otherEvent) {
+			$assignedPersonIDs	= TodoyuArray::getColumn(TodoyuEventManager::getAssignedPersonsOfEvent($otherEvent['id']), 'id_person');
+			$conflicPersonIDs	= array_intersect($personIDs, $assignedPersonIDs);
+
+			foreach($conflicPersonIDs as $idPerson) {
+				if( ! isset($overbooked[$idPerson]['person']) ) {
+					$overbooked[$idPerson]['person'] = $idPerson;
 				}
+				$overbooked[$idPerson]['events'][] = $otherEvent;
 			}
-
-			$overbookedPersonIDs = array_unique($overbookedPersonIDs);
 		}
 
-		return $overbookedPersonIDs;
+		return $overbooked;
 	}
 
 

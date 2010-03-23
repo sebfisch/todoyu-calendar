@@ -1,0 +1,14 @@
+{Label event.error.personsOverbooked}<br />
+<ul class="overbookedPersons">
+	{foreach $overbooked overbookedInfo}
+		<li>
+			{personLabel $overbookedInfo.person}
+			<ul>
+				{foreach $overbookedInfo.events event}
+					<li>{dateFormat $event.date_start D2M2Y2}, {dateFormat $event.date_start time}-{dateFormat $event.date_end time}: {$event.title}</li>
+				{/foreach}
+			</ul>
+		</li>
+
+	{/foreach}
+</ul>

@@ -279,7 +279,7 @@ class TodoyuCalendarManager {
 	public static function isOverbookingAllowed() {
 		$extConf	= TodoyuExtConfManager::getExtConf('calendar');
 
-		return $extConf['allowoverbooking'] == 1 ? true : false;
+		return intval($extConf['allowoverbooking']) === 1;
 	}
 
 

@@ -49,6 +49,7 @@
 
 				<field type="databaseRelation" name="persons">
 					<label>event.attr.assigned_to</label>
+					<addLabel>contact.person.new</addLabel>
 					<record>
 						<form>ext/calendar/config/form/event-person.xml</form>
 						<url>

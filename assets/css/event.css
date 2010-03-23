@@ -353,6 +353,26 @@ button.editEvent .icon {
 	min-height:17px;
 }
 
+/* ----------------------
+	Overbooking info
+   ---------------------- */
+ul.overbookedPersons {
+	font-style:normal;
+	border-left:5px solid #F00;
+	padding-left:5px;
+}
+ul.overbookedPersons li {
+	font-weight:bold;
+}
+ul.overbookedPersons li ul {
+	list-style-type:square;
+}
+ul.overbookedPersons li ul li {
+	font-weight:normal;
+	margin-left:20px;
+}
+
+
 
 
 /* ----------------------
