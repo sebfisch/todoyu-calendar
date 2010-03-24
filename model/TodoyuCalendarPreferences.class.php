@@ -153,7 +153,7 @@ class TodoyuCalendarPreferences {
 	public static function getActiveTab() {
 		$tab	= TodoyuPreferenceManager::getPreference(EXTID_CALENDAR, 'tab');
 
-		return $tab === false ? $GLOBALS['CONFIG']['EXT']['calendar']['config']['defaultTab'] : $tab;
+		return $tab === false ? Todoyu::$CONFIG['EXT']['calendar']['config']['defaultTab'] : $tab;
 	}
 
 

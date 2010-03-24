@@ -35,12 +35,12 @@ if ( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:use
 }
 
 	// Setup tabs in calendar area
-$CONFIG['EXT']['calendar']['config'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['config'] = array(
 	'defaultTab'	=> 'week'
 );
 
 	// Tabs used in calendar
-$CONFIG['EXT']['calendar']['tabs'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['tabs'] = array(
 	array(
 		'id'		=> 'day',
 		'label'		=> 'LLL:date.day'
@@ -73,14 +73,14 @@ TodoyuEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.type
 
 
 	// Which event types define absences?
-$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'] = array(
 	EVENTTYPE_AWAY,
 	EVENTTYPE_VACATION,
 	EVENTTYPE_COMPENSATION
 );
 
 	// Default color preset for events being assigned to several persons / none
-$CONFIG['EXT']['calendar']['defaultEventColors'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['defaultEventColors'] = array(
 	'id'		=> -1,
 	'border'	=> '#555',
 	'text'		=> '#000',
@@ -89,7 +89,7 @@ $CONFIG['EXT']['calendar']['defaultEventColors'] = array(
 
 
 	// Additional portal tab eventslisting specific config
-$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
 		// Show coming-up holidays in events tab of portal?
 	'showHoliday'	=> true,
 	'showBirthday'	=> true,
@@ -100,8 +100,8 @@ $CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
 );
 
 	// Default values for event editing
-$CONFIG['EXT']['calendar']['default']['timeStart']		= 28800;	// 08:00
-$CONFIG['EXT']['calendar']['default']['eventDuration']	= 3600;		// 1 hour
+Todoyu::$CONFIG['EXT']['calendar']['default']['timeStart']		= 28800;	// 08:00
+Todoyu::$CONFIG['EXT']['calendar']['default']['eventDuration']	= 3600;		// 1 hour
 
 	// Register contextmenu
 //TodoyuContextMenuManager::registerFunction('Calendar', 'TodoyuPanelWidgetEventTypeSelector::getContextMenuItems', 10);

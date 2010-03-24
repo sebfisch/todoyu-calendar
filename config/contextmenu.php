@@ -31,7 +31,7 @@
 /**
  * Contextmenu for calendar area (not clicked on event)
  */
-$CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 	'add'	=> array(
 		'key'		=> 'add',
 		'label'		=> 'event.contextmenu.addEvent',
@@ -46,7 +46,7 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 /**
  * General event contextmenu
  */
-$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 	'show'	=> array(
 		'key'		=> 'show',
 		'label'		=> 'event.contextmenu.showEvent',
@@ -82,7 +82,7 @@ $CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 /**
  * Contextmenu for events in portal area
  */
-$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
 	'show'	=> array(
 		'key'		=> 'show',
 		'label'		=> 'event.contextmenu.showEventInCalendar',

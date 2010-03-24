@@ -36,7 +36,7 @@ class TodoyuEventTypeManager {
 	public static function addEventType($index, $key, $label) {
 		$index	= intval($index);
 
-		$GLOBALS['CONFIG']['EXT']['calendar']['eventtypes'][$index] = array(
+		Todoyu::$CONFIG['EXT']['calendar']['eventtypes'][$index] = array(
 			'index'		=> $index,
 			'key'		=> $key,
 			'label'		=> $label
@@ -52,7 +52,7 @@ class TodoyuEventTypeManager {
 	 * @return	Array
 	 */
 	public static function getEventType($index) {
-		return TodoyuArray::assure($GLOBALS['CONFIG']['EXT']['calendar']['eventtypes'][$index]);
+		return TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['eventtypes'][$index]);
 	}
 
 
@@ -98,7 +98,7 @@ class TodoyuEventTypeManager {
 	 * @return	Array
 	 */
 	public static function getEventTypes($parseLabels = false) {
-		$eventTypes = TodoyuArray::assure($GLOBALS['CONFIG']['EXT']['calendar']['eventtypes']);
+		$eventTypes = TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['eventtypes']);
 
 		foreach($eventTypes as $index => $eventType) {
 			$eventTypes[$index]['value'] 	= $index;

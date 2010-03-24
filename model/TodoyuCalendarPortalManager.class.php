@@ -33,7 +33,7 @@ class TodoyuCalendarPortalManager {
 	 * @return	Array
 	 */
 	public static function getAppointments() {
-		$weeksEvents= intval($GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig']['weeksEvents']);
+		$weeksEvents= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksEvents']);
 
 		$dateStart	= TodoyuTime::getStartOfDay(NOW);
 		$dateEnd	= NOW + ($weeksEvents * TodoyuTime::SECONDS_WEEK);
@@ -49,7 +49,7 @@ class TodoyuCalendarPortalManager {
 	 * @return	Array
 	 */
 	public static function getHolidays() {
-		$weeksHoliday 	= intval($GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig']['weeksHoliday']);
+		$weeksHoliday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksHoliday']);
 
 		$endTime		= $dateStart + $weeksHoliday * TodoyuTime::SECONDS_WEEK;
 
@@ -63,7 +63,7 @@ class TodoyuCalendarPortalManager {
 	 * @return	Array
 	 */
 	public static function getBirthdays() {
-		$weeksBirthday 	= intval($GLOBALS['CONFIG']['EXT']['calendar']['appointmentTabConfig']['weeksBirthday']);
+		$weeksBirthday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksBirthday']);
 		$dateStart		= TodoyuTime::getStartOfDay();
 		$dateEnd		= $dateStart + $weeksBirthday * TodoyuTime::SECONDS_WEEK;
 

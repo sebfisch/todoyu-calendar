@@ -706,12 +706,12 @@ class TodoyuEventManager {
 		$timestamp	= $timestamp == 0 ? NOW : intval($timestamp);
 
 		if( date('Hi', $timestamp) === '0000' ) {
-			$dateStart	= $timestamp + intval($GLOBALS['CONFIG']['EXT']['calendar']['default']['timeStart']);
+			$dateStart	= $timestamp + intval(Todoyu::$CONFIG['EXT']['calendar']['default']['timeStart']);
 		} else {
 			$dateStart	= $timestamp;
 		}
 
-		$dateEnd = $dateStart + intval($GLOBALS['CONFIG']['EXT']['calendar']['default']['eventDuration']);
+		$dateEnd = $dateStart + intval(Todoyu::$CONFIG['EXT']['calendar']['default']['eventDuration']);
 
 		$defaultData = array(
 			'id'			=>	0,
@@ -744,7 +744,7 @@ class TodoyuEventManager {
 		$curPersonCreator	= $event->isCurrentPersonCreator();
 
 		$allowed= array();
-		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Event'];
+		$own	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'];
 
 			// Option: show event
 		if( allowed('calendar', 'event:seeAll') || $curPersonAssigned == true ) {
@@ -781,7 +781,7 @@ class TodoyuEventManager {
 	public static function getContextMenuItemsPortal($idEvent, array $items)	{
 		$idEvent = intval($idEvent);
 
-		$own = $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['EventPortal'];
+		$own = Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'];
 
 		foreach($own['show']['submenu'] as $key => $config)	{
 			$eventStart	= TodoyuEventManager::getEvent($idEvent)->get('date_start');

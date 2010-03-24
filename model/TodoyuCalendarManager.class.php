@@ -293,7 +293,7 @@ class TodoyuCalendarManager {
 	 */
 	public static function getContextMenuItems($timestamp, array $items) {
 		$allowed= array();
-		$own	= $GLOBALS['CONFIG']['EXT']['calendar']['ContextMenu']['Area'];
+		$own	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area'];
 
 		if ( allowed('calendar', 'event:add') ) {
 			$allowed[] = $own['add'];
@@ -310,7 +310,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getCalendarTabsConfig() {
-		return TodoyuArray::assure($GLOBALS['CONFIG']['EXT']['calendar']['tabs']);
+		return TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['tabs']);
 	}
 
 

@@ -26,7 +26,7 @@
  * @subpackage	Calendar
  */
 
-$CONFIG['EXT']['calendar']['info'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['info'] = array(
 	'title'				=> 'Events and Holidays Management',
 	'description' 		=> 'Events and Holidays Management in Day-, Week- and Month-viewing Mode',
 	'author' 			=> array(

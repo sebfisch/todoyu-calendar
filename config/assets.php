@@ -26,7 +26,7 @@
  * @subpackage	Calendar
  */
 
-$CONFIG['EXT']['calendar']['assets'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 	'js' => array(
 		array(
 			'file' => 'ext/calendar/assets/js/Ext.js',
