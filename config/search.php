@@ -21,7 +21,7 @@
 
 	// Add search engine types
 if ( allowed('calendar', 'general:use') ) {
-	TodoyuSearchManager::addEngine('event', 'TodoyuEventSearch::getResults', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
+	TodoyuSearchManager::addEngine('event', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
 }
 
 ?>
