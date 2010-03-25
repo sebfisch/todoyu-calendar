@@ -3,7 +3,7 @@
 	<labels lang="en">
 		<label index="general">General</label>
 		<label index="general.use">Use Calendar Functionalities</label>
-		<label index="general.area">Use Calendars Area</label>
+		<label index="general.area">Use Calendar Area</label>
 		<label index="event">Event</label>
 		<label index="event.seeAll">See all events</label>
 		<label index="event.editAndDeleteAssigned">Edit and delete assigned (or created by this person) events</label>
