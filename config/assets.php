@@ -170,5 +170,4 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 
 );
 
-
 ?>
