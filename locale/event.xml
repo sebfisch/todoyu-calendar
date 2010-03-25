@@ -8,7 +8,7 @@
 		<label index="delete">Delete Event</label>
 		<label index="create.label">New Event</label>
 		<label index="saved.ok">Event Saved</label>
-		<label index="saved.error">Saving Event Failed</label>
+		<label index="saved.error">Saving of Event Failed</label>
 		<label index="type.general">General</label>
 		<label index="type.away">Absent</label>
 		<label index="type.birthday">Birthday</label>
@@ -105,7 +105,7 @@
 		<label index="tree.header.title">Termin-Titel</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Geburtstage in den nächsten Wochen</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Ferien in den nächsten Wochen</label>
-		<label index="error.noneFound">Zur Zeit keine ausstehende Termine für Sie</label>
+		<label index="error.noneFound">Zur Zeit gibt es keine ausstehende Termine für Sie</label>
 		<label index="error.starttimeAfterEndtime">Der Termin endet vor seinem Anfang</label>
 		<label index="error.privateEvent">Private Termine können nicht anderen Benutzern zugewiesen werden</label>
 		<label index="error.personsOverbooked">Die folgenden Personen haben bereits Termine am angegebenen Zeitpunkt:</label>
