@@ -25,9 +25,9 @@ class TodoyuCalendarMailer {
 	 *
 	 * @todo	IMPORTANT: implement!!!
 	 *
-	 * @param	unknown_type $idEvent
-	 * @param	unknown_type $idPerson
-	 * @param	unknown_type $new
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @param	Boolean		$new
 	 */
 	public static function sendEventNotification($idEvent, $idPerson, $new = false) {
 
