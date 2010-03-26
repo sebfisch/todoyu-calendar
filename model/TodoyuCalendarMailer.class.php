@@ -20,14 +20,18 @@
 
 class TodoyuCalendarMailer {
 
-
+	/**
+	 * Send event notification by email
+	 *
+	 * @todo	IMPORTANT: implement!!!
+	 *
+	 * @param	unknown_type $idEvent
+	 * @param	unknown_type $idPerson
+	 * @param	unknown_type $new
+	 */
 	public static function sendEventNotification($idEvent, $idPerson, $new = false) {
 
-		// Send email
-		//	@todo	implement	IMPORTANT!!!
-
 	}
-
 
 }
 
