@@ -8,7 +8,7 @@
 		<label index="delete">Delete Event</label>
 		<label index="create.label">New Event</label>
 		<label index="saved.ok">Event Saved</label>
-		<label index="saved.error">Saving of Event Failed</label>
+		<label index="saved.error">Saving Of Event Failed</label>
 		<label index="type.general">General</label>
 		<label index="type.away">Absent</label>
 		<label index="type.birthday">Birthday</label>
@@ -66,8 +66,8 @@
 		<label index="new">Neuer Termin</label>
 		<label index="edit">Termin bearbeiten</label>
 		<label index="delete">Termin löschen</label>
-		<label index="saved.success">Termin gespeichert</label>
-		<label index="saved.failed">Terminspeicherung fehlgeschlagen</label>
+		<label index="saved.ok">Termin gespeichert</label>
+		<label index="saved.error">Terminspeicherung fehlgeschlagen</label>
 		<label index="create.label">Neuer Termin</label>
 		<label index="type.general">Allgemein</label>
 		<label index="type.away">Abwesend</label>
@@ -105,10 +105,10 @@
 		<label index="tree.header.title">Termin-Titel</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Geburtstage in den nächsten Wochen</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Ferien in den nächsten Wochen</label>
-		<label index="error.noneFound">Zur Zeit gibt es keine ausstehende Termine für Sie</label>
+		<label index="error.noneFound">Zur Zeit gibt es keine ausstehenden Termine für Sie</label>
 		<label index="error.starttimeAfterEndtime">Der Termin endet vor seinem Anfang</label>
 		<label index="error.privateEvent">Private Termine können nicht anderen Benutzern zugewiesen werden</label>
-		<label index="error.personsOverbooked">Die folgenden Personen haben bereits Termine am angegebenen Zeitpunkt:</label>
+		<label index="error.personsOverbooked">Die folgenden Personen haben bereits Termine zum angegebenen Zeitpunkt:</label>
 		<label index="contextmenu.manageEvents">Termine verwalten</label>
 		<label index="contextmenu.showEvent">Termin anzeigen</label>
 		<label index="contextmenu.editEvent">Termin bearbeiten</label>
