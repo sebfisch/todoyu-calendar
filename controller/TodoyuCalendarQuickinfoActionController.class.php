@@ -34,7 +34,9 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 	 */
 	public function eventAction(array $params) {
 		$idEvent	= intval($params['key']);
-		$event		= TodoyuEventManager::getEvent($idEvent);
+
+		$event			= TodoyuEventManager::getEvent($idEvent);
+		$isSeeAllowed	= TodoyuEventRights::isSeeAllowed($idEvent);
 
 		$quickInfo	= new TodoyuQuickinfo();
 
@@ -43,13 +45,22 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$personInfo	= TodoyuEventViewHelper::getQuickinfoPersonInfo($event);
 		$typeInfo	= TodoyuEventViewHelper::getQuickinfoTypeInfo($event);
 
-		$quickInfo->addInfo('title',	$event->getTitle(), 10);
+		if ( $isSeeAllowed ) {
+			$quickInfo->addInfo('title',	$event->getTitle(), 10);
+		} else {
+			$quickInfo->addInfo('title',	Label('event.privateEvent.info'), 10);
+		}
+
 		$quickInfo->addInfo('type',		$typeInfo, 20);
 		$quickInfo->addInfo('date',		$dateInfo, 30);
 
 			// Add conditionally displayed (only if set) infos
 		if ( $event->getPlace() !== '' ) {
-			$quickInfo->addInfo('place', $event->getPlace(), 40);
+			if ( $isSeeAllowed ) {
+				$quickInfo->addInfo('place', $event->getPlace(), 40);
+			} else {
+				$quickInfo->addInfo('place', Label('event.privateEvent.info'), 40);
+			}
 		}
 
 		$amountAssignedPersons	= count( $event->getAssignedPersonsData() );
