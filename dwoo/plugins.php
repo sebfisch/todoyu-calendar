@@ -25,6 +25,51 @@
  * @subpackage	Template
  */
 
+/**
+ * Check right of current person to see given event
+ *
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param	Dwoo 		$dwoo
+ * @param	Integer		$idEvent
+ * @return	Boolean
+ */
+function Dwoo_Plugin_isAllowedSeeEvent(Dwoo $dwoo, $idEvent) {
+	return TodoyuEventRights::isSeeAllowed($idEvent);
+}
+
+
+
+/**
+ * Check right of current person to add events
+ *
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param	Dwoo 		$dwoo
+ * @return	Boolean
+ */
+function Dwoo_Plugin_isAllowedAddEvent(Dwoo $dwoo) {
+	return TodoyuEventRights::isAddAllowed();
+}
+
+
+
+/**
+ * Check right of current person to edit given event
+ *
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param	Dwoo 		$dwoo
+ * @param	Integer		$idEvent
+ * @return	Boolean
+ */
+function Dwoo_Plugin_isAllowedEditEvent(Dwoo $dwoo, $idEvent) {
+	return TodoyuEventRights::isEditAllowed($idEvent);
+}
+
 
 
 /**
