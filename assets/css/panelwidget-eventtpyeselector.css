@@ -3,7 +3,7 @@
 }
 
 #panelwidget-eventtypeSelector-list option {
-	padding:4px 0 2px 20px;
+	padding:3px 0 3px 20px;
 }
 
 
@@ -16,11 +16,15 @@
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_general {
-	background-position:1px -659px;
+	background-position:1px -658px;
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_away {
-	background-position:1px -690px;
+	background-position:1px -688px;
+}
+
+#panelwidget-eventtypeSelector-list option.eventtype_awayofficial {
+	background-position:1px -779px;
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_birthday {
@@ -28,33 +32,29 @@
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_vacation {
-	background-position:1px -389px;
+	background-position:1px -387px;
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_education {
-	background-position:1px -720px;
+	background-position:1px -718px;
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_meeting {
-	background-position:1px -750px;
-}
-
-#panelwidget-eventtypeSelector-list option.eventtype_awayofficial {
-	background-position:1px -780px;
+	background-position:1px -748px;
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_homeoffice {
-	background-position:1px -810px;
+	background-position:1px -808px;
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_compensation {
-	background-position:1px -900px;
+	background-position:1px -898px;
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_milestone {
-	background-position:1px -930px;
+	background-position:1px -928px;
 }
 
 #panelwidget-eventtypeSelector-list option.eventtype_reminder {
-	background-position:0 -960px;
+	background-position:0 -959px;
 }
