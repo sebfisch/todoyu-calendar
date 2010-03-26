@@ -121,7 +121,7 @@ class TodoyuEventRights {
 	/**
 	 * Check whether person is allowed to see birthdays listing in portal (admin or internal)
 	 *
-	 *  @return	Boolean
+	 * @return	Boolean
 	 */
 	public static function isAllowedSeeBirthdaysInPortal() {
 		if ( TodoyuAuth::isAdmin() ) {
