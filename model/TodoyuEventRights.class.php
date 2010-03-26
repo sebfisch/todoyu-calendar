@@ -119,6 +119,23 @@ class TodoyuEventRights {
 
 
 	/**
+	 * Check whether person is allowed to see birthdays listing in portal (admin or internal)
+	 *
+	 *  @return	Boolean
+	 */
+	public static function isAllowedSeeBirthdaysInPortal() {
+		if ( TodoyuAuth::isAdmin() ) {
+			return true;
+		}
+
+		$person	= TodoyuPersonManager::getPerson(personid());
+
+		return $person->isInternal();
+	}
+
+
+
+	/**
 	 * Restrict access to persons who are allowed to see the event
 	 *
 	 * @param	Integer		$idEvent

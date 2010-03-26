@@ -57,16 +57,20 @@ class TodoyuCalendarPortalManager {
 
 
 	/**
-	 * Get birthdays for portal tab
+	 * Get birthdays to be displayed in appointments tab in portal, for members of staff only!
 	 *
 	 * @return	Array
 	 */
 	public static function getBirthdays() {
-		$weeksBirthday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksBirthday']);
-		$dateStart		= TodoyuTime::getStartOfDay();
-		$dateEnd		= $dateStart + $weeksBirthday * TodoyuTime::SECONDS_WEEK;
+		if ( TodoyuEventRights::isAllowedSeeBirthdaysInPortal() ) {
+			$weeksBirthday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksBirthday']);
+			$dateStart		= TodoyuTime::getStartOfDay();
+			$dateEnd		= $dateStart + $weeksBirthday * TodoyuTime::SECONDS_WEEK;
 
-		return TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
+			return TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
+		}
+
+		return array();
 	}
 
 }
