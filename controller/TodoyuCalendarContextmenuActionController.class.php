@@ -38,7 +38,7 @@ class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 
 
 	/**
-	 * Contextmenu for calendar area
+	 * Context menu for calendar area
 	 *
 	 * @param	Array		$params
 	 */
@@ -52,7 +52,7 @@ class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 
 
 	/**
-	 * Contextmenu for events in calendar
+	 * Context menu for events in calendar
 	 *
 	 * @param	Array		$params
 	 */
@@ -67,7 +67,7 @@ class TodoyuCalendarContextmenuActionController extends TodoyuActionController {
 
 
 	/**
-	 * Contextmenu for events in portal
+	 * Context menu for events in portal
 	 *
 	 * @param	Array		$params
 	 */
