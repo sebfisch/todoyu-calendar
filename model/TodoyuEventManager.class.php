@@ -310,7 +310,7 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Check for conflicts with other events for the assigned persons if overbooking is not allowed
+	 * Check for conflicts with other events (of non-overbookable type) for the assigned persons if overbooking is not allowed
 	 *
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$dateEnd
@@ -326,8 +326,10 @@ class TodoyuEventManager {
 
 			// Make empty overbooking data
 		$overbooked	= array();
-			// Get all events in the duration of the event
-		$otherEvents= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs);
+
+			// Get all (not-overbookable / conflicting) events in the duration of the event
+		$eventTypes	= TodoyuEventTypeManager::getNotOverbookableTypeIndexes();
+		$otherEvents= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
 			// Remove current event
 		unset($otherEvents[$idEvent]);
 

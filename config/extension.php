@@ -71,6 +71,15 @@ TodoyuEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.type
 
 
 
+	// Which event types have no relevance to overbooking prevention?
+Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'] = array(
+	EVENTTYPE_BIRTHDAY,
+	EVENTTYPE_MILESTONE,
+	EVENTTYPE_REMINDER
+);
+
+
+
 	// Which event types define absences?
 Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'] = array(
 	EVENTTYPE_AWAY,
@@ -101,8 +110,5 @@ Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
 	// Default values for event editing
 Todoyu::$CONFIG['EXT']['calendar']['default']['timeStart']		= 28800;	// 08:00
 Todoyu::$CONFIG['EXT']['calendar']['default']['eventDuration']	= 3600;		// 1 hour
-
-	// Register contextmenu
-//TodoyuContextMenuManager::registerFunction('Calendar', 'TodoyuPanelWidgetEventTypeSelector::getContextMenuItems', 10);
 
 ?>

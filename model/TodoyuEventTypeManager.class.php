@@ -115,6 +115,40 @@ class TodoyuEventTypeManager {
 
 
 	/**
+	 * Get eventtypes which are allowed to be overbooked
+	 *
+	 * @return	Array
+	 */
+	public static function getOverbookableTypeIndexes() {
+		return Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'];
+	}
+
+
+
+	/**
+	 * Get eventtypes which are not allowed to be overbooked
+	 *
+	 * @return	Array
+	 */
+	public static function getNotOverbookableTypeIndexes() {
+		$overbookableTypes	= self::getOverbookableTypeIndexes();
+		$allEventTypes		= self::getEventTypeKeys();
+
+		$nonOverbookableTypeIndexes	= array();
+
+		foreach( $allEventTypes as $index => $typeKey ) {
+			$idType	= constant('EVENTTYPE_' . strtoupper($typeKey));
+			if ( ! in_array($idType, $overbookableTypes)  ) {
+				$nonOverbookableTypeIndexes[]	= $idType;
+			}
+		}
+
+		return $nonOverbookableTypeIndexes;
+	}
+
+
+
+	/**
 	 * Get all eventtype indexed (numerical)
 	 *
 	 * @return	Array
