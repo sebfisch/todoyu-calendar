@@ -70,7 +70,7 @@ class TodoyuCalendarPortalRenderer {
 			$birthdays	= array();
 		}
 
-		$color = TodoyuEventRenderer::getEventColorData($idPerson);
+//		$color = TodoyuEventRenderer::getEventColorData($idPerson);
 
 			// Add details if expanded
 		foreach($events as $idEvent => $eventData) {
@@ -87,11 +87,9 @@ class TodoyuCalendarPortalRenderer {
 			'holidays'						=> $holidays,
 			'showBirthdays'					=> $config['showBirthday'],
 			'birthdays'						=> $birthdays,
-			'color'							=> $color[$idPerson],
+			'color'							=> TodoyuColors::getColorIndex($idPerson),
 			'javascript'					=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();'
 		);
-
-//		TodoyuDebug::printHtml($data['events']);
 
 		return render($tmpl, $data);
 	}
