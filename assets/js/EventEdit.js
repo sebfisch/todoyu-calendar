@@ -155,14 +155,17 @@ Todoyu.Ext.calendar.EventEdit = {
 
 		switch(eventtype) {
 			case 3: // birthday
-				fields = ['is-dayevent', 'date-end', 'person'];
-				break;
-			case 13: // reminder
-				fields = ['is-dayevent', 'date-end'];
+				fields = ['is-dayevent', 'date-end', 'person', 'place'];
 				break;
 			case 4: // vacation
 				fields = ['is-dayevent'];
 				break;
+			case 7:	// away official
+				fields = ['is-private'];
+				break;
+			case 13: // reminder
+				fields = ['is-dayevent', 'date-end'];
+				break;			
 		}
 
 		return fields.include(fieldname);
