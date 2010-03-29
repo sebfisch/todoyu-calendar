@@ -46,7 +46,7 @@
 		<label index="eventslist.birthdaysWithinTheNextweeks">Birthdays Within The Next Weeks</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Holiday Within The Next Weeks</label>
 		<label index="error.noneFound">Currently No Upcoming Events For You</label>
-		<label index="error.starttimeAfterEndtime">The event ends before or is the same as the event starts!</label>
+		<label index="error.starttimeAfterEndtime">The event ends before or at the same time as it starts!</label>
 		<label index="error.privateEvent">You are not allowed to assign a personal event to someone else!</label>
 		<label index="error.personsOverbooked">The following persons already have events assigned at the given time:</label>
 		<label index="contextmenu.manageEvents">Manage Events</label>
