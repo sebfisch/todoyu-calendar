@@ -2,8 +2,8 @@
 	Event
    --------------- */
 .monthMode .event .head {
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top:3px;
+	padding-bottom:3px;
 }
 
 	.monthMode .event.typeBirthday .head {
@@ -16,8 +16,8 @@
 }
 
 .monthMode .event dd span {
-	padding: 2px;
-	display: block;
+	padding:2px;
+	display:block;
 }
 
 /* ------------

@@ -16,8 +16,8 @@
 	font-size:9px !important;
 	font-weight:normal !important;
 	padding-left:20px;
-	overflow: hidden;
-	white-space: nowrap;
+	overflow:hidden;
+	white-space:nowrap;
 }
 
 .dayMode .event dd,
@@ -165,6 +165,8 @@
 .monthMode .event .typeReminder {
 	background:url(../img/icons.png) no-repeat scroll 3px -960px;
 }
+
+
 
 /* ------------------------
 	Portal events list
@@ -369,7 +371,6 @@ ul.overbookedPersons li ul li {
 	font-weight:normal;
 	margin-left:20px;
 }
-
 
 
 
