@@ -9,6 +9,11 @@
 	.monthMode .event.typeBirthday .head {
 		background-color:#D7DCC6;
 	}
+	
+.monthMode .event.dayevent {
+	overflow:hidden;
+	white-space:nowrap;
+}
 
 .monthMode .event dd span {
 	padding: 2px;
@@ -143,7 +148,7 @@
    -------------- */
 
 .event.month {
-    padding:1px;
+	padding:1px;
 	margin-bottom:1px;
 	overflow:hidden;
 	white-space:nowrap;

@@ -18,8 +18,8 @@
 			{if $is_private == 1 && ! empty($description)}
 			<span {if $calendarMode == 'week'}class="ca-elp" {/if}style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"};{/if}">
 			
-				<span class="privateEvent"></span>
 				{if isPersonID($id_person)}
+					<span class="privateEvent"></span>
 					{if $calendarMode == 'day'}
 						{htmlencode(wordwrap($description 8 cut=true))}
 					{else}

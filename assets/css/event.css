@@ -16,6 +16,8 @@
 	font-size:9px !important;
 	font-weight:normal !important;
 	padding-left:22px;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .dayMode .event dd,
@@ -113,7 +115,7 @@
 .event.typeVacation .type,
 .dayMode .event .typeVacation,
 .monthMode .event .typeVacation {
-	background:url(../img/icons.png) no-repeat scroll 3px -391px;
+	background:url(../img/icons.png) no-repeat scroll 3px -388px;
 }
 
 .event.typeEducation .head,
