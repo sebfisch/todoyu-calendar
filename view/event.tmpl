@@ -14,10 +14,10 @@
 			{/if}
 		</dt>
 		<dd>
-			<span {if $calendarMode == 'week'}class="ca-elp" {/if}style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"};{/if}">
-
 			{* ---------- Only show title if event is not private ---------- *}
-			{if $is_private == 1}
+			{if $is_private == 1 && ! empty($description)}
+			<span {if $calendarMode == 'week'}class="ca-elp" {/if}style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"};{/if}">
+			
 				<span class="privateEvent"></span>
 				{if isPersonID($id_person)}
 					{if $calendarMode == 'day'}
@@ -26,10 +26,12 @@
 						{htmlencode(wordwrap($description 8 cut=true))}
 					{/if}
 				{/if}
-			{else}
-				{htmlencode(wordwrap($description 8 cut=true))}
-			{/if}
 			</span>
+			{else}
+				{if ! empty($description)}
+				<span {if $calendarMode == 'week'}class="ca-elp" {/if}style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"};{/if}">{htmlencode(wordwrap($description 8 cut=true))}</span>
+				{/if}
+			{/if}
 		</dd>
 	</dl>
 

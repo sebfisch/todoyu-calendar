@@ -195,12 +195,13 @@
 	cursor:pointer;
 }
 
-.dayevent {
+.weekMode .dayevent {
 	margin-top:1px;
 	padding:1px 2px 2px;
 	white-space:nowrap;
 	overflow:hidden;
 	margin-left:2px;
+	display: none;
 }
 
 td.weekModeHourHotspotCell {

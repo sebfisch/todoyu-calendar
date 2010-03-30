@@ -15,17 +15,15 @@
 	font-family:Arial,sans-serif;
 	font-size:9px !important;
 	font-weight:normal !important;
-	white-space:nowrap;
-	padding-left:18px;
+	padding-left:22px;
 }
 
 .dayMode .event dd,
 .weekMode .event dd {
 	font-family:Verdana,Helvetica,sans-serif;
 	font-size:9px;
-	white-space:nowrap;
 	color:#fff;
-	padding:2px;
+	padding:2px 3px;
 }
 
 .dayevent {
@@ -94,79 +92,77 @@
 .event.typeGeneral .type,
 .dayMode .event .typeGeneral,
 .monthMode .event .typeGeneral {
-	background:url(../img/icons.png) no-repeat scroll 1px -660px;
+	background:url(../img/icons.png) no-repeat scroll 2px -660px;
 }
 
 .event.typeAway .head,
 .event.typeAway .type,
 .dayMode .event .typeAway,
 .monthMode .event .typeAway {
-	background:url(../img/icons.png) no-repeat scroll 1px -690px;
+	background:url(../img/icons.png) no-repeat scroll 3px -690px;
 }
 
 .event.typeBirthday .head,
 .event.typeBirthday .type,
 .dayMode .event .typeBirthday,
 .monthMode .event .typeBirthday {
-	background:url(../../../contact/assets/img/icons.png) no-repeat 1px -330px;
+	background:url(../../../contact/assets/img/icons.png) no-repeat 3px -330px;
 }
 
 .event.typeVacation .head,
 .event.typeVacation .type,
 .dayMode .event .typeVacation,
 .monthMode .event .typeVacation {
-	background:url(../img/icons.png) no-repeat scroll 1px -391px;
+	background:url(../img/icons.png) no-repeat scroll 3px -391px;
 }
 
 .event.typeEducation .head,
 .event.typeEducation .type,
 .dayMode .event .typeEducation,
 .monthMode .event .typeEducation {
-	background:url(../img/icons.png) no-repeat scroll 1px -720px;
+	background:url(../img/icons.png) no-repeat scroll 3px -720px;
 }
 
 .event.typeMeeting .head,
 .event.typeMeeting .type,
 .dayMode .event .typeMeeting,
 .monthMode .event .typeMeeting {
-	background:url(../img/icons.png) no-repeat scroll 1px -750px;
+	background:url(../img/icons.png) no-repeat scroll 3px -750px;
 }
 
 .event.typeAwayofficial .head,
 .event.typeAwayofficial .type,
 .dayMode .event .typeAwayofficial,
 .monthMode .event .typeAwayofficial {
-	background:url(../img/icons.png) no-repeat scroll 1px -780px;
+	background:url(../img/icons.png) no-repeat scroll 1px -782px;
 }
 
 .event.typeHomeoffice .head,
 .event.typeHomeoffice .type,
 .dayMode .event .typeHomeoffice,
 .monthMode .event .typeHomeoffice {
-	background:url(../img/icons.png) no-repeat scroll 1px -810px;
+	background:url(../img/icons.png) no-repeat scroll 3px -810px;
 }
 
 .event.typeCompensation .head,
 .event.typeCompensation .type,
 .dayMode .event .typeCompensation,
 .monthMode .event .typeCompensation {
-	background:url(../img/icons.png) no-repeat scroll 1px -900px;
+	background:url(../img/icons.png) no-repeat scroll 3px -900px;
 }
 .event.typeMilestone .head,
 .event.typeMilestone .type,
 .dayMode .event .typeMilestone,
 .monthMode .event .typeMilestone {
-	background:url(../img/icons.png) no-repeat scroll 1px -930px;
+	background:url(../img/icons.png) no-repeat scroll 3px -930px;
 }
 
 .event.typeReminder .head,
 .event.typeReminder .type,
 .dayMode .event .typeReminder,
 .monthMode .event .typeReminder {
-	background:url(../img/icons.png) no-repeat scroll 0 -960px;
+	background:url(../img/icons.png) no-repeat scroll 3px -960px;
 }
-
-
 
 /* ------------------------
 	Portal events list
