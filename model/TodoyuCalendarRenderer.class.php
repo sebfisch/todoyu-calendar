@@ -114,7 +114,7 @@ class TodoyuCalendarRenderer {
 
 		$tmpl		= 'ext/calendar/view/calendar-day.tmpl';
 		$data		= array(
-			'timestamp'		=> $date,
+			'timestamp'		=> $dateStart,
 			'fullDayView'	=> TodoyuCalendarPreferences::getFullDayView(),
 			'dateKey'		=> date('Ymd', $dateStart),
 			'events'		=> self::preRenderEventsForDay($dateStart, $eventTypes, $persons, $personColors),
