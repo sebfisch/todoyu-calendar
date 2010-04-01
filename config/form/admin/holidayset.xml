@@ -6,7 +6,7 @@
 		<attribute name="onsubmit">Todoyu.Ext.sysmanager.Extensions.Records.saveRecord(this); return false;</attribute>
 	</attributes>
 	<hiddenFields>
-		<field name="id"></field>
+		<field name="id" />
 	</hiddenFields>
 	<fieldsets>
 
