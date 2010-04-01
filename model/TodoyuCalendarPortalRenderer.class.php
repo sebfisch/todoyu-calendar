@@ -29,7 +29,7 @@ class TodoyuCalendarPortalRenderer {
 	/**
 	 * Get tab label for appointment tab in portal
 	 *
-	 * @param	Bool		$count		Add count in brackets
+	 * @param	Boolean		$count		Add count in brackets
 	 * @return	String
 	 */
 	public static function getAppointmentTabLabel($count = true) {

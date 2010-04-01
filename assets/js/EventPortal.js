@@ -60,7 +60,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 *	Save event details
 	 *
-	 *	@param	Intger		idEvent
+	 *	@param	Integer		idEvent
 	 *	@param	Boolean		expanded
 	 */
 	saveEventExpandedStatus: function(idEvent, expanded) {

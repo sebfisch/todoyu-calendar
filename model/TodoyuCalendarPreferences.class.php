@@ -33,7 +33,7 @@ class TodoyuCalendarPreferences {
 	 * @param	Integer		$preference
 	 * @param	String		$value
 	 * @param	Integer		$idItem
-	 * @param	Bool		$unique
+	 * @param	Boolean		$unique
 	 * @param	Integer		$idArea
 	 * @param	Integer		$idPerson
 	 */

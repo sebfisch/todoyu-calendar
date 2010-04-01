@@ -91,9 +91,9 @@ class TodoyuEventTypeManager {
 
 
 	/**
-	 * Get all eventtypes
+	 * Get all event types
 	 *
-	 * @param	Bool		$parseLabels
+	 * @param	Boolean		$parseLabels
 	 * @return	Array
 	 */
 	public static function getEventTypes($parseLabels = false) {

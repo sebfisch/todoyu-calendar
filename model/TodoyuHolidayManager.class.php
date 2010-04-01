@@ -255,10 +255,10 @@ class TodoyuHolidayManager {
 
 
 	/**
-	 * Get holidays of given sets in given timespan.
+	 * Get holidays of given sets in given time span.
 	 *
-	 * @param	Intger	$tstampFrom			UNIX timestamp of day at beginning of timespan
-	 * @param	Intger	$tstampUntil		UNIX timestamp of day at ending of timespan
+	 * @param	Integer	$tstampFrom			UNIX timestamp of day at beginning of timespan
+	 * @param	Integer	$tstampUntil		UNIX timestamp of day at ending of timespan
 	 * @param	Array	$holidaySetIDs
 	 */
 	public static function getHolidaysInTimespan($dateStart = 0, $dateEnd = 0, array $holidaySetIDs) {
@@ -365,7 +365,7 @@ class TodoyuHolidayManager {
 	 *
 	 * @param	Integer	$tstampFirstDay	timestamp of the first day to start the events per day grouping with
 	 * @param	Array	$eventsUngrouped
-	 * @param	Intger	$amountDays			amount of days to collect events to
+	 * @param	Integer	$amountDays			amount of days to collect events to
 	 * @return	Array
 	 */
 	public static function groupHolidaysByDays(array $holidays) {
