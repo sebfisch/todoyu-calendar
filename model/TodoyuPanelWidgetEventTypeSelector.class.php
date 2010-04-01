@@ -98,9 +98,9 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 	/**
 	 * Get current event types selection (from prefs)
 	 *
-	 * @return array
+	 * @return	Array
 	 */
-	public function getSelectedEventTypes() {
+	public static function getSelectedEventTypes() {
 		$eventTypes	= TodoyuCalendarPreferences::getPref('panelwidget-eventtypeselector', 0, AREA);
 
 		if( $eventTypes === false || $eventTypes === '' ) {

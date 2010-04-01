@@ -131,7 +131,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 	 *
 	 * @return	Array
 	 */
-	public function getSelectedHolidaySetIDs($area = AREA) {
+	public static function getSelectedHolidaySetIDs($area = AREA) {
 		$selectorPref	= TodoyuCalendarPreferences::getPref('panelwidget-holidaysetselector', 0, $area);
 		$selectedSetIDs	= TodoyuArray::intExplode(',', $selectorPref);
 

@@ -59,7 +59,7 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 	 * Add calendar inline JS (initialization)
 	 *
 	 */
-	private function addCalendarLocalizationJS() {
+	private static function addCalendarLocalizationJS() {
 		$code = "// Localize date object (for scal)\n"
 				. 'Object.extend(Date.prototype, {'
 				. 'monthnames:[\'' . Label('date.month.january') . '\',\'' . Label('date.month.february') . '\',\'' . Label('date.month.march') . '\',\'' . Label('date.month.april') . '\',\'' . Label('date.month.may') . "','" . Label('date.month.june') . "','" . Label('date.month.july') . '\',\'' . Label('date.month.august') . "','" . Label('date.month.september') . "','" . Label('date.month.october') . "','" . Label('date.month.november') . "','" . Label('date.month.december') . '\'],'

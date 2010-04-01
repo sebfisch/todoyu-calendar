@@ -34,10 +34,9 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 
 
 	/**
-	 * Is only used for the event popup. Check the inputs and handle it accordingly
+	 * Used for event popup: check inputs and handle accordingly
 	 *
 	 * @param	Element		form		Form element
-	 * @return	Boolean
 	 */
 	save: function(form) {
 		$(form).request({

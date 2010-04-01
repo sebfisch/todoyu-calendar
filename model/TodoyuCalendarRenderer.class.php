@@ -349,7 +349,7 @@ class TodoyuCalendarRenderer {
 	 * @param	Array		$persons
 	 * @return	Array
 	 */
-	public function preRenderDayevents($mode, $dateStart, $dateEnd, array $eventTypes, array $persons) {
+	public static function preRenderDayevents($mode, $dateStart, $dateEnd, array $eventTypes, array $persons) {
 		$events	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, true);
 		$grouped= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
 
@@ -425,7 +425,7 @@ class TodoyuCalendarRenderer {
 	 *
 	 * @return	String	HTML
 	 */
-	public function renderTabs($activeTab = '')	{
+	public static function renderTabs($activeTab = '')	{
 		if( empty($activeTab) ) {
 			$activeTab = TodoyuCalendarPreferences::getActiveTab();
 		}
