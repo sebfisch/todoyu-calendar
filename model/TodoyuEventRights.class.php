@@ -85,7 +85,7 @@ class TodoyuEventRights {
 
 	/**
 	 * Check if person can edit an event
-	 * Check if person has edit rights and is assigned if neccessary
+	 * Check if person has edit rights and is assigned if necessary
 	 *
 	 * @param	Integer		$idEvent
 	 * @return	Boolean
