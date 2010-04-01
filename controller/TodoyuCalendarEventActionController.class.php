@@ -102,7 +102,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 		$form->setFormData($data);
 
-			// Send idTask header for javascript
+			// Send idTask header for javaScript
 		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 
 		if( $form->isValid() ) {
