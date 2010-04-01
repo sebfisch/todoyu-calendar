@@ -62,7 +62,7 @@
 	border-width:1px;
 	font-weight:bold;
 	padding:1px 3px;
-	margin-left:0px;
+	margin-left:0;
 }
 
 
@@ -87,7 +87,7 @@
 	line-height:14px;
 	border-left:1px solid #818181;
 	border-top:1px solid #818181;
-	padding:1px 1px 1px 0px;
+	padding:1px 1px 1px 0;
 }
 
 .wk-webcontent-td {

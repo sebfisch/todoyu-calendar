@@ -135,7 +135,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	/**
 	 * Check if event start and end is on different days
 	 *
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public function isMultiDay() {
 		return $this->isSingleDay() === false;
@@ -146,7 +146,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	/**
 	 * Check if event start and end is on the same day
 	 *
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public function isSingleDay() {
 		return date('Ymd', $this->getStartDate()) === date('Ymd', $this->getEndDate());

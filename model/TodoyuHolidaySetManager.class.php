@@ -129,7 +129,7 @@ class TodoyuHolidaySetManager {
 	 *
 	 * @param	Integer		$idHolidaySet
 	 * @param	Array		$data
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public static function updateHolidaySet($idHolidaySet, array $data) {
 		return TodoyuRecordManager::updateRecord(self::TABLE, $idHolidaySet, $data);
@@ -156,7 +156,7 @@ class TodoyuHolidaySetManager {
 	 * Delete a holidaySet
 	 *
 	 * @param	Integer		$idHolidaySet
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public static function deleteHolidaySet($idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);

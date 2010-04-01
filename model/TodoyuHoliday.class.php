@@ -69,7 +69,7 @@ class TodoyuHoliday extends TodoyuBaseObject {
 	/**
 	 * Get template data for holiday
 	 *
-	 * @param	Bool		$loadForeignRecords
+	 * @param	Boolean		$loadForeignRecords
 	 * @return	Array
 	 */
 	public function getTemplateData($loadForeignRecords = false) {

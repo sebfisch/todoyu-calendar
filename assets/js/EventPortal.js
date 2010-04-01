@@ -5,7 +5,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Toggle details of listed event entry (in listing of e.g portal's events tab). Used for eventslist only
 	 *
-	 * @param	Integer	idEvent
+	 * @param	Integer idEvent
 	 */
 	toggleDetails: function(idEvent) {
 			// If detail is not loaded yet, send request
@@ -22,7 +22,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Load event details
 	 *
-	 * @param	Intger		idEvent
+	 * @param	Integer		idEvent
 	 */
 	loadDetails: function(idEvent) {
 		var url		= Todoyu.getUrl('calendar', 'portal');

@@ -60,7 +60,7 @@ class TodoyuEventTypeManager {
 	 * Get label of the event type
 	 *
 	 * @param	Integer		$index
-	 * @param	Bool		$parsed
+	 * @param	Boolean		$parsed
 	 * @return	String
 	 */
 	public static function getEventTypeLabel($index, $parsed = true) {

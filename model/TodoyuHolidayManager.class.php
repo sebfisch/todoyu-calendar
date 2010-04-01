@@ -98,7 +98,7 @@ class TodoyuHolidayManager {
 	 *
 	 * @param	Integer		$idHoliday
 	 * @param	Array		$data
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public static function updateHoliday($idHoliday, array $data) {
 		return TodoyuRecordManager::updateRecord(self::TABLE , $idHoliday, $data);

@@ -17,7 +17,7 @@
 .todoyuskin {
 	margin:2px 1px 1px 2px;
 	padding:0;
-	border:0px none;
+	border:0 none;
 	width:253px;
 	display:block;
 	background-color:#fff;
@@ -75,7 +75,7 @@
 
 	.todoyuskin .calnextyear {
 		position:absolute;
-		right:0px;
+		right:0;
 	}
 
 	.todoyuskin .calprevmonth {
@@ -85,7 +85,7 @@
 
 	.todoyuskin .calprevyear {
 		position:absolute;
-		left:0px;
+		left:0;
 	}
 
 .todoyuskin .daybox {
