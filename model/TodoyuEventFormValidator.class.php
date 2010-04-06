@@ -36,12 +36,18 @@ class TodoyuEventFormValidator {
 	 * @param	Array		$config			Field config array
 	 * @return	Bool
 	 */
-	public static function eventIsAssignableToCurrentPersonOnly($value, array $config = array ()) {
+	public static function eventIsAssignableToCurrentPersonOnly($value, array $config = array (), $formElement, $formData) {
 			// If the flag is_private is set, the event is only allowed to be assigned to the current person
-		if ( $config['formdata']['is_private'] == 1 &&
-			(count($config['formdata']['persons']) > 1 || $config['formdata']['persons']['0']['id'] != personid() ) ){
-
-			return false;
+		
+		if($formData['is_private'] == 1)	{
+			if(count($formData['persons']) == 1)	{
+				$person = array_shift($formData['persons']);
+				if(intval($person['id']) !== personid())	{
+					return false;
+				}
+			} else {
+				return false;
+			}
 		}
 	}
 
