@@ -52,7 +52,7 @@ class TodoyuHolidayManager {
 		$fields	= '*';
 		$table	= self::TABLE;
 		$where	= 'deleted = 0';
-		$order	= 'title';
+		$order	= 'date';
 
 		return Todoyu::db()->getArray($fields, $table, $where, '', $order);
 	}
