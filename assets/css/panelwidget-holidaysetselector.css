@@ -1,11 +1,11 @@
 #panelwidget-holidaysetselector-title {
-	background:url('../img/panelwidget-holidaysetselector.png') no-repeat 6px 5px;
+	background:url('../img/panelwidget-holidaysetselector.png') no-repeat 6px 6px;
 }
 
 #panelwidget-holidaysetselector-list option {
-	padding:0 0 0 20px;
+	padding:3px 0 3px 20px;
 }
 
 #panelwidget-holidaysetselector-list option.holidayset_none {
-	background:url('../img/panelwidget-holidaysetselector.png') no-repeat 6px -27px;
+	background:url('../img/panelwidget-holidaysetselector.png') no-repeat 6px -24px;
 }
