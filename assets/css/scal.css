@@ -18,7 +18,7 @@
 	margin:1px 0;
 	padding:0;
 	border:0 none;
-	width:256px;
+	/*width:256px;*/
 	display:block;
 	background-color:#fff;
 	min-height:175px;
@@ -34,6 +34,13 @@
 
 .todoyuskin .calweekswrapper {
 	display:block;
+}
+
+.todoyuskin .weekbox {
+	min-height:21px;
+	display:block;
+	width: 256px;
+	overflow-x: hidden;
 }
 
 .todoyuskin .calheader {
@@ -160,8 +167,6 @@
 }
 
 .todoyuskin .weekbox {
-	min-height:21px;
-	display:block;
 	border-bottom: 1px dotted #818181;
 }
 
