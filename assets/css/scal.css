@@ -15,10 +15,10 @@
 }
 
 .todoyuskin {
-	margin:2px 1px 1px 2px;
+	margin:1px 0;
 	padding:0;
 	border:0 none;
-	width:253px;
+	width:256px;
 	display:block;
 	background-color:#fff;
 	min-height:175px;
@@ -91,7 +91,7 @@
 .todoyuskin .daybox {
 	float:left;
 	background-color:white;
-	width:35px;
+	width:13.89%;
 	padding:0;
 	text-align:center;
 }
@@ -116,7 +116,7 @@
 
 .todoyuskin .dayboxsunday,
 .todoyuskin .dayboxsaturday {
-	background-color:#f2f3ed;
+	background-color: #f2f3ed;
 }
 
 .todoyuskin .daybox:hover,
@@ -147,16 +147,7 @@
 	border:1px solid #f2f3ed;
 }
 
-.todoyuskin .weekbox{
-	width:100%;
-	min-height:21px;
-	display:block;
-}
-
 .todoyuskin .endweek{}
-
-.todoyuskin .weekboxname{}
-
 
 
 /* ----------------
@@ -169,15 +160,14 @@
 }
 
 .todoyuskin .weekbox {
-	border-width:0 0 1px 0;
-	border-color:#818181;
-	border-style:dotted;
+	min-height:21px;
+	display:block;
+	border-bottom: 1px dotted #818181;
 }
 
 .todoyuskin .weekboxname {
-	border-width:0 0 0 1px;
-	border-color:#e4eace;
-	border-style:solid;
+	background-color: #E4EACE;
+	border: none;
 }
 
 .todoyuskin .daybox {
