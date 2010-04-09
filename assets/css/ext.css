@@ -89,8 +89,9 @@ form.formEvent button.buttonSave {}
 /* --------------------------------------------------------------------
 	Date navigational buttons (center on today, go forward / backward)
    -------------------------------------------------------------------- */
-#calendar-quicknav div.icon {
+#calendar-quicknav span.icon {
 	height:16px;
+	margin: 0;
 }
 
 	#calendar-quicknav .today,
