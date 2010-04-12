@@ -385,9 +385,6 @@ class TodoyuCalendarManager {
 
 		$birthdayPersons= TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
 
-		TodoyuDebug::printInFirebug(date('r', $dateStart), date('r', $dateEnd));
-		TodoyuDebug::printInFirebug($birthdayPersons);
-
 		foreach($birthdayPersons as $birthdayPerson) {
 			$dateKey = date('Ymd', $birthdayPerson['date']);
 
