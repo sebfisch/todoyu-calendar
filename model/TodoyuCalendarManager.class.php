@@ -351,15 +351,15 @@ class TodoyuCalendarManager {
 	/**
 	 * Extend company address form (hooked into contact's form building)
 	 *
-	 * @param	TodoyuForm		$form			Task edit form object
-	 * @param	Integer		$idTask			Task ID
-	 * @return	TodoyuForm		Moddified form object
+	 * @param	TodoyuForm		$form			Address form object
+	 * @return	TodoyuForm
 	 */
-	public static function modifyAddressFormfields(TodoyuForm $form, $addressIndex) {
-		$addressIndex	= intval($addressIndex);
-		$contactType	= TodoyuContactPreferences::getActiveTab();
+	public static function modifyAddressFormfields(TodoyuForm $form, $index, array $params) {
+		if( $params['field'] instanceof TodoyuFormElement ) {
+			$parentform	= $params['field']->getForm()->getName();
+		}
 
-		if ($contactType == 'company') {
+		if( $parentform == 'company' ) {
 				// Extend company record form with holiday set selector
 			$form->addElementsFromXML('ext/calendar/config/form/addressholidayset.xml');
 		}
