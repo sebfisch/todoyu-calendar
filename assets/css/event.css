@@ -11,6 +11,7 @@
 }
 
 .event .head {
+	position: relative;
 	line-height:1.2;
 	font-family:Arial,sans-serif;
 	font-size:9px !important;
@@ -40,6 +41,7 @@
 	height:16px;
 }
 
+
 #topcontainerwk .dayevent {
 	position:relative;
 }
@@ -56,9 +58,14 @@
 }
 
 
-.privateEvent {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -406px;
-	padding:0 0 0 15px;
+.private {
+	display: block;
+	position: absolute;
+	top: 8px;
+	left: 11px;
+	width: 6px;
+	height: 7px;
+	background:transparent url(../img/private.png) no-repeat;
 }
 
 .seriesEvent {

@@ -3,7 +3,6 @@
    ---------------------- */
 
 #calendararea {
-	border-right:1px dotted #818181;
 	overflow:hidden;
 	height:461px;
 }

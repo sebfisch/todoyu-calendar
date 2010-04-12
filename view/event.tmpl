@@ -12,7 +12,7 @@
 	    ">
 	<dl {if $calendarMode != 'month'}style="height:{$height}px"{/if}>
 		<dt class="head {if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
-			{if $is_private}<div class="private"></div>{/if}
+			{if $is_private}<span class="private"></span>{/if}
 			{if $calendarMode == 'day'}
 				{htmlencode $title}
 			{else}
