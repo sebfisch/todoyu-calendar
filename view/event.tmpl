@@ -1,4 +1,4 @@
-<div id="event-{$id}" class="event contextmenuevent quickInfoEvent type{ucfirst $eventtypeKey} enumColBGFade{$color.id}"
+<div id="event-{$id}" class="event contextmenuevent quickInfoEvent type{ucfirst $eventtypeKey} enumColBGFade{$color.id} {if $is_private}privateEvent{/if}"
 	style="
 	    {if $calendarMode != 'month'}
 	        top:{$top}px; left:{$left}px;
@@ -21,18 +21,19 @@
 				({$assignedPersons.0.shortname})
 			{/if}
 		</dt>
-		<dd>
-			{* ---------- Only show title if event is not private ---------- *}
-			 <span class="desc" style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"}{/if}">
-				{if $is_private}
-					<span class="privateEvent"></span>
-					{if isPersonID($id_person)}
+		{if !empty($description) && !$is_private && $calendarMode != 'month'}
+			<dd>
+				{* ---------- Only show title if event is not private ---------- *}
+				 <span class="desc" style="color:{$color.text|default:"#000"}">
+					{if $is_private}
+						{if isPersonID($id_person)}
+							{htmlencode(wordwrap($description 8 cut=true))}
+						{/if}
+					{else}
 						{htmlencode(wordwrap($description 8 cut=true))}
-					{/if}	
-				{else}
-					{htmlencode(wordwrap($description 8 cut=true))}
-				{/if}
-			</span>
-		</dd>
+					{/if}
+				</span>
+			</dd>
+		{/if}
 	</dl>
 </div>
