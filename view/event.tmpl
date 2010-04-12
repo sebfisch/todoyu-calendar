@@ -12,6 +12,7 @@
 	    ">
 	<dl {if $calendarMode != 'month'}style="height:{$height}px"{/if}>
 		<dt class="head {if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
+			<span class="headInner">
 			{if $is_private}<span class="private"></span>{/if}
 			{if $calendarMode == 'day'}
 				{htmlencode $title}
@@ -21,6 +22,7 @@
 			{if $calendarMode == 'day' && count($assignedPersons) == 1}
 				({$assignedPersons.0.shortname})
 			{/if}
+			</span>
 		</dt>
 		{if !empty($description) && !$is_private && $calendarMode != 'month'}
 			<dd>

@@ -2,9 +2,10 @@
 	Event
    --------------- */
 div.dayMode div#calendararea div.event dt.head {
-	height:16px;
+	height: 15px;
+	padding: 3px 0;
+	margin-bottom: 1px;
 }
-
 
 
 /* ----------------------

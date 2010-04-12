@@ -1,11 +1,6 @@
 /* ---------------
 	Event
    --------------- */
-.monthMode .event .head {
-	padding-top:3px;
-	padding-bottom:3px;
-}
-
 	.monthMode .event.typeBirthday .head {
 		background-color:#D7DCC6;
 	}
@@ -13,11 +8,6 @@
 .monthMode .event.dayevent {
 	overflow:hidden;
 	white-space:nowrap;
-}
-
-.monthMode .event dd span {
-	padding:2px 3px;
-	display:block;
 }
 
 /* ------------
