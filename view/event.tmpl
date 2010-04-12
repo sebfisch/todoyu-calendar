@@ -1,4 +1,4 @@
-<div id="event-{$id}" class="event contextmenuevent quickInfoEvent type{ucfirst $eventtypeKey} enumColBGFade{$color.id} {if $is_private}privateEvent{/if}"
+<div id="event-{$id}" class="event contextmenuevent quickInfoEvent type{ucfirst $eventtypeKey} enumColBGFade{$color.id}"
 	style="
 	    {if $calendarMode != 'month'}
 	        top:{$top}px; left:{$left}px;
@@ -12,6 +12,7 @@
 	    ">
 	<dl {if $calendarMode != 'month'}style="height:{$height}px"{/if}>
 		<dt class="head {if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
+			{if $is_private}<div class="private"></div>{/if}
 			{if $calendarMode == 'day'}
 				{htmlencode $title}
 			{else}
