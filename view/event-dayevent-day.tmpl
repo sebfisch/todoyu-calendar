@@ -4,7 +4,7 @@
 	</span>
 	{if $is_private}{* ----- only show title, if event is not private ----- *}
 		{if isPersonID($id_person)}
-			<span class="privateEvent"></span>
+			<span class="private"></span>
 			{if $is_repeated == 1}<span class="seriesEvent"></span>{/if}
 				{if $calendarMode == 'day'}
 					{foreach $assignedPersons num personData}
