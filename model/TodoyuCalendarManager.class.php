@@ -385,6 +385,9 @@ class TodoyuCalendarManager {
 
 		$birthdayPersons= TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
 
+		TodoyuDebug::printInFirebug(date('r', $dateStart), date('r', $dateEnd));
+		TodoyuDebug::printInFirebug($birthdayPersons);
+
 		foreach($birthdayPersons as $birthdayPerson) {
 			$dateKey = date('Ymd', $birthdayPerson['date']);
 
@@ -392,6 +395,93 @@ class TodoyuCalendarManager {
 		}
 
 		return $birthdaysByDay;
+	}
+
+
+
+	/**
+	 * Get day events mapping for week view
+	 *
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
+	 * @param	Array		$eventTypes
+	 * @param	Array		$persons
+	 * @return	Array
+	 */
+	public static function getDayEventsWeekMapping($dateStart, $dateEnd, array $eventTypes, array $persons) {
+		$events			= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, true);
+		$rangeKeys		= self::getDayKeys($dateStart, $dateEnd);
+		$mapping		= array();
+		$emptyMap		= array();
+
+		foreach($rangeKeys as $rangeKey) {
+			$emptyMap[$rangeKey] = 0;
+		}
+
+		$mapping[] = $emptyMap;
+
+		foreach($events as $index => $event) {
+			$eventDayKeys	= self::getDayKeys($event['date_start'], $event['date_end']);
+			$event['dayLength']	= sizeof($eventDayKeys);
+			$found		= false;
+
+				// Check all map lines for an empty space
+			foreach($mapping as $lineIndex => $lineMap) {
+					// Check all days of the line
+				foreach($eventDayKeys as $eventDayKey) {
+					if( $lineMap[$eventDayKey] != 0 ) {
+						continue 2;
+					}
+				}
+
+					// If a free spot was found (loop not canceled)
+				$firstDayKey	= array_shift($eventDayKeys);
+				$mapping[$lineIndex][$firstDayKey] = $event;
+				$found	= true;
+
+				foreach($eventDayKeys as $eventDayKey) {
+					$mapping[$lineIndex][$eventDayKey] = 1;
+				}
+
+					// Free space found, stop checking
+				break;
+			}
+
+			if( $found === false ) {
+				$mapping[]	= $emptyMap;
+				$newIndex	= sizeof($mapping)-1;
+
+				$firstDayKey	= array_shift($eventDayKeys);
+				$mapping[$newIndex][$firstDayKey] = $event;
+
+				foreach($eventDayKeys as $eventDayKey) {
+					$mapping[$newIndex][$eventDayKey] = 1;
+				}
+			}
+		}
+
+		return $mapping;
+	}
+
+
+
+	/**
+	 * Get day keys (format Ymd) for every day in a date range
+	 *
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
+	 * @return	Array
+	 */
+	public static function getDayKeys($dateStart, $dateEnd) {
+		$keys	= array();
+		$start	= TodoyuTime::getStartOfDay($dateStart);
+		$end	= TodoyuTime::getEndOfDay($dateEnd);
+
+		for($date = $start; $date <= $end; $date += TodoyuTime::SECONDS_DAY) {
+			$keys[] = date('Ymd', $date);
+		}
+
+		return $keys;
 	}
 
 }

@@ -26,37 +26,51 @@
 					{* ------------  Fullday events (incl birthdays) ------------------ *}
 					<tr>
 						<td class="wk-allday" colspan="7">
-							<div id="weekViewAllDaywk">
-								<table class="st-grid"><tbody>
+							<table class="st-grid">
+								{* --------------- Birthdays -------------------- *}
+								{if sizeof($birthdays, constant(COUNT_RECURSIVE)) > 0}
 									<tr>
-									{for i 0 6}
-										<td class="weekdayForceWid"></td>
-									{/for}
+										{for weekday 0 6}
+											{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
+											<td class="noEventCell">
+											{if $birthdays[$dayDateKey]}
+												{foreach $birthdays[$dayDateKey] birthday}
+													{$birthday}
+												{/foreach}
+											{/if}
+											</td>
+										{/for}
 									</tr>
-									{* --------------- Birthdays -------------------- *}
-									<tr>
-									{for weekday 0 6}
-										{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
-										<td class="noEventCell">
-										{if $birthdays[$dayDateKey]}
-											{foreach $birthdays[$dayDateKey] birthday}
-												{$birthday}
-											{/foreach}
-										{/if}
-										</td>
-									{/for}
-									</tr>
+								{/if}
 
-									{for weekday 0 6}
-										{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
-										{foreach $dayEvents.$dayDateKey dayEvent}
-											{$dayEvent}
+								{*
+								{for weekday 0 6}
+									{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
+									{foreach $dayEvents.$dayDateKey dayEvent}
+										{$dayEvent}
+									{/foreach}
+								{/for}
+								*}
+
+								{foreach $dayEvents dayDayEvents}
+									<tr>
+										{foreach $dayDayEvents dayEvent}
+											{if is_array($dayEvent)}
+												<td colspan="{$dayEvent.dayLength}">
+													{$dayEvent.html}
+												</td>
+											{else}
+												{if $dayEvent == 0}
+													<td>
+														&nbsp;
+													</td>
+												{/if}
+											{/if}
 										{/foreach}
-									{/for}
-
-								</tbody></table>
-							</div>
-							</td>
+									</tr>
+								{/foreach}
+							</table>
+						</td>
 					</tr>
 					<tr class="wk-webcontent">
 						{* -------------------- Cells inside weekdays -------------- *}

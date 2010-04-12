@@ -1,9 +1,14 @@
 /* ---------------
 	Event
    --------------- */
-.event.week .head {
+div.weekMode div#calendararea div.event dt.head {
 	height:16px;
 }
+div.weekMode div#calendararea div.event dd span.desc {
+	display:inline;
+	white-space:normal;
+}
+
 
 /* ---------------
 	Grid
@@ -71,13 +76,14 @@
 	Week view
    ------------------ */
 
-#weekViewAllDaywk {
-
-}
-
 .weekdayForceWid {
 	width:86px;
 	height:-1px;
+	border:none;
+}
+
+div.weekMode table.st-grid td {
+	width:86px;
 	border:none;
 }
 

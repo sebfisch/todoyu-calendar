@@ -1,7 +1,15 @@
-<div id="event-{$id}" class="event contextmenuevent quickInfoEvent type{ucfirst $eventtypeKey} {$calendarMode} enumColBGFade{$color.id}"
-	style="{if $calendarMode != 'month'}top:{$top}px; left:{$left}px;{/if}
-	{if $calendarMode == 'week'} height:{$height}px;{/if}{if intval($width)>0} width:{$width}px;{/if}">
-
+<div id="event-{$id}" class="event contextmenuevent quickInfoEvent type{ucfirst $eventtypeKey} enumColBGFade{$color.id}"
+	style="
+	    {if $calendarMode != 'month'}
+	        top:{$top}px; left:{$left}px;
+	    {/if}
+	    {if $calendarMode == 'week'}
+	        height:{$height}px;
+	    {/if}
+	    {if intval($width)>0}
+	        width:{$width}px;
+	    {/if}
+	    ">
 	<dl {if $calendarMode != 'month'}style="height:{$height}px"{/if}>
 		<dt class="head {if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
 			{if $calendarMode == 'day'}
@@ -9,30 +17,22 @@
 			{else}
 				{htmlencode $title|truncate:14}
 			{/if}
-			{if count($assignedPersons) == 1}
-				{$assignedPersons.0.shortname}
+			{if $calendarMode == 'day' && count($assignedPersons) == 1}
+				({$assignedPersons.0.shortname})
 			{/if}
 		</dt>
 		<dd>
 			{* ---------- Only show title if event is not private ---------- *}
-			{if $is_private == 1 && ! empty($description)}
-			<span {if $calendarMode == 'week'}class="ca-elp" {/if}style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"};{/if}">
-			
-				{if isPersonID($id_person)}
+			 <span class="desc" style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"}{/if}">
+				{if $is_private}
 					<span class="privateEvent"></span>
-					{if $calendarMode == 'day'}
+					{if isPersonID($id_person)}
 						{htmlencode(wordwrap($description 8 cut=true))}
-					{else}
-						{htmlencode(wordwrap($description 8 cut=true))}
-					{/if}
+					{/if}	
+				{else}
+					{htmlencode(wordwrap($description 8 cut=true))}
 				{/if}
 			</span>
-			{else}
-				{if ! empty($description)}
-				<span {if $calendarMode == 'week'}class="ca-elp" {/if}style="{if $calendarMode != 'month'}color:{$color.text|default:"#000"};{/if}">{htmlencode(wordwrap($description 8 cut=true))}</span>
-				{/if}
-			{/if}
 		</dd>
 	</dl>
-
 </div>

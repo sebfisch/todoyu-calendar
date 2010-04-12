@@ -153,7 +153,7 @@ class TodoyuCalendarRenderer {
 			'timestamp'			=> $time,
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'events'			=> self::preRenderEventsForWeek($dateStart, $eventTypes, $persons, $personColors),
-			'dayEvents'			=> self::preRenderDayevents(CALENDAR_MODE_WEEK, $dateStart, $dateEnd, $eventTypes, $persons),
+			'dayEvents'			=> self::preRenderWeekDayEvents($dateStart, $dateEnd, $eventTypes, $persons),
 			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderPersonBirthdays($dateStart, $dateEnd, CALENDAR_MODE_WEEK) : array(),
 			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($dateStart, $dateEnd, CALENDAR_MODE_WEEK)
@@ -372,6 +372,21 @@ class TodoyuCalendarRenderer {
 	}
 
 
+	public static function preRenderWeekDayEvents($dateStart, $dateEnd, array $eventTypes, array $persons) {
+		$mapping	= TodoyuCalendarManager::getDayEventsWeekMapping($dateStart, $dateEnd, $eventTypes, $persons);
+
+		foreach($mapping as $index => $dayEvents) {
+			foreach($dayEvents as $eventIndex => $dayEvent) {
+				if( is_array($dayEvent) ) {
+					$mapping[$index][$eventIndex]['html'] = TodoyuEventRenderer::renderFulldayEvent(CALENDAR_MODE_WEEK, $dayEvent);
+				}
+			}
+		}
+
+		return $mapping;
+	}
+
+
 
 	/**
 	 * Render all birthdays in the range
@@ -390,6 +405,7 @@ class TodoyuCalendarRenderer {
 
 		$tmpl			= 'ext/calendar/view/birthday.tmpl';
 		$birthdaysByDay	= TodoyuCalendarManager::getBirthdaysByDay($dateStart, $dateEnd);
+
 
 		foreach($birthdaysByDay as $dateKey => $birthdaysOfTheDay) {
 			if( is_array($birthdaysOfTheDay) ) {

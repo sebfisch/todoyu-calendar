@@ -1,7 +1,7 @@
 /* ---------------
 	Event
    --------------- */
-.event.day .head {
+div.dayMode div#calendararea div.event dt.head {
 	height:16px;
 }
 

@@ -156,8 +156,12 @@ class TodoyuEventRenderer {
 	 * @return	String
 	 */
 	public static function renderFulldayEvent($mode = CALENDAR_MODE_DAY, array $data = array()) {
-		$tmpl	= 'ext/calendar/view/event-fullday.tmpl';
+		$tmpl	= $mode === CALENDAR_MODE_DAY ? 'ext/calendar/view/event-dayevent-day.tmpl' : 'ext/calendar/view/event-dayevent-week.tmpl';
 		$data	= self::prepareEventRenderData($mode, $data);
+
+		$idAssignedPerson	= intval($data['assignedPersons'][0]['id']);
+		$color				= self::getEventColorData($idAssignedPerson);
+		$data['color']		= $color[$idAssignedPerson];
 
 		return render($tmpl, $data);
 	}

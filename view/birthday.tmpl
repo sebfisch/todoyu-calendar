@@ -1,9 +1,11 @@
-<div title="{dateFormat $date DlongD2Mlong} - {Label event.type.birthday} {htmlencode $title} ({$age} {Label calendar.yearsold})" id="birthday-{$id}" class="event typeBirthday quickInfoBirthday">
-	<div class="head">
-		{if $calendarMode == 'day'}
-			{htmlencode $fullname}
-		{else}
-			{htmlencode $fullname|truncate:16}
-		{/if}
-	</div>
+<div id="birthday-{$id}" class="event typeBirthday quickInfoBirthday">
+	<dl>
+		<dt class="head">
+			{if $calendarMode == 'day'}
+				{htmlencode $fullname}
+			{else}
+				{htmlencode(truncate($fullname length=14 break=true))}
+			{/if}
+		</dt>
+	</dl>
 </div>

@@ -108,12 +108,10 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 
 		$quickInfo	= new TodoyuQuickinfo();
 
-		$birthday		= $person->getBirthday();
-		$viewBirthday	= mktime(0, 0, 0, date('n', $birthday), date('j', $birthday), date('Y', $viewDate));
-		$age			= date('Y', $viewDate) - date('Y', $birthday);
+		$age			= date('Y', $viewDate) - date('Y', $person->getBirthday());
 
-		$quickInfo->addInfo('name',		TodoyuString::crop($person->getFullName(), 20, '...', false));
-		$quickInfo->addInfo('date',		TodoyuTime::format($viewBirthday, 'date'));
+		$quickInfo->addInfo('name',		TodoyuString::crop($person->getFullName(), 25, '...', false));
+		$quickInfo->addInfo('date',		TodoyuTime::format($person->getBirthday(), 'date'));
 		$quickInfo->addInfo('birthday',	$age . ' ' . Label('calendar.yearsold'));
 
 		$quickInfo->printInfoJSON();
