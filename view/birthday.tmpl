@@ -1,11 +1,13 @@
 <div id="birthday-{$id}" class="event typeBirthday quickInfoBirthday">
 	<dl>
 		<dt class="head">
+			<span class="headInner">
 			{if $calendarMode == 'day'}
 				{htmlencode $fullname}
 			{else}
 				{htmlencode(truncate($fullname length=14 break=true))}
 			{/if}
+			</span>
 		</dt>
 	</dl>
 </div>
