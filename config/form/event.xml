@@ -53,6 +53,13 @@
 					<validate>
 						<dateTimeNotBefore msg="event.error.starttimeAfterEndtime">
 							<field>date_start</field>
+							<allow>
+								<fieldEquals>
+									<field>eventtype</field>
+									<!-- @todo use constant EVENTTYPE_REMINDER instead of hard value -->
+									<value>13</value>
+								</fieldEquals>
+							</allow>
 						</dateTimeNotBefore>
 					</validate>
 					<class>datetime</class>
