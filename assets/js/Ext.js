@@ -176,6 +176,15 @@ Todoyu.Ext.calendar = {
 	setTime: function(time, noExternalUpdate) {
 		this.PanelWidget.Calendar.setTime(time, noExternalUpdate);
 	},
+	
+	
+	
+	/**
+	 * Get day string of selected date
+	 */
+	getDayString: function() {
+		return Todoyu.Time.getDateString(this.getTime())
+	},
 
 
 
@@ -349,14 +358,14 @@ Todoyu.Ext.calendar = {
 			// Set new date if given as parameter
 		if( Object.isNumber(date) ) {
 			this.setDate(date);
-		}
+		}		
 
 		var url 	= Todoyu.getUrl('calendar', 'calendar');
 		var options	= {
 			'parameters': {
 				'action':	'update',
 				'tab':		this.getActiveTab(),
-				'time':		this.getTime()
+				'date':		this.getDayString()
 			},
 			'onComplete': this.onCalendarBodyUpdated.bind(this)
 		};

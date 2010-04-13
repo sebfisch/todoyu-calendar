@@ -68,7 +68,7 @@ Todoyu.Ext.calendar.EventEdit = {
 			'parameters': {
 				'action':	'edit',
 				'event':	idEvent,
-				'time':		time
+				'date':		Todoyu.Time.getDateTimeString(time)
 			},
 			'onComplete': this.onFormLoaded.bind(this, idEvent)
 		};

@@ -43,7 +43,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function editAction(array $params) {
 		$idEvent	= intval($params['event']);
-		$time		= intval($params['time']);
+		$time		= strtotime($params['date']);
 		$event		= TodoyuEventManager::getEvent($idEvent);
 
 			// Check rights

@@ -97,6 +97,9 @@
 						<user msg="LLL:event.error.overbooked">
 							<function>TodoyuEventFormValidator::personsAreBookable</function>
 						</user>
+						<user msg="LLL:event.error.hasInternalPerson">
+							<function>TodoyuEventFormValidator::hasInternalPerson</function>
+						</user>
 					</validate>
 					<required />
 				</field>

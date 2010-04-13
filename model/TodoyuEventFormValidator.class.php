@@ -38,7 +38,7 @@ class TodoyuEventFormValidator {
 	 */
 	public static function eventIsAssignableToCurrentPersonOnly($value, array $config = array (), $formElement, $formData) {
 			// If the flag is_private is set, the event is only allowed to be assigned to the current person
-		
+
 		if($formData['is_private'] == 1)	{
 			if(count($formData['persons']) == 1)	{
 				$person = array_shift($formData['persons']);
@@ -145,6 +145,36 @@ class TodoyuEventFormValidator {
 		}
 
 		return $bookable;
+	}
+
+
+
+	/**
+	 * Form validator.
+	 * Check if at least one internal person is assigned to an event
+	 *
+	 * @param	Array				$value
+	 * @param	Array				$config
+	 * @param	TodoyuFormElement	$formElement
+	 * @param	Array				$formData
+	 * @return	Bool
+	 */
+	public static function hasInternalPerson($value, array $config = array (), $formElement, $formData) {
+		$personIDs	= TodoyuArray::getColumn($value, 'id');
+
+		if( sizeof($personIDs) === 0 ) {
+			return false;
+		}
+
+		$fields	= '	c.id';
+		$tables	= '	ext_contact_mm_company_person mmcp,
+					ext_contact_company c';
+		$where	= '	mmcp.id_person IN(' . implode(',', $personIDs) . ') AND
+					mmcp.id_company	= c.id AND
+					c.is_internal	= 1';
+		$limit	= 1;
+
+		return Todoyu::db()->hasResult($fields, $tables, $where, '', '', $limit);
 	}
 
 }

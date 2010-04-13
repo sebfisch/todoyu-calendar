@@ -167,7 +167,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 		var seconds	= (top / height) * Todoyu.Time.seconds.day;
 		
 			// Round to quarter hours, get time parts (hours, minutes, seconds)
-		var seconds		= Math.round(seconds / 900) * 900;
+		seconds		= Math.round(seconds / 900) * 900;
 
 		var timeInfo	= Todoyu.Time.getTimeParts(seconds);
 		
