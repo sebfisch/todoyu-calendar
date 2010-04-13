@@ -5,5 +5,8 @@
 	</labels>
 	<labels lang="de">
 		<label index="title">Termin-Typen</label>
+	</labels>
+	<labels lang="pt">
+		<label index="title">Tipo de Evento</label>
 	</labels>	
 </locallang>

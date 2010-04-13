@@ -7,5 +7,9 @@
 	<labels lang="de">
 		<label index="title">Feiertags-Regionen</label>
 		<label index="showNoHolidays">Keine Feiertage anzeigen</label>
-	</labels>	
+	</labels>
+	<labels lang="pt">
+		<label index="title">Feriado por Região</label>
+		<label index="showNoHolidays">Esconder Feriados</label>
+	</labels>
 </locallang>

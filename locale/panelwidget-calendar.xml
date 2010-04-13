@@ -5,5 +5,8 @@
 	</labels>
 	<labels lang="de">
 		<label index="title">Kalender</label>
-	</labels>	
+	</labels>
+	<labels lang="pt">
+		<label index="title">Calendário</label>
+	</labels>
 </locallang>

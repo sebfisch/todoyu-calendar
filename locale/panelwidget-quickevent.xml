@@ -7,5 +7,9 @@
 	<labels lang="de">
 		<label index="title">Termin Assistent</label>
 		<label index="addNewEvent">Termin erfassen</label>
+	</labels>
+	<labels lang="pt">
+		<label index="title">Assitente de Evento</label>
+		<label index="addNewEvent">Criar Evento</label>
 	</labels>	
 </locallang>
