@@ -92,8 +92,10 @@ div.weekMode table.st-grid td {
 	background-color:#f2f3ed;
 	font-size:11px;
 	line-height:14px;
-	border-left:1px solid #818181;
-	border-top:1px solid #818181;
+	border-left:1px solid #848484;
+	border-right:1px solid #E8E5DE;
+	border-bottom:1px solid #E8E5DE;
+	border-top:1px solid #848484;
 	padding:1px 1px 1px 0;
 }
 
