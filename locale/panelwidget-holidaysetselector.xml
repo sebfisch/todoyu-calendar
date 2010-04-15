@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
-	<labels lang="en">
+	<labels lang="en_GB">
 		<label index="title">Holiday By Region</label>
 		<label index="showNoHolidays">Hide Holidays</label>
 	</labels>
-	<labels lang="de">
+	<labels lang="de_DE">
 		<label index="title">Feiertags-Regionen</label>
 		<label index="showNoHolidays">Keine Feiertage anzeigen</label>
 	</labels>
-	<labels lang="pt">
+	<labels lang="pt_BR">
 		<label index="title">Feriado por Região</label>
 		<label index="showNoHolidays">Esconder Feriados</label>
 	</labels>

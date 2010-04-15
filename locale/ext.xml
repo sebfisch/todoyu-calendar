@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
-	<labels lang="en">
+	<labels lang="en_GB">
 		<label index="ext.title">Calendar</label>
 		<label index="page.title">Calendar</label>
 		<label index="maintab.label">Planning</label>
@@ -31,7 +31,7 @@
 		<label index="extconf.allowoverbooking.label">Allow Overbooking?</label>
 		<label index="portal.tab.appointments">Appointments</label>
 	</labels>
-	<labels lang="de">
+	<labels lang="de_DE">
 		<label index="ext.title">Kalender</label>
 		<label index="page.title">Kalender</label>
 		<label index="maintab.label">Planung</label>
@@ -62,7 +62,7 @@
 		<label index="extconf.allowoverbooking.label">Überbuchung erlauben?</label>
 		<label index="portal.tab.appointments">Termine</label>
 	</labels>
-	<labels lang="pt">
+	<labels lang="pt_BR">
 		<label index="ext.title">Calendário</label>
 		<label index="page.title">Calendário</label>
 		<label index="maintab.label">Planejamento</label>

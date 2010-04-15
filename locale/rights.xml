@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
-	<labels lang="en">
+	<labels lang="en_GB">
 		<label index="general">General</label>
 		<label index="general.use">Use Calendar Functionalities</label>
 		<label index="general.area">Use Calendar Area</label>
@@ -12,7 +12,7 @@
 		<label index="event.search">Search for events</label>
 		<label index="event.assignOthers">Assign events to other persons</label>
 	</labels>
-	<labels lang="de">
+	<labels lang="de_DE">
 		<label index="general">Allgemein</label>
 		<label index="general.use">Kalender-Funktionalitäten verwenden</label>
 		<label index="general.area">Kalender-Bereich verwenden</label>
@@ -24,7 +24,7 @@
 		<label index="event.assignOthers">Termine anderen Benutzern zuweisen</label>
 		<label index="event.search">Nach Terminen suchen</label>
 	</labels>
-	<labels lang="pt">
+	<labels lang="pt_BR">
 		<label index="general">Configuração</label>
 		<label index="general.use">Utilizar Funcionalidades de Calendário</label>
 		<label index="general.area">Utilizar Área de Calendário</label>

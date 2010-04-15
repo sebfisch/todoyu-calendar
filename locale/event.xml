@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
-	<labels lang="en">
+	<labels lang="en_GB">
 		<label index="event">Event</label>
 		<label index="events">Events</label>
 		<label index="new">New Event</label>
@@ -61,7 +61,7 @@
 		<label index="contextmenu.showEventInCalendar.month">Month</label>
 		<label index="ac.personassignment.notFoundInfo">No persons with names containing this text were found.</label>
 	</labels>
-	<labels lang="de">
+	<labels lang="de_DE">
 		<label index="event">Termin</label>
 		<label index="events">Termine</label>
 		<label index="new">Neuer Termin</label>
@@ -122,7 +122,7 @@
 		<label index="contextmenu.showEventInCalendar.month">Monat</label>
 		<label index="ac.personassignment.notFoundInfo">Es wurden keine Personen gefunden, deren Namen diesen Text enthalten.</label>
 	</labels>
-	<labels lang="pt">
+	<labels lang="pt_BR">
 		<label index="event">Evento</label>
 		<label index="events">Eventos</label>
 		<label index="new">Novo Evento</label>
