@@ -35,7 +35,7 @@ Todoyu.Ext.calendar.ContextMenuEventPortal = {
 	 * Attach event context menu
 	 */
 	attach: function() {
-		Todoyu.ContextMenu.attachMenuToClass('contextmenuEventPortal', this.load.bind(this));
+		Todoyu.ContextMenu.attach('eventPortal', '.contextmenuEventPortal', this.getID.bind(this));
 	},
 
 
@@ -48,47 +48,7 @@ Todoyu.Ext.calendar.ContextMenuEventPortal = {
 	},
 
 
-
-	/**
-	 * Reattach event context menu
-	 */
-	reattach: function() {
-		this.detach();
-		this.attach();
-	},
-
-
-
-	/**
-	 * Load event context menu
-	 *
-	 * @param	Event		event
-	 * @return	Boolean		false
-	 */
-	load: function(event) {
-		var idEvent		= event.findElement('div.event').readAttribute('id').split('-').last();
-		
-		var url		= Todoyu.getUrl('calendar', 'contextmenu');
-		var options	= {
-			'parameters': {
-				'action':	'eventPortal',
-				'event':	idEvent
-			}
-		};
-
-		Todoyu.ContextMenu.showMenu(url, options, event);
-
-		return false;
-	},
-
-
-
-	/**
-	 * Attach event context menu to given element
-	 *
-	 * @param	String		element
-	 */
-	attachToElement: function(element) {
-		Todoyu.ContextMenu.attachMenuToElement(element, this.load.bind(this));
+	getID: function(element, event) {
+		return element.id.split('-').last();
 	}
 };

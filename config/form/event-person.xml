@@ -9,12 +9,8 @@
 				<field type="textinputAC" name="id">
 					<label>event.attr.assigned_to</label>
 					<config>
-						<acListener>
-							<ext>calendar</ext>
-							<controller>autocompletion</controller>
-							<action>person</action>
-						</acListener>
-						<acLabelFunc>TodoyuPersonManager::getLabel</acLabelFunc>
+						<acName>person</acName>
+						<acLabel>TodoyuPersonManager::getLabel</acLabel>
 						<options>
 							<onCompleteCustom>Todoyu.Ext.calendar.EventEdit.onPersonAssignmentAutocomplete</onCompleteCustom>
 						</options>

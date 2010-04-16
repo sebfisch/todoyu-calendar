@@ -25,9 +25,12 @@
  * @subpackage	Calendar
  */
 
-TodoyuContextMenuManager::registerFunction('Event', 'TodoyuEventManager::getContextMenuItems', 10);
-TodoyuContextMenuManager::registerFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
-TodoyuContextMenuManager::registerFunction('CalendarArea', 'TodoyuCalendarManager::getContextMenuItems', 10);
+/**
+ * Add contextmenu callbacks
+ */
+TodoyuContextMenuManager::addFunction('Event', 'TodoyuEventManager::getContextMenuItems', 10);
+TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
+TodoyuContextMenuManager::addFunction('CalendarBody', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
 if ( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:use') ) {
 	TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50, array('calendar/public'));

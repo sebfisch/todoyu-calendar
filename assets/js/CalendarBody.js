@@ -60,7 +60,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 * Install calendar body context menu
 	 */
 	installContextMenu: function() {
-		this.ext.ContextMenuCalendarBody.reattach();
+		this.ext.ContextMenuCalendarBody.attach();
 	},
 
 

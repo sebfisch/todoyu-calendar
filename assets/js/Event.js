@@ -35,7 +35,7 @@ Todoyu.Ext.calendar.Event = {
 			eventElement.observe('dblclick', this.onEventDblClick.bindAsEventListener(this));
 		}.bind(this));
 
-		this.ext.ContextMenuEvent.reattach();
+		this.ext.ContextMenuEvent.attach();
 	},
 
 
