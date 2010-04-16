@@ -38,9 +38,9 @@ TodoyuLanguage::register('panelwidget-eventtypeselector', PATH_EXT_CALENDAR . '/
 TodoyuLanguage::register('panelwidget-holidaysetselector', PATH_EXT_CALENDAR . '/locale/panelwidget-holidaysetselector.xml');
 
 	// Request configurations
+	// @notice	Auto-loaded configs if available: admin, assets, create, contextmenu, extinfo, filters, form, page, panelwidgets, rights, search
 require_once( PATH_EXT_CALENDAR . '/config/constants.php' );
 require_once( PATH_EXT_CALENDAR . '/config/extension.php' );
-require_once( PATH_EXT_CALENDAR . '/config/panelwidgets.php' );
 require_once( PATH_EXT_CALENDAR . '/config/hooks.php' );
 require_once( PATH_EXT_CALENDAR . '/dwoo/plugins.php');
 
