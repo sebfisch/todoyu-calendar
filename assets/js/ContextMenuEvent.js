@@ -34,7 +34,6 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 	 */
 	attach: function() {
 		Todoyu.ContextMenu.attach('event', '.contextmenuevent', this.getID.bind(this));
-		Todoyu.ContextMenu.attachMenuToClass('contextmenuevent', this.load.bind(this));
 	},
 
 
