@@ -38,7 +38,7 @@
 						</url>
 						<label type="field">
 							<field>title</field>
-							<noLabel>Neues Feiertagsset</noLabel>
+							<noLabel>calendar.holiday.attr.holidayset.new</noLabel>
 						</label>
 					</record>
 				</field>
