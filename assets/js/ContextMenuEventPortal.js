@@ -44,7 +44,7 @@ Todoyu.Ext.calendar.ContextMenuEventPortal = {
 	 * Detach event context menu
 	 */
 	detach: function() {
-		Todoyu.ContextMenu.detachAllMenus('contextmenuEventPortal');
+		Todoyu.ContextMenu.detach('.contextmenuEventPortal');
 	},
 
 
