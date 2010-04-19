@@ -25,13 +25,11 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 	ext:		Todoyu.Ext.calendar,
 
 
-
-
 	/**
 	 * Install element observers on all calendar event quickinfo elements
 	 */
 	init: function() {
-		$$('div.quickInfoEvent').each(this.install.bind(this));
+		$$('div.quickInfoEvent').each(this.install.bind(this));		
 	},
 
 

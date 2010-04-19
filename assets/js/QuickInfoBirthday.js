@@ -27,12 +27,20 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
  	 */
 	ext:		Todoyu.Ext.calendar,
 
+	/**
+	 * Birthday quickinfo stays for 5 seconds in cache
+	 * Prevents same quickinfo for all years once loaded
+	 */
+	cacheTime: 5,
+
 
 	/**
 	 * Install observers on all calendar holiday elements.
 	 */
 	init: function() {
-		$$('div.quickInfoBirthday').each(this.install.bind(this));
+		Todoyu.QuickInfo.setCacheTime('calendar', 'birthday', this.cacheTime);
+
+		$$('div.quickInfoBirthday').each(this.install.bind(this));		
 	},
 
 
