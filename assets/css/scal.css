@@ -15,10 +15,10 @@
 }
 
 .todoyuskin {
-	margin:1px 0;
+	margin:1px auto;
 	padding:0;
 	border:0 none;
-	/*width:256px;*/
+	*width:253px; /* for ie7 */
 	display:block;
 	background-color:#fff;
 	min-height:175px;
@@ -39,7 +39,6 @@
 .todoyuskin .weekbox {
 	min-height:21px;
 	display:block;
-	width: 256px;
 	overflow-x: hidden;
 }
 
@@ -98,7 +97,8 @@
 .todoyuskin .daybox {
 	float:left;
 	background-color:white;
-	width:13.89%;
+	width: 13.89%;
+	*width: 35px; /* for ie7 */
 	padding:0;
 	text-align:center;
 }
