@@ -72,6 +72,7 @@ class TodoyuCalendarPreferences {
 	}
 
 
+
 	/**
 	 * Get date for calendar
 	 *

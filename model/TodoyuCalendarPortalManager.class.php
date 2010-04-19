@@ -55,6 +55,7 @@ class TodoyuCalendarPortalManager {
 	}
 
 
+
 	/**
 	 * Get birthdays to be displayed in appointments tab in portal, for members of staff only!
 	 *

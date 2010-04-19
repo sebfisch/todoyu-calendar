@@ -37,7 +37,7 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 	/**
 	 * Install mouseOver/Out obeserver on given calendar holiday element
 	 * 
-	 * @param	Element	element
+	 * @param	{Element}	element
 	 */
 	install: function(element) {
 		var timestamp	= $(element).id.split('-').last();
@@ -50,8 +50,8 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 	/**
 	 * Evoked upon mouseOver event upon holiday element. Show quick info.
 	 * 
-	 * @param	Object	event			the DOM-event
-	 * @param	Integer	timestamp		timestamp of the holiday
+	 * @param	{Object}	event			the DOM-event
+	 * @param	{Integer}	timestamp		timestamp of the holiday
 	 */
 	onMouseOver: function(event, timestamp) {
 		Todoyu.QuickInfo.show('calendar', 'holiday', timestamp, event.pointerX(), event.pointerY());
@@ -62,8 +62,8 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 	/**
 	 * Evoked upon mouseOut event upon holiday element. Show quick info.
 	 * 
-	 * @param	Object	event			the DOM-event
-	 * @param	Integer	timestamp		timestamp of the holiday
+	 * @param	{Object}	event			the DOM-event
+	 * @param	{Integer}	timestamp		timestamp of the holiday
 	 */
 	onMouseOut: function(event, timestamp) {
 		Todoyu.QuickInfo.hide();
@@ -74,7 +74,7 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 	/**
 	 * Evoke removal of given holiday quickinfo entry from cache
 	 * 
-	 * @param	Integer	idHoliday
+	 * @param	{Integer}	idHoliday
 	 */
 	removeFromCache: function(idHoliday) {
 		Todoyu.QuickInfo.removeFromCache('holiday' + idHoliday);

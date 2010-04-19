@@ -20,12 +20,12 @@
 Todoyu.Ext.calendar.Tabs = {
 
 	/**
-	 *	Ext shortcut
+	 * Ext shortcut
 	 */
 	ext:	Todoyu.Ext.calendar,
 
 	/**
-	 *	Current active tab (day, week, month, view)
+	 * Current active tab (day, week, month, view)
 	 */
 	active: null,
 
@@ -34,8 +34,8 @@ Todoyu.Ext.calendar.Tabs = {
 	/**
 	 * On selecting a tab
 	 *
-	 * @param	Event	event
-	 * @param	String	tabKey
+	 * @param	{Event}	event
+	 * @param	{String}	tabKey
 	 */
 	onSelect: function(event, tabKey) {
 		switch(tabKey) {
@@ -75,9 +75,9 @@ Todoyu.Ext.calendar.Tabs = {
 
 
 	/**
-	 *	Get active tab ID
+	 * Get active tab ID
 	 *
-	 *	@return	String		e.g 'month' / 'week' / ...
+	 * @return	String		e.g 'month' / 'week' / ...
 	 */
 	getActive: function() {
 		if( this.active === null ) {
@@ -92,7 +92,7 @@ Todoyu.Ext.calendar.Tabs = {
 	/**
 	 * Set given tab as currently active one
 	 *
-	 * @param	String		tab, e.g 'month' / 'week' / ...
+	 * @param	{String}		tab, e.g 'month' / 'week' / ...
 	 */
 	setActive: function(tab) {
 			// Make sure the given tab exists, otherwise use month tab by default
@@ -106,9 +106,9 @@ Todoyu.Ext.calendar.Tabs = {
 
 
 	/**
-	 *	Save pref: key of given tab
+	 * Save pref: key of given tab
 	 *
-	 *	@param	String	tabKey		'day' / 'week' / 'month'
+	 * @param	{String}	tabKey		'day' / 'week' / 'month'
 	 */
 	saveTabSelection: function(tabKey) {
 		this.ext.savePref('tab', tabKey);

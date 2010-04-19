@@ -48,7 +48,7 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 	/**
 	 * Install mouseOver/Out obeserver on given calendar holiday element
 	 *
-	 * @param	Element	element
+	 * @param	{Element}	element
 	 */
 	install: function(element) {
 		var idPerson	= $(element).id.split('-').last();
@@ -62,8 +62,8 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 	/**
 	 * Evoked upon mouseOver event upon holiday element. Show quick info.
 	 *
-	 * @param	Object	event		the DOM-event
-	 * @param	Integer	idPerson		idPerson
+	 * @param	{Object}	event		the DOM-event
+	 * @param	{Integer}	idPerson		idPerson
 	 */
 	onMouseOver: function(event, idPerson) {
 		Todoyu.QuickInfo.show('calendar', 'birthday', idPerson, event.pointerX(), event.pointerY());
@@ -74,8 +74,8 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 	/**
 	 * Evoked upon mouseOut event upon holiday element. Show quick info.
 	 *
-	 * @param	Object	event			the DOM-event
-	 * @param	Integer	idPerson		idPerson
+	 * @param	{Object}	event			the DOM-event
+	 * @param	{Integer}	idPerson		idPerson
 	 */
 	onMouseOut: function(event, idPerson) {
 		Todoyu.QuickInfo.hide();
@@ -86,7 +86,7 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 	/**
 	 * Evoke removal of given holiday quickinfo entry from cache
 	 *
-	 * @param	Integer		idPerson
+	 * @param	{Integer}		idPerson
 	 */
 	removeFromCache: function(idPerson) {
 		Todoyu.QuickInfo.removeFromCache('birthday' + idPerson);

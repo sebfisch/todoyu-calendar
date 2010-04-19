@@ -43,7 +43,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Event double click handler
 	 *
-	 * @param	Event		event
+	 * @param	{Event}		event
 	 */
 	onEventDblClick: function(event) {
 		event.stop();
@@ -59,7 +59,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Show event
 	 *
-	 * @param	Integer		idEvent
+	 * @param	{Integer}		idEvent
 	 */
 	show: function(idEvent) {
 		this.ext.EventView.open(idEvent);
@@ -71,7 +71,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Edit event
 	 *
-	 * @param	Integer		idEvent
+	 * @param	{Integer}		idEvent
 	 */
 	edit: function(idEvent) {
 		this.ext.EventEdit.open(idEvent);
@@ -82,7 +82,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Remove event
 	 *
-	 * @param	Integer		idEvent
+	 * @param	{Integer}		idEvent
 	 */
 	remove: function(idEvent) {
 		if(confirm('[LLL:event.delete.confirm]')) {
@@ -108,8 +108,8 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Handle 'on removed' event
 	 *
-	 * @param	Integer		idEvent
-	 * @param	Object		response
+	 * @param	{Integer}		idEvent
+	 * @param	{Object}		response
 	 */
 	onRemoved: function(idEvent, response) {
 		this.ext.refresh();
@@ -120,7 +120,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Automatically set the enddate to the same value as the startdate in a form
 	 *
-	 *	@param	String	formName	Name of the XML-form
+	 * @param	{String}	formName	Name of the XML-form
 	*/
 	updateEnddate:function(formName) {
 		if ($(formName+'-0-field-enddate')) {
@@ -133,10 +133,10 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Calculate timestamp from given given mouse coordinates
 	 *
-	 * @param	String		idTab	'day' / 'week' / 'month'
-	 * @param	Integer		x		event pointer x coordinate
-	 * @param	Integer		y		event pointer y coordinate
-	 * @return	Integer		UNIX timestamp
+	 * @param	{String}		idTab	'day' / 'week' / 'month'
+	 * @param	{Integer}		x		event pointer x coordinate
+	 * @param	{Integer}		y		event pointer y coordinate
+	 * @return	{Integer}		UNIX timestamp
 	 */
 	calcTimestampFromMouseCoords: function(idTab, x, y) {
 		var timestamp 		= Todoyu.Ext.calendar.getDate();
@@ -169,9 +169,9 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Show given event in given view (day / week / month) of calendar
 	 *
-	 * @param	Integer		idEvent
-	 * @param	Integer		date
-	 * @param	String		view
+	 * @param	{Integer}		idEvent
+	 * @param	{Integer}		date
+	 * @param	{String}		view
 	 */
 	goToEventInCalendar: function(idEvent, date, view) {
 		var params = {

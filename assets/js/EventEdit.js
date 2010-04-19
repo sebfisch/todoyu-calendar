@@ -32,8 +32,8 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Open edit view for an event
 	 *
-	 * @param	Integer		idEvent
-	 * @param	Integer		time
+	 * @param	{Integer}		idEvent
+	 * @param	{Integer}		time
 	 */
 	open: function(idEvent, time) {
 		Todoyu.Ui.scrollToTop();
@@ -47,7 +47,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Open edit view for event from detail view
 	 * 
-	 * @param	Integer		idEvent
+	 * @param	{Integer}		idEvent
 	 */
 	openFromDetailView: function(idEvent) {
 		this.cancelEdit();
@@ -59,8 +59,8 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Load edit form for an event
 	 *
-	 * @param	Integer		idEvent
-	 * @param	Integer		time
+	 * @param	{Integer}		idEvent
+	 * @param	{Integer}		time
 	 */
 	loadForm: function(idEvent, time) {
 		var url		= Todoyu.getUrl('calendar', 'event');
@@ -82,8 +82,8 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Handler when edit form is loaded
 	 *
-	 * @param	Integer	idEvent
-	 * @param	Object	response
+	 * @param	{Integer}	idEvent
+	 * @param	{Object}	response
 	 */
 	onFormLoaded: function(idEvent, response) {
 		var tabLabel = response.getTodoyuHeader('tabLabel');
@@ -109,7 +109,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Update the field visibility in the form for the selected event type
 	 *
-	 * @param	DomEvent	event
+	 * @param	{DomEvent}	event
 	 */
 	updateVisibleFields: function(event) {
 		var eventType	= $F('event-field-eventtype');
@@ -146,8 +146,8 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Check if a field has to be hidden for an eventtype
 	 *
-	 * @param	String		fieldname
-	 * @param	String		eventtype
+	 * @param	{String}		fieldname
+	 * @param	{String}		eventtype
 	 */
 	checkHideField: function(fieldname, eventtype) {
 		var fields	= [];
@@ -176,7 +176,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Hide a field in the event form
 	 *
-	 * @param	String		fieldname
+	 * @param	{String}		fieldname
 	 */
 	hideField: function(fieldname) {
 		var field	= 'formElement-event-field-' + fieldname;
@@ -190,7 +190,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Add the edit tab
 	 *
-	 * @param	String		label
+	 * @param	{String}		label
 	 */
 	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tab-edit') ) {
@@ -224,7 +224,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Set edit tab label
 	 *
-	 * @param	String		label
+	 * @param	{String}		label
 	 */
 	setTabLabel: function(label) {
 		Todoyu.Tabs.setLabel('calendar', 'edit', label);
@@ -235,7 +235,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Check if edit view is active
 	 * 
-	 * @return	Boolean
+	 * @return	{Boolean}
 	 */
 	isActive: function() {
 		return Todoyu.exists('calendar-tab-edit');
@@ -287,7 +287,7 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Handler after event saved
 	 *
-	 * @param	Object	response
+	 * @param	{Object}	response
 	 */
 	onEventSaved: function(response) {
 		if( response.hasTodoyuError() ) {
@@ -318,8 +318,8 @@ Todoyu.Ext.calendar.EventEdit = {
 	/**
 	 * Handler when event person assignment field is autocompleted
 	 *
-	 * @param	Ajax.Response			response
-	 * @param	Todoyu.Autocompleter	autocompleter
+	 * @param	{Ajax.Response}			response
+	 * @param	{Todoyu.Autocompleter}	autocompleter
 	 */
 	onPersonAssignmentAutocomplete: function(response, autocompleter) {
 		if( response.getTodoyuHeader('acElements') == 0 ) {

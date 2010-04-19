@@ -32,7 +32,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Open event
 	 *
-	 * @param	Integer	idEvent
+	 * @param	{Integer}	idEvent
 	 */
 	open: function(idEvent) {
 		this.addTab('');
@@ -46,7 +46,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Load event details
 	 *
-	 * @param	Integer	idEvent
+	 * @param	{Integer}	idEvent
 	 */
 	loadDetails: function(idEvent) {
 		var url		= Todoyu.getUrl('calendar', 'event');
@@ -67,8 +67,8 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Handler being evoked upon completion of loading of details: set tab label
 	 * 
-	 * @param	Integer		idEvent
-	 * @param	Object		response
+	 * @param	{Integer}		idEvent
+	 * @param	{Object}		response
 	 */
 	onDetailsLoaded: function(idEvent, response) {
 		var tabLabel = response.getTodoyuHeader('tabLabel');
@@ -81,7 +81,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * If not yet there: add and activate event view tab
 	 * 
-	 * @param	String		label
+	 * @param	{String}		label
 	 */
 	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tab-view') ) {
@@ -110,7 +110,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Set event viewing tab label
 	 * 
-	 * @param	String		label
+	 * @param	{String}		label
 	 */
 	setTabLabel: function(label) {
 		Todoyu.Tabs.setLabel('calendar', 'view', label);
@@ -139,7 +139,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Check whether event viewing tab exists in DOM
 	 * 
-	 * @return	Boolean
+	 * @return	{Boolean}
 	 */
 	isActive: function() {
 		return Todoyu.exists('calendar-tab-view');

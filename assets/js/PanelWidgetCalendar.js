@@ -42,14 +42,14 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Update of the calender is delayed. Timeout is stored here
 	 * 
-	 * @param	Function
+	 * @param	{Function}
 	 */
 	updateTimeout:		null,
 	
 	/**
 	 * Seconds for update delay
 	 * 
-	 * @param	Float
+	 * @param	{Float}
 	 */
 	updateTimeoutWait:	0.2,
 
@@ -58,7 +58,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Initialite calendar widget
 	 *
-	 * @param	Integer		timestamp	Unix-Timestamp
+	 * @param	{Integer}		timestamp	Unix-Timestamp
 	 */
 	init: function(timestamp) {
 		var initialDate = new Date(timestamp * 1000);
@@ -79,7 +79,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get current calendar date
 	 *
-	 * @return	Integer
+	 * @return	{Integer}
 	 */
 	getDate: function() {
 		return this.Calendar.currentdate.getTime();
@@ -90,8 +90,8 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Set current calendar date
 	 *
-	 * @param	Integer	date
-	 * @param	Boolean	noExternalUpdate
+	 * @param	{Integer}	date
+	 * @param	{Boolean}	noExternalUpdate
 	 */
 	setDate: function(date, noExternalUpdate) {
 		  this.Calendar.setCurrentDate(new Date(date), noExternalUpdate);
@@ -102,7 +102,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get time
 	 *
-	 * @return	Integer
+	 * @return	{Integer}
 	 */
 	getTime: function() {
 		return parseInt(this.getDate()/1000, 10);
@@ -113,7 +113,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get timestamp of first shown day
 	 *
-	 * @return	Integer
+	 * @return	{Integer}
 	 */
 	getFirstShownDay: function() {
 		var timestamp	= this.getDate();
@@ -138,8 +138,8 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Set time
 	 *
-	 * @param	Integer	time
-	 * @param	Boolean	noExternalUpdate
+	 * @param	{Integer}	time
+	 * @param	{Boolean}	noExternalUpdate
 	 */
 	setTime: function(time, noExternalUpdate) {
 		this.setDate(time * 1000, noExternalUpdate);
@@ -150,7 +150,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * When displayed dates in calendar are updated/changed
 	 *
-	 * @param	Event	event
+	 * @param	{Event}	event
 	 */
 	onCalendarChange: function(event) {
 		var element = event.element();
@@ -185,7 +185,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * General update event handler
 	 *
-	 * @param	String	mode
+	 * @param	{String}	mode
 	 */
 	onUpdate: function(mode, delay) {
 		if( this.updateTimeout !== null ) {
@@ -207,8 +207,8 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Shift selected date of calendar widget by given amount (of seconds)
 	 *
-	 * @param	Integer	spanlength
-	 * @param	Boolean	saveDatePreference
+	 * @param	{Integer}	spanlength
+	 * @param	{Boolean}	saveDatePreference
 	 */
 	shiftDate: function(spanLength, saveDatePreference) {
 		this.prefSavingEnabled	= saveDatePreference;

@@ -57,7 +57,7 @@
 	/**
 	 * Load holiday
 	 *
-	 * @param	Integer	idHoliday
+	 * @param	{Integer}	idHoliday
 	 */
 	loadHoliday: function(idHoliday) {
 		var url		= Todoyu.getUrl('calendar', 'calendar');
@@ -76,7 +76,7 @@
 	/**
 	 * Save holiday
 	 *
-	 * @param	String	form
+	 * @param	{String}	form
 	 * @return	Bolean
 	 */
 	save: function(form) {
@@ -95,7 +95,7 @@
 	/**
 	 * 'on saved' Event handler
 	 *
-	 * @param	Object	response
+	 * @param	{Object}	response
 	 */
 	onSaved: function(response) {
 		Todoyu.notify('success', response.responseText);

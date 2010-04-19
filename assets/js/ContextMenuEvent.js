@@ -55,7 +55,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 	/**
 	 * Load event context menu
 	 *
-	 * @param	Event		event
+	 * @param	{Event}		event
 	 */
 	/*
 	load: function(event) {

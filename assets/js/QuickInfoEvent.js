@@ -20,7 +20,7 @@
 Todoyu.Ext.calendar.QuickInfoEvent = {
 
 	/**
-	 *	Ext shortcut
+	 * Ext shortcut
 	 */
 	ext:		Todoyu.Ext.calendar,
 
@@ -37,7 +37,7 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 	/**
 	 * Install rollover/out observers on calendar event element
 	 * 
-	 * @param	Element	element
+	 * @param	{Element}	element
 	 */
 	install: function(element) {
 			// Extract event ID
@@ -53,8 +53,8 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 	/**
 	 * Handle mouseOver event on calendar event-element: show event-quickinfo
 	 *
-	 * @param	Object	event
-	 * @param	Integer	idEvent
+	 * @param	{Object}	event
+	 * @param	{Integer}	idEvent
 	 */
 	onMouseOver: function(event, idEvent) {
 		Todoyu.QuickInfo.show('calendar', 'event', idEvent, event.pointerX(), event.pointerY());
@@ -65,8 +65,8 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 	/**
 	 * Handle mouseOut event on calendar event-element: hide event-quickinfo
 	 * 
-	 * @param	Object	event
-	 * @param	Integer	idEvent
+	 * @param	{Object}	event
+	 * @param	{Integer}	idEvent
 	 */
 	onMouseOut: function(event, idEvent) {
 		Todoyu.QuickInfo.hide();
@@ -77,7 +77,7 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 	/**
 	 * Remove given calendar event quickinfo element from cache
 	 * 
-	 * @param	Integer	idEvent
+	 * @param	{Integer}	idEvent
 	 */
 	removeFromCache: function(idEvent) {
 		Todoyu.QuickInfo.removeFromCache('event' + idEvent);

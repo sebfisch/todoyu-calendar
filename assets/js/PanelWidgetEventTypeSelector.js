@@ -56,7 +56,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Event type select event handler
 	 *
-	 * @param	Event		event
+	 * @param	{Event}		event
 	 */
 	onSelectionChange: function(event) {
 		this.onUpdate();
@@ -67,7 +67,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Update event handler
 	 *
-	 * @param	Mixed	value
+	 * @param	{Mixed}	value
 	 */
 	onUpdate: function() {
 		this.savePrefs();
@@ -78,7 +78,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Select all event types
 	 * 
-	 * @param	Boolean		select
+	 * @param	{Boolean}		select
 	 * @todo	remove param 'select'?
 	 */
 	selectAllEventTypes: function(select) {
@@ -104,7 +104,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Get amount of selected event types
 	 *
-	 * @return	Integer
+	 * @return	{Integer}
 	 */
 	getNumberOfSelectedEventTypes: function() {
 		return this.getSelectedEventTypes().size();
@@ -115,7 +115,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Check if any type is currently selected
 	 *
-	 * @return	Boolean
+	 * @return	{Boolean}
 	 */
 	isAnyEventTypeSelected: function() {
 		return this.getNumberOfSelectedEventTypes() > 0;
@@ -137,7 +137,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Hanlder after prefs have been saved: send updtate info
 	 *
-	 * @param	Object	response
+	 * @param	{Object}	response
 	 */
 	onPrefsSaved: function(response) {
 		Todoyu.PanelWidget.fire('eventtypeselector', this.getSelectedEventTypes());

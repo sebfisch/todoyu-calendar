@@ -25,7 +25,7 @@
 Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	/**
-	 *	Ext shortcut
+	 * Ext shortcut
 	 */
 	ext:			Todoyu.Ext.calendar,
 
@@ -56,7 +56,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * HolidaySet select event handler
 	 *
-	 * @param	Event		event
+	 * @param	{Event}		event
 	 */
 	onHolidaySetSelect: function(event) {
 		var selectedSetIDs	= this.getSelectedHolidaySetIDs();
@@ -71,7 +71,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Check and verify current selection (e.g. 'none' override any selected sets)
 	 *
-	 * @param	Array		selectedSetIDs
+	 * @param	{Array}		selectedSetIDs
 	 */
 	verifySelectedSets: function(selectedSetIDs) {
 		if (selectedSetIDs.include(0)) {
@@ -84,7 +84,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Update event handler
 	 *
-	 * @param	String		value
+	 * @param	{String}		value
 	 */
 	onUpdate: function(value) {
 		this.savePrefs();
@@ -94,7 +94,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 
 	/**
-	 *	Select all holidaySets
+	 * Select all holidaySets
 	 */
 	selectAllHolidaySets: function() {
 		$$('#panelwidget-holidaysetselector-list option').each(function(item) {
@@ -148,7 +148,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Get amount of selected holidaySets
 	 *
-	 * @return	Integer
+	 * @return	{Integer}
 	 */
 	getAmountOfselectedSets: function() {
 		var amount = 0;
@@ -167,7 +167,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Check if any type is currently selected
 	 *
-	 * @return	Boolean
+	 * @return	{Boolean}
 	 */
 	isAnyHolidaySetSelected: function() {
 
@@ -203,7 +203,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Handler after prefs saved: evoke refresh
 	 *
-	 * @param	Object	response
+	 * @param	{Object}	response
 	 */
 	onPrefsSaved: function(response) {
 		Todoyu.Ext.calendar.refresh();

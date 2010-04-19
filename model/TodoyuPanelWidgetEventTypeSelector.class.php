@@ -137,5 +137,4 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 	}
 }
 
-
 ?>

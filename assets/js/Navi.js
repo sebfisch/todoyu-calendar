@@ -29,7 +29,7 @@ Todoyu.Ext.calendar.Navi = {
 	/**
 	 * Set calendar title
 	 *
-	 * @param	String		title
+	 * @param	{String}		title
 	 */
 	setTitle: function(title) {
 		$('calendar-title').update(title);
@@ -49,8 +49,8 @@ Todoyu.Ext.calendar.Navi = {
 	/**
 	 * Get up-/ down-shifted date
 	 *
-	 * @param	String		direction		'up' / 'down'
-	 * @return	Integer
+	 * @param	{String}		direction		'up' / 'down'
+	 * @return	{Integer}
 	 */
 	getDirectionDate: function(direction) {
 		var tab		= this.getActiveTab();
@@ -66,7 +66,7 @@ Todoyu.Ext.calendar.Navi = {
 	/**
 	 * Get down-shifted date
 	 *
-	 * @return	Integer
+	 * @return	{Integer}
 	 */
 	getBackwardDate: function() {
 		return this.getDirectionDate('down');
