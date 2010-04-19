@@ -220,8 +220,8 @@ class TodoyuEventManager {
 				//2nd step: get width of each event
 			foreach($eventsOfDay as $idEvent => $eventArray)	{
 
-				foreach($eventsOfDay as $idEventCompare => $eventArrayCompare)	{
-					if(!isset($eventsByDay[$dayKey][$idEvent]['_overlapNum']))	{
+				foreach($eventsOfDay as $idEventCompare => $eventArrayCompare) {
+					if(!isset($eventsByDay[$dayKey][$idEvent]['_overlapNum'])) {
 						$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = 0;
 						$eventsByDay[$dayKey][$idEvent]['_maxPosition'] = sizeof($leftPositionArray);
 					}
@@ -231,9 +231,9 @@ class TodoyuEventManager {
 					}
 				}
 
-				if($eventsByDay[$dayKey][$idEvent]['_overlapNum'] >= sizeof($leftPositionArray))	{
+				if( $eventsByDay[$dayKey][$idEvent]['_overlapNum'] >= sizeof($leftPositionArray) ) {
 					$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = sizeof($leftPositionArray) - sizeof($leftPositionArray) + 1;
-				} else if($eventsByDay[$dayKey][$idEvent]['_overlapNum'] < sizeof($leftPositionArray)) {
+				} else if( $eventsByDay[$dayKey][$idEvent]['_overlapNum'] < sizeof($leftPositionArray) ) {
 					$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = sizeof($leftPositionArray) - $eventsByDay[$dayKey][$idEvent]['_overlapNum'];
 				}
 			}
@@ -316,7 +316,7 @@ class TodoyuEventManager {
 	 * @param	Integer		$dateEnd
 	 * @param	Array		$personIDs
 	 * @param	Integer		$idEvent
-	 * @return	Array		Infos if conflicts found, empty if no conflicts
+	 * @return	Array		empty if no conflicts, information if conflicted 
 	 */
 	public static function getOverbookingInfos($dateStart, $dateEnd, array $personIDs, $idEvent = 0) {
 		$dateStart	= intval($dateStart);
@@ -335,9 +335,9 @@ class TodoyuEventManager {
 
 		foreach($otherEvents as $otherEvent) {
 			$assignedPersonIDs	= TodoyuArray::getColumn(TodoyuEventManager::getAssignedPersonsOfEvent($otherEvent['id']), 'id_person');
-			$conflicPersonIDs	= array_intersect($personIDs, $assignedPersonIDs);
+			$conflictedPersonIDs= array_intersect($personIDs, $assignedPersonIDs);
 
-			foreach($conflicPersonIDs as $idPerson) {
+			foreach($conflictedPersonIDs as $idPerson) {
 				if( ! isset($overbooked[$idPerson]['person']) ) {
 					$overbooked[$idPerson]['person'] = $idPerson;
 				}
@@ -361,7 +361,7 @@ class TodoyuEventManager {
 			// Delete event
 		Todoyu::db()->deleteRecord(self::TABLE , $idEvent);
 
-			// Remove perso-assignments
+			// Remove person-assignments
 		self::removeAllPersonAssignments($idEvent);
 	}
 
@@ -370,8 +370,8 @@ class TodoyuEventManager {
 	/**
 	 * Save a new event
 	 *
-	 * @param	Array	$data	Eventdata
-	 * @return	Integer			ID of event
+	 * @param	Array	$data		event data
+	 * @return	Integer				ID of event
 	 */
 	public static function saveEvent(array $data) {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
@@ -419,7 +419,7 @@ class TodoyuEventManager {
 	 * Save quick event
 	 *
 	 * @param	Array		$data
-	 * @return	Integer		Event ID
+	 * @return	Integer		event ID
 	 */
 	public static function saveQuickEvent(array $data) {
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
