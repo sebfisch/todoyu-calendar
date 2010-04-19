@@ -24,7 +24,6 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-
 class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
 
 	/**
@@ -57,7 +56,6 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 
 	/**
 	 * Add calendar inline JS (initialization)
-	 *
 	 */
 	private static function addCalendarLocalizationJS() {
 		$code = "// Localize date object (for scal)\n"

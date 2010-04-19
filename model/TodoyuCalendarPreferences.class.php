@@ -24,7 +24,6 @@
  * @package		Todoyu
  * @subpackage	Calendar
 */
-
 class TodoyuCalendarPreferences {
 
 	/**

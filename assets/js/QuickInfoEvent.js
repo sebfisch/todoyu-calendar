@@ -69,7 +69,6 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 	 * 
 	 * @param	Object	event
 	 * @param	Integer	idEvent
-	 *
 	 */
 	onMouseOut: function(event, idEvent) {
 		Todoyu.QuickInfo.hide();
