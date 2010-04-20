@@ -69,7 +69,6 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 
 
 
-
 	/**
 	 * Render content
 	 * NOTE:	the calender HTML content itself is written to the DOM via JS by the sCal library!

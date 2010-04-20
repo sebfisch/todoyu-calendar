@@ -1,15 +1,15 @@
 <div id="event-{$id}" class="event contextmenuevent quickInfoEvent type{ucfirst $eventtypeKey} enumColBGFade{$color.id}"
 	style="
-	    {if $calendarMode != 'month'}
-	        top:{$top}px; left:{$left}px;
-	    {/if}
-	    {if $calendarMode == 'week'}
-	        height:{$height}px;
-	    {/if}
-	    {if intval($width)>0}
-	        width:{$width}px;
-	    {/if}
-	    ">
+		{if $calendarMode != 'month'}
+			top:{$top}px; left:{$left}px;
+		{/if}
+		{if $calendarMode == 'week'}
+			height:{$height}px;
+		{/if}
+		{if intval($width)>0}
+			width:{$width}px;
+		{/if}
+		">
 	<dl {if $calendarMode != 'month'}style="height:{$height}px"{/if}>
 		<dt class="head {if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
 			<span class="headInner">

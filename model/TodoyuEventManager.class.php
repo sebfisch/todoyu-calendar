@@ -189,8 +189,8 @@ class TodoyuEventManager {
 	public static function addOverlapInformationToEvents(array $eventsByDay) {
 		foreach($eventsByDay as $dayKey => $eventsOfDay)	{
 			$leftPositionArray = array();
-			$currentPosition   = 0;
-			$index			   = 0;
+			$currentPosition	= 0;
+			$index				= 0;
 
 				//1st step: get left position of each event
 			foreach($eventsOfDay as $idEvent => $eventArray)	{

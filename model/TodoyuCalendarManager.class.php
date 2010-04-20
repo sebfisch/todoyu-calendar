@@ -209,7 +209,7 @@ class TodoyuCalendarManager {
 
 		$monthNum			= intval($monthSpecs['dateOfCurrentMonth']);
 		$nextMonthNum		= intval($monthSpecs['dateOfNextMonth']);
-		$yearOfLastMonth   	= $monthSpecs['dateOfCurrentMonth'] == 1 ? $monthSpecs['selectedYear'] - 1 : $monthSpecs['selectedYear'];
+		$yearOfLastMonth	= $monthSpecs['dateOfCurrentMonth'] == 1 ? $monthSpecs['selectedYear'] - 1 : $monthSpecs['selectedYear'];
 		$selectedYear		= $monthSpecs['selectedYear'];
 
 			// Days in month before selected
