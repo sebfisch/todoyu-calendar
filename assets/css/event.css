@@ -10,24 +10,24 @@
 	position:relative;
 }
 
+#calendar .event span {
+	font-size:9px;
+	padding: 2px 3px;
+	display: block;
+	white-space: nowrap;
+}
+
 .event .headInner {
 	position: relative;
 	line-height:1.2;
 	font-family:Arial,sans-serif;
 	font-size:9px !important;
 	font-weight:normal !important;
-	padding-left:20px;
-	overflow:hidden;
-	white-space:nowrap;
+	padding-left:20px !important;
 	padding-top: 3px;
 	padding-bottom: 3px;
-}
-
-.event span {
-	font-size:9px;
-	padding: 2px 3px;
-	display: block;
-	white-space: nowrap;
+	overflow:hidden;
+	white-space:nowrap;
 }
 
 .dayMode .event dd,
