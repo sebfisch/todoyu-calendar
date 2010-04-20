@@ -105,6 +105,7 @@ class TodoyuEventEditRenderer {
 		$event	= TodoyuEventManager::getEvent($idEvent);
 
 		$data	= $event->getTemplateData(true);
+			// Call hooked load functions
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
 
 //		$data['title']			= html_entity_encode($data['title']);

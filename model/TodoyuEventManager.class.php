@@ -385,7 +385,7 @@ class TodoyuEventManager {
 			// Extract person IDs from foreign data array (easier to handle)
 		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
 
-			// Call save data hooks
+			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
 
 			// Remove already assigned person
@@ -427,6 +427,7 @@ class TodoyuEventManager {
 			// Add person
 		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['person']), 'id');
 
+			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
 
 			// If no persons assigned, assign to person "0"
