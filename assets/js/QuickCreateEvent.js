@@ -36,7 +36,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	/**
 	 * Used for event popup: check inputs and handle accordingly
 	 *
-	 * @param	{Element}		form		Form element
+	 * @param	{Form}		form		Form element
 	 */
 	save: function(form) {
 		$(form).request({
@@ -52,7 +52,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	/**
 	 * If saved, close the creation wizard popup
 	 *
-	 * @param	{Object}	response	Response, containing startdate of the event
+	 * @param	{Ajax.Response}		response	Response, containing startdate of the event
 	 */
 	onSaved: function(response) {
 		if( response.hasTodoyuError() ) {
@@ -74,7 +74,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	/**
 	 * Evoked on change of selected eventType in quick-event form (toggle ir/relevant fields)
 	 *
-	 * @param	{Object}		event
+	 * @param	{Event}			event
 	 * @param	{Integer}		time
 	 */
 	onEventTypeChange: function(event, time) {

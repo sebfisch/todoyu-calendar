@@ -92,6 +92,8 @@ Todoyu.Ext.calendar = {
 		Todoyu.PanelWidget.observe('calendar', this.onDateChanged.bind(this));
 		Todoyu.PanelWidget.observe('staffselector', this.onStaffSelectionChanges.bind(this));
 		Todoyu.PanelWidget.observe('eventtypeselector', this.onEventTypeSelectionChanges.bind(this));
+
+		Todoyu.Hook.add('onEventSaved', this.onEventSaved.bind(this));
 	},
 
 
@@ -284,6 +286,19 @@ Todoyu.Ext.calendar = {
 	 */
 	onEventTypeSelectionChanges: function(widgetName, eventTypes) {
 		this.refresh();
+	},
+
+
+
+	/**
+	 * Handler for hook 'onEventSaved'
+	 *
+	 * @param	{Integer}	idEvent
+	 */
+	onEventSaved: function(idEvent) {
+		if( Todoyu.getArea() === 'calendar' ) {
+			this.refresh();
+		}
 	},
 
 

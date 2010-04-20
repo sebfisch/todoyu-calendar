@@ -422,10 +422,12 @@ class TodoyuEventManager {
 	 */
 	public static function saveQuickEvent(array $data) {
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
-		$idEvent	= self::addEvent(array());
+		
+			// Create an empty event
+		$idEvent	= self::addEvent();
 
 			// Add person
-		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['person']), 'id');
+		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
 
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
@@ -456,7 +458,7 @@ class TodoyuEventManager {
 	 * @param	Array		$data
 	 * @return	Integer
 	 */
-	public static function addEvent(array $data) {
+	public static function addEvent(array $data = array()) {
 		return TodoyuRecordManager::addRecord(self::TABLE, $data);
 	}
 

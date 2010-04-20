@@ -33,13 +33,10 @@ class TodoyuEventRenderer {
 	 * @return 	String	Form
 	 */
 	public static function renderCreateQuickEvent($time = 0, $isDayEvent = false) {
-		$time		= intval($time);
+		$time	= intval($time);
+		$time	= TodoyuTime::getRoundedTime($time, 15);
 
-		if( $time === 0 ) {
-			$time = time();
-		}
-
-			// Get form object
+					// Get form object
 		$form	= TodoyuEventManager::getQuickCreateForm();
 
 			// Set event start and ending timestamps
@@ -50,7 +47,7 @@ class TodoyuEventRenderer {
 			$timeEnd	= $dayRange['end'];
 		} else {
 			$timeStart	= $time;
-			$timeEnd	= $timeStart + 900;
+			$timeEnd	= $timeStart + TodoyuTime::SECONDS_MIN * 30;
 		}
 
 			// Get person data
