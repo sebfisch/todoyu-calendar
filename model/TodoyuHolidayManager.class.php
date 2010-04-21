@@ -49,12 +49,10 @@ class TodoyuHolidayManager {
 	 * @return	Array
 	 */
 	public static function getAllHolidays() {
-		$fields	= '*';
-		$table	= self::TABLE;
 		$where	= 'deleted = 0';
 		$order	= 'date';
 
-		return Todoyu::db()->getArray($fields, $table, $where, '', $order);
+		return TodoyuRecordManager::getAllRecords(self::TABLE, $where, $order);
 	}
 
 

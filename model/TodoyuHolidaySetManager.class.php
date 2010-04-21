@@ -53,12 +53,9 @@ class TodoyuHolidaySetManager {
 	 * @return	Array
 	 */
 	public static function getAllHolidaySets() {
-		$fields	= '*';
-		$table	= self::TABLE;
 		$where	= 'deleted = 0';
-		$order	= 'title';
-
-		return Todoyu::db()->getArray($fields, $table, $where, '', $order);
+		
+		return TodoyuRecordManager::getAllRecords(self::TABLE, $where);
 	}
 
 

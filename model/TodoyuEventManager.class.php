@@ -624,7 +624,7 @@ class TodoyuEventManager {
 
 			foreach($formData['persons'] as $person)	{
 				$idPerson	= $person['id'];
-				$fields	=	array(
+				$fields	= array(
 					'id_event'			=> $idEvent,
 					'id_person'			=> $idPerson,
 					'is_acknowledged'	=> $idPerson == personid() ? 1 : 0,
