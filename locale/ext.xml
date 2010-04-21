@@ -4,9 +4,9 @@
 		<label index="ext.title">Calendar</label>
 		<label index="page.title">Calendar</label>
 		<label index="maintab.label">Planning</label>
-		<label index="holidayset">Holidayset</label>
+		<label index="holidayset">Holiday Set</label>
 		<label index="yearsold">Years Old</label>
-		<label index="applicableholidayset">Holidayset</label>
+		<label index="applicableholidayset">Holiday Set</label>
 		<label index="workingtime">Working Hours</label>
 		<label index="owner">Owner</label>
 		<label index="subMenuEntry.day">Calendar > Day</label>
@@ -23,8 +23,8 @@
 		<label index="holidayset.attr.holiday.new">New Holiday</label>
 		<label index="holiday">Holiday</label>
 		<label index="holiday.attr.workingtime">Working Hours</label>
-		<label index="holiday.attr.holidayset">Holidayset</label>
-		<label index="holiday.attr.holidayset.new">New Holidayset</label>
+		<label index="holiday.attr.holidayset">Holiday Set</label>
+		<label index="holiday.attr.holidayset.new">New Holiday Set</label>
 		<label index="search.label">Events</label>
 		<label index="search.mode.label">Find Events</label>
 		<label index="portal.tab.appointments">Appointments</label>
@@ -35,7 +35,7 @@
 		<label index="ext.title">Kalender</label>
 		<label index="page.title">Kalender</label>
 		<label index="maintab.label">Planung</label>
-		<label index="holidayset">Ferien Set</label>
+		<label index="holidayset">Feiertags-Set</label>
 		<label index="yearsold">Jahre alt</label>
 		<label index="applicableholidayset">Feiertags-Set</label>
 		<label index="workingtime">Arbeitsstunden</label>
