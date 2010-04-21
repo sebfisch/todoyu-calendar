@@ -29,12 +29,12 @@
 class TodoyuEventFormValidator {
 
 	/**
-	 * Check if the event is only assigned to the current person if the event is private
+	 * Check whether the event is only assigned to the current person if the event is private
 	 * defined in the $config array
 	 *
 	 * @param	String		$value			Assigned persons
 	 * @param	Array		$config			Field config array
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public static function eventIsAssignableToCurrentPersonOnly($value, array $config = array (), $formElement, $formData) {
 			// If the flag is_private is set, the event is only allowed to be assigned to the current person
@@ -54,11 +54,11 @@ class TodoyuEventFormValidator {
 
 
 	/**
-	 * Check if the event starttime is befor endtime
+	 * Check whether the event starttime is befor endtime
 	 *
 	 * @param	String		$value			Assigned persons
 	 * @param	Array		$config			Field config array
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public static function starttimeAfterEndtime($value, array $config = array ()) {
 			// Only check this if it is not a fulldayevent
@@ -89,7 +89,7 @@ class TodoyuEventFormValidator {
 	 *
 	 * @param	String		$value			Assigned persons
 	 * @param	Array		$config			Field config array
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	 public static function checkTimeFormat($value, array $config = array ()) {
 			// Build regular expression
@@ -151,13 +151,13 @@ class TodoyuEventFormValidator {
 
 	/**
 	 * Form validator.
-	 * Check if at least one internal person is assigned to an event
+	 * Check whether at least one internal person is assigned to an event
 	 *
 	 * @param	Array				$value
 	 * @param	Array				$config
 	 * @param	TodoyuFormElement	$formElement
 	 * @param	Array				$formData
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public static function hasInternalPerson($value, array $config = array (), $formElement, $formData) {
 		$personIDs	= TodoyuArray::getColumn($value, 'id');

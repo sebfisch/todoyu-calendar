@@ -185,7 +185,7 @@ class TodoyuHolidayManager {
 	 * Delete a holiday
 	 *
 	 * @param	Integer		$idHoliday
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public static function deleteHoliday($idHoliday)	{
 		$idHoliday	= intval($idHoliday);

@@ -200,7 +200,7 @@ class TodoyuEventManager {
 				} else {
 					$eventOK = false;
 					while($eventOK == false)	{
-						if(!isset($leftPositionArray[$currentPosition][$index])){
+						if( ! isset($leftPositionArray[$currentPosition][$index]) ){
 							$leftPositionArray[$currentPosition][$index] = $idEvent;
 							$eventsByDay[$dayKey][$idEvent]['_overlapIndex'] = $currentPosition;
 							$currentPosition = 0;
@@ -220,12 +220,12 @@ class TodoyuEventManager {
 			foreach($eventsOfDay as $idEvent => $eventArray)	{
 
 				foreach($eventsOfDay as $idEventCompare => $eventArrayCompare) {
-					if(!isset($eventsByDay[$dayKey][$idEvent]['_overlapNum'])) {
+					if( ! isset($eventsByDay[$dayKey][$idEvent]['_overlapNum']) ) {
 						$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = 0;
 						$eventsByDay[$dayKey][$idEvent]['_maxPosition'] = sizeof($leftPositionArray);
 					}
 
-					if(self::areEventsOverlaping($eventArrayCompare, $eventArray) && $idEvent != $idEventCompare)	{
+					if( self::areEventsOverlaping($eventArrayCompare, $eventArray) && $idEvent != $idEventCompare )	{
 						$eventsByDay[$dayKey][$idEvent]['_overlapNum']++;
 					}
 				}
@@ -244,7 +244,7 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Check if two events are overlapping, compare date_start and date_end keys in both arrays
+	 * Check whether two events are overlapping, compare date_start and date_end keys in both arrays
 	 *
 	 * @param	Array		$event1
 	 * @param	Array		$event2

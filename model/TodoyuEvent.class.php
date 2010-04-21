@@ -118,10 +118,10 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Check if a person is assigned
+	 * Check whether a person is assigned
 	 *
 	 * @param	Integer		$idPerson
-	 * @return	Bool
+	 * @return	Boolean
 	 */
 	public function isPersonAssigned($idPerson) {
 		$idPerson	= intval($idPerson);
@@ -133,7 +133,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Check if event start and end is on different days
+	 * Check whether event start and end is on different days
 	 *
 	 * @return	Boolean
 	 */
@@ -144,7 +144,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Check if event start and end is on the same day
+	 * Check whether event start and end is on the same day
 	 *
 	 * @return	Boolean
 	 */
@@ -155,7 +155,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Check if current person is assigned
+	 * Check whether current person is assigned
 	 *
 	 * @return	Boolean
 	 */

@@ -70,7 +70,7 @@ class TodoyuCalendarViewHelper {
 	/**
 	 * Gets an options array of all defined holidays
 	 *
-	 * @param	TodoyuForm $source
+	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
 	public static function getHolidayOptions(TodoyuFormElement $field)	{
@@ -92,7 +92,7 @@ class TodoyuCalendarViewHelper {
 	/**
 	 * Gets an options array of all defined holidaySets
 	 *
-	 * @param	TodoyuForm $source
+	 * @param	TodoyuFormElement		$field
 	 * @return	Array
 	 */
 	public static function getHolidaySetOptions(TodoyuFormElement $field)	{

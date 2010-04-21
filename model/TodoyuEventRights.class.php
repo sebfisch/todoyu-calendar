@@ -39,7 +39,7 @@ class TodoyuEventRights {
 
 
 	/**
-	 * Check if a person is allowed to see an event
+	 * Check whether a person is allowed to see an event
 	 *
 	 * @param	Integer		$idTask
 	 * @return	Boolean
@@ -73,7 +73,7 @@ class TodoyuEventRights {
 
 
 	/**
-	 * Check if person is allowed to add new events
+	 * Check whether person is allowed to add new events
 	 *
 	 * @return	Boolean
 	 */
@@ -84,8 +84,8 @@ class TodoyuEventRights {
 
 
 	/**
-	 * Check if person can edit an event
-	 * Check if person has edit rights and is assigned if necessary
+	 * Check whether person can edit an event
+	 * Check whether person has edit rights and is assigned if necessary
 	 *
 	 * @param	Integer		$idEvent
 	 * @return	Boolean
