@@ -45,7 +45,7 @@ class TodoyuCalendarViewHelper {
 
 			case CALENDAR_MODE_WEEK:
 				if( date('n', $dateStart) === date('n', $dateEnd) ) {
-					$title = date('j.', $dateStart) . ' - ' . TodoyuTime::format($dateEnd, 'D2MlongY4') . ' (' . TodoyuTime::format($dateStart, 'calendarweek') . ')';
+					$title = TodoyuTime::format($dateStart, 'day') . ' - ' . TodoyuTime::format($dateEnd, 'day') .  ' ' . TodoyuTime::format($dateStart, 'Mlong') . ' (' . TodoyuTime::format($dateStart, 'calendarweek') . ')';
 				} else {
 					$title = TodoyuTime::format($dateStart, 'MlongD2') . ' - ' . TodoyuTime::format($dateEnd, 'D2MlongY4') . ' (' . TodoyuTime::format($dateStart, 'calendarweek') . ')';
 				}

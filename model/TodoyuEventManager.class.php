@@ -132,7 +132,7 @@ class TodoyuEventManager {
 
 			// Event types
 		if( sizeof($eventTypes) > 0 ) {
-			$where .= ' AND e.eventtype IN(\'' . implode("','", $eventTypes) . '\')';
+			$where .= ' AND e.eventtype IN(' . implode(',', $eventTypes) . ')';
 		}
 
 
@@ -141,9 +141,7 @@ class TodoyuEventManager {
 			$where .= ' AND mmeu.id_person IN(' . personid() . ',0)';
 		}
 
-		$res	= Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
-//		TodoyuDebug::printHtml($res);
-		return $res;
+		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
 	}
 
 
@@ -402,6 +400,12 @@ class TodoyuEventManager {
 			// Remove not needed fields
 		unset($data['person']);
 		unset($data['persons']);
+
+			// Changes dates if is dayevent
+		if( intval($data['is_dayevent']) === 1 ) {
+			$data['date_start']	= TodoyuTime::getStartOfDay($data['date_start']);
+			$data['date_end']	= TodoyuTime::getEndOfDay($data['date_end']);
+		}
 
 			// Update the event with the definitive data
 		self::updateEvent($idEvent, $data);

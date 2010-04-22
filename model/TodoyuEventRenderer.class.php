@@ -211,7 +211,18 @@ class TodoyuEventRenderer {
 	 * @param 	Integer	$endtime		Endtime of the event
 	 * @return	Integer					Height of the event
 	 */
-	public static function getEventHeight($dateView, $dateStart, $dateEnd) {
+
+	/**
+	 * Get height of an event in day or week view
+	 * An event is at least 20px height (to stay visible) except you set $real true
+	 *
+	 * @param	Integer		$dateView
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
+	 * @param	Boolean		$real
+	 * @return	Integer
+	 */
+	public static function getEventHeight($dateView, $dateStart, $dateEnd, $real = false) {
 		$dateView	= intval($dateView);
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
@@ -222,7 +233,14 @@ class TodoyuEventRenderer {
 
 		$timeDiffHour	= ($dateEnd - $dateStart)/TodoyuTime::SECONDS_HOUR;
 
-		return ceil($timeDiffHour * CALENDAR_HEIGHT_HOUR);
+		$height		= ceil($timeDiffHour * CALENDAR_HEIGHT_HOUR);
+
+		if( $real !== true ) {
+				// Make sure an event is at least 20px height
+			$height	= TodoyuNumeric::intInRange($height, 20);
+		}
+
+		return $height;
 	}
 
 

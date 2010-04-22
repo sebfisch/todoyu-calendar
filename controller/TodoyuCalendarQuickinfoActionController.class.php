@@ -45,6 +45,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 		$personInfo	= TodoyuEventViewHelper::getQuickinfoPersonInfo($event);
 		$typeInfo	= TodoyuEventViewHelper::getQuickinfoTypeInfo($event);
 
+			// Private event or no access?
 		if ( $isSeeAllowed ) {
 			$quickInfo->addInfo('title',	$event->getTitle(), 10);
 		} else {

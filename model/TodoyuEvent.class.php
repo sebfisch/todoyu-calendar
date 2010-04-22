@@ -155,6 +155,17 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Check whether event is dayevent
+	 *
+	 * @return	Boolean
+	 */
+	public function isDayevent() {
+		return intval($this->data['is_dayevent']) === 1;
+	}
+
+
+
+	/**
 	 * Check whether current person is assigned
 	 *
 	 * @return	Boolean

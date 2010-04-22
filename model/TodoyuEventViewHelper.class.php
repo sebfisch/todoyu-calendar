@@ -52,10 +52,19 @@ class TodoyuEventViewHelper {
 	 */
 	public static function getQuickinfoDateInfo($event) {
 		if ( $event->isMultiDay() ) {
-			$dateInfo  = TodoyuTime::format($event->getStartDate(), 'D2MshortTime');
-			$dateInfo .= '<br />';
-			$dateInfo .= TodoyuTime::format($event->getEndDate(), 'D2MshortTime');
+				// Define format for dayevents and multiday events
+			if( $event->isDayevent() ) {
+				$break	= ' - ';
+				$format	= 'MlongD2';
+			} else {
+				$break	= "\n";
+				$format	= 'D2MshortTime';
+			}
+			$dateInfo  = TodoyuTime::format($event->getStartDate(), $format);
+			$dateInfo .= $break;
+			$dateInfo .= TodoyuTime::format($event->getEndDate(), $format);
 		} else {
+				// Normal in-day event
 			$dateInfo  = TodoyuTime::format($event->getStartDate(), 'D2MshortTime');
 			$dateInfo .= ' - ';
 			$dateInfo .= TodoyuTime::format($event->getEndDate(), 'time');
