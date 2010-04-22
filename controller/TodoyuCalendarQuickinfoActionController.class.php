@@ -88,7 +88,7 @@ class TodoyuCalendarQuickinfoActionController extends TodoyuActionController {
 
 		$quickInfo->addInfo('title', $holiday['title']);
 		$quickInfo->addInfo('date', TodoyuTime::format($holiday['date'], 'date'));
-		$quickInfo->addInfo('work', ($holiday['workingtime'] / 60) . ' ' . Label('date.time.hours'));
+		$quickInfo->addInfo('work', round($holiday['workingtime'] / 3600, 1) . ' ' . Label('date.time.hours'));
 
 
 		$quickInfo->printInfoJSON();
