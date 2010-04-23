@@ -64,10 +64,10 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		var initialDate = new Date(timestamp * 1000);
 
 		var options		= Object.extend(this.ext.calOptions, {
-			year:			initialDate.getYear() + 1900,
+			year:			initialDate.getFullYear(),
 			month:			initialDate.getMonth() + 1,
 			day:			initialDate.getDate(),
-			'oncalchange':	this.onCalendarChange.bind(this)
+			oncalchange:	this.onCalendarChange.bind(this)
 		});
 
 			// Initialize calendar (have sCal render the calender code to the DOM)
