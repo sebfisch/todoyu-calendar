@@ -139,7 +139,7 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 
 
 	/**
-	 * Check whether panelwidget is allowed
+	 * Check panelWidget access permission
 	 *
 	 * @return	Boolean
 	 */
