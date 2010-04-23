@@ -20,7 +20,9 @@
 Todoyu.Ext.calendar.Navi = {
 
 	/**
-	 * Ext shortcut
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
 	 */
 	ext:	Todoyu.Ext.calendar,
 

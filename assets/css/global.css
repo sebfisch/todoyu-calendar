@@ -1,6 +1,6 @@
-/* --------------------------
-	Submenu Planning
-   -------------------------- */
+/* --------------------------------------------
+	Main menu: Sub menu entries in planning
+   -------------------------------------------- */
 
 #navi-main-list-planning li.item a {
 	background-image:url(../img/icons.png) !important;
@@ -22,7 +22,7 @@
 
 
 /* --------------------------
-	Submenu Portal
+	Sub menu in portal
    -------------------------- */
 #navi-main-list-portal li.itemAppointment a {
 	background-image:url(../img/icons.png) !important;
@@ -32,9 +32,9 @@
 
 
 
-/* ------------------------
-	Quick create wizard popup styling
-   ------------------------ */
+/* ----------------------------------------
+	Quick create wizard pop-up styling
+   ---------------------------------------- */
 
 #quickcreate.dialog.event div#quickcreate_top.dialog_title {
 	padding:0 0 0 22px;
@@ -43,9 +43,9 @@
 
 
 
-/* ------------------------------
+/* --------------------------------
    Create mode option in headlet
-   ------------------------------ */
+   -------------------------------- */
 #headlet-quickcreate-content li.itemCalendarEvent a {
 	background:url(../img/icons.png) no-repeat 5px -296px;
 }
@@ -53,7 +53,7 @@
 
 
 /* ------------------------------
-   Search mode opiton in headlet
+   Search mode option in headlet
    ------------------------------ */
 #headlet-quicksearch-content form.searchmodeEvent a.mode,
 #headlet-quicksearch-modes li.searchmodeEvent a {

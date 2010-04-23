@@ -19,13 +19,14 @@
 
 /**
  * Panel widget: holidaySet selector
- *
  */
 
 Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	/**
-	 * Ext shortcut
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
 	 */
 	ext:			Todoyu.Ext.calendar,
 

@@ -12,20 +12,20 @@
 
 #calendar .event span {
 	font-size:9px;
-	padding: 2px 3px;
-	display: block;
-	white-space: nowrap;
+	padding:2px 3px;
+	display:block;
+	white-space:nowrap;
 }
 
 .event .headInner {
-	position: relative;
+	position:relative;
 	line-height:1.2;
 	font-family:Arial,sans-serif;
 	font-size:9px !important;
 	font-weight:normal !important;
 	padding-left:20px !important;
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top:3px;
+	padding-bottom:3px;
 	overflow:hidden;
 	white-space:nowrap;
 }
@@ -68,12 +68,12 @@
 
 
 .private {
-	display: block;
-	position: absolute;
-	top: 8px;
-	left: 11px;
-	width: 6px;
-	height: 7px;
+	display:block;
+	position:absolute;
+	top:8px;
+	left:11px;
+	width:6px;
+	height:7px;
 	background:transparent url(../img/icons.png) no-repeat 0 -1140px;
 }
 
@@ -224,7 +224,7 @@
 	padding-right:10px;
 }
 
-/* @todo clean up: merge sections "portal events list" and "list mode in portal" */
+/* @todo clean up:merge sections "portal events list" and "list mode in portal" */
 
 
 

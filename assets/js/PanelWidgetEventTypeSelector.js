@@ -19,13 +19,14 @@
 
 /**
  * Panel widget: event type selector
- *
  */
 
 Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
-	 * Ext shortcut
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
 	 */
 	ext:	Todoyu.Ext.calendar,
 

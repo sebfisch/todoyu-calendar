@@ -91,7 +91,7 @@ form.formEvent button.buttonSave {}
    -------------------------------------------------------------------- */
 #calendar-quicknav span.icon {
 	height:16px;
-	margin: 0;
+	margin:0;
 }
 
 	#calendar-quicknav .today,

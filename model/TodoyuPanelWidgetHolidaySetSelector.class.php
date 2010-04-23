@@ -47,7 +47,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 			'holidaysetselector',						// panel widget ID
 			'LLL:panelwidget-holidaysetselector.title',	// widget title text
 			$config,									// widget config array
-			$params,									// widget params
+			$params,									// widget parameters
 			$idArea										// area ID
 		);
 

@@ -2,9 +2,9 @@
 	Event
    --------------- */
 div.weekMode div#calendararea div.event dt.head {
-	height: 15px;
-	padding: 3px 0;
-	margin-bottom: 1px;
+	height:15px;
+	padding:3px 0;
+	margin-bottom:1px;
 }
 div.weekMode div#calendararea div.event dd span.desc {
 	display:inline;
@@ -191,7 +191,7 @@ div.weekMode table.st-grid td {
 	vertical-align:top;
 	background-image:url(../img/background-week-today.png);
 	background-repeat:repeat-y;
-	background-position: left 1px;
+	background-position:left 1px;
 	position:relative;
 }
 

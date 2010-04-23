@@ -47,7 +47,7 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 			'eventtypeSelector',						// panel widget ID
 			'LLL:panelwidget-eventtypeselector.title',	// widget title text
 			$config,									// widget config array
-			$params,									// widget params
+			$params,									// widget parameters
 			$idArea										// area ID
 		);
 

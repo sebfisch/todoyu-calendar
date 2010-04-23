@@ -23,7 +23,9 @@
 Todoyu.Ext.calendar.EventView = {
 
 	/**
-	 * Ext shortcut
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
 	 */
 	ext:	Todoyu.Ext.calendar,
 

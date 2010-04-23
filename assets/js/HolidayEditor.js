@@ -19,7 +19,6 @@
 
 /**
  * JS for the holiday editor (admin module)
- *
  */
 
  Todoyu.Ext.calendar.HolidayEditor = {

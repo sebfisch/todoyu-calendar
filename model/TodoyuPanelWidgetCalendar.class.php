@@ -42,7 +42,7 @@ class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanel
 			'calendar',							// panel widget ID
 			'LLL:panelwidget-calendar.title',	// widget title text
 			$config,							// widget config array
-			$params,							// widget params
+			$params,							// widget parameters
 			$idArea								// area ID
 		);
 

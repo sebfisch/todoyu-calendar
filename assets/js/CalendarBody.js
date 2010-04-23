@@ -20,7 +20,9 @@
 Todoyu.Ext.calendar.CalendarBody = {
 
 	/**
-	 * Ext shortcut
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
 	 */
 	ext:			Todoyu.Ext.calendar,
 	

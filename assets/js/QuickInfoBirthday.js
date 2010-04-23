@@ -23,8 +23,10 @@
 Todoyu.Ext.calendar.QuickInfoBirthday = {
 
 	/**
- 	 * Ext shortcut
- 	 */
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
+	 */
 	ext:		Todoyu.Ext.calendar,
 
 	/**

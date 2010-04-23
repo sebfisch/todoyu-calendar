@@ -2,9 +2,9 @@
 	Event
    --------------- */
 div.dayMode div#calendararea div.event dt.head {
-	height: 15px;
-	padding: 3px 0;
-	margin-bottom: 1px;
+	height:15px;
+	padding:3px 0;
+	margin-bottom:1px;
 }
 
 
@@ -37,7 +37,7 @@ div.dayMode div#calendararea div.event dt.head {
 
 
 /* -------------------------------
-	Dayview allday 00:00 - 23:00
+	Day view all-day 00:00 - 23:00
    ------------------------------- */
 
 #dayViewAllDaywk {
@@ -61,7 +61,7 @@ div.dayMode div#calendararea div.event dt.head {
 
 
 /* ----------------------
-	Dayview today
+	Day view today
    ---------------------- */
 
 .dayviewtoday {

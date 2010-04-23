@@ -1,5 +1,10 @@
 Todoyu.Ext.calendar.EventPortal = {
 
+	/**
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
+	 */
 	ext: Todoyu.Ext.calendar,
 
 	/**

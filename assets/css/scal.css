@@ -39,7 +39,7 @@
 .todoyuskin .weekbox {
 	min-height:21px;
 	display:block;
-	overflow-x: hidden;
+	overflow-x:hidden;
 }
 
 .todoyuskin .calheader {
@@ -97,8 +97,8 @@
 .todoyuskin .daybox {
 	float:left;
 	background-color:white;
-	width: 13.89%;
-	*width: 35px; /* for ie7 */
+	width:13.89%;
+	*width:35px; /* for ie7 */
 	padding:0;
 	text-align:center;
 }
@@ -123,7 +123,7 @@
 
 .todoyuskin .dayboxsunday,
 .todoyuskin .dayboxsaturday {
-	background-color: #f2f3ed;
+	background-color:#f2f3ed;
 }
 
 .todoyuskin .daybox:hover,
@@ -167,12 +167,12 @@
 }
 
 .todoyuskin .weekbox {
-	border-bottom: 1px dotted #818181;
+	border-bottom:1px dotted #818181;
 }
 
 .todoyuskin .weekboxname {
-	background-color: #E4EACE;
-	border: none;
+	background-color:#E4EACE;
+	border:none;
 }
 
 .todoyuskin .daybox {

@@ -75,7 +75,7 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 		TodoyuPage::set('calendar', $calendar);
 		TodoyuPage::set('panelWidgets', $panelWidgets);
 
-			// Generate colors css and sprite
+			// Generate colors CSS and sprite
 		TodoyuColors::generate();
 
 			// Get current settings

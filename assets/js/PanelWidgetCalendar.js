@@ -19,12 +19,13 @@
 
 /**
  *	Panel widget JS: Calendar
- *
  */
 Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 	/**
-	 * Ext shortcut
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
 	 */
 	ext:				Todoyu.Ext.calendar,
 
