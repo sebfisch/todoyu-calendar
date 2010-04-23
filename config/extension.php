@@ -45,21 +45,24 @@ Todoyu::$CONFIG['EXT']['calendar']['config'] = array(
 Todoyu::$CONFIG['EXT']['calendar']['tabs'] = array(
 	array(
 		'id'		=> 'day',
-		'label'		=> 'LLL:date.day'
+		'label'		=> 'LLL:date.day',
+		'require'	=> 'calendar.general:area'
 	),
 	array(
 		'id'		=> 'week',
-		'label'		=> 'LLL:date.week'
+		'label'		=> 'LLL:date.week',
+		'require'	=> 'calendar.general:area'
 	),
 	array(
 		'id'		=> 'month',
-		'label'		=> 'LLL:date.month'
+		'label'		=> 'LLL:date.month',
+		'require'	=> 'calendar.general:area'
 	)
 );
 
 
 
-	// Add eventtypes
+	// Add event types
 TodoyuEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'event.type.general');
 TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'event.type.away');
 TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'event.type.awayofficial');
@@ -99,7 +102,7 @@ Todoyu::$CONFIG['EXT']['calendar']['defaultEventColors'] = array(
 );
 
 
-	// Additional portal tab eventslisting specific config
+	// Additional portal tab events listing specific config
 Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
 		// Show coming-up holidays in events tab of portal?
 	'showHoliday'	=> true,
