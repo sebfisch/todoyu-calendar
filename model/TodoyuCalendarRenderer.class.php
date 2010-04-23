@@ -27,6 +27,13 @@
 class TodoyuCalendarRenderer {
 
 	/**
+	 * Extension key
+	 */
+	const EXTKEY = 'calendar';
+
+
+
+	/**
 	 * Render the whole calendar (header, tabs and the actual calendar grid)
 	 *
 	 * @param	String	$activeTab		Displayed tab
@@ -146,8 +153,8 @@ class TodoyuCalendarRenderer {
 		$personColors	= TodoyuPersonManager::getSelectedPersonColor($persons);
 		$eventTypes		= TodoyuCalendarManager::getSelectedEventTypes();
 
-		$tmpl		= 'ext/calendar/view/calendar-week.tmpl';
-		$data		= array(
+		$tmpl	= 'ext/calendar/view/calendar-week.tmpl';
+		$data	= array(
 			'timestamps'		=> TodoyuTime::getDayTimesOfWeek($time),
 			'fullDayView'		=> TodoyuCalendarPreferences::getFullDayView(),
 			'timestamp'			=> $time,
@@ -429,9 +436,7 @@ class TodoyuCalendarRenderer {
 	 * @return	String	HTML
 	 */
 	public static function renderPanelWidgets() {
-		$params	= array();
-
-		return TodoyuPanelWidgetRenderer::renderPanelWidgets('calendar', $params);
+		return TodoyuPanelWidgetRenderer::renderPanelWidgets(self::EXTKEY);
 	}
 
 

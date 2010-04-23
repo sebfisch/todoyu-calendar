@@ -46,15 +46,12 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 	public function defaultAction(array $params) {
 		restrict('calendar', 'general:area');
 
-			// Activate FE tab
+			// Activate FE tab and tab sub menu entry
 		TodoyuFrontend::setActiveTab('planning');
-				// Activate tab submenu entry
 		TodoyuFrontend::setActiveSubmenuTab('planning', 'calendar');
 
-			// Initialise template
+			// Initialise page template, title
 		TodoyuPage::init('ext/calendar/view/ext.tmpl');
-
-			// Set title
 		TodoyuPage::setTitle('LLL:calendar.page.title');
 
 			// Get type from parameter or preferences
