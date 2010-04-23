@@ -15,9 +15,9 @@
 		<label index="today">Today</label>
 		<label index="quicknav.backward.title">Back</label>
 		<label index="quicknav.forward.title">Forward</label>
-		<label index="quicknav.today.title">Jump To Current Day</label>
-		<label index="dayview.workingtime">Show Working Hours (08h-18h)</label>
-		<label index="dayview.fullday">Show Hours Of Full Day (00h-24h)</label>
+		<label index="quicknav.today.title">Jump to current day</label>
+		<label index="dayview.workingtime">Show working hours only (08h-18h)</label>
+		<label index="dayview.fullday">Show hours of full day (00h-24h)</label>
 		<label index="holidayset.attr.name">Name</label>
 		<label index="holidayset.attr.holiday">Holiday</label>
 		<label index="holidayset.attr.holiday.new">New Holiday</label>

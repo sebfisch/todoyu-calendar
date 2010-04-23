@@ -2,14 +2,14 @@
 <locallang>
 	<labels lang="en_GB">
 		<label index="general">General</label>
-		<label index="general.use">Use Calendar Functionalities</label>
+		<label index="general.use">Use Calendar Functionality</label>
 		<label index="general.area">Use Calendar Area</label>
 		<label index="event">Event</label>
-		<label index="event.seeAll">See all events</label>
+		<label index="event.seeAll">See All Events</label>
 		<label index="event.editAndDeleteAssigned">Edit and delete assigned (or created by this person) events</label>
 		<label index="event.editAndDeleteAll">Edit and delete all events</label>
 		<label index="event.add">Add new event</label>
-		<label index="event.search">Search for events</label>
+		<label index="event.search">Search For Events</label>
 		<label index="event.assignOthers">Assign events to other persons</label>
 	</labels>
 	<labels lang="de_DE">
