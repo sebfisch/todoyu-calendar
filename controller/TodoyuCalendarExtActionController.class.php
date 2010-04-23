@@ -27,6 +27,17 @@
 class TodoyuCalendarExtActionController extends TodoyuActionController {
 
 	/**
+	 * Initialize calendar default action: check permission
+	 *
+	 * @param	Array	$params
+	 */
+	public function init(array $params) {
+		restrict('calendar', 'general:use');
+	}
+
+
+
+	/**
 	 * Render default view of calendar when full page is reloaded
 	 *
 	 * @param	Array		$params
