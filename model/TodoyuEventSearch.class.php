@@ -34,7 +34,7 @@ class TodoyuEventSearch implements TodoyuSearchEngineIf {
 
 
 	/**
-	 * Search project in fulltext mode. Return the ID of the matching projects
+	 * Search project in full-text mode. Return the ID of the matching projects
 	 *
 	 * @param	Array		$find		Keywords which have to be in the events
 	 * @param	Array		$ignore		Keywords which must not be in the event
