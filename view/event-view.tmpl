@@ -37,9 +37,9 @@
 		<td colspan="2">
 			<fieldset class="buttons">
 			{if isAllowedEditEvent($event.id)}
-				{Button label="event.edit" class="button editButton editEvent" onclick="Todoyu.Ext.calendar.EventEdit.openFromDetailView($event.id)"}
+				{Button label="event.edit" class="button editButton editEvent" onclick="Todoyu.Ext.calendar.Event.Edit.openFromDetailView($event.id)"}
 			{/if}
-				{Button label="core.close" class="button cancelButton cancel" onclick="Todoyu.Ext.calendar.EventEdit.cancelEdit()"}
+				{Button label="core.close" class="button cancelButton cancel" onclick="Todoyu.Ext.calendar.Event.Edit.cancelEdit()"}
 			</fieldset>
 		</td>
 	</tr>

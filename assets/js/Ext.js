@@ -80,7 +80,7 @@ Todoyu.Ext.calendar = {
 		Todoyu.Hook.add('onEventSaved', this.refresh.bind(this));
 
 			// Add event edit hooks for event type
-		Todoyu.Hook.add('eventtype', this.EventEdit.checkHideField.bind(this.EventEdit));
+		Todoyu.Hook.add('eventtype', this.Event.Edit.checkHideField.bind(this.Event.Edit));
 	},
 
 
@@ -407,7 +407,7 @@ Todoyu.Ext.calendar = {
 	 * @param	{Integer}		time
 	 */
 	addEvent: function(time) {
-		this.EventEdit.open(0, time);
+		this.Event.Edit.open(0, time);
 	},
 
 

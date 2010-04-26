@@ -76,7 +76,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{Integer}		idEvent
 	 */
 	edit: function(idEvent) {
-		this.ext.EventEdit.open(idEvent);
+		this.ext.Event.Edit.open(idEvent);
 	},
 
 

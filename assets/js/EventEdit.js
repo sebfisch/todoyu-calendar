@@ -20,7 +20,7 @@
 /**
  * Functions for event edit
  */
-Todoyu.Ext.calendar.EventEdit = {
+Todoyu.Ext.calendar.Event.Edit = {
 
 	/**
 	 * Extension backlink
@@ -188,6 +188,21 @@ Todoyu.Ext.calendar.EventEdit = {
 		}
 	},
 
+
+
+	/**
+	 * Set time for fullday event
+	 *
+	 * @param	{Element}		fullDayCheckbox
+	 */
+	setFulldayTime: function(fullDayCheckbox) {
+		if( fullDayCheckbox.checked ) {
+			Todoyu.DateField.setTime('event-field-date-start', 0, 0);
+			Todoyu.DateField.setTime('event-field-date-end', 23, 59);
+		}
+	},
+
+	
 
 	/**
 	 * Add the edit tab

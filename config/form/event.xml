@@ -30,6 +30,7 @@
 
 				<field type="checkbox" name="is_dayevent">
 					<label>event.attr.is_dayevent</label>
+					<onchange>Todoyu.Ext.calendar.Event.Edit.setFulldayTime(this)</onchange>
 				</field>
 
 				<field type="checkbox" name="is_private">
@@ -129,11 +130,11 @@
 			<elements>
 
 				<field type="cancelButton" name="cancel">
-					<onclick>Todoyu.Ext.calendar.EventEdit.cancelEdit()</onclick>
+					<onclick>Todoyu.Ext.calendar.Event.Edit.cancelEdit()</onclick>
 				</field>
 
 				<field type="saveButton" name="save">
-					<onclick>Todoyu.Ext.calendar.EventEdit.saveEvent()</onclick>
+					<onclick>Todoyu.Ext.calendar.Event.Edit.saveEvent()</onclick>
 				</field>
 
 			</elements>
