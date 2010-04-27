@@ -52,7 +52,7 @@ Todoyu.Ext.calendar.Navi = {
 	 * Get up-/ down-shifted date
 	 *
 	 * @param	{String}		direction		'up' / 'down'
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getDirectionDate: function(direction) {
 		var tab		= this.getActiveTab();
@@ -68,7 +68,7 @@ Todoyu.Ext.calendar.Navi = {
 	/**
 	 * Get down-shifted date
 	 *
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getBackwardDate: function() {
 		return this.getDirectionDate('down');

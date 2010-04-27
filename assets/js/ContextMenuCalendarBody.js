@@ -60,7 +60,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	 * Get timestamp at clicked coordinates / element
 	 * 
 	 * @param	{Event}		event
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getClickedTime: function(event) {
 		var calendarMode= this.ext.getActiveTab();

@@ -61,7 +61,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Show event
 	 *
-	 * @param	{Integer}		idEvent
+	 * @param	{Number}		idEvent
 	 */
 	show: function(idEvent) {
 		this.ext.EventView.open(idEvent);
@@ -73,7 +73,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Edit event
 	 *
-	 * @param	{Integer}		idEvent
+	 * @param	{Number}		idEvent
 	 */
 	edit: function(idEvent) {
 		this.ext.Event.Edit.open(idEvent);
@@ -84,7 +84,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Remove event
 	 *
-	 * @param	{Integer}		idEvent
+	 * @param	{Number}		idEvent
 	 */
 	remove: function(idEvent) {
 		if(confirm('[LLL:event.delete.confirm]')) {
@@ -110,7 +110,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Handle 'on removed' event
 	 *
-	 * @param	{Integer}		idEvent
+	 * @param	{Number}		idEvent
 	 * @param	{Object}		response
 	 */
 	onRemoved: function(idEvent, response) {
@@ -136,9 +136,9 @@ Todoyu.Ext.calendar.Event = {
 	 * Calculate timestamp from given given mouse coordinates
 	 *
 	 * @param	{String}		idTab	'day' / 'week' / 'month'
-	 * @param	{Integer}		x		event pointer x coordinate
-	 * @param	{Integer}		y		event pointer y coordinate
-	 * @return	{Integer}		UNIX timestamp
+	 * @param	{Number}		x		event pointer x coordinate
+	 * @param	{Number}		y		event pointer y coordinate
+	 * @return	{Number}		UNIX timestamp
 	 */
 	calcTimestampFromMouseCoords: function(idTab, x, y) {
 		var timestamp 		= Todoyu.Ext.calendar.getDate();
@@ -171,8 +171,8 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Show given event in given view (day / week / month) of calendar
 	 *
-	 * @param	{Integer}		idEvent
-	 * @param	{Integer}		date
+	 * @param	{Number}		idEvent
+	 * @param	{Number}		date
 	 * @param	{String}		view
 	 */
 	goToEventInCalendar: function(idEvent, date, view) {

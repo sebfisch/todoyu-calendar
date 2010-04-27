@@ -105,7 +105,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Get amount of selected event types
 	 *
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getNumberOfSelectedEventTypes: function() {
 		return this.getSelectedEventTypes().size();

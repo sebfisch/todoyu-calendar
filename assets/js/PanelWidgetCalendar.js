@@ -59,7 +59,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Initialite calendar widget
 	 *
-	 * @param	{Integer}		timestamp	Unix-Timestamp
+	 * @param	{Number}		timestamp	Unix-Timestamp
 	 */
 	init: function(timestamp) {
 		var initialDate = new Date(timestamp * 1000);
@@ -80,7 +80,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get current calendar date
 	 *
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getDate: function() {
 		return this.Calendar.currentdate.getTime();
@@ -91,7 +91,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Set current calendar date
 	 *
-	 * @param	{Integer}	date
+	 * @param	{Number}	date
 	 * @param	{Boolean}	noExternalUpdate
 	 */
 	setDate: function(date, noExternalUpdate) {
@@ -103,7 +103,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get time
 	 *
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getTime: function() {
 		return parseInt(this.getDate()/1000, 10);
@@ -114,7 +114,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get timestamp of first shown day
 	 *
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getFirstShownDay: function() {
 		var timestamp	= this.getDate();
@@ -139,7 +139,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Set time
 	 *
-	 * @param	{Integer}	time
+	 * @param	{Number}	time
 	 * @param	{Boolean}	noExternalUpdate
 	 */
 	setTime: function(time, noExternalUpdate) {
@@ -208,7 +208,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Shift selected date of calendar widget by given amount (of seconds)
 	 *
-	 * @param	{Integer}	spanlength
+	 * @param	{Number}	spanlength
 	 * @param	{Boolean}	saveDatePreference
 	 */
 	shiftDate: function(spanLength, saveDatePreference) {

@@ -102,9 +102,9 @@ Todoyu.Ext.calendar = {
 	 * Install calendar body observers
 	 */
 	installBodyObservers: function() {
-		this.QuickInfoBirthday.init();
-		this.QuickInfoEvent.init();
-		this.QuickInfoHoliday.init();
+		this.QuickInfoBirthday.install();
+		this.QuickInfoEvent.install();
+		this.QuickInfoHoliday.install();
 		this.installEventObservers();
 		this.CalendarBody.installObserversCreateEvent();
 	},
@@ -142,7 +142,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Get selected date timestamp
 	 *
-	 * @return	{Integer}	timestamp	Unix-Timestamp
+	 * @return	{Number}	timestamp	Unix-Timestamp
 	 */
 	getDate: function() {
 		return this.PanelWidget.Calendar.getDate();
@@ -153,7 +153,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Set selected date timestamp
 	 *
-	 * @param	{Integer}	timestamp	Unix-Timestamp
+	 * @param	{Number}	timestamp	Unix-Timestamp
 	 */
 	setDate: function(date) {
 		this.PanelWidget.Calendar.setDate(date, true);
@@ -173,7 +173,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Set calendar time (timestamp
 	 *
-	 * @param	{Integer}		time
+	 * @param	{Number}		time
 	 */
 	setTime: function(time, noExternalUpdate) {
 		this.PanelWidget.Calendar.setTime(time, noExternalUpdate);
@@ -193,7 +193,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Get day start of (selected day in) calendar
 	 *
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getDayStart: function() {
 		return Todoyu.Time.getDayStart(this.getTime());
@@ -204,7 +204,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Get starting day of week in calendar that contains the currently selected day
 	 *
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getWeekStart: function() {
 		return Todoyu.Time.getWeekStart(this.getTime());
@@ -293,7 +293,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Handler for hook 'onEventSaved'
 	 *
-	 * @param	{Integer}	idEvent
+	 * @param	{Number}	idEvent
 	 */
 	onEventSaved: function(idEvent) {
 		if( Todoyu.getArea() === 'calendar' ) {
@@ -354,7 +354,7 @@ Todoyu.Ext.calendar = {
 	 * Update calendar body with new config
 	 *
 	 * @param	{String}		tab
-	 * @param	{Integer}		date
+	 * @param	{Number}		date
 	 */
 	show: function(tab, date) {
 			// Close special tabs (edit,view)
@@ -404,7 +404,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Add event with popup
 	 *
-	 * @param	{Integer}		time
+	 * @param	{Number}		time
 	 */
 	addEvent: function(time) {
 		this.Event.Edit.open(0, time);

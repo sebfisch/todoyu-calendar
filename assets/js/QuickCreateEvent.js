@@ -75,7 +75,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	 * Evoked on change of selected eventType in quick-event form (toggle ir/relevant fields)
 	 *
 	 * @param	{Event}			event
-	 * @param	{Integer}		time
+	 * @param	{Number}		time
 	 */
 	onEventTypeChange: function(event, time) {
 		var eventType	= $F('quickevent-field-eventtype');

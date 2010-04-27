@@ -88,7 +88,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	/**
 	 * Get calendar body height
 	 *
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getHeight: function() {
 		return this.calendarBody.getHeight();
@@ -130,9 +130,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 	/**
 	 * Get resp. timestamp to mouse coordinates inside current calendar view (day / week / month)
 	 *
-	 * @param	{Integer}		x
-	 * @param	{Integer}		y
-	 * @return	{Integer}
+	 * @param	{Number}		x
+	 * @param	{Number}		y
+	 * @return	{Number}
 	 */
 	getTimeOfMouseCoordinates: function(x, y) {
 		var calendarMode= this.ext.getActiveTab();
@@ -161,9 +161,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 	/**
 	 * Get pixel-offset of day display, used to comprehend visual margins of hours in day / week mode
 	 *
-	 * @param	{Integer}		top
-	 * @param	{Integer}		height
-	 * @return	{Integer}
+	 * @param	{Number}		top
+	 * @param	{Number}		height
+	 * @return	{Number}
 	 */
 	getDayOffset: function(top, height) {
 		var seconds	= (top / height) * Todoyu.Time.seconds.day;

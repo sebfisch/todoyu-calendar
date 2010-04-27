@@ -32,6 +32,11 @@ TodoyuContextMenuManager::addFunction('Event', 'TodoyuEventManager::getContextMe
 TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::addFunction('CalendarBody', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
+TodoyuQuickinfoManager::addFunction('event', 'TodoyuCalendarQuickinfoManager::addQuickinfoEvent');
+TodoyuQuickinfoManager::addFunction('holiday', 'TodoyuCalendarQuickinfoManager::addQuickinfoHoliday');
+TodoyuQuickinfoManager::addFunction('birthday', 'TodoyuCalendarQuickinfoManager::addQuickinfoBirthday');
+
+
 if ( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:use') ) {
 	TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50, array('calendar/public'));
 }

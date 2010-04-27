@@ -34,7 +34,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Open event
 	 *
-	 * @param	{Integer}	idEvent
+	 * @param	{Number}	idEvent
 	 */
 	open: function(idEvent) {
 		this.addTab('');
@@ -48,7 +48,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Load event details
 	 *
-	 * @param	{Integer}	idEvent
+	 * @param	{Number}	idEvent
 	 */
 	loadDetails: function(idEvent) {
 		var url		= Todoyu.getUrl('calendar', 'event');
@@ -69,7 +69,7 @@ Todoyu.Ext.calendar.EventView = {
 	/**
 	 * Handler being evoked upon completion of loading of details: set tab label
 	 * 
-	 * @param	{Integer}		idEvent
+	 * @param	{Number}		idEvent
 	 * @param	{Object}		response
 	 */
 	onDetailsLoaded: function(idEvent, response) {

@@ -56,7 +56,7 @@
 	/**
 	 * Load holiday
 	 *
-	 * @param	{Integer}	idHoliday
+	 * @param	{Number}	idHoliday
 	 */
 	loadHoliday: function(idHoliday) {
 		var url		= Todoyu.getUrl('calendar', 'calendar');

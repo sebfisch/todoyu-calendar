@@ -149,7 +149,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Get amount of selected holidaySets
 	 *
-	 * @return	{Integer}
+	 * @return	{Number}
 	 */
 	getAmountOfselectedSets: function() {
 		var amount = 0;

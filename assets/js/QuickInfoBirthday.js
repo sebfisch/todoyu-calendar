@@ -37,61 +37,50 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 
 
 	/**
-	 * Install observers on all calendar holiday elements.
+	 * Selector for event quickinfo
 	 */
-	init: function() {
-		Todoyu.QuickInfo.setCacheTime('calendar', 'birthday', this.cacheTime);
+	selector:	'div.quickInfoBirthday',
 
-		$$('div.quickInfoBirthday').each(this.install.bind(this));		
+
+	/**
+	 * Install quickinfo for events
+	 */
+	install: function() {
+		Todoyu.QuickInfo.setCacheTime('birthday', this.cacheTime);
+		
+		Todoyu.QuickInfo.install('birthday', this.selector, this.getID.bind(this));
 	},
 
 
 
 	/**
-	 * Install mouseOver/Out obeserver on given calendar holiday element
+	 * Uninstall quickinfo for events
+	 */
+	uninstall: function() {
+		Todoyu.QuickInfo.uninstall(this.selector);
+	},
+
+
+
+	/**
+	 * Get ID form observed element
 	 *
 	 * @param	{Element}	element
+	 * @param	{Event}		event
 	 */
-	install: function(element) {
-		var idPerson	= $(element).id.split('-').last();
-
-		$(element).observe('mouseover', this.onMouseOver.bindAsEventListener(this, idPerson));
-		$(element).observe('mouseout', this.onMouseOut.bindAsEventListener(this, idPerson));
+	getID: function(element, event) {
+		return $(element).id.split('-').last();
 	},
 
 
 
 	/**
-	 * Evoked upon mouseOver event upon holiday element. Show quick info.
+	 * Remove given calendar event quickinfo element from cache
 	 *
-	 * @param	{Object}	event		the DOM-event
-	 * @param	{Integer}	idPerson		idPerson
+	 * @param	{Number}	idEvent
 	 */
-	onMouseOver: function(event, idPerson) {
-		Todoyu.QuickInfo.show('calendar', 'birthday', idPerson, event.pointerX(), event.pointerY());
-	},
-
-
-
-	/**
-	 * Evoked upon mouseOut event upon holiday element. Show quick info.
-	 *
-	 * @param	{Object}	event			the DOM-event
-	 * @param	{Integer}	idPerson		idPerson
-	 */
-	onMouseOut: function(event, idPerson) {
-		Todoyu.QuickInfo.hide();
-	},
-
-
-
-	/**
-	 * Evoke removal of given holiday quickinfo entry from cache
-	 *
-	 * @param	{Integer}		idPerson
-	 */
-	removeFromCache: function(idPerson) {
-		Todoyu.QuickInfo.removeFromCache('birthday' + idPerson);
+	removeFromCache: function(idEvent) {
+		Todoyu.QuickInfo.removeFromCache('birthday' + idEvent);
 	}
 
 };

@@ -10,7 +10,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Toggle details of listed event entry (in listing of e.g portal's events tab). Used for eventslist only
 	 *
-	 * @param	{Integer} idEvent
+	 * @param	{Number} idEvent
 	 */
 	toggleDetails: function(idEvent) {
 			// If detail is not loaded yet, send request
@@ -27,7 +27,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Load event details
 	 *
-	 * @param	{Integer}		idEvent
+	 * @param	{Number}		idEvent
 	 */
 	loadDetails: function(idEvent) {
 		var url		= Todoyu.getUrl('calendar', 'portal');
@@ -53,7 +53,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Check whether event details are loaded
 	 *
-	 * @param	{Integer}		idEvent
+	 * @param	{Number}		idEvent
 	 * @return	{Boolean}
 	 */
 	isDetailsLoaded: function(idEvent)	{
@@ -65,7 +65,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Save event details
 	 *
-	 * @param	{Integer}		idEvent
+	 * @param	{Number}		idEvent
 	 * @param	{Boolean}		expanded
 	 */
 	saveEventExpandedStatus: function(idEvent, expanded) {
@@ -78,8 +78,8 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Set event acknowledged
 	 *
-	 * @param	{Integer}		idEvent
-	 * @param	{Integer}		idPerson
+	 * @param	{Number}		idEvent
+	 * @param	{Number}		idPerson
 	 */
 	acknowledgeEvent: function(idEvent, idPerson)	{
 		var url = Todoyu.getUrl('calendar', 'event');

@@ -28,58 +28,48 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 
 
 	/**
-	 * Install observers on all calendar holiday elements. 
+	 * Selector for holiday quickinfo
 	 */
-	init: function() {
-		$$('span.quickInfoHoliday').each(this.install.bind(this));
+	selector:	'span.quickInfoHoliday',
+
+
+	/**
+	 * Install quickinfo for holidays
+	 */
+	install: function() {
+		Todoyu.QuickInfo.install('holiday', this.selector, this.getID.bind(this));
 	},
 
 
 
 	/**
-	 * Install mouseOver/Out obeserver on given calendar holiday element
-	 * 
+	 * Uninstall quickinfo for events
+	 */
+	uninstall: function() {
+		Todoyu.QuickInfo.uninstall(this.selector);
+	},
+
+
+
+	/**
+	 * Get ID form observed element
+	 *
 	 * @param	{Element}	element
+	 * @param	{Event}		event
 	 */
-	install: function(element) {
-		var timestamp	= $(element).id.split('-').last();
-
-		$(element).observe('mouseover', this.onMouseOver.bindAsEventListener(this, timestamp));
-		$(element).observe('mouseout', this.onMouseOut.bindAsEventListener(this, timestamp));
-	},
-
-
-	/**
-	 * Evoked upon mouseOver event upon holiday element. Show quick info.
-	 * 
-	 * @param	{Object}	event			the DOM-event
-	 * @param	{Integer}	timestamp		timestamp of the holiday
-	 */
-	onMouseOver: function(event, timestamp) {
-		Todoyu.QuickInfo.show('calendar', 'holiday', timestamp, event.pointerX(), event.pointerY());
+	getID: function(element, event) {
+		return $(element).id.split('-').last();
 	},
 
 
 
 	/**
-	 * Evoked upon mouseOut event upon holiday element. Show quick info.
-	 * 
-	 * @param	{Object}	event			the DOM-event
-	 * @param	{Integer}	timestamp		timestamp of the holiday
+	 * Remove given calendar event quickinfo element from cache
+	 *
+	 * @param	{Number}	idEvent
 	 */
-	onMouseOut: function(event, timestamp) {
-		Todoyu.QuickInfo.hide();
-	},
-
-
-
-	/**
-	 * Evoke removal of given holiday quickinfo entry from cache
-	 * 
-	 * @param	{Integer}	idHoliday
-	 */
-	removeFromCache: function(idHoliday) {
-		Todoyu.QuickInfo.removeFromCache('holiday' + idHoliday);
+	removeFromCache: function(idEvent) {
+		Todoyu.QuickInfo.removeFromCache('holiday' + idEvent);
 	}
 
 };

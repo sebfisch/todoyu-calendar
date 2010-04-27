@@ -34,8 +34,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Open edit view for an event
 	 *
-	 * @param	{Integer}		idEvent
-	 * @param	{Integer}		time
+	 * @param	{Number}		idEvent
+	 * @param	{Number}		time
 	 */
 	open: function(idEvent, time) {
 		Todoyu.Ui.scrollToTop();
@@ -49,7 +49,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Open edit view for event from detail view
 	 * 
-	 * @param	{Integer}		idEvent
+	 * @param	{Number}		idEvent
 	 */
 	openFromDetailView: function(idEvent) {
 		this.cancelEdit();
@@ -61,8 +61,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Load edit form for an event
 	 *
-	 * @param	{Integer}		idEvent
-	 * @param	{Integer}		time
+	 * @param	{Number}		idEvent
+	 * @param	{Number}		time
 	 */
 	loadForm: function(idEvent, time) {
 		var url		= Todoyu.getUrl('calendar', 'event');
@@ -84,7 +84,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Handler when edit form is loaded
 	 *
-	 * @param	{Integer}	idEvent
+	 * @param	{Number}	idEvent
 	 * @param	{Object}	response
 	 */
 	onFormLoaded: function(idEvent, response) {

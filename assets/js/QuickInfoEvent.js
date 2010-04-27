@@ -21,57 +21,42 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 
 	/**
 	 * Extension backlink
-	 *
-	 * @var	{Object}	ext
 	 */
 	ext:		Todoyu.Ext.calendar,
 
 
 	/**
-	 * Install element observers on all calendar event quickinfo elements
+	 * Selector for event quickinfo
 	 */
-	init: function() {
-		$$('div.quickInfoEvent').each(this.install.bind(this));		
+	selector:	'div.quickInfoEvent',
+
+
+	/**
+	 * Install quickinfo for events
+	 */
+	install: function() {
+		Todoyu.QuickInfo.install('event', this.selector, this.getID.bind(this));
 	},
 
 
 
 	/**
-	 * Install rollover/out observers on calendar event element
-	 * 
-	 * @param	{Element}	element
+	 * Uninstall quickinfo for events
 	 */
-	install: function(element) {
-			// Extract event ID
-		var idEvent	= $(element).id.split('-').last();
-
-			// Install the actual observers
-		$(element).observe('mouseover', this.onMouseOver.bindAsEventListener(this, idEvent));
-		$(element).observe('mouseout', this.onMouseOut.bindAsEventListener(this, idEvent));
+	uninstall: function() {
+		Todoyu.QuickInfo.uninstall(this.selector);
 	},
 
 
 
 	/**
-	 * Handle mouseOver event on calendar event-element: show event-quickinfo
+	 * Get ID form observed element
 	 *
-	 * @param	{Object}	event
-	 * @param	{Integer}	idEvent
+	 * @param	{Element}	element
+	 * @param	{Event}		event
 	 */
-	onMouseOver: function(event, idEvent) {
-		Todoyu.QuickInfo.show('calendar', 'event', idEvent, event.pointerX(), event.pointerY());
-	},
-
-
-
-	/**
-	 * Handle mouseOut event on calendar event-element: hide event-quickinfo
-	 * 
-	 * @param	{Object}	event
-	 * @param	{Integer}	idEvent
-	 */
-	onMouseOut: function(event, idEvent) {
-		Todoyu.QuickInfo.hide();
+	getID: function(element, event) {
+		return $(element).id.split('-').last();
 	},
 
 
@@ -79,7 +64,7 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 	/**
 	 * Remove given calendar event quickinfo element from cache
 	 * 
-	 * @param	{Integer}	idEvent
+	 * @param	{Number}	idEvent
 	 */
 	removeFromCache: function(idEvent) {
 		Todoyu.QuickInfo.removeFromCache('event' + idEvent);
