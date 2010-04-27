@@ -21,6 +21,7 @@ CREATE TABLE `ext_calendar_event` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `ext_calendar_holiday`
@@ -39,6 +40,7 @@ CREATE TABLE `ext_calendar_holiday` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `ext_calendar_holidayset`
@@ -55,6 +57,7 @@ CREATE TABLE `ext_calendar_holidayset` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `ext_calendar_mm_holiday_holidayset`
@@ -69,6 +72,7 @@ CREATE TABLE `ext_calendar_mm_holiday_holidayset` (
   KEY `holidayset` (`id_holidayset`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `ext_calendar_mm_event_person`
