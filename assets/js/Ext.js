@@ -102,11 +102,20 @@ Todoyu.Ext.calendar = {
 	 * Install calendar body observers
 	 */
 	installBodyObservers: function() {
+		this.installQuickinfos();
+		this.installEventObservers();
+		this.CalendarBody.installObserversCreateEvent();
+	},
+
+
+
+	/**
+	 * Install all calendar quickinfos
+	 */
+	installQuickinfos: function() {
 		this.QuickInfoBirthday.install();
 		this.QuickInfoEvent.install();
 		this.QuickInfoHoliday.install();
-		this.installEventObservers();
-		this.CalendarBody.installObserversCreateEvent();
 	},
 
 

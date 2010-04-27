@@ -63,6 +63,8 @@ class TodoyuCalendarPortalRenderer {
 		} else {
 			$holidays	= array();
 		}
+		
+		TodoyuDebug::printInFireBug($holidays);
 
 		if ( $config['showBirthday'] ) {
 			$birthdays		= TodoyuCalendarPortalManager::getBirthdays();
@@ -82,13 +84,13 @@ class TodoyuCalendarPortalRenderer {
 
 		$tmpl	= 'ext/calendar/view/tab-portal-eventslist.tmpl';
 		$data	= array(
-			'events'						=> $events,
-			'showHolidays'					=> $config['showHoliday'],
-			'holidays'						=> $holidays,
-			'showBirthdays'					=> $config['showBirthday'],
-			'birthdays'						=> $birthdays,
-			'color'							=> TodoyuColors::getColorIndex($idPerson),
-			'javascript'					=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();'
+			'events'		=> $events,
+			'showHolidays'	=> $config['showHoliday'],
+			'holidays'		=> $holidays,
+			'showBirthdays'	=> $config['showBirthday'],
+			'birthdays'		=> $birthdays,
+			'color'			=> TodoyuColors::getColorIndex($idPerson),
+			'javascript'	=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();Todoyu.Ext.calendar.installQuickinfos();'
 		);
 
 		return render($tmpl, $data);

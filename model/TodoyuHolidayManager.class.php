@@ -269,7 +269,8 @@ class TodoyuHolidayManager {
 			return array();
 		}
 
-		$fields	= '	h.*, hhmm.id_holidayset';
+		$fields	= '	h.*,
+					hhmm.id_holidayset';
 		$table	= 	self::TABLE . ' h,
 					ext_calendar_mm_holiday_holidayset hhmm';
 		$where	= '	h.id		= hhmm.id_holiday AND
