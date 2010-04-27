@@ -80,6 +80,6 @@ CREATE TABLE `ext_calendar_mm_event_person` (
   `id_person` smallint(5) unsigned NOT NULL,
   `is_acknowledged` tinyint(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `uid_local` (`id_event`),
-  KEY `uid_foreign` (`id_person`)
+  KEY `event` (`id_event`),
+  KEY `person` (`id_person`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
