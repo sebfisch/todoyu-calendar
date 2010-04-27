@@ -147,13 +147,13 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Group the events in subarray. The key for each subarray is a datekey (YYYYMMDD)
-	 * An event appears in each subarray, the event is running on
+	 * Group the events in sub array. The key for each sub array is a date-key (YYYYMMDD)
+	 * An event appears in each sub array, the event is running on
 	 *
 	 * @param	Array		$events			Array of event records
 	 * @param	Integer		$dateStart		Date of first day group
 	 * @param	Integer		$dateEnd		Date of last day group
-	 * @return	Array		Events grouped by datekey
+	 * @return	Array		Events grouped by date-key
 	 */
 	public static function groupEventsByDay(array $events, $dateStart, $dateEnd) {
 		$dateStart		= TodoyuTime::getStartOfDay($dateStart);

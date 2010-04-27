@@ -360,7 +360,7 @@ class TodoyuHolidayManager {
 
 	/**
 	 * Compile array of holidays into an array of days,
-	 * (key is date of resp. day) with holidays happening that day in a subarray
+	 * (key is date of resp. day) with holidays happening that day in a sub array
 	 *
 	 * @param	Integer	$tstampFirstDay	timestamp of the first day to start the events per day grouping with
 	 * @param	Array	$eventsUngrouped
