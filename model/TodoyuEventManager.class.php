@@ -765,16 +765,25 @@ class TodoyuEventManager {
 	 * @return	Array
 	 */
 	public static function getContextMenuItemsPortal($idEvent, array $items)	{
-		$idEvent = intval($idEvent);
+		$idEvent	= intval($idEvent);
+		$event		= TodoyuEventManager::getEvent($idEvent);
+		$dateStart	= $event->getStartDate();
 
-		$own = Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'];
+		$ownItems			= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'];
+		$ownItems['show']	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal']['show'];
 
-		foreach($own['show']['submenu'] as $key => $config)	{
-			$eventStart	= TodoyuEventManager::getEvent($idEvent)->get('date_start');
-			$own['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', $eventStart, $config['jsAction']);
+		unset($ownItems['add']);
+
+		if( ! TodoyuEventRights::isEditAllowed($idEvent) ) {
+			unset($ownItems['edit']);
+			unset($ownItems['delete']);
 		}
 
-		$items = array_merge_recursive($items, $own);
+		foreach($ownItems['show']['submenu'] as $key => $config)	{
+			$ownItems['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', $dateStart, $config['jsAction']);
+		}
+
+		$items = array_merge_recursive($items, $ownItems);
 
 		return $items;
 	}

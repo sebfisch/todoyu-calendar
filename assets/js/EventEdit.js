@@ -230,6 +230,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 	close: function() {
 		if( Todoyu.exists('calendar-tab-edit') ) {
 			this.removeTab();
+		}
+		if( Todoyu.exists('calendar-edit') ) {
 			this.hide();
 			this.ext.showCalendar();
 			$('calendar-edit').update('');
@@ -264,7 +266,9 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 * Remove edit tab
 	 */
 	removeTab: function() {
-		$('calendar-tab-edit').remove();
+		if( Todoyu.exists('calendar-tab-edit') ) {
+			$('calendar-tab-edit').remove();
+		}		
 	},
 
 

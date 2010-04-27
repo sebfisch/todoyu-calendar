@@ -17,7 +17,7 @@
 			{if $calendarMode == 'day'}
 				{htmlencode $title}
 			{else}
-				{htmlencode $title|truncate:14}
+				{htmlencode(truncate($title, 16, '...', true))}
 			{/if}
 			{if $calendarMode == 'day' && count($assignedPersons) == 1}
 				({$assignedPersons.0.shortname})

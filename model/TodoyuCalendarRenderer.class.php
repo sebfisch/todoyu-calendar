@@ -96,6 +96,11 @@ class TodoyuCalendarRenderer {
 				return TodoyuEventRenderer::renderEventView($idEvent);
 				break;
 
+			case 'edit':
+				$idEvent	= intval($params['event']);
+				return TodoyuEventEditRenderer::renderEventForm($idEvent);
+				break;
+
 			default:
 				return 'Invalid type';
 		}

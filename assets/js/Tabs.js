@@ -86,6 +86,10 @@ Todoyu.Ext.calendar.Tabs = {
 			this.active	= Todoyu.Tabs.getActiveKey('calendar-tabs');
 		}
 
+		if( this.active === null ) {
+			this.active = 'week';
+		}
+
 		return this.active;
 	},
 

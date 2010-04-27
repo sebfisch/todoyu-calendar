@@ -73,7 +73,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 		'jsAction'	=> 'Todoyu.Ext.calendar.addEvent(Todoyu.Ext.calendar.ContextMenuCalendarBody.getClickedTime(event))',
 		'class'		=> 'eventContextMenu eventAdd',
 		'position'	=> 40
-	),
+	)
 );
 
 

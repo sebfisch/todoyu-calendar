@@ -17,6 +17,10 @@
 	white-space:nowrap;
 }
 
+#calendar .event span.desc {
+	overflow:hidden;
+}
+
 .event .headInner {
 	position:relative;
 	line-height:1.2;

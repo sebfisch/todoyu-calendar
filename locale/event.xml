@@ -13,7 +13,7 @@
 		<label index="type.away">Absence</label>
 		<label index="type.birthday">Birthday</label>
 		<label index="type.vacation">Vacation</label>
-		<label index="type.education">Continuing Education</label>
+		<label index="type.education">Continued Education</label>
 		<label index="type.meeting">Meeting</label>
 		<label index="type.awayofficial">External Work</label>
 		<label index="type.homeoffice">Home Office</label>

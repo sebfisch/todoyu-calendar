@@ -76,7 +76,11 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{Number}		idEvent
 	 */
 	edit: function(idEvent) {
-		this.ext.Event.Edit.open(idEvent);
+		if( Todoyu.getArea() === 'calendar' ) {
+			this.ext.Event.Edit.open(idEvent);
+		} else {
+			Todoyu.goTo('calendar', 'ext', {tab:'edit',event:idEvent});
+		}		
 	},
 
 
@@ -88,9 +92,7 @@ Todoyu.Ext.calendar.Event = {
 	 */
 	remove: function(idEvent) {
 		if(confirm('[LLL:event.delete.confirm]')) {
-			$$('div#event-' + 4).each(function(eventElement){
-				eventElement.fade();
-			});
+			$('event-' + idEvent).fade();
 
 			var url		= Todoyu.getUrl('calendar', 'event');
 			var options	= {
@@ -114,7 +116,9 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{Object}		response
 	 */
 	onRemoved: function(idEvent, response) {
-		this.ext.refresh();
+		if( Todoyu.getArea() === 'calendar' ) {
+			this.ext.refresh();
+		}
 	},
 
 
