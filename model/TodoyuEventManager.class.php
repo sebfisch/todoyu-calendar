@@ -383,6 +383,11 @@ class TodoyuEventManager {
 			// Extract person IDs from foreign data array (easier to handle)
 		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
 
+			// Adjust date end for a reminder
+		if( $data['eventtype'] == EVENTTYPE_REMINDER ) {
+			$data['date_end'] = intval($data['date_start']);
+		}
+
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
 
