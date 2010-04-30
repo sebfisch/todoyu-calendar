@@ -552,8 +552,8 @@ class TodoyuEventManager {
 		$idPerson	= intval($idPerson);
 
 		$table		= self::TABLE;
-		$where		= '	id_event	= ' . $idEvent . ' AND
-						id_person	= ' . $idPerson;
+		$where		= '		id_event	= ' . $idEvent .
+					  ' AND	id_person	= ' . $idPerson;
 
 		Todoyu::db()->doDelete($table, $where);
 	}
@@ -665,8 +665,8 @@ class TodoyuEventManager {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 
-		$where 	= '	id_event	= ' . $idEvent . ' AND
-					id_person	= ' . $idPerson;
+		$where 	= '		id_event	= ' . $idEvent .
+				  ' AND	id_person	= ' . $idPerson;
 
 		$update	= array(
 			'is_acknowledged' => 1
