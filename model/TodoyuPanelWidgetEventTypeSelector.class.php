@@ -27,7 +27,7 @@
 class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
 
 	/**
-	 * Preference name
+	 * @var string		Preference name
 	 */
 	const PREF = 'panelwidget-eventtypeselector';
 

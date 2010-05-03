@@ -26,6 +26,9 @@
  */
 class TodoyuHolidayManager {
 
+	/**
+	 * @var	String		Default database table
+	 */
 	const TABLE		= 'ext_calendar_holiday';
 
 

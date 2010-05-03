@@ -27,7 +27,7 @@
 class TodoyuPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
 
 	/**
-	 * Preference name
+	 * @var string		Preference name
 	 */
 	const PREF = 'panelwidget-calendar';
 

@@ -27,7 +27,7 @@
 class TodoyuHoliday extends TodoyuBaseObject {
 
 	/**
-	 * Default table for database requests
+	 * @var	String		Default table for database requests
 	 */
 	const TABLE = 'ext_calendar_holiday';
 

@@ -27,7 +27,7 @@
 class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
 
 	/**
-	 * Preference name
+	 * @var string		Preference name
 	 */
 	const PREF = 'panelwidget-holidaysetselector';
 
