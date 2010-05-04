@@ -36,6 +36,10 @@ TodoyuQuickinfoManager::addFunction('event', 'TodoyuCalendarQuickinfoManager::ad
 TodoyuQuickinfoManager::addFunction('holiday', 'TodoyuCalendarQuickinfoManager::addQuickinfoHoliday');
 TodoyuQuickinfoManager::addFunction('birthday', 'TodoyuCalendarQuickinfoManager::addQuickinfoBirthday');
 
+if( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:use') ) {
+	TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50);
+}
+
 	// Setup tabs in calendar area
 Todoyu::$CONFIG['EXT']['calendar']['config'] = array(
 	'defaultTab'	=> 'week'

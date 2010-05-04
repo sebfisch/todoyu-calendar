@@ -64,8 +64,6 @@ class TodoyuCalendarPortalRenderer {
 			$holidays	= array();
 		}
 		
-		TodoyuDebug::printInFireBug($holidays);
-
 		if ( $config['showBirthday'] ) {
 			$birthdays		= TodoyuCalendarPortalManager::getBirthdays();
 		} else {
