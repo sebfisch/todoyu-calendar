@@ -26,6 +26,10 @@ if( allowed('calendar', 'general:area') ) {
 	TodoyuFrontend::addSubmenuEntry('planning', 'calendarDay', 'LLL:calendar.subMenuEntry.day', '?ext=calendar&tab=day', 62);
 	TodoyuFrontend::addSubmenuEntry('planning', 'calendarWeek', 'LLL:calendar.subMenuEntry.week', '?ext=calendar&tab=week', 63);
 	TodoyuFrontend::addSubmenuEntry('planning', 'calendarMonth', 'LLL:calendar.subMenuEntry.month', '?ext=calendar&tab=month', 64);
+
+	if( TodoyuExtensions::isInstalled('portal') ) {
+		TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50);
+	}
 }
 
 ?>
