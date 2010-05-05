@@ -73,7 +73,7 @@
 		<label index="type.general">Allgemein</label>
 		<label index="type.away">Abwesend</label>
 		<label index="type.birthday">Geburtstag</label>
-		<label index="type.vacation">Ferien</label>
+		<label index="type.vacation">Urlaub</label>
 		<label index="type.education">Fortbildung</label>
 		<label index="type.meeting">Sitzung</label>
 		<label index="type.awayofficial">Externe Arbeit</label>
@@ -105,7 +105,7 @@
 		<label index="attr.id_task">Aufgabe</label>
 		<label index="tree.header.title">Termin-Titel</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Geburtstage in den nächsten Wochen</label>
-		<label index="eventslist.holidaysWithinTheNextweeks">Ferien in den nächsten Wochen</label>
+		<label index="eventslist.holidaysWithinTheNextweeks">Urlaube in den nächsten Wochen</label>
 		<label index="error.noneFound">Zur Zeit gibt es keine ausstehenden Termine für Sie</label>
 		<label index="error.starttimeAfterEndtime">Der Termin endet vor seinem Anfang</label>
 		<label index="error.privateEvent">Private Termine können nicht anderen Benutzern zugewiesen werden</label>
