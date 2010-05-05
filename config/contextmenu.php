@@ -70,7 +70,8 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 	'add'	=> array(
 		'key'		=> 'add',
 		'label'		=> 'event.contextmenu.addEvent',
-		'jsAction'	=> 'Todoyu.Ext.calendar.addEvent(Todoyu.Ext.calendar.ContextMenuCalendarBody.getClickedTime(event))',
+//		'jsAction'	=> 'Todoyu.Ext.calendar.addEvent(Todoyu.Ext.calendar.ContextMenuCalendarBody.getClickedTime(event))',
+		'jsAction'	=> 'Todoyu.Ext.calendar.Event.addEventOnSameTime(#ID#)',
 		'class'		=> 'eventContextMenu eventAdd',
 		'position'	=> 40
 	)

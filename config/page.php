@@ -28,4 +28,8 @@ if( allowed('calendar', 'general:area') ) {
 	TodoyuFrontend::addSubmenuEntry('planning', 'calendarMonth', 'LLL:calendar.subMenuEntry.month', '?ext=calendar&tab=month', 64);
 }
 
+if( allowed('calendar', 'general:use') ) {
+	TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50);
+}
+
 ?>
