@@ -186,6 +186,47 @@ Todoyu.Ext.calendar.Event = {
 		};
 
 		Todoyu.goTo('calendar', 'ext', params, 'event-' + idEvent);
+	},
+
+
+
+	/**
+	 * Add an event on the same time as the selected one
+	 *
+	 * @param	{Number}		idEvent
+	 */
+	addEventOnSameTime: function(idEvent) {
+		var time	= this.getTime(idEvent);
+
+		this.ext.addEvent(time);
+	},
+
+
+
+	/**
+	 * Get time of an event by its position of parent container
+	 *
+	 * @param	{Number}	idEvent
+	 */
+	getTime: function(idEvent) {
+		var mode	= this.ext.getActiveTab();
+		var time	= 0;
+		var event	= $('event-' + idEvent);
+
+		if( event ) {
+			if( mode === 'month' ) {
+				time = parseInt(event.up('td').id.split('-').last(), 10);
+			} else {
+				var viewport= event.viewportOffset();
+				var scroll	= document.body.cumulativeScrollOffset();
+				var top		= viewport.top + scroll.top;
+				var left	= viewport.left + scroll.left;
+				
+				time = this.ext.CalendarBody.getTimeOfMouseCoordinates(left, top);
+			}
+		}
+
+		return time;
 	}
 
 };
