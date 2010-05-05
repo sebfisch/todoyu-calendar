@@ -50,11 +50,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		if( $idEvent === 0 ) {
 			restrict('calendar', 'event:add');
 		} else {
-			if( $event->isCurrentPersonAssigned() ) {
-				restrict('calendar', 'event:editAndDeleteAssigned');
-			} else {
-				restrict('calendar', 'event:editAndDeleteAll');
-			}
+			TodoyuEventRights::restrictEdit($idEvent);
 		}
 
 			// Send tab label
@@ -83,17 +79,11 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 			// Check rights
 		if( $idEvent === 0 ) {
-				// New task
+				// New event
 			restrict('calendar', 'event:add');
 		} else {
-				// Edit task
-			$event	= TodoyuEventManager::getEvent($idEvent);
-
-			if( $event->isCurrentPersonAssigned() ) {
-				restrict('calendar', 'event:editAndDeleteAssigned');
-			} else {
-				restrict('calendar', 'event:editAndDeleteAll');
-			}
+				// Edit event
+			TodoyuEventRights::restrictEdit($idEvent);
 		}
 
 			// Set form data
@@ -115,7 +105,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			TodoyuHeader::sendTodoyuHeader('time', $event->get('date_start'));
 			TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 		} else {
-			TodoyuHeader::sendTodoyuHeader('error', true);
+			TodoyuHeader::sendTodoyuErrorHeader();
 
 			$form->setUseRecordID(false);
 

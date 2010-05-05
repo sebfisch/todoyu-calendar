@@ -48,7 +48,6 @@ class TodoyuEventRights {
 		$idEvent= intval($idEvent);
 
 		$event				= TodoyuEventManager::getEvent($idEvent);
-		$idCreator			= $event->getPerson('create');
 		$isPrivate			= $event->data['is_private'] === '1';
 		$assignedPersons	= $event->getAssignedPersonIDs();
 
@@ -64,6 +63,11 @@ class TodoyuEventRights {
 		}
 			// Person can see all events and event is not private,
 		if ( allowed('calendar', 'event:seeAll') && ! $isPrivate ) {
+			return true;
+		}
+
+			// Create can see task
+		if( $event->isCurrentPersonCreator() ) {
 			return true;
 		}
 
@@ -94,7 +98,6 @@ class TodoyuEventRights {
 		$idEvent	= intval($idEvent);
 
 		$event				= TodoyuEventManager::getEvent($idEvent);
-		$idCreator			= $event->getPerson('create');
 		$isPrivate			= $event->data['is_private'] === '1';
 		$assignedPersons	= $event->getAssignedPersonIDs();
 
@@ -110,6 +113,11 @@ class TodoyuEventRights {
 		}
 			// Person can edit all events and event is not private,
 		if ( allowed('calendar', 'event:editAndDeleteAll') && ! $isPrivate ) {
+			return true;
+		}
+
+			// Creator can edit event
+		if( $event->isCurrentPersonCreator() ) {
 			return true;
 		}
 
