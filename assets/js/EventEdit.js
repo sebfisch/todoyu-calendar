@@ -127,7 +127,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 			return field.id.replace('formElement-event-field-', '');
 		});
 
-			// Get all check hook functions
+			// Get registered 'eventtype' hook-functions
 		var checkHooks	= Todoyu.Hook.get('eventtype');
 
 			// Check all fields, if a hooks wants to hide it
@@ -179,10 +179,10 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Hide a field in the event form
 	 *
-	 * @param	{String}		fieldname
+	 * @param	{String}		fieldName
 	 */
-	hideField: function(fieldname) {
-		var field	= 'formElement-event-field-' + fieldname;
+	hideField: function(fieldName) {
+		var field	= 'formElement-event-field-' + fieldName;
 
 		if( Todoyu.exists(field) ) {
 			$(field).hide();
@@ -192,7 +192,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 
 	/**
-	 * Set time for fullday event
+	 * Set time for full-day event
 	 *
 	 * @param	{Element}		fullDayCheckbox
 	 */
