@@ -83,7 +83,10 @@ Todoyu.Ext.calendar.Event = {
 		if( Todoyu.getArea() === 'calendar' ) {
 			this.ext.Event.Edit.open(idEvent);
 		} else {
-			Todoyu.goTo('calendar', 'ext', {tab:'edit',event:idEvent});
+			Todoyu.goTo('calendar', 'ext', {
+				'tab':	'edit',
+				'event':idEvent
+			});
 		}		
 	},
 

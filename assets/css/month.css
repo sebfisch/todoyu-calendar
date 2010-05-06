@@ -91,11 +91,6 @@
 		background-color:#d7dcc6;
 	}
 
-	.st-grid td.title span {
-		display:inline-block;
-		width:20px;
-	}
-
 	.st-grid td.title.inSelMonthTitle {
 		background-color:#e4eace;
 	}
