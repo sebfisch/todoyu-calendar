@@ -89,7 +89,7 @@ class TodoyuEventViewHelper {
 		foreach($persons as $person) {
 			$label	= TodoyuPersonManager::getLabel($person['id']);
 
-			$personInfo[]	= TodoyuString::crop($label, 15, '...', false);
+			$personInfo[]	= TodoyuString::crop($label, 20, '...', false);
 		}
 
 		return implode("\n", $personInfo);
@@ -98,7 +98,7 @@ class TodoyuEventViewHelper {
 
 
 	/**
-	 * Build preformated type info for event quickinfo tooltip
+	 * Build pre formatted type info for event quickinfo tooltip
 	 *
 	 * @param	TodoyuEvent		$event
 	 * @return	String
