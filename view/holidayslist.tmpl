@@ -1,9 +1,8 @@
 {foreach $holidays timestamp holidayData}
 	<h3 class="holidaysList {cycle values="odd,even"}" title="{Label resources.holiday}">
-		<span class="icon"> </span>
 		<span class="first holidayDate">{dateFormat $holidayData.date D2M2Y4}</span>
 		<span class="holidayTitle">{$holidayData.title}</span>
-		<span class="holidayDescription">{$holidayData.description}</span>
 		<span class="holidayWorkinghours">{Label resources.workingtime}: {$holidayData.workingtime / 3600}{Label date.hrs}</span>
+		<span class="holidayDescription">{$holidayData.description}</span>
 	</h3>
 {/foreach}
