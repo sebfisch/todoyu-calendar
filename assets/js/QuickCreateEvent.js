@@ -56,7 +56,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	 */
 	onSaved: function(response) {
 		if( response.hasTodoyuError() ) {
-			Todoyu.notifySuccess('[LLL:event.saved.error]');
+			Todoyu.notifyError('[LLL:event.saved.error]');
 
 			Todoyu.Popup.setContent('quickcreate', response.responseText);
 		} else {

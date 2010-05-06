@@ -32,8 +32,8 @@ Todoyu.Ext.calendar.Event = {
 	 * Install observers
 	 */
 	installObservers: function() {
-			// View
-		$('calendararea').select('div.event').each(function(eventElement){
+			// Observe all events in the calendar
+		$('calendar-body').select('div.event').each(function(eventElement){
 			eventElement.observe('dblclick', this.onEventDblClick.bindAsEventListener(this));
 		}.bind(this));
 
@@ -50,10 +50,14 @@ Todoyu.Ext.calendar.Event = {
 	onEventDblClick: function(event) {
 		event.stop();
 
-		var eventElem	= event.findElement('div.event');
-		var idEvent		= eventElem.readAttribute('id').split('-').last();
+		var eventDiv	= event.findElement('div.event');
+		var elementID	= eventDiv.id;
+		var parts		= elementID.split('-');
+		var idItem		= parts.last();
 
-		this.show(idEvent);
+		if( parts.first() !== 'birthday' ) {
+			this.show(idItem);
+		}
 	},
 
 

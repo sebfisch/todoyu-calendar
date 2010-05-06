@@ -44,7 +44,7 @@
 		<label index="attr.id_task">Task</label>
 		<label index="tree.header.title">Event Title</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Birthdays within the next weeks</label>
-		<label index="eventslist.holidaysWithinTheNextweeks">Holiday within the next weeks</label>
+		<label index="eventslist.holidaysWithinTheNextweeks">Holidays within the next weeks</label>
 		<label index="error.noneFound">Currently no upcoming events for you</label>
 		<label index="error.starttimeAfterEndtime">The event ends before or at the same time as it starts!</label>
 		<label index="error.privateEvent">You are not allowed to assign a personal event to someone else!</label>
@@ -105,7 +105,7 @@
 		<label index="attr.id_task">Aufgabe</label>
 		<label index="tree.header.title">Termin-Titel</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Geburtstage in den nächsten Wochen</label>
-		<label index="eventslist.holidaysWithinTheNextweeks">Urlaube in den nächsten Wochen</label>
+		<label index="eventslist.holidaysWithinTheNextweeks">Feiertage in den nächsten Wochen</label>
 		<label index="error.noneFound">Zur Zeit gibt es keine ausstehenden Termine für Sie</label>
 		<label index="error.starttimeAfterEndtime">Der Termin endet vor seinem Anfang</label>
 		<label index="error.privateEvent">Private Termine können nicht anderen Benutzern zugewiesen werden</label>

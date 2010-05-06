@@ -74,8 +74,12 @@ div.dayMode div#calendararea div.event dt.head {
 	Event
    ---------------------- */
 
-.dayevent {
+#dayViewAllDaywk .dayevent {
 	padding-top:1px;
+}
+
+#calendar #dayViewAllDaywk .event span {
+	display:inline-block;
 }
 
 

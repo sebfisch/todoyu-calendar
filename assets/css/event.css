@@ -248,7 +248,7 @@
 }
 
 #holidays h3 {
-	padding-left:35px;
+	/*padding-left:35px;*/
 }
 
 #events .event .headLabel {
@@ -263,6 +263,22 @@
 #events .odd h3{
 	background-color:#f3f3f3;
 }
+
+#holidays span.icon {
+	margin-right:10px;
+	background:url(../img/icons.png) no-repeat 0 -389px;
+}
+
+#holidays .holidayTitle {
+	padding-left:15px;
+}
+
+#holidays .holidayWorkinghours {
+	position:absolute;
+	right:10px;
+}
+
+
 
 #events .details {
 	border:1px solid #000;
@@ -328,16 +344,6 @@ div.eventDetails dd {
 
 #events .event h3 .isNotAcknowledgedIcon {
 
-}
-
-
-#holidays .holidayTitle {
-	padding-left:15px;
-}
-
-#holidays .holidayWorkinghours {
-	position:absolute;
-	right:10px;
 }
 
 
