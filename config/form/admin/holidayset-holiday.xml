@@ -17,7 +17,7 @@
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getHolidayOptions</function>
 					</source>
-					<required>1</required>
+					<required/>
 				</field>
 
 			</elements>

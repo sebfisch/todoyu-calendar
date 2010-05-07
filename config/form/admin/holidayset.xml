@@ -16,7 +16,7 @@
 
 				<field type="textinput" name="title">
 					<label>calendar.holidayset.attr.name</label>
-					<required>1</required>
+					<required/>
 				</field>
 
 				<field type="textarea" name="description">

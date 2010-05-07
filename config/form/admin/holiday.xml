@@ -11,12 +11,12 @@
 
 				<field type="textinput" name="title">
 					<label>core.title</label>
-					<required>1</required>
+					<required/>
 				</field>
 
 				<field type="dateinput" name="date">
 					<label>date.date</label>
-					<required>1</required>
+					<required/>
 				</field>
 
 				<field type="textarea" name="description">
