@@ -14,6 +14,10 @@
 	background:url(../img/icons.png) no-repeat 4px -538px;
 }
 
+#quickinfo dt.workIcon {
+	background:url(../img/icons.png) no-repeat 4px -1172px;
+}
+
 #quickinfo dt.personsIcon {
 	background:url(../../../contact/assets/img/icons.png) no-repeat 4px 2px;
 }
