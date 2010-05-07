@@ -69,8 +69,8 @@ Todoyu.Ext.calendar.Tabs = {
 		if( this.ext.Event.Edit.isActive() ) {
 			this.ext.Event.Edit.close();
 		}
-		if( this.ext.EventView.isActive() ) {
-			this.ext.EventView.close();
+		if( this.ext.Event.View.isActive() ) {
+			this.ext.Event.View.close();
 		}
 	},
 

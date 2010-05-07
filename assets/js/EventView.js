@@ -20,7 +20,7 @@
 /**
  * Functions for event view
  */
-Todoyu.Ext.calendar.EventView = {
+Todoyu.Ext.calendar.Event.View = {
 
 	/**
 	 * Extension backlink
@@ -134,6 +134,7 @@ Todoyu.Ext.calendar.EventView = {
 	 */
 	show: function() {
 		$('calendar-view').show();
+		Todoyu.Ui.scrollToTop();
 	},
 
 

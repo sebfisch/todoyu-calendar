@@ -33,7 +33,7 @@ Todoyu.Ext.calendar.Event = {
 	 */
 	installObservers: function() {
 			// Observe all events in the calendar
-		$('calendar-body').select('div.event').each(function(eventElement){
+		$('calendar-body').select('div.event').each(function(eventElement) {
 			eventElement.observe('dblclick', this.onEventDblClick.bindAsEventListener(this));
 		}.bind(this));
 
@@ -55,6 +55,15 @@ Todoyu.Ext.calendar.Event = {
 		var parts		= elementID.split('-');
 		var idItem		= parts.last();
 
+			// If event is private and not allowed for current user, do nothing
+		var private = eventDiv.down('span.private');
+		if( private ) {
+			if( ! private.hasClassName('allowed') ) {
+				return false;
+			}
+		}
+
+			// Birthdays have no details
 		if( parts.first() !== 'birthday' ) {
 			this.show(idItem);
 		}
@@ -68,7 +77,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{Number}		idEvent
 	 */
 	show: function(idEvent) {
-		this.ext.EventView.open(idEvent);
+		this.ext.Event.View.open(idEvent);
 	},
 
 
