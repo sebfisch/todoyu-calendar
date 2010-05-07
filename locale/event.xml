@@ -13,7 +13,7 @@
 		<label index="type.away">Absence</label>
 		<label index="type.birthday">Birthday</label>
 		<label index="type.vacation">Vacation</label>
-		<label index="type.education">Continued Education</label>
+		<label index="type.education">Continuing Education</label>
 		<label index="type.meeting">Meeting</label>
 		<label index="type.awayofficial">External Work</label>
 		<label index="type.homeoffice">Home Office</label>
@@ -26,11 +26,11 @@
 		<label index="delete.confirm">Do you really want to delete this event?</label>
 		<label index="attr.creator">Creator</label>
 		<label index="attr.eventtype">Event Type</label>
-		<label index="attr.is_dayevent">All day</label>
+		<label index="attr.is_dayevent">All Day</label>
 		<label index="attr.is_public">Is Public?</label>
 		<label index="attr.is_private">Personal Event</label>
 		<label index="attr.attendees">Attendees</label>
-		<label index="attr.timespan">Time span</label>
+		<label index="attr.timespan">Time Span</label>
 		<label index="attr.startdate">Start Date</label>
 		<label index="attr.starttime">At</label>
 		<label index="attr.enddate">End Date</label>
@@ -48,7 +48,7 @@
 		<label index="error.noneFound">Currently no upcoming events for you</label>
 		<label index="error.starttimeAfterEndtime">The event ends before or at the same time as it starts!</label>
 		<label index="error.privateEvent">You are not allowed to assign a personal event to someone else!</label>
-		<label index="error.personsOverbooked">The following persons already have events assigned at the given time:</label>
+		<label index="error.personsOverbooked">This person already has assigned events at the given time:</label>
 		<label index="error.hasInternalPerson">You need to assign at least one internal person to the event</label>
 		<label index="contextmenu.manageEvents">Manage Events</label>
 		<label index="contextmenu.showEvent">Show Event</label>
@@ -59,7 +59,7 @@
 		<label index="contextmenu.showEventInCalendar.day">Day</label>
 		<label index="contextmenu.showEventInCalendar.week">Week</label>
 		<label index="contextmenu.showEventInCalendar.month">Month</label>
-		<label index="ac.personassignment.notFoundInfo">No persons with names containing this text were found.</label>
+		<label index="ac.personassignment.notFoundInfo">No person of this name was found.</label>
 	</labels>
 	<labels lang="de_DE">
 		<label index="event">Termin</label>
