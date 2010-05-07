@@ -171,9 +171,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 * 'show' action method
+	 * Show event details
 	 *
-	 * @param	Array $params
+	 * @param	Array 		$params
 	 * @return	String
 	 */
 	public function showAction(array $params) {
