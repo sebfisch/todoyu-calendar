@@ -576,35 +576,7 @@ class TodoyuEventManager {
 	}
 
 
-
-	/**
-	 * Calculate number of day the event starts, relative to shown days of current week view
-	 *
-	 * @param	Integer		$tstampStart			UNIX timestamp event start
-	 * @param	Integer		$tstampEnd				UNIX timestamp event end
-	 * @return	Integer
-	 */
-	public static function calcEventStartingDayNumInWeek($tstampStart, $tstampEnd) {
-		return ( $tstampStart < $tstampEnd ) ? 0 : TodoyuTime::getWeekdayNum($tstampStart, true);
-	}
-
-
-
-	/**
-	 * Calculate number of day the event ends, relative to shown days of current week-view
-	 *
-	 * @param	Integer		$start					UNIX timestamp event start
-	 * @param	Integer		$end					UNIX timestamp event end
-	 * @param	Integer		$tstampFirstShownDay	UNIX timestamp first shown day
-	 * @param	Integer		$tstampLastShownDay		UNIX timestamp last shown day
-	 * @return	Integer
-	 */
-	public static function calcEventEndingDayNumInWeek($tstampEnd, $tstampLastShownDay) {
-		return ( $tstampEnd > $tstampLastShownDay ) ? 7 : TodoyuTime::getWeekdayNum($tstampEnd, true);
-	}
-
-
-
+	
 	/**
 	 * Remove event from cache
 	 *

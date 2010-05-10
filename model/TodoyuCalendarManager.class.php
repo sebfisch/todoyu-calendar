@@ -146,52 +146,7 @@ class TodoyuCalendarManager {
 		);
 	}
 
-
-
-	/**
-	 * Get the period (length) of an event to be displayed as a block of one or several days (week mode)
-	 *
-	 * @param	Integer 	$startTime			Timestamp of the startdate
-	 * @param	Integer 	$endTime			Timestamp of the enddate
-	 * @param	Integer 	$tstampSelDay		Timestamp of selected day in calendar widget
-	 * @return	Array		Duration infos (TD rendering infos)
-	 */
-	public static function getEventDurationRenderData($startTime, $endTime, $tstampSelDay) {
-		$startDayOfWeek		= TodoyuTime::getWeekdayNum($startTime);
-		$startWeekNumber	= TodoyuTime::getWeeknumber($startTime);
-		$endDayOfWeek		= TodoyuTime::getWeekdayNum($endTime);
-		$endWeekNumber		= TodoyuTime::getWeeknumber($endTime);
-		$currentWeekNumber	= TodoyuTime::getWeeknumber($tstampSelDay);
-
-			// If start and end date is in the same week
-		if ( $startWeekNumber == $endWeekNumber ) {
-			$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums($startDayOfWeek, $endDayOfWeek, true);
-			$duration['blankTDBefore']	= $startDayOfWeek - 1;
-		} else {
-					// Is the current week the first one?
-				if ( $currentWeekNumber == $startWeekNumber ) {
-
-					$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums($startDayOfWeek, '', false);
-					$duration['blankTDBefore']	= 7 - $duration['duration'];
-				}
-
-					// Is the current week the last one?
-				if ( $currentWeekNumber == $endWeekNumber ) {
-					$duration['duration']		= TodoyuCalendarManager::getAmountOfDaysInbetweenWeekdayNums('', $endDayOfWeek, false);
-					$duration['blankTDBefore']	= 0;
-				}
-
-					// Is the current week between the first and last one? Show the full week
-				if ( $currentWeekNumber != $startWeekNumber && $currentWeekNumber != $endWeekNumber ) {
-					$duration['duration']		= 7;
-					$duration['blankTDBefore']	= 0;
-				}
-		}
-
-		return $duration;
-	}
-
-
+	
 
 	/**
 	 * Get timestamps shown in calendar month view (days of month before selected, of the selected and of the month after the selected month)

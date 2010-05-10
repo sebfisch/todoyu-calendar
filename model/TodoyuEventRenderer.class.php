@@ -88,16 +88,6 @@ class TodoyuEventRenderer {
 		$data['color']			= $color[$idAssignedPerson];
 		$data['eventtypeKey']	= TodoyuEventTypeManager::getEventTypeKey($data['eventtype']);
 
-
-		if ( $mode == CALENDAR_MODE_WEEK ) {
-			$shownStartingDayNum	= TodoyuEventManager::calcEventStartingDayNumInWeek($data['date_start'], $data['tstamp_firstDay']);
-			$shownEndingDayNum		= TodoyuEventManager::calcEventEndingDayNumInWeek($data['date_end'], $data['tstamp_lastDay']);
-
-			$data['shownStartingDayNum']	= $shownStartingDayNum;
-			$data['shownEndingDayNum']		= $shownEndingDayNum;
-			$data['shownDaysDuration']		= $shownEndingDayNum - $shownStartingDayNum;
-		}
-
 		return $data;
 	}
 
