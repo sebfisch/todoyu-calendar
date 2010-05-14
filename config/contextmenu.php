@@ -28,7 +28,7 @@
 
 
 /**
- * Contextmenu for calendar area (not clicked on event)
+ * Context menu for calendar area (not clicked on event)
  */
 Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 	'add'	=> array(
@@ -43,7 +43,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 
 
 /**
- * General event contextmenu
+ * General event context menu
  */
 Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 	'show'	=> array(
@@ -79,7 +79,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 
 
 /**
- * Contextmenu for events in portal area
+ * Context menu for events in portal area
  */
 Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
 	'show'	=> array(
