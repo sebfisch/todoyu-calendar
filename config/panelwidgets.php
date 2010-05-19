@@ -25,9 +25,7 @@
  * @subpackage	Calendar
  */
 
-
-
-	// Set panelwidgets' configurations
+	// PanelWidgets configurations
 $panelWidgetConfigCalendar				= array('class'	=> 'todoyuskin');
 $panelWidgetConfigHolidaySetSelector	= array();
 $panelWidgetConfigStaffSelector			= array('colorizePersonOptions' => true);

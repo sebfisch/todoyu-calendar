@@ -43,7 +43,7 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * Get calendar extension preference
+	 * Get given calendar extension preference
 	 *
 	 * @param	String		$preference
 	 * @param	Integer		$idItem
@@ -100,12 +100,23 @@ class TodoyuCalendarPreferences {
 	}
 
 
+
+	/**
+	 * @todo	comment
+	 * @param	Boolean		$full
+	 */
 	public static function saveFullDayView($full = true) {
 		$full	= $full ? 1 : 0;
 
 		self::savePref('fulldayview', $full, 0, true);
 	}
 
+
+
+	/**
+	 * @todo	comment
+	 * @return	Boolean
+	 */
 	public static function getFullDayView() {
 		$pref	= self::getPref('fulldayview', 0);
 
@@ -158,7 +169,7 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * Saves the current active tab
+	 * Save the current active tab as pref
 	 *
 	 * @param 	String	 $idTab		Name of the tab
 	 */
@@ -169,10 +180,10 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * Gets the saved calendar date. If not set, return now
+	 * Get the saved calendar date pref. If not set, return timestamp of now
 	 *
-	 * @param	Integer	$idArea
-	 * @return	Integer	Timestamp
+	 * @param	Integer		$idArea
+	 * @return	Integer					Timestamp
 	 */
 	public static function getCalendarDate($idArea = 0) {
 		$timestamp	= TodoyuPreferenceManager::getPreference(EXTID_CALENDAR, 'date', 0, $idArea);
@@ -183,10 +194,10 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * Saves the active calendar date.
+	 * Save the active calendar date.
 	 *
-	 * @param	Integer	$idArea
-	 * @param	Integer	$timestamp	UNIX Timestamp
+	 * @param	Integer		$idArea
+	 * @param	Integer		$timestamp		UNIX Timestamp
 	 */
 	public static function saveCalendarDate($idArea, $timestamp) {
 		$timestamp	= intval($timestamp);
@@ -195,6 +206,12 @@ class TodoyuCalendarPreferences {
 	}
 
 
+
+	/**
+	 * @todo	comment
+	 * @param	Integer		$idEvent
+	 * @param	Boolean		$expanded
+	 */
 	public static function savePortalEventExpandedStatus($idEvent, $expanded = true) {
 		$idEvent= intval($idEvent);
 		$value	= $expanded ? 1 : 0;
@@ -203,12 +220,17 @@ class TodoyuCalendarPreferences {
 	}
 
 
+
+	/**
+	 * @todo	comment
+	 * @param	Integer		$idEvent
+	 * @return	Boolean
+	 */
 	public static function getPortalEventExpandedStatus($idEvent) {
 		$idEvent= intval($idEvent);
 
 		return intval(self::getPref('portal-event-expanded', $idEvent)) === 1;
 	}
-
 
  }
 

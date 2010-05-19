@@ -26,7 +26,7 @@
  */
 
 /**
- * Add contextmenu callbacks
+ * Add context menu callbacks
  */
 TodoyuContextMenuManager::addFunction('Event', 'TodoyuEventManager::getContextMenuItems', 10);
 TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
@@ -100,7 +100,6 @@ Todoyu::$CONFIG['EXT']['calendar']['defaultEventColors'] = array(
 	'text'		=> '#000',
 	'faded'		=> '#555',
 );
-
 
 	// Additional portal tab events listing specific config
 Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(

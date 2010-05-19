@@ -25,8 +25,6 @@
  * @subpackage	Calendar
  */
 
-
-
 /**
  * Context menu for calendar area (not clicked on event)
  */

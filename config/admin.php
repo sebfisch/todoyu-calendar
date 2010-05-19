@@ -25,9 +25,7 @@
  * @subpackage	Calendar
  */
 
-
-
-// add holiday sets to records area of sysadmin
+// Add holiday sets to records area of sysadmin
 TodoyuExtManager::addRecordConfig('calendar', 'holidayset', array(
 	'label'		=> 'LLL:calendar.applicableholidayset',
 	'list'		=> 'TodoyuHolidaySetManager::getRecords',
@@ -38,7 +36,7 @@ TodoyuExtManager::addRecordConfig('calendar', 'holidayset', array(
 	'table'		=> 'ext_calendar_holidayset'
 ));
 
-// add holidays to records area of sysadmin
+// Add holidays to records area of sysadmin
 TodoyuExtManager::addRecordConfig('calendar', 'holiday', array(
 	'label'		=> 'LLL:calendar.holiday',
 	'list'		=> 'TodoyuHolidayManager::getRecords',
