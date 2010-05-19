@@ -16,4 +16,8 @@
 		<label index="title">Выходные по регионам</label>
 		<label index="showNoHolidays">Спрятать выходные</label>
 	</labels>
+	<labels lang="fr_FR">
+		<label index="title">Congs par region</label>
+		<label index="showNoHolidays">Masquer les congs</label>
+	</labels>
 </locallang>

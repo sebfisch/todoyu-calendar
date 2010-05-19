@@ -12,4 +12,7 @@
 	<labels lang="ru_RU">
 		<label index="title">Типы событий</label>
 	</labels>
+	<labels lang="fr_FR">
+		<label index="title">Types d'activits</label>
+	</labels>
 </locallang>

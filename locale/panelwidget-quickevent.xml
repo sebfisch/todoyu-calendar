@@ -16,4 +16,8 @@
 		<label index="title">Помошник событий</label>
 		<label index="addNewEvent">Создать событие</label>
 	</labels>
+	<labels lang="fr_FR">
+		<label index="title">Assistant d'activit</label>
+		<label index="addNewEvent">Crer une activit</label>
+	</labels>
 </locallang>
