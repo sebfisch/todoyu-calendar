@@ -11,5 +11,9 @@
 	<labels lang="pt_BR">
 		<label index="title">Assitente de Evento</label>
 		<label index="addNewEvent">Criar Evento</label>
-	</labels>	
+	</labels>
+	<labels lang="ru_RU">
+		<label index="title">Помошник событий</label>
+		<label index="addNewEvent">Создать событие</label>
+	</labels>
 </locallang>

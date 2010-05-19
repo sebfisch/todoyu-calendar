@@ -9,4 +9,7 @@
 	<labels lang="pt_BR">
 		<label index="title">Calendário</label>
 	</labels>
+	<labels lang="ru_RU">
+		<label index="title">Календарь</label>
+	</labels>
 </locallang>

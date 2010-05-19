@@ -8,5 +8,8 @@
 	</labels>
 	<labels lang="pt_BR">
 		<label index="title">Tipo de Evento</label>
-	</labels>	
+	</labels>
+	<labels lang="ru_RU">
+		<label index="title">Типы событий</label>
+	</labels>
 </locallang>
