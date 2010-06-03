@@ -84,8 +84,8 @@ class TodoyuCalendarManager {
 	/**
 	 * Get amount of days between two week-day numbers (0-6)
 	 *
-	 * @param	Integer 	$startDay			Timestamp of the startday
-	 * @param	Integer 	$endDay				Timestamp of the endday
+	 * @param	Integer 	$startDay			Timestamp of the starting day
+	 * @param	Integer 	$endDay				Timestamp of the ending day
 	 * @param	Boolean		$insideTheSameWeek	If true, the two days are inside the same week
 	 * @return	Integer
 	 */
@@ -197,10 +197,10 @@ class TodoyuCalendarManager {
 
 
 	/**
-	 * Precalculate various time data (from prev., selected and next month) for calendar month view
+	 * PreCalculate various time data (from prev., selected and next month) for calendar month view
 	 *
 	 * @param	Integer	$tstamp		UNIX Timestamp (selected date in calendar panel widget)
-	 * @return	Array	data		precalculated attributes of prev., selected and next month to be rendered
+	 * @return	Array	data		preCalculated attributes of prev., selected and next month to be rendered
 	 */
 	public static function getMonthSpecs($timestamp) {
 		$timestamp	= intval($timestamp);
@@ -270,8 +270,8 @@ class TodoyuCalendarManager {
 
 
 	/**
-	 * Get currently selected personss (defined by the panel widget)
-	 * If no person is selected, the current person will automaticly be selected
+	 * Get currently selected persons (defined by the panel widget)
+	 * If no person is selected, the current person will automatically be selected
 	 *
 	 * @return	Array
 	 */
@@ -326,7 +326,7 @@ class TodoyuCalendarManager {
 
 	/**
 	 * Get birthday persons in time range, grouped by day
-	 * Subgroups are datekeys in format Ymd
+	 * Subgroups are date keys in format Ymd
 	 *
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$dateEnd
