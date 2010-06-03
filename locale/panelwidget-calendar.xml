@@ -15,4 +15,7 @@
 	<labels lang="fr_FR">
 		<label index="title">Calendrier</label>
 	</labels>
+	<labels lang="nl_NL">
+		<label index="title">Kalender</label>
+	</labels>
 </locallang>

@@ -15,4 +15,7 @@
 	<labels lang="fr_FR">
 		<label index="title">Types d'activits</label>
 	</labels>
+	<labels lang="nl_NL">
+		<label index="title">Types agenda-items</label>
+	</labels>
 </locallang>

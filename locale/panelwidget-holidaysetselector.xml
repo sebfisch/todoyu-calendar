@@ -20,4 +20,8 @@
 		<label index="title">Congs par region</label>
 		<label index="showNoHolidays">Masquer les congs</label>
 	</labels>
+	<labels lang="nl_NL">
+		<label index="title">Feestdagen per regio</label>
+		<label index="showNoHolidays">Feestdagen verbergen</label>
+	</labels>
 </locallang>
