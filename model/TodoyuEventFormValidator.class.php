@@ -123,7 +123,10 @@ class TodoyuEventFormValidator {
 			$idEvent	= intval($formData['id']);
 			$event		= $formData;
 
-			if ( ! in_array($event['eventtype'], Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']) ) {
+			$idEventType			= intval($event['eventtype'][0]);
+			$overbookableEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']);
+
+			if( ! in_array($idEventType, $overbookableEventTypes) ) {
 				$personIDs	= TodoyuArray::getColumn($value, 'id');
 				$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
