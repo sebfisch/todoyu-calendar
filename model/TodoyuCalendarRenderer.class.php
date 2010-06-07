@@ -321,26 +321,19 @@ class TodoyuCalendarRenderer {
 			$dayTime = mktime(0, 0, 0, substr($dateKey, 4, 2), substr($dateKey, 6, 2), substr($dateKey, 0, 4) );
 
 			foreach($eventsOfDay as $event) {
-
-				if( $event['_overlapNum'] > 0 ) {
-						// Event intersects with other events
-					$event['width']	= $eventFullWidth / ( $event['_maxPosition'] ) * ( $event['_overlapNum'] );
-					$event['left']	= ( $eventFullWidth / ($event['_maxPosition'] ) ) * $event['_overlapIndex'];
-				} else {
-						// No intersections to this event
-					$event['width']	= $eventFullWidth;
-					$event['left']	= 0;
-				}
+					// Set with and left position based on the overlapping information
+				$event['width']	= round($eventFullWidth/$event['_numColumns'], 0);
+				$event['left']	= round($eventFullWidth/$event['_numColumns'], 0) * $event['_indexColumn'];
 
 					// If the event started before the current day, set top = 0
 				if( $event['date_start'] <= $dayTime ) {
-					$event['top'] = 0;
+					$event['top'] 	= 0;
 				} else {
-					$event['top']		= TodoyuEventRenderer::getTimeCoordinate($event['date_start']);
+					$event['top']	= TodoyuEventRenderer::getTimeCoordinate($event['date_start']);
 				}
 
 				$event['height']	= TodoyuEventRenderer::getEventHeight($dayTime, $event['date_start'], $event['date_end'] );
-
+				
 					// Render
 				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, $mode);
 			}

@@ -176,63 +176,57 @@ class TodoyuEventManager {
 		return $groupedEvents;
 	}
 
-
+	
 
 	/**
-	 * Calculate events' intersections / proximation (have events with overlapping time be arranged hor. parallel)
+	 * Add overlapping information to the event records
+	 * Add:
+	 *  - _indexColumn: The index of the column the event is in. The columns are filled from left to right. New columns are added if necessary
+	 *  - _numColumns:  The number of columns added. This information is redundant in all events
 	 *
-	 * @param	Array	$events
-	 * @param	String	$dateKey	date of currently rendered day (YYYYMMDD)
+	 * @param	Array		$eventsByDay		Events grouped by day. The array index is the date key
+	 * @return	Array		The same array with the two extra keys
 	 */
 	public static function addOverlapInformationToEvents(array $eventsByDay) {
-		foreach($eventsByDay as $dayKey => $eventsOfDay)	{
-			$leftPositionArray = array();
-			$currentPosition	= 0;
-			$index				= 0;
+			// Check positions and overlapping for each day
+		foreach($eventsByDay as $dayKey => $eventsOfDay) {
+			$positions	= array();
+			$column		= 0;
+			$line		= 0;
 
-				//1st step: get left position of each event
-			foreach($eventsOfDay as $idEvent => $eventArray)	{
-				if(sizeof($leftPositionArray) == 0)	{
-					$leftPositionArray[$currentPosition][] 				= $idEvent;
-					$eventsByDay[$dayKey][$idEvent]['_overlapIndex']	= $currentPosition;
+				// 1st step: get left position of each event
+			foreach($eventsOfDay as $eventIndex => $event) {
+					// Just add the first event of the day
+				if( empty($positions) ) {
+					$positions[$column][] 								= $eventIndex;
+					$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= 0;
 				} else {
-					$eventOK = false;
-					while($eventOK == false)	{
-						if( ! isset($leftPositionArray[$currentPosition][$index]) ){
-							$leftPositionArray[$currentPosition][$index] = $idEvent;
-							$eventsByDay[$dayKey][$idEvent]['_overlapIndex'] = $currentPosition;
-							$currentPosition = 0;
-							$index = 0;
-							$eventOK = true;
-						} elseif(self::areEventsOverlaping($eventsByDay[$dayKey][$leftPositionArray[$currentPosition][$index]], $eventArray)){
-							$currentPosition++;
-							$index = 0;
+					$positionFound = false;
+						// Loop until a position for the event was found
+					while( ! $positionFound )	{
+						if( ! isset($positions[$column][$line]) ) {
+								// No event at this position, add event
+							$positions[$column][$line] 							= $eventIndex;
+							$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= $column;
+							$column			= 0;
+							$line 			= 0;
+							$positionFound 	= true;
+						} elseif( self::areEventsOverlaping($eventsByDay[$dayKey][$positions[$column][$line]], $event) ) {
+								// Event is overlapping with an event in this column, try next column from top
+							$column++;
+							$line = 0;
 						} else {
-							$index++;
+								// Event was not overlapping, so we try the next line in the next cycle
+							$line++;
 						}
 					}
 				}
 			}
 
-				//2nd step: get width of each event
-			foreach($eventsOfDay as $idEvent => $eventArray)	{
-
-				foreach($eventsOfDay as $idEventCompare => $eventArrayCompare) {
-					if( ! isset($eventsByDay[$dayKey][$idEvent]['_overlapNum']) ) {
-						$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = 0;
-						$eventsByDay[$dayKey][$idEvent]['_maxPosition'] = sizeof($leftPositionArray);
-					}
-
-					if( self::areEventsOverlaping($eventArrayCompare, $eventArray) && $idEvent != $idEventCompare )	{
-						$eventsByDay[$dayKey][$idEvent]['_overlapNum']++;
-					}
-				}
-
-				if( $eventsByDay[$dayKey][$idEvent]['_overlapNum'] >= sizeof($leftPositionArray) ) {
-					$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = sizeof($leftPositionArray) - sizeof($leftPositionArray) + 1;
-				} else if( $eventsByDay[$dayKey][$idEvent]['_overlapNum'] < sizeof($leftPositionArray) ) {
-					$eventsByDay[$dayKey][$idEvent]['_overlapNum'] = sizeof($leftPositionArray) - $eventsByDay[$dayKey][$idEvent]['_overlapNum'];
-				}
+				// Set number columns for each event
+			$numColumns	= sizeof($positions);
+			foreach($eventsOfDay as $eventIndex => $event) {
+				$eventsByDay[$dayKey][$eventIndex]['_numColumns']		= $numColumns;
 			}
 		}
 
