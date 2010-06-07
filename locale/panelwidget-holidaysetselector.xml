@@ -24,4 +24,8 @@
 		<label index="title">Feestdagen per regio</label>
 		<label index="showNoHolidays">Feestdagen verbergen</label>
 	</labels>
+	<labels lang="cs_CZ">
+		<label index="title">Svátky dle regionu</label>
+		<label index="showNoHolidays">Skrýt svátky</label>
+	</labels>
 </locallang>

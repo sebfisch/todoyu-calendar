@@ -18,4 +18,7 @@
 	<labels lang="nl_NL">
 		<label index="title">Types agenda-items</label>
 	</labels>
+	<labels lang="cs_CZ">
+		<label index="title">Typy událostí</label>
+	</labels>
 </locallang>

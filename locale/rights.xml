@@ -72,4 +72,16 @@
 		<label index="event.search">Agenda-items zoeken</label>
 		<label index="event.assignOthers">Agenda-items aan andere personen toewijzen</label>
 	</labels>
+	<labels lang="cs_CZ">
+		<label index="general">Obecné</label>
+		<label index="general.use">Používat funkcionalitu kalendáře</label>
+		<label index="general.area">Používat plochu kalendáře</label>
+		<label index="event">Událost</label>
+		<label index="event.seeAll">Prohlížet všechny události</label>
+		<label index="event.editAndDeleteAssigned">Upravovat a odstraňovat přidělené události</label>
+		<label index="event.editAndDeleteAll">Upravovat a odstraňovat všechny události</label>
+		<label index="event.add">Vytvořit novou události</label>
+		<label index="event.search">Vyhledávat události</label>
+		<label index="event.assignOthers">Přidělovat události jiným osobám</label>
+	</labels>
 </locallang>
