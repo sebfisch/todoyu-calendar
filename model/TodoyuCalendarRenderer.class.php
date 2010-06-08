@@ -366,8 +366,6 @@ class TodoyuCalendarRenderer {
 				if( ! in_array($event['id'], $rendered) || $mode === CALENDAR_MODE_MONTH ) {
 					$rendered[] = $event['id'];
 
-					$event['tstamp_lastDay']	= $dateEnd;
-					$event['tstamp_firstDay']	= $dateStart;
 					$dayEvents[$dateKey][]		= TodoyuEventRenderer::renderFulldayEvent($mode, $event);
 				}
 			}

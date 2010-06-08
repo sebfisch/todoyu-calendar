@@ -2,33 +2,28 @@
 	<span class="type{ucfirst $eventtypeKey} eventtype_{$eventtype}">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 	</span>
-	{if $is_private}{* ----- only show title, if event is not private ----- *}
-		{if isPersonID($id_person)}
-			<span class="private"></span>
-			{if $is_repeated == 1}<span class="seriesEvent"></span>{/if}
-				{if $calendarMode == 'day'}
-					{foreach $assignedPersons num personData}
-						{$personData.shortname}
-						{if $dwoo.foreach.default.last}{else},{/if}
-					{/foreach}:
-				{/if}
-				{htmlencode $title|truncate:14}
-				{if $calendarMode == 'day'}
-				 ({dateFormat $date_start datetime} - {dateFormat $date_end datetime})
-				{/if}
-		{else}
-			<span class="privateEvent"></span>
+
+		{if $is_private}
+			{if isPersonID($id_person)}
+				<span class="private"></span>
+			{else}
+				<span class="privateEvent"></span>
+			{/if}
 		{/if}
-	{else}{* ----- not a private event ------ *}
-		{if $calendarMode == 'day'}
-			{foreach $assignedPersons num personData}
-				{$personData.shortname}
-				{if $dwoo.foreach.default.last}{else},{/if}
-			{/foreach}:
+
+		{foreach $assignedPersons person}
+			{$person.shortname}
+			{if !$dwoo.foreach.default.last},{/if}
+		{/foreach}:
+
+		{if !$is_private || isPersonID($id_person)}
+			{htmlencode $title|truncate:50}
 		{/if}
-		{htmlencode $title|truncate:14}
-		{if $calendarMode == 'day'}
-			({dateFormat $date_start datetime} - {dateFormat $date_end datetime})
-		{/if}
-	{/if}
+
+		(
+			{dateFormat $date_start date}
+			{if date('ymd', $date_start) !== date('ymd', $date_end)}
+				- {dateFormat $date_end date}
+			{/if}
+		)
 </div>
