@@ -14,7 +14,7 @@
 					<required/>
 				</field>
 
-				<field type="dateinput" name="date">
+				<field type="date" name="date">
 					<label>date.date</label>
 					<required/>
 				</field>

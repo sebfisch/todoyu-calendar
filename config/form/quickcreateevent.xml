@@ -33,12 +33,12 @@
 					<label>event.attr.is_dayevent</label>
 				</field>
 
-				<field type="datetimeinput" name="date_start">
+				<field type="datetime" name="date_start">
 					<label>event.attr.startdate</label>
 					<required label="event.error.date_start" />
 				</field>
 
-				<field type="datetimeinput" name="date_end">
+				<field type="datetime" name="date_end">
 					<label>event.attr.enddate</label>
 					<validate>
 						<dateTimeNotBefore msg="LLL:calendar.check.starttimeAfterEndtime">

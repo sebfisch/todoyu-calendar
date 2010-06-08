@@ -42,14 +42,14 @@
 					</validate>
 				</field>
 
-				<field type="datetimeinput" name="date_start">
+				<field type="datetime" name="date_start">
 					<label>event.attr.startdate</label>
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event')"</extraAttributes>
 					<class>datetime</class>
 					<required label="event.error.date_start" />
 				</field>
 
-				<field type="datetimeinput" name="date_end">
+				<field type="datetime" name="date_end">
 					<label>event.attr.enddate</label>
 					<validate>
 						<dateTimeNotBefore msg="event.error.starttimeAfterEndtime">
