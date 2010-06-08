@@ -325,7 +325,13 @@ class TodoyuEventManager {
 		unset($otherEvents[$idEvent]);
 
 		foreach($otherEvents as $otherEvent) {
-			$assignedPersonIDs	= TodoyuArray::getColumn(TodoyuEventManager::getAssignedPersonsOfEvent($otherEvent['id']), 'id_person');
+				// Don't check for conflicts if is dayevent
+			if( $otherEvent['is_dayevent'] == 1 ) {
+				continue;
+			}
+
+			$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($otherEvent['id']);
+			$assignedPersonIDs	= TodoyuArray::getColumn($assignedPersons, 'id_person');
 			$conflictedPersonIDs= array_intersect($personIDs, $assignedPersonIDs);
 
 			foreach($conflictedPersonIDs as $idPerson) {

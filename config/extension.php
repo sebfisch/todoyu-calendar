@@ -36,6 +36,9 @@ TodoyuQuickinfoManager::addFunction('event', 'TodoyuCalendarQuickinfoManager::ad
 TodoyuQuickinfoManager::addFunction('holiday', 'TodoyuCalendarQuickinfoManager::addQuickinfoHoliday');
 TodoyuQuickinfoManager::addFunction('birthday', 'TodoyuCalendarQuickinfoManager::addQuickinfoBirthday');
 
+TodoyuAutocompleter::addAutocompleter('eventperson', 'TodoyuCalendarManager::autocompleteEventPersons', array('calendar', 'general:use'));
+
+
 	// Setup tabs in calendar area
 Todoyu::$CONFIG['EXT']['calendar']['config'] = array(
 	'defaultTab'	=> 'week'

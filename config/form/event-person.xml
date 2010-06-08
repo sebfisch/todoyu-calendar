@@ -9,7 +9,7 @@
 				<field type="textinputAC" name="id">
 					<label>event.attr.assigned_to</label>
 					<config>
-						<acName>person</acName>
+						<acName>eventperson</acName>
 						<acLabel>TodoyuPersonManager::getLabel</acLabel>
 						<options>
 							<onCompleteCustom>Todoyu.Ext.calendar.Event.Edit.onPersonAssignmentAutocomplete</onCompleteCustom>
