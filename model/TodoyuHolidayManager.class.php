@@ -315,7 +315,7 @@ class TodoyuHolidayManager {
 
 
 	/**
-	 * Autocomletes holidays
+	 * Autocomplete holidays
 	 *
 	 * @param	String	$sword
 	 * @return	Array
@@ -324,23 +324,16 @@ class TodoyuHolidayManager {
 		$swordArray = TodoyuArray::trimExplode(' ', $sword, true);
 		$results	= array();
 
-		if(count($swordArray) > 0)	{
-			$where = '';
-			if( $swordArray[0] != '*' )	{
-				$where = Todoyu::db()->buildLikeQuery($swordArray, array('title', 'description'));
+		if( sizeof($swordArray) > 0 )	{
+			$where 		= Todoyu::db()->buildLikeQuery($swordArray, array('title', 'description'));
+			$holidays	= Todoyu::db()->getArray('id, title, date', self::TABLE, $where, '', 'date DESC');
+
+			foreach($holidays as $holiday) {
+				$results[$holiday['id']] = $holiday['title'] . ' - ' . TodoyuTime::format($holiday['date'], 'date');
 			}
-
-			$res = Todoyu::db()->doSelect('id, title, date', self::TABLE, $where, '', 'date DESC');
-
-			while($row = Todoyu::db()->fetchAssoc($res))	{
-				$results[$row['id']] = $row['title'] . ' - ' . date(TodoyuLanguage::getLabel('core.dateFormat'), $row['date']);
-			}
-
-			return $results;
-
-		} else {
-			return array();
 		}
+
+		return $results;
 	}
 
 
