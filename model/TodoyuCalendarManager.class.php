@@ -119,10 +119,10 @@ class TodoyuCalendarManager {
 		$secondsOfMonth			= TodoyuTime::getDayRange(mktime(0, 0, 0, $month, 1, $year));
 
 		$shownDaysOfLastMonth	= date('w', mktime(0, 0, 0, $month, 1, $year)) - 1;
-		$shownDaysOfNextMonth	= 35 - (TodoyuTime::getAmountOfDaysInMonth($timestamp)) - (TodoyuTime::getAmountOfDaysInMonth($timestamp, -1));
+		$shownDaysOfNextMonth	= 35 - (TodoyuTime::getDaysInMonth($timestamp)) - (TodoyuTime::getDaysInMonth($timestamp, -1));
 
 		$eventsStart['date']	= $secondsOfMonth['start'] - $shownDaysOfLastMonth * 86400;
-		$eventsStart['days']	= TodoyuTime::getAmountOfDaysInMonth($timestamp) + $shownDaysOfLastMonth + $shownDaysOfNextMonth;
+		$eventsStart['days']	= TodoyuTime::getDaysInMonth($timestamp) + $shownDaysOfLastMonth + $shownDaysOfNextMonth;
 
 		return $eventsStart;
 	}
@@ -208,8 +208,8 @@ class TodoyuCalendarManager {
 		$year	= date('Y', $timestamp);
 
 		$data	= array(
-			'daysOfMonth'			=> TodoyuTime::getAmountOfDaysInMonth($timestamp),
-			'daysOfLastMonth'		=> TodoyuTime::getAmountOfDaysInMonth($timestamp, -1),
+			'daysOfMonth'			=> TodoyuTime::getDaysInMonth($timestamp),
+			'daysOfLastMonth'		=> TodoyuTime::getDaysInMonth($timestamp, -1),
 			'numericDayOfWeek'		=> date('w', mktime(0, 0, 0, $month, 1, $year)),
 			'dateOfLastMonth'		=> $month == 1 ? 12 : $month - 1,
 			'dateOfCurrentMonth'	=> $month,

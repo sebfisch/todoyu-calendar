@@ -160,7 +160,7 @@ class TodoyuCalendarRenderer {
 
 		$tmpl	= 'ext/calendar/view/calendar-week.tmpl';
 		$data	= array(
-			'timestamps'		=> TodoyuTime::getDayTimesOfWeek($time),
+			'timestamps'		=> TodoyuTime::getTimestampsForWeekdays($time),
 			'fullDayView'		=> TodoyuCalendarPreferences::getFullDayView(),
 			'timestamp'			=> $time,
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
