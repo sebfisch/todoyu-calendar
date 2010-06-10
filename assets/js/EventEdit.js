@@ -19,6 +19,7 @@
 
 /**
  * Functions for event edit
+ * @namespace	Todoyu.Ext.calendar.Event.Edit
  */
 Todoyu.Ext.calendar.Event.Edit = {
 
@@ -343,10 +344,26 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 * @param	{Ajax.Response}			response
 	 * @param	{Todoyu.Autocompleter}	autocompleter
 	 */
-	onPersonAssignmentAutocomplete: function(response, autocompleter) {
+	onPersonAcCompleted: function(response, autocompleter) {
 		if( response.getTodoyuHeader('acElements') == 0 ) {
 			Todoyu.notifyInfo('[LLL:event.ac.personassignment.notFoundInfo]');
 		}
+	},
+
+
+
+	/**
+	 * Update label of the person selector in an event
+	 *
+	 * @function	onPersonAcSelected
+	 * @param		{Element}				inputField
+	 * @param		{Element}				idField
+	 * @param		{String}				selectedValue
+	 * @param		{String}				selectedText
+	 * @param		{Todoyu.Autocompleter}	autocompleter
+	 */
+	onPersonAcSelected: function(inputField, idField, selectedValue, selectedText, autocompleter) {
+		$(inputField).up('div.databaseRelation').down('span.label').update(selectedText);
 	}
 
 };
