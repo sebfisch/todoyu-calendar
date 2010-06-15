@@ -217,4 +217,35 @@
 		<label index="extconf.allowoverbooking.label">Povolit Overbooking?</label>
 		<label index="portal.tab.appointments">Schůzky</label>
 	</labels>
+	<labels lang="ja_JP">
+		<label index="ext.title">カレンダー</label>
+		<label index="page.title">カレンダー</label>
+		<label index="maintab.label">計画</label>
+		<label index="holidayset">休日の設定</label>
+		<label index="yearsold">歳</label>
+		<label index="applicableholidayset">休日の設定</label>
+		<label index="workingtime">勤務時間</label>
+		<label index="owner">所有者</label>
+		<label index="subMenuEntry.day">カレンダー > 日</label>
+		<label index="subMenuEntry.week">カレンダー > 週</label>
+		<label index="subMenuEntry.month">カレンダー > 月</label>
+		<label index="today">今日</label>
+		<label index="quicknav.backward.title">戻る</label>
+		<label index="quicknav.forward.title">進む</label>
+		<label index="quicknav.today.title">現在の日付に移動</label>
+		<label index="dayview.workingtime">勤務時間 (8時～18時) のみ表示する</label>
+		<label index="dayview.fullday">丸一日 (0時～24時) を表示する</label>
+		<label index="holidayset.attr.name">名前</label>
+		<label index="holidayset.attr.holiday">休日</label>
+		<label index="holidayset.attr.holiday.new">新しい休日</label>
+		<label index="holiday">休日</label>
+		<label index="holiday.attr.workingtime">勤務時間</label>
+		<label index="holiday.attr.holidayset">休日の設定</label>
+		<label index="holiday.attr.holidayset.new">新しい休日の設定</label>
+		<label index="search.label">イベント</label>
+		<label index="search.mode.label">イベントの検索</label>
+		<label index="portal.tab.appointments">予約</label>
+		<label index="extconf.allowoverbooking.label">予定が重なるのを許可しますか？</label>
+		<label index="portal.tab.appointments">予約</label>
+	</labels>
 </locallang>
