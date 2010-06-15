@@ -61,4 +61,7 @@ define('CALENDAR_WEEK_EVENT_WIDTH', 86);
 	// Maximal date: 2030-12-31, 23:59:59
 define('CALENDAR_MAXDATE', 1924988399);
 
+	// Minimal duration of an event for rendering
+define('CALENDAR_EVENT_MIN_DURATION', 1800);
+
 ?>

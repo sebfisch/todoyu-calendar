@@ -190,41 +190,61 @@ class TodoyuEventManager {
 	public static function addOverlapInformationToEvents(array $eventsByDay) {
 			// Check positions and overlapping for each day
 		foreach($eventsByDay as $dayKey => $eventsOfDay) {
-			$positions	= array();
-			$column		= 0;
-			$line		= 0;
+			$columns	= array();
+
+				// Position in the column
+			//$columnIndex= 0;
+			
+//			TodoyuDebug::printInFireBug($eventsOfDay, '$eventsOfDay');
+//
+//			TodoyuDebug::printInFireBug($columns, '$positions START');
 
 				// 1st step: get left position of each event
 			foreach($eventsOfDay as $eventIndex => $event) {
 					// Just add the first event of the day
-				if( empty($positions) ) {
-					$positions[$column][] 								= $eventIndex;
+				if( empty($columns) ) {
+					TodoyuDebug::printInFireBug($columns, '$positions is empty');
+					$columns[0][] = $eventIndex;
 					$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= 0;
 				} else {
-					$positionFound = false;
-						// Loop until a position for the event was found
-					while( ! $positionFound )	{
-						if( ! isset($positions[$column][$line]) ) {
-								// No event at this position, add event
-							$positions[$column][$line] 							= $eventIndex;
-							$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= $column;
-							$column			= 0;
-							$line 			= 0;
-							$positionFound 	= true;
-						} elseif( self::areEventsOverlaping($eventsByDay[$dayKey][$positions[$column][$line]], $event) ) {
-								// Event is overlapping with an event in this column, try next column from top
-							$column++;
-							$line = 0;
-						} else {
-								// Event was not overlapping, so we try the next line in the next cycle
-							$line++;
+					$fittingColumnFound	= false;
+
+					foreach($columns as $columnIndex => $column) {
+						$overlaps	= false;
+
+						foreach($column as $columnEventIndex) {
+								// Check if the event overlaps with the current column element
+							if( self::areEventsOverlaping($eventsByDay[$dayKey][$columnEventIndex], $event) ) {
+									// Overlapping in this column, try next
+								$overlaps	= true;
+								break;
+							}
+						}
+
+							// Event does not overlap with another in this column
+						if( $overlaps === false ) {
+								// Mark as found (no overlapping)
+							$fittingColumnFound = true;
+								// Stop looping over the current column
+							break;
 						}
 					}
+
+						// No fitting column found. Increment column counter (= add to new column)
+					if( $fittingColumnFound === false ) {
+							// Next column = new column
+						$columnIndex++;
+					}
+
+						// Add eventIndex to current column which has no overlapping
+					$columns[$columnIndex][] = $eventIndex;
+
+					$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= $columnIndex;
 				}
 			}
 
 				// Set number columns for each event
-			$numColumns	= sizeof($positions);
+			$numColumns	= sizeof($columns);
 			foreach($eventsOfDay as $eventIndex => $event) {
 				$eventsByDay[$dayKey][$eventIndex]['_numColumns']		= $numColumns;
 			}
@@ -237,12 +257,23 @@ class TodoyuEventManager {
 
 	/**
 	 * Check whether two events are overlapping, compare date_start and date_end keys in both arrays
+	 * An event uses at least a window for 30 minutes. So if an event is shorter, extend it for comparison
 	 *
 	 * @param	Array		$event1
 	 * @param	Array		$event2
 	 * @return	Boolean
 	 */
 	public static function areEventsOverlaping(array $event1, array $event2) {
+			// Make sure event1 lasts at least 30 min
+		if( ($event1['date_end'] - $event1['date_start']) < CALENDAR_EVENT_MIN_DURATION ) {
+			$event1['date_end'] = $event1['date_start'] + CALENDAR_EVENT_MIN_DURATION;
+		}
+
+			// Make sure event2 lasts at least 30 min
+		if( ($event2['date_end'] - $event2['date_start']) < CALENDAR_EVENT_MIN_DURATION ) {
+			$event2['date_end'] = $event2['date_start'] + CALENDAR_EVENT_MIN_DURATION;
+		}
+
 		return TodoyuTime::rangeOverlaps($event1['date_start'], $event1['date_end'], $event2['date_start'], $event2['date_end']);
 	}
 

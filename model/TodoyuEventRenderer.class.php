@@ -227,7 +227,8 @@ class TodoyuEventRenderer {
 
 		if( $real !== true ) {
 				// Make sure an event is at least 20px height
-			$height	= TodoyuNumeric::intInRange($height, 20);
+			$minHeight	= intval((CALENDAR_EVENT_MIN_DURATION/3600) * CALENDAR_HEIGHT_HOUR);
+			$height	= TodoyuNumeric::intInRange($height, $minHeight);
 		}
 
 		return $height;
