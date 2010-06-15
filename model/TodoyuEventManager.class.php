@@ -192,18 +192,10 @@ class TodoyuEventManager {
 		foreach($eventsByDay as $dayKey => $eventsOfDay) {
 			$columns	= array();
 
-				// Position in the column
-			//$columnIndex= 0;
-			
-//			TodoyuDebug::printInFireBug($eventsOfDay, '$eventsOfDay');
-//
-//			TodoyuDebug::printInFireBug($columns, '$positions START');
-
 				// 1st step: get left position of each event
 			foreach($eventsOfDay as $eventIndex => $event) {
 					// Just add the first event of the day
 				if( empty($columns) ) {
-					TodoyuDebug::printInFireBug($columns, '$positions is empty');
 					$columns[0][] = $eventIndex;
 					$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= 0;
 				} else {
