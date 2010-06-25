@@ -18,7 +18,13 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-	// Add search engine types
+/**
+ * Add calendar search engine type: events
+ *
+ * @package		Todoyu
+ * @subpackage	Calendar
+ */
+
 if ( allowed('calendar', 'general:use') ) {
 	TodoyuSearchManager::addEngine('event', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
 }
