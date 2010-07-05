@@ -38,7 +38,6 @@ class TodoyuEventFormValidator {
 	 */
 	public static function eventIsAssignableToCurrentPersonOnly($value, array $config = array (), $formElement, $formData) {
 			// If the flag is_private is set, the event is only allowed to be assigned to the current person
-
 		if( $formData['is_private'] == 1 )	{
 			if( count($formData['persons']) == 1 )	{
 				$person = array_shift($formData['persons']);
@@ -54,29 +53,29 @@ class TodoyuEventFormValidator {
 
 
 	/**
-	 * Check whether the event starttime is befor endtime
+	 * Check that the event's starting time lays before it's ending time
 	 *
 	 * @param	String		$value			Assigned persons
 	 * @param	Array		$config			Field config array
 	 * @return	Boolean
 	 */
 	public static function starttimeAfterEndtime($value, array $config = array ()) {
-			// Only check this if it is not a fulldayevent
+			// Only check this if it is not a full-day event
 		if ( $config['formdata']['is_dayevent'] == 0) {
 				// Convert dates and times to timestamps
-			$starttime	= strtotime( $config['formdata']['startdate'] . ' ' . $config['formdata']['starttime'] );
-			$endtime	= strtotime( $config['formdata']['enddate'] . ' ' . $config['formdata']['endtime'] );
+			$timeStart	= strtotime( $config['formdata']['startdate'] . ' ' . $config['formdata']['starttime'] );
+			$timeEnd	= strtotime( $config['formdata']['enddate'] . ' ' . $config['formdata']['endtime'] );
 
-				// Starttime must be before the endtime
-			if ( $endtime <= $starttime ) {
+				// Start time must be before the end time
+			if ( $timeEnd <= $timeStart ) {
 				return false;
 			}
 		} else {
 				// Convert dates to timestamps
-			$startdate	= strtotime( $config['formdata']['startdate'] );
-			$enddate	= strtotime( $config['formdata']['enddate'] );
+			$dateStart	= strtotime( $config['formdata']['startdate'] );
+			$dateEnd	= strtotime( $config['formdata']['enddate'] );
 
-			if ( $startdate > $enddate ) {
+			if ( $dateStart > $dateEnd ) {
 				return false;
 			}
 		}
@@ -85,7 +84,7 @@ class TodoyuEventFormValidator {
 
 
 	 /**
-	 * Check wheter the time format is correct
+	 * Check whether the time format is correct
 	 *
 	 * @param	String		$value			Assigned persons
 	 * @param	Array		$config			Field config array
@@ -93,14 +92,16 @@ class TodoyuEventFormValidator {
 	 */
 	 public static function checkTimeFormat($value, array $config = array ()) {
 			// Build regular expression
-		$regexp	= '(\d{1,2}(\:|\s)\d{1,2})';
+		$regExp	= '(\d{1,2}(\:|\s)\d{1,2})';
 
-			// Check starttime format with regular expression
-		if ( ! preg_match( $regexp, $config['formdata']['starttime'] ) ) {
+			// Check format of starting and ending time with regular expression
+		if ( ! preg_match( $regExp, $config['formdata']['starttime'] ) ) {
 			return false;
-		} elseif ( ! preg_match( $regexp, $config['formdata']['endtime'] ) ) {
+		} elseif ( ! preg_match( $regExp, $config['formdata']['endtime'] ) ) {
 			return false;
 		}
+
+		return true;
 	}
 
 
@@ -120,35 +121,30 @@ class TodoyuEventFormValidator {
 			// Check if calendar is configured to prevent overbooking
 		if ( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
 				// Check which (any?) event persons are overbooked
-			$event		= $formData;
-			$idEvent	= intval($event['id']);
-
-			$idEventType			= intval($event['eventtype'][0]);
+			$idEvent		= intval($formData['id']);
+			$idEventType	= intval($formData['eventtype'][0]);
 			$overbookableEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']);
-			$isDayEvent				= intval($event['is_dayevent']) === 1;
+			$isDayEvent				= intval($formData['is_dayevent']) === 1;
 
 			if( ! $isDayEvent && ! in_array($idEventType, $overbookableEventTypes) ) {
-				$personIDs	= TodoyuArray::getColumn($value, 'id');
-				$personIDs	= TodoyuArray::intval($personIDs, true, true);
-
-				$overbookedInfos	= TodoyuEventManager::getOverbookingInfos($event['date_start'], $event['date_end'], $personIDs, $idEvent);
+				$personIDs		= TodoyuArray::intval(TodoyuArray::getColumn($value, 'id'), true, true);
+				$overbookedInfos= TodoyuEventManager::getOverbookingInfos($formData['date_start'], $formData['date_end'], $personIDs, $idEvent);
 
 				if( sizeof($overbookedInfos) > 0 ) {
-					$bookable	= false;
-
 					$tmpl	= 'ext/calendar/view/overbooking-info.tmpl';
 					$data	= array(
 						'overbooked'	=> $overbookedInfos
 					);
 
 					$error	= render($tmpl, $data);
-
 					$formElement->setErrorMessage($error);
+
+					return false;
 				}
 			}
 		}
 
-		return $bookable;
+		return true;
 	}
 
 
