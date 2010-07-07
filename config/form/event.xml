@@ -14,7 +14,7 @@
 			<legend>Data of the event</legend>
 			<elements>
 
-				<field type="textinput" name="title">
+				<field type="text" name="title">
 					<label>core.title</label>
 					<required />
 				</field>
@@ -72,7 +72,7 @@
 			<legend>Details</legend>
 			<elements>
 
-				<field type="textinput" name="place">
+				<field type="text" name="place">
 					<label>event.attr.place</label>
 				</field>
 
@@ -105,7 +105,7 @@
 					<required />
 				</field>
 <!--
-				<field type="textinputAC" name="id_project">
+				<field type="textAC" name="id_project">
 					<label>event.attr.id_project</label>
 					<config>
 						<acName>project</acName>
@@ -113,7 +113,7 @@
 					</config>
 				</field>
 
-				<field type="textinputAC" name="id_task">
+				<field type="textAC" name="id_task">
 					<label>event.attr.id_task</label>
 					<config>
 						<acName>task</acName>

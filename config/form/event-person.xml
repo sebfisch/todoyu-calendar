@@ -6,7 +6,7 @@
 			<legend>Event Persons</legend>
 			<elements>
 
-				<field type="textinputAC" name="id">
+				<field type="textAC" name="id">
 					<label>event.attr.assigned_to</label>
 					<config>
 						<acName>eventperson</acName>
