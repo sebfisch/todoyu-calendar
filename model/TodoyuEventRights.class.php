@@ -46,23 +46,20 @@ class TodoyuEventRights {
 	 */
 	public static function isSeeAllowed($idEvent) {
 		$idEvent= intval($idEvent);
-
-		$event				= TodoyuEventManager::getEvent($idEvent);
-		$isPrivate			= $event->data['is_private'] === '1';
-		$assignedPersons	= $event->getAssignedPersonIDs();
-
-		$idPerson	= personid();
+		$event	= TodoyuEventManager::getEvent($idEvent);
 
 			// Admin sees all events.
-		if ( TodoyuAuth::isAdmin() ) {
+		if( TodoyuAuth::isAdmin() ) {
 			return true;
 		}
+
 			// Person is assigned to event
-		if ( in_array($idPerson, $assignedPersons) ) {
+		if( $event->isCurrentPersonAssigned() ) {
 			return true;
 		}
+
 			// Person can see all events and event is not private,
-		if ( allowed('calendar', 'event:seeAll') && ! $isPrivate ) {
+		if( allowed('calendar', 'event:seeAll') && ! $event->isPrivate() ) {
 			return true;
 		}
 

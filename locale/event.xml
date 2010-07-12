@@ -45,7 +45,7 @@
 		<label index="tree.header.title">Event Title</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Birthdays within the next weeks</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Holidays within the next weeks</label>
-		<label index="error.noneFound">Currently no upcoming events for you</label>
+		<label index="error.noAppointmentsFound">No upcoming appointments</label>
 		<label index="error.starttimeAfterEndtime">The event ends before or at the same time as it starts!</label>
 		<label index="error.privateEvent">You are not allowed to assign a personal event to someone else!</label>
 		<label index="error.personsOverbooked">This person already has assigned events at the given time:</label>
@@ -106,7 +106,7 @@
 		<label index="tree.header.title">Termin-Titel</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Geburtstage in den nächsten Wochen</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Feiertage in den nächsten Wochen</label>
-		<label index="error.noneFound">Zur Zeit gibt es keine ausstehenden Termine für Sie</label>
+		<label index="error.noAppointmentsFound">Zur Zeit haben Sie keine Termine</label>
 		<label index="error.starttimeAfterEndtime">Der Termin endet vor seinem Anfang</label>
 		<label index="error.privateEvent">Private Termine können nicht anderen Benutzern zugewiesen werden</label>
 		<label index="error.personsOverbooked">Die folgenden Personen haben bereits Termine zum angegebenen Zeitpunkt:</label>
@@ -167,7 +167,7 @@
 		<label index="tree.header.title">Título do Evento</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Aniversários nas próximas semanas</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Feriados nas próximas semanas</label>
-		<label index="error.noneFound">Nenhum evento</label>
+		<label index="error.noAppointmentsFound">Nenhum evento</label>
 		<label index="error.starttimeAfterEndtime">O evento termina antes ou na mesma data do início!</label>
 		<label index="error.privateEvent">Não é permitido adicionar um evento pessoal a outro usuário!</label>
 		<label index="error.personsOverbooked">Os seguintes usuários já possuem compromissos no horário especificado:</label>
@@ -228,7 +228,7 @@
 		<label index="tree.header.title">Название события</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">События на следующих неделях</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Выходные на следующих неделях</label>
-		<label index="error.noneFound">В данный момент для Вас событий нет</label>
+		<label index="error.noAppointmentsFound">В данный момент для Вас событий нет</label>
 		<label index="error.starttimeAfterEndtime">Событие заканчивается раньше или в тоже время, когда начинается!</label>
 		<label index="error.privateEvent">Личное событие нельзя назначать кому-то ещё!</label>
 		<label index="error.personsOverbooked">Этому участнику уже назначены события в это время:</label>
@@ -289,7 +289,7 @@
 		<label index="tree.header.title">Titre de l'activité</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Anniversaires d'ici les prochaines semaines</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Congés d'ici les prochaines semaines</label>
-		<label index="error.noneFound">Aucune activité prévue pour vous</label>
+		<label index="error.noAppointmentsFound">Aucune activité prévue pour vous</label>
 		<label index="error.starttimeAfterEndtime">L'activité se termine avant ou au même moment qu'elle débute!</label>
 		<label index="error.privateEvent">Vous ne pouvez pas assigner une activité personnelle à quelqu'un d'autre!</label>
 		<label index="error.personsOverbooked">L'individu suivant a déjà une activité prévue à cette période:</label>
@@ -349,7 +349,7 @@
 		<label index="tree.header.title">Titel van agenda-item</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Verjaardagen in de komende weken</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Vakanties in de komende weken</label>
-		<label index="error.noneFound">Momenteel geen agenda-items voor u in de nabije toekomst</label>
+		<label index="error.noAppointmentsFound">Momenteel geen agenda-items voor u in de nabije toekomst</label>
 		<label index="error.starttimeAfterEndtime">Het item eindigt voor of op het zelfde moment dat het begint!</label>
 		<label index="error.privateEvent">Het is niet toegestaan een privé-item toe te wijzen aan iemand anders!</label>
 		<label index="error.personsOverbooked">Deze persoon heeft al toegewezen items op het gegeven tijdstip:</label>
@@ -410,7 +410,7 @@
 		<label index="tree.header.title">Název události</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">Narozeniny v příštích týdnech</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">Dovolená v přištích týdnech</label>
-		<label index="error.noneFound">Nemate žádné události</label>
+		<label index="error.noAppointmentsFound">Nemate žádné události</label>
 		<label index="error.starttimeAfterEndtime">Událost končí před nebo ve stejný den jako začátek!</label>
 		<label index="error.privateEvent">Nemáte oprávnění přidělit soukromou událost někomu jinému!</label>
 		<label index="error.personsOverbooked">Tato osoba již má přiděleny události v tomto čase:</label>
@@ -471,7 +471,7 @@
 		<label index="tree.header.title">イベントタイトル</label>
 		<label index="eventslist.birthdaysWithinTheNextweeks">数週間以内に誕生日</label>
 		<label index="eventslist.holidaysWithinTheNextweeks">数週間以内に休日</label>
-		<label index="error.noneFound">直近で予定されているイベントはありません</label>
+		<label index="error.noAppointmentsFound">直近で予定されているイベントはありません</label>
 		<label index="error.starttimeAfterEndtime">イベントの終了と同時にイベントが開始されます！</label>
 		<label index="error.privateEvent">個人のイベントを他人にアサインすることはできません！</label>
 		<label index="error.personsOverbooked">この人は指定された日時にはすでにイベントがアサインされています:</label>

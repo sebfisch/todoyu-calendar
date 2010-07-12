@@ -177,6 +177,18 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Check whether event is private
+	 *
+	 * @return	Boolean
+	 */
+	public function isPrivate() {
+		return intval($this->data['is_private']) === 1;
+	}
+	
+
+
+
+	/**
 	 * Load event foreign data (assigned persons)
 	 */
 	protected function loadForeignData() {
