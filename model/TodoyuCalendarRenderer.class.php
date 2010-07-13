@@ -240,16 +240,12 @@ class TodoyuCalendarRenderer {
 	 * @param	Array		$eventTypes
 	 * @param	Array		$persons
 	 * @param	Array		$personColors
-	 * @return	Array
+	 * @return	Array						pre-rendered events
 	 */
 	public static function preRenderEventsForWeek($dateStart, array $eventTypes, array $persons, array $personColors) {
 		$weekRange	= TodoyuTime::getWeekRange($dateStart);
-		$dateStart	= $weekRange['start'];
-		$dateEnd	= $weekRange['end'];
 
-		$events		= self::preRenderEventsDayAndWeek(CALENDAR_MODE_WEEK, $weekRange['start'], $weekRange['end'], $eventTypes, $persons, $personColors);
-
-		return $events;
+		return self::preRenderEventsDayAndWeek(CALENDAR_MODE_WEEK, $weekRange['start'], $weekRange['end'], $eventTypes, $persons, $personColors);
 	}
 
 

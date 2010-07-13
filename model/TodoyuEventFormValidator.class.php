@@ -116,8 +116,6 @@ class TodoyuEventFormValidator {
 	 * @return	Boolean
 	 */
 	public static function personsAreBookable($value, array $config = array (), $formElement, $formData) {
-		$bookable	= true;
-
 			// Check if calendar is configured to prevent overbooking
 		if ( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
 				// Check which (any?) event persons are overbooked
@@ -131,20 +129,31 @@ class TodoyuEventFormValidator {
 				$overbookedInfos= TodoyuEventManager::getOverbookingInfos($formData['date_start'], $formData['date_end'], $personIDs, $idEvent);
 
 				if( sizeof($overbookedInfos) > 0 ) {
-					$tmpl	= 'ext/calendar/view/overbooking-info.tmpl';
-					$data	= array(
-						'overbooked'	=> $overbookedInfos
-					);
-
-					$error	= render($tmpl, $data);
-					$formElement->setErrorMessage($error);
-
+					self::setOverbookingError($formElement, $overbookedInfos);
 					return false;
 				}
 			}
 		}
 
 		return true;
+	}
+
+
+
+	/**
+	 * Render overbooking error message and set in event form 
+	 *
+	 * @param	TodoyuFormElement	$formElement
+	 * @param	Array				$overbookedInfos
+	 */
+	private static function setOverbookingError(TodoyuFormElement $formElement, array $overbookedInfos) {
+		$tmpl	= 'ext/calendar/view/overbooking-info.tmpl';
+		$data	= array(
+			'overbooked'	=> $overbookedInfos
+		);
+
+		$error	= render($tmpl, $data);
+		$formElement->setErrorMessage($error);
 	}
 
 

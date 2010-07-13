@@ -311,12 +311,13 @@ class TodoyuCalendarManager {
 	 */
 	public static function modifyAddressFormfields(TodoyuForm $form, $index, array $params) {
 		if( $params['field'] instanceof TodoyuFormElement ) {
-			$parentform	= $params['field']->getForm()->getName();
+			$parentForm	= $params['field']->getForm()->getName();
 		}
 
-		if( $parentform == 'company' ) {
+		if( $parentForm == 'company' ) {
 				// Extend company record form with holiday set selector
-			$form->addElementsFromXML('ext/calendar/config/form/addressholidayset.xml');
+			$xmlPath	= 'ext/calendar/config/form/addressholidayset.xml';
+			$form->addElementsFromXML($xmlPath);
 		}
 
 		return $form;

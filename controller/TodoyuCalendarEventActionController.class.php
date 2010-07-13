@@ -49,17 +49,11 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Check rights
 		if( $idEvent === 0 ) {
 			restrict('calendar', 'event:add');
-		} else {
-			TodoyuEventRights::restrictEdit($idEvent);
-		}
-
-			// Send tab label
-		if( $idEvent === 0 ) {
 			$tabLabel	= Label('event.new');
 		} else {
+			TodoyuEventRights::restrictEdit($idEvent);
 			$tabLabel	= Label('event.edit') . ': ' . TodoyuString::crop($event->getTitle(), 20, '...', false);
 		}
-
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel);
 
 		return TodoyuEventEditRenderer::renderEventForm($idEvent, $time);

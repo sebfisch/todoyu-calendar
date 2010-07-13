@@ -90,7 +90,7 @@ class TodoyuEventManager {
 	 * @param	Integer		$dateEnd		timestamp at end of timespan	(optionally 0, will be set to 5 years after today than)
 	 * @param	Array		$persons
 	 * @param	Array		$eventTypes
-	 * @param	Mixed		$dayEvents		null = both types, true = only dayevents, false = only non-dayevents
+	 * @param	Mixed		$dayEvents		null = both types, true = only full-day events, false = only non full-day events
 	 * @param	String		$indexField
 	 * @return	Array
 	 */

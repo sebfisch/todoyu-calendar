@@ -61,6 +61,28 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Get place of event
+	 *
+	 * @return	String
+	 */
+	public function getPlace() {
+		return $this->get('place');
+	}
+
+
+
+	/**
+	 * Get title of event
+	 *
+	 * @return	String
+	 */
+	public function getTitle() {
+		return $this->get('title');
+	}
+
+
+
+	/**
 	 * Get event type (ID)
 	 *
 	 * @return	String
@@ -155,7 +177,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Check whether event is dayevent
+	 * Check whether event is a full-day event
 	 *
 	 * @return	Boolean
 	 */

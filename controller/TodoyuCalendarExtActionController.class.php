@@ -79,12 +79,10 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 		TodoyuColors::generate();
 
 			// Get current settings
-		$currentDate= TodoyuCalendarPreferences::getCalendarDate(AREA);
 		$fullHeight	= TodoyuCalendarPreferences::getFullDayView() ? 'true' : 'false';
 
 		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.initCalendar.bind(Todoyu.Ext.calendar, ' . $fullHeight . ')', 100);
 
-			// Display calendar
 		return TodoyuPage::render();
 	}
 
