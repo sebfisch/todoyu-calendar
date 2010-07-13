@@ -56,9 +56,9 @@ Todoyu.Ext.calendar.Event = {
 		var idItem		= parts.last();
 
 			// If event is private and not allowed for current user, do nothing
-		var private = eventDiv.down('span.private');
-		if( private ) {
-			if( ! private.hasClassName('allowed') ) {
+		var isPrivate = eventDiv.down('span.private');
+		if( isPrivate ) {
+			if( ! isPrivate.hasClassName('allowed') ) {
 				return false;
 			}
 		}
@@ -169,18 +169,18 @@ Todoyu.Ext.calendar.Event = {
 		var halfHours	= (y - calTopCoord) / 21.5 + '';
 		halfHours		= parseInt(halfHours.split('.')[0], 10);
 
-		timestamp	+= halfHours * 1800;
+		timestamp	+= halfHours * Todoyu.Time.seconds.hour / 2;
 
 			// Calculate day of week from mouse-X
 		if (idTab == 'week') {
 			var day	= (x - calLeftCoord) / 88 + '';
 			day		= parseInt(day.split('.')[0], 10);
-			timestamp	+= day * 86400;
+			timestamp	+= day * Todoyu.Time.seconds.day;
 		}
 
 			// Compensate for workingDay-display mode (top hour is 08:00 and not 00:00)
 		if(! $('toggleDayView').hasClassName('full')) {
-			timestamp += 28800; // 28800 == 8 * 60 * 60;
+			timestamp += Todoyu.Time.seconds.hour * 3;
 		}
 
 		return timestamp;

@@ -50,6 +50,14 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	},
 
 
+
+	/**
+	 * Get (clicked) time
+	 *
+	 * @param	{Element}	element
+	 * @param	{Object}	event
+	 * @return	{Number}
+	 */
 	getTime: function(element, event) {
 		return this.getClickedTime(event);
 	},
@@ -63,15 +71,9 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	 * @return	{Number}
 	 */
 	getClickedTime: function(event) {
-		var calendarMode= this.ext.getActiveTab();
-		
-		if (calendarMode == 'month') {
-			var time = event.element().id.replace('createEventAt-','');
-		} else {
-			var time = this.ext.CalendarBody.getTimeOfMouseCoordinates( event.pointerX(), event.pointerY() );
-		}
-		
-		return time;
+		var calendarMode	= this.ext.getActiveTab();
+
+		return ( calendarMode == 'month' ) ? event.element().id.replace('createEventAt-', '') : this.ext.CalendarBody.getTimeOfMouseCoordinates( event.pointerX(), event.pointerY() );
 	}
 
 };

@@ -98,7 +98,7 @@ Todoyu.Ext.calendar.Tabs = {
 	/**
 	 * Set given tab as currently active one
 	 *
-	 * @param	{String}		tab, e.g 'month' / 'week' / ...
+	 * @param	{String}		tab		'month' / 'week' / ...
 	 */
 	setActive: function(tab) {
 			// Make sure the given tab exists, otherwise use month tab by default

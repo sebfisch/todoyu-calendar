@@ -148,8 +148,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 			case 'week':
 				var left		= x - this.calendarBody.cumulativeOffset().left;
 				var numDays		= Math.floor((left - 40) / 89);
-				var timestamp	= this.ext.getWeekStart() + numDays * Todoyu.Time.seconds.day;
-				timestamp		+=this.getDayOffset(top, 1010);
+				var timestamp	= (this.ext.getWeekStart() + numDays * Todoyu.Time.seconds.day) + this.getDayOffset(top, 1010);
 				break;
 		}
 

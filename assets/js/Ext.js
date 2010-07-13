@@ -132,7 +132,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Install observers to event entries in calendar to show / hide quickinfo to when un / hovering them
 	 *
-	 * @param	DOM-Element	el
+	 * @param	{Element}	el
 	 */
 	installEventObservers: function(el) {
 		this.Event.installObservers();
@@ -151,7 +151,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Get selected date timestamp
 	 *
-	 * @return	{Number}	timestamp	Unix-Timestamp
+	 * @return	{Number}	timestamp	UNIX timestamp
 	 */
 	getDate: function() {
 		return this.PanelWidget.Calendar.getDate();
@@ -162,7 +162,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Set selected date timestamp
 	 *
-	 * @param	{Number}	timestamp	Unix-Timestamp
+	 * @param	{Number}	timestamp	UNIX timestamp
 	 */
 	setDate: function(date) {
 		this.PanelWidget.Calendar.setDate(date, true);
@@ -328,7 +328,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Callback for calendar body update
 	 *
-	 * @param	{Response}		response
+	 * @param	{Ajax.Response}		response
 	 */
 	onCalendarBodyUpdated: function(response) {
 		this.afterUpdate();
@@ -424,8 +424,10 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Save preferences
 	 *
-	 * @param	{String}	name	Name of the preference
-	 * @param	{Mixed}	value	Value to be saved
+	 * @param	{String}	action
+	 * @param	{Mixed}		value
+	 * @param	{Number}	idItem
+	 * @param	{String}	onComplete
 	 */
 	savePref: function(action, value, idItem, onComplete) {
 		Todoyu.Pref.save('calendar', action, value, idItem, onComplete);

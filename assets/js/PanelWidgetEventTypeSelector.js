@@ -67,8 +67,6 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
 	 * Update event handler
-	 *
-	 * @param	{Mixed}	value
 	 */
 	onUpdate: function() {
 		this.savePrefs();

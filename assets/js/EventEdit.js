@@ -113,7 +113,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Update the field visibility in the form for the selected event type
 	 *
-	 * @param	{DomEvent}	event
+	 * @param	{Object}	event
 	 */
 	updateVisibleFields: function(event) {
 		var eventType	= $F('event-field-eventtype');
@@ -123,7 +123,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 			// Show all fields
 		allFields.invoke('show');
 
-			// Extract fieldnames
+			// Extract field names
 		var allFieldNames = allFields.collect(function(field){
 			return field.id.replace('formElement-event-field-', '');
 		});
@@ -148,16 +148,16 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 
 	/**
-	 * Check if a field has to be hidden for an eventtype
+	 * Check if a field has to be hidden for an event type
 	 *
-	 * @param	{String}		fieldname
-	 * @param	{String}		eventtype
+	 * @param	{String}	fieldName
+	 * @param	{String}	eventType
 	 */
-	checkHideField: function(fieldname, eventtype) {
+	checkHideField: function(fieldName, eventType) {
 		var fields	= [];
-		eventtype	= parseInt(eventtype, 10);
+		eventType	= parseInt(eventType, 10);
 
-		switch(eventtype) {
+		switch(eventType) {
 			case 3: // birthday
 				fields = ['is-dayevent', 'date-end', 'person', 'place'];
 				break;
@@ -172,7 +172,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 				break;			
 		}
 
-		return fields.include(fieldname);
+		return fields.include(fieldName);
 	},
 
 
