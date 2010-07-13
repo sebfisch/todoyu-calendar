@@ -50,16 +50,16 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Seconds for update delay
 	 * 
-	 * @param	{Float}
+	 * @param	{Number}
 	 */
 	updateTimeoutWait:	0.2,
 
 
 
 	/**
-	 * Initialite calendar widget
+	 * Initialize calendar widget
 	 *
-	 * @param	{Number}		timestamp	Unix-Timestamp
+	 * @param	{Number}		timestamp	UNIX timestamp
 	 */
 	init: function(timestamp) {
 		var initialDate = new Date(timestamp * 1000);
@@ -126,7 +126,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		var dateFirstShownDay	= date;
 
 			// Go back to first monday before the 1st day of the displayed month
-		while(dateFirstShownDay.getDay() > 1) {
+		while( dateFirstShownDay.getDay() > 1 ) {
 			dayNum--;
 			dateFirstShownDay	= new Date( date.getFullYear(), date.getMonth(), dayNum );
 		}
@@ -175,7 +175,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * 'Date selected' event handler
 	 *
-	 * @param	unknown	currentDate
+	 * @param	{Object}	currentDate
 	 */
 	onDateSelected: function(currentDate) {
 		this.onUpdate('day', true);
@@ -206,14 +206,14 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 
 	/**
-	 * Shift selected date of calendar widget by given amount (of seconds)
+	 * Shift selected date of calendar widget by given duration (amount of seconds)
 	 *
-	 * @param	{Number}	spanlength
+	 * @param	{Number}	duration
 	 * @param	{Boolean}	saveDatePreference
 	 */
-	shiftDate: function(spanLength, saveDatePreference) {
+	shiftDate: function(duration, saveDatePreference) {
 		this.prefSavingEnabled	= saveDatePreference;
-		this.setDate( this.getCurrentDate() + spanLength );
+		this.setDate( this.getDate() + duration );
 		this.prefSavingEnabled	= true;
 	},
 
@@ -227,4 +227,5 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 			Todoyu.Pref.save('calendar', 'date', this.getTime() );
 		}
 	}
+
 };

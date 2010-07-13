@@ -51,7 +51,7 @@ class TodoyuEventViewHelper {
 	 * @return	String
 	 */
 	public static function getQuickinfoDateInfo($event) {
-		if ( $event->isMultiDay() ) {
+		if( $event->isMultiDay() ) {
 				// Define format for dayevents and multiday events
 			if( $event->isDayevent() ) {
 				$break	= ' - ';
@@ -106,7 +106,7 @@ class TodoyuEventViewHelper {
 	public static function getQuickinfoTypeInfo($event) {
 		$typeInfo	= $event->getTypeLabel();
 
-		if ( $event->data['is_private'] === '1' ) {
+		if( $event->data['is_private'] === '1' ) {
 			$typeInfo	.= ', ' . Label('event.attr.is_private');
 		}
 
