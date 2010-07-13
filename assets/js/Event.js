@@ -129,7 +129,7 @@ Todoyu.Ext.calendar.Event = {
 	 * Handle 'on removed' event
 	 *
 	 * @param	{Number}		idEvent
-	 * @param	{Object}		response
+	 * @param	{Ajax.Response}	response
 	 */
 	onRemoved: function(idEvent, response) {
 		if( Todoyu.getArea() === 'calendar' ) {

@@ -69,8 +69,8 @@ Todoyu.Ext.calendar.Event.View = {
 	/**
 	 * Handler being evoked upon completion of loading of details: set tab label
 	 * 
-	 * @param	{Number}		idEvent
-	 * @param	{Object}		response
+	 * @param	{Number}			idEvent
+	 * @param	{Ajax.Response}		response
 	 */
 	onDetailsLoaded: function(idEvent, response) {
 		var tabLabel = response.getTodoyuHeader('tabLabel');

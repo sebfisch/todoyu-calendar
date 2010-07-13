@@ -103,7 +103,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * 'On acknowledged' event handler
 	 *
-	 * @param	{Object}		response
+	 * @param	{Ajax.Response}		response
 	 * @todo	implement or remove
 	 */
 	onAcknowledged: function(idEvent, idPerson, response)	{
