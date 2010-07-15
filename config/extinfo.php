@@ -34,12 +34,12 @@ Todoyu::$CONFIG['EXT']['calendar']['info'] = array(
 		'company'	=> 'snowflake productions GmbH, Zurich'
 	),
 	'state' 		=> 'stable',
-	'version' 		=> '1.0.1',
+	'version' 		=> '1.0.2',
 	'constraints' 	=> array(
 		'depends' 	=> array(
-			'contact'	=> '1.0.1',
-			'project' 	=> '1.0.1',
-			'portal'	=> '1.0.1'
+			'contact'	=> '1.0.2',
+			'project' 	=> '1.0.2',
+			'portal'	=> '1.0.2'
 		),
 		'conflicts' => array(
 		)
