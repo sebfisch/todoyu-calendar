@@ -223,33 +223,37 @@ class TodoyuHolidayManager {
 	/**
 	 * Get IDs of holiday sets of given addresses (IDs)
 	 *
-	 * @param	Array	$addressIDs
-	 * @param	Boolean	$groupAddressesBySet
+	 * @todo	Refactor this method. Don't support multiple addresses. Why grouping?
+	 * @param	Array		$addressIDs
+	 * @param	Boolean		$groupByHolidayset
 	 * @return	Array
 	 */
-	public static function getHolidaySetsOfAddresses(array $addressIDs, $groupAddressesBySet = false) {
+	public static function getHolidaysetIDsOfAddresses(array $addressIDs, $groupByHolidayset = false) {
 		$addressIDs		= TodoyuArray::intval($addressIDs, true, true);
 
-		$fields	= 'id,id_holidayset';
-		$table	= 'ext_contact_address';
-		$where	= ' deleted	= 0'
-				. count($addressIDs) === 0 ? '' : ' AND id IN (' . implode(',', $addressIDs) . ') ';
+		$fields	= '	id,
+					id_holidayset';
+		$table	= '	ext_contact_address';
+		$where	= ' deleted	= 0';
 
-		$res	= Todoyu::db()->getArray($fields, $table, $where);
+		if( sizeof($addressIDs) ) {
+			$where .= ' AND id IN (' . implode(',', $addressIDs) . ')';
+		}
 
+		$addresses		= Todoyu::db()->getArray($fields, $table, $where);
 		$holidaySetIDs	= array();
 
-		if ( ! $groupAddressesBySet ) {
+		if( $groupByHolidayset ) {
+				// Get an array of the address IDs with IDs of their assigned holidaySets
+			foreach($addresses as $address) {
+				$holidaySetIDs[ $address['id'] ][]	= $address['id_holidayset'];
+			}
+		} else {
 				// Just get the holiday set IDs
-			foreach($res as $entry) {
-				$holidaySetIDs[]	= $entry['id_holidayset'];
+			foreach($addresses as $address) {
+				$holidaySetIDs[]	= $address['id_holidayset'];
 			}
 			$holidaySetIDs = array_unique($holidaySetIDs);
-		} else {
-				// Get an array of the address IDs with IDs of their assigned holidaySets
-			foreach($res as $entry) {
-				$holidaySetIDs[ $entry['id'] ][]	= $entry['id_holidayset'];
-			}
 		}
 
 		return $holidaySetIDs;
@@ -303,7 +307,7 @@ class TodoyuHolidayManager {
 
 			// Get working locations (company addresses) of given persons, affected holidaySets of given address IDs
 		$addressIDs		= TodoyuPersonManager::getWorkaddressIDsOfPersons($personIDs);
-		$holidaySetIDs	= self::getHolidaySetsOfAddresses($addressIDs);
+		$holidaySetIDs	= self::getHolidaysetIDsOfAddresses($addressIDs);
 
 			// Get all holidays affected holidaySets in given timespan
 		$holidays		= self::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySetIDs);
