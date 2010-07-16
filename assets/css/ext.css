@@ -1,3 +1,77 @@
+/* --------------------------------------------
+	Main menu: Sub menu entries in planning
+   -------------------------------------------- */
+
+#navi-main-list-planning li.item a {
+	background-image:url(../img/icons.png) !important;
+	background-repeat:no-repeat;
+}
+
+#navi-main-list-planning li.itemCalendarDay a {
+	background-position:6px -205px;
+}
+
+#navi-main-list-planning li.itemCalendarWeek a {
+	background-position:6px -235px;
+}
+
+#navi-main-list-planning li.itemCalendarMonth a {
+	background-position:6px -265px;
+}
+
+
+
+/* --------------------------
+	Sub menu in portal
+   -------------------------- */
+#navi-main-list-portal li.itemAppointment a {
+	background-image:url(../img/icons.png) !important;
+	background-repeat:no-repeat;
+	background-position:6px 5px;
+}
+
+
+
+/* ----------------------------------------
+	Quick create wizard pop-up styling
+   ---------------------------------------- */
+
+#quickcreate.dialog.event div#quickcreate_top.dialog_title {
+	padding:0 0 0 22px;
+	background:url(../img/icons.png) no-repeat 0 0;
+}
+
+
+
+/* --------------------------------
+   Create mode option in headlet
+   -------------------------------- */
+#headlet-quickcreate-content li.itemCalendarEvent a {
+	background:url(../img/icons.png) no-repeat 5px -296px;
+}
+
+
+
+/* ------------------------------
+   Search mode option in headlet
+   ------------------------------ */
+#headlet-quicksearch-content form.searchmodeEvent a.mode,
+#headlet-quicksearch-modes li.searchmodeEvent a {
+	background:url(../img/icons.png) no-repeat 3px 3px !important;
+}
+
+
+
+/* --------------------------
+ 	Portal tab appointment
+   --------------------------*/
+#portal-tab-appointment span.icon {
+	background:url(../img/icons.png) no-repeat 0 5px;
+}
+
+
+
+
 h1.extIconCalendar .title {
 	background:url('../img/exticon.png') no-repeat 0 5px;
 }
