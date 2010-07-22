@@ -217,6 +217,37 @@
 		<label index="today">Dnes</label>
 		<label index="owner">Vlastnik</label>
 	</labels>
+	<labels lang="sr_RS">
+		<label index="ext.title">Календар</label>
+		<label index="page.title">Календар</label>
+		<label index="maintab.label">Планирање</label>
+		<label index="subMenuEntry.day">Календар > Дан</label>
+		<label index="subMenuEntry.week">Календар > Недеља</label>
+		<label index="subMenuEntry.month">Календар > Месец</label>
+		<label index="search.label">Догађаји</label>
+		<label index="search.mode.label">Нађи догађај</label>
+		<label index="extconf.allowoverbooking.label">Дозвољено пребукирање?</label>
+		<label index="portal.tab.appointments">Догађаји</label>
+		<label index="portal.tab.appointments">Догађаји</label>
+		<label index="quicknav.backward.title">Назад</label>
+		<label index="quicknav.forward.title">Напред</label>
+		<label index="quicknav.today.title">Покажи данашљи дан</label>
+		<label index="dayview.workingtime">Покажи радно времен (08h-18h)</label>
+		<label index="dayview.fullday">Покажи цели дан (00h-24h)</label>
+		<label index="holidayset.attr.name">Име</label>
+		<label index="holidayset.attr.holiday">Празник</label>
+		<label index="holidayset.attr.holiday.new">Нови празник</label>
+		<label index="holiday.attr.workingtime">Радно времен</label>
+		<label index="holiday.attr.holidayset">Постава празник-а</label>
+		<label index="holiday.attr.holidayset.new">Нова постава празник-а</label>
+		<label index="holidayset">Постава празник-а</label>
+		<label index="holiday">Празник</label>
+		<label index="yearsold">Година стар</label>
+		<label index="applicableholidayset">Постава празника</label>
+		<label index="workingtime">Радно време</label>
+		<label index="owner">Власник</label>
+		<label index="today">Данас</label>
+	</labels>
 	<labels lang="ja_JP">
 		<label index="ext.title">カレンダー</label>
 		<label index="page.title">カレンダー</label>

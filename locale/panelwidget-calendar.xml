@@ -21,6 +21,9 @@
 	<labels lang="cs_CZ">
 		<label index="title">Kalendář</label>
 	</labels>
+	<labels lang="sr_RS">
+		<label index="title">Календар</label>
+	</labels>
 	<labels lang="ja_JP">
 		<label index="title">カレンダー</label>
 	</labels>

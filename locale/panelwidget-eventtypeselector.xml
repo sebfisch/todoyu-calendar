@@ -21,6 +21,9 @@
 	<labels lang="cs_CZ">
 		<label index="title">Typy událostí</label>
 	</labels>
+	<labels lang="sr_RS">
+		<label index="title">Тип догађаја</label>
+	</labels>
 	<labels lang="ja_JP">
 		<label index="title">イベントタイプ</label>
 	</labels>

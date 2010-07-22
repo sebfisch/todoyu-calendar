@@ -28,6 +28,10 @@
 		<label index="title">Svátky dle regionu</label>
 		<label index="showNoHolidays">Skrýt svátky</label>
 	</labels>
+	<labels lang="sr_RS">
+		<label index="title">Празнични регијони</label>
+		<label index="showNoHolidays">Сакриј празнике </label>
+	</labels>
 	<labels lang="ja_JP">
 		<label index="title">地域別の休日</label>
 		<label index="showNoHolidays">休日を非表示にする</label>
