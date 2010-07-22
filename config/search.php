@@ -25,7 +25,7 @@
  * @subpackage	Calendar
  */
 
-if ( allowed('calendar', 'general:use') ) {
+if( allowed('calendar', 'general:use') ) {
 	TodoyuSearchManager::addEngine('event', 'TodoyuEventSearch::getSuggestions', 'calendar.search.label', 'calendar.search.mode.label', 50);
 }
 

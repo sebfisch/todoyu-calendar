@@ -62,7 +62,7 @@ class TodoyuCalendarPortalManager {
 	 * @return	Array
 	 */
 	public static function getBirthdays() {
-		if ( TodoyuEventRights::isAllowedSeeBirthdaysInPortal() ) {
+		if( TodoyuEventRights::isAllowedSeeBirthdaysInPortal() ) {
 			$weeksBirthday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksBirthday']);
 			$dateStart		= TodoyuTime::getStartOfDay();
 			$dateEnd		= $dateStart + $weeksBirthday * TodoyuTime::SECONDS_WEEK;

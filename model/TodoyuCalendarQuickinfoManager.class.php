@@ -14,7 +14,7 @@ class TodoyuCalendarQuickinfoManager {
 		$typeInfo	= TodoyuEventViewHelper::getQuickinfoTypeInfo($event);
 
 			// Private event or no access?
-		if ( $isSeeAllowed ) {
+		if( $isSeeAllowed ) {
 			$quickinfo->addInfo('title', $event->title, 10);
 		} else {
 			$quickinfo->addInfo('title', Label('event.privateEvent.info'), 10);
@@ -24,8 +24,8 @@ class TodoyuCalendarQuickinfoManager {
 		$quickinfo->addInfo('date',	$dateInfo, 30);
 
 			// Add conditionally displayed (only if set) infos
-		if ( $event->getPlace() !== '' ) {
-			if ( $isSeeAllowed ) {
+		if( $event->getPlace() !== '' ) {
+			if( $isSeeAllowed ) {
 				$quickinfo->addInfo('place', $event->getPlace(), 40);
 			} else {
 				$quickinfo->addInfo('place', Label('event.privateEvent.info'), 40);
@@ -33,7 +33,7 @@ class TodoyuCalendarQuickinfoManager {
 		}
 
 		$amountAssignedPersons	= count( $event->getAssignedPersonsData() );
-		if ( $amountAssignedPersons > 0 ) {
+		if( $amountAssignedPersons > 0 ) {
 			$quickinfo->addInfo('persons', $personInfo, 50);
 		}		
 	}

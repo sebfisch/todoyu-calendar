@@ -61,13 +61,13 @@ class TodoyuEventFormValidator {
 	 */
 	public static function starttimeAfterEndtime($value, array $config = array ()) {
 			// Only check this if it is not a full-day event
-		if ( $config['formdata']['is_dayevent'] == 0) {
+		if( $config['formdata']['is_dayevent'] == 0) {
 				// Convert dates and times to timestamps
 			$timeStart	= strtotime( $config['formdata']['startdate'] . ' ' . $config['formdata']['starttime'] );
 			$timeEnd	= strtotime( $config['formdata']['enddate'] . ' ' . $config['formdata']['endtime'] );
 
 				// Start time must be before the end time
-			if ( $timeEnd <= $timeStart ) {
+			if( $timeEnd <= $timeStart ) {
 				return false;
 			}
 		} else {
@@ -75,7 +75,7 @@ class TodoyuEventFormValidator {
 			$dateStart	= strtotime( $config['formdata']['startdate'] );
 			$dateEnd	= strtotime( $config['formdata']['enddate'] );
 
-			if ( $dateStart > $dateEnd ) {
+			if( $dateStart > $dateEnd ) {
 				return false;
 			}
 		}
@@ -95,9 +95,9 @@ class TodoyuEventFormValidator {
 		$regExp	= '(\d{1,2}(\:|\s)\d{1,2})';
 
 			// Check format of starting and ending time with regular expression
-		if ( ! preg_match( $regExp, $config['formdata']['starttime'] ) ) {
+		if( ! preg_match( $regExp, $config['formdata']['starttime'] ) ) {
 			return false;
-		} elseif ( ! preg_match( $regExp, $config['formdata']['endtime'] ) ) {
+		} elseif( ! preg_match( $regExp, $config['formdata']['endtime'] ) ) {
 			return false;
 		}
 
@@ -117,7 +117,7 @@ class TodoyuEventFormValidator {
 	 */
 	public static function personsAreBookable($value, array $config = array (), $formElement, $formData) {
 			// Check if calendar is configured to prevent overbooking
-		if ( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
+		if( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
 				// Check which (any?) event persons are overbooked
 			$idEvent		= intval($formData['id']);
 			$idEventType	= intval($formData['eventtype'][0]);

@@ -145,7 +145,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{String}	formName	Name of the XML-form
 	*/
 	updateEnddate:function(formName) {
-		if ($(formName+'-0-field-enddate')) {
+		if($(formName+'-0-field-enddate')) {
 			$(formName+'-0-field-enddate').value = $F(formName+'-0-field-startdate');
 		}
 	},
@@ -172,7 +172,7 @@ Todoyu.Ext.calendar.Event = {
 		timestamp	+= halfHours * Todoyu.Time.seconds.hour / 2;
 
 			// Calculate day of week from mouse-X
-		if (idTab == 'week') {
+		if(idTab == 'week') {
 			var day	= (x - calLeftCoord) / 88 + '';
 			day		= parseInt(day.split('.')[0], 10);
 			timestamp	+= day * Todoyu.Time.seconds.day;

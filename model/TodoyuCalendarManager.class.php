@@ -54,7 +54,7 @@ class TodoyuCalendarManager {
 	public static function getHolidays($dateStart, $dateEnd) {
 		$holidaySets	= self::getSelectedHolidaySets();
 
-		if ( sizeof($holidaySets) > 0 ) {
+		if( sizeof($holidaySets) > 0 ) {
 			$holidays	= TodoyuHolidayManager::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySets);
 			$grouped	= TodoyuHolidayManager::groupHolidaysByDays($holidays);
 		}
@@ -90,12 +90,12 @@ class TodoyuCalendarManager {
 	 * @return	Integer
 	 */
 	public static function getAmountOfDaysInbetweenWeekdayNums($startDay, $endDay, $insideTheSameWeek = true) {
-		if ($insideTheSameWeek) {
+		if($insideTheSameWeek) {
 				// Both days are within the same week
 			$amount = ($endDay == 0 ? 7 : $endDay) - ($startDay == 0 ? 7 : $startDay) + 1;
 		} else {
 				// Days are not within the same week (spanning over tow or more weeks)
-			if ( $endDay != '' ) {
+			if( $endDay != '' ) {
 				$amount	= $endDay == 0 ? 7 : $endDay;
 			} else {
 				$amount	= $startDay != '' ? ($startDay == 0 ? 1 : 8 - $startDay) : false;
@@ -249,7 +249,7 @@ class TodoyuCalendarManager {
 		$allowed= array();
 		$own	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area'];
 
-		if ( allowed('calendar', 'event:add') ) {
+		if( allowed('calendar', 'event:add') ) {
 			$allowed[] = $own['add'];
 		}
 

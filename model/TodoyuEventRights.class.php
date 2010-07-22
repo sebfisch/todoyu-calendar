@@ -101,15 +101,15 @@ class TodoyuEventRights {
 		$idPerson	= personid();
 
 			// Admin sees all events.
-		if ( TodoyuAuth::isAdmin() ) {
+		if( TodoyuAuth::isAdmin() ) {
 			return true;
 		}
 			// Person is assigned to event and has right to edit events it's assigned to
-		if ( allowed('calendar', 'event:editAndDeleteAssigned')  && in_array($idPerson, $assignedPersons) ) {
+		if( allowed('calendar', 'event:editAndDeleteAssigned')  && in_array($idPerson, $assignedPersons) ) {
 			return true;
 		}
 			// Person can edit all events and event is not private,
-		if ( allowed('calendar', 'event:editAndDeleteAll') && ! $isPrivate ) {
+		if( allowed('calendar', 'event:editAndDeleteAll') && ! $isPrivate ) {
 			return true;
 		}
 
@@ -129,7 +129,7 @@ class TodoyuEventRights {
 	 * @return	Boolean
 	 */
 	public static function isAllowedSeeBirthdaysInPortal() {
-		if ( TodoyuAuth::isAdmin() ) {
+		if( TodoyuAuth::isAdmin() ) {
 			return true;
 		}
 

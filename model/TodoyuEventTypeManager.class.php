@@ -138,7 +138,7 @@ class TodoyuEventTypeManager {
 
 		foreach( $allEventTypes as $index => $typeKey ) {
 			$idType	= constant('EVENTTYPE_' . strtoupper($typeKey));
-			if ( ! in_array($idType, $overbookableTypes)  ) {
+			if( ! in_array($idType, $overbookableTypes)  ) {
 				$nonOverbookableTypeIndexes[]	= $idType;
 			}
 		}

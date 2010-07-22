@@ -66,7 +66,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 		var eventElement	= event.findElement('div.event');
 
 			// ..or is it a day-event?
-		if (typeof(eventElement) == "undefined" || eventElement == null) {
+		if(typeof(eventElement) == "undefined" || eventElement == null) {
 			eventElement	= event.findElement('div.dayevent');
 		}
 

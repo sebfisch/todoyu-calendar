@@ -18,7 +18,7 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-if ( allowed('calendar', 'event:add') ) {
+if( allowed('calendar', 'event:add') ) {
 		// Add quick create types
 	TodoyuQuickCreateManager::addEngine('calendar', 'event', 'event.create.label', 50, array('calendar'));
 }
