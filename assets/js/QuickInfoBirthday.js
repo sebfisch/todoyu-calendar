@@ -47,7 +47,7 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 	 */
 	install: function() {
 		Todoyu.QuickInfo.setCacheTime('birthday', this.cacheTime);
-		
+
 		Todoyu.QuickInfo.install('birthday', this.selector, this.getID.bind(this));
 	},
 

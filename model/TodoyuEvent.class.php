@@ -206,7 +206,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	public function isPrivate() {
 		return intval($this->data['is_private']) === 1;
 	}
-	
+
 
 
 

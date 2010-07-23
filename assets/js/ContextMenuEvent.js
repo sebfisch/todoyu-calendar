@@ -71,7 +71,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 		}
 
 		var idEvent		= eventElement.readAttribute('id').split('-').last();
-		
+
 		var url		= Todoyu.getUrl('calendar', 'contextmenu');
 		var options	= {
 			'parameters': {

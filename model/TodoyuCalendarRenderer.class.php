@@ -329,7 +329,7 @@ class TodoyuCalendarRenderer {
 				}
 
 				$event['height']	= TodoyuEventRenderer::getEventHeight($dayTime, $event['date_start'], $event['date_end'] );
-				
+
 					// Render
 				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, $mode);
 			}

@@ -103,7 +103,7 @@ Todoyu.Ext.calendar.Tabs = {
 	setActive: function(tab) {
 			// Make sure the given tab exists, otherwise use month tab by default
 		tab = $('calendar-tab-' + tab) ? tab : 'month';
-		
+
 			// Activate the tab
 		this.active = tab;
 		Todoyu.Tabs.setActive('calendar', tab);

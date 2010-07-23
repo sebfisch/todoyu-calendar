@@ -176,7 +176,7 @@ class TodoyuEventManager {
 		return $groupedEvents;
 	}
 
-	
+
 
 	/**
 	 * Add overlapping information to the event records
@@ -454,7 +454,7 @@ class TodoyuEventManager {
 	 */
 	public static function saveQuickEvent(array $data) {
 		$xmlPath	= 'ext/calendar/config/form/quickevent.xml';
-		
+
 			// Create an empty event
 		$idEvent	= self::addEvent();
 
@@ -599,7 +599,7 @@ class TodoyuEventManager {
 	}
 
 
-	
+
 	/**
 	 * Remove event from cache
 	 *

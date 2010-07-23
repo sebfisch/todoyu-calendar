@@ -146,7 +146,7 @@ class TodoyuCalendarManager {
 		);
 	}
 
-	
+
 
 	/**
 	 * Get timestamps shown in calendar month view (days of month before selected, of the selected and of the month after the selected month)

@@ -13,5 +13,5 @@
 		<right name="editAndDeleteAssigned" />
 		<right name="editAndDeleteAll" require="event:seeAll" />
 	</section>
-	
+
 </rights>

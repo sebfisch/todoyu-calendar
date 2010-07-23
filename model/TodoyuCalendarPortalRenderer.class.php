@@ -63,7 +63,7 @@ class TodoyuCalendarPortalRenderer {
 		} else {
 			$holidays	= array();
 		}
-		
+
 		if( $config['showBirthday'] ) {
 			$birthdays		= TodoyuCalendarPortalManager::getBirthdays();
 		} else {

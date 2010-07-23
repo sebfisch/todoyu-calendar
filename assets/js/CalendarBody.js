@@ -25,9 +25,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 * @var	{Object}	ext
 	 */
 	ext:			Todoyu.Ext.calendar,
-	
+
 	idArea:			'calendararea',
-	
+
 	calendarBody:	null,
 
 
@@ -39,7 +39,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 */
 	init: function(fullHeight) {
 		this.calendarBody = $(this.idArea);
-		
+
 		this.installContextMenu();
 		if( this.ext.getActiveTab() !== 'month' ) {
 			this.setFullHeight(fullHeight, false);
@@ -114,7 +114,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 		if( savePref === true ) {
 			this.saveFullDayViewPref();
 		}
-	},	
+	},
 
 
 
@@ -166,12 +166,12 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 */
 	getDayOffset: function(top, height) {
 		var seconds	= (top / height) * Todoyu.Time.seconds.day;
-		
+
 			// Round to quarter hours, get time parts (hours, minutes, seconds)
 		seconds		= Math.round(seconds / 900) * 900;
 
 		var timeInfo	= Todoyu.Time.getTimeParts(seconds);
-		
+
 		return timeInfo.hours * Todoyu.Time.seconds.hour + timeInfo.minutes * Todoyu.Time.seconds.minute;
 	},
 
@@ -192,7 +192,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	installObserversCreateEvent: function() {
 		this.reInit();
 		var tab	= this.ext.getActiveTab();
-		
+
 		if( tab === 'month' ) {
 			this.calendarBody.observe('dblclick', this.onEventCreateMonth.bindAsEventListener(this));
 		} else {
@@ -212,7 +212,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 			var time	= this.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
 
 			this.ext.addEvent(time);
-		}		
+		}
 	},
 
 
@@ -224,11 +224,11 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 */
 	onEventCreateMonth: function(event) {
 		var cell	= event.findElement('td');
-		
+
 		if( cell ) {
 			var time	= cell.id.split('-').last();
 			this.ext.addEvent(time);
 		}
 	}
-	
+
 };

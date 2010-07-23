@@ -96,7 +96,7 @@ Todoyu.Ext.calendar.Event = {
 				'tab':	'edit',
 				'event':idEvent
 			});
-		}		
+		}
 	},
 
 
@@ -237,7 +237,7 @@ Todoyu.Ext.calendar.Event = {
 				var scroll	= document.body.cumulativeScrollOffset();
 				var top		= viewport.top + scroll.top;
 				var left	= viewport.left + scroll.left;
-				
+
 				time = this.ext.CalendarBody.getTimeOfMouseCoordinates(left, top);
 			}
 		}

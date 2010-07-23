@@ -62,7 +62,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 		return this.getClickedTime(event);
 	},
 
-	
+
 
 	/**
 	 * Get timestamp at clicked coordinates / element

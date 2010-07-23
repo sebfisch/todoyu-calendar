@@ -1,8 +1,31 @@
 <?php
+/****************************************************************************
+* todoyu is published under the BSD License:
+* http://www.opensource.org/licenses/bsd-license.php
+*
+* Copyright (c) 2010, snowflake productions GmbH, Switzerland
+* All rights reserved.
+*
+* This script is part of the todoyu project.
+* The todoyu project is free software; you can redistribute it and/or modify
+* it under the terms of the BSD License.
+*
+* This script is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the BSD License
+* for more details.
+*
+* This copyright notice MUST APPEAR in all copies of the script.
+*****************************************************************************/
 
 class TodoyuCalendarQuickinfoManager {
 
-	public static function addQuickinfoEvent(TodoyuQuickinfo $quickinfo, $element) {
+	/**
+	 * @todo	comment
+	 * @param	TodoyuQuickinfo		$quickInfo
+	 * @param	Integer				$element
+	 */
+	public static function addQuickinfoEvent(TodoyuQuickinfo $quickInfo, $element) {
 		$idEvent	= intval($element);
 
 		$event			= TodoyuEventManager::getEvent($idEvent);
@@ -15,54 +38,65 @@ class TodoyuCalendarQuickinfoManager {
 
 			// Private event or no access?
 		if( $isSeeAllowed ) {
-			$quickinfo->addInfo('title', $event->title, 10);
+			$quickInfo->addInfo('title', $event->title, 10);
 		} else {
-			$quickinfo->addInfo('title', Label('event.privateEvent.info'), 10);
+			$quickInfo->addInfo('title', Label('event.privateEvent.info'), 10);
 		}
 
-		$quickinfo->addInfo('type',	$typeInfo, 20);
-		$quickinfo->addInfo('date',	$dateInfo, 30);
+		$quickInfo->addInfo('type',	$typeInfo, 20);
+		$quickInfo->addInfo('date',	$dateInfo, 30);
 
 			// Add conditionally displayed (only if set) infos
 		if( $event->getPlace() !== '' ) {
 			if( $isSeeAllowed ) {
-				$quickinfo->addInfo('place', $event->getPlace(), 40);
+				$quickInfo->addInfo('place', $event->getPlace(), 40);
 			} else {
-				$quickinfo->addInfo('place', Label('event.privateEvent.info'), 40);
+				$quickInfo->addInfo('place', Label('event.privateEvent.info'), 40);
 			}
 		}
 
 		$amountAssignedPersons	= count( $event->getAssignedPersonsData() );
 		if( $amountAssignedPersons > 0 ) {
-			$quickinfo->addInfo('persons', $personInfo, 50);
-		}		
+			$quickInfo->addInfo('persons', $personInfo, 50);
+		}
 	}
 
 
-	public static function addQuickinfoHoliday(TodoyuQuickinfo $quickinfo, $element) {
+
+	/**
+	 * @todo	comment
+	 * @param	TodoyuQuickinfo		$quickInfo
+	 * @param	Integer				$element
+	 */
+	public static function addQuickinfoHoliday(TodoyuQuickinfo $quickInfo, $element) {
 		$timestamp	= intval($element);
 		$holidays	= TodoyuCalendarManager::getHolidaysForDay($timestamp);
 
 		$holiday	= array_shift($holidays);
 
-		$quickinfo->addInfo('title', $holiday['title']);
-		$quickinfo->addInfo('date', TodoyuTime::format($holiday['date'], 'date'));
-		$quickinfo->addInfo('work', round($holiday['workingtime'] / 3600, 1) . ' ' . Label('date.time.hours'));
+		$quickInfo->addInfo('title', $holiday['title']);
+		$quickInfo->addInfo('date', TodoyuTime::format($holiday['date'], 'date'));
+		$quickInfo->addInfo('work', round($holiday['workingtime'] / 3600, 1) . ' ' . Label('date.time.hours'));
 	}
 
 
-	public static function addQuickinfoBirthday(TodoyuQuickinfo $quickinfo, $element) {
+
+	/**
+	 * @todo	comment
+	 * @param	TodoyuQuickinfo		$quickInfo
+	 * @param	Integer				$element
+	 */
+	public static function addQuickinfoBirthday(TodoyuQuickinfo $quickInfo, $element) {
 		$idPerson	= intval($element);
 		$person		= TodoyuPersonManager::getPerson($idPerson);
 		$viewDate	= TodoyuCalendarPreferences::getCalendarDate(AREA);
 
 		$age			= date('Y', $viewDate) - date('Y', $person->getBirthday());
 
-		$quickinfo->addInfo('name',		TodoyuString::crop($person->getFullName(), 25, '...', false));
-		$quickinfo->addInfo('date',		TodoyuTime::format($person->getBirthday(), 'date'));
-		$quickinfo->addInfo('birthday',	$age . ' ' . Label('calendar.yearsold'));
+		$quickInfo->addInfo('name',		TodoyuString::crop($person->getFullName(), 25, '...', false));
+		$quickInfo->addInfo('date',		TodoyuTime::format($person->getBirthday(), 'date'));
+		$quickInfo->addInfo('birthday',	$age . ' ' . Label('calendar.yearsold'));
 	}
-
 
 }
 

@@ -54,7 +54,7 @@ class TodoyuHolidaySetManager {
 	 */
 	public static function getAllHolidaySets() {
 		$where	= 'deleted = 0';
-		
+
 		return TodoyuRecordManager::getAllRecords(self::TABLE, $where);
 	}
 

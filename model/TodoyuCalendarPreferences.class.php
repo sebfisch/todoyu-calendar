@@ -81,7 +81,7 @@ class TodoyuCalendarPreferences {
 	 */
 	public static function getDate($idArea = 0) {
 		$date	= self::getPref('date', 0, $idArea);
-		
+
 		return $date === false ? NOW : $date;
 	}
 

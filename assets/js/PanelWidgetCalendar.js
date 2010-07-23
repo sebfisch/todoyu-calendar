@@ -39,14 +39,14 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	Calendar:			null,
 
 	prefSavingEnabled:	true,
-	
+
 	/**
 	 * Update of the calender is delayed. Timeout is stored here
 	 * 
 	 * @param	{Function}
 	 */
 	updateTimeout:		null,
-	
+
 	/**
 	 * Seconds for update delay
 	 * 
@@ -192,7 +192,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		if( this.updateTimeout !== null ) {
 			window.clearTimeout(this.updateTimeout);
 		}
-		
+
 		if( delay ) {
 			this.updateTimeout = this.onUpdate.bind(this).delay(this.updateTimeoutWait, mode, false);
 		} else {

@@ -57,9 +57,9 @@ Todoyu.Ext.calendar.Event.Edit = {
 		this.cancelEdit();
 		this.open(idEvent, 0);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Load edit form for an event
 	 *
@@ -169,7 +169,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 				break;
 			case 13: // reminder
 				fields = ['is-dayevent', 'date-end'];
-				break;			
+				break;
 		}
 
 		return fields.include(fieldName);
@@ -204,7 +204,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 		}
 	},
 
-	
+
 
 	/**
 	 * Add the edit tab
@@ -270,7 +270,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	removeTab: function() {
 		if( Todoyu.exists('calendar-tab-edit') ) {
 			$('calendar-tab-edit').remove();
-		}		
+		}
 	},
 
 
