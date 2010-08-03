@@ -13,14 +13,18 @@
 {/if}
 <div class="mainGrid {if $weeks == 5}month{/if}{if $weeks == 6}sixWeeks{/if}" id="calendararea">
 	<div id="gridcontainer" class="monthMode">
+
 		{* --------------------------- Days names (Mon-Sun) ------------------------- *}
-		<table class="mv-daynames-table"><tbody>
-			<tr>{for daynum 0 6}
-				<th title="{weekdayName $timestamps[$daynum+1]}" class="mv-dayname {cycle values="odd,even"}">
-					{weekdayNameShort $timestamps[$daynum+1]}
-				</th>{/for}
-			</tr>
-		</tbody></table>
+		<table class="mv-daynames-table">
+			<tbody>
+				<tr>{for daynum 0 6}
+					<th title="{weekdayName $timestamps[$daynum+1]}" class="mv-dayname {cycle values="odd,even"}">
+						{weekdayNameShort $timestamps[$daynum+1]}
+					</th>{/for}
+				</tr>
+			</tbody>
+		</table>
+
 		<div id="mvEventContainer" class="mv-event-container contextmenucalendararea">
 		{for monthrowCounter $weekFromNum $weeks}
 			{assign var=dayFrom value=$monthrowCounter*7-6}
@@ -41,7 +45,7 @@
 						{else}
 							{assign var=inSelMonth value=false}
 						{/if}
-						<td id="createEventAt-{$timestamps.$curDayCounter}" title="{dateFormat $timestamps.$curDayCounter DlongD2MlongY4}{if $timestamps.$curDayCounter == $timestamp_today} ({Label calendar.today}){/if}" class="createEventHotspotOnTitle title {if $timestamps.$curDayCounter == $timestamp_today}ttoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if $inSelMonth} inSelMonthTitle{if date('d', $timestamps.$curDayCounter) == 1} selMonthStart{/if}{/if}">
+						<td id="createEventAt-{$timestamps.$curDayCounter}" title="{dateFormat $timestamps.$curDayCounter DlongD2MlongY4}{if $timestamps.$curDayCounter == $timestamp_today} ({Label calendar.today}){/if}" class="title {if $timestamps.$curDayCounter == $timestamp_today}ttoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if $inSelMonth} inSelMonthTitle{if date('d', $timestamps.$curDayCounter) == 1} selMonthStart{/if}{/if}">
 							{* ------ Week number (only for mondays) ----- *}
 							{if $curDayCounter == $dayFrom}
 								<span class="weekNumber" title="{dateFormat $timestamps[$curDayCounter] calendarweek}" onclick="Todoyu.Ext.calendar.show('week', {$timestamps[$curDayCounter]*1000})">
@@ -55,7 +59,7 @@
 							{* ------- Numeric date, full date if 1st day of month ------- *}
 							<span class="month-date" onclick="Todoyu.Ext.calendar.show('day', {$timestamps[$curDayCounter]*1000})">
 							{if date('j', $timestamps[$curDayCounter]) == 1}
-								{dateFormat $timestamps[$curDayCounter] MlongD2}
+								{dateFormat $timestamps[$curDayCounter] D2Mshort}
 							{else}
 								{date('j', $timestamps[$curDayCounter])}
 							{/if}
