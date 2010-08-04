@@ -62,7 +62,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 		} else {
 			var idEvent	= response.getTodoyuHeader('idEvent');
 
-			Todoyu.Hook.exec('onEventSaved', idEvent);
+			Todoyu.Hook.exec('eventSaved', idEvent);
 
 			Todoyu.Popup.close('quickcreate');
 			Todoyu.notifySuccess('[LLL:event.saved.ok]');
