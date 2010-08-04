@@ -62,10 +62,10 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 		} else {
 			var idEvent	= response.getTodoyuHeader('idEvent');
 
-			Todoyu.Hook.exec('eventSaved', idEvent);
-
-			Todoyu.Popup.close('quickcreate');
 			Todoyu.notifySuccess('[LLL:event.saved.ok]');
+			Todoyu.Popup.close('quickcreate');
+
+			Todoyu.Hook.exec('calendar.quickevent.saved', idEvent);
 		}
 	},
 
@@ -91,7 +91,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 		});
 
 			// Get all check hook functions
-		var checkHooks	= Todoyu.Hook.get('eventtype');
+		var checkHooks	= Todoyu.Hook.get('calendar.event.editType');
 
 			// Check all fields, if a hooks wants to hide it
 		allFieldNames.each(function(checkHooks, fieldsToHide, eventType, fieldname){

@@ -77,10 +77,10 @@ Todoyu.Ext.calendar = {
 	 */
 	addHooks: function() {
 			// Add event save hooks
-		Todoyu.Hook.add('eventSaved', this.refresh.bind(this));
+		Todoyu.Hook.add('calendar.quickevent.saved', this.refresh.bind(this));
 
 			// Add event edit hooks for event type
-		Todoyu.Hook.add('eventtype', this.Event.Edit.checkHideField.bind(this.Event.Edit));
+		Todoyu.Hook.add('calendar.event.editType', this.Event.Edit.checkHideField.bind(this.Event.Edit));
 	},
 
 
@@ -93,7 +93,7 @@ Todoyu.Ext.calendar = {
 		Todoyu.PanelWidget.observe('staffselector', this.onStaffSelectionChanges.bind(this));
 		Todoyu.PanelWidget.observe('eventtypeselector', this.onEventTypeSelectionChanges.bind(this));
 
-		Todoyu.Hook.add('eventSaved', this.onEventSaved.bind(this));
+		Todoyu.Hook.add('calendar.event.saved', this.onEventSaved.bind(this));
 	},
 
 

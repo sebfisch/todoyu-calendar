@@ -129,7 +129,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 		});
 
 			// Get registered 'eventtype' hook-functions
-		var checkHooks	= Todoyu.Hook.get('eventtype');
+		var checkHooks	= Todoyu.Hook.get('calendar.event.editType');
 
 			// Check all fields, if a hooks wants to hide it
 		allFieldNames.each(function(checkHooks, fieldsToHide, eventType, fieldname){
@@ -323,6 +323,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 			this.ext.QuickInfoEvent.removeFromCache(idEvent);
 			this.ext.show(this.ext.Tabs.active, time*1000);
 			this.close();
+
+			
 		}
 	},
 
