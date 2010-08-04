@@ -12,10 +12,10 @@ div.weekMode div#calendararea div.event dd span.desc {
 }
 
 
+
 /* ---------------
 	Grid
    --------------- */
-
 .mainGrid {
 	border-bottom:2px solid #999;
 	background:#d7dcc6;
@@ -31,7 +31,6 @@ div.weekMode div#calendararea div.event dd span.desc {
 /* ---------------
 	Header
    --------------- */
-
 #topcontainerwk {
 }
 
@@ -76,7 +75,6 @@ div.weekMode div#calendararea div.event dd span.desc {
 /* ------------------
 	Week view
    ------------------ */
-
 .weekdayForceWid {
 	width:86px;
 	height:-1px;

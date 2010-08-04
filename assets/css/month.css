@@ -10,10 +10,11 @@
 	white-space:nowrap;
 }
 
+
+
 /* ------------
 	Header
    ------------ */
-
 .mv-daynames-table {
 	position:relative;
 	table-layout:fixed;
@@ -135,7 +136,6 @@
 /* --------------
 	Event
    -------------- */
-
 .event.month {
 	padding:1px;
 	margin-bottom:1px;

@@ -11,7 +11,6 @@ div.dayMode div#calendararea div.event dt.head {
 /* ----------------------
 	Header
    ---------------------- */
-
 .day-wk-dayname {
 	font-weight:normal;
 	color:#112aab;
@@ -39,7 +38,6 @@ div.dayMode div#calendararea div.event dt.head {
 /* -------------------------------
 	Day view all-day 00:00 - 23:00
    ------------------------------- */
-
 #dayViewAllDaywk {
 	padding:0 0 2px 0;
 	background:none;
@@ -63,7 +61,6 @@ div.dayMode div#calendararea div.event dt.head {
 /* ----------------------
 	Day view today
    ---------------------- */
-
 .dayviewtoday {
 	background-color:#ffffcc;
 }
@@ -73,7 +70,6 @@ div.dayMode div#calendararea div.event dt.head {
 /* ----------------------
 	Event
    ---------------------- */
-
 #dayViewAllDaywk .dayevent {
 	padding-top:1px;
 }
@@ -87,7 +83,6 @@ div.dayMode div#calendararea div.event dt.head {
 /* ----------------------
 	Helper classes
    ---------------------- */
-
 .wid4 {
 	width:4px;
 }

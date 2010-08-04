@@ -1,7 +1,6 @@
 /* ------------------------------------
 	todoyu-style calendar widget
    ------------------------------------ */
-
 #panelwidget-calendar-content * {
 	font-size:11px;
 	line-height:21px;
@@ -157,6 +156,7 @@
 .todoyuskin .endweek{}
 
 
+
 /* ----------------
 	Border
    ---------------- */
@@ -194,9 +194,8 @@
 
 
 /* -----------------------
-	Gridcontainer
+	Grid container
    ----------------------- */
-
 #gridcontainer.dayMode, #gridcontainer.weekMode {
 	overflow-y:visible; height:100%;
 }

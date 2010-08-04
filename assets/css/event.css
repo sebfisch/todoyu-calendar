@@ -64,7 +64,6 @@
 /* --------------------------------------------
 	Events in all views (day, week, month)
    -------------------------------------------- */
-
 .dayview div.tg-colwrapper div.event dl,
 .weekMode div.tg-colwrapper div.event dl {
 	border:1px dotted #fff;
@@ -239,7 +238,6 @@
 /*-------------------------
 	List mode in portal
   ------------------------- */
-
 #holidays h3,
 #events .event h3{
 	background-color:#fff;
@@ -346,7 +344,6 @@ div.eventDetails dd {
 /* ---------------------------
 	Detail view
    --------------------------- */
-
 table.eventView {
 	margin:12px 0 12px 0;
 	width:100%;
@@ -362,7 +359,6 @@ button.editEvent .icon {
 /* ----------------------
 	Holidays
    ---------------------- */
-
 .holidays {
 	background:transparent url(../img/icons.png) no-repeat scroll 0 -390px;
 	padding:0 0 0 15px;
