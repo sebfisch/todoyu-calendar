@@ -45,7 +45,7 @@
 						{else}
 							{assign var=inSelMonth value=false}
 						{/if}
-						<td id="createEventAt-{$timestamps.$curDayCounter}" title="{dateFormat $timestamps.$curDayCounter DlongD2MlongY4}{if $timestamps.$curDayCounter == $timestamp_today} ({Label calendar.today}){/if}" class="title {if $timestamps.$curDayCounter == $timestamp_today}ttoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if $inSelMonth} inSelMonthTitle{if date('d', $timestamps.$curDayCounter) == 1} selMonthStart{/if}{/if}">
+						<td id="createEventAt-{date 'Y-m-d' $timestamps.$curDayCounter}" title="{dateFormat $timestamps.$curDayCounter DlongD2MlongY4}{if $timestamps.$curDayCounter == $timestamp_today} ({Label calendar.today}){/if}" class="title {if $timestamps.$curDayCounter == $timestamp_today}ttoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if $inSelMonth} inSelMonthTitle{if date('d', $timestamps.$curDayCounter) == 1} selMonthStart{/if}{/if}">
 							{* ------ Week number (only for mondays) ----- *}
 							{if $curDayCounter == $dayFrom}
 								<span class="weekNumber" title="{dateFormat $timestamps[$curDayCounter] calendarweek}" onclick="Todoyu.Ext.calendar.show('week', {$timestamps[$curDayCounter]*1000})">
@@ -75,7 +75,7 @@
 					{else}
 						{assign var=curDayCounter value=$dayCounter}
 					{/if}
-						<td id="createEventAt-{$timestamps.$curDayCounter}" class="content {if $timestamps.$curDayCounter == $timestamp_today}ctoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if date('ny', $timestamps.$curDayCounter)==date('ny', $timestamp_today)} inSelMonth{/if}">
+						<td id="createEventAt-{date 'Y-m-d' $timestamps.$curDayCounter}" class="content {if $timestamps.$curDayCounter == $timestamp_today}ctoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if date('ny', $timestamps.$curDayCounter)==date('ny', $timestamp_today)} inSelMonth{/if}">
 							{assign var=dayDateKey value=date('Ymd', $timestamps[$curDayCounter])}
 							{if $birthdays[$dayDateKey]}
 								{foreach $birthdays[$dayDateKey] birthday}

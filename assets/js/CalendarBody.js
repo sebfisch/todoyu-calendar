@@ -219,6 +219,8 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 	/**
 	 * Handle event creation in month viewing mode
+	 * Date is in string format to ignore timezone offsets
+	 * (we just want the day, don't care about the local time)
 	 *
 	 * @param	{Event}		event
 	 */
@@ -226,7 +228,10 @@ Todoyu.Ext.calendar.CalendarBody = {
 		var cell	= event.findElement('td');
 
 		if( cell ) {
-			var time	= cell.id.split('-').last();
+				// ID format: createEventAt-2010-07-28
+			var timeParts	= cell.id.split('-').slice(1);
+				// Get timestamp of the date in local timezone (will be reconverted later into the same timestamp again)
+			var time		= parseInt((new Date(timeParts[0], timeParts[1]-1, timeParts[2], 0, 0, 0)).getTime()/1000, 10);
 			this.ext.addEvent(time);
 		}
 	}
