@@ -140,13 +140,13 @@ Todoyu.Ext.calendar.Event = {
 
 
 	/**
-	 * Automatically set the enddate to the same value as the startdate in a form
+	 * Automatically set the ending date to the same value as the starting date in a form
 	 *
 	 * @param	{String}	formName	Name of the XML-form
 	*/
 	updateEnddate:function(formName) {
-		if($(formName+'-0-field-enddate')) {
-			$(formName+'-0-field-enddate').value = $F(formName+'-0-field-startdate');
+		if($(formName + '-0-field-enddate')) {
+			$(formName + '-0-field-enddate').value = $F(formName + '-0-field-startdate');
 		}
 	},
 
