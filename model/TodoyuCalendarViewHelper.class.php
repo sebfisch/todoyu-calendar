@@ -27,7 +27,7 @@
 class TodoyuCalendarViewHelper {
 
 	/**
-	 * Get calendar title
+	 * Render title (description of shown timespan) of given calendar view
 	 *
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$dateEnd
@@ -37,32 +37,24 @@ class TodoyuCalendarViewHelper {
 	public static function getCalendarTitle($dateStart, $dateEnd, $mode = CALENDAR_MODE_DAY) {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
+		$title		= '';
 
-		switch($mode) {
-			case CALENDAR_MODE_DAY:
-				$title	= TodoyuTime::format($dateStart, 'DlongD2MlongY4') . ' (' . TodoyuTime::format($dateStart, 'calendarweek') . ')';
-				break;
-
-			case CALENDAR_MODE_WEEK:
-				if( date('n', $dateStart) === date('n', $dateEnd) ) {
-					$title = TodoyuTime::format($dateStart, 'day') . ' - ' . TodoyuTime::format($dateEnd, 'day') .  ' ' . TodoyuTime::format($dateStart, 'Mlong') . ' (' . TodoyuTime::format($dateStart, 'calendarweek') . ')';
-				} else {
-					$title = TodoyuTime::format($dateStart, 'MlongD2') . ' - ' . TodoyuTime::format($dateEnd, 'D2MlongY4') . ' (' . TodoyuTime::format($dateStart, 'calendarweek') . ')';
-				}
-				break;
-
-			case CALENDAR_MODE_MONTH:
-				$date	= $dateStart + TodoyuTime::SECONDS_WEEK;
-				$kw1	= TodoyuTime::format($dateStart, 'calendarweek');
-				$kw2	= TodoyuTime::format($dateEnd, 'calendarweek');
-				$title	= TodoyuTime::format($date, 'MlongY4') . ' (' . $kw1 . ' - ' . $kw2 . ')';
-				break;
-
-			default:
-				$title = 'Invalid mode';
+		if( $mode === CALENDAR_MODE_DAY ) {
+			$format= label('calendar.calendartitle.dateformat.day');
+			$title	.= strftime($format, $dateStart);
+		} elseif( $mode === CALENDAR_MODE_WEEK ) {
+			$title	.= strftime(label('calendar.calendartitle.dateformat.week.part1'), $dateStart);
+			$title .= strftime(label('calendar.calendartitle.dateformat.week.part2'), $dateEnd);
+		} elseif( $mode === CALENDAR_MODE_MONTH ) {
+			$date	= $dateStart + TodoyuTime::SECONDS_WEEK;
+			$title	.= strftime(label('calendar.calendartitle.dateformat.month.part1'), $date);
+			$title	.= strftime(label('calendar.calendartitle.dateformat.month.part2'), $dateStart);
+			$title	.= strftime(label('calendar.calendartitle.dateformat.month.part3'), $dateEnd);
+		} else {
+			$title = 'Invalid mode';
 		}
 
-		return $title;
+		return TodoyuString::getAsUtf8($title);
 	}
 
 

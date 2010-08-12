@@ -1,12 +1,11 @@
 <div class="mainGrid">
 	<div id="gridcontainer" class="weekMode">
 
-		{* --------------- Dayevent Bar Start ----------------------- *}
+		{* --------------- Day event Bar Start ----------------------- *}
 		<div id="topcontainerwk">
 			<table class="wk-weektop">
 				<tbody>
-
-					{* --------------- Daynames and dates ----------------------- *}
+					{* --------------- Day names and dates ----------------------- *}
 					<tr>
 						<td rowspan="3" class="wk-tzlabel">
 							<div id="toggleDayView" class="{if $fullDayView}full{/if}" title="{if $fullDayView}{Label calendar.dayview.workinghours}{else}{Label calendar.dayview.fullday}{/if}" onclick="Todoyu.Ext.calendar.Navi.toggleFullDayView()"></div>
@@ -23,7 +22,7 @@
 						{/for}
 					</tr>
 
-					{* ------------  Fullday events (incl birthdays) ------------------ *}
+					{* ------------  Full-day events (incl birthdays) ------------------ *}
 					<tr>
 						<td class="wk-allday" colspan="7">
 							<table class="st-grid">
@@ -42,16 +41,6 @@
 										{/for}
 									</tr>
 								{/if}
-
-								{*
-								{for weekday 0 6}
-									{assign var=dayDateKey value=date('Ymd', $timestamps.$weekday)}
-									{foreach $dayEvents.$dayDateKey dayEvent}
-										{$dayEvent}
-									{/foreach}
-								{/for}
-								*}
-
 								{foreach $dayEvents dayDayEvents}
 									<tr>
 										{foreach $dayDayEvents dayEvent}
@@ -92,9 +81,7 @@
 				</tbody>
 			</table>
 		</div>
-		{* --------------- Dayevent Bar End ----------------------- *}
-
-
+		{* --------------- Day-event Bar End ----------------------- *}
 
 		{* --------------- Start scrolltimedevents ----------------------- *}
 		<div id="calendararea" class="wk-scrolltimedevents {if $fullDayView}full{/if} contextmenucalendararea">

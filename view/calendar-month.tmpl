@@ -18,7 +18,7 @@
 		<table class="mv-daynames-table">
 			<tbody>
 				<tr>{for daynum 0 6}
-					<th title="{weekdayName $timestamps[$daynum+1]}" class="mv-dayname {cycle values="odd,even"}">
+					<th class="mv-dayname {cycle values="odd,even"}" title="{weekdayName $timestamps[$daynum+1]}">
 						{weekdayNameShort $timestamps[$daynum+1]}
 					</th>{/for}
 				</tr>

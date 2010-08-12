@@ -117,7 +117,7 @@ function Dwoo_Plugin_EventTypeKey_compile(Dwoo_Compiler $compiler, $idEventIndex
 function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
 	$timestamp	= intval($timestamp);
 
-	return Label( 'date.weekday.' . strtolower(date('l', $timestamp)) );
+	return Label('date.weekday.' . strtolower(date('l', $timestamp)) );
 }
 
 
