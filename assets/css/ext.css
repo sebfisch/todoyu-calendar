@@ -55,7 +55,7 @@ h1.extIconCalendar .title {
 
 
 /* --------------------------------
-   Create mode option in headlet
+	Create mode option in headlet
    -------------------------------- */
 #headlet-quickcreate-content li.itemCalendarEvent a {
 	background:url(../img/icons.png) no-repeat 5px -296px;
@@ -64,7 +64,7 @@ h1.extIconCalendar .title {
 
 
 /* ------------------------------
-   Search mode option in headlet
+	Search mode option in headlet
    ------------------------------ */
 #headlet-quicksearch-content form.searchmodeEvent a.mode,
 #headlet-quicksearch-modes li.searchmodeEvent a {
