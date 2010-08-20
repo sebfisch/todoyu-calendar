@@ -160,24 +160,9 @@ div.weekMode table.st-grid td {
 	margin-bottom:20px
 }
 
-.tg-times {
-	opacity:0.9;
-	filter:alpha(opacity=90);
-	width:40px;
-}
 
-.tg-time {
-	padding-left:2px;
-	color:#446688;
-	height:42px;
-	cursor:pointer;
-}
 
-.tg-time:hover {
-	background-color:#f1ffc4;
-}
-
-.tg-col {
+.dayCol {
 	border-left:3px double #ddd;
 	overflow:hidden;
 	vertical-align:top;

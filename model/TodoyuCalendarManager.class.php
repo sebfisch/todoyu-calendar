@@ -155,75 +155,33 @@ class TodoyuCalendarManager {
 	 * As the month view of the calendar displays 5 weeks from monday to sunday, there are always some days
 	 * out of the months before and after the selected month being displayed, this function calculates their timestamps.
 	 *
-	 * @param	Integer	$timestamp	Unix timestamp (selected date)
+	 * @param	Integer	$activeDate	Unix timestamp (selected date)
 	 * @return	Array				Timestamps of days to be shown in month view of calendar
 	 */
-	public static function getShownDaysTimestampsOfMonthView($timestamp) {
-		$timestamp		= intval($timestamp);
-		$monthSpecs	= self::getMonthSpecs($timestamp);
+	public static function getDayTimestampsForMonth($activeDate) {
+		$activeDate	= intval($activeDate);
+		$monthRange	= TodoyuTime::getMonthRange($activeDate);
 
-		$monthNum			= intval($monthSpecs['dateOfCurrentMonth']);
-		$nextMonthNum		= intval($monthSpecs['dateOfNextMonth']);
-		$yearOfLastMonth	= $monthSpecs['dateOfCurrentMonth'] == 1 ? $monthSpecs['selectedYear'] - 1 : $monthSpecs['selectedYear'];
-		$selectedYear		= $monthSpecs['selectedYear'];
+		$weekDayStart	= date('w', $monthRange['start']);
+		$weekDayEnd		= date('w', $monthRange['end']);
 
-			// Days in month before selected
-		$row	= 0;
-		for($i = $row; $i <= $monthSpecs['shownDaysOfLastMonth']; $i++) {
-			$dayNum			= $monthSpecs['daysOfLastMonth'] - $monthSpecs['shownDaysOfLastMonth'] + $i;
-			$tstamps[$i]	= mktime(0, 0, 0, $monthSpecs['dateOfLastMonth'], $dayNum, $yearOfLastMonth);
-			$row++;
-		}
-			// Days in selected month
-		$dayNum	= 1;
-		for($i = $row; $dayNum <= $monthSpecs['daysOfMonth']; $i++) {
-			$tstamps[$i]		= mktime(0, 0, 0, $monthNum, $dayNum, $selectedYear);
-			$row++;
-			$dayNum++;
-		}
-			// Days in month after selected
-		$dayNum	= 1;
-		$addDays = count($tstamps) > 36 ? 7 : 0;
-		for($i = $row; $dayNum <= $monthSpecs['shownDaysOfNextMonth'] + $addDays; $i++) {
-			$yearOfNextMonth	= $monthSpecs['dateOfCurrentMonth'] == 12 ? $monthSpecs['selectedYear'] + 1 : $monthSpecs['selectedYear'];
-			$tstamps[$i]		= mktime(0, 0, 0, $nextMonthNum, $dayNum, $yearOfNextMonth);
-			$row++;
-			$dayNum++;
+		$daysLastMonth	= ($weekDayStart + 6) % 7;
+		$daysNextMonth	= (7 - $weekDayEnd) % 7;
+
+		$viewStart		= TodoyuTime::addDays($monthRange['start'], -$daysLastMonth);
+		$viewEnd		= TodoyuTime::addDays($monthRange['end'], $daysNextMonth);
+		$currentDate	= $viewStart;
+		$timestamps		= array();
+
+		while( $currentDate <= $viewEnd ) {
+			$timestamps[]	= $currentDate;
+			$currentDate	= TodoyuTime::addDays($currentDate, 1);
 		}
 
-		return $tstamps;
+		return $timestamps;
 	}
 
-
-
-	/**
-	 * PreCalculate various time data (from prev., selected and next month) for calendar month view
-	 *
-	 * @param	Integer	$tstamp		UNIX Timestamp (selected date in calendar panel widget)
-	 * @return	Array	data		preCalculated attributes of prev., selected and next month to be rendered
-	 */
-	public static function getMonthSpecs($timestamp) {
-		$timestamp	= intval($timestamp);
-		$month	= date('m', $timestamp);
-		$year	= date('Y', $timestamp);
-
-		$data	= array(
-			'daysOfMonth'			=> TodoyuTime::getDaysInMonth($timestamp),
-			'daysOfLastMonth'		=> TodoyuTime::getDaysInMonth($timestamp, -1),
-			'numericDayOfWeek'		=> date('w', mktime(0, 0, 0, $month, 1, $year)),
-			'dateOfLastMonth'		=> $month == 1 ? 12 : $month - 1,
-			'dateOfCurrentMonth'	=> $month,
-			'dateOfNextMonth'		=> date('m', strtotime('+1 month', $timestamp)),
-			'selectedYear'			=> $year,
-		);
-
-		$data['shownDaysOfLastMonth'] = $data['numericDayOfWeek'] - 1;
-		$data['shownDaysOfNextMonth'] = 35 - $data['daysOfMonth'] - $data['shownDaysOfLastMonth'];
-
-		return $data;
-	}
-
-
+	
 
 	/**
 	 * Check whether overbooking (more than one event assigned to one person at the same time) is allowed
@@ -441,7 +399,7 @@ class TodoyuCalendarManager {
 
 	/**
 	 * Get autocomplete persons for events (only staff)
-	 * 
+	 *
 	 * @param	String		$input
 	 * @param	Array		$formData
 	 * @param	String		$name

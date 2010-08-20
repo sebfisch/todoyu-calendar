@@ -1,82 +1,73 @@
-{assign var=weekFromNum value=1}
-{if count($timestamps) > 36}
-	{assign var=weeks value=6}
-{else}
-	{assign var=weeks value=5}
-{/if}
-{* --- Ensure to include 1st day of month / resp. the monday before that --- *}
-{assign var=dayFrom value=$weekFromNum*7-6}
-{if date('Y', $timestamps.$dayFrom) == $selYear && date('n', $timestamps.$dayFrom) >= $selMonth && date('d', $timestamps.$dayFrom) > 1}
-	{assign var=weekFromNum value=0}
-	{assign var=weeks value=6}
-	{assignNegativeTimestamps $selMonth $timestamps}
-{/if}
-<div class="mainGrid {if $weeks == 5}month{/if}{if $weeks == 6}sixWeeks{/if}" id="calendararea">
+<div class="mainGrid month" id="calendararea">
 	<div id="gridcontainer" class="monthMode">
 
 		{* --------------------------- Days names (Mon-Sun) ------------------------- *}
 		<table class="mv-daynames-table">
 			<tbody>
 				<tr>{for daynum 0 6}
-					<th class="mv-dayname {cycle values="odd,even"}" title="{weekdayName $timestamps[$daynum+1]}">
-						{weekdayNameShort $timestamps[$daynum+1]}
+					<th class="mv-dayname {cycle values="odd,even"}" title="{weekdayName $timestamps[$daynum]}">
+						{weekdayNameShort $timestamps[$daynum]}
 					</th>{/for}
 				</tr>
 			</tbody>
 		</table>
 
 		<div id="mvEventContainer" class="mv-event-container contextmenucalendararea">
-		{for monthrowCounter $weekFromNum $weeks}
-			{assign var=dayFrom value=$monthrowCounter*7-6}
-			{assign var=dayUntil value=$monthrowCounter*7}
+		{for week 0 $visibleWeeks-1}
+
+			{$dayFrom = $week*7}
+			{$dayUntil= $dayFrom+6}
+
 			<div class="month-row">
 				<table class="st-grid"><tbody>
 					<tr>
+
 					{* -------------------- Day headers (+ event creation hotspots)  ---------------------- *}
 					{for dayCounter $dayFrom $dayUntil}
-						{if $dayCounter < 1}
-							{assign var=curDayCounter value=$dayCounter+100}
+						{$dayDateKey=date('Ymd', $timestamps[$dayCounter])}
+						{if date('nY', $timestamps[$dayCounter]) == $selMonthYear}
+							{$inSelMonth=true}
 						{else}
-							{assign var=curDayCounter value=$dayCounter}
+							{$inSelMonth=false}
 						{/if}
-						{assign var=dayDateKey value=date('Ymd', $timestamps.$curDayCounter)}
-						{if date('nY', $timestamps.$curDayCounter) == $selMonthYear}
-							{assign var=inSelMonth value=true}
-						{else}
-							{assign var=inSelMonth value=false}
+
+						{* ---- Compile day class --- *}
+						{$class = 'title'}
+						{if $timestamps[$dayCounter]==$timestamp_today}
+							{$class .= ' ttoday'}
 						{/if}
-						<td id="createEventAt-{date 'Y-m-d' $timestamps.$curDayCounter}" title="{dateFormat $timestamps.$curDayCounter DlongD2MlongY4}{if $timestamps.$curDayCounter == $timestamp_today} ({Label calendar.today}){/if}" class="title {if $timestamps.$curDayCounter == $timestamp_today}ttoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if $inSelMonth} inSelMonthTitle{if date('d', $timestamps.$curDayCounter) == 1} selMonthStart{/if}{/if}">
+						{if $inSelMonth}
+							{$class .= ' inSelMonthTitle'}
+						{/if}
+
+						<td id="createEventAt-{date 'Y-m-d' $timestamps[$dayCounter]}" title="{dateFormat $timestamps[$dayCounter] DlongD2MlongY4}{if $timestamps[$dayCounter] == $timestamp_today} ({Label calendar.today}){/if}" class="{$class}">
 							{* ------ Week number (only for mondays) ----- *}
-							{if $curDayCounter == $dayFrom}
-								<span class="weekNumber" title="{dateFormat $timestamps[$curDayCounter] calendarweek}" onclick="Todoyu.Ext.calendar.show('week', {$timestamps[$curDayCounter]*1000})">
-									{dateFormat $timestamps.$curDayCounter calendarweek}
+							{if $dayCounter == $dayFrom}
+								<span class="weekNumber" title="{dateFormat $timestamps[$dayCounter] calendarweek}" onclick="Todoyu.Ext.calendar.showWeek('{date 'Y-m-d' $timestamps[$dayCounter]}')">
+									{dateFormat $timestamps[$dayCounter] calendarweek}
 								</span>
 							{/if}
 							{* ------ Holiday Icon ----- *}
 							{if sizeof($holidays[$dayDateKey])>0}
-								<span id="holiday-{$timestamps[$curDayCounter]}" class="holiday quickInfoHoliday"></span>
+								<span id="holiday-{$timestamps[$dayCounter]}" class="holiday quickInfoHoliday"></span>
 							{/if}
 							{* ------- Numeric date, full date if 1st day of month ------- *}
-							<span class="month-date" onclick="Todoyu.Ext.calendar.show('day', {$timestamps[$curDayCounter]*1000})">
-							{if date('j', $timestamps[$curDayCounter]) == 1}
-								{dateFormat $timestamps[$curDayCounter] D2Mshort}
+							<span class="month-date" onclick="Todoyu.Ext.calendar.showDay('{date 'Y-m-d' $timestamps[$dayCounter]}')">
+							{if date('j', $timestamps[$dayCounter]) == 1}
+								{dateFormat $timestamps[$dayCounter] D2Mshort}
 							{else}
-								{date('j', $timestamps[$curDayCounter])}
+								{date('j', $timestamps[$dayCounter])}
 							{/if}
 							</span>
 						</td>
 					{/for}
+
 					</tr>
 					<tr>
 					{* --------------------------- Birthdays, Day-events, Events  ------------------------- *}
 					{for dayCounter $dayFrom $dayUntil}
-					{if $dayCounter < 1}
-						{assign var=curDayCounter value=$dayCounter+100}
-					{else}
-						{assign var=curDayCounter value=$dayCounter}
-					{/if}
-						<td id="createEventAt-{date 'Y-m-d' $timestamps.$curDayCounter}" class="content {if $timestamps.$curDayCounter == $timestamp_today}ctoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if date('ny', $timestamps.$curDayCounter)==date('ny', $timestamp_today)} inSelMonth{/if}">
-							{assign var=dayDateKey value=date('Ymd', $timestamps[$curDayCounter])}
+						<td id="createEventAt-{date 'Y-m-d' $timestamps[$dayCounter]}" class="content {if $timestamps[$dayCounter] == $timestamp_today}ctoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if date('ny', $timestamps[$dayCounter])==date('ny', $timestamp_today)} inSelMonth{/if}">
+							{$dayDateKey=date('Ymd', $timestamps[$dayCounter])}
 							{if $birthdays[$dayDateKey]}
 								{foreach $birthdays[$dayDateKey] birthday}
 									{$birthday}
@@ -88,9 +79,6 @@
 							{foreach $events[$dayDateKey] event}
 								{$event}
 							{/foreach}
-							{if $curDayCounter == $dayUntil}
-								<br/>
-							{/if}
 						</td>
 					{/for}
 					</tr>

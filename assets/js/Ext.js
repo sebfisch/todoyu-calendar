@@ -52,23 +52,20 @@ Todoyu.Ext.calendar = {
 	},
 
 
-	init: function() {
-
-	},
-
-
-
 	/**
-	 * Initialization
+	 * Init calendar
 	 */
-	initCalendar: function(fullHeight) {
-		this.CalendarBody.init(fullHeight);
-
-		this.installGeneralObservers();
-		this.installBodyObservers();
-
+	init: function() {
 		this.addHooks();
+
+			// Only initialize panelwidgets and body in calendar view
+		if( Todoyu.getArea() === 'calendar' ) {
+			this.addPanelWidgetObservers();
+			this.CalendarBody.init();
+		}
 	},
+
+
 
 
 
@@ -76,11 +73,14 @@ Todoyu.Ext.calendar = {
 	 * Add various JS hooks
 	 */
 	addHooks: function() {
-			// Add event save hooks
+			// Add event save hook
 		Todoyu.Hook.add('calendar.quickevent.saved', this.refresh.bind(this));
 
-			// Add event edit hooks for event type
+			// Add event edit hook for event type
 		Todoyu.Hook.add('calendar.event.editType', this.Event.Edit.checkHideField.bind(this.Event.Edit));
+
+			// Add event save hook
+		Todoyu.Hook.add('calendar.event.saved', this.onEventSaved.bind(this));
 	},
 
 
@@ -88,23 +88,10 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Install general calendar observer
 	 */
-	installGeneralObservers: function() {
+	addPanelWidgetObservers: function() {
 		Todoyu.PanelWidget.observe('calendar', this.onDateChanged.bind(this));
 		Todoyu.PanelWidget.observe('staffselector', this.onStaffSelectionChanges.bind(this));
 		Todoyu.PanelWidget.observe('eventtypeselector', this.onEventTypeSelectionChanges.bind(this));
-
-		Todoyu.Hook.add('calendar.event.saved', this.onEventSaved.bind(this));
-	},
-
-
-
-	/**
-	 * Install calendar body observers
-	 */
-	installBodyObservers: function() {
-		this.installQuickinfos();
-		this.installEventObservers();
-		this.CalendarBody.installObserversCreateEvent();
 	},
 
 
@@ -121,37 +108,9 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 * Uninstall calendar body observers
-	 */
-	uninstallBodyObservers: function() {
-		this.uninstallEventObservers();
-	},
-
-
-
-	/**
-	 * Install observers to event entries in calendar to show / hide quickinfo to when un / hovering them
-	 *
-	 * @param	{Element}	el
-	 */
-	installEventObservers: function(el) {
-		this.Event.installObservers();
-	},
-
-
-
-	/**
-	 * Uninstall event observers
-	 */
-	uninstallEventObservers: function() {
-
-	},
-
-
-	/**
 	 * Get selected date timestamp
 	 *
-	 * @return	{Number}	timestamp	UNIX timestamp
+	 * @return	{Number}	Javascript timestamp
 	 */
 	getDate: function() {
 		return this.PanelWidget.Calendar.getDate();
@@ -162,7 +121,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Set selected date timestamp
 	 *
-	 * @param	{Number}	timestamp	UNIX timestamp
+	 * @param	{Number}	date	Javascript timestamp
 	 */
 	setDate: function(date) {
 		this.PanelWidget.Calendar.setDate(date, true);
@@ -193,7 +152,7 @@ Todoyu.Ext.calendar = {
 	/**
 	 * Get day string of selected date
 	 */
-	getDayString: function() {
+	getDateString: function() {
 		return Todoyu.Time.getDateString(this.getTime())
 	},
 
@@ -239,26 +198,6 @@ Todoyu.Ext.calendar = {
 	 */
 	setActiveTab: function(tab) {
 		this.Tabs.setActive(tab);
-	},
-
-
-
-	/**
-	 * Hook before calendar body update
-	 */
-	beforeUpdate: function() {
-		this.uninstallBodyObservers();
-
-	},
-
-
-
-	/**
-	 * Hook after calendar body update
-	 */
-	afterUpdate: function() {
-		this.installBodyObservers();
-		this.CalendarBody.reInit();
 	},
 
 
@@ -331,7 +270,7 @@ Todoyu.Ext.calendar = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onCalendarBodyUpdated: function(response) {
-		this.afterUpdate();
+		this.CalendarBody.init();
 	},
 
 
@@ -343,8 +282,6 @@ Todoyu.Ext.calendar = {
 	 * @param	{Hash}		options
 	 */
 	updateCalendarBody: function(url, options) {
-		this.beforeUpdate();
-
 		Todoyu.Ui.update('calendar-body', url, options);
 	},
 
@@ -354,7 +291,7 @@ Todoyu.Ext.calendar = {
 	 * Refresh calendar with current settings
 	 */
 	refresh: function() {
-		this.show(null, null);
+		this.show();
 	},
 
 
@@ -387,9 +324,9 @@ Todoyu.Ext.calendar = {
 		var url 	= Todoyu.getUrl('calendar', 'calendar');
 		var options	= {
 			'parameters': {
-				'action':	'update',
-				'tab':		this.getActiveTab(),
-				'date':		this.getDayString()
+				action:	'update',
+				tab:		this.getActiveTab(),
+				date:		this.getDateString()
 			},
 			'onComplete': this.onCalendarBodyUpdated.bind(this)
 		};
@@ -399,6 +336,31 @@ Todoyu.Ext.calendar = {
 
 
 
+	/**
+	 * Show day by date
+	 *
+	 * @param	{String}	date		Format: Y-m-d (2010-08-15)
+	 */
+	showDay: function(date) {
+		var parts	= date.split('-');
+		var time 	= (new Date(parts[0], parts[1]-1, parts[2], 0, 0, 0)).getTime();
+		this.show('day', time);
+	},
+
+
+	/**
+	 * Show week by date
+	 *
+	* @param	{String}	date		Format: Y-m-d (2010-08-15)
+	 */
+	showWeek: function(date) {
+		var parts	= date.split('-');
+		var time 	= (new Date(parts[0], parts[1]-1, parts[2], 0, 0, 0)).getTime();
+		this.show('week', time);
+	},
+
+
+	
 	/**
 	 * Set calendar title
 	 *

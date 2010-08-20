@@ -193,7 +193,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * @param	Array		$params
 	 * @return	String
 	 */
-	public static function addSubformAction(array $params) {
+	public function addSubformAction(array $params) {
 		restrictIfNone('calendar', 'event:editAll,event:editAndDeleteAssigned');
 
 		$index		= intval($params['index']);
@@ -209,6 +209,21 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idRecord);
 
 		return TodoyuFormManager::renderSubFormRecord($xmlPath, $fieldName, $formName, $index, $idRecord, $formData);
+	}
+
+
+
+	/**
+	 * Save new date when event has been dragged to a new position
+	 *
+	 * @param	Array		$params
+	 */
+	public function dragDropAction(array $params) {
+		$idEvent	= intval($params['event']);
+		$time		= strtotime($params['date']);
+		$tab		= trim($params['tab']);
+
+		TodoyuEventManager::moveEvent($idEvent, $time, $tab);
 	}
 
 }

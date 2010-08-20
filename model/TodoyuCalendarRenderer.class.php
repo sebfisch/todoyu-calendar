@@ -52,7 +52,7 @@ class TodoyuCalendarRenderer {
 		$data	= array(
 			'active'		=> $activeTab,
 			'content'		=> self::renderCalendar($time, $activeTab, $params),
-			'showCalendar'	=> ( in_array($activeTab, array('day', 'week', 'month')) ) ? true : false
+			'showCalendar'	=> in_array($activeTab, array('day', 'week', 'month'))
 		);
 
 			// If event-view is selected, set date and add it to data array
@@ -179,15 +179,14 @@ class TodoyuCalendarRenderer {
 	/**
 	 * Render calendar view for month view
 	 *
-	 * @param	Integer		$time		UNIX timestamp of selected date
+	 * @param	Integer		$activeDate		UNIX timestamp of selected date
 	 * @return	String
 	 */
-	public static function renderCalendarMonth($time) {
-		$time	= intval($time);
-		$persons		= TodoyuCalendarManager::getSelectedPersons();
+	public static function renderCalendarMonth($activeDate) {
+		$activeDate	= intval($activeDate);
+		$persons	= TodoyuCalendarManager::getSelectedPersons();
 
-		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($time);
-
+		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($activeDate);
 		$dateStart	= $monthRange['start'];
 		$dateEnd	= $monthRange['end'];
 
@@ -196,8 +195,8 @@ class TodoyuCalendarRenderer {
 
 		$tmpl		= 'ext/calendar/view/calendar-month.tmpl';
 		$data		= array(
-			'timestamps'		=> TodoyuCalendarManager::getShownDaysTimestampsOfMonthView($time),
-			'timestamp'			=> $time,
+			'timestamps'		=> TodoyuCalendarManager::getDayTimestampsForMonth($activeDate),
+			'timestamp'			=> $activeDate,
 			'selMonth'			=> date('n', $dateStart + TodoyuTime::SECONDS_WEEK),
 			'selYear'			=> date('Y', $dateStart + TodoyuTime::SECONDS_WEEK),
 			'selMonthYear'		=> date('nY', $dateStart + TodoyuTime::SECONDS_WEEK),
@@ -206,8 +205,10 @@ class TodoyuCalendarRenderer {
 			'dayEvents'			=> self::preRenderDayevents(CALENDAR_MODE_MONTH, $dateStart, $dateEnd, $eventTypes, $persons),//, $amountDays),
 			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderPersonBirthdays($dateStart, $dateEnd, CALENDAR_MODE_MONTH) : array(),
 			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
-			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($dateStart, $dateEnd, CALENDAR_MODE_MONTH)
+			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($dateStart, $dateEnd, CALENDAR_MODE_MONTH),
 		);
+
+		$data['visibleWeeks']	= sizeof($data['timestamps']) === 35 ? 5 : 6;
 
 		return render($tmpl, $data);
 	}

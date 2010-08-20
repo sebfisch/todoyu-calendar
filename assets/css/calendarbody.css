@@ -8,11 +8,7 @@
 }
 
 	#calendararea.month {
-		height:660px !important;
-	}
-
-	#calendararea.sixWeeks {
-		height:790px !important;
+		height:auto;
 	}
 
 	#calendararea.full {
@@ -38,13 +34,31 @@
 	background-color:#f2f3ed;
 }
 
-	.dayMode #tgnowptr {
-		top:644px;
-	}
 
-	.weekMode #tgnowptr {
-		top:430px;
-	}
+
+.colHours {
+	opacity:0.9;
+	filter:alpha(opacity=90);
+	width:40px;
+	background-image:url(../img/background-hours.png);
+	background-repeat:repeat-y;
+	background-color:#f2f3ed;
+}
+
+.colHours .hour {
+	padding-left:2px;
+	color:#446688;
+	height:41px;
+	margin-top:1px;
+	cursor:pointer;
+}
+
+.colHours .hour:hover {
+	background-color:#f1ffc4;
+}
+
+
+
 
 
 

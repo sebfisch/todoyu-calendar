@@ -46,6 +46,9 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 	public function defaultAction(array $params) {
 		restrict('calendar', 'general:area');
 
+			// Generate colors CSS and sprite
+		TodoyuColors::generate();
+
 			// Activate FE tab and tab sub menu entry
 		TodoyuFrontend::setActiveTab('planning');
 		TodoyuFrontend::setActiveSubmenuTab('planning', 'calendar');
@@ -74,14 +77,6 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 		TodoyuPage::set('calendarTabs', $calendarTabs);
 		TodoyuPage::set('calendar', $calendar);
 		TodoyuPage::set('panelWidgets', $panelWidgets);
-
-			// Generate colors CSS and sprite
-		TodoyuColors::generate();
-
-			// Get current settings
-		$fullHeight	= TodoyuCalendarPreferences::getFullDayView() ? 'true' : 'false';
-
-		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.initCalendar.bind(Todoyu.Ext.calendar, ' . $fullHeight . ')', 100);
 
 		return TodoyuPage::render();
 	}

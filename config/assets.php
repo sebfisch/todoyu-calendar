@@ -80,6 +80,10 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 			'position' => 120
 		),
 		array(
+			'file' => 'ext/calendar/assets/js/DragDrop.js',
+			'position' => 121
+		),
+		array(
 			'file' => 'ext/calendar/assets/js/ContextMenuCalendarBody.js',
 			'position' => 121
 		),

@@ -51,39 +51,4 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 	getID: function(element, event) {
 		return element.id.split('-').last();
 	}
-
-
-
-	/**
-	 * Load event context menu
-	 *
-	 * @param	{Event}		event
-	 */
-	/*
-	load: function(event) {
-		var time 			= this.ext.ContextMenuCalendarBody.getClickedTime(event);
-
-		var eventElement	= event.findElement('div.event');
-
-			// ..or is it a day-event?
-		if(typeof(eventElement) == "undefined" || eventElement == null) {
-			eventElement	= event.findElement('div.dayevent');
-		}
-
-		var idEvent		= eventElement.readAttribute('id').split('-').last();
-
-		var url		= Todoyu.getUrl('calendar', 'contextmenu');
-		var options	= {
-			'parameters': {
-				'action':	'event',
-				'event':	idEvent,
-				'time':		time
-			}
-		};
-
-		Todoyu.ContextMenu.showMenu(url, options, event);
-
-		return false;
-	},
-	*/
 };

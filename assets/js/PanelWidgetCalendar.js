@@ -42,14 +42,14 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 	/**
 	 * Update of the calender is delayed. Timeout is stored here
-	 * 
+	 *
 	 * @param	{Function}
 	 */
 	updateTimeout:		null,
 
 	/**
 	 * Seconds for update delay
-	 * 
+	 *
 	 * @param	{Number}
 	 */
 	updateTimeoutWait:	0.2,
@@ -59,10 +59,10 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Initialize calendar widget
 	 *
-	 * @param	{Number}		timestamp	UNIX timestamp
+	 * @param	{String}		date	Formatted date Y-m-d
 	 */
-	init: function(timestamp) {
-		var initialDate = new Date(timestamp * 1000);
+	init: function(date) {
+		var initialDate = new Date(date);
 
 		var options		= Object.extend(this.ext.calOptions, {
 			year:			initialDate.getFullYear(),

@@ -35,25 +35,22 @@ Todoyu.Ext.calendar.CalendarBody = {
 	/**
 	 * Init calendar body
 	 *
-	 * @param	{Boolean}		fullHeight
 	 */
-	init: function(fullHeight) {
+	init: function() {
 		this.calendarBody = $(this.idArea);
 
 		this.installContextMenu();
+		this.installObserversCreateEvent();
+
+		this.ext.installQuickinfos();
+		this.ext.Event.installObservers();
+
 		if( this.ext.getActiveTab() !== 'month' ) {
-			this.setFullHeight(fullHeight, false);
+			this.setFullHeight(this.isFullHeight(), false);
 		}
-	},
 
-
-
-	/**
-	 * Reinitialize calendar boy
-	 */
-	reInit: function() {
-		this.calendarBody = $(this.idArea);
-		this.init(this.isFullHeight());
+			// Init drag'n'drop
+		this.ext.DragDrop.init();
 	},
 
 
@@ -98,7 +95,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 	/**
 	 * Set calendar body display mode to full day height
-	 * 
+	 *
 	 * @param	{Boolean}		fullHeight
 	 * @param	{Boolean}		savePref
 	 */
@@ -178,19 +175,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
-	 * Install Observers
-	 */
-	installObservers: function() {
-
-	},
-
-
-
-	/**
 	 * Install create event observer
 	 */
 	installObserversCreateEvent: function() {
-		this.reInit();
 		var tab	= this.ext.getActiveTab();
 
 		if( tab === 'month' ) {
@@ -208,7 +195,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 * @param	{Event}	event
 	 */
 	onEventCreateDayWeek: function(event) {
-		if( event.findElement('td.tg-col') ) {
+		if( event.findElement('td.dayCol') ) {
 			var time	= this.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
 
 			this.ext.addEvent(time);
@@ -228,10 +215,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 		var cell	= event.findElement('td');
 
 		if( cell ) {
-				// ID format: createEventAt-2010-07-28
-			var timeParts	= cell.id.split('-').slice(1);
 				// Get timestamp of the date in local timezone (will be reconverted later into the same timestamp again)
-			var time		= parseInt((new Date(timeParts[0], timeParts[1]-1, timeParts[2], 0, 0, 0)).getTime()/1000, 10);
+			var time	= Todoyu.Time.date2Time(cell.id.split('-').slice(1).join('-'));
+			
 			this.ext.addEvent(time);
 		}
 	}

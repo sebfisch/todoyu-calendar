@@ -12,11 +12,11 @@
 						</td>
 						{* ---------- Header: dates of the rendered week ------------ *}
 						{for weekday 0 6}
-							{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
-							<th class="wk-dayname {if $timestamps[$weekday] == $timestamp_today}today todaywk-dayname{/if} {cycle values="odd,even"}" title="{dateFormat $timestamps.$weekday DlongD2MlongY4}{if $timestamps.$weekday == $timestamp_today} ({Label calendar.today}){/if}" scope="col" onclick="Todoyu.Ext.calendar.show('day', {$timestamps[$weekday]*1000})">
-								{dateFormat $timestamps.$weekday DshortD2M2}
+							{$dayDateKey = date('Ymd', $timestamps[$weekday])}
+							<th class="wk-dayname {if $timestamps[$weekday] == $timestamp_today}today todaywk-dayname{/if} {cycle values="odd,even"}" title="{dateFormat $timestamps.$weekday DlongD2MlongY4}{if $timestamps.$weekday == $timestamp_today} ({Label calendar.today}){/if}" scope="col" onclick="Todoyu.Ext.calendar.showDay('{date('Y-m-d', $timestamps[$weekday])}')">
+								{dateFormat $timestamps[$weekday] DshortD2M2}
 								{if sizeof($holidays[$dayDateKey])>0}
-									<span id="holiday-{$timestamps.$weekday}" class="holiday quickInfoHoliday"></span>
+									<span id="holiday-{$timestamps[$weekday]}" class="holiday quickInfoHoliday"></span>
 								{/if}
 							</th>
 						{/for}
@@ -30,7 +30,7 @@
 								{if sizeof($birthdays, constant(COUNT_RECURSIVE)) > 0}
 									<tr>
 										{for weekday 0 6}
-											{assign var=dayDateKey value=date('Ymd', $timestamps[$weekday])}
+											{$dayDateKey = date('Ymd', $timestamps[$weekday])}
 											<td class="noEventCell">
 											{if $birthdays[$dayDateKey]}
 												{foreach $birthdays[$dayDateKey] birthday}
@@ -87,7 +87,8 @@
 		<div id="calendararea" class="wk-scrolltimedevents {if $fullDayView}full{/if} contextmenucalendararea">
 			<table class="tg-timedevents" id="tgTable">
 				<tbody>
-					<tr><td class="wid40"></td>
+					<tr>
+						<td class="wid40"></td>
 						<td colspan="7">
 							<div class="tg-hourmarkerwrapper">
 								<div class="tg-hourmarkers">
@@ -100,16 +101,15 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="tg-times">
-							<div class="tg-nowptr" id="tgnowptr" />
+						<td class="colHours">
 							{for hour 0 23}
-								<div class="tg-time">{if $hour < 10}0{/if}{$hour}:00</div>
+								<div class="hour">{if $hour < 10}0{/if}{$hour}:00</div>
 							{/for}
 						</td>
 						{* -------- Week event inserters -------- *}
 						{for daycounter 0 6}
 							{assign var=dayDateKey value=date('Ymd', $timestamps.$daycounter)}
-							<td class="tg-col {if $timestamps.$daycounter == $timestamp_today}tg-coltoday{/if}">
+							<td class="dayCol {if $timestamps.$daycounter == $timestamp_today}tg-coltoday{/if}">
 								<div class="tg-colwrapper">
 									<div id="tgCol{$daycounter}">
 									{foreach $events.$dayDateKey event}

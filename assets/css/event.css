@@ -17,6 +17,10 @@
 	white-space:nowrap;
 }
 
+#calendar .event dt.head {
+	cursor:move;
+}
+
 #calendar .event span.desc {
 	overflow:hidden;
 }

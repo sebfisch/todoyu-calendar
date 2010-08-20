@@ -37,6 +37,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	 * Attach task context menu
 	 */
 	attach: function() {
+		this.detach();
 		Todoyu.ContextMenu.attach('calendarbody', '.contextmenucalendararea', this.getTime.bind(this));
 	},
 
@@ -66,14 +67,21 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 
 	/**
 	 * Get timestamp at clicked coordinates / element
-	 * 
+	 *
 	 * @param	{Event}		event
 	 * @return	{Number}
 	 */
 	getClickedTime: function(event) {
-		var calendarMode	= this.ext.getActiveTab();
+		var tab	= this.ext.getActiveTab();
+		var time;
 
-		return ( calendarMode == 'month' ) ? event.element().id.replace('createEventAt-', '') : this.ext.CalendarBody.getTimeOfMouseCoordinates( event.pointerX(), event.pointerY() );
+		if( tab === 'month' ) {
+			time = Todoyu.Time.date2Time(event.findElement('td').id.replace('createEventAt-', ''));
+		} else {
+			time = this.ext.CalendarBody.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
+		}
+
+		return time;
 	}
 
 };

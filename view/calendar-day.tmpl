@@ -47,8 +47,7 @@
 					</td>
 				</tr><tr>
 					{* ---------------- Textual hour (00:00 to 23:00)  -------------------------- *}
-					<td class="tg-times">
-						<div class="tg-nowptr" id="tgnowptr"/>
+					<td class="colHours">
 						{assign var=hourTimestamp value=$timestamp}
 						{for hourcounter 0 23}
 							{if $hourcounter == 8}
@@ -60,7 +59,7 @@
 							{assign var=hourTimestamp value=$hourTimestamp+3600}
 						{/for}
 					</td>
-					<td class="tg-col dayview{if date('d.m.y', $tstamp) == date('d.m.y', time())}today{/if}">
+					<td class="dayCol dayview{if date('d.m.y', $tstamp) == date('d.m.y', time())}today{/if}">
 						{* ------------ Hour contents (events and related info-tooltips) -------- *}
 						<div id="tgCol0" class="tg-colwrapper">
 						{foreach $events event}

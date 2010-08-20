@@ -50,7 +50,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 	/**
 	 * Open edit view for event from detail view
-	 * 
+	 *
 	 * @param	{Number}		idEvent
 	 */
 	openFromDetailView: function(idEvent) {
@@ -255,7 +255,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 	/**
 	 * Check if edit view is active
-	 * 
+	 *
 	 * @return	{Boolean}
 	 */
 	isActive: function() {
@@ -323,8 +323,6 @@ Todoyu.Ext.calendar.Event.Edit = {
 			this.ext.QuickInfoEvent.removeFromCache(idEvent);
 			this.ext.show(this.ext.Tabs.active, time*1000);
 			this.close();
-
-			
 		}
 	},
 

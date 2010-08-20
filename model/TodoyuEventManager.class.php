@@ -330,7 +330,7 @@ class TodoyuEventManager {
 	 * @param	Integer		$dateEnd
 	 * @param	Array		$personIDs
 	 * @param	Integer		$idEvent
-	 * @return	Array		empty if no conflicts, information if conflicted 
+	 * @return	Array		empty if no conflicts, information if conflicted
 	 */
 	public static function getOverbookingInfos($dateStart, $dateEnd, array $personIDs, $idEvent = 0) {
 		$dateStart	= intval($dateStart);
@@ -505,6 +505,38 @@ class TodoyuEventManager {
 	 */
 	public static function updateEvent($idEvent, array $data) {
 		return TodoyuRecordManager::updateRecord(self::TABLE, $idEvent, $data);
+	}
+
+
+
+	/**
+	 * Move an event to a new start date
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$newStartDate
+	 * @param	String		$mode
+	 */
+	public static function moveEvent($idEvent, $newStartDate, $mode) {
+		$event	= self::getEvent($idEvent);
+
+		if( $mode === 'month' ) {
+			$newStart	= TodoyuTime::getStartOfDay($newStartDate);
+			$startDay	= TodoyuTime::getStartOfDay($event->getStartDate());
+			$offset		= $newStart - $startDay;
+			$dateStart	= $event->getStartDate() + $offset;
+			$dateEnd	= $event->getEndDate() + $offset;
+		} else {
+			$offset		= $newStartDate - $event->getStartDate();
+			$dateStart	= $newStartDate;
+			$dateEnd	= $event->getEndDate() + $offset;
+		}
+
+		$data	= array(
+			'date_start'=> $dateStart,
+			'date_end'	=> $dateEnd
+		);
+
+		self::updateEvent($idEvent, $data);
 	}
 
 

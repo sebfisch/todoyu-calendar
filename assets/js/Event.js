@@ -231,7 +231,7 @@ Todoyu.Ext.calendar.Event = {
 
 		if( event ) {
 			if( mode === 'month' ) {
-				time = parseInt(event.up('td').id.split('-').last(), 10);
+				time = Todoyu.Time.date2Time(event.up('td').id.split('-').slice(1).join('-'));
 			} else {
 				var viewport= event.viewportOffset();
 				var scroll	= document.body.cumulativeScrollOffset();
