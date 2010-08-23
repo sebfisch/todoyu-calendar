@@ -4,7 +4,7 @@
 
 	{foreach $events idEvent event}
 		{* ------- Event entry ------- *}
-		<div id="event-{$idEvent}" class="event {cycle values="odd,even"} type{ucfirst(EventTypeKey($event.eventtype))} contextmenuEventPortal quickInfoEvent">
+		<div id="event-{$idEvent}" class="event {cycle values="odd,even"} type{ucfirst(EventTypeKey($event.eventtype))} contextmenuEventPortal">
 			<h3 id="event-{$idEvent}-header" name="event-{$event.id}">
 
 				<span class="icon type" title="{Label event.attr.eventtype}: {EventTypeLabel $event.eventtype}"> </span>
