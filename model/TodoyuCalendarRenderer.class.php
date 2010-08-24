@@ -306,7 +306,7 @@ class TodoyuCalendarRenderer {
 		$eventFullWidth	= ($mode === CALENDAR_MODE_DAY) ? CALENDAR_DAY_EVENT_WIDTH : CALENDAR_WEEK_EVENT_WIDTH;
 
 			// Get all events in current view
-		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, false );
+		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, false);
 
 			// Group the events by day
 		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);

@@ -90,21 +90,22 @@ class TodoyuEventManager {
 	 * @param	Integer		$dateEnd		timestamp at end of timespan	(optionally 0, will be set to 5 years after today than)
 	 * @param	Array		$persons
 	 * @param	Array		$eventTypes
-	 * @param	Mixed		$dayEvents		null = both types, true = only full-day events, false = only non full-day events
+	 * @param	Mixed		$dayEvents				null = both types, true = only full-day events, false = only non full-day events
+	 * @param	Boolean		$getUnassignedEvents	get also events that are not assigned to anyone? (== general)
 	 * @param	String		$indexField
 	 * @return	Array
 	 */
-	public static function getEventsInTimespan($dateStart, $dateEnd, array $persons = array(), array $eventTypes = array(), $dayEvents = null, $indexField = 'id') {
+	public static function getEventsInTimespan($dateStart, $dateEnd, array $persons = array(), array $eventTypes = array(), $dayEvents = null, $getUnassignedEvents = true, $indexField = 'id') {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
 		$persons	= TodoyuArray::intval($persons, true, true);
+
+		$tables	= 	self::TABLE  . ' e,	ext_calendar_mm_event_person mmeu';
 
 		$fields	= '	e.*,
 					mmeu.id_person,
 					mmeu.is_acknowledged,
 					e.date_end - e.date_start as duration';
-
-		$tables	= 	self::TABLE  . ' e,	ext_calendar_mm_event_person mmeu';
 
 		$where	= '		e.id		= mmeu.id_event
 					AND e.deleted	= 0
@@ -118,27 +119,25 @@ class TodoyuEventManager {
 		$limit	= '';
 
 			// DayEvents: null = both, true = only, false = without
-		if( $dayEvents === true ) {
-			$where .= ' AND e.is_dayevent = 1';
-		} elseif( $dayEvents === false ) {
-			$where .= ' AND e.is_dayevent = 0';
+		if( ! is_null($dayEvents) ) {
+			$where .= ' AND e.is_dayevent = ' . ( $dayEvents === true ) ? '1' : '0';
 		}
 
-			// Persons
-		if( sizeof($persons) > 0 ) {
-			$where	.= ' AND mmeu.id_person IN(' . implode(',', $persons) . ',0)';
-		}
-
-
-			// Event types
+			// Limit to given event types
 		if( sizeof($eventTypes) > 0 ) {
 			$where .= ' AND e.eventtype IN(' . implode(',', $eventTypes) . ')';
 		}
 
-
-			// Assigned persons
+			// Not allowed to see all events? Limit to own events!
 		if( ! allowed('calendar', 'event:seeAll') ) {
 			$where .= ' AND mmeu.id_person IN(' . personid() . ',0)';
+		} elseif( sizeof($persons) > 0 ) {
+				// Limit to given assigned persons
+			$where	.= ' AND mmeu.id_person IN(' . implode(',', $persons) . ',0)';
+		}
+
+		if ( $getUnassignedEvents !== true ) {
+			$where .= ' AND mmeu.id_person > 0';
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
