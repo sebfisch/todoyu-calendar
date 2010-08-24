@@ -120,7 +120,7 @@ class TodoyuEventManager {
 
 			// DayEvents: null = both, true = only, false = without
 		if( ! is_null($dayEvents) ) {
-			$where .= ' AND e.is_dayevent = ' . ( $dayEvents === true ) ? '1' : '0';
+			$where .= ' AND e.is_dayevent = ' . ( $dayEvents === true ? '1' : '0' );
 		}
 
 			// Limit to given event types
@@ -137,7 +137,7 @@ class TodoyuEventManager {
 		}
 
 		if ( $getUnassignedEvents !== true ) {
-			$where .= ' AND mmeu.id_person > 0';
+			$where .= ' AND mmeu.id_person > 0 ';
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
