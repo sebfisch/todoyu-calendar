@@ -37,7 +37,7 @@ class TodoyuCalendarPortalManager {
 		$dateStart	= TodoyuTime::getStartOfDay(NOW);
 		$dateEnd	= NOW + ($weeksEvents * TodoyuTime::SECONDS_WEEK);
 
-		return TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(personid()), array(), null, false);
+		return TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(personid()));
 	}
 
 

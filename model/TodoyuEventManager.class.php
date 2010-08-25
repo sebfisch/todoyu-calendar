@@ -91,11 +91,10 @@ class TodoyuEventManager {
 	 * @param	Array		$persons
 	 * @param	Array		$eventTypes
 	 * @param	Mixed		$dayEvents				null = both types, true = only full-day events, false = only non full-day events
-	 * @param	Boolean		$getUnassignedEvents	get also events that are not assigned to anyone? (== general)
 	 * @param	String		$indexField
 	 * @return	Array
 	 */
-	public static function getEventsInTimespan($dateStart, $dateEnd, array $persons = array(), array $eventTypes = array(), $dayEvents = null, $getUnassignedEvents = true, $indexField = 'id') {
+	public static function getEventsInTimespan($dateStart, $dateEnd, array $persons = array(), array $eventTypes = array(), $dayEvents = null, $indexField = 'id') {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
 		$persons	= TodoyuArray::intval($persons, true, true);
@@ -130,14 +129,10 @@ class TodoyuEventManager {
 
 			// Not allowed to see all events? Limit to own events!
 		if( ! allowed('calendar', 'event:seeAll') ) {
-			$where .= ' AND mmeu.id_person IN(' . personid() . ',0)';
+			$where .= ' AND mmeu.id_person IN(' . personid() . ')';
 		} elseif( sizeof($persons) > 0 ) {
 				// Limit to given assigned persons
-			$where	.= ' AND mmeu.id_person IN(' . implode(',', $persons) . ',0)';
-		}
-
-		if ( $getUnassignedEvents !== true ) {
-			$where .= ' AND mmeu.id_person > 0 ';
+			$where	.= ' AND mmeu.id_person IN(' . implode(',', $persons) . ')';
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);

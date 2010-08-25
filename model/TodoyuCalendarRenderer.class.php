@@ -272,8 +272,6 @@ class TodoyuCalendarRenderer {
 
 			// Group the events by day
 		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
-			// Add overlap informations to events for each day
-		//$eventsByDay= TodoyuEventManager::addOverlapInformationToEvents($eventsByDay);
 
 			// Render events array
 		foreach($eventsByDay as $dateKey => $eventsOfDay) {
@@ -310,7 +308,7 @@ class TodoyuCalendarRenderer {
 
 			// Group the events by day
 		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
-			// Add overlap informations to events for each day
+			// Add overlap information to events for each day
 		$eventsByDay= TodoyuEventManager::addOverlapInformationToEvents($eventsByDay);
 
 			// Render events array
