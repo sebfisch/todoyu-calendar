@@ -299,20 +299,22 @@ class TodoyuEventManager {
 	 * @return	Array
 	 */
 	public static function getAssignedPersonsOfEvents(array $eventIDs) {
-		$eventIDs	= array_unique(TodoyuArray::intval($eventIDs));
+		$eventIDs= array_unique(TodoyuArray::intval($eventIDs));
+		$persons = array();
 
-		$fields	= 'id_event, id_person';
-		$tables	= 'ext_calendar_mm_event_person';
-		$where	= 'id_event IN (' . TodoyuArray::intImplode($eventIDs) . ') ';
+		if ( sizeof($eventIDs) > 0 ) {
+			$fields	= 'id_event, id_person';
+			$tables	= 'ext_calendar_mm_event_person';
+			$where	= 'id_event IN (' . TodoyuArray::intImplode($eventIDs) . ') ';
 
-		$epLinks= Todoyu::db()->getArray($fields, $tables, $where, '', 'id_event', '' );
+			$epLinks= Todoyu::db()->getArray($fields, $tables, $where, '', 'id_event', '' );
 
-		$eventPersons = array();
-		foreach($epLinks as $epLink) {
-			$eventPersons[ $epLink['id_event'] ][] = $epLink['id_person'];
+			foreach($epLinks as $epLink) {
+				$persons[ $epLink['id_event'] ][] = $epLink['id_person'];
+			}
 		}
 
-		return $eventPersons;
+		return $persons;
 	}
 
 
