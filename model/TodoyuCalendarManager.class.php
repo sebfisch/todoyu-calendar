@@ -37,6 +37,7 @@ class TodoyuCalendarManager {
 			CALENDAR_MODE_DAY	=> 'day',
 			CALENDAR_MODE_WEEK	=> 'week',
 			CALENDAR_MODE_MONTH	=> 'month',
+			'month' => 'month'
 		);
 
 		return	$modes[$mode];
