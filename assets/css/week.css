@@ -1,19 +1,4 @@
 /* ---------------
-	Event
-   --------------- */
-div.weekMode div#calendararea div.event dt.head {
-	height:15px;
-	padding:3px 0;
-	margin-bottom:1px;
-}
-div.weekMode div#calendararea div.event dd span.desc {
-	display:inline;
-	white-space:normal;
-}
-
-
-
-/* ---------------
 	Grid
    --------------- */
 .mainGrid {

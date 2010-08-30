@@ -12,9 +12,10 @@
 
 #calendar .event span {
 	font-size:9px;
-	padding:2px 3px;
+	/*padding:2px 3px;*/
 	display:block;
-	white-space:nowrap;
+	/*white-space:nowrap;*/
+
 }
 
 #calendar .event dt.head {
@@ -42,9 +43,38 @@
 .weekMode .event dd {
 	font-family:Verdana,Helvetica,sans-serif;
 	font-size:9px;
-	color:#fff;
-	padding:2px 3px;
+	/*color:#fff;*/
+	padding:2px;
 }
+
+.dayMode .event dt{
+	/*white-space:normal;
+	*/
+}
+
+.monthMode .event dt {
+	/*display:none;*/
+}
+
+.monthMode .event dl {
+	margin-bottom: 2px;
+}
+
+
+/* ---------------
+	Event
+   --------------- */
+div.weekMode div#calendararea div.event dt.head {
+	height:15px;
+	padding:3px 0;
+	/*margin-bottom:1px;*/
+}
+div.weekMode div#calendararea div.event dd span.desc {
+	display:inline;
+	white-space:normal;
+}
+
+
 
 .dayevent {
 	margin:0;
@@ -70,7 +100,7 @@
    -------------------------------------------- */
 .dayview div.tg-colwrapper div.event dl,
 .weekMode div.tg-colwrapper div.event dl {
-	border:1px dotted #fff;
+/*	border:1px dotted #fff;*/
 }
 
 
@@ -356,6 +386,11 @@ table.eventView {
 
 button.editEvent .icon {
 	background:url(../img/icons.png) no-repeat 0 -28px;
+}
+
+#formElement-event-field-description textarea {
+	height: 200px;
+
 }
 
 
