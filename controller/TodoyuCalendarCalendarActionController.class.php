@@ -27,14 +27,24 @@
 class TodoyuCalendarCalendarActionController extends TodoyuActionController {
 
 	/**
+	 * Initialize calendar default action: check permission
+	 *
+	 * @param	Array	$params
+	 */
+	public function init(array $params) {
+		restrict('calendar', 'general:use');
+		restrictInternal();
+	}
+
+
+
+	/**
 	 * Calendar update action method: Saves date and active tab and rerenders the calendar
 	 *
 	 * @param	Array	$params
 	 * @return	String
 	 */
 	public function updateAction(array $params) {
-		restrict('calendar', 'general:use');
-
 		$tab	= trim($params['tab']);
 		$time	= strtotime($params['date']);
 

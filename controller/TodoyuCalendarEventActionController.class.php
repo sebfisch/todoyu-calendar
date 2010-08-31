@@ -31,6 +31,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function init() {
 		restrict('calendar', 'general:use');
+		restrictInternal();
 	}
 
 

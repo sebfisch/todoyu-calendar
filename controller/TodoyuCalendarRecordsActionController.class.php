@@ -27,6 +27,17 @@
 class TodoyuCalendarRecordsActionController extends TodoyuActionController {
 
 	/**
+	 * Initialize calendar default action: check permission
+	 *
+	 * @param	Array	$params
+	 */
+	public function init(array $params) {
+		restrictAdmin();
+	}
+
+
+
+	/**
 	 * Render sub part to calendar admin form for record types added/ used by calendar (holiday, holidayset)
 	 *
 	 * @param	Array	$params

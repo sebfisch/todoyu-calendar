@@ -34,6 +34,7 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 	 */
 	public function popupAction(array $params) {
 		restrict('calendar', 'event:add');
+		restrictInternal();
 
 		return TodoyuEventRenderer::renderCreateQuickEvent();
 	}
