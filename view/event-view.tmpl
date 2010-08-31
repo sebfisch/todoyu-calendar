@@ -10,7 +10,7 @@
 	</tr>
 	<tr class="odd">
 		<td class="eventAttrTitle">{Label core.description}: </td>
-		<td class="eventValue">{htmlencode $event.description|default:"-"}</td>
+		<td class="eventValue">{nl2br(htmlencode($event.description))}</td>
 	</tr>
 	<tr class="even">
 		<td class="eventAttrTitle">{Label event.attr.timespan}: </td>
