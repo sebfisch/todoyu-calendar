@@ -27,7 +27,7 @@
 class TodoyuEventViewHelper {
 
 	/**
-	 * Get Event types in a form-readable format
+	 * Get event types (sorted by label) in a form-readable format
 	 *
 	 * @param 	TodoyuFormElement 	$field
 	 * @return	Array
@@ -38,8 +38,9 @@ class TodoyuEventViewHelper {
 			'index'	=> 'value',
 			'label'	=> 'label'
 		);
+		$eventTypes	= TodoyuArray::reform($eventTypes, $reform, false);
 
-		return TodoyuArray::reform($eventTypes, $reform, false);
+		return TodoyuArray::sortByLabel($eventTypes, 'label');
 	}
 
 
