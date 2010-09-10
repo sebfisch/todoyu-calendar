@@ -344,8 +344,10 @@ class TodoyuEventManager {
 		unset($otherEvents[$idEvent]);
 
 		foreach($otherEvents as $otherEvent) {
-				// Don't check for conflicts if is dayevent
-			if( $otherEvent['is_dayevent'] == 1 ) {
+				// Don't check for conflicts if is dayevent as long its not an absence
+			$absenceEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE']);
+
+			if( $otherEvent['is_dayevent'] == 1 && !in_array($otherEvent['eventtype'], $absenceEventTypes)) {
 				continue;
 			}
 
@@ -514,6 +516,8 @@ class TodoyuEventManager {
 	 */
 	public static function moveEvent($idEvent, $newStartDate, $mode) {
 		$event	= self::getEvent($idEvent);
+
+		//if()
 
 		if( $mode === 'month' ) {
 			$newStart	= TodoyuTime::getStartOfDay($newStartDate);
