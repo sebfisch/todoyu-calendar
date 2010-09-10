@@ -224,7 +224,12 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$time		= strtotime($params['date']);
 		$tab		= trim($params['tab']);
 
-		TodoyuEventManager::moveEvent($idEvent, $time, $tab);
+		$moved	= TodoyuEventManager::moveEvent($idEvent, $time, $tab);
+
+		if(is_array($moved))	{
+			TodoyuHeader::sendTodoyuErrorHeader();
+			return implode('<br />', $moved);
+		}
 	}
 
 }

@@ -517,8 +517,6 @@ class TodoyuEventManager {
 	public static function moveEvent($idEvent, $newStartDate, $mode) {
 		$event	= self::getEvent($idEvent);
 
-		//if()
-
 		if( $mode === 'month' ) {
 			$newStart	= TodoyuTime::getStartOfDay($newStartDate);
 			$startDay	= TodoyuTime::getStartOfDay($event->getStartDate());
@@ -536,7 +534,28 @@ class TodoyuEventManager {
 			'date_end'	=> $dateEnd
 		);
 
+		if(! TodoyuCalendarManager::isOverbookingAllowed())	{
+			$overbookableEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']);
+			if( ! $event->isDayevent() && ! in_array($event->get('eventtype'), $overbookableEventTypes) ) {
+				$overbookedInfos= TodoyuEventManager::getOverbookingInfos($dateStart, $dateEnd, $event->getAssignedPersonIDs(), $idEvent);
+			}
+
+			if( sizeof($overbookedInfos) > 0 ) {
+				$errorMessages = array();
+
+				foreach($overbookedInfos as $idPerson => $infos)	{
+					foreach($infos['events'] as $event)	{
+						$errorMessages[] = Label('LLL:event.error.personsOverbooked') . ' ' . TodoyuPersonManager::getPerson($idPerson)->getFullName();
+					}
+				}
+				
+				return $errorMessages;
+			}
+		}
+		
 		self::updateEvent($idEvent, $data);
+
+		return true;
 	}
 
 

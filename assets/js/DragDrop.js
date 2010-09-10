@@ -319,7 +319,11 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @param	{Number}	idEvent
 	 * @param	{Number}	date
 	 */
-	onDroppingSaved: function(tab, idEvent, date) {
+	onDroppingSaved: function(tab, idEvent, date, response) {
+		if(response.hasTodoyuError())	{
+			Todoyu.Notification.notifyError(response.responseText);
+		}
+
 		this.ext.refresh();
 	}
 
