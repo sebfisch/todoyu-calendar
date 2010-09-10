@@ -216,7 +216,7 @@ class TodoyuCalendarPreferences {
 		$idEvent= intval($idEvent);
 		$value	= $expanded ? 1 : 0;
 
-		self::savePref('portal-event-expanded', $value, $idEvent);
+		self::savePref('portal-event-expanded', $value, $idEvent, true);
 	}
 
 
