@@ -99,18 +99,22 @@ class TodoyuEventManager {
 		$dateEnd	= intval($dateEnd);
 		$persons	= TodoyuArray::intval($persons, true, true);
 
-		$tables	= 	self::TABLE  . ' e,	ext_calendar_mm_event_person mmeu';
+		$tables	= 	self::TABLE  . ' e,
+					ext_calendar_mm_event_person mmeu';
 
 		$fields	= '	e.*,
 					mmeu.id_person,
 					mmeu.is_acknowledged,
 					e.date_end - e.date_start as duration';
 
+			// We add or subtract 1 second to prevent direct overlapping collision
+			// Ex: event1: 10-11, event2: 11-12 - BETWEEN would find both event at 11:00:00
 		$where	= '		e.id		= mmeu.id_event
 					AND e.deleted	= 0
-					AND (	e.date_start BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
-							e.date_end BETWEEN ' . $dateStart . ' AND ' . $dateEnd . ' OR
-							(e.date_start < ' . $dateStart . ' AND e.date_end > ' . $dateEnd . ')
+					AND (
+							e.date_start 	BETWEEN ' . ($dateStart + 1) . ' AND ' . ($dateEnd - 1) . '
+						OR	e.date_end 		BETWEEN ' . ($dateStart + 1) . ' AND ' . ($dateEnd - 1) . '
+						OR (e.date_start < ' . $dateStart . ' AND e.date_end > ' . $dateEnd . ')
 					)';
 
 		$group	= '';
@@ -337,6 +341,9 @@ class TodoyuEventManager {
 			// Make empty overbooking data
 		$overbooked	= array();
 
+		TodoyuDebug::printInFireBug(date('r', $dateStart));
+		TodoyuDebug::printInFireBug(date('r', $dateEnd));
+
 			// Get all (not-overbookable / conflicting) events in the duration of the event
 		$eventTypes	= TodoyuEventTypeManager::getNotOverbookableTypeIndexes();
 		$otherEvents= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
@@ -548,11 +555,11 @@ class TodoyuEventManager {
 						$errorMessages[] = Label('LLL:event.error.personsOverbooked') . ' ' . TodoyuPersonManager::getPerson($idPerson)->getFullName();
 					}
 				}
-				
+
 				return $errorMessages;
 			}
 		}
-		
+
 		self::updateEvent($idEvent, $data);
 
 		return true;
@@ -761,6 +768,7 @@ class TodoyuEventManager {
 			'id'			=>	0,
 			'date_start'	=>	$dateStart,
 			'date_end'		=>	$dateEnd,
+			'eventtype'		=> EVENTTYPE_GENERAL,
 			'persons' 		=> array(
 				TodoyuAuth::getPerson()->getTemplateData()
 			)
