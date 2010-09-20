@@ -33,11 +33,14 @@ class TodoyuCalendarManager {
 	 * @return	String
 	 */
 	public static function getModeName($mode = CALENDAR_MODE_DAY) {
+		if( is_string($mode) ) {
+			return $mode;
+		}
+
 		$modes	= array(
 			CALENDAR_MODE_DAY	=> 'day',
 			CALENDAR_MODE_WEEK	=> 'week',
-			CALENDAR_MODE_MONTH	=> 'month',
-			'month' => 'month'
+			CALENDAR_MODE_MONTH	=> 'month'
 		);
 
 		return	$modes[$mode];
@@ -182,7 +185,7 @@ class TodoyuCalendarManager {
 		return $timestamps;
 	}
 
-	
+
 
 	/**
 	 * Check whether overbooking (more than one event assigned to one person at the same time) is allowed
