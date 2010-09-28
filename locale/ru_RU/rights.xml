@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="general">Общие</label>
+	<label index="general.use">Использовать функциональность календаря</label>
+	<label index="general.area">Использовать место календаря</label>
+	<label index="event">Событие</label>
+	<label index="event.seeAll">Показать все события</label>
+	<label index="event.editAndDeleteAssigned">Изменить или удалить назначеные или созданые этим участников события</label>
+	<label index="event.editAndDeleteAll">Изменить или удалить все события</label>
+	<label index="event.add">Добавить новое событие</label>
+	<label index="event.search">Искать события</label>
+	<label index="event.assignOthers">Назначить событие другому участнику</label>
+</labels>

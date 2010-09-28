@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="ext.title">Kalendář</label>
+	<label index="page.title">Kalendář</label>
+	<label index="maintab.label">Plánování</label>
+	<label index="subMenuEntry.day">Kalendář > Den</label>
+	<label index="subMenuEntry.week">Kalendář > Týden</label>
+	<label index="subMenuEntry.month">Kalendář > Měsíc</label>
+	<label index="search.label">Události</label>
+	<label index="search.mode.label">Události</label>
+	<label index="extconf.allowoverbooking.label">Povolit Overbooking?</label>
+	<label index="portal.tab.appointments">Schůzka</label>
+	<label index="portal.tab.appointments">Schůzky</label>
+	<label index="quicknav.backward.title">Zpět</label>
+	<label index="quicknav.forward.title">Vpřed</label>
+	<label index="quicknav.today.title">Přejít na dnešní den</label>
+	<label index="dayview.workingtime">Zobrazit pouze pracovní dobu (08h-18h)</label>
+	<label index="dayview.fullday">Zobrazit celý den(00h-24h)</label>
+	<label index="holidayset.attr.name">Název</label>
+	<label index="holidayset.attr.holiday">Svátek</label>
+	<label index="holidayset.attr.holiday.new">Nový svátek</label>
+	<label index="holiday.attr.workingtime">Pracovní hodiny</label>
+	<label index="holiday.attr.holidayset">Svátky</label>
+	<label index="holiday.attr.holidayset.new">Nové svátky</label>
+	<label index="holidayset">Svátky</label>
+	<label index="holiday">Dovolená</label>
+	<label index="yearsold">let</label>
+	<label index="applicableholidayset">Svátek</label>
+	<label index="workingtime">Pracovní hodiny</label>
+	<label index="today">Dnes</label>
+	<label index="owner">Vlastnik</label>
+</labels>

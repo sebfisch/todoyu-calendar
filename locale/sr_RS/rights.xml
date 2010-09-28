@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="general">Општи</label>
+	<label index="general.use">Употреби функције календара</label>
+	<label index="general.area">Употреби област календара</label>
+	<label index="event">Догађај</label>
+	<label index="event.seeAll">Види све догађаје</label>
+	<label index="event.editAndDeleteAssigned">Уреди и избриши додељене (или од те особе креиране) догађаје</label>
+	<label index="event.editAndDeleteAll">Уреди и избриши све догађаје</label>
+	<label index="event.add">Додај нови догађај</label>
+	<label index="event.search">Трагање за догађаје</label>
+	<label index="event.assignOthers">Додели догађај другим особама</label>
+</labels>
