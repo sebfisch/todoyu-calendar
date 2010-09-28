@@ -114,7 +114,7 @@ class TodoyuEventManager {
 					AND (
 							e.date_start 	BETWEEN ' . ($dateStart + 1) . ' AND ' . ($dateEnd - 1) . '
 						OR	e.date_end 		BETWEEN ' . ($dateStart + 1) . ' AND ' . ($dateEnd - 1) . '
-						OR (e.date_start < ' . $dateStart . ' AND e.date_end > ' . $dateEnd . ')
+						OR (e.date_start < ' . ($dateStart + 1) . ' AND e.date_end > ' . ($dateEnd - 1) . ')
 					)';
 
 		$group	= '';
