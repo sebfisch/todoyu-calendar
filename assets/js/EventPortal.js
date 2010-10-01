@@ -112,7 +112,7 @@ Todoyu.Ext.calendar.EventPortal = {
 
 	},
 
-	
+
 
 	/**
 	 * Set acknowledge status for event in portal
@@ -121,6 +121,17 @@ Todoyu.Ext.calendar.EventPortal = {
 	 */
 	setAcknowledgeStatus: function(idEvent) {
 		$('acknowledge-' + idEvent).removeClassName('not');
+	},
+
+
+
+	/**
+	 * Reduce the count of appointments in the tab label
+	 */
+	reduceAppointmentCounter: function() {
+		var numResults	= Todoyu.Ext.portal.Tab.getNumResults('appointment');
+
+		Todoyu.Ext.portal.Tab.updateNumResults('appointment', numResults-1);
 	}
 
 };
