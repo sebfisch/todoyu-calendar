@@ -20,6 +20,8 @@ Todoyu.Ext.calendar.EventPortal = {
 		} else {
 			this.loadDetails(idEvent);
 		}
+
+		this.setAcknowledgeStatus(idEvent);
 	},
 
 
@@ -93,7 +95,7 @@ Todoyu.Ext.calendar.EventPortal = {
 			'onComplete': this.onAcknowledged.bind(this, idEvent, idPerson)
 		};
 
-		$('acknowledge-' + idEvent).removeClassName('not');
+		this.setAcknowledgeStatus(idEvent);
 
 		Todoyu.send(url, options);
 	},
@@ -108,6 +110,17 @@ Todoyu.Ext.calendar.EventPortal = {
 	 */
 	onAcknowledged: function(idEvent, idPerson, response)	{
 
+	},
+
+	
+
+	/**
+	 * Set acknowledge status for event in portal
+	 *
+	 * @param	{Number}	idEvent
+	 */
+	setAcknowledgeStatus: function(idEvent) {
+		$('acknowledge-' + idEvent).removeClassName('not');
 	}
 
 };

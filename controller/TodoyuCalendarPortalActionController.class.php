@@ -46,6 +46,7 @@ class TodoyuCalendarPortalActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 
 		TodoyuCalendarPreferences::savePortalEventExpandedStatus($idEvent);
+		TodoyuEventManager::acknowledgeEvent($idEvent);
 
 		return $this->forward('calendar', 'event', 'detail', $params);
 	}

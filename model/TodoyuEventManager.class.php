@@ -714,9 +714,9 @@ class TodoyuEventManager {
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
 	 */
-	public static function acknowledgeEvent($idEvent, $idPerson)	{
+	public static function acknowledgeEvent($idEvent, $idPerson = 0)	{
 		$idEvent	= intval($idEvent);
-		$idPerson	= intval($idPerson);
+		$idPerson	= personid($idPerson);
 
 		$where 	= '		id_event	= ' . $idEvent .
 				  ' AND	id_person	= ' . $idPerson;
