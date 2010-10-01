@@ -111,7 +111,7 @@ Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
 	'showBirthday'	=> true,
 		// How many weeks to look ahead for coming-up holidays to be listed in events tab of portal?
 	'weeksHoliday'	=> 4,
-	'weeksBirthday'	=> 52,
+	'weeksBirthday'	=> 8,
 	'weeksEvents'	=> 52 // 1 year
 );
 
