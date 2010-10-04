@@ -18,7 +18,7 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-if( Todoyu::person()->isInternal()  ) {
+if( Todoyu::person()->isInternal() || TodoyuAuth::isAdmin() ) {
 		// Add main menu planning area entry
 	if( allowed('calendar', 'general:area') ) {
 		TodoyuFrontend::addMenuEntry('planning', 'LLL:calendar.maintab.label', '?ext=calendar', 30);
