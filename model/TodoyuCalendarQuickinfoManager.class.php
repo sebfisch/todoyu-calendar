@@ -38,22 +38,24 @@ class TodoyuCalendarQuickinfoManager {
 
 			// Private event or no access?
 		if( $isSeeAllowed ) {
-			$quickInfo->addInfo('title', $event->title, 10);
+			$quickInfo->addInfo('title', $event->getTitle(), 10);
+
+				// Add conditionally displayed (only if set) infos
+			if( $event->getPlace() !== '' ) {
+				if( $isSeeAllowed ) {
+					$quickInfo->addInfo('place', $event->getPlace(), 40);
+				} else {
+					$quickInfo->addInfo('place', Label('event.privateEvent.info'), 40);
+				}
+			}			
 		} else {
-			$quickInfo->addInfo('title', Label('event.privateEvent.info'), 10);
+			$quickInfo->addInfo('title', '<' . Label('event.privateEvent.info') . '>', 10);
 		}
 
 		$quickInfo->addInfo('type',	$typeInfo, 20);
 		$quickInfo->addInfo('date',	$dateInfo, 30);
 
-			// Add conditionally displayed (only if set) infos
-		if( $event->getPlace() !== '' ) {
-			if( $isSeeAllowed ) {
-				$quickInfo->addInfo('place', $event->getPlace(), 40);
-			} else {
-				$quickInfo->addInfo('place', Label('event.privateEvent.info'), 40);
-			}
-		}
+
 
 		$amountAssignedPersons	= count( $event->getAssignedPersonsData() );
 		if( $amountAssignedPersons > 0 ) {

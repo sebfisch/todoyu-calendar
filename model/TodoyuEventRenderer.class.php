@@ -88,6 +88,29 @@ class TodoyuEventRenderer {
 		$data['color']			= $color[$idAssignedPerson];
 		$data['eventtypeKey']	= TodoyuEventTypeManager::getEventTypeKey($data['eventtype']);
 
+
+		$assignedPersons = TodoyuArray::getColumn($data['assignedPersons'], 'id');
+
+			// Hide visible data if event is private and current user not assigned
+		if( intval($data['is_private']) === 1 && ! in_array(personid(), $assignedPersons) ) {
+			$data = self::hidePrivateData($data);
+		}
+
+		return $data;
+	}
+
+
+
+	/**
+	 * Hide private data
+	 *
+	 * @param	Array	$data
+	 * @return	Array
+	 */
+	private static function hidePrivateData(array $data) {
+		$data['title']			= '<' . Label('event.privateEvent.info') . '>';
+		$data['description']	= '';
+
 		return $data;
 	}
 
