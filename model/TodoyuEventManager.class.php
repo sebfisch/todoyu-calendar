@@ -306,7 +306,7 @@ class TodoyuEventManager {
 		$eventIDs= array_unique(TodoyuArray::intval($eventIDs));
 		$persons = array();
 
-		if ( sizeof($eventIDs) > 0 ) {
+		if( sizeof($eventIDs) > 0 ) {
 			$fields	= 'id_event, id_person';
 			$tables	= 'ext_calendar_mm_event_person';
 			$where	= 'id_event IN (' . TodoyuArray::intImplode($eventIDs) . ') ';

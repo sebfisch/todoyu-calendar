@@ -57,7 +57,7 @@
 }
 
 .monthMode .event dl {
-	margin-bottom: 2px;
+	margin-bottom:2px;
 }
 
 
@@ -280,7 +280,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 }
 
 #holidays h3 {
-	white-space: normal;
+	white-space:normal;
 }
 
 #events .event .headLabel {
@@ -372,8 +372,8 @@ div.eventDetails dd {
 #holidays .holidayWorkinghours,
 #holidays .holidayDescription {
 	position:relative;
-	float: right;
-	margin-right: 5px;
+	float:right;
+	margin-right:5px;
 }
 
 
@@ -391,7 +391,7 @@ button.editEvent .icon {
 }
 
 #formElement-event-field-description textarea {
-	height: 200px;
+	height:200px;
 
 }
 
