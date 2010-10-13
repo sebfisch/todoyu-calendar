@@ -146,8 +146,6 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 	 * @param	String	$prefVals
 	 */
 	public function savePreference($idArea = 0, $prefVals = '') {
-		$idArea	= intval($idArea);
-
 		TodoyuPreferenceManager::savePreference(
 			EXTID_CALENDAR,							// ext ID
 			'panelwidget-holidaysetselector', 	// preference

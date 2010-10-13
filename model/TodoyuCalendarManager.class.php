@@ -335,7 +335,7 @@ class TodoyuCalendarManager {
 
 		$mapping[] = $emptyMap;
 
-		foreach($events as $index => $event) {
+		foreach($events as $event) {
 			$eventDayKeys	= self::getDayKeys($event['date_start'], $event['date_end']);
 			$event['dayLength']	= sizeof($eventDayKeys);
 			$found		= false;
