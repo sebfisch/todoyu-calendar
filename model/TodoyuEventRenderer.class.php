@@ -94,6 +94,7 @@ class TodoyuEventRenderer {
 			// Hide visible data if event is private and current user not assigned
 		if( intval($data['is_private']) === 1 && ! in_array(personid(), $assignedPersons) ) {
 			$data = self::hidePrivateData($data);
+			$data['class'] .= ' noAccess';
 		}
 
 		return $data;

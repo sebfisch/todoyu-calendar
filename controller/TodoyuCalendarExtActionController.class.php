@@ -64,6 +64,10 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 			$activeTab	= TodoyuCalendarPreferences::getActiveTab();
 		}
 
+			// Verify access rights. If not, change it to day
+		$activeTab	= TodoyuEventManager::checkTabAccess($activeTab, $params['event']);
+
+
 			// Set date in preferences when given as parameter
 		if( is_numeric($params['date']) ) {
 			TodoyuPanelWidgetCalendar::saveDate($params['date']);

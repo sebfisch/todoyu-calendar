@@ -29,7 +29,7 @@ class TodoyuCalendarQuickinfoManager {
 		$idEvent	= intval($element);
 
 		$event			= TodoyuEventManager::getEvent($idEvent);
-		$isSeeAllowed	= TodoyuEventRights::isSeeAllowed($idEvent);
+		$canSeeDetails	= TodoyuEventRights::isSeeDetailsAllowed($idEvent);
 
 			// Build event infos: title, type, date, place, assigned persons
 		$dateInfo	= TodoyuEventViewHelper::getQuickinfoDateInfo($event);
@@ -37,17 +37,17 @@ class TodoyuCalendarQuickinfoManager {
 		$typeInfo	= TodoyuEventViewHelper::getQuickinfoTypeInfo($event);
 
 			// Private event or no access?
-		if( $isSeeAllowed ) {
+		if( $canSeeDetails ) {
 			$quickInfo->addInfo('title', $event->getTitle(), 10);
 
 				// Add conditionally displayed (only if set) infos
 			if( $event->getPlace() !== '' ) {
-				if( $isSeeAllowed ) {
+				if( $canSeeDetails ) {
 					$quickInfo->addInfo('place', $event->getPlace(), 40);
 				} else {
 					$quickInfo->addInfo('place', Label('event.privateEvent.info'), 40);
 				}
-			}			
+			}
 		} else {
 			$quickInfo->addInfo('title', '<' . Label('event.privateEvent.info') . '>', 10);
 		}

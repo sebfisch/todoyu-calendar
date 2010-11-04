@@ -74,6 +74,30 @@ class TodoyuEventRights {
 
 
 	/**
+	 * Check whether person can see details of an event
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	Boolean
+	 */
+	public static function isSeeDetailsAllowed($idEvent) {
+		$idEvent= intval($idEvent);
+
+		if( ! self::isSeeAllowed($idEvent) ) {
+			return false;
+		}
+
+		$event	= TodoyuEventManager::getEvent($idEvent);
+
+		if( $event->isPrivate() ) {
+			return $event->isCurrentPersonAssigned();
+		} else {
+			return true;
+		}
+	}
+
+
+
+	/**
 	 * Check whether person is allowed to add new events
 	 *
 	 * @return	Boolean
@@ -100,10 +124,6 @@ class TodoyuEventRights {
 
 		$idPerson	= personid();
 
-			// Admin sees all events.
-		if( TodoyuAuth::isAdmin() ) {
-			return true;
-		}
 			// Person is assigned to event and has right to edit events it's assigned to
 		if( allowed('calendar', 'event:editAndDeleteAssigned')  && in_array($idPerson, $assignedPersons) ) {
 			return true;

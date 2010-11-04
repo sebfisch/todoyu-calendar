@@ -22,6 +22,10 @@
 	cursor:move;
 }
 
+#calendar .event.noAccess dt.head {
+	cursor:not-allowed;
+}
+
 #calendar .event span.desc {
 	overflow:hidden;
 }

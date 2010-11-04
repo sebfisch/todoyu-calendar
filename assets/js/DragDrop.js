@@ -99,10 +99,12 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
-	 * Get all event elements in the calendar
+	 * Get all event elements in the calendar, except the noAccess classed
 	 */
 	getEvents: function() {
-		return $('calendararea').select('div.event');
+		return $('calendararea').select('div.event').findAll(function(element){
+			return element.hasClassName('noAccess') === false;
+		});
 	},
 
 

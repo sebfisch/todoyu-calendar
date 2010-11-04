@@ -793,7 +793,7 @@ class TodoyuEventManager {
 		$own	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'];
 
 			// Option: show event
-		if( TodoyuEventRights::isSeeAllowed($idEvent) ) {
+		if( TodoyuEventRights::isSeeDetailsAllowed($idEvent) ) {
 			$allowed['show'] = $own['show'];
 		}
 
@@ -878,6 +878,37 @@ class TodoyuEventManager {
 		}
 
 		return $data;
+	}
+
+
+
+	/**
+	 * Check if user has access to view or edit tab
+	 * If not, change tab to "day"
+	 *
+	 * @param	String		$tab
+	 * @param	Integer		$idEvent
+	 * @return	String		Allowed tab
+	 */
+	public static function checkTabAccess($tab, $idEvent) {
+		$tab	= trim($tab);
+		$idEvent= intval($idEvent);
+
+			// Check for edit rights
+		if( $tab === 'edit' ) {
+			if( ! TodoyuEventRights::isEditAllowed($idEvent) ) {
+				$tab = 'day';
+			}
+		}
+
+			// Check for view rights
+		if( $tab === 'view' ) {
+			if( ! TodoyuEventRights::isSeeDetailsAllowed($idEvent) ) {
+				$tab = 'day';
+			}
+		}
+
+		return $tab;
 	}
 
 }
