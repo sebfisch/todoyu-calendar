@@ -54,11 +54,11 @@ Todoyu.Ext.calendar.Navi = {
 	 * @param	{String}		direction		'up' / 'down'
 	 * @return	{Number}
 	 */
-	getDirectionDate: function(direction) {
+	getDirectionDate: function(up) {
 		var tab		= this.getActiveTab();
 		var time	= this.ext.getTime();
 
-		var newTime	= Todoyu.Time.getShiftedTime(time, tab, direction);
+		var newTime	= Todoyu.Time.getShiftedTime(time, tab, up);
 
 		return newTime * 1000;
 	},
@@ -71,7 +71,7 @@ Todoyu.Ext.calendar.Navi = {
 	 * @return	{Number}
 	 */
 	getBackwardDate: function() {
-		return this.getDirectionDate('down');
+		return this.getDirectionDate(false);
 	},
 
 
@@ -91,7 +91,7 @@ Todoyu.Ext.calendar.Navi = {
 	 * Get up-shifted date
 	 */
 	getForwardDate: function() {
-		return this.getDirectionDate('up');
+		return this.getDirectionDate(true);
 	},
 
 
