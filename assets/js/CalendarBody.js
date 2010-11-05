@@ -101,9 +101,11 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 */
 	setFullHeight: function(fullHeight, savePref) {
 		if( fullHeight ) {
+				// Switch to full hours view
 			this.calendarBody.addClassName('full');
-			this.calendarBody.scrollTop = 0;
+			Todoyu.Helper.setScrollTop(this.calendarBody, 0);
 		} else {
+				// Switch to restrained hours view
 			this.calendarBody.removeClassName('full');
 			this.calendarBody.scrollTop = 336;
 		}
