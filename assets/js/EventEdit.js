@@ -332,7 +332,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 * Close event form
 	 */
 	cancelEdit: function(){
-		this.ext.show(this.ext.Tabs.active);
+		this.ext.show();
 		this.close();
 	},
 

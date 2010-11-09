@@ -147,6 +147,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 			case 'week':
 				var left		= x - this.calendarBody.cumulativeOffset().left;
 				var numDays		= Math.floor((left - 40) / 89);
+				numDays			= numDays < 0 ? 0 : numDays;
 				var timestamp	= (this.ext.getWeekStart() + numDays * Todoyu.Time.seconds.day) + this.getDayOffset(top, 1010);
 				break;
 		}
@@ -197,11 +198,12 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 * @param	{Event}	event
 	 */
 	onEventCreateDayWeek: function(event) {
-		if( event.findElement('td.dayCol') ) {
+		// Workaround for IE. Clicking now also possible in time column. but works correctly
+//		if( event.findElement('td.dayCol') ) {
 			var time	= this.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
 
 			this.ext.addEvent(time);
-		}
+//		}
 	},
 
 
@@ -219,7 +221,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 		if( cell ) {
 				// Get timestamp of the date in local timezone (will be reconverted later into the same timestamp again)
 			var time	= Todoyu.Time.date2Time(cell.id.split('-').slice(1).join('-'));
-			
+
 			this.ext.addEvent(time);
 		}
 	}
