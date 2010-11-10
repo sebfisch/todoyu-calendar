@@ -94,7 +94,7 @@ Todoyu.Ext.calendar.Event.View = {
 			});
 		}
 
-			// Delay activation, because tabhandler activates add tab after this function
+			// Delay activation, because tab handler activates add tab after this function
 		Todoyu.Tabs.setActive.defer('calendar', 'view');
 	},
 

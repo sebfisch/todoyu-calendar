@@ -112,6 +112,26 @@ class TodoyuCalendarManager {
 
 
 	/**
+	 * Get amount of weeks visible in calendar depending on given amount of displayed days
+	 *
+	 * @param	Integer		$amountDays
+	 * @return	Integer
+	 */
+	public static function getVisibleWeeksAmount($amountDays = 35) {
+		if($amountDays === 28) {
+			$amount = 4;
+		} elseif($amountDays === 35 ) {
+			$amount = 5;
+		} else {
+			$amount = 6;
+		}
+
+		return $amount;
+	}
+
+
+
+	/**
 	 * Get various data related to month of given timestamp
 	 *
 	 * @param	Integer 	$timestamp		UNIX Timestamp of the selected date

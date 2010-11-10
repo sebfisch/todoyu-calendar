@@ -189,13 +189,15 @@ class TodoyuCalendarRenderer {
 		$monthRange	= TodoyuCalendarManager::getMonthDisplayRange($activeDate);
 		$dateStart	= $monthRange['start'];
 		$dateEnd	= $monthRange['end'];
+		$timestamps	= TodoyuCalendarManager::getDayTimestampsForMonth($activeDate);
 
 		$personColors	= TodoyuPersonManager::getSelectedPersonColor($persons);
 		$eventTypes		= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-month.tmpl';
 		$data		= array(
-			'timestamps'		=> TodoyuCalendarManager::getDayTimestampsForMonth($activeDate),
+			'timestamps'		=> $timestamps,
+			'visibleWeeks'		=> todoyuCalendarManager::getVisibleWeeksAmount(sizeof($timestamps)),
 			'timestamp'			=> $activeDate,
 			'selMonth'			=> date('n', $dateStart + TodoyuTime::SECONDS_WEEK),
 			'selYear'			=> date('Y', $dateStart + TodoyuTime::SECONDS_WEEK),
@@ -207,8 +209,6 @@ class TodoyuCalendarRenderer {
 			'holidays'			=> TodoyuCalendarManager::getHolidays($dateStart, $dateEnd),
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($dateStart, $dateEnd, CALENDAR_MODE_MONTH),
 		);
-
-		$data['visibleWeeks']	= sizeof($data['timestamps']) === 35 ? 5 : 6;
 
 		return render($tmpl, $data);
 	}
