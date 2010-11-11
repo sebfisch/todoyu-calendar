@@ -17,6 +17,16 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * @module	Calendar
+ */
+
+/**
+ * Calendar body
+ *
+ * @class		CalendarBody
+ * @namespace	Todoyu.Ext.calendar
+ */
 Todoyu.Ext.calendar.CalendarBody = {
 
 	/**

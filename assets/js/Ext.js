@@ -17,6 +17,13 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * @module	Calendar
+ */
+
+/**
+ * Main calendar object
+ */
 Todoyu.Ext.calendar = {
 
 	/**
@@ -360,7 +367,7 @@ Todoyu.Ext.calendar = {
 	},
 
 
-	
+
 	/**
 	 * Set calendar title
 	 *
