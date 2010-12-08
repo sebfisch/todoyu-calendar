@@ -68,7 +68,7 @@ Todoyu.Ext.calendar.Event.View = {
 
 	/**
 	 * Handler being evoked upon completion of loading of details: set tab label
-	 * 
+	 *
 	 * @param	{Number}			idEvent
 	 * @param	{Ajax.Response}		response
 	 */
@@ -82,12 +82,12 @@ Todoyu.Ext.calendar.Event.View = {
 
 	/**
 	 * If not yet there: add and activate event view tab
-	 * 
+	 *
 	 * @param	{String}		label
 	 */
 	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tab-view') ) {
-			var tab = Todoyu.Tabs.build('calendar', 'view', 'item bcg05 tabkey-view', label, true);
+			var tab = Todoyu.Tabs.build('calendar', 'view', '', label, true);
 
 			$('calendar-tab-month').insert({
 				'after': tab
@@ -111,7 +111,7 @@ Todoyu.Ext.calendar.Event.View = {
 
 	/**
 	 * Set event viewing tab label
-	 * 
+	 *
 	 * @param	{String}		label
 	 */
 	setTabLabel: function(label) {
@@ -141,7 +141,7 @@ Todoyu.Ext.calendar.Event.View = {
 
 	/**
 	 * Check whether event viewing tab exists in DOM
-	 * 
+	 *
 	 * @return	{Boolean}
 	 */
 	isActive: function() {

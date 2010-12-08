@@ -213,7 +213,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 */
 	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tab-edit') ) {
-			var tab = Todoyu.Tabs.build('calendar', 'edit', 'item bcg05 tabkey-edit', label, true);
+			var tab = Todoyu.Tabs.build('calendar', 'edit', '', label, true);
 
 			$('calendar-tab-month').insert({
 				'after': tab
