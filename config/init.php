@@ -19,13 +19,6 @@
 *****************************************************************************/
 
 /**
- * General configuration for calendar extension
- *
- * @package		Todoyu
- * @subpackage	Calendar
- */
-
-/**
  * Add context menu callbacks
  */
 TodoyuContextMenuManager::addFunction('Event', 'TodoyuEventManager::getContextMenuItems', 10);
@@ -64,7 +57,6 @@ Todoyu::$CONFIG['EXT']['calendar']['tabs'] = array(
 );
 
 
-
 	// Add event types
 TodoyuEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'event.type.general');
 TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'event.type.away');
@@ -79,14 +71,12 @@ TodoyuEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'event.ty
 TodoyuEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.type.reminder');
 
 
-
 	// Which event types have no relevance to overbooking prevention?
 Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'] = array(
 	EVENTTYPE_BIRTHDAY,
 	EVENTTYPE_MILESTONE,
 	EVENTTYPE_REMINDER
 );
-
 
 
 	// Which event types define absences?

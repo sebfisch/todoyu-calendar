@@ -18,16 +18,12 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-/**
- * Extension main file for calendar extension
- *
- * @package		Todoyu
- * @subpackage	Calendar
- */
-
 	// Declare ext ID, path
 define('EXTID_CALENDAR', 104);
 define('PATH_EXT_CALENDAR', PATH_EXT . '/calendar');
+
+require_once(PATH_EXT_CALENDAR . '/config/constants.php');
+require_once(PATH_EXT_CALENDAR . '/dwoo/plugins.php');
 
 	// Register module locales
 TodoyuLabelManager::register('calendar', 'calendar', 'ext.xml');
@@ -36,11 +32,11 @@ TodoyuLabelManager::register('panelwidget-calendar', 'calendar', 'panelwidget-ca
 TodoyuLabelManager::register('panelwidget-eventtypeselector', 'calendar', 'panelwidget-eventtypeselector.xml');
 TodoyuLabelManager::register('panelwidget-holidaysetselector', 'calendar', 'panelwidget-holidaysetselector.xml');
 
-	// Request configurations
-	// @notice	Auto-loaded configs if available: admin, assets, create, contextmenu, extinfo, filters, form, page, panelwidgets, rights, search
-require_once(PATH_EXT_CALENDAR . '/config/constants.php');
-require_once(PATH_EXT_CALENDAR . '/config/extension.php');
-require_once(PATH_EXT_CALENDAR . '/config/hooks.php');
-require_once(PATH_EXT_CALENDAR . '/dwoo/plugins.php');
+
+// Add holiday set selector to company address form
+TodoyuFormHook::registerBuildForm('ext/contact/config/form/address.xml', 'TodoyuCalendarManager::modifyAddressFormfields');
+
+TodoyuFormHook::registerSaveData('ext/calendar/config/form/event.xml', 'TodoyuEventManager::hookSaveEvent');
+TodoyuFormHook::registerSaveData('ext/calendar/config/form/quickevent.xml', 'TodoyuEventManager::hookSaveEvent');
 
 ?>
