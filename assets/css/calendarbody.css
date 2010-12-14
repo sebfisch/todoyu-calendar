@@ -36,7 +36,7 @@
 
 
 
-.colHours {
+#calendar .colHours {
 	opacity:0.9;
 	filter:alpha(opacity=90);
 	width:40px;
@@ -45,7 +45,7 @@
 	background-color:#f2f3ed;
 }
 
-.colHours .hour {
+#calendar .colHours .hour {
 	padding-left:2px;
 	color:#446688;
 	height:41px;
@@ -53,7 +53,7 @@
 	cursor:pointer;
 }
 
-.colHours .hour:hover {
+#calendar .colHours .hour:hover {
 	background-color:#f1ffc4;
 }
 
