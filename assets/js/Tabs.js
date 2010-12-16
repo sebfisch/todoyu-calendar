@@ -83,7 +83,7 @@ Todoyu.Ext.calendar.Tabs = {
 	 */
 	getActive: function() {
 		if( this.active === null ) {
-			this.active	= Todoyu.Tabs.getActiveKey('calendar-tabs');
+			this.active	= Todoyu.Tabs.getActiveKey('calendar');
 		}
 
 		if( this.active === null ) {
