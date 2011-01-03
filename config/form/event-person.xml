@@ -12,8 +12,8 @@
 						<acName>eventperson</acName>
 						<acLabel>TodoyuPersonManager::getLabel</acLabel>
 						<options>
-							<onCompleteCustom>Todoyu.Ext.calendar.Event.Edit.onPersonAcCompleted</onCompleteCustom>
-							<onSelectCustom>Todoyu.Ext.calendar.Event.Edit.onPersonAcSelected</onSelectCustom>
+							<onComplete>Todoyu.Ext.calendar.Event.Edit.onPersonAcCompleted</onComplete>
+							<onSelected>Todoyu.Ext.calendar.Event.Edit.onPersonAcSelected</onSelected>
 						</options>
 					</config>
 					<required />

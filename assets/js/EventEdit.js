@@ -345,8 +345,9 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 * @param	{Todoyu.Autocompleter}	autocompleter
 	 */
 	onPersonAcCompleted: function(response, autocompleter) {
-		if( response.getTodoyuHeader('acElements') == 0 ) {
+		if( response.isEmptyAcResult() ) {
 			Todoyu.notifyInfo('[LLL:event.ac.personassignment.notFoundInfo]');
+			return false;
 		}
 	},
 
