@@ -341,9 +341,6 @@ class TodoyuEventManager {
 			// Make empty overbooking data
 		$overbooked	= array();
 
-		TodoyuDebug::printInFireBug(date('r', $dateStart));
-		TodoyuDebug::printInFireBug(date('r', $dateEnd));
-
 			// Get all (not-overbookable / conflicting) events in the duration of the event
 		$eventTypes	= TodoyuEventTypeManager::getNotOverbookableTypeIndexes();
 		$otherEvents= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
