@@ -376,8 +376,7 @@ div.eventDetails dd {
 #holidays .holidayWorkinghours,
 #holidays .holidayDescription {
 	position:relative;
-	float:right;
-	margin-right:5px;
+	margin:0 15px 0 15px;
 }
 
 

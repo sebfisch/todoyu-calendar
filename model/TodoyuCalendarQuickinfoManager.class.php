@@ -77,6 +77,7 @@ class TodoyuCalendarQuickinfoManager {
 		$holiday	= array_shift($holidays);
 
 		$quickInfo->addInfo('title', $holiday['title']);
+		$quickInfo->addInfo('type', Label('calendar.holidayset.attr.holiday'));
 		$quickInfo->addInfo('date', TodoyuTime::format($holiday['date'], 'date'));
 		$quickInfo->addInfo('work', round($holiday['workingtime'] / 3600, 1) . ' ' . Label('date.time.hours'));
 	}
