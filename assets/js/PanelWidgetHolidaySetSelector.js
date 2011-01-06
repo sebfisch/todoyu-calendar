@@ -191,7 +191,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 				'area':			Todoyu.getArea(),
 				'value':		typeIDs
 			},
-			'onComplete': function(response)	{
+			'onComplete': function(response) {
 				this.onPrefsSaved(response);
 			}.bind(this)
 		};

@@ -58,7 +58,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	 * @param	{Number}		idEvent
 	 * @return	{Boolean}
 	 */
-	isDetailsLoaded: function(idEvent)	{
+	isDetailsLoaded: function(idEvent) {
 		return Todoyu.exists('event-' + idEvent + '-details');
 	},
 
@@ -83,7 +83,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		idPerson
 	 */
-	acknowledgeEvent: function(idEvent, idPerson)	{
+	acknowledgeEvent: function(idEvent, idPerson) {
 		var url = Todoyu.getUrl('calendar', 'event');
 
 		var options = {
@@ -108,7 +108,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	 * @param	{Ajax.Response}		response
 	 * @todo	implement or remove
 	 */
-	onAcknowledged: function(idEvent, idPerson, response)	{
+	onAcknowledged: function(idEvent, idPerson, response) {
 
 	},
 

@@ -223,7 +223,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 * Save the current date
 	 */
 	saveCurrentDate: function() {
-		if(this.prefSavingEnabled) {
+		if( this.prefSavingEnabled ) {
 			Todoyu.Pref.save('calendar', 'date', this.getTime() );
 		}
 	}
