@@ -21,7 +21,8 @@
 class TodoyuCalendarQuickinfoManager {
 
 	/**
-	 * @todo	comment
+	 * Setup event quickinfo
+	 *
 	 * @param	TodoyuQuickinfo		$quickInfo
 	 * @param	Integer				$element
 	 */
@@ -55,8 +56,6 @@ class TodoyuCalendarQuickinfoManager {
 		$quickInfo->addInfo('type',	$typeInfo, 20);
 		$quickInfo->addInfo('date',	$dateInfo, 30);
 
-
-
 		$amountAssignedPersons	= count( $event->getAssignedPersonsData() );
 		if( $amountAssignedPersons > 0 ) {
 			$quickInfo->addInfo('persons', $personInfo, 50);
@@ -66,7 +65,8 @@ class TodoyuCalendarQuickinfoManager {
 
 
 	/**
-	 * @todo	comment
+	 * Setup holiday quickinfo
+	 *
 	 * @param	TodoyuQuickinfo		$quickInfo
 	 * @param	Integer				$element
 	 */
@@ -85,7 +85,8 @@ class TodoyuCalendarQuickinfoManager {
 
 
 	/**
-	 * @todo	comment
+	 * Setup birthday quickinfo
+	 *
 	 * @param	TodoyuQuickinfo		$quickInfo
 	 * @param	Integer				$element
 	 */

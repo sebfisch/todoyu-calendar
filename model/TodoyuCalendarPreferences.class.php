@@ -102,7 +102,8 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * @todo	comment
+	 * Save fullday view preference (active?)
+	 *
 	 * @param	Boolean		$full
 	 */
 	public static function saveFullDayView($full = true) {
@@ -114,7 +115,8 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * @todo	comment
+	 * Get fullday view (active?) preference
+	 *
 	 * @return	Boolean
 	 */
 	public static function getFullDayView() {
@@ -208,7 +210,8 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * @todo	comment
+	 * Save event display preference: expanded?
+	 *
 	 * @param	Integer		$idEvent
 	 * @param	Boolean		$expanded
 	 */
@@ -222,7 +225,8 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * @todo	comment
+	 * Get event display preference: expanded?
+	 *
 	 * @param	Integer		$idEvent
 	 * @return	Boolean
 	 */
