@@ -191,7 +191,7 @@ class TodoyuHolidaySetManager {
 					ext_calendar_mm_holiday_holidayset mm';
 		$where	= '		mm.id_holidayset	= ' . $idHolidaySet .
 				  ' AND	mm.id_holiday		= h.id
-				    AND	h.deleted			= 0';
+					AND	h.deleted			= 0';
 		$order	= ' h.date';
 
 		return Todoyu::db()->getArray($fields, $table, $where, '', $order);
