@@ -370,6 +370,16 @@ class TodoyuCalendarRenderer {
 	}
 
 
+
+	/**
+	 * Render full-day events of given types and persons, laying within weeks of given timespan
+	 *
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
+	 * @param	Array 		$eventTypes
+	 * @param	Array		$persons
+	 * @return	Array
+	 */
 	public static function preRenderWeekDayEvents($dateStart, $dateEnd, array $eventTypes, array $persons) {
 		$mapping	= TodoyuCalendarManager::getDayEventsWeekMapping($dateStart, $dateEnd, $eventTypes, $persons);
 

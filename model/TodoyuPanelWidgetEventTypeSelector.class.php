@@ -130,6 +130,12 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 	}
 
 
+
+	/**
+	 * Shortcut for rights check - calendar 'general:use'
+	 *
+	 * @return	Boolean
+	 */
 	public static function isAllowed() {
 		return allowed('calendar', 'general:use');
 	}

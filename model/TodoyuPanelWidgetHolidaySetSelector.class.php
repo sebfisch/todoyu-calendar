@@ -156,6 +156,12 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 	}
 
 
+
+	/**
+	 * Shortcut for rights check - calendar 'general:use'
+	 *
+	 * @return	Boolean
+	 */
 	public static function isAllowed() {
 		return allowed('calendar', 'general:use');
 	}

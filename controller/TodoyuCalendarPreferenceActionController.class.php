@@ -121,6 +121,12 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	}
 
 
+
+	/**
+	 * Save portal preference: event entry expanded?
+	 *
+	 * @param	Array	$params
+	 */
 	public function portalEventExpandedAction(array $params) {
 		$idEvent	= $this->item;
 		$expanded	= intval($this->value) === 1;
