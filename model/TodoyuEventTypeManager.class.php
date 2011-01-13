@@ -27,7 +27,7 @@
 class TodoyuEventTypeManager {
 
 	/**
-	 * Add a new eventtype
+	 * Add a new event type
 	 *
 	 * @param	Integer		$index
 	 * @param	String		$label
@@ -45,13 +45,20 @@ class TodoyuEventTypeManager {
 
 
 	/**
-	 * Get eventtype data
+	 * Get event type data
 	 *
 	 * @param	String		$index
+	 * @param	Boolean		$parseLabel
 	 * @return	Array
 	 */
-	public static function getEventType($index) {
-		return TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['eventtypes'][$index]);
+	public static function getEventType($index, $parseLabel = false) {
+		$eventType	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['eventtypes'][$index]);
+
+		if( $parseLabel === true ) {
+			$eventType['label']	= Label($eventType['label']);
+		}
+
+		return $eventType;
 	}
 
 
@@ -77,7 +84,7 @@ class TodoyuEventTypeManager {
 
 
 	/**
-	 * Get the key of an eventtype
+	 * Get the key of an event type
 	 *
 	 * @param	Integer		$index
 	 * @return	String
@@ -115,7 +122,20 @@ class TodoyuEventTypeManager {
 
 
 	/**
-	 * Get eventtypes which are allowed to be overbooked
+	 * Get options array of event types
+	 *
+	 * @return	Array
+	 */
+	public static function getEventTypeOptions() {
+		$jobTypes	= self::getEventTypes(true);
+
+		return TodoyuArray::sortByLabel($jobTypes, 'label');
+	}
+
+
+
+	/**
+	 * Get event types which are allowed to be overbooked
 	 *
 	 * @return	Array
 	 */
@@ -126,7 +146,7 @@ class TodoyuEventTypeManager {
 
 
 	/**
-	 * Get eventtypes which are not allowed to be overbooked
+	 * Get event types which are not allowed to be overbooked
 	 *
 	 * @return	Array
 	 */
@@ -149,7 +169,7 @@ class TodoyuEventTypeManager {
 
 
 	/**
-	 * Get all eventtype indexed (numerical)
+	 * Get all event type indexed (numerical)
 	 *
 	 * @return	Array
 	 */
