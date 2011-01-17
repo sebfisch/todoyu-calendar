@@ -204,7 +204,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Handler after prefs saved: evoke refresh
 	 *
-	 * @param	{Object}	response
+	 * @param	{Ajax.Response}	response
 	 */
 	onPrefsSaved: function(response) {
 		Todoyu.Ext.calendar.refresh();

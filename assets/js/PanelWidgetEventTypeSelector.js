@@ -136,7 +136,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Hanlder after prefs have been saved: send updtate info
 	 *
-	 * @param	{Object}	response
+	 * @param	{Ajax.Response}	response
 	 */
 	onPrefsSaved: function(response) {
 		Todoyu.PanelWidget.fire('eventtypeselector', this.getSelectedEventTypes());

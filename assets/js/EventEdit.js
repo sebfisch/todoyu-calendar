@@ -86,8 +86,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Handler when edit form is loaded
 	 *
-	 * @param	{Number}	idEvent
-	 * @param	{Object}	response
+	 * @param	{Number}			idEvent
+	 * @param	{Ajax.Response}		response
 	 */
 	onFormLoaded: function(idEvent, response) {
 		var tabLabel = response.getTodoyuHeader('tabLabel');
@@ -310,7 +310,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Handler after event saved
 	 *
-	 * @param	{Object}	response
+	 * @param	{Ajax.Response}	response
 	 */
 	onEventSaved: function(response) {
 		if( response.hasTodoyuError() ) {

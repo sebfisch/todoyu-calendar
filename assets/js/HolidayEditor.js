@@ -94,7 +94,7 @@
 	/**
 	 * 'on saved' Event handler
 	 *
-	 * @param	{Object}	response
+	 * @param	{Ajax.Response}	response
 	 */
 	onSaved: function(response) {
 		Todoyu.notify('success', response.responseText);

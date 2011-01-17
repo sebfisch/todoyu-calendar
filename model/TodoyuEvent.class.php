@@ -61,6 +61,17 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Get duration of event
+	 *
+	 * @return	Integer
+	 */
+	public function getDuration() {
+		return $this->getEndDate() - $this->getStartDate();
+	}
+
+
+
+	/**
 	 * Get place of event
 	 *
 	 * @return	String
