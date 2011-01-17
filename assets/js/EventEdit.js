@@ -113,7 +113,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Update the field visibility in the form for the selected event type
 	 *
-	 * @param	{Object}	event
+	 * @param	{Event}		event
 	 */
 	updateVisibleFields: function(event) {
 		var eventType	= $F('event-field-eventtype');

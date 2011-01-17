@@ -55,7 +55,7 @@ Todoyu.Ext.calendar.ContextMenuEventPortal = {
 	 * Get ID of clicked event record
 	 *
 	 * @param	{Element}	element
-	 * @param	{Object}	event
+	 * @param	{Event}		event
 	 * @return	{String}
 	 */
 	getID: function(element, event) {

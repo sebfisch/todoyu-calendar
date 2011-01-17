@@ -53,7 +53,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 	 * Extract numerical ID from given DOM element's ID
 	 *
 	 * @param	{Element}	element
-	 * @param	{Object}	event
+	 * @param	{Event}		event
 	 * @return	String
 	 */
 	getID: function(element, event) {

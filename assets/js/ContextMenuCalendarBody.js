@@ -56,7 +56,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	 * Get (clicked) time
 	 *
 	 * @param	{Element}	element
-	 * @param	{Object}	event
+	 * @param	{Event}		event
 	 * @return	{Number}
 	 */
 	getTime: function(element, event) {
