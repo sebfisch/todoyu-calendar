@@ -37,6 +37,8 @@ Todoyu.Ext.calendar.DragDrop = {
 
 	/**
 	 * Initialize dragging on start
+	 *
+	 * @method	init
 	 */
 	init: function() {
 			// Initialize options for current view
@@ -55,6 +57,8 @@ Todoyu.Ext.calendar.DragDrop = {
 
 	/**
 	 * Set drag options for current tab
+	 *
+	 * @method	initOptions
 	 */
 	initOptions: function() {
 		var tab	= this.ext.getActiveTab();
@@ -86,6 +90,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	/**
 	 * If event dragged in month view and dropping on a day failed, move it back to its day container
 	 *
+	 * @method	monthRevert
 	 * @param	{Element}	element
 	 */
 	monthRevert: function(element) {
@@ -100,6 +105,8 @@ Todoyu.Ext.calendar.DragDrop = {
 
 	/**
 	 * Get all event elements in the calendar, except the noAccess classed
+	 *
+	 * @method	getEvents
 	 */
 	getEvents: function() {
 		return $('calendararea').select('div.event').findAll(function(element){
@@ -111,6 +118,8 @@ Todoyu.Ext.calendar.DragDrop = {
 
 	/**
 	 * Get all day containers in month view
+	 *
+	 * @method	getDropDaysInMonth
 	 */
 	getDropDaysInMonth: function() {
 		return $('mvEventContainer').select('td.content');
@@ -120,6 +129,8 @@ Todoyu.Ext.calendar.DragDrop = {
 
 	/**
 	 * Add drag functions to all events
+	 *
+	 * @method	makeEventsDraggable
 	 */
 	makeEventsDraggable: function() {
 		this.getEvents().each(function(eventElement){
@@ -131,6 +142,8 @@ Todoyu.Ext.calendar.DragDrop = {
 
 	/**
 	 * Add drop functions to all days
+	 *
+	 * @method	makeDaysDroppable
 	 */
 	makeDaysDroppable: function() {
 		this.getDropDaysInMonth().each(function(day){
@@ -147,6 +160,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * Change parent of an event. So it's on top of all the other elements and
 	 * can be dragged over them all (else only dragging in the current parent would be possible)
 	 *
+	 * @method	moveEventToTopContainer
 	 * @param	{Element}	element
 	 */
 	moveEventToTopContainer: function(element) {
@@ -164,6 +178,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * Make the element a child of its original parent (before dragging) again
 	 * this points to the element itself
 	 *
+	 * @method	revertToOrigin
 	 * @param	{Element}	originalParent
 	 */
 	revertToOrigin: function(originalParent) {
@@ -179,6 +194,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	/**
 	 * Handler when event was dropped on a day in month view (successful)
 	 *
+	 * @method	onMonthDrop
 	 * @param	{Element}	dragged
 	 * @param	{Element}	dropped
 	 * @param	{Event}		event
@@ -198,6 +214,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	/**
 	 * Handler when dragging starts
 	 *
+	 * @method	onStart
 	 * @param	{String}		tab				Current tab
 	 * @param	{Object}		dragInfo		Information about dragging
 	 * @param	{Event}			event
@@ -219,6 +236,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	/**
 	 * Handler when mouse is moved during dragging (called very often!)
 	 *
+	 * @method	onDrag
 	 * @param	{String}		tab				Current tab
 	 * @param	{Object}		dragInfo		Information about dragging
 	 * @param	{Event}			event
@@ -232,6 +250,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	/**
 	 * Handler when dragging ends
 	 *
+	 * @method	onEnd
 	 * @param	{String}		tab				Current tab
 	 * @param	{Object}		dragInfo		Information about dragging
 	 * @param	{Event}			event
@@ -251,6 +270,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	/**
 	 * Save new position when dropped in day view
 	 *
+	 * @method	saveDayDrop
 	 * @param	{Number}	idEvent
 	 * @param	{Object}	dragInfo
 	 */
@@ -267,6 +287,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	/**
 	 * Save new position when dropped in day view
 	 *
+	 * @method	saveWeekDrop
 	 * @param	{Number}	idEvent
 	 * @param	{Object}	dragInfo
 	 */
@@ -289,6 +310,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	/**
 	 * Save new date of an event
 	 *
+	 * @method	saveDropping
 	 * @param	{String}	tab
 	 * @param	{Number}	idEvent
 	 * @param	{Number}	date
@@ -317,6 +339,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * Handler when new date was saved
 	 * Refresh screen the render overlapping events properly
 	 *
+	 * @method	onDroppingSaved
 	 * @param	{String}	tab
 	 * @param	{Number}	idEvent
 	 * @param	{Number}	date

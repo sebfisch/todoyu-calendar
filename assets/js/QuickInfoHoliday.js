@@ -35,6 +35,8 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 
 	/**
 	 * Install quickinfo for holidays
+	 *
+	 * @method	install
 	 */
 	install: function() {
 		Todoyu.QuickInfo.install('holiday', this.selector, this.getID.bind(this));
@@ -44,6 +46,8 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 
 	/**
 	 * Uninstall quickinfo for events
+	 *
+	 * @method	uninstall
 	 */
 	uninstall: function() {
 		Todoyu.QuickInfo.uninstall(this.selector);
@@ -54,6 +58,7 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 	/**
 	 * Get ID form observed element
 	 *
+	 * @method	getID
 	 * @param	{Element}	element
 	 * @param	{Event}		event
 	 */
@@ -66,6 +71,7 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 	/**
 	 * Remove given calendar event quickinfo element from cache
 	 *
+	 * @method	removeFromCache
 	 * @param	{Number}	idEvent
 	 */
 	removeFromCache: function(idEvent) {

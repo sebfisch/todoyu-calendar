@@ -36,6 +36,8 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
 	 * Init event type selector panel widget
+	 *
+	 * @method	init
 	 */
 	init: function() {
 		this.list	= $('panelwidget-eventtypeSelector-list');
@@ -47,6 +49,8 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
 	 * Install observers
+	 *
+	 * @method	installObservers
 	 */
 	installObservers: function() {
 		this.list.observe('change', this.onSelectionChange.bind(this));
@@ -57,6 +61,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Event type select event handler
 	 *
+	 * @method	onSelectionChange
 	 * @param	{Event}		event
 	 */
 	onSelectionChange: function(event) {
@@ -67,6 +72,8 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
 	 * Update event handler
+	 *
+	 * @method	onUpdate
 	 */
 	onUpdate: function() {
 		this.savePrefs();
@@ -76,7 +83,8 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
 	 * Select all event types
-	 * 
+	 *
+	 * @method	selectAllEventTypes
 	 * @param	{Boolean}		select
 	 * @todo	remove param 'select'?
 	 */
@@ -92,6 +100,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Get IDs of selected event types
 	 *
+	 * @method	getSelectedEventTypes
 	 * @return	Array
 	 */
 	getSelectedEventTypes: function() {
@@ -103,6 +112,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Get amount of selected event types
 	 *
+	 * @method	getNumberOfSelectedEventTypes
 	 * @return	{Number}
 	 */
 	getNumberOfSelectedEventTypes: function() {
@@ -114,6 +124,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	/**
 	 * Check if any type is currently selected
 	 *
+	 * @method	isAnyEventTypeSelected
 	 * @return	{Boolean}
 	 */
 	isAnyEventTypeSelected: function() {
@@ -124,6 +135,8 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
 	 * Store prefs
+	 *
+	 * @method	savePrefs
 	 */
 	savePrefs: function() {
 		var pref = this.getSelectedEventTypes().join(',');
@@ -134,8 +147,9 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 
 	/**
-	 * Hanlder after prefs have been saved: send updtate info
+	 * Handler after prefs have been saved: send update info
 	 *
+	 * @method	onPrefsSaved
 	 * @param	{Ajax.Response}	response
 	 */
 	onPrefsSaved: function(response) {

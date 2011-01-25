@@ -34,6 +34,7 @@ Todoyu.Ext.calendar.Event.View = {
 	/**
 	 * Open event
 	 *
+	 * @method	open
 	 * @param	{Number}	idEvent
 	 */
 	open: function(idEvent) {
@@ -48,6 +49,7 @@ Todoyu.Ext.calendar.Event.View = {
 	/**
 	 * Load event details
 	 *
+	 * @method	loadDetails
 	 * @param	{Number}	idEvent
 	 */
 	loadDetails: function(idEvent) {
@@ -69,6 +71,7 @@ Todoyu.Ext.calendar.Event.View = {
 	/**
 	 * Handler being evoked upon completion of loading of details: set tab label
 	 *
+	 * @method	onDetailsLoaded
 	 * @param	{Number}			idEvent
 	 * @param	{Ajax.Response}		response
 	 */
@@ -83,6 +86,7 @@ Todoyu.Ext.calendar.Event.View = {
 	/**
 	 * If not yet there: add and activate event view tab
 	 *
+	 * @method	addTab
 	 * @param	{String}		label
 	 */
 	addTab: function(label) {
@@ -102,6 +106,8 @@ Todoyu.Ext.calendar.Event.View = {
 
 	/**
 	 * Remove event viewing tab
+	 *
+	 * @method	removeTab
 	 */
 	removeTab: function() {
 		$('calendar-tab-view').remove();
@@ -112,6 +118,7 @@ Todoyu.Ext.calendar.Event.View = {
 	/**
 	 * Set event viewing tab label
 	 *
+	 * @method	setTabLabel
 	 * @param	{String}		label
 	 */
 	setTabLabel: function(label) {
@@ -122,6 +129,8 @@ Todoyu.Ext.calendar.Event.View = {
 
 	/**
 	 * Hide event viewing tab
+	 *
+	 * @method	hide
 	 */
 	hide: function() {
 		$('calendar-view').hide();
@@ -131,6 +140,8 @@ Todoyu.Ext.calendar.Event.View = {
 
 	/**
 	 * Set event viewing tab shown
+	 *
+	 * @method	show
 	 */
 	show: function() {
 		$('calendar-view').show();
@@ -142,6 +153,7 @@ Todoyu.Ext.calendar.Event.View = {
 	/**
 	 * Check whether event viewing tab exists in DOM
 	 *
+	 * @method	isActive
 	 * @return	{Boolean}
 	 */
 	isActive: function() {
@@ -152,6 +164,8 @@ Todoyu.Ext.calendar.Event.View = {
 
 	/**
 	 * Close event viewing tab and update calendar view
+	 *
+	 * @method	close
 	 */
 	close: function() {
 		this.removeTab();

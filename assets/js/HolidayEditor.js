@@ -25,6 +25,8 @@
 
  	/**
 	 * Initialization
+	 *
+	 * @method	init
 	 */
 	init: function() {
 		this.observeHolidaySelector();
@@ -34,6 +36,8 @@
 
 	/**
 	 * Initialize holiday selector observer
+	 *
+	 * @method	observeHolidaySelector
 	 */
 	observeHolidaySelector: function() {
 		Todoyu.PanelWidget.observe('holidayselector', this.onHolidaySelect.bind(this));
@@ -44,6 +48,7 @@
 	/**
 	 * 'on holiday select' Event handler
 	 *
+	 * @method	onHolidaySelect
 	 * @param	{unknown}	widget
 	 * @param	{unknown}	value
 	 */
@@ -56,6 +61,7 @@
 	/**
 	 * Load holiday
 	 *
+	 * @method	loadHoliday
 	 * @param	{Number}	idHoliday
 	 */
 	loadHoliday: function(idHoliday) {
@@ -75,8 +81,9 @@
 	/**
 	 * Save holiday
 	 *
+	 * @method	save
 	 * @param	{String}	form
-	 * @return	{Bolean}
+	 * @return	{Boolean}
 	 */
 	save: function(form) {
 		$(form).request({
@@ -94,6 +101,7 @@
 	/**
 	 * 'on saved' Event handler
 	 *
+	 * @method	onSaved
 	 * @param	{Ajax.Response}	response
 	 */
 	onSaved: function(response) {

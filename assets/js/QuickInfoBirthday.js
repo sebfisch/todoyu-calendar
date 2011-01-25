@@ -44,6 +44,8 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 
 	/**
 	 * Install quickinfo for events
+	 *
+	 * @method	install
 	 */
 	install: function() {
 		Todoyu.QuickInfo.setCacheTime('birthday', this.cacheTime);
@@ -55,6 +57,8 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 
 	/**
 	 * Uninstall quickinfo for events
+	 *
+	 * @method	uninstall
 	 */
 	uninstall: function() {
 		Todoyu.QuickInfo.uninstall(this.selector);
@@ -65,6 +69,7 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 	/**
 	 * Get ID form observed element
 	 *
+	 * @method	getID
 	 * @param	{Element}	element
 	 * @param	{Event}		event
 	 */
@@ -77,6 +82,7 @@ Todoyu.Ext.calendar.QuickInfoBirthday = {
 	/**
 	 * Remove given calendar event quickinfo element from cache
 	 *
+	 * @method	removeFromCache
 	 * @param	{Number}	idEvent
 	 */
 	removeFromCache: function(idEvent) {

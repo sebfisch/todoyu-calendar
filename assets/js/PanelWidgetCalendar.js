@@ -59,6 +59,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Initialize calendar widget
 	 *
+	 * @method	init
 	 * @param	{String}		date	Formatted date Y-m-d
 	 */
 	init: function(date) {
@@ -80,6 +81,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get current calendar date
 	 *
+	 * @method	getDate
 	 * @return	{Number}
 	 */
 	getDate: function() {
@@ -91,6 +93,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Set current calendar date
 	 *
+	 * @method	setDate
 	 * @param	{Number}	date
 	 * @param	{Boolean}	noExternalUpdate
 	 */
@@ -103,6 +106,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get time
 	 *
+	 * @method	getTime
 	 * @return	{Number}
 	 */
 	getTime: function() {
@@ -114,6 +118,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Get timestamp of first shown day
 	 *
+	 * @method	getFirstShownDay
 	 * @return	{Number}
 	 */
 	getFirstShownDay: function() {
@@ -139,6 +144,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Set time
 	 *
+	 * @method	setTime
 	 * @param	{Number}	time
 	 * @param	{Boolean}	noExternalUpdate
 	 */
@@ -151,6 +157,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * When displayed dates in calendar are updated/changed
 	 *
+	 * @method	onCalendarChange
 	 * @param	{Event}	event
 	 */
 	onCalendarChange: function(event) {
@@ -175,6 +182,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * 'Date selected' event handler
 	 *
+	 * @method	onDateSelected
 	 * @param	{Object}	currentDate
 	 */
 	onDateSelected: function(currentDate) {
@@ -186,6 +194,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * General update event handler
 	 *
+	 * @method	onUpdate
 	 * @param	{String}	mode
 	 */
 	onUpdate: function(mode, delay) {
@@ -208,6 +217,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	/**
 	 * Shift selected date of calendar widget by given duration (amount of seconds)
 	 *
+	 * @method	shiftDate
 	 * @param	{Number}	duration
 	 * @param	{Boolean}	saveDatePreference
 	 */
@@ -221,6 +231,8 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 	/**
 	 * Save the current date
+	 *
+	 * @method	saveCurrentDate
 	 */
 	saveCurrentDate: function() {
 		if( this.prefSavingEnabled ) {

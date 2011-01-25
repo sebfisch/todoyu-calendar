@@ -33,6 +33,8 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 
 	/**
 	 * Attach event context menu
+	 *
+	 * @method	attach
 	 */
 	attach: function() {
 		Todoyu.ContextMenu.attach('event', '.contextmenuevent', this.getID.bind(this));
@@ -42,6 +44,8 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 
 	/**
 	 * Detach event context menu
+	 *
+	 * @method	detach
 	 */
 	detach: function() {
 		Todoyu.ContextMenu.detach('.contextmenuevent');
@@ -52,6 +56,7 @@ Todoyu.Ext.calendar.ContextMenuEvent = {
 	/**
 	 * Extract numerical ID from given DOM element's ID
 	 *
+	 * @method	getID
 	 * @param	{Element}	element
 	 * @param	{Event}		event
 	 * @return	String

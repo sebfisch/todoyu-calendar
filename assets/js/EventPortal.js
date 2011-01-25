@@ -10,7 +10,8 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Toggle details of listed event entry (in listing of e.g portal's events tab). Used for eventslist only
 	 *
-	 * @param	{Number} idEvent
+	 * @method	toggleDetails
+	 * @param	{Number}		idEvent
 	 */
 	toggleDetails: function(idEvent) {
 			// If detail is not loaded yet, send request
@@ -29,6 +30,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Load event details
 	 *
+	 * @method	loadDetails
 	 * @param	{Number}		idEvent
 	 */
 	loadDetails: function(idEvent) {
@@ -55,6 +57,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Check whether event details are loaded
 	 *
+	 * @method	isDetailsLoaded
 	 * @param	{Number}		idEvent
 	 * @return	{Boolean}
 	 */
@@ -67,6 +70,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Save event details
 	 *
+	 * @method	saveEventExpandedStatus
 	 * @param	{Number}		idEvent
 	 * @param	{Boolean}		expanded
 	 */
@@ -80,6 +84,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Set event acknowledged
 	 *
+	 * @method	acknowledgeEvent
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		idPerson
 	 */
@@ -105,6 +110,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * 'On acknowledged' event handler
 	 *
+	 * @method	onAcknowledged
 	 * @param	{Ajax.Response}		response
 	 * @todo	implement or remove
 	 */
@@ -117,6 +123,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	/**
 	 * Set acknowledge status for event in portal
 	 *
+	 * @method	setAcknowledgeStatus
 	 * @param	{Number}	idEvent
 	 */
 	setAcknowledgeStatus: function(idEvent) {
@@ -127,6 +134,8 @@ Todoyu.Ext.calendar.EventPortal = {
 
 	/**
 	 * Reduce the count of appointments in the tab label
+	 *
+	 * @method	reduceAppointmentCounter
 	 */
 	reduceAppointmentCounter: function() {
 		var numResults	= Todoyu.Ext.portal.Tab.getNumResults('appointment');

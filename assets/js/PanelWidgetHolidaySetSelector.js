@@ -38,6 +38,8 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	/**
 	 * Init (evoke observers installation)
+	 *
+	 * @method	init
 	 */
 	init: function() {
 		this.installObservers();
@@ -47,6 +49,8 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	/**
 	 * Install observers
+	 *
+	 * @method	installObservers
 	 */
 	installObservers: function() {
 		$(this.list).observe('change', this.onHolidaySetSelect.bind(this));
@@ -57,6 +61,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * HolidaySet select event handler
 	 *
+	 * @method	onHolidaySetSelect
 	 * @param	{Event}		event
 	 */
 	onHolidaySetSelect: function(event) {
@@ -72,6 +77,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Check and verify current selection (e.g. 'none' override any selected sets)
 	 *
+	 * @method	verifySelectedSets
 	 * @param	{Array}		selectedSetIDs
 	 */
 	verifySelectedSets: function(selectedSetIDs) {
@@ -85,6 +91,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Update event handler
 	 *
+	 * @method	onUpdate
 	 * @param	{String}		value
 	 */
 	onUpdate: function(value) {
@@ -96,6 +103,8 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	/**
 	 * Select all holidaySets
+	 *
+	 * @method	selectAllHolidaySets
 	 */
 	selectAllHolidaySets: function() {
 		$$('#panelwidget-holidaysetselector-list option').each(function(item) {
@@ -107,6 +116,8 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	/**
 	 * Unselect all holidaySets
+	 *
+	 * @method	unselectAllHolidaySets
 	 */
 	unselectAllHolidaySets: function() {
 		$$('#panelwidget-holidaysetselector-list option').each(function(item) {

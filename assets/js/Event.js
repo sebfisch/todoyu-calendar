@@ -30,6 +30,8 @@ Todoyu.Ext.calendar.Event = {
 
 	/**
 	 * Install observers
+	 *
+	 * @method	installObservers
 	 */
 	installObservers: function() {
 			// Observe all events in the calendar
@@ -45,6 +47,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Event double click handler
 	 *
+	 * @method	onEventDblClick
 	 * @param	{Event}		event
 	 */
 	onEventDblClick: function(event) {
@@ -74,6 +77,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Show event
 	 *
+	 * @method	show
 	 * @param	{Number}		idEvent
 	 */
 	show: function(idEvent) {
@@ -86,6 +90,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Edit event
 	 *
+	 * @method	edit
 	 * @param	{Number}		idEvent
 	 */
 	edit: function(idEvent) {
@@ -104,6 +109,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Remove event
 	 *
+	 * @method	remove
 	 * @param	{Number}		idEvent
 	 */
 	remove: function(idEvent) {
@@ -128,8 +134,9 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Handle 'on removed' event
 	 *
-	 * @param	{Number}		idEvent
-	 * @param	{Ajax.Response}	response
+	 * @method	onRemoved
+	 * @param	{Number}			idEvent
+	 * @param	{Ajax.Response}		response
 	 */
 	onRemoved: function(idEvent, response) {
 		if( Todoyu.getArea() === 'calendar' ) {
@@ -145,6 +152,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Automatically set the ending date to the same value as the starting date in a form
 	 *
+	 * @method	uodateEnddate
 	 * @param	{String}	formName	Name of the XML-form
 	*/
 	updateEnddate:function(formName) {
@@ -158,6 +166,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Calculate timestamp from given given mouse coordinates
 	 *
+	 * @method	calcTimestampFromMouseCoords
 	 * @param	{String}		idTab	'day' / 'week' / 'month'
 	 * @param	{Number}		x		event pointer x coordinate
 	 * @param	{Number}		y		event pointer y coordinate
@@ -194,6 +203,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Show given event in given view (day / week / month) of calendar
 	 *
+	 * @method	goToEventInCalendar
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		date
 	 * @param	{String}		view
@@ -212,6 +222,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Add an event on the same time as the selected one
 	 *
+	 * @method	addEventOnSameTime
 	 * @param	{Number}		idEvent
 	 */
 	addEventOnSameTime: function(idEvent) {
@@ -225,6 +236,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Get time of an event by its position of parent container
 	 *
+	 * @method	getTime
 	 * @param	{Number}	idEvent
 	 */
 	getTime: function(idEvent) {

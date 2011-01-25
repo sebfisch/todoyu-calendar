@@ -35,6 +35,8 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 
 	/**
 	 * Attach task context menu
+	 *
+	 * @method	attach
 	 */
 	attach: function() {
 		this.detach();
@@ -45,6 +47,8 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 
 	/**
 	 * Detach task context menu
+	 *
+	 * @method	detach
 	 */
 	detach: function() {
 		Todoyu.ContextMenu.detach('.contextmenucalendararea');
@@ -55,6 +59,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	/**
 	 * Get (clicked) time
 	 *
+	 * @method	getTime
 	 * @param	{Element}	element
 	 * @param	{Event}		event
 	 * @return	{Number}
@@ -68,6 +73,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	/**
 	 * Get timestamp at clicked coordinates / element
 	 *
+	 * @method	getClickedTime
 	 * @param	{Event}		event
 	 * @return	{Number}
 	 */
