@@ -351,7 +351,7 @@ class TodoyuEventManager {
 				// Don't check for conflicts if is dayevent as long its not an absence
 			$absenceEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE']);
 
-			if( $otherEvent['is_dayevent'] == 1 && !in_array($otherEvent['eventtype'], $absenceEventTypes)) {
+			if( $otherEvent['is_dayevent'] == 1 && ! in_array($otherEvent['eventtype'], $absenceEventTypes)) {
 				continue;
 			}
 
@@ -906,6 +906,40 @@ class TodoyuEventManager {
 		}
 
 		return $tab;
+	}
+
+
+
+	/**
+	 * Check event for overbookings (regardless whether allowed) and render warning message content if any found
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$formData
+	 * @return	String
+	 */
+	public static function getOverbookingWarning($idEvent, array $formData) {
+		$idEvent		= intval($formData['id']);
+		$dateStart		= TodoyuTime::parseDate($formData['date_start']);
+		$dateEnd		= TodoyuTime::parseDate($formData['date_end']);
+		$personIDs		= TodoyuArray::flattenToSubKey('id', $formData['persons']);
+
+		$warning		= '';
+		$overbookedInfos= TodoyuEventManager::getOverbookingInfos($dateStart, $dateEnd, $personIDs, $idEvent);
+
+		if( sizeof($overbookedInfos) > 0 ) {
+			$xmlPath= 'ext/calendar/config/form/overbooking-warning.xml';
+			$form	= TodoyuFormManager::getForm($xmlPath);
+			$buttonsForm	= $form->render();
+
+			$tmpl	= 'ext/calendar/view/overbooking-warning.tmpl';
+			$formData	= array(
+				'overbooked'		=> $overbookedInfos,
+				'buttonsFieldset'	=> $buttonsForm
+			);
+			$warning	= render($tmpl, $formData);
+		}
+
+		return $warning;
 	}
 
 }

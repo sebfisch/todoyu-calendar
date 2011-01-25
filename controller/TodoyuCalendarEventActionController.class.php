@@ -90,16 +90,33 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Send idTask header for JavaScript
 		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 
+
+
 		if( $form->isValid() ) {
-			$data	= $form->getStorageData();
+			$needToShowWarning	= false;
+
+				// Check for (allowed) entered overbooking, ask user to confirm saving if any occurs
+			$isOverbookingConfirmed	= intval($params['isOverbookingConfirmed']);
+			if( TodoyuCalendarManager::isOverbookingAllowed() && ! $isOverbookingConfirmed ) {
+				$overbookedWarning	= TodoyuEventManager::getOverbookingWarning($idEvent, $data);
+				if( ! empty($overbookedWarning) ) {
+					$needToShowWarning	= true;
+					TodoyuHeader::sendTodoyuHeader('overbookingwarning', $overbookedWarning);
+				}
+			}
 
 				// Save or update event
-			$idEvent= TodoyuEventManager::saveEvent($data);
-			$event	= TodoyuEventManager::getEvent($idEvent);
+			if( $needToShowWarning === false ) {
+				$data	= $form->getStorageData();
 
-			TodoyuHeader::sendTodoyuHeader('time', $event->get('date_start'));
-			TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
+				$idEvent= TodoyuEventManager::saveEvent($data);
+				$event	= TodoyuEventManager::getEvent($idEvent);
+
+				TodoyuHeader::sendTodoyuHeader('time', $event->get('date_start'));
+				TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
+			}
 		} else {
+				// Handle errors
 			TodoyuHeader::sendTodoyuErrorHeader();
 
 			$form->setUseRecordID(false);

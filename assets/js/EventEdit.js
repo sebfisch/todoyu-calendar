@@ -35,6 +35,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Open edit view for an event
 	 *
+	 * @method	open
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		time
 	 */
@@ -51,6 +52,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Open edit view for event from detail view
 	 *
+	 * @method	openFormDetailView
 	 * @param	{Number}		idEvent
 	 */
 	openFromDetailView: function(idEvent) {
@@ -63,6 +65,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Load edit form for an event
 	 *
+	 * @method	loadForm
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		time
 	 */
@@ -86,6 +89,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Handler when edit form is loaded
 	 *
+	 * @method	onFormLoaded
 	 * @param	{Number}			idEvent
 	 * @param	{Ajax.Response}		response
 	 */
@@ -103,6 +107,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 	/**
 	 * Event type change observer
+	 *
+	 * @method	observeEventType
 	 */
 	observeEventType: function() {
 		$('event-field-eventtype').observe('change', this.updateVisibleFields.bindAsEventListener(this));
@@ -113,6 +119,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Update the field visibility in the form for the selected event type
 	 *
+	 * @method	updateVisibleFields
 	 * @param	{Event}		event
 	 */
 	updateVisibleFields: function(event) {
@@ -150,6 +157,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Check if a field has to be hidden for an event type
 	 *
+	 * @method	checkHideField
 	 * @param	{String}	fieldName
 	 * @param	{String}	eventType
 	 */
@@ -180,6 +188,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Hide a field in the event form
 	 *
+	 * @method	hideField
 	 * @param	{String}		fieldName
 	 */
 	hideField: function(fieldName) {
@@ -195,6 +204,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Set time for full-day event
 	 *
+	 * @method	setFulldayTime
 	 * @param	{Element}		fullDayCheckbox
 	 */
 	setFulldayTime: function(fullDayCheckbox) {
@@ -209,6 +219,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Add the edit tab
 	 *
+	 * @method	addTab
 	 * @param	{String}		label
 	 */
 	addTab: function(label) {
@@ -228,6 +239,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 	/**
 	 * Close edit view
+	 *
+	 * @method	close
 	 */
 	close: function() {
 		if( Todoyu.exists('calendar-tab-edit') ) {
@@ -245,6 +258,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Set edit tab label
 	 *
+	 * @method	setTabLabel
 	 * @param	{String}		label
 	 */
 	setTabLabel: function(label) {
@@ -256,6 +270,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Check if edit view is active
 	 *
+	 * @method	isActive
 	 * @return	{Boolean}
 	 */
 	isActive: function() {
@@ -266,6 +281,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 	/**
 	 * Remove edit tab
+	 *
+	 * @method	removeTab
 	 */
 	removeTab: function() {
 		if( Todoyu.exists('calendar-tab-edit') ) {
@@ -277,6 +294,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 	/**
 	 * Show edit container
+	 *
+	 * @method	show
 	 */
 	show: function() {
 		$('calendar-edit').show();
@@ -286,6 +305,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 	/**
 	 * Hide edit container
+	 *
+	 * @method	hide
 	 */
 	hide: function() {
 		$('calendar-edit').hide();
@@ -294,12 +315,19 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 
 	/**
-	 * Save the event
+	 * Save the event.
+	 * If overbooking is allowed and warning has been confirmed, save even overbooked entries.
+	 *
+	 * @method	saveEvent
+	 * @param	{Boolean}	isOverbookingConfirmed
 	 */
-	saveEvent: function() {
+	saveEvent: function(isOverbookingConfirmed) {
+		isOverbookingConfirmed	= isOverbookingConfirmed ? isOverbookingConfirmed : false;
+
 		$('event-form').request({
 			'parameters': {
-				'action':	'save'
+				'action':					'save',
+				'isOverbookingConfirmed':	(isOverbookingConfirmed ? '1' : '0')
 			},
 			'onComplete': this.onEventSaved.bind(this)
 		});
@@ -310,19 +338,28 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Handler after event saved
 	 *
+	 * @method	onEventSaved
 	 * @param	{Ajax.Response}	response
 	 */
 	onEventSaved: function(response) {
 		if( response.hasTodoyuError() ) {
+				// Notify of invalid data
 			Todoyu.notifyError('[LLL:event.saved.error]');
 			$('event-form').replace(response.responseText);
 		} else {
-			Todoyu.notifySuccess('[LLL:event.saved.ok]');
-			var time	= response.getTodoyuHeader('time');
-			var idEvent	= response.getTodoyuHeader('idEvent');
-			this.ext.QuickInfoEvent.removeFromCache(idEvent);
-			this.ext.show(this.ext.Tabs.active, time*1000);
-			this.close();
+			if( response.hasTodoyuHeader('overbookingwarning') ) {
+					// Overbooked events are allowed, ask for confirmation before saving
+				var warning	= response.getTodoyuHeader('overbookingwarning');
+				Todoyu.Popup.openContentInWindow('Warning', warning, 'Overbooking Warning', 376);
+			} else {
+					// Save event
+				Todoyu.notifySuccess('[LLL:event.saved.ok]');
+				var time	= response.getTodoyuHeader('time');
+				var idEvent	= response.getTodoyuHeader('idEvent');
+				this.ext.QuickInfoEvent.removeFromCache(idEvent);
+				this.ext.show(this.ext.Tabs.active, time * 1000);
+				this.close();
+			}
 		}
 	},
 
@@ -330,6 +367,8 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 	/**
 	 * Close event form
+	 *
+	 * @method	cancelEdit
 	 */
 	cancelEdit: function(){
 		this.ext.show();
@@ -341,6 +380,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Handler when event person assignment field is autocompleted
 	 *
+	 * @method	onPersonAcCompleted
 	 * @param	{Ajax.Response}			response
 	 * @param	{Todoyu.Autocompleter}	autocompleter
 	 */
@@ -356,12 +396,12 @@ Todoyu.Ext.calendar.Event.Edit = {
 	/**
 	 * Update label of the person selector in an event
 	 *
-	 * @function	onPersonAcSelected
-	 * @param		{Element}				inputField
-	 * @param		{Element}				idField
-	 * @param		{String}				selectedValue
-	 * @param		{String}				selectedText
-	 * @param		{Todoyu.Autocompleter}	autocompleter
+	 * @method	onPersonAcSelected
+	 * @param	{Element}				inputField
+	 * @param	{Element}				idField
+	 * @param	{String}				selectedValue
+	 * @param	{String}				selectedText
+	 * @param	{Todoyu.Autocompleter}	autocompleter
 	 */
 	onPersonAcSelected: function(inputField, idField, selectedValue, selectedText, autocompleter) {
 		$(inputField).up('div.databaseRelation').down('span.label').update(selectedText);

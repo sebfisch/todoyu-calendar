@@ -59,4 +59,5 @@
 	<label index="contextmenu.showEventInCalendar.week">Woche</label>
 	<label index="contextmenu.showEventInCalendar.month">Monat</label>
 	<label index="ac.personassignment.notFoundInfo">Es wurden keine Personen gefunden, deren Namen diesen Text enthalten.</label>
+	<label index="warning.overbooked.confirmsave">Diesen Termin dennoch speichern?</label>
 </labels>
