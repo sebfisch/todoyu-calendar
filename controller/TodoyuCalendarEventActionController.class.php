@@ -102,6 +102,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				if( ! empty($overbookedWarning) ) {
 					$needToShowWarning	= true;
 					TodoyuHeader::sendTodoyuHeader('overbookingwarning', $overbookedWarning);
+
+					$overboookingWarningInline	= TodoyuEventManager::getOverbookingWarning($idEvent, $data, false);
+					TodoyuHeader::sendTodoyuHeader('overbookingwarningInline', $overboookingWarningInline);
 				}
 			}
 

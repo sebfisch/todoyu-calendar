@@ -166,16 +166,16 @@ Todoyu.Ext.calendar.Event.Edit = {
 		eventType	= parseInt(eventType, 10);
 
 		switch(eventType) {
-			case 3: // birthday
+			case Todoyu.Ext.calendar.Event.eventTypeID.birthday:
 				fields = ['is-dayevent', 'date-end', 'person', 'place'];
 				break;
-			case 4: // vacation
+			case Todoyu.Ext.calendar.Event.eventTypeID.vacation:
 				fields = ['is-dayevent'];
 				break;
-			case 7:	// away official
+			case Todoyu.Ext.calendar.Event.eventTypeID.awayofficial:
 				fields = ['is-private'];
 				break;
-			case 13: // reminder
+			case Todoyu.Ext.calendar.Event.eventTypeID.reminder:
 				fields = ['is-dayevent', 'date-end'];
 				break;
 		}
@@ -348,7 +348,20 @@ Todoyu.Ext.calendar.Event.Edit = {
 			$('event-form').replace(response.responseText);
 		} else {
 			if( response.hasTodoyuHeader('overbookingwarning') ) {
-					// Overbooked events are allowed, ask for confirmation before saving
+					// Add inline warning
+				var inlineWarning	= new Element('div', {
+					'id':		'overbooking-warning-inline',
+					'class':	'errorMessage'
+				}).update(response.getTodoyuHeader('overbookingwarningInline'));
+
+				if( Todoyu.exists('overbooking-warning-inline') ) {
+					$('overbooking-warning-inline').remove();
+				}
+
+				$$('#formElement-event-field-persons-inputbox .clear').last().insert({
+					after: inlineWarning
+				});
+					// Open confirmation prompt in popup
 				var warning	= response.getTodoyuHeader('overbookingwarning');
 				Todoyu.Popup.openContentInWindow('Warning', warning, 'Overbooking Warning', 376);
 			} else {

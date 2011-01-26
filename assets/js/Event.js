@@ -26,6 +26,26 @@ Todoyu.Ext.calendar.Event = {
 	 */
 	ext:	Todoyu.Ext.calendar,
 
+	/**
+	 * @property	eventTypeID
+	 * @type		Object
+	 */
+	eventTypeID: {
+		general:		1,
+		away:			2,
+		birthday:		3,
+		vacation:		4,
+		education:		5,
+		meeting:		6,
+		awayofficial:	7,
+		homeoffice:		8,
+//		paper:			9,
+//		carton:			10,
+		compensation:	11,
+		milestone:		12,
+		reminder:		13
+	},
+
 
 
 	/**

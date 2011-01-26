@@ -915,10 +915,11 @@ class TodoyuEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$formData
+	 * @param	Boolean		$forPopup		for popup or annotation inside the form?
 	 * @return	String
 	 */
-	public static function getOverbookingWarning($idEvent, array $formData) {
-		$idEvent		= intval($formData['id']);
+	public static function getOverbookingWarning($idEvent, array $formData, $forPopup = true) {
+		$idEvent		= intval($idEvent);
 		$dateStart		= TodoyuTime::parseDate($formData['date_start']);
 		$dateEnd		= TodoyuTime::parseDate($formData['date_end']);
 		$personIDs		= TodoyuArray::flattenToSubKey('id', $formData['persons']);
@@ -927,15 +928,22 @@ class TodoyuEventManager {
 		$overbookedInfos= TodoyuEventManager::getOverbookingInfos($dateStart, $dateEnd, $personIDs, $idEvent);
 
 		if( sizeof($overbookedInfos) > 0 ) {
-			$xmlPath= 'ext/calendar/config/form/overbooking-warning.xml';
-			$form	= TodoyuFormManager::getForm($xmlPath);
-			$buttonsForm	= $form->render();
-
-			$tmpl	= 'ext/calendar/view/overbooking-warning.tmpl';
+			$tmpl	= 'ext/calendar/view/overbooking-info.tmpl';
 			$formData	= array(
-				'overbooked'		=> $overbookedInfos,
-				'buttonsFieldset'	=> $buttonsForm
+				'idEvent'			=> $idEvent,
+				'overbooked'		=> $overbookedInfos
 			);
+
+			if( $forPopup === true ) {
+					// Render for display in popup
+				$xmlPath= 'ext/calendar/config/form/overbooking-warning.xml';
+				$form	= TodoyuFormManager::getForm($xmlPath);
+				$buttonsForm	= $form->render();
+
+				$tmpl	= 'ext/calendar/view/overbooking-warning.tmpl';
+				$formData['buttonsFieldset']	= $buttonsForm;
+			}
+
 			$warning	= render($tmpl, $formData);
 		}
 
