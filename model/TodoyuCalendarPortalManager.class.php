@@ -32,12 +32,25 @@ class TodoyuCalendarPortalManager {
 	 * @return	Array
 	 */
 	public static function getAppointments() {
+		$timespan	= self::getAppointmentsTimespan();
+
+		return TodoyuEventManager::getEventsInTimespan($timespan['start'], $timespan['end'], array(personid()));
+	}
+
+
+
+	/**
+	 * Get timestamps (start + end) of timespan the appointments in the portal tab are timed in
+	 *
+	 * @return	Array
+	 */
+	public static function getAppointmentsTimespan() {
 		$weeksEvents= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksEvents']);
 
-		$dateStart	= TodoyuTime::getStartOfDay(NOW);
-		$dateEnd	= NOW + ($weeksEvents * TodoyuTime::SECONDS_WEEK);
-
-		return TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, array(personid()));
+		return array(
+			'start'	=> TodoyuTime::getStartOfDay(NOW),
+			'end'	=> NOW + ($weeksEvents * TodoyuTime::SECONDS_WEEK)
+		);
 	}
 
 

@@ -100,16 +100,17 @@ class TodoyuEventManager {
 		$persons	= TodoyuArray::intval($persons, true, true);
 
 		$tables	= 	self::TABLE  . ' e,
-					ext_calendar_mm_event_person mmeu';
+					ext_calendar_mm_event_person mmep';
 
 		$fields	= '	e.*,
-					mmeu.id_person,
-					mmeu.is_acknowledged,
+					mmep.id_person,
+					mmep.is_acknowledged,
+					mmep.is_update,
 					e.date_end - e.date_start as duration';
 
 			// We add or subtract 1 second to prevent direct overlapping collision
 			// Ex: event1: 10-11, event2: 11-12 - BETWEEN would find both event at 11:00:00
-		$where	= '		e.id		= mmeu.id_event
+		$where	= '		e.id		= mmep.id_event
 					AND e.deleted	= 0
 					AND (
 							e.date_start 	BETWEEN ' . ($dateStart + 1) . ' AND ' . ($dateEnd - 1) . '
@@ -133,10 +134,10 @@ class TodoyuEventManager {
 
 			// Not allowed to see all events? Limit to own events!
 		if( ! allowed('calendar', 'event:seeAll') ) {
-			$where .= ' AND mmeu.id_person IN(' . personid() . ')';
+			$where .= ' AND mmep.id_person IN(' . personid() . ')';
 		} elseif( sizeof($persons) > 0 ) {
 				// Limit to given assigned persons
-			$where	.= ' AND mmeu.id_person IN(' . implode(',', $persons) . ')';
+			$where	.= ' AND mmep.id_person IN(' . implode(',', $persons) . ')';
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
@@ -398,7 +399,8 @@ class TodoyuEventManager {
 	public static function saveEvent(array $data) {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 
-		$idEvent= intval($data['id']);
+		$idEvent	= intval($data['id']);
+		$isNewEvent	= ( $idEvent === 0 );
 
 			// Add empty event
 		if( $idEvent === 0 )	{
@@ -425,7 +427,7 @@ class TodoyuEventManager {
 		}
 
 			// Add persons
-		self::assignPersonsToEvent($idEvent, $data['persons']);
+		self::assignPersonsToEvent($idEvent, $data['persons'], ! $isNewEvent);
 
 			// Remove not needed fields
 		unset($data['person']);
@@ -569,13 +571,14 @@ class TodoyuEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$personIDs
+	 * @param	Boolean		$isUpdate		Not a new event but saving of modification
 	 */
-	public static function assignPersonsToEvent($idEvent, array $personIDs) {
+	public static function assignPersonsToEvent($idEvent, array $personIDs, $isUpdate = false) {
 		$idEvent	= intval($idEvent);
 		$personIDs	= TodoyuArray::intval($personIDs, true, false);
 
 		foreach($personIDs as $idPerson) {
-			self::assignPersonToEvent($idEvent, $idPerson);
+			self::assignPersonToEvent($idEvent, $idPerson, $isUpdate);
 		}
 	}
 
@@ -586,8 +589,9 @@ class TodoyuEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
+	 * @param	Boolean		$isUpdate		Not a new event but saving of modification
 	 */
-	public static function assignPersonToEvent($idEvent, $idPerson) {
+	public static function assignPersonToEvent($idEvent, $idPerson, $isUpdate = false) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 
@@ -595,7 +599,8 @@ class TodoyuEventManager {
 		$data	= array(
 			'id_event'			=> $idEvent,
 			'id_person'			=> $idPerson,
-			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0
+			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0,
+			'is_update'			=> $isUpdate
 		);
 
 		Todoyu::db()->addRecord($table, $data);
@@ -706,7 +711,7 @@ class TodoyuEventManager {
 
 
 	/**
-	 * Set given event acknowledged
+	 * Set given event acknowledged by given person
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
@@ -718,8 +723,9 @@ class TodoyuEventManager {
 		$where 	= '		id_event	= ' . $idEvent .
 				  ' AND	id_person	= ' . $idPerson;
 
+			// Store also timestamp to be able to detect unacknowledged modifications of events
 		$update	= array(
-			'is_acknowledged' => 1
+			'is_acknowledged'	=> 1
 		);
 
 		Todoyu::db()->doUpdate('ext_calendar_mm_event_person', $where, $update);

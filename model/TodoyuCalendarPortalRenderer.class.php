@@ -56,7 +56,7 @@ class TodoyuCalendarPortalRenderer {
 		$idPerson	= TodoyuAuth::getPersonID();
 
 			// Get events
-		$events	= TodoyuCalendarPortalManager::getAppointments();
+		$events		= TodoyuCalendarPortalManager::getAppointments();
 
 		if( $config['showHoliday'] ) {
 			$holidays		= TodoyuCalendarPortalManager::getHolidays();
@@ -69,8 +69,6 @@ class TodoyuCalendarPortalRenderer {
 		} else {
 			$birthdays	= array();
 		}
-
-//		$color = TodoyuEventRenderer::getEventColorData($idPerson);
 
 			// Add details if expanded
 		foreach($events as $idEvent => $eventData) {
