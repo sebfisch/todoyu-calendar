@@ -10,6 +10,7 @@
 				<field type="checkbox" name="allowoverbooking">
 					<label>calendar.extconf.allowoverbooking.label</label>
 				</field>
+
 			</elements>
 		</fieldset>
 

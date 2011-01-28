@@ -8,7 +8,6 @@
 	<label index="subMenuEntry.month">Kalender > Monat</label>
 	<label index="search.label">Termine</label>
 	<label index="search.mode.label">Termine finden</label>
-	<label index="extconf.allowoverbooking.label">Überbuchung erlauben?</label>
 	<label index="portal.tab.appointments">Termine</label>
 	<label index="portal.tab.appointments">Termine</label>
 	<label index="quicknav.backward.title">Zurück</label>
@@ -16,16 +15,16 @@
 	<label index="quicknav.today.title">Aktuellen Tag anzeigen</label>
 	<label index="dayview.workingtime">Zeige Dienstzeit  (08h-18h)</label>
 	<label index="dayview.fullday">Zeige ganzen Tag (00h-24h)</label>
+	<label index="holidayset">Feiertags-Set</label>
+	<label index="holidayset.applicable">Feiertags-Set</label>
 	<label index="holidayset.attr.name">Name</label>
 	<label index="holidayset.attr.holiday">Feiertag</label>
 	<label index="holidayset.attr.holiday.new">Neuer Feiertag</label>
+	<label index="holiday">Feiertag</label>
 	<label index="holiday.attr.workingtime">Arbeitsstunden</label>
 	<label index="holiday.attr.holidayset">Feiertags-Set</label>
 	<label index="holiday.attr.holidayset.new">Neues Feiertags-Set</label>
-	<label index="holidayset">Feiertags-Set</label>
-	<label index="holiday">Feiertag</label>
 	<label index="yearsold">Jahre alt</label>
-	<label index="applicableholidayset">Feiertags-Set</label>
 	<label index="workingtime">Arbeitsstunden</label>
 	<label index="owner">Eigner</label>
 	<label index="today">Heute</label>
@@ -35,4 +34,5 @@
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label><!-- timestamp: beginning of shown month -->
 	<label index="calendartitle.dateformat.month.part2">(KW %W - </label><!-- timestamp: first displayed day -->
 	<label index="calendartitle.dateformat.month.part3">KW %W)</label><!-- timestamp: last displayed day -->
+	<label index="extconf.allowoverbooking.label">Überbuchung erlauben?</label>
 </labels>

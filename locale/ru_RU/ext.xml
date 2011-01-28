@@ -9,7 +9,6 @@
 	<label index="subMenuEntry.month">Календарь > Месяц</label>
 	<label index="search.label">События</label>
 	<label index="search.mode.label">Найти события</label>
-	<label index="extconf.allowoverbooking.label">Разрешить перекрывающиеся события?</label>
 	<label index="portal.tab.appointments">Назначения</label>
 	<label index="portal.tab.appointments">Назначения</label>
 	<label index="quicknav.backward.title">Нвзвд</label>
@@ -17,16 +16,17 @@
 	<label index="quicknav.today.title">Перейти на сегодня</label>
 	<label index="dayview.workingtime">Показывать только рабочее время (08:00-18:00)</label>
 	<label index="dayview.fullday">Показывать полный день (00:00-23:59)</label>
+	<label index="holidayset">Выходные</label>
+	<label index="holidayset.applicable">Выходные</label>
 	<label index="holidayset.attr.name">Название</label>
 	<label index="holidayset.attr.holiday">Выходной</label>
 	<label index="holidayset.attr.holiday.new">Новый выходной</label>
+	<label index="holiday">Выходной</label>
 	<label index="holiday.attr.workingtime">Рабочие часы</label>
 	<label index="holiday.attr.holidayset">Выходные</label>
 	<label index="holiday.attr.holidayset.new">Новые выходные</label>
-	<label index="holidayset">Выходные</label>
-	<label index="holiday">Выходной</label>
-	<label index="applicableholidayset">Выходные</label>
 	<label index="yearsold">лет</label>
 	<label index="owner">Владелец</label>
 	<label index="today">Сегодня</label>
+	<label index="extconf.allowoverbooking.label">Разрешить перекрывающиеся события?</label>
 </labels>
