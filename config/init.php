@@ -36,7 +36,6 @@ TodoyuAutocompleter::addAutocompleter('eventperson', 'TodoyuCalendarManager::aut
 /* -----------------------
 	Tabs Configurations
    ----------------------- */
-
 	// Setup tabs in calendar area
 Todoyu::$CONFIG['EXT']['calendar']['config'] = array(
 	'defaultTab'	=> 'week'
