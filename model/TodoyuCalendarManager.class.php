@@ -241,6 +241,21 @@ class TodoyuCalendarManager {
 
 
 	/**
+	 * Add reminder JS init to page
+	 */
+	public static function addReminderJsInitToPage() {
+		if( TodoyuReminderManager::isPersonActivatedForReminders() ) {
+			$jsInitCode	= TodoyuReminderManager::getReminderJsPageInit();
+
+			if( $jsInitCode !== false ) {
+				TodoyuPage::addJsOnloadedFunction($jsInitCode, 100);
+			}
+		}
+	}
+
+
+
+	/**
 	 * Get calendar tabs configuration array
 	 *
 	 * @return	Array

@@ -1,38 +1,7 @@
-{Header title=cat(dateFormat($event.date_start DshortD2MlongY4) ": " $event.title)}
+{Header title=EventFullLabel($event.id)}
+
+{include file="event-view-details.tmpl"}
 <table class="eventView">
-	<tr class="odd">
-		<td class="eventAttrTitle">{Label core.title}: </td>
-		<td class="eventValue">{htmlencode $event.title}</td>
-	</tr>
-	<tr class="even">
-		<td class="eventAttrTitle">{Label event.attr.place}: </td>
-		<td class="eventValue">{htmlencode $event.place}</td>
-	</tr>
-	<tr class="odd">
-		<td class="eventAttrTitle">{Label core.description}: </td>
-		<td class="eventValue">{nl2br(htmlencode($event.description))}</td>
-	</tr>
-	<tr class="even">
-		<td class="eventAttrTitle">{Label event.attr.timespan}: </td>
-		<td class="eventValue">
-			{math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}
-			{math equation="d / 3600" d=$duration assign=duration}
-			{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} {Label date.time.hours})</td>
-	</tr>
-	<tr class="odd">
-		<td class="eventAttrTitle ">{Label event.attr.attendees}: </td>
-		<td class="eventValue">
-			{foreach $attendees id personData}
-				{htmlencode $personData.firstname} {htmlencode $personData.lastname}<br/>
-			{/foreach}
-		</td>
-	</tr>
-	<tr class="even">
-		<td class="eventAttrTitle"> {Label event.attr.creator}: </td>
-		<td class="eventValue">
-			{htmlencode $person_create.firstname} {htmlencode $person_create.lastname}
-		</td>
-	</tr>
 	<tr>
 		<td colspan="2">
 			<fieldset class="buttons">

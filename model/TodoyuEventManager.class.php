@@ -64,7 +64,22 @@ class TodoyuEventManager {
 	 * @return	TodoyuEvent
 	 */
 	public static function getEvent($idEvent) {
+		$idEvent	= intval($idEvent);
+
 		return TodoyuRecordManager::getRecord('TodoyuEvent', $idEvent);
+	}
+
+
+
+	/**
+	 * Get full label of event
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Boolean		$withType
+	 * @return	String
+	 */
+	public static function getEventFullLabel($idEvent, $withType = true) {
+		return self::getEvent($idEvent)->getFullLabel($withType);
 	}
 
 
@@ -410,7 +425,7 @@ class TodoyuEventManager {
 			// Extract person IDs from foreign data array (easier to handle)
 		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
 
-			// Adjust date end for a reminder
+			// Adjust date end for events of type reminder
 		if( $data['eventtype'] == EVENTTYPE_REMINDER ) {
 			$data['date_end'] = intval($data['date_start']);
 		}

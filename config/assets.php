@@ -110,6 +110,14 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 		array(
 			'file' => 'ext/calendar/assets/js/PanelWidgetHolidaySetSelector.js',
 			'position' => 150
+		),
+		array(
+			'file'		=> 'ext/calendar/assets/js/Reminder.js',
+			'position'	=> 200
+		),
+		array(
+			'file'		=> 'lib/js/scriptaculous/sound.js',
+			'position'	=> 200
 		)
 	),
 	'css' => array(

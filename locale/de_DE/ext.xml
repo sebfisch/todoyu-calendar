@@ -34,5 +34,9 @@
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label><!-- timestamp: beginning of shown month -->
 	<label index="calendartitle.dateformat.month.part2">(KW %W - </label><!-- timestamp: first displayed day -->
 	<label index="calendartitle.dateformat.month.part3">KW %W)</label><!-- timestamp: last displayed day -->
+	<label index="reminder.popup.title">Termin-Erinnerung</label>
+	<label index="reminder.upcomingevent">Nicht Vergessen: Sie haben bald den folgenden Termin.</label>
+	<label index="reminder.remindagainin">Erneut erinnern in...</label>
+	<label index="reminder.button.remindlater">Später erneut erinnern</label>
 	<label index="extconf.allowoverbooking.label">Überbuchung erlauben?</label>
 </labels>

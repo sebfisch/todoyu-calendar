@@ -94,6 +94,24 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Get full label of event
+	 *
+	 * @param	Boolean		$withType
+	 * @return	String
+	 */
+	public function getFullLabel($withType = true) {
+		$label	= TodoyuTime::format($this->getStartDate(), 'DshortD2MlongY4') . ': ' . $this->getTitle();
+
+		if( $withType ) {
+			$label	.= ' (' . $this->getTypeLabel() . ')';
+		}
+
+		return $label;
+	}
+
+
+
+	/**
 	 * Get event type (ID)
 	 *
 	 * @return	String
@@ -236,11 +254,16 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 * Get template data
 	 *
 	 * @param	Boolean		$loadForeignData
+	 * @param	Boolean		$loadCreatorPersonData
 	 * @return	Array
 	 */
-	public function getTemplateData($loadForeignData = false) {
+	public function getTemplateData($loadForeignData = false, $loadCreatorPersonData = false) {
 		if( $loadForeignData ) {
 			$this->loadForeignData();
+
+			if( $loadCreatorPersonData ) {
+				$this->data['person_create']	= TodoyuPersonManager::getPersonArray($this->data['id_person_create']);
+			}
 		}
 
 		return parent::getTemplateData();

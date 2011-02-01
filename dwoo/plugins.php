@@ -73,7 +73,23 @@ function Dwoo_Plugin_isAllowedEditEvent(Dwoo $dwoo, $idEvent) {
 
 
 /**
- * Get label of eventtype
+ * Get full label of event
+ *
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param	Dwoo_Compiler $compiler
+ * @param 	Integer		$idEvent
+ * @return	String
+ */
+function Dwoo_Plugin_EventFullLabel_compile(Dwoo_Compiler $compiler, $idEvent) {
+	return 'TodoyuEventManager::getEventFullLabel(' . $idEvent . ')';
+}
+
+
+
+/**
+ * Get label of event type
  *
  * @package		Todoyu
  * @subpackage	Template
@@ -89,7 +105,7 @@ function Dwoo_Plugin_EventTypeLabel_compile(Dwoo_Compiler $compiler, $idEventInd
 
 
 /**
- * Get key of eventtype
+ * Get key of event type
  *
  * @package		Todoyu
  * @subpackage	Template

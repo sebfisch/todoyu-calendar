@@ -113,6 +113,35 @@ class TodoyuCalendarViewHelper {
 		return TodoyuEventViewHelper::getEventTypeOptions($field);
 	}
 
+
+
+	/**
+	 * Get options for reminder interval
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
+	public static function getReminderOptions(TodoyuFormElement $field, $idEvent) {
+		$idEvent	= intval($idEvent);
+
+		$event		= TodoyuEventManager::getEvent($idEvent);
+		$timeLeft	=  $event->getStartDate() - NOW;
+		$options	= array();
+
+		$intervals	= Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_RESCHEDULEINTERVALS'];
+		foreach($intervals as $minutes) {
+			$minutesUntil	= TodoyuTime::SECONDS_MIN * $minutes;
+			if( $timeLeft > $minutesUntil ) {
+				$options[] = array(
+					'value'	=> $minutesUntil,
+					'label'	=> $minutes . ' Minutes'
+				);
+			}
+		}
+
+		return $options;
+	}
+
 }
 
 ?>

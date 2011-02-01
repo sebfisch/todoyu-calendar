@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<attributes>
+		<attribute name="action">?ext=calendar&amp;controller=reminder</attribute>
+		<attribute name="name">reminder</attribute>
+	</attributes>
+	<hiddenFields>
+		<field name="id" />
+		<field name="id_event" />
+	</hiddenFields>
+
+	<fieldsets>
+		<fieldset name="main">
+			<legend>Main</legend>
+			<class>reminderschedule</class>
+			<elements>
+				<field type="select" name="date_remindagain">
+					<label>calendar.reminder.remindagainin</label>
+					<source type="function">
+						<function>TodoyuCalendarViewHelper::getReminderOptions::#id_event#</function>
+					</source>
+					<noPleaseSelect/>
+				</field>
+			</elements>
+		</fieldset>
+
+		<fieldset name="buttons">
+			<legend>Actions</legend>
+			<class>buttons</class>
+			<elements>
+				<field type="cancelButton" name="dismiss">
+					<text>core.dismiss</text>
+					<onclick>Todoyu.Ext.calendar.Reminder.dismiss(this.form)</onclick>
+				</field>
+
+				<field type="button" name="ok">
+					<text>calendar.reminder.button.remindlater</text>
+					<class>rescheduleReminderButton</class>
+					<onclick>Todoyu.Ext.calendar.Reminder.reschedule(this.form)</onclick>
+					<hasIcon/>
+				</field>
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>
