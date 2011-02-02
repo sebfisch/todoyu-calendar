@@ -56,6 +56,7 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 	}
 
 
+
 	/**
 	 * Dismiss given event reminder
 	 *
