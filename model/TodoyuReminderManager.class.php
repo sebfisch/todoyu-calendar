@@ -68,13 +68,12 @@ class TodoyuReminderManager {
 	 * @return	Boolean
 	 */
 	public static function isPersonActivatedForReminders() {
-		$personRoles	= TodoyuPersonManager::getRoles(personid());
-		$reminderRoles	= TodoyuExtConfManager::getExtConfValue('calendar', 'reminderpopup_roles');
+		$personRoles	= TodoyuPersonManager::getRoleIDs(personid());
+		$reminderRoles	= TodoyuArray::intExplode(',', TodoyuExtConfManager::getExtConfValue('calendar', 'reminderpopup_roles'));
 
-		TodoyuDebug::printInFirebug($personRoles, 'pr');
-		TodoyuDebug::printInFirebug($reminderRoles, 'rr');
+		$personReminderRoles	= array_intersect($personRoles, $reminderRoles);
 
-		return true;
+		return sizeof($personReminderRoles) > 0;
 	}
 
 
