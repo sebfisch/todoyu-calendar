@@ -3,9 +3,10 @@
 	<label index="ext.title">Calendrier</label>
 	<label index="page.title">Calendrier</label>
 	<label index="maintab.label">Plannification</label>
-	<label index="subMenuEntry.day">Calendrier > Jour</label>
-	<label index="subMenuEntry.week">Calendrier > Semaine</label>
-	<label index="subMenuEntry.month">Calendar > Mois</label>
+	<label index="subMenuEntries.prefix">Calendrier</label>
+	<label index="subMenuEntry.day">Jour</label>
+	<label index="subMenuEntry.week">Semaine</label>
+	<label index="subMenuEntry.month">Mois</label>
 	<label index="search.label">Activité</label>
 	<label index="search.mode.label">Rechercher des activités</label>
 	<label index="extconf.allowoverbooking.label">Permettre les surréservation?</label>

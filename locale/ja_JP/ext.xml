@@ -3,9 +3,10 @@
 	<label index="ext.title">カレンダー</label>
 	<label index="page.title">カレンダー</label>
 	<label index="maintab.label">計画</label>
-	<label index="subMenuEntry.day">カレンダー > 日</label>
-	<label index="subMenuEntry.week">カレンダー > 週</label>
-	<label index="subMenuEntry.month">カレンダー > 月</label>
+	<label index="subMenuEntries.prefix">カレンダー</label>
+	<label index="subMenuEntry.day">日</label>
+	<label index="subMenuEntry.week">週</label>
+	<label index="subMenuEntry.month">月</label>
 	<label index="search.label">イベント</label>
 	<label index="search.mode.label">イベントの検索</label>
 	<label index="portal.tab.appointments">予約</label>

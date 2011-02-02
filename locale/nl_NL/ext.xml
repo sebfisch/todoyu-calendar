@@ -3,11 +3,12 @@
 	<label index="ext.title">Kalender</label>
 	<label index="page.title">Kalender</label>
 	<label index="maintab.label">Planning</label>
+	<label index="subMenuEntries.prefix">Kalender</label>
+	<label index="subMenuEntry.day">Dag</label>
+	<label index="subMenuEntry.week">Week</label>
+	<label index="subMenuEntry.month">Maand</label>
 	<label index="yearsold">jaren oud</label>
 	<label index="workingtime">Werktijden</label>
-	<label index="subMenuEntry.day">Kalender > Dag</label>
-	<label index="subMenuEntry.week">Kalender > Week</label>
-	<label index="subMenuEntry.month">Kalender > Maand</label>
 	<label index="search.label">Agenda-items</label>
 	<label index="search.mode.label">Agenda-items zoeken</label>
 	<label index="portal.tab.appointments">Afspraken</label>

@@ -3,9 +3,10 @@
 	<label index="ext.title">Calendario</label>
 	<label index="page.title">Calendario</label>
 	<label index="maintab.label">Pianificazione</label>
-	<label index="subMenuEntry.day">Calendario > Giorno</label>
-	<label index="subMenuEntry.week">Calendario > Settimana</label>
-	<label index="subMenuEntry.month">Calendario > Mese</label>
+	<label index="subMenuEntries.prefix">Calendario</label>
+	<label index="subMenuEntry.day">Giorno</label>
+	<label index="subMenuEntry.week">Settimana</label>
+	<label index="subMenuEntry.month">Mese</label>
 	<label index="search.label">Eventi</label>
 	<label index="search.mode.label">Trova eventi</label>
 	<label index="portal.tab.appointments">Appointments</label>

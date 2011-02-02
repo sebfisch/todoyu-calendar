@@ -43,20 +43,26 @@ Todoyu::$CONFIG['EXT']['calendar']['config'] = array(
 
 	// Tabs used in calendar
 Todoyu::$CONFIG['EXT']['calendar']['tabs'] = array(
-	array(
+	'day'	=> array(
+		'key'		=> 'day',
 		'id'		=> 'day',
 		'label'		=> 'LLL:date.day',
-		'require'	=> 'calendar.general:area'
+		'require'	=> 'calendar.general:area',
+		'position'	=> 62
 	),
-	array(
+	'week'	=> array(
+		'key'		=> 'week',
 		'id'		=> 'week',
 		'label'		=> 'LLL:date.week',
-		'require'	=> 'calendar.general:area'
+		'require'	=> 'calendar.general:area',
+		'position'	=> 63
 	),
-	array(
+	'month'	=> array(
+		'key'		=> 'month',
 		'id'		=> 'month',
 		'label'		=> 'LLL:date.month',
-		'require'	=> 'calendar.general:area'
+		'require'	=> 'calendar.general:area',
+		'position'	=> 64
 	)
 );
 

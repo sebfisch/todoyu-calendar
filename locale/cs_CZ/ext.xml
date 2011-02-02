@@ -3,9 +3,10 @@
 	<label index="ext.title">Kalendář</label>
 	<label index="page.title">Kalendář</label>
 	<label index="maintab.label">Plánování</label>
-	<label index="subMenuEntry.day">Kalendář > Den</label>
-	<label index="subMenuEntry.week">Kalendář > Týden</label>
-	<label index="subMenuEntry.month">Kalendář > Měsíc</label>
+	<label index="subMenuEntries.prefix">Kalendář</label>
+	<label index="subMenuEntry.day">Den</label>
+	<label index="subMenuEntry.week">Týden</label>
+	<label index="subMenuEntry.month">Měsíc</label>
 	<label index="search.label">Události</label>
 	<label index="search.mode.label">Události</label>
 	<label index="portal.tab.appointments">Schůzka</label>

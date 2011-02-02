@@ -23,10 +23,11 @@ if( Todoyu::person()->isInternal() || TodoyuAuth::isAdmin() ) {
 	if( allowed('calendar', 'general:area') ) {
 		TodoyuFrontend::addMenuEntry('planning', 'LLL:calendar.maintab.label', '?ext=calendar', 30);
 
-			// Add sub entries: day, week and month
-		TodoyuFrontend::addSubmenuEntry('planning', 'calendarDay', 'LLL:calendar.subMenuEntry.day', '?ext=calendar&tab=day', 62);
-		TodoyuFrontend::addSubmenuEntry('planning', 'calendarWeek', 'LLL:calendar.subMenuEntry.week', '?ext=calendar&tab=week', 63);
-		TodoyuFrontend::addSubmenuEntry('planning', 'calendarMonth', 'LLL:calendar.subMenuEntry.month', '?ext=calendar&tab=month', 64);
+			// Add sub menu entries
+		$subTabsConfig	= Todoyu::$CONFIG['EXT']['calendar']['tabs'];
+		$prefix			= Label('calendar.subMenuEntries.prefix') . ' > ';
+
+		TodoyuFrontend::addSubMenuEntriesFromTabsConf('calendar', 'planning', $subTabsConfig, $prefix);
 	}
 
 	if( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:use') ) {

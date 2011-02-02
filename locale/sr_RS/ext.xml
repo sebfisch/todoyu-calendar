@@ -3,9 +3,10 @@
 	<label index="ext.title">Календар</label>
 	<label index="page.title">Календар</label>
 	<label index="maintab.label">Планирање</label>
-	<label index="subMenuEntry.day">Календар > Дан</label>
-	<label index="subMenuEntry.week">Календар > Недеља</label>
-	<label index="subMenuEntry.month">Календар > Месец</label>
+	<label index="subMenuEntries.prefix">Календар</label>
+	<label index="subMenuEntry.day">Дан</label>
+	<label index="subMenuEntry.week">Недеља</label>
+	<label index="subMenuEntry.month">Месец</label>
 	<label index="search.label">Догађаји</label>
 	<label index="search.mode.label">Нађи догађај</label>
 	<label index="portal.tab.appointments">Догађаји</label>

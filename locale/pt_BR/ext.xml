@@ -3,10 +3,11 @@
 	<label index="ext.title">Calendário</label>
 	<label index="page.title">Calendário</label>
 	<label index="maintab.label">Planejamento</label>
+	<label index="subMenuEntries.prefix">Calendário</label>
+	<label index="subMenuEntry.day">Dia</label>
+	<label index="subMenuEntry.week">Semana</label>
+	<label index="subMenuEntry.month">Mês</label>
 	<label index="workingtime">Horas trabalhadas</label>
-	<label index="subMenuEntry.day">Calendário > Dia</label>
-	<label index="subMenuEntry.week">Calendário > Semana</label>
-	<label index="subMenuEntry.month">Calendário > Mês</label>
 	<label index="search.label">Eventos</label>
 	<label index="search.mode.label">Procurar Eventos</label>
 	<label index="portal.tab.appointments">Compromissos</label>

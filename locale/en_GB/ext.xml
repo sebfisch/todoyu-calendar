@@ -3,9 +3,10 @@
 	<label index="ext.title">Calendar</label>
 	<label index="page.title">Calendar</label>
 	<label index="maintab.label">Planning</label>
-	<label index="subMenuEntry.day">Calendar > Day</label>
-	<label index="subMenuEntry.week">Calendar > Week</label>
-	<label index="subMenuEntry.month">Calendar > Month</label>
+	<label index="subMenuEntries.prefix">Calendar</label>
+	<label index="subMenuEntry.day">Day</label>
+	<label index="subMenuEntry.week">Week</label>
+	<label index="subMenuEntry.month">Month</label>
 	<label index="search.label">Events</label>
 	<label index="search.mode.label">Find Events</label>
 	<label index="portal.tab.appointments">Appointments</label>

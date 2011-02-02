@@ -3,10 +3,11 @@
 	<label index="ext.title">Календарь</label>
 	<label index="page.title">Календарь</label>
 	<label index="maintab.label">Планирование</label>
-	<label index="workingtime">Рабочие часы</label>
-	<label index="subMenuEntry.day">Календарь > День</label>
-	<label index="subMenuEntry.week">Календарь > Неделя</label>
-	<label index="subMenuEntry.month">Календарь > Месяц</label>
+	<label index="workingtime">Horas trabalhadas</label>
+	<label index="subMenuEntries.prefix">Календарь</label>
+	<label index="subMenuEntry.day">День</label>
+	<label index="subMenuEntry.week">Неделя</label>
+	<label index="subMenuEntry.month">Месяц</label>
 	<label index="search.label">События</label>
 	<label index="search.mode.label">Найти события</label>
 	<label index="portal.tab.appointments">Назначения</label>
