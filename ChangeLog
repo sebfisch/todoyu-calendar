@@ -2,12 +2,18 @@ todoyu calendar extension changelog
 
 calendar 1.1.0 (requires core >= 2.1) - not released yet
 	* Feature: Added event reminders (popup)
-	* Feature: Added overbooking warning even if allowed
-	* Changed: Updated loading structure: (core: boot.php, init: request,) extensions: init.php
+	* Feature: Added overbooking warning even if allowed (edit via form + drag & drop)
+	* Feature: Cleanup (topical order and readability) of extension config (init.php) file
+	* Feature: Forms restyled
+ 	* Changed: Updated loading structure: (core: boot.php, init: request,) extensions: init.php
 
-
+ 
 calendar 1.0.6 - not released yet
-	* Feature: Added placeholders for to-be spanish locale files
+	* Bugfix: quickinfos now always hide when starting to drag events
+	* Feature: made quickinfos deactivatible
+	* Bugfix: event drag & drop in week & day views had wrong hour offset (-1h)
+
+ 	* Feature: Added placeholders for to-be spanish locale files
 	* Feature: Added changelog
 
 
