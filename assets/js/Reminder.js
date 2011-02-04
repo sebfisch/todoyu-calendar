@@ -54,8 +54,9 @@ Todoyu.Ext.calendar.Reminder = {
 			// Schedule reminder popup for the given showtime of each event
 		eventsData.each(function(event){
 			var timeUntilShow	= event.time_untilshowreminder * 1000;
-			window.setTimeout('Todoyu.Ext.calendar.Reminder.show(' + event.id + ')', timeUntilShow);
 			console.log('reminder in: ' + (timeUntilShow/1000/60) + ' minutes' );
+			var timeUntilShow	= 200;
+			window.setTimeout('Todoyu.Ext.calendar.Reminder.show(' + event.id + ')', timeUntilShow);
 		});
 	},
 

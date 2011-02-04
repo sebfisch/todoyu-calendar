@@ -22,16 +22,39 @@
  */
 Todoyu.Ext.calendar.DragDrop = {
 
+	/**
+	 * Ext shortcut
+	 *
+	 * @var	{Object}	ext
+	 */
 	ext: Todoyu.Ext.calendar,
 
 	/**
 	 * Default draggable options for all tree views
+	 *
+	 * @property	defaultDraggableOptions
+	 * @type		Object
 	 */
 	defaultDraggableOptions: {
 		handle: 'head'
 	},
 
+	/**
+	 * Draggable options
+	 *
+	 * @property	draggableOptions
+	 * @type		Object
+	 */
 	draggableOptions: {},
+
+
+	/**
+	 * Storage for modified event data when saving is interrupted by confirmation (e.g. overbooking warning)
+	 *
+	 * @property	droppedEventData
+	 * @type		Object
+	 */
+	droppedEventData: {},
 
 
 
@@ -74,31 +97,15 @@ Todoyu.Ext.calendar.DragDrop = {
 		this.draggableOptions.onEnd		= this.onEnd.bind(this, tab);
 
 		if( tab === 'day' ) {
-			this.draggableOptions.snap = 10.5;
-			this.draggableOptions.constraint = 'vertical';
+			this.draggableOptions.snap		= 10.5;
+			this.draggableOptions.constraint= 'vertical';
 		}
 		if( tab === 'week' ) {
-			this.draggableOptions.snap = [88.5,10.5];
+			this.draggableOptions.snap	= [88.5,10.5];
 		}
 		if( tab === 'month' ) {
-			this.draggableOptions.revert = this.monthRevert.bind(this);
+			this.draggableOptions.revert	= this.monthRevert.bind(this);
 		}
-	},
-
-
-
-	/**
-	 * If event dragged in month view and dropping on a day failed, move it back to its day container
-	 *
-	 * @method	monthRevert
-	 * @param	{Element}	element
-	 */
-	monthRevert: function(element) {
-		if( element.dropped !== true ) {
-			element.revertToOrigin();
-		}
-
-		element.dropped = false;
 	},
 
 
@@ -148,8 +155,8 @@ Todoyu.Ext.calendar.DragDrop = {
 	makeDaysDroppable: function() {
 		this.getDropDaysInMonth().each(function(day){
 			Droppables.add(day, {
-				accept: 'event',
-				onDrop: this.onMonthDrop.bind(this)
+				accept:		'event',
+				onDrop:		this.onMonthDrop.bind(this)
 			});
 		}, this);
 	},
@@ -164,9 +171,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @param	{Element}	element
 	 */
 	moveEventToTopContainer: function(element) {
-		/**
-		 * Add auto revert function
-		 */
+			// Add auto revert function
 		element.revertToOrigin = this.revertToOrigin.bind(element, element.parentNode);
 
 		$('calendararea').insert(element);
@@ -184,29 +189,10 @@ Todoyu.Ext.calendar.DragDrop = {
 	revertToOrigin: function(originalParent) {
 		$(originalParent).insert(this);
 			this.setStyle({
-				position: 'relative',
-				left: '0px',
-				top: '0px'
-			});
-	},
-
-
-	/**
-	 * Handler when event was dropped on a day in month view (successful)
-	 *
-	 * @method	onMonthDrop
-	 * @param	{Element}	dragged
-	 * @param	{Element}	dropped
-	 * @param	{Event}		event
-	 */
-	onMonthDrop: function(dragged, dropped, event) {
-		dragged.dropped = true;
-
-		var idEvent		= dragged.id.split('-').last();
-		var dateParts	= dropped.id.split('-').slice(1);
-		var newDate		= (new Date(dateParts[0], dateParts[1]-1, dateParts[2])).getTime();
-
-		this.saveDropping('month', idEvent, newDate);
+				position:	'relative',
+				left:		'0px',
+				top:		'0px'
+		});
 	},
 
 
@@ -242,20 +228,20 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @param	{Event}			event
 	 */
 	onDrag: function(tab, dragInfo, event) {
-		Todoyu.QuickInfo.hide();
+		Todoyu.QuickInfo.deactivate();
 	},
 
 
 
 	/**
-	 * Handler when dragging ends
+	 * Handler when dragging ends (week and day mode)
 	 *
 	 * @method	onEnd
 	 * @param	{String}		tab				Current tab
 	 * @param	{Object}		dragInfo		Information about dragging
-	 * @param	{Event}			event
+	 * @param	{Event}			domEvent
 	 */
-	onEnd: function(tab, dragInfo, event) {
+	onEnd: function(tab, dragInfo, domEvent) {
 		var idEvent	= dragInfo.element.id.split('-').last();
 
 		if( tab === 'day' ) {
@@ -263,9 +249,45 @@ Todoyu.Ext.calendar.DragDrop = {
 		} else if( tab === 'week' ) {
 			this.saveWeekDrop(idEvent, dragInfo);
 		}
+
+		Todoyu.QuickInfo.activate();
 	},
 
 
+
+	/**
+	 * Month view - Handler when event was dropped on a day (successful)
+	 *
+	 * @method	onMonthDrop
+	 * @param	{Element}	dragged
+	 * @param	{Element}	dropped
+	 * @param	{Event}		event
+	 */
+	onMonthDrop: function(dragged, dropped, event) {
+		dragged.dropped = true;
+
+		var idEvent		= dragged.id.split('-').last();
+		var dateParts	= dropped.id.split('-').slice(1);
+		var newDate		= (new Date(dateParts[0], dateParts[1]-1, dateParts[2])).getTime();
+
+		this.saveDropping('month', idEvent, newDate);
+	},
+
+
+
+	/**
+	 * If event dragged in month view and dropping on a day failed, move it back to its day container
+	 *
+	 * @method	monthRevert
+	 * @param	{Element}	element
+	 */
+	monthRevert: function(element) {
+		if( element.dropped !== true ) {
+			element.revertToOrigin();
+		}
+
+		element.dropped = false;
+	},
 
 	/**
 	 * Save new position when dropped in day view
@@ -276,7 +298,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 */
 	saveDayDrop: function(idEvent, dragInfo) {
 		var offset = dragInfo.element.positionedOffset().top;
-		var seconds= (offset/42)*3600;
+		var seconds= (offset / 42) * Todoyu.Time.seconds.hour;
 		var newDate= this.ext.getDate() + seconds * 1000;
 
 		this.saveDropping('day', idEvent, newDate);
@@ -295,12 +317,18 @@ Todoyu.Ext.calendar.DragDrop = {
 		var hourHeight	= 42;
 		var dayWidth	= 88;
 		var hourColWidth= 42;
-		var weekStart	= this.ext.getWeekStart();
+
 		var offset		= dragInfo.element.positionedOffset();
-		var dayOfWeek	= Math.floor(Math.abs(offset.left - hourColWidth)/dayWidth);
-		var hours		= Math.floor(offset.top/hourHeight);
-		var minutes		= Math.round(((offset.top-(hours*hourHeight))*(60/hourHeight))/15)*15;
-		var newDate		= (weekStart + (24*3600*dayOfWeek) + hours*3600 + minutes*60) * 1000;
+			// Add tolerance (event is grabbed by center of header, not its top border)
+		offset.top	+= 40;
+
+		var weekStart	= this.ext.getWeekStart();
+		var dayOfWeek	= Math.floor( Math.abs(offset.left - hourColWidth) / dayWidth );
+
+		var hours		= Math.floor(offset.top / hourHeight);
+		var minutes		= Math.round(((offset.top - (hours * hourHeight)) * (60 / hourHeight)) / 15) * 15;
+
+		var newDate		= (weekStart + (24 * Todoyu.Time.seconds.hour * dayOfWeek) + hours * Todoyu.Time.seconds.hour + minutes * 60) * 1000;
 
 		this.saveDropping('week', idEvent, newDate);
 	},
@@ -314,16 +342,21 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @param	{String}	tab
 	 * @param	{Number}	idEvent
 	 * @param	{Number}	date
+	 * @param	{Boolean}	isConfirmed
 	 */
-	saveDropping: function(tab, idEvent, date) {
-		var dateStr	= Todoyu.Time.getDateTimeString(date/1000);
+	saveDropping: function(tab, idEvent, date, isConfirmed) {
+		isConfirmed	= isConfirmed ? '1' : '0';
+
+		var dateStr	= Todoyu.Time.getDateTimeString(date / 1000);
+
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
 			parameters: {
-				action:	'dragDrop',
-				event:	idEvent,
-				date:	dateStr,
-				tab:	tab
+				'action':		'dragDrop',
+				'event':		idEvent,
+				'date':			dateStr,
+				'tab':			tab,
+				'confirmed':	isConfirmed
 			},
 			onComplete: this.onDroppingSaved.bind(this, tab, idEvent, date)
 		};
@@ -331,6 +364,21 @@ Todoyu.Ext.calendar.DragDrop = {
 		this.ext.QuickInfoEvent.removeFromCache(idEvent);
 
 		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 * Save new date of event that required the user to confirm saving of changes (e.g. overbooking warning)
+	 *
+	 * @method	saveDroppingConfirmed
+	 */
+	saveDroppingConfirmed: function() {
+		var tab		= this.ext.getActiveTab();
+		var idEvent	= this.droppedEventData.id;
+		var date	= this.droppedEventData.date;
+
+		this.saveDropping(tab, idEvent, date, true);
 	},
 
 
@@ -345,11 +393,24 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @param	{Number}	date
 	 */
 	onDroppingSaved: function(tab, idEvent, date, response) {
-		if( response.hasTodoyuError() ) {
-			Todoyu.Notification.notifyError(response.responseText);
-		}
+		if( response.hasTodoyuHeader('overbookingwarning') ) {
+				// Overbooking detected and is allowed - warn and ask for confirmation
+			this.droppedEventData = {
+				'id':	idEvent,
+				'date':	date
+			};
 
-		this.ext.refresh();
+			var warning	= response.getTodoyuHeader('overbookingwarning');
+			Todoyu.Popup.openContentInWindow('Warning', warning, 'Overbooking Warning', 376);
+		} else {
+			if( response.hasTodoyuError() ) {
+					// Overbooking detected and is disallowed - show notification
+				Todoyu.Notification.notifyError(response.responseText);
+			} else {
+					// Saving succeeded
+				this.ext.refresh();
+			}
+		}
 	}
 
 };

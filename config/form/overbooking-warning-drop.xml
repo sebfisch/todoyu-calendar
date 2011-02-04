@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldsets>
+
+		<fieldset name="warning-fieldset-buttons">
+			<legend></legend>
+			<class>buttons</class>
+			<elements>
+
+				<field type="cancelButton" name="cancel">
+					<onclick>Todoyu.Popup.closeLastPopup(); Todoyu.Ext.calendar.refresh()</onclick>
+				</field>
+
+				<field type="saveButton" name="save">
+					<onclick>Todoyu.Popup.closeLastPopup(); Todoyu.Ext.calendar.DragDrop.saveDroppingConfirmed();</onclick>
+				</field>
+
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>

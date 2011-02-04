@@ -534,8 +534,9 @@ class TodoyuEventManager {
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$newStartDate
 	 * @param	String		$mode
+	 * @param	Boolean		$overbookingConfirmed
 	 */
-	public static function moveEvent($idEvent, $newStartDate, $mode) {
+	public static function moveEvent($idEvent, $newStartDate, $mode, $overbookingConfirmed = false) {
 		$event	= self::getEvent($idEvent);
 
 		if( $mode === 'month' ) {
@@ -555,15 +556,12 @@ class TodoyuEventManager {
 			'date_end'	=> $dateEnd
 		);
 
-		if(! TodoyuCalendarManager::isOverbookingAllowed())	{
-			$overbookableEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']);
-			if( ! $event->isDayevent() && ! in_array($event->get('eventtype'), $overbookableEventTypes) ) {
-				$overbookedInfos= TodoyuEventManager::getOverbookingInfos($dateStart, $dateEnd, $event->getAssignedPersonIDs(), $idEvent);
-			}
+		if( ! $overbookingConfirmed || ! TodoyuCalendarManager::isOverbookingAllowed() ) {
+				// Check for overbookings and request confirmation or reset event
+			$overbookedInfos= self::getOverbookingInfos($dateStart, $dateEnd, $event->getAssignedPersonIDs(), $idEvent);
 
 			if( sizeof($overbookedInfos) > 0 ) {
 				$errorMessages = array();
-
 				foreach($overbookedInfos as $idPerson => $infos)	{
 					foreach($infos['events'] as $event)	{
 						$errorMessages[] = Label('LLL:event.error.personsOverbooked') . ' ' . TodoyuPersonManager::getPerson($idPerson)->getFullName();
@@ -936,14 +934,16 @@ class TodoyuEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$formData
-	 * @param	Boolean		$forPopup		for popup or annotation inside the form?
+	 * @param	Boolean		$forPopup			For popup or annotation inside the form?
+	 * @param	Boolean		$convertDates		Dates (start/end) needed to be parsed from string, or are timestamps already?
+	 * @param	Boolean		$isDragAndDrop
 	 * @return	String
 	 */
-	public static function getOverbookingWarning($idEvent, array $formData, $forPopup = true) {
-		$idEvent		= intval($idEvent);
-		$dateStart		= TodoyuTime::parseDate($formData['date_start']);
-		$dateEnd		= TodoyuTime::parseDate($formData['date_end']);
-		$personIDs		= TodoyuArray::flattenToSubKey('id', $formData['persons']);
+	public static function getOverbookingWarning($idEvent, array $formData, $forPopup = true, $convertDates = true, $isDragAndDrop = false) {
+		$idEvent	= intval($idEvent);
+		$dateStart	= ( $convertDates ) ? TodoyuTime::parseDate($formData['date_start']) : $formData['date_start'];
+		$dateEnd	= ( $convertDates ) ? TodoyuTime::parseDate($formData['date_end']) : $formData['date_end'];
+		$personIDs	= TodoyuArray::flattenToSubKey('id', $formData['persons']);
 
 		$warning		= '';
 		$overbookedInfos= TodoyuEventManager::getOverbookingInfos($dateStart, $dateEnd, $personIDs, $idEvent);
@@ -951,14 +951,21 @@ class TodoyuEventManager {
 		if( sizeof($overbookedInfos) > 0 ) {
 			$tmpl	= 'ext/calendar/view/overbooking-info.tmpl';
 			$formData	= array(
-				'idEvent'			=> $idEvent,
-				'overbooked'		=> $overbookedInfos
+				'idEvent'		=> $idEvent,
+				'overbooked'	=> $overbookedInfos
 			);
 
 			if( $forPopup === true ) {
 					// Render for display in popup
-				$xmlPath= 'ext/calendar/config/form/overbooking-warning.xml';
-				$form	= TodoyuFormManager::getForm($xmlPath);
+				if( ! $isDragAndDrop ) {
+						// Regular edit of event
+					$xmlPath= 'ext/calendar/config/form/overbooking-warning.xml';
+					$form	= TodoyuFormManager::getForm($xmlPath);
+				} else {
+						// Modification via drag and drop
+					$xmlPath= 'ext/calendar/config/form/overbooking-warning-drop.xml';
+					$form	= TodoyuFormManager::getForm($xmlPath);
+				}
 				$buttonsForm	= $form->render();
 
 				$tmpl	= 'ext/calendar/view/overbooking-warning.tmpl';
@@ -969,6 +976,31 @@ class TodoyuEventManager {
 		}
 
 		return $warning;
+	}
+
+
+
+	/**
+	 * Check overbooking warning for dragged & dropped event
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$dateStart
+	 * @return	String
+	 */
+	public static function getOverbookingWarningAfterDrop($idEvent, $dateStart) {
+		$idEvent	= intval($idEvent);
+		$dateStart	= intval($dateStart);
+
+			// Fetch original event data
+		$event 	= TodoyuEventManager::getEvent($idEvent);
+
+		$eventData				= $event->getData();
+		$eventData['persons']	= $event->getAssignedPersonsData();
+			// Set modified time data
+		$eventData['date_start']= $dateStart;
+		$eventData['date_end']	= $dateStart + $event->getDuration();
+
+		return self::getOverbookingWarning($idEvent, $eventData, true, false, true);
 	}
 
 }

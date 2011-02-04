@@ -90,8 +90,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Send idTask header for JavaScript
 		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 
-
-
 		if( $form->isValid() ) {
 			$needToShowWarning	= false;
 
@@ -131,7 +129,35 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 * 'delete' action method
+	 * Save changed starting date when event has been dragged to a new position
+	 *
+	 * @param	Array		$params
+	 */
+	public function dragDropAction(array $params) {
+		$idEvent	= intval($params['event']);
+		$timeStart	= strtotime($params['date']);
+		$tab		= trim($params['tab']);
+		$isConfirmed= ( $params['confirmed'] == '1' ) ? true : false;
+
+		$overbookings	= TodoyuEventManager::moveEvent($idEvent, $timeStart, $tab, $isConfirmed);
+
+		if( is_array($overbookings) && ! $isConfirmed ) {
+			if( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
+					// Overbooking forbidden - reset event to original time, show notification
+				TodoyuHeader::sendTodoyuErrorHeader();
+				return implode('<br />', $overbookings);
+			} else {
+					// Overbooking allowed - open popup with warning and confirmation dialog
+				$overbookedWarning	= TodoyuEventManager::getOverbookingWarningAfterDrop($idEvent, $timeStart);
+				TodoyuHeader::sendTodoyuHeader('overbookingwarning', $overbookedWarning);
+			}
+		}
+	}
+
+
+
+	/**
+	 * Delete event
 	 *
 	 * @param	Array	$params
 	 */
@@ -153,7 +179,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 * 'detail' action method
+	 * Get given event's rendered detail view for list mode
 	 *
 	 * @param	Array	$params
 	 * @return	String
@@ -209,7 +235,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 * Add subform to a form
+	 * Render event form for use as sub form of another form
 	 *
 	 * @param	Array		$params
 	 * @return	String
@@ -230,26 +256,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idRecord);
 
 		return TodoyuFormManager::renderSubFormRecord($xmlPath, $fieldName, $formName, $index, $idRecord, $formData);
-	}
-
-
-
-	/**
-	 * Save new date when event has been dragged to a new position
-	 *
-	 * @param	Array		$params
-	 */
-	public function dragDropAction(array $params) {
-		$idEvent	= intval($params['event']);
-		$time		= strtotime($params['date']);
-		$tab		= trim($params['tab']);
-
-		$moved	= TodoyuEventManager::moveEvent($idEvent, $time, $tab);
-
-		if(is_array($moved))	{
-			TodoyuHeader::sendTodoyuErrorHeader();
-			return implode('<br />', $moved);
-		}
 	}
 
 }

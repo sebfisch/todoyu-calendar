@@ -238,6 +238,18 @@ class TodoyuEvent extends TodoyuBaseObject {
 
 
 
+	/**
+	 * Check whether event is overbookable (generally allowed or type not overbooking relevant)
+	 *
+	 * @return Boolean
+	 */
+	public function isOverbookable() {
+		$overbookableTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']);
+
+		return ( ! $this->isDayevent() ) && ( ! in_array($this->get('eventtype'), $overbookableTypes) );
+	}
+
+
 
 	/**
 	 * Load event foreign data (assigned persons)

@@ -139,14 +139,14 @@ Todoyu.Ext.calendar.Event.Edit = {
 		var checkHooks	= Todoyu.Hook.get('calendar.event.editType');
 
 			// Check all fields, if a hooks wants to hide it
-		allFieldNames.each(function(checkHooks, fieldsToHide, eventType, fieldname){
+		allFieldNames.each(function(checkHooks, fieldsToHide, eventType, fieldName){
 				// Check all hooks if they want to hide the field
-			checkHooks.each(function(fieldsToHide, fieldname, eventType, hook){
-				if( hook(fieldname, eventType) ) {
-					fieldsToHide.push(fieldname);
+			checkHooks.each(function(fieldsToHide, fieldName, eventType, hook){
+				if( hook(fieldName, eventType) ) {
+					fieldsToHide.push(fieldName);
 					return;
 				}
-			}.bind(this, fieldsToHide, fieldname, eventType));
+			}.bind(this, fieldsToHide, fieldName, eventType));
 		}.bind(this, checkHooks, fieldsToHide, eventType));
 
 		fieldsToHide.each(this.hideField, this);
@@ -159,11 +159,11 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 *
 	 * @method	checkHideField
 	 * @param	{String}	fieldName
-	 * @param	{String}	eventType
+	 * @param	{Number}	eventType
 	 */
 	checkHideField: function(fieldName, eventType) {
-		var fields	= [];
 		eventType	= parseInt(eventType, 10);
+		var fields	= [];
 
 		switch(eventType) {
 			case Todoyu.Ext.calendar.Event.eventTypeID.birthday:
