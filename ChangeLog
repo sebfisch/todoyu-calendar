@@ -1,0 +1,111 @@
+todoyu calendar extension changelog
+
+calendar 1.1.0 (requires core >= 2.1) - not released yet
+	* Feature: Added event reminders (popup)
+	* Feature: Added overbooking warning even if allowed
+	* Changed: Updated loading structure: (core: boot.php, init: request,) extensions: init.php
+
+
+calendar 1.0.6 - not released yet
+	* Feature: Added placeholders for to-be spanish locale files
+	* Feature: Added changelog
+
+
+calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
+	* Changed: Incremented year in copyright notice to 2011
+	* Changed: Cleaned up quickinfo (core controller now)
+	* Feature: Added DateField Helper
+	* Feature: Optimized panelwidget styling
+	* Feature: Added EXTKEY constant
+ 	* Feature: Added initialization permission checks to controllers, tabs
+ 	* Bugfix: Date fix for IE
+ 	* Changed: Replaced time rounding function with more powerful one (TodoyuTime::getRoundedTime())
+ 	* Feature: Calendar refreshes if a new event is added over quick-create while being in the calendar view
+	* Feature: Use rounded time for quick-create events (instead of exact current minute)
+	* Changed: Limited date_start and date_end to internal persons
+	* Feature: Added date string functions to Todoyu.Time
+	* Changed: Changed date format in request from timestamp to string to be timezone save
+	* Feature: Added validator for event. Event requires now at least one internal person
+	* Feature: Added enddate to overbooking error message if different from startdate
+	* Bugfix: Added missing wrap for birthday events
+	* Feature: Added portuguese translation
+	* Feature: Marked private event for day and week mode, added icon
+	* Bugfix: Fixed eventIsAssignableToCurrentPersonOnly validator
+	* Bugfix: getHolidays for portal tab
+	* Bugfix: CSS fix for week view, holiday month view styling
+	* Changed: Color fixes
+	* Feature: Event creation form presets: 'away official' cannot be private, birthday doesn't have place
+	* Bugfix: Corrected working time display in calendar holiday events quick infos
+	* Bugfix: Customers cannot see other customers' birthdays in appointments tab in portal anymore
+	* Bugfix: Rights checking and rel. access restrictions when rendering event context menu
+	* Feature: Rights checks wrapper methods added for events
+	* Changed: Switched license from GPL to BSD
+	* Changed: Added extended overbooking info, fixed overbooking check for new events
+	* Changed: Improved calendar events rendering, missing icon for private events
+	* Changed: Quick-nav layout
+  	* Feature: Added hooks documentation
+	* Feature: Added Serbian locales
+	* Feature: Moved styles from global.css to ext.css
+	* Changed: Asset handling (load all in one merge file)
+	* Feature: Added japanese translation
+	* Feature: Added czech translation
+	* Feature: Added dutch translation
+	* Feature: Added parts of french translation
+	* Bugfix: Added word wrapping to event descriptions in calendar views
+	* Bugfix: Fixed events description (was title)
+	* Feature: Added htmlencode for calendar fields
+	* Bugfix: Display of event type icons of full-day events in day and month view, removed inline style tags
+	* Feature: Added edit button into events detail view
+	* Changed: Removed is_public in event
+	* Changed: Removed manual requiring of auto-loaded config files
+	* Changed: Moved the global $CONFIG variable to Todoyu class. Is now a public static member variable
+	* Feature: Added Rights
+	* Changed: Moved page config to own config/page.php which is loaded only on page rendering
+	* Feature: Added events quick search
+	* Changed: Calendar person cleanup
+	* Feature: Attached calendar refreshing hook to quick event creation
+	* Feature: Implemented quick-creator mode: event
+	* Changed: Cleanup of quickinfo CSS
+	* Bugfix: Assets filename cases
+	* Changed: Cleaned & adapted calendar selector widgets (event types, holidaysets) to global selector rendering
+	* Bugfix: Events of type vacation are now always full-day events
+	* Bugfix: Day-events were displayed also as non-day-events (month view)
+	* Feature: Calendar direct links
+	* Bugfix: User label fixes
+	* Bugfix: Scripts initialization in calendar
+	* Changed: Renamed working hours to working time in holiday (calendar)
+	* Bugfix: Several birthday bugs in calendar, improved week view
+	* Changed: Calendar event types as constants
+	* Feature: Listing of conflicted persons in event-overbooking validator
+	* Changed: Fixed user colors,
+	* Changed: Events layout to better differ equal-coloured events positioned next to one another
+	* Feature: Optional overbooking prevention
+	* Feature: Added event in calendar context menu
+	* Bugfix: Acknowledgement initialization of self-assigned events
+	* Bugfix: Time of month range, birthday bugs, calendar templates cleanup
+	* Bugfix: Appointment tab in portal
+	* Feature: Context menu on (portal) event list view items
+	* Feature: Calendar date deeplink
+	* Bugfix: Closing of event view tab
+	* Bugfix: Holiday titles, coloring of multi/non day-events, day-event context menu
+	* Bugfix: Refresh after event deletion, wrong colors in event titles in week view
+	* Bugfix: Header date navigation (year change)
+	* Bugfix: Rights, selected month title, days range in month view
+	* Changed: Cleaned templates, quick-infos, rights, inline JS
+	* Bugfix: Holiday sets records rendering, event creation in month mode, removed date dropdowns
+	* Bugfix: Default value in quick-event wizard
+	* Bugfix: sCal bugs
+	* Bugfix: Appointments listing
+	* Feature: Event single detail view
+	* Feature: Removed redundant labels
+	* Changed: Moved date locales into core/locale/date.xml
+	* Feature: Event search
+	* Changed: Weekdaystart is now monday
+	* Bugfix: UTF8 encoding, style of calendar widget, namings
+	* Feature: Added address-holidayset attribute into contact > company form via hooking from calendar ext
+	* Changed: Fetched holidays now contain related set ID, holidayset changed from autocompleter to select
+	* Bugfix: Timestamps of month range, multi-day events duration calculation, enumerated colors
+	* Bugfix: Month view timespan to be rendered from selected (was current) year, months intersecting 6 weeks were cut-off after w5
+ 
+
+bookmark 1.0.0 - released 2010-05-10
