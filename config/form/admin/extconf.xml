@@ -11,6 +11,11 @@
 					<label>calendar.extconf.allowoverbooking.label</label>
 				</field>
 
+		</elements>
+		</fieldset>
+
+		<fieldset name="eventsreminder">
+			<elements>
 				<field type="select" name="reminderpopup_roles">
 					<label>calendar.extconf.reminderpopup_roles.label</label>
 					<source type="function">
