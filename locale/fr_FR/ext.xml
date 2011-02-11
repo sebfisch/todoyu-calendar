@@ -30,4 +30,6 @@
 	<label index="workingtime">Durée du jour de travail</label>
 	<label index="today">Aujourd'hui</label>
 	<label index="owner">Propriétaire</label>
+	<label index="profile.module">Calendrier</label>
+	<label index="profile.module.main.tab">Général</label>
 </labels>

@@ -40,4 +40,9 @@
 	<label index="reminder.remindagainin">Erneut erinnern in...</label>
 	<label index="reminder.button.remindlater">Später erneut erinnern</label>
 	<label index="extconf.allowoverbooking.label">Überbuchung erlauben?</label>
+	<label index="profile.module">Kalender</label>
+	<label index="profile.module.main.tab">Allgemein</label>
+	<label index="profile.general.main.header">Allgemeine Einstellungen</label>
+	<label index="profile.disableMailingQuestionAfterDraganddrop">Nachfrage ob Email versendet werden soll, nach Änderung von Terminen via Drag&amp;Drop deaktivieren?</label>
+	<label index="profile.main.saved">Die Einstellungen wurden gespeichert.</label>
 </labels>

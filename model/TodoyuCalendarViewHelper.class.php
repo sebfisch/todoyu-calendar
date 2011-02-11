@@ -65,11 +65,11 @@ class TodoyuCalendarViewHelper {
 	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
-	public static function getHolidayOptions(TodoyuFormElement $field)	{
+	public static function getHolidayOptions(TodoyuFormElement $field) {
 		$options = array();
 
 		$holidays	= TodoyuHolidayManager::getAllHolidays();
-		foreach($holidays as $holiday)	{
+		foreach($holidays as $holiday) {
 			$options[] = array(
 				'value'	=> $holiday['id'],
 				'label'	=> $holiday['title'] . ' (' . TodoyuTime::format($holiday['date'], 'D2M2Y4') . ')'
@@ -87,11 +87,11 @@ class TodoyuCalendarViewHelper {
 	 * @param	TodoyuFormElement		$field
 	 * @return	Array
 	 */
-	public static function getHolidaySetOptions(TodoyuFormElement $field)	{
+	public static function getHolidaySetOptions(TodoyuFormElement $field) {
 		$options = array();
 
 		$holidaySets	= TodoyuHolidaySetManager::getAllHolidaySets();
-		foreach($holidaySets as $set)	{
+		foreach($holidaySets as $set) {
 			$options[] = array(
 				'value'	=> $set['id'],
 				'label'	=> $set['title']

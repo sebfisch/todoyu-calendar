@@ -1,6 +1,19 @@
 todoyu calendar extension changelog
 
 calendar 1.1.0 (requires core >= 2.1) - not released yet
+	* Bugfix: Removed empty values from event detail view (description, place)
+	* Feature: new right "Send event as email"
+	* Feature: logging of sent event mails (not yet displayed in attendee's list)
+	* Feature: events emailing after event deletion (not deactivateable)
+	* Feature: preference to deactivate the event mail popup, can be re-activated in profile
+	* Feature: events emailing with popup confirmation after drag and drop modification of events
+	* Feature: events emailing inline in create, update form
+	* Feature: calendar section in profile
+	* Bugfix: Fixed EventManager to not delete events physically anymore (use "deleted" flag)
+	* Changed: Unified form handling of event type toggeling in event inline- and quickcreation- form
+	* Bugfix: Fixed event type toggeling handling in event quickcreation form
+	* Added: Added callback into quickcreation popup hook
+ 	* Changed: Made event comply with global conventions: Optional event attributes are hidden via "hidden" class instead of style="display:none"
 	* Changed: Added separate fieldset for reminder options in calendar extconf
 	* Feature: Added overbooking warning even if allowed (edit via form + drag & drop)
 	* Bugfix: Quickinfos now always hide when starting to drag events

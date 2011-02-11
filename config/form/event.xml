@@ -124,6 +124,32 @@
 			</elements>
 		</fieldset>
 
+		<fieldset name="email">
+			<elements>
+				<field type="checkbox" name="sendasemail">
+					<label>event.edit.sendasemail</label>
+					<onclick>Todoyu.Ext.calendar.Event.Mail.onToggleSendAsEmail(this)</onclick>
+					<restrict>
+						<allow ext="comment" right="comment:sendAsEmail" />
+					</restrict>
+				</field>
+
+				<field type="selectgrouped" name="emailreceivers">
+					<label>comment.edit.sentEmailTo</label>
+					<source type="function">
+						<function>TodoyuEventViewHelper::getEmailReceiverGroupedOptions</function>
+						<lazyInit/>
+					</source>
+					<size>5</size>
+					<multiple/>
+					<style>display:none</style>
+					<restrict>
+						<allow ext="comment" right="comment:sendAsEmail" />
+					</restrict>
+				</field>
+			</elements>
+		</fieldset>
+
 		<fieldset name="buttons">
 			<legend>Actions</legend>
 			<class>buttons</class>

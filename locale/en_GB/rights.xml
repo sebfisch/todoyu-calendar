@@ -3,11 +3,12 @@
 	<label index="general">General</label>
 	<label index="general.use">Use Calendar Functionality</label>
 	<label index="general.area">Use Calendar Area</label>
-	<label index="event">Event</label>
-	<label index="event.seeAll">See All Events</label>
-	<label index="event.editAndDeleteAssigned">Edit and delete assigned (or by this person created) events</label>
-	<label index="event.editAndDeleteAll">Edit and delete all events</label>
-	<label index="event.add">Add New Event</label>
-	<label index="event.search">Search For Events</label>
-	<label index="event.assignOthers">Assign events to other persons</label>
+	<label index="event">Appointment</label>
+	<label index="event.seeAll">See All Appointments</label>
+	<label index="event.editAndDeleteAssigned">Edit and delete assigned (or by this person created) appointments</label>
+	<label index="event.editAndDeleteAll">Edit and delete all appointments</label>
+	<label index="event.add">Add New Appointment</label>
+	<label index="event.search">Search For Appointments</label>
+	<label index="event.assignOthers">Assign appoinments to other persons</label>
+	<label index="mailing.sendAsEmail">Send Emails about appointments to selectable receivers</label>
 </labels>

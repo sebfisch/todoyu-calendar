@@ -19,6 +19,8 @@
 
 /**
  * Functions for event view
+ *
+ * @namespace	Todoyu.Ext.calendar.Event.View
  */
 Todoyu.Ext.calendar.Event.View = {
 

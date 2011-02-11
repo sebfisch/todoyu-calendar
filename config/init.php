@@ -141,4 +141,27 @@ Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKBACK'] = 1800;	// 30 minu
 	// Intervals for rescheduled event reminders
 Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_RESCHEDULEINTERVALS'] = array(10, 20, 30, 45, 60);
 
+
+
+/* -------------------------------------
+	Add calendar module to profile
+   ------------------------------------- */
+if( TodoyuExtensions::isInstalled('profile') && allowed('calendar', 'mailing.sendAsEmail') ) {
+	TodoyuProfileManager::addModule('calendar', array(
+		'position'	=> 5,
+		'tabs'		=> 'TodoyuCalendarProfileRenderer::renderTabs',
+		'content'	=> 'TodoyuCalendarProfileRenderer::renderContent',
+		'label'		=> 'calendar.profile.module',
+		'class'		=> 'calendar'
+	));
+}
+	// Tabs for calendar section in profile
+Todoyu::$CONFIG['EXT']['profile']['calendarTabs'] = array(
+	array(
+		'id'			=> 'main',
+		'label'			=> 'LLL:calendar.profile.module.main.tab',
+//		'require'		=> 'calendar.settings:editbookmarks'
+	)
+);
+
 ?>

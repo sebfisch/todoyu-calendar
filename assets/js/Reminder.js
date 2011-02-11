@@ -17,6 +17,11 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * Calendar event reminder functions
+ *
+ * @namespace	Todoyu.Ext.calendar.Reminder
+ */
 Todoyu.Ext.calendar.Reminder = {
 
 	/**

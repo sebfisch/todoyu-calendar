@@ -19,6 +19,8 @@
 
 /**
  * Drag'n'Drop support for the calendar
+ *
+ * @namespace	Todoyu.Ext.calendar.DragDrop
  */
 Todoyu.Ext.calendar.DragDrop = {
 
@@ -289,6 +291,8 @@ Todoyu.Ext.calendar.DragDrop = {
 		element.dropped = false;
 	},
 
+
+
 	/**
 	 * Save new position when dropped in day view
 	 *
@@ -407,6 +411,9 @@ Todoyu.Ext.calendar.DragDrop = {
 					// Overbooking detected and is disallowed - show notification
 				Todoyu.Notification.notifyError(response.responseText);
 			} else {
+					// Have mailing popup shown
+				this.ext.Event.Mail.initEventMailPopup(idEvent, this.ext.Event.operationTypeID.update);
+
 					// Saving succeeded
 				this.ext.refresh();
 			}

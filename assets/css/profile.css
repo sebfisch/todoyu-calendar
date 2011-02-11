@@ -1,0 +1,12 @@
+#panelwidget-profilemodules li.calendar a {
+	background:url(../img/exticon.png) no-repeat 1px 1px;
+}
+
+
+
+/* --------------
+	Tab icons
+   -------------- */
+#calendar-tabs .tabkey-main .icon {
+	background:url("../img/icons.png") no-repeat scroll 0 6px transparent;
+}

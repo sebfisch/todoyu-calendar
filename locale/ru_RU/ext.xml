@@ -30,4 +30,6 @@
 	<label index="owner">Владелец</label>
 	<label index="today">Сегодня</label>
 	<label index="extconf.allowoverbooking.label">Разрешить перекрывающиеся события?</label>
+	<label index="profile.module">Календарь</label>
+	<label index="profile.module.main.tab">Главное</label>
 </labels>

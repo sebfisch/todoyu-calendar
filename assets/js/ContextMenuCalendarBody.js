@@ -19,8 +19,8 @@
 
 /**
  * Context menu for tasks
- *
-*/
+ * @namespace	Todoyu.Ext.calendar.ContextMenuCalendarBody
+ */
 
 Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 

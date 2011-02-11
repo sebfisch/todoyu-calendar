@@ -36,4 +36,6 @@
 	<label index="calendartitle.dateformat.month.part2">(%W 週目 - </label><!-- timestamp: first displayed day -->
 	<label index="calendartitle.dateformat.month.part3">%W 週目)</label><!-- timestamp: last displayed day -->
 	<label index="extconf.allowoverbooking.label">予定が重なるのを許可しますか？</label>
+	<label index="profile.module">カレンダー</label>
+	<label index="profile.module.main.tab">メイン</label>
 </labels>

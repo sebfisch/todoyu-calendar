@@ -317,7 +317,7 @@ class TodoyuEventRenderer {
 	 */
 	public static function renderEventReminder($idEvent) {
 		$idEvent= intval($idEvent);
-		$event	= TodoyuTaskManager::getTask($idEvent);
+		$event	= TodoyuEventManager::getEvent($idEvent);
 
 			// Construct form object for inline form
 		$xmlPath	= 'ext/calendar/config/form/event-reminder.xml';
@@ -330,7 +330,63 @@ class TodoyuEventRenderer {
 			'buttonsFieldset'	=> $buttonsForm
 		);
 
-		$tmpl	= 'ext/calendar/view/reminder.tmpl';
+		$tmpl	= 'ext/calendar/view/event-reminder.tmpl';
+
+		return render($tmpl, $data);
+	}
+
+
+
+	/**
+	 * Render content of event mailing popup
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$operationID
+	 * @return	String
+	 */
+	public static function renderEventMailPopup($idEvent, $operationID = OPERATIONTYPE_RECORD_UPDATE) {
+		$idEvent= intval($idEvent);
+		$event	= TodoyuEventManager::getEvent($idEvent);
+
+			// Construct form object for inline form
+		$xmlPath	= 'ext/calendar/config/form/event-mailing.xml';
+		$form		= TodoyuFormManager::getForm($xmlPath, 0, array(), array('#id_event#'=> $idEvent));
+
+			// Have all email persons but user himself preselected
+		$emailPersonIDs	= array_keys(TodoyuEventManager::getEmailReceivers($idEvent, false));
+		$emailPersonIDs	= TodoyuArray::removeByValue($emailPersonIDs, array(personid()), false);
+
+			// Set mail form data
+		$form->setFormData(array(
+			'id_event' 			=> $idEvent,
+			'emailreceivers'	=> $emailPersonIDs,
+		));
+
+			// Set the appropriate subject (created, updated, deleted)
+		switch($operationID) {
+			case OPERATIONTYPE_RECORD_CREATE:
+				$subject	= Label('event.mail.popup.subject.create');
+				break;
+			case OPERATIONTYPE_RECORD_DELETE:
+				$subject	= Label('event.mail.popup.subject.delete');
+
+					// Remove "don't ask again" button in form of deleted events
+				$form->getFieldset('buttons')->removeField('dontaskagain');
+				break;
+			case OPERATIONTYPE_RECORD_UPDATE:
+			default:
+				$subject	= Label('event.mail.popup.subject.update');
+				break;
+		}
+
+			// Render popup content
+		$data	= array(
+			'subject'		=> $subject,
+			'event'			=> $event->getTemplateData(true, true),
+			'mailingForm'	=> $form->render()
+		);
+
+		$tmpl	= 'ext/calendar/view/event-mailing.tmpl';
 
 		return render($tmpl, $data);
 	}

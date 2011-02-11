@@ -18,7 +18,9 @@
 *****************************************************************************/
 
 /**
- *	Panel widget JS: Calendar
+ * Panel widget JS: Calendar
+ *
+ * @namespace	Todoyu.Ext.calendar.PanelWidget.Calendar
  */
 Todoyu.Ext.calendar.PanelWidget.Calendar = {
 

@@ -340,6 +340,62 @@ class TodoyuEventManager {
 
 
 	/**
+	 * Get details of persons which could receive an event email
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Boolean		$getPersonsDetails		(false: get only ID and email)
+	 * @return	Array
+	 */
+	public static function getEmailReceivers($idEvent, $getPersonsDetails = true) {
+		$idEvent		= intval($idEvent);
+
+		$persons	= self::getAssignedPersonsOfEvent($idEvent, true);
+
+			// Reduce persons data to contain only ID and email, use id_person as new key
+		$reformConfig	= array(
+			'id_person'	=> 'id_person',
+			'email'		=> 'email'
+		);
+		$persons	= TodoyuArray::reformWithFieldAsIndex($persons, $reformConfig, $getPersonsDetails, 'id_person');
+
+			// Remove all persons w/o email address
+		foreach($persons as $idPerson => $personData) {
+			if( empty($personData['email']) ) {
+				unset($persons[$idPerson]);
+			}
+		}
+
+		return $persons;
+	}
+
+
+
+	/**
+	 * Check whether any of the participants (but the given to be excluded) of the given event has an email address stored
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$excludedPersonIDs
+	 * @return	Boolean
+	 */
+	public static function hasAnyEventPersonAnEmailAddress($idEvent, array $excludedPersonIDs = array()) {
+		$idEvent			= intval($idEvent);
+		$excludedPersonIDs	= count($excludedPersonIDs) > 0 ? TodoyuArray::intval($excludedPersonIDs) : false;
+
+		$persons			= self::getEmailReceivers($idEvent, false);
+
+			// Remove all persons who are excluded
+		foreach($persons as $idPerson => $personData) {
+			if( in_array($idPerson, $excludedPersonIDs) ) {
+				unset($persons[$idPerson]);
+			}
+		}
+
+		return count($persons) > 0;
+	}
+
+
+
+	/**
 	 * Check for conflicts with other events (of non-overbookable type) for the assigned persons if overbooking is not allowed
 	 *
 	 * @param	Integer		$dateStart
@@ -396,11 +452,15 @@ class TodoyuEventManager {
 	public static function deleteEvent($idEvent) {
 		$idEvent	= intval($idEvent);
 
-			// Delete event
-		Todoyu::db()->deleteRecord(self::TABLE , $idEvent);
+		$where	= 'id = ' . $idEvent;
 
-			// Remove person-assignments
-		self::removeAllPersonAssignments($idEvent);
+		Todoyu::db()->setDeleted(self::TABLE, $where);
+
+//			// Delete event
+//		Todoyu::db()->deleteRecord(self::TABLE , $idEvent);
+//
+//			// Remove person-assignments
+//		self::removeAllPersonAssignments($idEvent);
 	}
 
 
@@ -418,9 +478,17 @@ class TodoyuEventManager {
 		$isNewEvent	= ( $idEvent === 0 );
 
 			// Add empty event
-		if( $idEvent === 0 )	{
+		if( $idEvent === 0 ) {
 			$idEvent = self::addEvent(array());
 		}
+
+			// Extract mailing data
+		$sendAsEmail			= intval($data['sendasemail']) === 1;
+		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
+
+			// Remove mail fields (not stored directly in event record)
+		unset($data['sendasemail']);
+		unset($data['emailreceivers']);
 
 			// Extract person IDs from foreign data array (easier to handle)
 		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
@@ -459,6 +527,17 @@ class TodoyuEventManager {
 
 			// Remove record and query from cache
 		self::removeEventFromCache($idEvent);
+
+			// Send emails
+		if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {
+			$operationID	= $isNewEvent ? OPERATIONTYPE_RECORD_UPDATE : OPERATIONTYPE_RECORD_UPDATE;
+
+			$sent	= TodoyuEventMailer::sendEmails($idEvent, $mailReceiverPersonIDs, $operationID);
+			if( $sent ) {
+				TodoyuEventMailManager::saveMailsSent($idEvent, $mailReceiverPersonIDs);
+				TodoyuHeader::sendTodoyuHeader('sentEmail', true);
+			}
+		}
 
 		return $idEvent;
 	}
@@ -562,8 +641,8 @@ class TodoyuEventManager {
 
 			if( sizeof($overbookedInfos) > 0 ) {
 				$errorMessages = array();
-				foreach($overbookedInfos as $idPerson => $infos)	{
-					foreach($infos['events'] as $event)	{
+				foreach($overbookedInfos as $idPerson => $infos) {
+					foreach($infos['events'] as $event) {
 						$errorMessages[] = Label('LLL:event.error.personsOverbooked') . ' ' . TodoyuPersonManager::getPerson($idPerson)->getFullName();
 					}
 				}
@@ -661,7 +740,7 @@ class TodoyuEventManager {
 	 *
 	 * @return	Integer		Auto-generated ID
 	 */
-	protected static function createNewEvent()	{
+	protected static function createNewEvent() {
 		$insertArray	= array(
 			'date_create'		=> NOW,
 			'id_person_create'	=> personid(),
@@ -696,10 +775,10 @@ class TodoyuEventManager {
 	public static function addAssignedEventPersonsAndSendMail($idEvent, array $formData) {
 		$idEvent	= intval($idEvent);
 
-		if(array_key_exists('persons', $formData))	{
+		if( array_key_exists('persons', $formData) ) {
 			$table = 'ext_calendar_mm_event_person';
 
-			foreach($formData['persons'] as $person)	{
+			foreach($formData['persons'] as $person) {
 				$idPerson	= $person['id'];
 				$fields	= array(
 					'id_event'			=> $idEvent,
@@ -709,8 +788,9 @@ class TodoyuEventManager {
 
 				Todoyu::db()->doInsert($table, $fields);
 
-				if( $formData['send_notification'] === 1 )	{
-					TodoyuCalendarMailer::sendEventNotification($idEvent, $idPerson);
+				if( $formData['send_notification'] === 1 ) {
+					$operationID	= OPERATIONTYPE_RECORD_CREATE;
+					TodoyuEventMailer::sendEmails($idEvent, array($idPerson), $operationID);
 				}
 			}
 
@@ -729,7 +809,7 @@ class TodoyuEventManager {
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
 	 */
-	public static function acknowledgeEvent($idEvent, $idPerson = 0)	{
+	public static function acknowledgeEvent($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= personid($idPerson);
 
@@ -751,7 +831,7 @@ class TodoyuEventManager {
 	 *
 	 * @param	Integer	$timestamp
 	 */
-	public static function createNewEventWithDefaultsInCache($timestamp)	{
+	public static function createNewEventWithDefaultsInCache($timestamp) {
 		$timestamp	= intval($timestamp);
 		$defaultData= self::getEventDefaultData($timestamp);
 
@@ -769,7 +849,7 @@ class TodoyuEventManager {
 	 * @param	Integer	$timeStamp
 	 * @return	Array
 	 */
-	protected static function getEventDefaultData($timestamp)	{
+	protected static function getEventDefaultData($timestamp) {
 		$timestamp	= $timestamp == 0 ? NOW : intval($timestamp);
 
 		if( date('Hi', $timestamp) === '0000' ) {
@@ -839,7 +919,7 @@ class TodoyuEventManager {
 	 * @param	Array		$items
 	 * @return	Array
 	 */
-	public static function getContextMenuItemsPortal($idEvent, array $items)	{
+	public static function getContextMenuItemsPortal($idEvent, array $items) {
 		$idEvent	= intval($idEvent);
 		$event		= TodoyuEventManager::getEvent($idEvent);
 		$dateStart	= $event->getStartDate();
@@ -854,7 +934,7 @@ class TodoyuEventManager {
 			unset($ownItems['delete']);
 		}
 
-		foreach($ownItems['show']['submenu'] as $key => $config)	{
+		foreach($ownItems['show']['submenu'] as $key => $config) {
 			$ownItems['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', $dateStart, $config['jsAction']);
 		}
 

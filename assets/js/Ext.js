@@ -23,6 +23,8 @@
 
 /**
  * Main calendar object
+ *
+ * @namespace	Todoyu.Ext.calendar
  */
 Todoyu.Ext.calendar = {
 
@@ -50,7 +52,7 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 * Extend scal options (weekdaystart = monday, yearprev = symbol to go backwards, yearnext = symbol to go forwards
+	 * Extend sCal options (weekdaystart = monday, yearprev = symbol to go backwards, yearnext = symbol to go forwards
 	 */
 	calOptions: {
 		weekdaystart:	1,
@@ -89,6 +91,7 @@ Todoyu.Ext.calendar = {
 
 			// Add event edit hook for event type
 		Todoyu.Hook.add('calendar.event.editType', this.Event.Edit.checkHideField.bind(this.Event.Edit));
+		Todoyu.Hook.add('headlet.quickcreate.event.popupOpened', this.QuickCreateEvent.onPopupOpened());
 
 			// Add event save hook
 		Todoyu.Hook.add('calendar.event.saved', this.onEventSaved.bind(this));

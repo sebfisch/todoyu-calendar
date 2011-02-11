@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<attributes>
+		<attribute name="action">?ext=calendar&amp;controller=event</attribute>
+		<attribute name="name">event</attribute>
+	</attributes>
+	<hiddenFields>
+		<field name="id" />
+		<field name="id_event" />
+	</hiddenFields>
+
+	<fieldsets>
+
+		<fieldset name="email">
+			<elements>
+				<field type="selectgrouped" name="emailreceivers">
+					<label>comment.edit.sentEmailTo</label>
+					<source type="function">
+						<function>TodoyuEventViewHelper::getEmailReceiverGroupedOptions</function>
+						<lazyInit/>
+					</source>
+					<size>5</size>
+					<multiple/>
+					<restrict>
+						<allow ext="comment" right="comment:sendAsEmail" />
+					</restrict>
+				</field>
+
+			</elements>
+		</fieldset>
+
+		<fieldset name="buttons">
+			<legend>Actions</legend>
+			<class>buttons</class>
+			<elements>
+
+				<field type="cancelButton" name="cancel">
+					<onclick>Todoyu.Popup.closeLastPopup()</onclick>
+				</field>
+
+				<field type="button" name="sendAsEmail">
+					<text>event.mail.popup.button.sendAsEmail</text>
+					<class>sendemail</class>
+					<onclick>Todoyu.Ext.calendar.Event.Mail.sendMail(#id_event#, Todoyu.Ext.calendar.Event.operationTypeID.update, $F('event-0-field-emailreceivers'));Todoyu.Popup.closeLastPopup()</onclick>
+					<hasIcon/>
+				</field>
+
+				<field type="button" name="dontaskagain">
+					<text>event.mail.popup.button.dontaskagain</text>
+					<class>exclamation</class>
+					<onclick>Todoyu.Ext.calendar.Event.Mail.deactivatePopup();Todoyu.Popup.closeLastPopup()</onclick>
+					<hasIcon/>
+				</field>
+
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>

@@ -3,14 +3,18 @@
 		<td class="eventAttrTitle">{Label core.title}: </td>
 		<td class="eventValue">{htmlencode $event.title}</td>
 	</tr>
-	<tr class="even">
-		<td class="eventAttrTitle">{Label event.attr.place}: </td>
-		<td class="eventValue">{htmlencode $event.place}</td>
-	</tr>
+	{if ! empty($event.place)}
+		<tr class="even">
+			<td class="eventAttrTitle">{Label event.attr.place}: </td>
+			<td class="eventValue">{htmlencode $event.place}</td>
+		</tr>
+	{/if}
+	{if ! empty($event.description)}
 	<tr class="odd">
 		<td class="eventAttrTitle">{Label core.description}: </td>
 		<td class="eventValue">{$event.description}</td>
 	</tr>
+	{/if}
 	<tr class="even">
 		<td class="eventAttrTitle">{Label event.attr.timespan}: </td>
 		<td class="eventValue">

@@ -107,11 +107,56 @@ class TodoyuEventViewHelper {
 	public static function getQuickinfoTypeInfo($event) {
 		$typeInfo	= $event->getTypeLabel();
 
-		if( $event->data['is_private'] === '1' ) {
+		if( $event->isPrivate() ) {
 			$typeInfo	.= ', ' . Label('event.attr.is_private');
 		}
 
 		return $typeInfo;
+	}
+
+
+
+	/**
+	 * Get option array of persons which can receive the event email (participant with an email address)
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
+	public static function getEmailReceiverOptions(TodoyuFormElement $field) {
+		$idEvent	= intval($field->getForm()->getHiddenField('id_event'));
+		$options	= array();
+		$persons	= TodoyuEventManager::getEmailReceivers($idEvent, true);
+
+		foreach($persons as $person) {
+			$options[] 	= array(
+				'value'	=> $person['id'],
+				'label'	=> TodoyuPersonManager::getLabel($person['id'], true, true)
+			);
+		}
+
+		return $options;
+	}
+
+
+
+	/**
+	 * Get option array of persons which can receive the event email (participant with an email address)
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
+	public static function getEmailReceiverGroupedOptions(TodoyuFormElement $field) {
+		$options	= array();
+
+			// Event attending persons
+		$groupLabel	= Label('event.group.attendees');
+		$options[$groupLabel]	= self::getEmailReceiverOptions($field);
+
+			// Get staff persons (employees of internal company)
+		$groupLabel	= Label('comment.group.employees');
+		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field);
+
+		return $options;
 	}
 
 }

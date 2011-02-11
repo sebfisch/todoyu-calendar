@@ -1,0 +1,26 @@
+{Label event.mail.title.create}
+
+========================================================================
+
+{math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}{math equation="d / 3600" d=$duration assign=duration}
+{Label event.attr.timespan}:	{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} {Label date.time.hours})
+{Label core.title}:	{htmlencode $event.title}
+{Label event.attr.place}:	{$event.place}
+
+{Label event.mail.event.from}:	{$personWrite.firstname} {$personWrite.lastname}{if $hideEmails != true} <{$personWrite.email}>{/if}
+{if $personWrite.id !== $personSend.id}{Label event.mail.sentBy}:	{$personSend.firstname} {$personSend.lastname}{if $hideEmails != true} <{$personSend.email}>{/if}{/if}
+========================================================================
+
+{html2text $event.description}
+
+========================================================================
+
+{Label event.attr.attendees}:
+
+{foreach $attendees personData}
+*	{$personData.firstname} {$personData.lastname}
+{/foreach}
+========================================================================
+
+{Label event.mail.showeventincalendarview}:
+{$eventlink}

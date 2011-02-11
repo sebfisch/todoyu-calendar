@@ -17,6 +17,11 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * Calendar Events
+ *
+ * @namespace	Todoyu.Ext.calendar.Event
+ */
 Todoyu.Ext.calendar.Event = {
 
 	/**
@@ -44,6 +49,18 @@ Todoyu.Ext.calendar.Event = {
 		compensation:	11,
 		milestone:		12,
 		reminder:		13
+	},
+
+	/**
+	 * Possible types of actions on event records
+	 *
+	 * @property	operationTypeID
+	 * @type		Object
+	 */
+	operationTypeID: {
+		create:		1,
+		update:		2,
+		remove:		3
 	},
 
 
@@ -133,7 +150,11 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{Number}		idEvent
 	 */
 	remove: function(idEvent) {
-		if(confirm('[LLL:event.delete.confirm]')) {
+		if( confirm('[LLL:event.delete.confirm]') ) {
+				// Show mailing popup
+			this.Mail.initEventMailPopup(idEvent, this.operationTypeID.remove);
+
+				// Remove the event
 			$('event-' + idEvent).fade();
 
 			var url		= Todoyu.getUrl('calendar', 'event');
@@ -159,6 +180,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onRemoved: function(idEvent, response) {
+			// Refresh view
 		if( Todoyu.getArea() === 'calendar' ) {
 			this.ext.refresh();
 		}
@@ -176,7 +198,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{String}	formName	Name of the XML-form
 	*/
 	updateEnddate:function(formName) {
-		if($(formName + '-0-field-enddate')) {
+		if( $(formName + '-0-field-enddate') ) {
 			$(formName + '-0-field-enddate').value = $F(formName + '-0-field-startdate');
 		}
 	},
@@ -204,14 +226,14 @@ Todoyu.Ext.calendar.Event = {
 		timestamp	+= halfHours * Todoyu.Time.seconds.hour / 2;
 
 			// Calculate day of week from mouse-X
-		if(idTab == 'week') {
+		if( idTab == 'week' ) {
 			var day	= (x - calLeftCoord) / 88 + '';
 			day		= parseInt(day.split('.')[0], 10);
 			timestamp	+= day * Todoyu.Time.seconds.day;
 		}
 
 			// Compensate for workingDay-display mode (top hour is 08:00 and not 00:00)
-		if(! $('toggleDayView').hasClassName('full')) {
+		if( ! $('toggleDayView').hasClassName('full') ) {
 			timestamp += Todoyu.Time.seconds.hour * 3;
 		}
 

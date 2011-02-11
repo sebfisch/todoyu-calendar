@@ -106,7 +106,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				}
 			}
 
-				// Save or update event
+				// Save or update event (and send email if mail-option activated) 
 			if( $needToShowWarning === false ) {
 				$data	= $form->getStorageData();
 
@@ -258,6 +258,54 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		return TodoyuFormManager::renderSubFormRecord($xmlPath, $fieldName, $formName, $index, $idRecord, $formData);
 	}
 
+
+
+	/**
+	 * Get event mail popup (after event has been changed via drag and drop)
+	 *
+	 * @param	Array			$params
+	 * @return	String|Boolean
+	 */
+	public function getEventMailPopupAction(array $params) {
+		$idEvent	= intval($params['event']);
+		$operationID= intval($params['operation']);
+
+		if( $operationID != OPERATIONTYPE_RECORD_DELETE ) {
+				// Is mailing popup deactivated or no other users with email assigned?
+			$showPopup	= TodoyuEventMailManager::isMailPopupToBeShown($idEvent);
+		} else {
+				// Events deletion always opens mailing popup as this is the last time the data is accessable
+			$showPopup	= true;
+		}
+
+		TodoyuHeader::sendHeader('showPopup', $showPopup ? '1' : '0');
+
+		if( $showPopup === true ) {
+			return TodoyuEventRenderer::renderEventMailPopup($idEvent, $operationID);
+		}
+
+		return false;
+	}
+
+
+
+	/**
+	 * Send event mail to selected persons
+	 *
+	 * @param	Array	$params
+	 */
+	public static function sendMailAction(array $params) {
+		$idEvent	= intval($params['event']);
+		$personIDs	= TodoyuArray::intExplode(',', $params['persons'], true, true);
+		$operationID= intval($params['operation']);
+
+		if( count($personIDs) > 0 ) {
+			$sent	= TodoyuEventMailer::sendEmails($idEvent, $personIDs, $operationID);
+			if( $sent ) {
+				TodoyuHeader::sendTodoyuHeader('sentEmail', 1);
+			}
+		}
+	}
 }
 
 ?>

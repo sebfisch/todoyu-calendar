@@ -30,4 +30,6 @@
 	<label index="today">Vandaag</label>
 	<label index="owner">Eigenaar</label>
 	<label index="extconf.allowoverbooking.label">Overboeken toestaan?</label>
+	<label index="profile.module">Kalender</label>
+	<label index="profile.module.main.tab">Algemeen</label>
 </labels>

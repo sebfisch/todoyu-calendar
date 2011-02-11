@@ -19,6 +19,7 @@
 
 /**
  * Functions for event edit
+ *
  * @namespace	Todoyu.Ext.calendar.Event.Edit
  */
 Todoyu.Ext.calendar.Event.Edit = {
@@ -117,6 +118,18 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 
 	/**
+	 * Unhide all given (possibly hidden) fields
+	 *
+	 * @method	showAllFields
+	 * @Array	fields
+	 */
+	showFields: function(fields) {
+		fields.invoke('removeClassName', 'hidden');
+	},
+
+
+
+	/**
 	 * Update the field visibility in the form for the selected event type
 	 *
 	 * @method	updateVisibleFields
@@ -124,11 +137,10 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 */
 	updateVisibleFields: function(event) {
 		var eventType	= $F('event-field-eventtype');
-		var allFields	= $('event-form').select('div.fElement');
 		var fieldsToHide= [];
 
-			// Show all fields
-		allFields.invoke('show');
+		var allFields	= $('event-form').select('div.fElement');
+		this.showFields(allFields);
 
 			// Extract field names
 		var allFieldNames = allFields.collect(function(field){
@@ -149,7 +161,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 			}.bind(this, fieldsToHide, fieldName, eventType));
 		}.bind(this, checkHooks, fieldsToHide, eventType));
 
-		fieldsToHide.each(this.hideField, this);
+		fieldsToHide.each(this.hideField, this, 'event');
 	},
 
 
@@ -190,12 +202,15 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 *
 	 * @method	hideField
 	 * @param	{String}		fieldName
+	 * @param	{String}		formName
 	 */
-	hideField: function(fieldName) {
-		var field	= 'formElement-event-field-' + fieldName;
+	hideField: function(fieldName, formName) {
+		formName	= formName ? formName : 'event';
+
+		var field	= 'formElement-' + formName + '-field-' + fieldName;
 
 		if( Todoyu.exists(field) ) {
-			$(field).hide();
+			$(field).addClassName('hidden');
 		}
 	},
 
@@ -365,7 +380,12 @@ Todoyu.Ext.calendar.Event.Edit = {
 				var warning	= response.getTodoyuHeader('overbookingwarning');
 				Todoyu.Popup.openContentInWindow('Warning', warning, 'Overbooking Warning', 376);
 			} else {
-					// Save event
+				if( response.getTodoyuHeader('sentEmail') ) {
+						// Notify of sent mail
+					Todoyu.notifySuccess('[LLL:event.mail.notification.sent]');
+				}
+	
+					// Event saved - notify success
 				Todoyu.notifySuccess('[LLL:event.saved.ok]');
 				var time	= response.getTodoyuHeader('time');
 				var idEvent	= response.getTodoyuHeader('idEvent');

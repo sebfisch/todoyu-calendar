@@ -17,6 +17,11 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * Calendar tabs functions
+ *
+ * @namespace	Todoyu.Ext.calendar.Tabs
+ */
 Todoyu.Ext.calendar.Tabs = {
 
 	/**

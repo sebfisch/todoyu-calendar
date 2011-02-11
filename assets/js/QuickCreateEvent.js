@@ -17,7 +17,32 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * Event quickcreation (headlet) functions
+ *
+ * @namespace	Todoyu.Ext.calendar.QuickCreateEvent
+ */
 Todoyu.Ext.calendar.QuickCreateEvent = {
+
+	/**
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
+	 */
+	ext:	Todoyu.Ext.calendar,
+
+
+
+	/**
+	 * Handler after quickcreation popup has been loaded
+	 *
+	 * @method	onFormLoaded
+	 */
+	onPopupOpened: function() {
+		this.observeEventType();
+	},
+
+
 
 	/**
 	 * Evoked upon opening of event quick create wizard popup
@@ -25,11 +50,10 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	 * @method	onPopupOpened
 	 * @todo	check usage / remove?
 	 */
-	onPopupOpened: function() {
-//		var time	= 0;
-//
-//		Todoyu.Ext.calendar.getTime();
-//		$('quickevent-field-eventtype').observe('change', this.onEventTypeChange.bindAsEventListener(this, time));
+	observeEventType: function() {
+		if( Todoyu.exists('event-field-eventtype') ) {
+			$('event-field-eventtype').observe('change', this.ext.Event.Edit.updateVisibleFields.bindAsEventListener(this.ext.Event.Edit));
+		}
 	},
 
 
@@ -69,61 +93,6 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 			Todoyu.Popup.close('quickcreate');
 
 			Todoyu.Hook.exec('calendar.quickevent.saved', idEvent);
-		}
-	},
-
-
-
-	/**
-	 * Evoked on change of selected eventType in quick-event form (toggle ir/relevant fields)
-	 *
-	 * @method	onEventTypeChange
-	 * @param	{Event}			event
-	 * @param	{Number}		time
-	 */
-	onEventTypeChange: function(event, time) {
-		var eventType	= $F('quickevent-field-eventtype');
-		var allFields	= $('quickcreateevent-form').select('div.fElement');
-		var fieldsToHide= [];
-
-			// Show all fields
-		allFields.invoke('show');
-
-			// Extract fieldnames
-		var allFieldNames = allFields.collect(function(field){
-			return field.id.replace('formElement-quickevent-field-', '');
-		});
-
-			// Get all check hook functions
-		var checkHooks	= Todoyu.Hook.get('calendar.event.editType');
-
-			// Check all fields, if a hooks wants to hide it
-		allFieldNames.each(function(checkHooks, fieldsToHide, eventType, fieldname){
-				// Check all hooks if they want to hide the field
-			checkHooks.each(function(fieldsToHide, fieldname, eventType, hook){
-				if( hook(fieldname, eventType) ) {
-					fieldsToHide.push(fieldname);
-					return;
-				}
-			}.bind(this, fieldsToHide, fieldname, eventType));
-		}.bind(this, checkHooks, fieldsToHide, eventType));
-
-		fieldsToHide.each(this.hideField, this);
-	},
-
-
-
-	/**
-	 * Hide a field in the event form
-	 *
-	 * @method	hideField
-	 * @param	{String}		fieldname
-	 */
-	hideField: function(fieldname) {
-		var field	= 'formElement-quickevent-field-' + fieldname;
-
-		if( Todoyu.exists(field) ) {
-			$(field).hide();
 		}
 	}
 

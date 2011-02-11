@@ -190,7 +190,7 @@ class TodoyuHolidayManager {
 	 * @param	Integer		$idHoliday
 	 * @return	Boolean
 	 */
-	public static function deleteHoliday($idHoliday)	{
+	public static function deleteHoliday($idHoliday) {
 		$idHoliday	= intval($idHoliday);
 
 		return Todoyu::db()->deleteRecord(self::TABLE, $idHoliday);
@@ -323,11 +323,11 @@ class TodoyuHolidayManager {
 	 * @param	String	$sword
 	 * @return	Array
 	 */
-	public static function autocompleteHolidays($sword)	{
+	public static function autocompleteHolidays($sword) {
 		$swordArray = TodoyuArray::trimExplode(' ', $sword, true);
 		$results	= array();
 
-		if( sizeof($swordArray) > 0 )	{
+		if( sizeof($swordArray) > 0 ) {
 			$where 		= Todoyu::db()->buildLikeQuery($swordArray, array('title', 'description'));
 			$holidays	= Todoyu::db()->getArray('id, title, date', self::TABLE, $where, '', 'date DESC');
 
@@ -347,7 +347,7 @@ class TodoyuHolidayManager {
 	 * @param	Integer	$holidayID
 	 * @return	String
 	 */
-	public static function getHolidayLabel($idHoliday)	{
+	public static function getHolidayLabel($idHoliday) {
 		$idHoliday	= intval($idHoliday);
 
 		$holiday	= self::getHoliday($idHoliday);

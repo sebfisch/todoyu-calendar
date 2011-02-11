@@ -149,7 +149,7 @@ class TodoyuCalendarPreferences {
 		$setIDs	= TodoyuArray::intval($setIDs);
 
 			// 'no set'-option selected? deselect all other options
-		if(in_array(0, $setIDs)) {
+		if( in_array(0, $setIDs) ) {
 			$setIDs	= array(0);
 		}
 

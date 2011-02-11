@@ -43,4 +43,10 @@
 	<label index="extconf.reminderpopup_roles.label">Roles to get appointment reminder (popup)</label>
 	<label index="extconf.reminderpopup_advancetime.label">Time before appointment to show reminder</label>
 	<label index="extconf.audioreminder_active.label">Activate Audio Warning?</label>
+	<label index="extconf.autosendeventmail.label">Roles to automatically send email of new / changed / deleted appointments to internal participants of appointment (removes mailing option)?</label>
+	<label index="profile.module">Calendar</label>
+	<label index="profile.module.main.tab">Main</label>
+	<label index="profile.general.main.header">Main Config</label>
+	<label index="profile.disableMailingQuestionAfterDraganddrop">Disable asking whether to send email after modification of appointments via drag and drop?</label>
+	<label index="profile.main.saved">Settings have been saved.</label>
 </labels>

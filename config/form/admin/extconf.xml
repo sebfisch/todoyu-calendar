@@ -37,5 +37,19 @@
 			</elements>
 		</fieldset>
 
+		<fieldset name="eventsmailing">
+			<elements>
+			<field type="select" name="autosendeventmail">
+					<label>calendar.extconf.autosendeventmail.label</label>
+					<source type="function">
+						<function>TodoyuRoleViewHelper::getRoleOptions</function>
+						<lazyInit/>
+					</source>
+					<multiple />
+				</field>
+
+			</elements>
+		</fieldset>
+
 	</fieldsets>
 </form>

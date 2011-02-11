@@ -32,8 +32,12 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 			'position' => 100
 		),
 		array(
+			'file' => 'ext/calendar/assets/js/Profile.js',
+			'position' => 101
+		),
+		array(
 			'file' => 'ext/calendar/assets/js/QuickCreateEvent.js',
-			'position' => 100
+			'position' => 101
 		),
 		array(
 				'file' => 'ext/calendar/assets/js/HolidayEditor.js',
@@ -69,6 +73,10 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 		),
 		array(
 			'file' => 'ext/calendar/assets/js/EventEdit.js',
+			'position' => 119
+		),
+		array(
+			'file' => 'ext/calendar/assets/js/EventMail.js',
 			'position' => 119
 		),
 		array(
@@ -132,6 +140,10 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 		array(
 			'file'		=> 'ext/calendar/assets/css/ext.css',
 			'position'	=> 100
+		),
+		array(
+			'file'		=> 'ext/calendar/assets/css/profile.css',
+			'position'	=> 101
 		),
 		array(
 			'file'		=> 'ext/calendar/assets/css/calendarbody.css',

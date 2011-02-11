@@ -54,14 +54,18 @@ define('EVENTTYPE_REMINDER', 	13);
 	// Height of an hour, minute in day- and week- view of calendar
 define('CALENDAR_HEIGHT_HOUR',		42);
 define('CALENDAR_HEIGHT_MINUTE',	0.683);
-
 define('CALENDAR_DAY_EVENT_WIDTH', 620);
 define('CALENDAR_WEEK_EVENT_WIDTH', 86);
-
 	// Maximal date: 2030-12-31, 23:59:59
 define('CALENDAR_MAXDATE', 1924988399);
-
 	// Minimal duration of an event for rendering
 define('CALENDAR_EVENT_MIN_DURATION', 1800);
+
+
+
+	// Possible types of actions on event records
+define('OPERATIONTYPE_RECORD_CREATE',	1);
+define('OPERATIONTYPE_RECORD_UPDATE',	2);
+define('OPERATIONTYPE_RECORD_DELETE',	3);
 
 ?>

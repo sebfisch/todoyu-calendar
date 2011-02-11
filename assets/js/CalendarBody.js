@@ -60,8 +60,12 @@ Todoyu.Ext.calendar.CalendarBody = {
 			this.setFullHeight(this.isFullHeight(), false);
 		}
 
-			// Init drag'n'drop
+			// Init drag and drop
 		this.ext.DragDrop.init();
+
+			// Call hooked callbacks
+		Todoyu.Hook.exec('calendarBody.init');
+//
 	},
 
 

@@ -94,7 +94,7 @@ class TodoyuCalendarManager {
 	 * @return	Integer
 	 */
 	public static function getAmountOfDaysInbetweenWeekdayNums($startDay, $endDay, $insideTheSameWeek = true) {
-		if($insideTheSameWeek) {
+		if( $insideTheSameWeek ) {
 				// Both days are within the same week
 			$amount = ($endDay == 0 ? 7 : $endDay) - ($startDay == 0 ? 7 : $startDay) + 1;
 		} else {
@@ -118,9 +118,9 @@ class TodoyuCalendarManager {
 	 * @return	Integer
 	 */
 	public static function getVisibleWeeksAmount($amountDays = 35) {
-		if($amountDays === 28) {
+		if( $amountDays === 28 ) {
 			$amount = 4;
-		} elseif($amountDays === 35 ) {
+		} elseif( $amountDays === 35 ) {
 			$amount = 5;
 		} else {
 			$amount = 6;

@@ -14,4 +14,8 @@
 		<right name="editAndDeleteAll" require="event:seeAll" />
 	</section>
 
+	<section name="mailing" require="general:use">
+		<right name="sendAsEmail" />
+	</section>
+
 </rights>

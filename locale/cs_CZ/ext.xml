@@ -30,4 +30,6 @@
 	<label index="today">Dnes</label>
 	<label index="owner">Vlastnik</label>
 	<label index="extconf.allowoverbooking.label">Povolit Overbooking?</label>
+	<label index="profile.module">Kalendář</label>
+	<label index="profile.module.main.tab">Hlavní</label>
 </labels>

@@ -447,7 +447,7 @@ class TodoyuCalendarRenderer {
 	 *
 	 * @return	String	HTML
 	 */
-	public static function renderTabs($activeTab = '')	{
+	public static function renderTabs($activeTab = '') {
 		if( empty($activeTab) ) {
 			$activeTab = TodoyuCalendarPreferences::getActiveTab();
 		}

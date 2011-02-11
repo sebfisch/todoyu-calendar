@@ -17,6 +17,11 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * Events quickinfo
+ *
+ * @namespace	Todoyu.Ext.calendar.QuickInfoBirthday
+ */
 Todoyu.Ext.calendar.QuickInfoEvent = {
 
 	/**

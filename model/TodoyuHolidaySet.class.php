@@ -38,7 +38,7 @@ class TodoyuHolidaySet extends TodoyuBaseObject {
 	 *
 	 * @param	Integer	$recordID
 	 */
-	function __construct($idHolidaySet)	{
+	function __construct($idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);
 
 		parent::__construct($idHolidaySet, self::TABLE);
@@ -49,7 +49,7 @@ class TodoyuHolidaySet extends TodoyuBaseObject {
 	/**
 	 * Load foreign data (holidays)
 	 */
-	public function loadForeignData()	{
+	public function loadForeignData() {
 		$this->data['holiday']	= TodoyuHolidaySetManager::getHolidays($this->id);
 	}
 

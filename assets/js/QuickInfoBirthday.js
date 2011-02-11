@@ -19,6 +19,8 @@
 
 /**
  * Calendar birthday quickinfo (Todoyu.Ext.calendar.Quickinfo.Birthday)
+ *
+ * @namespace	Todoyu.Ext.calendar.QuickInfoBirthday
  */
 Todoyu.Ext.calendar.QuickInfoBirthday = {
 

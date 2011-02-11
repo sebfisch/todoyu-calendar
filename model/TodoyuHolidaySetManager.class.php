@@ -227,7 +227,7 @@ class TodoyuHolidaySetManager {
 	 * @param	String		$sword
 	 * @return	Array
 	 */
-	public static function autocompleteHolidaySet($sword)	{
+	public static function autocompleteHolidaySet($sword) {
 		$swords 	= TodoyuArray::trimExplode(' ', $sword, true);
 		$results	= array();
 

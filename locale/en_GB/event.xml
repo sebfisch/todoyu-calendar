@@ -4,6 +4,7 @@
 	<label index="events">Events</label>
 	<label index="new">New Event</label>
 	<label index="edit">Edit Event</label>
+	<label index="edit.sendasemail">Send event by email</label>
 	<label index="delete">Delete Event</label>
 	<label index="create.label">New Event</label>
 	<label index="saved.ok">Event Saved</label>
@@ -23,6 +24,7 @@
 	<label index="type.reminder">Reminder</label>
 	<label index="privateEvent.info">Personal</label>
 	<label index="delete.confirm">Do you really want to delete this event?</label>
+	<label index="group.attendees">Appointment Attendees</label>
 	<label index="attr.creator">Creator</label>
 	<label index="attr.eventtype">Event Type</label>
 	<label index="attr.is_dayevent">All Day</label>
@@ -60,4 +62,20 @@
 	<label index="contextmenu.showEventInCalendar.month">Month</label>
 	<label index="ac.personassignment.notFoundInfo">No person of this name was found.</label>
 	<label index="warning.overbooked.confirmsave">Do you want to save the event anyway?</label>
+	<label index="mail.title.create">New Appointment</label>
+	<label index="mail.title.update">Appointment Changed</label>
+	<label index="mail.title.deleted">Appointment Deleted</label>
+	<label index="mail.event.from">Appointment Created By</label>
+	<label index="mail.showeventincalendarview">Show appointment in todoyu calendar</label>
+	<label index="mail.sentBy">Email sent by</label>
+	<label index="mail.event.deleted.previousdata">Previous data of appointment before deletion</label>
+	<label index="mail.popup.headline">Send appointment information per email</label>
+	<label index="mail.popup.button.dontaskagain">Don't send email and don't ask me again.</label>
+	<label index="mail.popup.button.sendAsEmail">Send Appointent Email</label>
+	<label index="mail.popup.subject">Subject</label>
+	<label index="mail.popup.subject.create">New Appointment Created</label>
+	<label index="mail.popup.subject.update">Appointment Changed</label>
+	<label index="mail.popup.subject.delete">Appointment Deleted</label>
+	<label index="mail.notification.popup.deactivated">Mailing popup has been deactivated. You can re-activate it in your profile.</label>
+	<label index="mail.notification.sent">Event email has been sent.</label>
 </labels>

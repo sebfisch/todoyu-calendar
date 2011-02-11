@@ -90,3 +90,20 @@ CREATE TABLE `ext_calendar_mm_event_person` (
 	KEY `event` (`id_event`),
 	KEY `person` (`id_person`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ext_calendar_mm_event_personemail`
+--
+
+CREATE TABLE `ext_calendar_mm_event_personemail` (
+	`id` int(10) NOT NULL AUTO_INCREMENT,
+	`date_create` int(10) unsigned NOT NULL,
+	`date_update` int(10) unsigned NOT NULL,
+	`id_person_create` int(10) unsigned NOT NULL,
+	`id_event` int(10) unsigned NOT NULL,
+	`id_person_email` int(10) unsigned NOT NULL,
+	PRIMARY KEY (`id`),
+	KEY `event` (`id_event`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

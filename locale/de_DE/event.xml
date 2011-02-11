@@ -4,6 +4,7 @@
 	<label index="events">Termine</label>
 	<label index="new">Neuer Termin</label>
 	<label index="edit">Termin bearbeiten</label>
+	<label index="edit.sendasemail">Termin per Email versenden</label>
 	<label index="delete">Termin löschen</label>
 	<label index="saved.ok">Termin gespeichert</label>
 	<label index="saved.error">Terminspeicherung fehlgeschlagen</label>
@@ -23,6 +24,7 @@
 	<label index="type.reminder">Erinnerung</label>
 	<label index="privateEvent.info">Privat</label>
 	<label index="delete.confirm">Wollen Sie diesen Termin wirklich löschen?</label>
+	<label index="group.attendees">Teilnehmer des Termins</label>
 	<label index="attr.creator">Ersteller</label>
 	<label index="attr.eventtype">Terminart</label>
 	<label index="attr.is_dayevent">Ganztagestermin</label>
@@ -60,4 +62,20 @@
 	<label index="contextmenu.showEventInCalendar.month">Monat</label>
 	<label index="ac.personassignment.notFoundInfo">Es wurden keine Personen gefunden, deren Namen diesen Text enthalten.</label>
 	<label index="warning.overbooked.confirmsave">Diesen Termin dennoch speichern?</label>
+	<label index="mail.title.create">Neuer Termin</label>
+	<label index="mail.title.update">Geänderter Termin</label>
+	<label index="mail.title.deleted">Termin gelöscht</label>
+	<label index="mail.event.from">Termin erstellt durch</label>
+	<label index="mail.showeventincalendarview">Termin in todoyu Kalendar anzeigen</label>
+	<label index="mail.sentBy">Email versendet durch</label>
+	<label index="mail.event.deleted.previousdata">Termin-Daten vor Löschung</label>
+	<label index="mail.popup.headline">Termin-Information als Email versenden</label>
+	<label index="mail.popup.button.dontaskagain">Keine Email versenden und diese Frage nicht mehr stellen.</label>
+	<label index="mail.popup.button.sendAsEmail">Termin-Email Versenden</label>
+	<label index="mail.popup.subject">Betreff</label>
+	<label index="mail.popup.subject.create">Neuer Termin erstellt</label>
+	<label index="mail.popup.subject.update">Termin geändert</label>
+	<label index="mail.popup.subject.delete">Termin gelöscht</label>
+	<label index="mail.notification.popup.deactivated">Termin-Mail popup deaktiviert. (Kann im Profil erneut aktiviert werden).</label>
+	<label index="mail.notification.sent">Termin-Email wurde verschickt.</label>
 </labels>

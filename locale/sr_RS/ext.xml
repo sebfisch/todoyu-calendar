@@ -30,4 +30,6 @@
 	<label index="owner">Власник</label>
 	<label index="today">Данас</label>
 	<label index="extconf.allowoverbooking.label">Дозвољено пребукирање?</label>
+	<label index="profile.module">Календар</label>
+	<label index="profile.module.main.tab">Општи</label>
 </labels>

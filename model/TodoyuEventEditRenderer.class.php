@@ -42,7 +42,7 @@ class TodoyuEventEditRenderer {
 	 * @param	Integer	$idEvent
 	 * @return	String	HTML
 	 */
-	public static function renderEditView($idEvent)	{
+	public static function renderEditView($idEvent) {
 		$idEvent	= intval($idEvent);
 
 		$tabLabel	= Label('LLL:event.edit');

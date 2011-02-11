@@ -30,4 +30,6 @@
 	<label index="owner">Proprietário</label>
 	<label index="today">Hoje</label>
 	<label index="extconf.allowoverbooking.label">Permitir Overbooking?</label>
+	<label index="profile.module">Calendário</label>
+	<label index="profile.module.main.tab">Principal</label>
 </labels>
