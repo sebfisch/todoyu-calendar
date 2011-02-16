@@ -119,7 +119,7 @@ class TodoyuEventRights {
 		$idEvent	= intval($idEvent);
 
 		$event				= TodoyuEventManager::getEvent($idEvent);
-		$isPrivate			= $event->data['is_private'] === '1';
+		$isPrivate			= $event->get('is_private') === '1';
 		$assignedPersons	= $event->getAssignedPersonIDs();
 
 		$idPerson	= personid();
