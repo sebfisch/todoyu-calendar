@@ -27,6 +27,18 @@
 class TodoyuCalendarProfileActionController extends TodoyuActionController {
 
 	/**
+	 * Initialize calendar default action: check permission
+	 *
+	 * @param	Array	$params
+	 */
+	public function init(array $params) {
+		restrict('calendar', 'general:use');
+		restrictInternal();
+	}
+
+
+
+	/**
 	 * Save calendar preference from profile
 	 *
 	 * @param	Array		$params

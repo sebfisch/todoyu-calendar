@@ -49,7 +49,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 			// Check rights
 		if( $idEvent === 0 ) {
-			restrict('calendar', 'event:add');
+			TodoyuEventRights::restrictAdd();
 			$tabLabel	= Label('event.new');
 		} else {
 			TodoyuEventRights::restrictEdit($idEvent);
@@ -75,7 +75,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Check rights
 		if( $idEvent === 0 ) {
 				// New event
-			restrict('calendar', 'event:add');
+			TodouyEventRights::restrictAdd();
 		} else {
 				// Edit event
 			TodoyuEventRights::restrictEdit($idEvent);
@@ -139,6 +139,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$tab		= trim($params['tab']);
 		$isConfirmed= ( $params['confirmed'] == '1' ) ? true : false;
 
+		// Check right
+		TodoyuEventRights::restrictEdit($idEvent);
+
 		$overbookings	= TodoyuEventManager::moveEvent($idEvent, $timeStart, $tab, $isConfirmed);
 
 		if( is_array($overbookings) && ! $isConfirmed ) {
@@ -164,14 +167,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	public function deleteAction(array $params) {
 		$idEvent= intval($params['event']);
 
-		$event	= TodoyuEventManager::getEvent($idEvent);
-
 			// Check right
-		if( $event->isCurrentPersonAssigned() ) {
-			restrict('calendar', 'event:editAndDeleteAssigned');
-		} else {
-			restrict('calendar', 'event:editAndDeleteAll');
-		}
+		TodoyuEventRights::restrictEdit($idEvent);
 
 		TodoyuEventManager::deleteEvent($idEvent);
 	}
@@ -186,11 +183,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function detailAction(array $params) {
 		$idEvent= intval($params['event']);
-		$event	= TodoyuEventManager::getEvent($idEvent);
 
-		if( ! $event->isCurrentPersonAssigned() ) {
-			restrict('calendar', 'event:seeAll');
-		}
+		TodoyuEventRights::restrictSee($idEvent);
 
 		return TodoyuEventRenderer::renderEventDetailsInList($idEvent);
 	}
@@ -205,6 +199,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	public function acknowledgeAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$idPerson	= intval($params['person']);
+
+		TodoyuEventRights::restrictSee( $idEvent );
 
 		TodoyuEventManager::acknowledgeEvent($idEvent, $idPerson);
 	}
@@ -221,9 +217,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$event		= TodoyuEventManager::getEvent($idEvent);
 
-		if( ! $event->isCurrentPersonAssigned() ) {
-			restrict('calendar', 'event:seeAll');
-		}
+		TodoyuEventRights::restrictSee($idEvent);
 
 			// Send tab label
 		$tabLabel	= TodoyuString::crop($event->getTitle(), 20, '...', false);

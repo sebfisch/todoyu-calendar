@@ -27,14 +27,25 @@
 class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionController {
 
 	/**
+	 * Initialize calendar default action: check permission
+	 *
+	 * @param	Array	$params
+	 */
+	public function init(array $params) {
+		restrict('calendar', 'general:use');
+		restrictInternal();
+	}
+
+
+
+	/**
 	 * Render quick event creation form in popUp
 	 *
 	 * @param	Array	$params
 	 * @return	String
 	 */
 	public function popupAction(array $params) {
-		restrict('calendar', 'event:add');
-		restrictInternal();
+		TodoyuEventRights::restrictAdd();
 
 		return TodoyuEventRenderer::renderCreateQuickEvent();
 	}
@@ -48,7 +59,7 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 	 * @return	String
 	 */
 	public function saveAction(array $params) {
-		restrict('calendar', 'event:add');
+		TodoyuEventRights::restrictAdd();
 
 		$formData	= $params['event'];
 

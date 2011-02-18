@@ -33,6 +33,7 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 	 */
 	public function init(array $params) {
 		restrict('calendar', 'general:use');
+		restrict('calendar', 'general:area');
 		restrictInternal();
 	}
 
@@ -45,8 +46,6 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public function defaultAction(array $params) {
-		restrict('calendar', 'general:area');
-
 			// Generate colors CSS and sprite
 		TodoyuColors::generate();
 
