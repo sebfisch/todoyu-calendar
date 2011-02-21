@@ -75,7 +75,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Check rights
 		if( $idEvent === 0 ) {
 				// New event
-			TodouyEventRights::restrictAdd();
+			TodoyuEventRights::restrictAdd();
 		} else {
 				// Edit event
 			TodoyuEventRights::restrictEdit($idEvent);
@@ -106,7 +106,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				}
 			}
 
-				// Save or update event (and send email if mail-option activated) 
+				// Save or update event (and send email if mail-option activated)
 			if( $needToShowWarning === false ) {
 				$data	= $form->getStorageData();
 
@@ -137,7 +137,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$timeStart	= strtotime($params['date']);
 		$tab		= trim($params['tab']);
-		$isConfirmed= ( $params['confirmed'] == '1' ) ? true : false;
+		$isConfirmed= $params['confirmed'] == '1';
 
 		// Check right
 		TodoyuEventRights::restrictEdit($idEvent);
