@@ -556,7 +556,6 @@ class TodoyuEventManager {
 	 * @param	Boolean		$resetForCurrentUser		Reset also for current user
 	 */
 	public static function resetAcknowledgment($idEvent, $resetForCurrentUser = false) {
-		TodoyuDebug::printInFireBug($idEvent, 'reset ackn');
 		$idEvent= intval($idEvent);
 		$table	= 'ext_calendar_mm_event_person';
 		$update	= array(
@@ -602,6 +601,7 @@ class TodoyuEventManager {
 
 			// Update the event with the definitive data
 		self::updateEvent($idEvent, $data);
+		self::resetAcknowledgment($idEvent);
 
 			// Remove record and query from cache
 		self::removeEventFromCache($idEvent);
