@@ -120,7 +120,6 @@ class TodoyuEventManager {
 		$fields	= '	e.*,
 					mmep.id_person,
 					mmep.is_acknowledged,
-					mmep.is_update,
 					e.date_end - e.date_start as duration';
 
 			// We add or subtract 1 second to prevent direct overlapping collision
@@ -475,7 +474,7 @@ class TodoyuEventManager {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 
 		$idEvent	= intval($data['id']);
-		$isNewEvent	= ( $idEvent === 0 );
+		$isNewEvent	= $idEvent === 0;
 
 			// Add empty event
 		if( $idEvent === 0 ) {
@@ -510,7 +509,12 @@ class TodoyuEventManager {
 		}
 
 			// Add persons
-		self::assignPersonsToEvent($idEvent, $data['persons'], ! $isNewEvent);
+		self::assignPersonsToEvent($idEvent, $data['persons']);
+
+			// If event was updated, reset acknowledge flag so everyone sees the update
+		if( ! $isNewEvent ) {
+			self::resetAcknowledgment($idEvent);
+		}
 
 			// Remove not needed fields
 		unset($data['person']);
@@ -540,6 +544,31 @@ class TodoyuEventManager {
 		}
 
 		return $idEvent;
+	}
+
+
+
+	/**
+	 * Reset acknowledge flag of event assignment. Event will be show as "new"
+	 * By default, the current user will not be reset, he should already now
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Boolean		$resetForCurrentUser		Reset also for current user
+	 */
+	public static function resetAcknowledgment($idEvent, $resetForCurrentUser = false) {
+		TodoyuDebug::printInFireBug($idEvent, 'reset ackn');
+		$idEvent= intval($idEvent);
+		$table	= 'ext_calendar_mm_event_person';
+		$update	= array(
+			'is_acknowledged'	=> 0
+		);
+		$where	= '	id_event = ' . $idEvent;
+
+		if( ! $resetForCurrentUser ) {
+			$where .= ' AND	id_person != ' . personid();
+		}
+
+		Todoyu::db()->doUpdate($table, $where, $update);
 	}
 
 
@@ -652,6 +681,7 @@ class TodoyuEventManager {
 		}
 
 		self::updateEvent($idEvent, $data);
+		self::resetAcknowledgment($idEvent);
 
 		return true;
 	}
@@ -663,14 +693,13 @@ class TodoyuEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$personIDs
-	 * @param	Boolean		$isUpdate		Not a new event but saving of modification
 	 */
-	public static function assignPersonsToEvent($idEvent, array $personIDs, $isUpdate = false) {
+	public static function assignPersonsToEvent($idEvent, array $personIDs) {
 		$idEvent	= intval($idEvent);
-		$personIDs	= TodoyuArray::intval($personIDs, true, false);
+		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
 		foreach($personIDs as $idPerson) {
-			self::assignPersonToEvent($idEvent, $idPerson, $isUpdate);
+			self::assignPersonToEvent($idEvent, $idPerson);
 		}
 	}
 
@@ -681,9 +710,8 @@ class TodoyuEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @param	Boolean		$isUpdate		Not a new event but saving of modification
 	 */
-	public static function assignPersonToEvent($idEvent, $idPerson, $isUpdate = false) {
+	public static function assignPersonToEvent($idEvent, $idPerson) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 
@@ -691,8 +719,7 @@ class TodoyuEventManager {
 		$data	= array(
 			'id_event'			=> $idEvent,
 			'id_person'			=> $idPerson,
-			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0,
-			'is_update'			=> $isUpdate
+			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0
 		);
 
 		Todoyu::db()->addRecord($table, $data);
