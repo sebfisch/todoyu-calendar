@@ -2,7 +2,7 @@
 <labels>
 	<label index="ext.title">Calendrier</label>
 	<label index="page.title">Calendrier</label>
-	<label index="maintab.label">Plannification</label>
+	<label index="maintab.label">Planification</label>
 	<label index="subMenuEntries.prefix">Calendrier</label>
 	<label index="subMenuEntry.day">Jour</label>
 	<label index="subMenuEntry.week">Semaine</label>
