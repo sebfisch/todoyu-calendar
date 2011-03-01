@@ -120,6 +120,7 @@ class TodoyuEventManager {
 		$fields	= '	e.*,
 					mmep.id_person,
 					mmep.is_acknowledged,
+					mmep.is_updated,
 					e.date_end - e.date_start as duration';
 
 			// We add or subtract 1 second to prevent direct overlapping collision
@@ -509,12 +510,7 @@ class TodoyuEventManager {
 		}
 
 			// Add persons
-		self::assignPersonsToEvent($idEvent, $data['persons']);
-
-			// If event was updated, reset acknowledge flag so everyone sees the update
-		if( ! $isNewEvent ) {
-			self::resetAcknowledgment($idEvent);
-		}
+		self::assignPersonsToEvent($idEvent, $data['persons'], ! $isNewEvent);
 
 			// Remove not needed fields
 		unset($data['person']);
@@ -681,7 +677,6 @@ class TodoyuEventManager {
 		}
 
 		self::updateEvent($idEvent, $data);
-		self::resetAcknowledgment($idEvent);
 
 		return true;
 	}
@@ -693,25 +688,27 @@ class TodoyuEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$personIDs
+	 * @param	Boolean		$isUpdate
 	 */
-	public static function assignPersonsToEvent($idEvent, array $personIDs) {
+	public static function assignPersonsToEvent($idEvent, array $personIDs, $isUpdate = false) {
 		$idEvent	= intval($idEvent);
 		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
 		foreach($personIDs as $idPerson) {
-			self::assignPersonToEvent($idEvent, $idPerson);
+			self::assignPersonToEvent($idEvent, $idPerson, $isUpdate);
 		}
 	}
 
 
 
 	/**
-	 * Assign a single person to an event
+	 * Assign a single person to given event
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
+	 * @param	Boolean		$isUpdate
 	 */
-	public static function assignPersonToEvent($idEvent, $idPerson) {
+	public static function assignPersonToEvent($idEvent, $idPerson, $isUpdate = false) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 
@@ -719,7 +716,8 @@ class TodoyuEventManager {
 		$data	= array(
 			'id_event'			=> $idEvent,
 			'id_person'			=> $idPerson,
-			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0
+			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0,
+			'is_updated'		=> $isUpdate ? 1 : 0
 		);
 
 		Todoyu::db()->addRecord($table, $data);

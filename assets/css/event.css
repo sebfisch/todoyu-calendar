@@ -342,6 +342,11 @@ div.weekMode div#calendararea div.event dd span.desc {
 	cursor:pointer;
 }
 
+#events h3 span.icon.acknowledge.not.updated {
+	background:url(../../../project/assets/img/icons.png) no-repeat 2px -622px;
+	cursor:pointer;
+}
+
 div.eventDetails dt {
 	float:left;
 	line-height:18px;
