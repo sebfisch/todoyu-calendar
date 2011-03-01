@@ -25,6 +25,12 @@
  * @subpackage	Calendar
  */
 
+
+	// Calendar record types
+define('CALENDAR_TYPE_EVENT',	1);
+
+
+
 	// Calendar viewing modes
 define('CALENDAR_MODE_DAY', 		1);
 define('CALENDAR_MODE_WEEK', 		2);

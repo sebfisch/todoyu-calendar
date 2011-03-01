@@ -27,13 +27,6 @@
 class TodoyuEventMailManager {
 
 	/**
-	 * @var	String		Default table for database requests
-	 */
-	const TABLE = 'ext_calendar_mm_event_personemail';
-
-
-
-	/**
 	 * Check whether mail popup is to be shown (not disabled, at least one other attendee person has email)
 	 *
 	 * @param	Integer		$idEvent
@@ -45,11 +38,7 @@ class TodoyuEventMailManager {
 		$prefName		= 'is_mailpopupdeactivated';
 		$isDeactivated	= TodoyuCalendarPreferences::getPref($prefName, 0, 0, false, personid());
 
-		if( $isDeactivated ) {
-			return false;
-		}
-
-		return TodoyuEventManager::hasAnyEventPersonAnEmailAddress($idEvent, array(personid()));
+		return $isDeactivated ? false : TodoyuEventManager::hasAnyEventPersonAnEmailAddress($idEvent, array(personid()));
 	}
 
 
@@ -61,12 +50,7 @@ class TodoyuEventMailManager {
 	 * @param	Array		$personIDs			Persons the event has been sent to
 	 */
 	public static function saveMailsSent($idEvent, array $personIDs = array() ) {
-		$idEvent		= intval($idEvent);
-		$personIDs		= TodoyuArray::intval($personIDs);
-
-		foreach($personIDs as $idPerson) {
-			self::addMailSent($idEvent, $idPerson);
-		}
+		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent, $personIDs);
 	}
 
 
@@ -78,17 +62,7 @@ class TodoyuEventMailManager {
 	 * @param	Integer		$idPerson
 	 */
 	public static function addMailSent($idEvent, $idPerson) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= intval($idPerson);
-
-		$data	= array(
-			'id_person_create'	=> personid(),
-			'date_create'		=> NOW,
-			'id_event'			=> $idEvent,
-			'id_person_email'	=> $idPerson,
-		);
-
-		TodoyuRecordManager::addRecord(self::TABLE, $data);
+		TodoyuMailManager::addMailSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent, $idPerson);
 	}
 
 
@@ -100,25 +74,7 @@ class TodoyuEventMailManager {
 	 * @return	Array
 	 */
 	public static function getEmailPersons($idEvent) {
-		$idEvent	= intval($idEvent);
-
-		$fields	= '	p.id,
-					p.username,
-					p.email,
-					p.firstname,
-					p.lastname,
-					e.date_create';
-		$tables	= '	ext_contact_person p,
-					ext_event_mm_event_personemail e';
-		$where	= '		e.id_event 		= ' . $idEvent .
-				  ' AND	e.id_person_email	= p.id
-					AND	p.deleted			= 0';
-		$group	= '	p.id';
-		$order	= '	p.lastname,
-					p.firstname';
-		$indexField	= 'id';
-
-		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, '', $indexField);
+		return TodoyuMailManager::getEmailPersons(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent);
 	}
 
 }
