@@ -37,7 +37,7 @@
 					<label>event.attr.is_private</label>
 					<validate>
 						<user msg="LLL:event.error.privateEvent">
-							<function>TodoyuEventFormValidator::eventIsAssignableToCurrentPersonOnly</function>
+							<function>TodoyuCalendarEventFormValidator::eventIsAssignableToCurrentPersonOnly</function>
 						</user>
 					</validate>
 				</field>
@@ -96,10 +96,10 @@
 					</record>
 					<validate>
 						<user msg="LLL:event.error.overbooked">
-							<function>TodoyuEventFormValidator::personsAreBookable</function>
+							<function>TodoyuCalendarEventFormValidator::personsAreBookable</function>
 						</user>
 						<user msg="LLL:event.error.hasInternalPerson">
-							<function>TodoyuEventFormValidator::hasInternalPerson</function>
+							<function>TodoyuCalendarEventFormValidator::hasInternalPerson</function>
 						</user>
 					</validate>
 					<required />
@@ -109,7 +109,7 @@
 					<label>event.attr.id_project</label>
 					<config>
 						<acName>project</acName>
-						<acLabel>TodoyuProjectManager::getLabel</acLabel>
+						<acLabel>TodoyuProjectProjectManager::getLabel</acLabel>
 					</config>
 				</field>
 
@@ -117,7 +117,7 @@
 					<label>event.attr.id_task</label>
 					<config>
 						<acName>task</acName>
-						<acLabel>TodoyuTaskManager::getLabel</acLabel>
+						<acLabel>TodoyuProjectTaskManager::getLabel</acLabel>
 					</config>
 				</field>
 -->
@@ -137,7 +137,7 @@
 				<field type="selectgrouped" name="emailreceivers">
 					<label>comment.edit.sentEmailTo</label>
 					<source type="function">
-						<function>TodoyuEventViewHelper::getEmailReceiverGroupedOptions</function>
+						<function>TodoyuCalendarEventViewHelper::getEmailReceiverGroupedOptions</function>
 						<lazyInit/>
 					</source>
 					<size>5</size>

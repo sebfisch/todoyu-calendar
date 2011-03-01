@@ -27,7 +27,7 @@ require_once( PATH_LIB . '/php/phpmailer/class.phpmailer-lite.php' );
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuEventMailer {
+class TodoyuCalendarEventMailer {
 
 	/**
 	 * Send event information email to the persons
@@ -69,14 +69,14 @@ class TodoyuEventMailer {
 		$idPerson	= intval($idPerson);
 		$operationID= intval($operationID);
 
-		$event	= TodoyuEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 		if( $event->isDeleted() ) {
 			$operationID	= OPERATIONTYPE_RECORD_DELETE;
 		}
 
 		$personWrite	= $event->getCreatePerson();
-		$person			= TodoyuPersonManager::getPerson($idPerson);
+		$person			= TodoyuContactPersonManager::getPerson($idPerson);
 		$eventTitle		= $event->getTitle();
 
 			// Set mail config
@@ -167,10 +167,10 @@ class TodoyuEventMailer {
 		$idEvent		= intval($idEvent);
 		$idPerson		= intval($idPerson);
 
-		$event		= TodoyuEventManager::getEvent($idEvent, true);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent, true);
 
 		$personWrite	= $event->getCreatePerson();
-		$personReceive	= TodoyuPersonManager::getPerson($idPerson);
+		$personReceive	= TodoyuContactPersonManager::getPerson($idPerson);
 		$personSend		= TodoyuAuth::getPerson();
 
 		$data	= array(
@@ -178,7 +178,7 @@ class TodoyuEventMailer {
 			'personReceive'	=> $personReceive->getTemplateData(),
 			'personWrite'	=> $personWrite->getTemplateData(),
 			'personSend'	=> $personSend->getTemplateData(),
-			'attendees'		=> TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true)
+			'attendees'		=> TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true)
 		);
 
 		$data['eventlink'] = TodoyuString::buildUrl(array(

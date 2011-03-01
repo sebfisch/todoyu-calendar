@@ -21,8 +21,8 @@
 /* ----------------------------
 	Context Menu Callbacks
    ---------------------------- */
-TodoyuContextMenuManager::addFunction('Event', 'TodoyuEventManager::getContextMenuItems', 10);
-TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuEventManager::getContextMenuItemsPortal', 10);
+TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarEventManager::getContextMenuItems', 10);
+TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuCalendarEventManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::addFunction('CalendarBody', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
 TodoyuQuickinfoManager::addFunction('event', 'TodoyuCalendarQuickinfoManager::addQuickinfoEvent');
@@ -83,17 +83,17 @@ Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
 /* -------------------
 	Event Types
    ------------------- */
-TodoyuEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'event.type.general');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'event.type.away');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'event.type.awayofficial');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_BIRTHDAY, 'birthday', 'event.type.birthday');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_VACATION, 'vacation', 'event.type.vacation');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_EDUCATION, 'education', 'event.type.education');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_MEETING, 'meeting', 'event.type.meeting');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'event.type.homeoffice');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'event.type.compensation');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'event.type.milestone');
-TodoyuEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.type.reminder');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'event.type.general');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'event.type.away');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'event.type.awayofficial');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_BIRTHDAY, 'birthday', 'event.type.birthday');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_VACATION, 'vacation', 'event.type.vacation');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_EDUCATION, 'education', 'event.type.education');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MEETING, 'meeting', 'event.type.meeting');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'event.type.homeoffice');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'event.type.compensation');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'event.type.milestone');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.type.reminder');
 
 	// Which event types have no relevance to overbooking prevention?
 Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'] = array(

@@ -25,7 +25,7 @@
  * @subpackage	Calendar
  *
  */
-class TodoyuReminder extends TodoyuBaseObject {
+class TodoyuCalendarReminder extends TodoyuBaseObject {
 
 	/**
 	 * Initialize reminder (based on event's person assignment)
@@ -106,7 +106,7 @@ class TodoyuReminder extends TodoyuBaseObject {
 	 */
 	public function isDayevent() {
 		$idEvent= $this->data['id_event'];
-		$event	= TodoyuEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 		return $event->isDayevent();
 	}
@@ -120,7 +120,7 @@ class TodoyuReminder extends TodoyuBaseObject {
 	 */
 	public function isPrivate() {
 		$idEvent= $this->data['id_event'];
-		$event	= TodoyuEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 		return $event->isPrivate();
 	}

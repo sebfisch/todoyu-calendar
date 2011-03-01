@@ -45,9 +45,9 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 	 * @return	String
 	 */
 	public function popupAction(array $params) {
-		TodoyuEventRights::restrictAdd();
+		TodoyuCalendarEventRights::restrictAdd();
 
-		return TodoyuEventRenderer::renderCreateQuickEvent();
+		return TodoyuCalendarEventRenderer::renderCreateQuickEvent();
 	}
 
 
@@ -59,12 +59,12 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 	 * @return	String
 	 */
 	public function saveAction(array $params) {
-		TodoyuEventRights::restrictAdd();
+		TodoyuCalendarEventRights::restrictAdd();
 
 		$formData	= $params['event'];
 
 			// Get form object, call save hooks, set data
-		$form		= TodoyuEventManager::getQuickCreateForm();
+		$form		= TodoyuCalendarEventManager::getQuickCreateForm();
 		$xmlPath	= 'ext/calendar/config/form/event.xml';
 		$formData	= TodoyuFormHook::callSaveData($xmlPath, $formData, 0);
 		$form->setFormData($formData);
@@ -73,8 +73,8 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 			$storageData	= $form->getStorageData();
 
 				// Save or update event
-			$idEvent	= TodoyuEventManager::saveQuickEvent($storageData);
-			$event		= TodoyuEventManager::getEvent($idEvent);
+			$idEvent	= TodoyuCalendarEventManager::saveQuickEvent($storageData);
+			$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 			$startDate	= $event->getStartDate();
 
 			TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);

@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuEventSearch implements TodoyuSearchEngineIf {
+class TodoyuCalendarEventSearch implements TodoyuSearchEngineIf {
 
 	/**
 	 * @var	String		Default table for database requests
@@ -78,7 +78,7 @@ class TodoyuEventSearch implements TodoyuSearchEngineIf {
 			$events	= Todoyu::db()->getArray($fields, $table, $where, '', $order);
 
 			foreach($events as $event) {
-				if( TodoyuEventRights::isSeeDetailsAllowed($event['id']) ) {
+				if( TodoyuCalendarEventRights::isSeeDetailsAllowed($event['id']) ) {
 					$suggestions[] = array(
 						'labelTitle'=> TodoyuTime::format($event['date_start'], 'datetime') . ': ' . $event['title'],
 						'labelInfo'	=> TodoyuString::getSubstring($event['description'], $find[0], 20, 30, false),

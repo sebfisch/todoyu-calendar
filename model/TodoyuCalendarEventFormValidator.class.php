@@ -26,7 +26,7 @@
  */
 
 
-class TodoyuEventFormValidator {
+class TodoyuCalendarEventFormValidator {
 
 	/**
 	 * Check whether the event is only assigned to the current person if the event is private
@@ -126,7 +126,7 @@ class TodoyuEventFormValidator {
 
 			if( ! $isDayEvent && ! in_array($idEventType, $overbookableEventTypes) ) {
 				$personIDs		= TodoyuArray::intval(TodoyuArray::getColumn($value, 'id'), true, true);
-				$overbookedInfos= TodoyuEventManager::getOverbookingInfos($formData['date_start'], $formData['date_end'], $personIDs, $idEvent);
+				$overbookedInfos= TodoyuCalendarEventManager::getOverbookingInfos($formData['date_start'], $formData['date_end'], $personIDs, $idEvent);
 
 				if( sizeof($overbookedInfos) > 0 ) {
 					self::setOverbookingError($formElement, $overbookedInfos);
@@ -141,7 +141,7 @@ class TodoyuEventFormValidator {
 
 
 	/**
-	 * Render overbooking error message and set in event form 
+	 * Render overbooking error message and set in event form
 	 *
 	 * @param	TodoyuFormElement	$formElement
 	 * @param	Array				$overbookedInfos
@@ -178,7 +178,7 @@ class TodoyuEventFormValidator {
 		$fields	= '	c.id';
 		$tables	= '	ext_contact_mm_company_person mmcp,
 					ext_contact_company c';
-		$where	= '		mmcp.id_person IN(' . implode(',', $personIDs) . ') 
+		$where	= '		mmcp.id_person IN(' . implode(',', $personIDs) . ')
 					AND	mmcp.id_company	= c.id
 					AND	c.is_internal	= 1';
 		$limit	= 1;

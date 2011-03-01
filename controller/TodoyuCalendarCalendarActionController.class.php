@@ -48,7 +48,7 @@ class TodoyuCalendarCalendarActionController extends TodoyuActionController {
 		$tab	= trim($params['tab']);
 		$time	= strtotime($params['date']);
 
-		TodoyuPanelWidgetCalendar::saveDate($time);
+		TodoyuCalendarPanelWidgetCalendar::saveDate($time);
 		TodoyuCalendarPreferences::saveActiveTab($tab);
 
 		$calendar = TodoyuCalendarRenderer::renderCalendar($time, $tab);

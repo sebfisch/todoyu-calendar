@@ -24,7 +24,7 @@
  * @package			Todoyu
  * @subpackage		Calendar
 */
-class TodoyuEventRenderer {
+class TodoyuCalendarEventRenderer {
 
 	/**
 	 * Render create event form popup
@@ -37,7 +37,7 @@ class TodoyuEventRenderer {
 		$time	= TodoyuTime::getRoundedTime($time, 15);
 
 					// Get form object
-		$form	= TodoyuEventManager::getQuickCreateForm();
+		$form	= TodoyuCalendarEventManager::getQuickCreateForm();
 
 			// Set event start and ending timestamps
 		if( $isDayEvent ) {
@@ -78,7 +78,7 @@ class TodoyuEventRenderer {
 	 */
 	public static function prepareEventRenderData($mode = CALENDAR_MODE_MONTH, array $data) {
 		$idEvent			= intval($data['id']);
-		$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true );
+		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true );
 		$idAssignedPerson	= count($assignedPersons) == 1 ? $assignedPersons[0]['id_person'] : 0;
 
 		$color = self::getEventColorData($idAssignedPerson);
@@ -86,7 +86,7 @@ class TodoyuEventRenderer {
 		$data['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
 		$data['assignedPersons']= $assignedPersons;
 		$data['color']			= $color[$idAssignedPerson];
-		$data['eventtypeKey']	= TodoyuEventTypeManager::getEventTypeKey($data['eventtype']);
+		$data['eventtypeKey']	= TodoyuCalendarEventTypeManager::getEventTypeKey($data['eventtype']);
 
 
 		$assignedPersons = TodoyuArray::getColumn($data['assignedPersons'], 'id');
@@ -96,7 +96,7 @@ class TodoyuEventRenderer {
 			$data = self::hidePrivateData($data);
 		}
 
-		if( TodoyuEventRights::isEditAllowed($idEvent) === false) {
+		if( TodoyuCalendarEventRights::isEditAllowed($idEvent) === false) {
 			$data['class'] .= ' noAccess';
 		}
 
@@ -142,7 +142,7 @@ class TodoyuEventRenderer {
 	 */
 	public static function renderEventDetailsInList($idEvent) {
 		$idEvent= intval($idEvent);
-		$event	= TodoyuEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 		$colors = self::getEventColorData(personid());
 
 		$eventData	= $event->getTemplateData(true);
@@ -152,7 +152,7 @@ class TodoyuEventRenderer {
 		$data	= array(
 			'event'			=> $eventData,
 			'color'			=> $colors[personid()],
-			'attendees'		=> TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true),
+			'attendees'		=> TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true),
 			'person_create'	=> $event->getPerson('create')->getTemplateData()
 		);
 
@@ -190,7 +190,7 @@ class TodoyuEventRenderer {
 	public static function getEventColorData($idAssignedPerson) {
 		if( $idAssignedPerson > 0 ) {
 				//  Unique person assigned to event?
-			$eventColorData	= TodoyuPersonManager::getSelectedPersonColor(array($idAssignedPerson));
+			$eventColorData	= TodoyuContactPersonManager::getSelectedPersonColor(array($idAssignedPerson));
 		} else {
 			// Multiple / no person assigned?
 			$eventColorData = array(
@@ -276,7 +276,7 @@ class TodoyuEventRenderer {
 		$jsHandler	= 'Todoyu.Ext.calendar.Tabs.onSelect.bind(Todoyu.Ext.calendar.Tabs)';
 		$tabs		= TodoyuCalendarManager::getCalendarTabsConfig();
 
-		$event		= TodoyuEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 
 		$detailTab	= array(
 			'id'		=> 'detail',
@@ -298,7 +298,7 @@ class TodoyuEventRenderer {
 	 */
 	public static function renderEventView($idEvent) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 
 		$tmpl		= 'ext/calendar/view/event-view.tmpl';
 
@@ -320,7 +320,7 @@ class TodoyuEventRenderer {
 	 */
 	public static function renderEventReminder($idEvent) {
 		$idEvent= intval($idEvent);
-		$event	= TodoyuEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 			// Construct form object for inline form
 		$xmlPath	= 'ext/calendar/config/form/event-reminder.xml';
@@ -349,14 +349,14 @@ class TodoyuEventRenderer {
 	 */
 	public static function renderEventMailPopup($idEvent, $operationID = OPERATIONTYPE_RECORD_UPDATE) {
 		$idEvent= intval($idEvent);
-		$event	= TodoyuEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 			// Construct form object for inline form
 		$xmlPath	= 'ext/calendar/config/form/event-mailing.xml';
 		$form		= TodoyuFormManager::getForm($xmlPath, 0, array(), array('#id_event#'=> $idEvent));
 
 			// Have all email persons but user himself preselected
-		$emailPersonIDs	= array_keys(TodoyuEventManager::getEmailReceivers($idEvent, false));
+		$emailPersonIDs	= array_keys(TodoyuCalendarEventManager::getEmailReceivers($idEvent, false));
 		$emailPersonIDs	= TodoyuArray::removeByValue($emailPersonIDs, array(personid()), false);
 
 			// Set mail form data

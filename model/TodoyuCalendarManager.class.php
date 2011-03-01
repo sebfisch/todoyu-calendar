@@ -59,8 +59,8 @@ class TodoyuCalendarManager {
 		$holidaySets	= self::getSelectedHolidaySets();
 
 		if( sizeof($holidaySets) > 0 ) {
-			$holidays	= TodoyuHolidayManager::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySets);
-			$grouped	= TodoyuHolidayManager::groupHolidaysByDays($holidays);
+			$holidays	= TodoyuCalendarHolidayManager::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySets);
+			$grouped	= TodoyuCalendarHolidayManager::groupHolidaysByDays($holidays);
 		}
 
 		return $grouped;
@@ -213,7 +213,7 @@ class TodoyuCalendarManager {
 	 * @return	Boolean
 	 */
 	public static function isOverbookingAllowed() {
-		$extConf	= TodoyuExtConfManager::getExtConf('calendar');
+		$extConf	= TodoyuSysmanagerExtConfManager::getExtConf('calendar');
 
 		return intval($extConf['allowoverbooking']) === 1;
 	}
@@ -244,8 +244,8 @@ class TodoyuCalendarManager {
 	 * Add reminder JS init to page
 	 */
 	public static function addReminderJsInitToPage() {
-		if( TodoyuReminderManager::isPersonActivatedForReminders() ) {
-			$jsInitCode	= TodoyuReminderManager::getReminderJsPageInit();
+		if( TodoyuCalendarReminderManager::isPersonActivatedForReminders() ) {
+			$jsInitCode	= TodoyuCalendarReminderManager::getReminderJsPageInit();
 
 			if( $jsInitCode !== false ) {
 				TodoyuPage::addJsOnloadedFunction($jsInitCode, 100);
@@ -273,7 +273,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getSelectedPersons() {
-		return TodoyuPanelWidgetStaffSelector::getSelectedPersons();
+		return TodoyuContactPanelWidgetStaffSelector::getSelectedPersons();
 	}
 
 
@@ -284,7 +284,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getSelectedEventTypes() {
-		return TodoyuPanelWidgetEventTypeSelector::getSelectedEventTypes();
+		return TodoyuCalendarPanelWidgetEventTypeSelector::getSelectedEventTypes();
 	}
 
 
@@ -295,7 +295,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getSelectedHolidaySets() {
-		return TodoyuPanelWidgetHolidaySetSelector::getSelectedHolidaySetIDs();
+		return TodoyuCalendarPanelWidgetHolidaySetSelector::getSelectedHolidaySetIDs();
 	}
 
 
@@ -336,7 +336,7 @@ class TodoyuCalendarManager {
 
 		$birthdaysByDay	= array();
 
-		$birthdayPersons= TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
+		$birthdayPersons= TodoyuContactPersonManager::getBirthdayPersons($dateStart, $dateEnd);
 
 		foreach($birthdayPersons as $birthdayPerson) {
 			$dateKey = date('Ymd', $birthdayPerson['date']);
@@ -359,7 +359,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getDayEventsWeekMapping($dateStart, $dateEnd, array $eventTypes, array $persons) {
-		$events			= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, true);
+		$events			= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, true);
 		$rangeKeys		= self::getDayKeys($dateStart, $dateEnd);
 		$mapping		= array();
 		$emptyMap		= array();
@@ -469,7 +469,7 @@ class TodoyuCalendarManager {
 			$personIDs	= Todoyu::db()->getColumn($fields, $table, $where, '', $order, '', 'id');
 
 			foreach($personIDs as $idPerson) {
-				$items[$idPerson] = TodoyuPersonManager::getLabel($idPerson);
+				$items[$idPerson] = TodoyuContactPersonManager::getLabel($idPerson);
 			}
 		}
 

@@ -34,7 +34,7 @@ class TodoyuCalendarPortalManager {
 	public static function getAppointments() {
 		$timespan	= self::getAppointmentsTimespan();
 
-		return TodoyuEventManager::getEventsInTimespan($timespan['start'], $timespan['end'], array(personid()));
+		return TodoyuCalendarEventManager::getEventsInTimespan($timespan['start'], $timespan['end'], array(personid()));
 	}
 
 
@@ -64,7 +64,7 @@ class TodoyuCalendarPortalManager {
 		$weeksHoliday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksHoliday']);
 		$endTime		= NOW + $weeksHoliday * TodoyuTime::SECONDS_WEEK;
 
-		return TodoyuHolidayManager::getPersonHolidaysInTimespan(array(personid()), NOW, $endTime);
+		return TodoyuCalendarHolidayManager::getPersonHolidaysInTimespan(array(personid()), NOW, $endTime);
 	}
 
 
@@ -75,12 +75,12 @@ class TodoyuCalendarPortalManager {
 	 * @return	Array
 	 */
 	public static function getBirthdays() {
-		if( TodoyuEventRights::isAllowedSeeBirthdaysInPortal() ) {
+		if( TodoyuCalendarEventRights::isAllowedSeeBirthdaysInPortal() ) {
 			$weeksBirthday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksBirthday']);
 			$dateStart		= TodoyuTime::getStartOfDay();
 			$dateEnd		= TodoyuTime::addDays($dateStart, $weeksBirthday * 7);
 
-			return TodoyuPersonManager::getBirthdayPersons($dateStart, $dateEnd);
+			return TodoyuContactPersonManager::getBirthdayPersons($dateStart, $dateEnd);
 		}
 
 		return array();

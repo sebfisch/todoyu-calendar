@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
+class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
 
 	/**
 	 * @var string		Preference name
@@ -98,7 +98,7 @@ class TodoyuPanelWidgetHolidaySetSelector extends TodoyuPanelWidget implements T
 	 * @return	Array
 	 */
 	public static function getHolidaySetsOptions() {
-		$sets		= TodoyuHolidaySetManager::getAllHolidaySets();
+		$sets		= TodoyuCalendarHolidaySetManager::getAllHolidaySets();
 		$selected	= self::getSelectedHolidaySetIDs();
 
 		$options	= array(

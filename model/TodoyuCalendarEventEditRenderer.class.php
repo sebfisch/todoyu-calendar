@@ -18,7 +18,7 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-class TodoyuEventEditRenderer {
+class TodoyuCalendarEventEditRenderer {
 
 	/**
 	 * Render event creation main content (tab head and form)
@@ -99,10 +99,10 @@ class TodoyuEventEditRenderer {
 		$form->setUseRecordID(false);
 
 		if( $idEvent === 0 ) {
-			TodoyuEventManager::createNewEventWithDefaultsInCache($time);
+			TodoyuCalendarEventManager::createNewEventWithDefaultsInCache($time);
 		}
 
-		$event	= TodoyuEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 		$data	= $event->getTemplateData(true);
 			// Call hooked load functions

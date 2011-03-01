@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
+class TodoyuCalendarPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
 
 	/**
 	 * @var string		Preference name
@@ -66,7 +66,7 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 	 */
 	public function renderContent() {
 		$selectedEventTypes	= $this->getSelectedEventTypes();
-		$eventTypes			= TodoyuEventTypeManager::getEventTypes(true);
+		$eventTypes			= TodoyuCalendarEventTypeManager::getEventTypes(true);
 
 		$tmpl	= 'ext/calendar/view/panelwidgets/panelwidget-eventtypeselector.tmpl';
 		$data	= array(
@@ -103,7 +103,7 @@ class TodoyuPanelWidgetEventTypeSelector extends TodoyuPanelWidget implements To
 		$eventTypes	= TodoyuCalendarPreferences::getPref('panelwidget-eventtypeselector', 0, AREA);
 
 		if( $eventTypes === false || $eventTypes === '' ) {
-			$eventTypes	= TodoyuEventTypeManager::getEventTypeIndexes();
+			$eventTypes	= TodoyuCalendarEventTypeManager::getEventTypeIndexes();
 		} else {
 			$eventTypes	= TodoyuArray::intExplode(',', $eventTypes, true, true);
 		}

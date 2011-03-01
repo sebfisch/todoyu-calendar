@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuHolidayManager {
+class TodoyuCalendarHolidayManager {
 
 	/**
 	 * @var	String		Default database table
@@ -36,12 +36,12 @@ class TodoyuHolidayManager {
 	 * Get holiday
 	 *
 	 * @param	Integer			$idHoliday
-	 * @return	TodoyuHoliday
+	 * @return	TodoyuCalendarHoliday
 	 */
 	public static function getHoliday($idHoliday) {
 		$idHoliday	= intval($idHoliday);
 
-		return TodoyuRecordManager::getRecord('TodoyuHoliday', $idHoliday);
+		return TodoyuRecordManager::getRecord('TodoyuCalendarHoliday', $idHoliday);
 	}
 
 
@@ -306,7 +306,7 @@ class TodoyuHolidayManager {
 		$dateEnd		= intval($dateEnd);
 
 			// Get working locations (company addresses) of given persons, affected holidaySets of given address IDs
-		$addressIDs		= TodoyuPersonManager::getWorkaddressIDsOfPersons($personIDs);
+		$addressIDs		= TodoyuContactPersonManager::getWorkaddressIDsOfPersons($personIDs);
 		$holidaySetIDs	= self::getHolidaysetIDsOfAddresses($addressIDs);
 
 			// Get all holidays affected holidaySets in given timespan

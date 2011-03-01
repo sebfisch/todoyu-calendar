@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuHolidaySet extends TodoyuBaseObject {
+class TodoyuCalendarHolidaySet extends TodoyuBaseObject {
 
 	/**
 	 * @var	String		Default table for database requests
@@ -50,14 +50,14 @@ class TodoyuHolidaySet extends TodoyuBaseObject {
 	 * Load foreign data (holidays)
 	 */
 	public function loadForeignData() {
-		$this->data['holiday']	= TodoyuHolidaySetManager::getHolidays($this->id);
+		$this->data['holiday']	= TodoyuCalendarHolidaySetManager::getHolidays($this->id);
 	}
 
 
 
 	/**
 	 * Get template data for holiday set
-	 * 
+	 *
 	 * @param	Boolean	$loadForeignRecords
 	 * @return	Array
 	 */

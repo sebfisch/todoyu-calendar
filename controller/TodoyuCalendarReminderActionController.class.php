@@ -45,15 +45,15 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 	public function popupAction(array $params) {
 		$idEvent	= intval($params['event']);
 
-		$isAudioActivated	= TodoyuExtConfManager::getExtConfValue('calendar', 'audioreminder_active') ? true : false;
+		$isAudioActivated	= TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'audioreminder_active') ? true : false;
 		if( $isAudioActivated ) {
-			$soundFilename	= TodoyuReminderManager::getSoundFilename($idEvent);
+			$soundFilename	= TodoyuCalendarReminderManager::getSoundFilename($idEvent);
 			if( $soundFilename !== false ) {
 				TodoyuHeader::sendTodoyuHeader('soundfile', $soundFilename);
 			}
 		}
 
-		return TodoyuEventRenderer::renderEventReminder($idEvent);
+		return TodoyuCalendarEventRenderer::renderEventReminder($idEvent);
 	}
 
 
@@ -66,7 +66,7 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 	public function dismissAction(array $params) {
 		$idEvent	= intval($params['event']);
 
-		TodoyuReminderManager::setReminderDismissed($idEvent);
+		TodoyuCalendarReminderManager::setReminderDismissed($idEvent);
 	}
 
 
@@ -80,7 +80,7 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 		$idEvent		= intval($params['event']);
 		$nextShowTime	= NOW + intval($params['delay']);
 
-		TodoyuReminderManager::rescheduleReminder($idEvent, $nextShowTime);
+		TodoyuCalendarReminderManager::rescheduleReminder($idEvent, $nextShowTime);
 	}
 
 }

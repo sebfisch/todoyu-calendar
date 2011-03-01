@@ -10,7 +10,7 @@
 					<label>event.attr.assigned_to</label>
 					<config>
 						<acName>eventperson</acName>
-						<acLabel>TodoyuPersonManager::getLabel</acLabel>
+						<acLabel>TodoyuContactPersonManager::getLabel</acLabel>
 						<options>
 							<onComplete>Todoyu.Ext.calendar.Event.Edit.onPersonAcCompleted</onComplete>
 							<onSelected>Todoyu.Ext.calendar.Event.Edit.onPersonAcSelected</onSelected>

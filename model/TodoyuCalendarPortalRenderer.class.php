@@ -73,7 +73,7 @@ class TodoyuCalendarPortalRenderer {
 			// Add details if expanded
 		foreach($events as $idEvent => $eventData) {
 			if( TodoyuCalendarPreferences::getPortalEventExpandedStatus($eventData['id']) ) {
-				$events[$idEvent]['details'] = TodoyuEventRenderer::renderEventDetailsInList($eventData['id']);
+				$events[$idEvent]['details'] = TodoyuCalendarEventRenderer::renderEventDetailsInList($eventData['id']);
 			}
 		}
 

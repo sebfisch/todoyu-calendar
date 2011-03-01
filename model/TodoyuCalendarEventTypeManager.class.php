@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuEventTypeManager {
+class TodoyuCalendarEventTypeManager {
 
 	/**
 	 * Add a new event type

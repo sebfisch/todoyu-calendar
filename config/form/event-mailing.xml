@@ -16,7 +16,7 @@
 				<field type="selectgrouped" name="emailreceivers">
 					<label>comment.edit.sentEmailTo</label>
 					<source type="function">
-						<function>TodoyuEventViewHelper::getEmailReceiverGroupedOptions</function>
+						<function>TodoyuCalendarEventViewHelper::getEmailReceiverGroupedOptions</function>
 						<lazyInit/>
 					</source>
 					<size>5</size>

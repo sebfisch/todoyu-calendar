@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuHolidaySetManager {
+class TodoyuCalendarHolidaySetManager {
 
 	/**
 	 * @var	String		Default table for database requests
@@ -37,12 +37,12 @@ class TodoyuHolidaySetManager {
 	 * Get holiday set
 	 *
 	 * @param	Integer		$idHolidaySet
-	 * @return	TodoyuHolidaySet
+	 * @return	TodoyuCalendarHolidaySet
 	 */
 	public static function getHolidaySet($idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);
 
-		return TodoyuRecordManager::getRecord('TodoyuHolidaySet', $idHolidaySet);
+		return TodoyuRecordManager::getRecord('TodoyuCalendarHolidaySet', $idHolidaySet);
 	}
 
 

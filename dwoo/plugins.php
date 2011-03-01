@@ -36,7 +36,7 @@
  * @return	Boolean
  */
 function Dwoo_Plugin_isAllowedSeeEvent(Dwoo $dwoo, $idEvent) {
-	return TodoyuEventRights::isSeeAllowed($idEvent);
+	return TodoyuCalendarEventRights::isSeeAllowed($idEvent);
 }
 
 
@@ -51,7 +51,7 @@ function Dwoo_Plugin_isAllowedSeeEvent(Dwoo $dwoo, $idEvent) {
  * @return	Boolean
  */
 function Dwoo_Plugin_isAllowedAddEvent(Dwoo $dwoo) {
-	return TodoyuEventRights::isAddAllowed();
+	return TodoyuCalendarEventRights::isAddAllowed();
 }
 
 
@@ -67,7 +67,7 @@ function Dwoo_Plugin_isAllowedAddEvent(Dwoo $dwoo) {
  * @return	Boolean
  */
 function Dwoo_Plugin_isAllowedEditEvent(Dwoo $dwoo, $idEvent) {
-	return TodoyuEventRights::isEditAllowed($idEvent);
+	return TodoyuCalendarEventRights::isEditAllowed($idEvent);
 }
 
 
@@ -83,7 +83,7 @@ function Dwoo_Plugin_isAllowedEditEvent(Dwoo $dwoo, $idEvent) {
  * @return	String
  */
 function Dwoo_Plugin_EventFullLabel_compile(Dwoo_Compiler $compiler, $idEvent) {
-	return 'TodoyuEventManager::getEventFullLabel(' . $idEvent . ')';
+	return 'TodoyuCalendarEventManager::getEventFullLabel(' . $idEvent . ')';
 }
 
 
@@ -99,7 +99,7 @@ function Dwoo_Plugin_EventFullLabel_compile(Dwoo_Compiler $compiler, $idEvent) {
  * @return		String
  */
 function Dwoo_Plugin_EventTypeLabel_compile(Dwoo_Compiler $compiler, $idEventIndex) {
-	return 'TodoyuEventTypeManager::getEventTypeLabel(' . $idEventIndex . ')';
+	return 'TodoyuCalendarEventTypeManager::getEventTypeLabel(' . $idEventIndex . ')';
 }
 
 
@@ -115,7 +115,7 @@ function Dwoo_Plugin_EventTypeLabel_compile(Dwoo_Compiler $compiler, $idEventInd
  * @return		String
  */
 function Dwoo_Plugin_EventTypeKey_compile(Dwoo_Compiler $compiler, $idEventIndex) {
-	return 'TodoyuEventTypeManager::getEventTypeKey(' . $idEventIndex . ')';
+	return 'TodoyuCalendarEventTypeManager::getEventTypeKey(' . $idEventIndex . ')';
 }
 
 

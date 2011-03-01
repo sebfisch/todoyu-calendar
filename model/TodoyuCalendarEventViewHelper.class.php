@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuEventViewHelper {
+class TodoyuCalendarEventViewHelper {
 
 	/**
 	 * Get event types (sorted by label) in a form-readable format
@@ -33,7 +33,7 @@ class TodoyuEventViewHelper {
 	 * @return	Array
 	 */
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
-		$eventTypes	= TodoyuEventTypeManager::getEventTypes(true);
+		$eventTypes	= TodoyuCalendarEventTypeManager::getEventTypes(true);
 		$reform		= array(
 			'index'	=> 'value',
 			'label'	=> 'label'
@@ -48,7 +48,7 @@ class TodoyuEventViewHelper {
 	/**
 	 * Build preformated date info for event quickinfo tooltip
 	 *
-	 * @param	TodoyuEvent		$event
+	 * @param	TodoyuCalendarEvent		$event
 	 * @return	String
 	 */
 	public static function getQuickinfoDateInfo($event) {
@@ -79,7 +79,7 @@ class TodoyuEventViewHelper {
 	/**
 	 * Build preformated person(s) info for event quickinfo tooltip
 	 *
-	 * @param	TodoyuEvent		$event
+	 * @param	TodoyuCalendarEvent		$event
 	 * @param	Integer			$maxLenPersonLabel
 	 * @return	String
 	 */
@@ -88,7 +88,7 @@ class TodoyuEventViewHelper {
 		$personInfo	= array();
 
 		foreach($persons as $person) {
-			$label	= TodoyuPersonManager::getLabel($person['id']);
+			$label	= TodoyuContactPersonManager::getLabel($person['id']);
 
 			$personInfo[]	= TodoyuString::crop($label, 20, '...', false);
 		}
@@ -101,7 +101,7 @@ class TodoyuEventViewHelper {
 	/**
 	 * Build pre formatted type info for event quickinfo tooltip
 	 *
-	 * @param	TodoyuEvent		$event
+	 * @param	TodoyuCalendarEvent		$event
 	 * @return	String
 	 */
 	public static function getQuickinfoTypeInfo($event) {
@@ -125,12 +125,12 @@ class TodoyuEventViewHelper {
 	public static function getEmailReceiverOptions(TodoyuFormElement $field) {
 		$idEvent	= intval($field->getForm()->getHiddenField('id_event'));
 		$options	= array();
-		$persons	= TodoyuEventManager::getEmailReceivers($idEvent, true);
+		$persons	= TodoyuCalendarEventManager::getEmailReceivers($idEvent, true);
 
 		foreach($persons as $person) {
 			$options[] 	= array(
 				'value'	=> $person['id'],
-				'label'	=> TodoyuPersonManager::getLabel($person['id'], true, true)
+				'label'	=> TodoyuContactPersonManager::getLabel($person['id'], true, true)
 			);
 		}
 

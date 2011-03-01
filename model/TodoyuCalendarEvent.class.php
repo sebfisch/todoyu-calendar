@@ -25,7 +25,7 @@
  * @subpackage	Calendar
  *
  */
-class TodoyuEvent extends TodoyuBaseObject {
+class TodoyuCalendarEvent extends TodoyuBaseObject {
 
 	/**
 	 * Initialize event
@@ -128,7 +128,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 * @return	String
 	 */
 	public function getTypeKey() {
-		return TodoyuEventTypeManager::getEventTypeKey($this->getType());
+		return TodoyuCalendarEventTypeManager::getEventTypeKey($this->getType());
 	}
 
 
@@ -139,7 +139,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 * @return	String
 	 */
 	public function getTypeLabel() {
-		return TodoyuEventTypeManager::getEventTypeLabel($this->getType(), true);
+		return TodoyuCalendarEventTypeManager::getEventTypeLabel($this->getType(), true);
 	}
 
 
@@ -150,7 +150,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 * @return	Array
 	 */
 	public function getAssignedPersonIDs() {
-		$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($this->id, false);
+		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($this->id, false);
 
 		return TodoyuArray::getColumn($assignedPersons, 'id_person');
 	}
@@ -163,7 +163,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 	 * @return	Array
 	 */
 	public function getAssignedPersonsData() {
-		return TodoyuEventManager::getAssignedPersonsOfEvent($this->id, true);
+		return TodoyuCalendarEventManager::getAssignedPersonsOfEvent($this->id, true);
 	}
 
 
@@ -274,7 +274,7 @@ class TodoyuEvent extends TodoyuBaseObject {
 			$this->loadForeignData();
 
 			if( $loadCreatorPersonData ) {
-				$this->data['person_create']	= TodoyuPersonManager::getPersonArray($this->data['id_person_create']);
+				$this->data['person_create']	= TodoyuContactPersonManager::getPersonArray($this->data['id_person_create']);
 			}
 		}
 

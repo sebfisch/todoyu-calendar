@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuEventMailManager {
+class TodoyuCalendarEventMailManager {
 
 	/**
 	 * Check whether mail popup is to be shown (not disabled, at least one other attendee person has email)
@@ -39,8 +39,10 @@ class TodoyuEventMailManager {
 		$isDeactivated	= TodoyuCalendarPreferences::getPref($prefName, 0, 0, false, personid());
 
 		return $isDeactivated ? false : TodoyuEventManager::hasAnyEventPersonAnEmailAddress($idEvent, array(personid()));
-	}
+		}
 
+		return TodoyuCalendarEventManager::hasAnyEventPersonAnEmailAddress($idEvent, array(personid()));
+	}
 
 
 	/**
@@ -51,7 +53,7 @@ class TodoyuEventMailManager {
 	 */
 	public static function saveMailsSent($idEvent, array $personIDs = array() ) {
 		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent, $personIDs);
-	}
+		}
 
 
 

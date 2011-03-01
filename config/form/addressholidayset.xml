@@ -8,7 +8,7 @@
 				<field type="select" name="id_holidayset">
 					<label>calendar.holidayset</label>
 					<source type="function">
-						<function>TodoyuHolidayViewHelper::getHolidaysetOptions</function>
+						<function>TodoyuCalendarHolidayViewHelper::getHolidaysetOptions</function>
 						<lazyInit/>
 					</source>
 				</field>

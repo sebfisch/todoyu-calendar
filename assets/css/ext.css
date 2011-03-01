@@ -57,7 +57,7 @@ h1.extIconCalendar .title {
 /* --------------------------------
 	Create mode option in headlet
    -------------------------------- */
-#headlet-quickcreate-content li.itemCalendarEvent a {
+#todoyuheadletquickcreate li.itemCalendarEvent a {
 	background:url(../img/icons.png) no-repeat 5px -296px;
 }
 
@@ -66,8 +66,8 @@ h1.extIconCalendar .title {
 /* ------------------------------
 	Search mode option in headlet
    ------------------------------ */
-#headlet-quicksearch-content form.searchmodeEvent a.mode,
-#headlet-quicksearch-modes li.searchmodeEvent a {
+#todoyusearchheadletquicksearch form.searchmodeEvent a.mode,
+#todoyusearchheadletquicksearch-modes li.searchmodeEvent a {
 	background:url(../img/icons.png) no-repeat 3px 3px !important;
 }
 

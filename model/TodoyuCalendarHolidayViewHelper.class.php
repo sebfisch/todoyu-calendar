@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuHolidayViewHelper {
+class TodoyuCalendarHolidayViewHelper {
 
 	/**
 	 * Get available holiday sets (to render select-dropdown)
@@ -32,7 +32,7 @@ class TodoyuHolidayViewHelper {
 	 * @return	Array
 	 */
 	public static function getHolidaySetOptions(TodoyuFormElement $field) {
-		$holidaySets= TodoyuHolidaySetManager::getAllHolidaySets();
+		$holidaySets= TodoyuCalendarHolidaySetManager::getAllHolidaySets();
 
 		$reform		= array(
 			'id'	=> 'value',

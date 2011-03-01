@@ -41,7 +41,7 @@ class TodoyuCalendarRenderer {
 	 * @return	String	Code of the calendar
 	 */
 	public static function render($activeTab = '', array $params = array()) {
-		$time	= TodoyuPanelWidgetCalendar::getDate(EXTID_CALENDAR);
+		$time	= TodoyuCalendarPanelWidgetCalendar::getDate(EXTID_CALENDAR);
 
 			// Get tab from preferences if not set
 		if( empty($activeTab) ) {
@@ -57,8 +57,8 @@ class TodoyuCalendarRenderer {
 
 			// If event-view is selected, set date and add it to data array
 		if( $activeTab === 'view' ) {
-			$event	= TodoyuEventManager::getEvent($params['event']);
-			TodoyuPanelWidgetCalendar::saveDate($event->getStartDate());
+			$event	= TodoyuCalendarEventManager::getEvent($params['event']);
+			TodoyuCalendarPanelWidgetCalendar::saveDate($event->getStartDate());
 			$data['date']	= $event->getStartDate();
 		}
 
@@ -93,12 +93,12 @@ class TodoyuCalendarRenderer {
 
 			case 'view':
 				$idEvent	= intval($params['event']);
-				return TodoyuEventRenderer::renderEventView($idEvent);
+				return TodoyuCalendarEventRenderer::renderEventView($idEvent);
 				break;
 
 			case 'edit':
 				$idEvent	= intval($params['event']);
-				return TodoyuEventEditRenderer::renderEventForm($idEvent);
+				return TodoyuCalendarEventEditRenderer::renderEventForm($idEvent);
 				break;
 
 			default:
@@ -121,7 +121,7 @@ class TodoyuCalendarRenderer {
 		$dateStart	= $dayRange['start'];
 		$dateEnd	= $dayRange['end'];
 
-		$personColors	= TodoyuPersonManager::getSelectedPersonColor($persons);
+		$personColors	= TodoyuContactPersonManager::getSelectedPersonColor($persons);
 		$eventTypes		= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-day.tmpl';
@@ -155,7 +155,7 @@ class TodoyuCalendarRenderer {
 		$dateStart	= $weekRange['start'];
 		$dateEnd	= $weekRange['end'];
 
-		$personColors	= TodoyuPersonManager::getSelectedPersonColor($persons);
+		$personColors	= TodoyuContactPersonManager::getSelectedPersonColor($persons);
 		$eventTypes		= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl	= 'ext/calendar/view/calendar-week.tmpl';
@@ -191,7 +191,7 @@ class TodoyuCalendarRenderer {
 		$dateEnd	= $monthRange['end'];
 		$timestamps	= TodoyuCalendarManager::getDayTimestampsForMonth($activeDate);
 
-		$personColors	= TodoyuPersonManager::getSelectedPersonColor($persons);
+		$personColors	= TodoyuContactPersonManager::getSelectedPersonColor($persons);
 		$eventTypes		= TodoyuCalendarManager::getSelectedEventTypes();
 
 		$tmpl		= 'ext/calendar/view/calendar-month.tmpl';
@@ -268,15 +268,15 @@ class TodoyuCalendarRenderer {
 		$renderedEvents	= array();
 
 			// Get all events in current view
-		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, false);
+		$events		= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, false);
 
 			// Group the events by day
-		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
+		$eventsByDay= TodoyuCalendarEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
 
 			// Render events array
 		foreach($eventsByDay as $dateKey => $eventsOfDay) {
 			foreach($eventsOfDay as $event) {
-				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, 'month');
+				$renderedEvents[$dateKey][] = TodoyuCalendarEventRenderer::renderEvent($event, 'month');
 			}
 		}
 
@@ -304,12 +304,12 @@ class TodoyuCalendarRenderer {
 		$eventFullWidth	= ($mode === CALENDAR_MODE_DAY) ? CALENDAR_DAY_EVENT_WIDTH : CALENDAR_WEEK_EVENT_WIDTH;
 
 			// Get all events in current view
-		$events		= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, false);
+		$events		= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, false);
 
 			// Group the events by day
-		$eventsByDay= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
+		$eventsByDay= TodoyuCalendarEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
 			// Add overlap information to events for each day
-		$eventsByDay= TodoyuEventManager::addOverlapInformationToEvents($eventsByDay);
+		$eventsByDay= TodoyuCalendarEventManager::addOverlapInformationToEvents($eventsByDay);
 
 			// Render events array
 		foreach($eventsByDay as $dateKey => $eventsOfDay) {
@@ -324,13 +324,13 @@ class TodoyuCalendarRenderer {
 				if( $event['date_start'] <= $dayTime ) {
 					$event['top'] 	= 0;
 				} else {
-					$event['top']	= TodoyuEventRenderer::getTimeCoordinate($event['date_start']);
+					$event['top']	= TodoyuCalendarEventRenderer::getTimeCoordinate($event['date_start']);
 				}
 
-				$event['height']	= TodoyuEventRenderer::getEventHeight($dayTime, $event['date_start'], $event['date_end'] );
+				$event['height']	= TodoyuCalendarEventRenderer::getEventHeight($dayTime, $event['date_start'], $event['date_end'] );
 
 					// Render
-				$renderedEvents[$dateKey][] = TodoyuEventRenderer::renderEvent($event, $mode);
+				$renderedEvents[$dateKey][] = TodoyuCalendarEventRenderer::renderEvent($event, $mode);
 			}
 		}
 
@@ -350,8 +350,8 @@ class TodoyuCalendarRenderer {
 	 * @return	Array
 	 */
 	public static function preRenderDayevents($mode, $dateStart, $dateEnd, array $eventTypes, array $persons) {
-		$events	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, true);
-		$grouped= TodoyuEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
+		$events	= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, true);
+		$grouped= TodoyuCalendarEventManager::groupEventsByDay($events, $dateStart, $dateEnd);
 
 		$dayEvents	= array();
 		$rendered	= array();
@@ -361,7 +361,7 @@ class TodoyuCalendarRenderer {
 				if( ! in_array($event['id'], $rendered) || $mode === CALENDAR_MODE_MONTH ) {
 					$rendered[] = $event['id'];
 
-					$dayEvents[$dateKey][]		= TodoyuEventRenderer::renderFulldayEvent($mode, $event);
+					$dayEvents[$dateKey][]		= TodoyuCalendarEventRenderer::renderFulldayEvent($mode, $event);
 				}
 			}
 		}
@@ -386,7 +386,7 @@ class TodoyuCalendarRenderer {
 		foreach($mapping as $index => $dayEvents) {
 			foreach($dayEvents as $eventIndex => $dayEvent) {
 				if( is_array($dayEvent) ) {
-					$mapping[$index][$eventIndex]['html'] = TodoyuEventRenderer::renderFulldayEvent(CALENDAR_MODE_WEEK, $dayEvent);
+					$mapping[$index][$eventIndex]['html'] = TodoyuCalendarEventRenderer::renderFulldayEvent(CALENDAR_MODE_WEEK, $dayEvent);
 				}
 			}
 		}

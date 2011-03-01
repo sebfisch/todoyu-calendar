@@ -45,19 +45,19 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	public function editAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$time		= strtotime($params['date']);
-		$event		= TodoyuEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 
 			// Check rights
 		if( $idEvent === 0 ) {
-			TodoyuEventRights::restrictAdd();
+			TodoyuCalendarEventRights::restrictAdd();
 			$tabLabel	= Label('event.new');
 		} else {
-			TodoyuEventRights::restrictEdit($idEvent);
+			TodoyuCalendarEventRights::restrictEdit($idEvent);
 			$tabLabel	= Label('event.edit') . ': ' . TodoyuString::crop($event->getTitle(), 20, '...', false);
 		}
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel);
 
-		return TodoyuEventEditRenderer::renderEventForm($idEvent, $time);
+		return TodoyuCalendarEventEditRenderer::renderEventForm($idEvent, $time);
 	}
 
 
@@ -75,10 +75,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Check rights
 		if( $idEvent === 0 ) {
 				// New event
-			TodoyuEventRights::restrictAdd();
+			TodoyuCalendarEventRights::restrictAdd();
 		} else {
 				// Edit event
-			TodoyuEventRights::restrictEdit($idEvent);
+			TodoyuCalendarEventRights::restrictEdit($idEvent);
 		}
 
 			// Set form data
@@ -96,12 +96,12 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				// Check for (allowed) entered overbooking, ask user to confirm saving if any occurs
 			$isOverbookingConfirmed	= intval($params['isOverbookingConfirmed']);
 			if( TodoyuCalendarManager::isOverbookingAllowed() && ! $isOverbookingConfirmed ) {
-				$overbookedWarning	= TodoyuEventManager::getOverbookingWarning($idEvent, $data);
+				$overbookedWarning	= TodoyuCalendarEventManager::getOverbookingWarning($idEvent, $data);
 				if( ! empty($overbookedWarning) ) {
 					$needToShowWarning	= true;
 					TodoyuHeader::sendTodoyuHeader('overbookingwarning', $overbookedWarning);
 
-					$overboookingWarningInline	= TodoyuEventManager::getOverbookingWarning($idEvent, $data, false);
+					$overboookingWarningInline	= TodoyuCalendarEventManager::getOverbookingWarning($idEvent, $data, false);
 					TodoyuHeader::sendTodoyuHeader('overbookingwarningInline', $overboookingWarningInline);
 				}
 			}
@@ -110,8 +110,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			if( $needToShowWarning === false ) {
 				$data	= $form->getStorageData();
 
-				$idEvent= TodoyuEventManager::saveEvent($data);
-				$event	= TodoyuEventManager::getEvent($idEvent);
+				$idEvent= TodoyuCalendarEventManager::saveEvent($data);
+				$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 				TodoyuHeader::sendTodoyuHeader('time', $event->get('date_start'));
 				TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
@@ -140,9 +140,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$isConfirmed= $params['confirmed'] == '1';
 
 		// Check right
-		TodoyuEventRights::restrictEdit($idEvent);
+		TodoyuCalendarEventRights::restrictEdit($idEvent);
 
-		$overbookings	= TodoyuEventManager::moveEvent($idEvent, $timeStart, $tab, $isConfirmed);
+		$overbookings	= TodoyuCalendarEventManager::moveEvent($idEvent, $timeStart, $tab, $isConfirmed);
 
 		if( is_array($overbookings) && ! $isConfirmed ) {
 			if( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
@@ -151,7 +151,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				return implode('<br />', $overbookings);
 			} else {
 					// Overbooking allowed - open popup with warning and confirmation dialog
-				$overbookedWarning	= TodoyuEventManager::getOverbookingWarningAfterDrop($idEvent, $timeStart);
+				$overbookedWarning	= TodoyuCalendarEventManager::getOverbookingWarningAfterDrop($idEvent, $timeStart);
 				TodoyuHeader::sendTodoyuHeader('overbookingwarning', $overbookedWarning);
 			}
 		}
@@ -168,9 +168,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent= intval($params['event']);
 
 			// Check right
-		TodoyuEventRights::restrictEdit($idEvent);
+		TodoyuCalendarEventRights::restrictEdit($idEvent);
 
-		TodoyuEventManager::deleteEvent($idEvent);
+		TodoyuCalendarEventManager::deleteEvent($idEvent);
 	}
 
 
@@ -184,9 +184,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	public function detailAction(array $params) {
 		$idEvent= intval($params['event']);
 
-		TodoyuEventRights::restrictSee($idEvent);
+		TodoyuCalendarEventRights::restrictSee($idEvent);
 
-		return TodoyuEventRenderer::renderEventDetailsInList($idEvent);
+		return TodoyuCalendarEventRenderer::renderEventDetailsInList($idEvent);
 	}
 
 
@@ -200,9 +200,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$idPerson	= intval($params['person']);
 
-		TodoyuEventRights::restrictSee( $idEvent );
+		TodoyuCalendarEventRights::restrictSee( $idEvent );
 
-		TodoyuEventManager::acknowledgeEvent($idEvent, $idPerson);
+		TodoyuCalendarEventManager::acknowledgeEvent($idEvent, $idPerson);
 	}
 
 
@@ -215,15 +215,15 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function showAction(array $params) {
 		$idEvent	= intval($params['event']);
-		$event		= TodoyuEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 
-		TodoyuEventRights::restrictSee($idEvent);
+		TodoyuCalendarEventRights::restrictSee($idEvent);
 
 			// Send tab label
 		$tabLabel	= TodoyuString::crop($event->getTitle(), 20, '...', false);
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel, true);
 
-		return TodoyuEventRenderer::renderEventView($idEvent);
+		return TodoyuCalendarEventRenderer::renderEventView($idEvent);
 	}
 
 
@@ -266,7 +266,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 		if( $operationID != OPERATIONTYPE_RECORD_DELETE ) {
 				// Is mailing popup deactivated or no other users with email assigned?
-			$showPopup	= TodoyuEventMailManager::isMailPopupToBeShown($idEvent);
+			$showPopup	= TodoyuCalendarEventMailManager::isMailPopupToBeShown($idEvent);
 		} else {
 				// Events deletion always opens mailing popup as this is the last time the data is accessable
 			$showPopup	= true;
@@ -275,7 +275,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		TodoyuHeader::sendHeader('showPopup', $showPopup ? '1' : '0');
 
 		if( $showPopup === true ) {
-			return TodoyuEventRenderer::renderEventMailPopup($idEvent, $operationID);
+			return TodoyuCalendarEventRenderer::renderEventMailPopup($idEvent, $operationID);
 		}
 
 		return false;
@@ -294,7 +294,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$operationID= intval($params['operation']);
 
 		if( count($personIDs) > 0 ) {
-			$sent	= TodoyuEventMailer::sendEmails($idEvent, $personIDs, $operationID);
+			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $operationID);
 			if( $sent ) {
 				TodoyuHeader::sendTodoyuHeader('sentEmail', 1);
 			}

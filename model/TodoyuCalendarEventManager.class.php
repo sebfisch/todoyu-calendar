@@ -24,7 +24,7 @@
  * @package			Todoyu
  * @subpackage		Calendar
  */
-class TodoyuEventManager {
+class TodoyuCalendarEventManager {
 
 	/**
 	 * @var	String		Default table for database requests
@@ -61,12 +61,12 @@ class TodoyuEventManager {
 	 * Get event object
 	 *
 	 * @param	Integer		$idEvent
-	 * @return	TodoyuEvent
+	 * @return	TodoyuCalendarEvent
 	 */
 	public static function getEvent($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		return TodoyuRecordManager::getRecord('TodoyuEvent', $idEvent);
+		return TodoyuRecordManager::getRecord('TodoyuCalendarEvent', $idEvent);
 	}
 
 
@@ -414,8 +414,8 @@ class TodoyuEventManager {
 		$overbooked	= array();
 
 			// Get all (not-overbookable / conflicting) events in the duration of the event
-		$eventTypes	= TodoyuEventTypeManager::getNotOverbookableTypeIndexes();
-		$otherEvents= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
+		$eventTypes	= TodoyuCalendarEventTypeManager::getNotOverbookableTypeIndexes();
+		$otherEvents= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
 			// Remove current event
 		unset($otherEvents[$idEvent]);
 
@@ -427,7 +427,7 @@ class TodoyuEventManager {
 				continue;
 			}
 
-			$assignedPersons	= TodoyuEventManager::getAssignedPersonsOfEvent($otherEvent['id']);
+			$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($otherEvent['id']);
 			$assignedPersonIDs	= TodoyuArray::getColumn($assignedPersons, 'id_person');
 			$conflictedPersonIDs= array_intersect($personIDs, $assignedPersonIDs);
 
@@ -532,9 +532,9 @@ class TodoyuEventManager {
 		if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {
 			$operationID	= $isNewEvent ? OPERATIONTYPE_RECORD_UPDATE : OPERATIONTYPE_RECORD_UPDATE;
 
-			$sent	= TodoyuEventMailer::sendEmails($idEvent, $mailReceiverPersonIDs, $operationID);
+			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $mailReceiverPersonIDs, $operationID);
 			if( $sent ) {
-				TodoyuEventMailManager::saveMailsSent($idEvent, $mailReceiverPersonIDs);
+				TodoyuCalendarEventMailManager::saveMailsSent($idEvent, $mailReceiverPersonIDs);
 				TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 			}
 		}
@@ -668,7 +668,7 @@ class TodoyuEventManager {
 				$errorMessages = array();
 				foreach($overbookedInfos as $idPerson => $infos) {
 					foreach($infos['events'] as $event) {
-						$errorMessages[] = Label('LLL:event.error.personsOverbooked') . ' ' . TodoyuPersonManager::getPerson($idPerson)->getFullName();
+						$errorMessages[] = Label('LLL:event.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
 					}
 				}
 
@@ -785,7 +785,7 @@ class TodoyuEventManager {
 	public static function removeEventFromCache($idEvent) {
 		$idEvent = intval($idEvent);
 
-		TodoyuRecordManager::removeRecordCache('TodoyuEvent', $idEvent);
+		TodoyuRecordManager::removeRecordCache('TodoyuCalendarEvent', $idEvent);
 		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idEvent);
 	}
 
@@ -815,7 +815,7 @@ class TodoyuEventManager {
 
 				if( $formData['send_notification'] === 1 ) {
 					$operationID	= OPERATIONTYPE_RECORD_CREATE;
-					TodoyuEventMailer::sendEmails($idEvent, array($idPerson), $operationID);
+					TodoyuCalendarEventMailer::sendEmails($idEvent, array($idPerson), $operationID);
 				}
 			}
 
@@ -860,7 +860,7 @@ class TodoyuEventManager {
 		$timestamp	= intval($timestamp);
 		$defaultData= self::getEventDefaultData($timestamp);
 
-		$idCache	= TodoyuRecordManager::makeClassKey('TodoyuEvent', 0);
+		$idCache	= TodoyuRecordManager::makeClassKey('TodoyuCalendarEvent', 0);
 		$event		= self::getEvent(0);
 		$event->injectData($defaultData);
 		TodoyuCache::set($idCache, $event);
@@ -914,19 +914,19 @@ class TodoyuEventManager {
 		$own	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'];
 
 			// Option: show event
-		if( TodoyuEventRights::isSeeDetailsAllowed($idEvent) ) {
+		if( TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent) ) {
 			$allowed['show'] = $own['show'];
 		}
 
 			// Options: edit event, delete event
 			// Edit event: right:editAll OR is assigned and right editAssigned OR is creater
-		if( TodoyuEventRights::isEditAllowed($idEvent) ) {
+		if( TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
 			$allowed['edit']	= $own['edit'];
 			$allowed['delete']	= $own['remove'];
 		}
 
 			// Option: add event
-		if( TodoyuEventRights::isAddAllowed() ) {
+		if( TodoyuCalendarEventRights::isAddAllowed() ) {
 			$allowed['add'] = $own['add'];
 		}
 
@@ -946,7 +946,7 @@ class TodoyuEventManager {
 	 */
 	public static function getContextMenuItemsPortal($idEvent, array $items) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 		$dateStart	= $event->getStartDate();
 
 		$ownItems			= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'];
@@ -954,7 +954,7 @@ class TodoyuEventManager {
 
 		unset($ownItems['add']);
 
-		if( ! TodoyuEventRights::isEditAllowed($idEvent) ) {
+		if( ! TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
 			unset($ownItems['edit']);
 			unset($ownItems['delete']);
 		}
@@ -1017,14 +1017,14 @@ class TodoyuEventManager {
 
 			// Check for edit rights
 		if( $tab === 'edit' ) {
-			if( ! TodoyuEventRights::isEditAllowed($idEvent) ) {
+			if( ! TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
 				$tab = 'day';
 			}
 		}
 
 			// Check for view rights
 		if( $tab === 'view' ) {
-			if( ! TodoyuEventRights::isSeeDetailsAllowed($idEvent) ) {
+			if( ! TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent) ) {
 				$tab = 'day';
 			}
 		}
@@ -1051,7 +1051,7 @@ class TodoyuEventManager {
 		$personIDs	= TodoyuArray::flattenToSubKey('id', $formData['persons']);
 
 		$warning		= '';
-		$overbookedInfos= TodoyuEventManager::getOverbookingInfos($dateStart, $dateEnd, $personIDs, $idEvent);
+		$overbookedInfos= TodoyuCalendarEventManager::getOverbookingInfos($dateStart, $dateEnd, $personIDs, $idEvent);
 
 		if( sizeof($overbookedInfos) > 0 ) {
 			$tmpl	= 'ext/calendar/view/overbooking-info.tmpl';
@@ -1097,7 +1097,7 @@ class TodoyuEventManager {
 		$dateStart	= intval($dateStart);
 
 			// Fetch original event data
-		$event 	= TodoyuEventManager::getEvent($idEvent);
+		$event 	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 		$eventData				= $event->getData();
 		$eventData['persons']	= $event->getAssignedPersonsData();

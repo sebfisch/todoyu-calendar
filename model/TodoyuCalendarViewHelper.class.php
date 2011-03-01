@@ -68,7 +68,7 @@ class TodoyuCalendarViewHelper {
 	public static function getHolidayOptions(TodoyuFormElement $field) {
 		$options = array();
 
-		$holidays	= TodoyuHolidayManager::getAllHolidays();
+		$holidays	= TodoyuCalendarHolidayManager::getAllHolidays();
 		foreach($holidays as $holiday) {
 			$options[] = array(
 				'value'	=> $holiday['id'],
@@ -90,7 +90,7 @@ class TodoyuCalendarViewHelper {
 	public static function getHolidaySetOptions(TodoyuFormElement $field) {
 		$options = array();
 
-		$holidaySets	= TodoyuHolidaySetManager::getAllHolidaySets();
+		$holidaySets	= TodoyuCalendarHolidaySetManager::getAllHolidaySets();
 		foreach($holidaySets as $set) {
 			$options[] = array(
 				'value'	=> $set['id'],
@@ -110,7 +110,7 @@ class TodoyuCalendarViewHelper {
 	 * @return	Array
 	 */
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
-		return TodoyuEventViewHelper::getEventTypeOptions($field);
+		return TodoyuCalendarEventViewHelper::getEventTypeOptions($field);
 	}
 
 
@@ -124,7 +124,7 @@ class TodoyuCalendarViewHelper {
 	public static function getReminderOptions(TodoyuFormElement $field, $idEvent) {
 		$idEvent	= intval($idEvent);
 
-		$event		= TodoyuEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 		$timeLeft	=  $event->getStartDate() - NOW;
 		$options	= array();
 

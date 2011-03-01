@@ -29,13 +29,13 @@ class TodoyuCalendarQuickinfoManager {
 	public static function addQuickinfoEvent(TodoyuQuickinfo $quickInfo, $element) {
 		$idEvent	= intval($element);
 
-		$event			= TodoyuEventManager::getEvent($idEvent);
-		$canSeeDetails	= TodoyuEventRights::isSeeDetailsAllowed($idEvent);
+		$event			= TodoyuCalendarEventManager::getEvent($idEvent);
+		$canSeeDetails	= TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent);
 
 			// Build event infos: title, type, date, place, assigned persons
-		$dateInfo	= TodoyuEventViewHelper::getQuickinfoDateInfo($event);
-		$personInfo	= TodoyuEventViewHelper::getQuickinfoPersonInfo($event);
-		$typeInfo	= TodoyuEventViewHelper::getQuickinfoTypeInfo($event);
+		$dateInfo	= TodoyuCalendarEventViewHelper::getQuickinfoDateInfo($event);
+		$personInfo	= TodoyuCalendarEventViewHelper::getQuickinfoPersonInfo($event);
+		$typeInfo	= TodoyuCalendarEventViewHelper::getQuickinfoTypeInfo($event);
 
 			// Private event or no access?
 		if( $canSeeDetails ) {
@@ -92,7 +92,7 @@ class TodoyuCalendarQuickinfoManager {
 	 */
 	public static function addQuickinfoBirthday(TodoyuQuickinfo $quickInfo, $element) {
 		$idPerson	= intval($element);
-		$person		= TodoyuPersonManager::getPerson($idPerson);
+		$person		= TodoyuContactPersonManager::getPerson($idPerson);
 		$viewDate	= TodoyuCalendarPreferences::getCalendarDate(AREA);
 
 		$age			= date('Y', $viewDate) - date('Y', $person->getBirthday());

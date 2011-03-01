@@ -24,7 +24,7 @@
  * @package			Todoyu
  * @subpackage		Calendar
  */
-class TodoyuReminderManager {
+class TodoyuCalendarReminderManager {
 
 	/**
 	 * @var String		Default table for database requests
@@ -35,12 +35,12 @@ class TodoyuReminderManager {
 	 * Get current person's reminder to given event
 	 *
 	 * @param	Integer		$idEvent
-	 * @return	TodoyuReminder
+	 * @return	TodoyuCalendarReminder
 	 */
 	public static function getReminder($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		return new TodoyuReminder($idEvent);
+		return new TodoyuCalendarReminder($idEvent);
 	}
 
 
@@ -68,8 +68,8 @@ class TodoyuReminderManager {
 	 * @return	Boolean
 	 */
 	public static function isPersonActivatedForReminders() {
-		$personRoles	= TodoyuPersonManager::getRoleIDs(personid());
-		$reminderRoles	= TodoyuArray::intExplode(',', TodoyuExtConfManager::getExtConfValue('calendar', 'reminderpopup_roles'));
+		$personRoles	= TodoyuContactPersonManager::getRoleIDs(personid());
+		$reminderRoles	= TodoyuArray::intExplode(',', TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_roles'));
 
 		$personReminderRoles	= array_intersect($personRoles, $reminderRoles);
 
@@ -90,7 +90,7 @@ class TodoyuReminderManager {
 		$personIDs	= array(personid());
 		$eventTypes	= Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP'];
 
-		$events	= TodoyuEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
+		$events	= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
 
 			// Add event foreign data and generic data of reminder
 		foreach($events as $idEvent => $eventData) {
@@ -101,10 +101,10 @@ class TodoyuReminderManager {
 					// Setup event reminder data
 				$showTime	= self::getTimeUntilShow($idEvent);
 				if( $showTime !== false ) {
-					$event	= TodoyuEventManager::getEvent($idEvent);
+					$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 //					$events[$idEvent]	= $event->getTemplateData(true, true);
 					$events[$idEvent]['person_create']			= $event->getPerson('create')->getTemplateData();
-					$events[$idEvent]['attendees']				= TodoyuEventManager::getAssignedPersonsOfEvent($idEvent, true);
+					$events[$idEvent]['attendees']				= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true);
 					$events[$idEvent]['time_untilshowreminder']	=  $showTime;
 				}
 			}
@@ -131,8 +131,8 @@ class TodoyuReminderManager {
 			$showTime	= $reminder->getDateRemindAgain() - NOW;
 		} else {
 				//	Calculate time until next popup from starting time of event
-			$timeWarnBefore	= intval(TodoyuExtConfManager::getExtConfValue('calendar', 'reminderpopup_advancetime'));
-			$event			= TodoyuEventManager::getEvent($idEvent);
+			$timeWarnBefore	= intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_advancetime'));
+			$event			= TodoyuCalendarEventManager::getEvent($idEvent);
 			$dateStart		= $event->getStartDate();
 
 			$showTime	= $dateStart - NOW - $timeWarnBefore;

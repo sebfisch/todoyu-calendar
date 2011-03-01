@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuEventRights {
+class TodoyuCalendarEventRights {
 
 	/**
 	 * Deny access
@@ -46,7 +46,7 @@ class TodoyuEventRights {
 	 */
 	public static function isSeeAllowed($idEvent) {
 		$idEvent= intval($idEvent);
-		$event	= TodoyuEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 			// Admin sees all events.
 		if( TodoyuAuth::isAdmin() ) {
@@ -86,7 +86,7 @@ class TodoyuEventRights {
 			return false;
 		}
 
-		$event	= TodoyuEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 		if( $event->isPrivate() ) {
 			return $event->isCurrentPersonAssigned();
@@ -118,7 +118,7 @@ class TodoyuEventRights {
 	public static function isEditAllowed($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		$event				= TodoyuEventManager::getEvent($idEvent);
+		$event				= TodoyuCalendarEventManager::getEvent($idEvent);
 		$isPrivate			= $event->get('is_private') === '1';
 		$assignedPersons	= $event->getAssignedPersonIDs();
 
@@ -153,7 +153,7 @@ class TodoyuEventRights {
 			return true;
 		}
 
-		$person	= TodoyuPersonManager::getPerson(personid());
+		$person	= TodoyuContactPersonManager::getPerson(personid());
 
 		return $person->isInternal();
 	}
