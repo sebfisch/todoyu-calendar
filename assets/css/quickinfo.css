@@ -1,15 +1,18 @@
 /* -------------------------------------
 	QuickInfo icons for calendar infos
    ------------------------------------- */
-#quickinfo dt.titleIcon {
+#quickinfo dt.titleIcon,
+span.eventTitleIcon {
 	background:url(../img/icons.png) no-repeat 4px 4px;
 }
   
-#quickinfo dt.dateIcon {
+#quickinfo dt.dateIcon,
+span.dateIcon {
 	background:url(../img/icons.png) no-repeat 4px -568px;
 }
 
-#quickinfo dt.placeIcon {
+#quickinfo dt.placeIcon,
+span.placeIcon {
 	background:url(../img/icons.png) no-repeat 4px -538px;
 }
 
@@ -17,6 +20,7 @@
 	background:url(../img/icons.png) no-repeat 4px -1172px;
 }
 
-#quickinfo dt.personsIcon {
+#quickinfo dt.personsIcon,
+span.personsIcon {
 	background:url(../../../contact/assets/img/icons.png) no-repeat 4px 2px;
 }

@@ -258,6 +258,9 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 		if( ! isset($this->data['persons']) ) {
 			$this->data['persons'] 	= $this->getAssignedPersonsData();
 		}
+
+		$emailPersons	= TodoyuMailManager::getEmailPersons(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $this->data['id']);
+		$this->data['persons_email']	= $emailPersons;
 	}
 
 
@@ -272,10 +275,10 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	public function getTemplateData($loadForeignData = false, $loadCreatorPersonData = false) {
 		if( $loadForeignData ) {
 			$this->loadForeignData();
+		}
 
-			if( $loadCreatorPersonData ) {
-				$this->data['person_create']	= TodoyuContactPersonManager::getPersonArray($this->data['id_person_create']);
-			}
+		if( $loadCreatorPersonData ) {
+			$this->data['person_create']	= TodoyuContactPersonManager::getPersonArray($this->data['id_person_create']);
 		}
 
 		return parent::getTemplateData();

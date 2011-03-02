@@ -1,37 +1,53 @@
 <table class="eventView">
-	<tr class="odd">
-		<td class="eventAttrTitle">{Label core.title}: </td>
-		<td class="eventValue">{htmlencode $event.title}</td>
+	<tr>
+		<td class="eventAttrTitle">
+			<span class="icon eventTitleIcon"> </span>&nbsp;{Label core.title}
+		</td>
+		<td class="eventValue">{$event.title}</td>
 	</tr>
-	{if ! empty($event.place)}
-		<tr class="even">
-			<td class="eventAttrTitle">{Label event.attr.place}: </td>
-			<td class="eventValue">{htmlencode $event.place}</td>
-		</tr>
-	{/if}
-	{if ! empty($event.description)}
-	<tr class="odd">
-		<td class="eventAttrTitle">{Label core.description}: </td>
-		<td class="eventValue">{$event.description}</td>
+	<tr>
+		<td class="eventAttrTitle">
+			<span class="icon placeIcon"> </span>&nbsp;{Label event.attr.place}
+		</td>
+		<td class="eventValue">{$event.place}</td>
 	</tr>
-	{/if}
-	<tr class="even">
-		<td class="eventAttrTitle">{Label event.attr.timespan}: </td>
+	<tr>
+		<td class="eventAttrTitle">
+			<span class="icon dateIcon"> </span>&nbsp;{Label event.attr.timespan}
+		</td>
 		<td class="eventValue">
 			{math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}
 			{math equation="d / 3600" d=$duration assign=duration}
-			{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} {Label date.time.hours})</td>
+			{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} Hours)</td>
 	</tr>
-	<tr class="odd">
-		<td class="eventAttrTitle ">{Label event.attr.attendees}: </td>
+{if !empty($event.description)}
+	<tr>
+		<td class="eventAttrTitle">
+			<span class="icon"> </span>&nbsp;{Label core.description}
+		</td>
+		<td class="eventValue">{$event.description|default:"-"}</td>
+	</tr>
+{/if}
+	<tr>
+		<td class="eventAttrTitle">
+			<span class="icon"> </span>&nbsp;{Label event.attr.creator}
+		</td>
 		<td class="eventValue">
-			{foreach $event.persons personData}
-				{htmlencode $personData.firstname} {htmlencode $personData.lastname}<br/>
-			{/foreach}
+			{personLabel idPrefix="event-personcreate" idRecord=$event.person_create.id idPerson=$event.person_create.id}
+			<br /><br />
 		</td>
 	</tr>
-	<tr class="even">
-		<td class="eventAttrTitle"> {Label event.attr.creator}: </td>
-		<td class="eventValue">{htmlencode $event.person_create.firstname} {htmlencode $event.person_create.lastname}</td>
+	<tr>
+		<td class="eventAttrTitle ">
+			<span class="icon personsIcon"> </span>&nbsp;{Label event.attr.attendees}
+		</td>
+		<td class="eventValue">
+		{foreach $event.persons person personData}
+			{if $personData.is_acknowledged}{$class='eventperson-acknowledged'}{else}{$class='eventperson-unacknowledged'}{/if}
+			{if in_array($personData.id, array_keys($event.persons_email))}{$class.='-email'}{/if}
+			{personLabel idPrefix="event-personattend" idRecord=$personData.id idPerson=$personData.id class=$class}
+			<br/>
+		{/foreach}
+		</td>
 	</tr>
 </table>

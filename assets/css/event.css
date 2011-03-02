@@ -301,8 +301,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 }
 
 #events .details {
-	border:1px solid #000;
-	border-width:0 0 0 1px;
+	border-left:1px solid #ddd;
 	padding:10px 5px 10px 15px;
 }
 
@@ -324,7 +323,6 @@ div.weekMode div#calendararea div.event dd span.desc {
 #events .details .right dd  {
 	float:left;
 	width:180px;
-
 }
 
 #events .details .right dd span {
@@ -338,12 +336,12 @@ div.weekMode div#calendararea div.event dd span.desc {
 
 /*#events .headLabel span.acknowledge.not {*/
 #events h3 span.icon.acknowledge.not {
-	background:url(../../../project/assets/img/icons.png) no-repeat 2px -240px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1260px;
 	cursor:pointer;
 }
 
 #events h3 span.icon.acknowledge.not.updated {
-	background:url(../../../project/assets/img/icons.png) no-repeat 2px -624px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1434px;
 	cursor:pointer;
 }
 
@@ -369,11 +367,6 @@ div.eventDetails dd {
 	padding-left:20px;
 }
 
-#events .event h3 .isNotAcknowledgedIcon {
-
-}
-
-
 #holidays .holidayTitle {
 	padding-left:15px;
 }
@@ -385,11 +378,37 @@ div.eventDetails dd {
 }
 
 
+/* -----------------------------------------------------------
+	Event attendee persons
+   ----------------------------------------------------------- */
+	/* Person has acknowledged the event */
+.eventperson-acknowledged {
+	padding-left:20px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1314px;
+}
+	/* Person has not acknowledged the event */
+.eventperson-unacknowledged {
+	padding-left:20px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1288px;
+}
+	/* Person has acknowledged event AND received it via email */
+.eventperson-acknowledged-email {
+	padding-left:23px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1402px;
+}
+	/* Person has NOT acknowledged event AND received it via email */
+.eventperson-unacknowledged-email {
+	padding-left:23px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1368px;
+}
+
+
+
 /* ---------------------------
 	Detail view
    --------------------------- */
 table.eventView {
-	margin:12px 0 12px 0;
+	/*margin:12px 0 12px 0;*/
 	width:100%;
 	line-height:20px;
 }

@@ -148,12 +148,13 @@ class TodoyuCalendarEventRenderer {
 		$eventData	= $event->getTemplateData(true);
 		$eventData	= self::prepareEventRenderData('list', $eventData);
 
+		$eventData['person_create']	= $event->getPerson('create')->getTemplateData();
+		$eventData['persons']		= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true);
+
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(
 			'event'			=> $eventData,
-			'color'			=> $colors[personid()],
-			'attendees'		=> TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true),
-			'person_create'	=> $event->getPerson('create')->getTemplateData()
+			'color'			=> $colors[personid()]
 		);
 
 		return render($tmpl, $data);
