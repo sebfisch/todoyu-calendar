@@ -1048,7 +1048,7 @@ class TodoyuCalendarEventManager {
 		$idEvent	= intval($idEvent);
 		$dateStart	= ( $convertDates ) ? TodoyuTime::parseDate($formData['date_start']) : $formData['date_start'];
 		$dateEnd	= ( $convertDates ) ? TodoyuTime::parseDate($formData['date_end']) : $formData['date_end'];
-		$personIDs	= TodoyuArray::flattenToSubKey('id', $formData['persons']);
+		$personIDs	= TodoyuArray::getColumn($formData['persons'], 'id');
 
 		$warning		= '';
 		$overbookedInfos= TodoyuCalendarEventManager::getOverbookingInfos($dateStart, $dateEnd, $personIDs, $idEvent);
