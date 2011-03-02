@@ -1,36 +1,36 @@
 <table class="eventView">
 	<tr>
 		<td class="eventAttrTitle">
-			<span class="icon eventTitleIcon"> </span>&nbsp;{Label core.title}
+			<span class="icon eventTitleIcon"> </span>&nbsp;{Label core.global.title}
 		</td>
 		<td class="eventValue">{$event.title}</td>
 	</tr>
 	<tr>
 		<td class="eventAttrTitle">
-			<span class="icon placeIcon"> </span>&nbsp;{Label event.attr.place}
+			<span class="icon placeIcon"> </span>&nbsp;{Label calendar.event.attr.place}
 		</td>
 		<td class="eventValue">{$event.place}</td>
 	</tr>
 	<tr>
 		<td class="eventAttrTitle">
-			<span class="icon dateIcon"> </span>&nbsp;{Label event.attr.timespan}
+			<span class="icon dateIcon"> </span>&nbsp;{Label calendar.event.attr.timespan}
 		</td>
 		<td class="eventValue">
 			{math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}
 			{math equation="d / 3600" d=$duration assign=duration}
-			{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} Hours)</td>
+			{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} {Label core.date.time.hours})</td>
 	</tr>
 {if !empty($event.description)}
 	<tr>
 		<td class="eventAttrTitle">
-			<span class="icon"> </span>&nbsp;{Label core.description}
+			<span class="icon"> </span>&nbsp;{Label core.global.description}
 		</td>
 		<td class="eventValue">{$event.description|default:"-"}</td>
 	</tr>
 {/if}
 	<tr>
 		<td class="eventAttrTitle">
-			<span class="icon"> </span>&nbsp;{Label event.attr.creator}
+			<span class="icon"> </span>&nbsp;{Label calendar.event.attr.creator}
 		</td>
 		<td class="eventValue">
 			{personLabel idPrefix="event-personcreate" idRecord=$event.person_create.id idPerson=$event.person_create.id}
@@ -39,7 +39,7 @@
 	</tr>
 	<tr>
 		<td class="eventAttrTitle ">
-			<span class="icon personsIcon"> </span>&nbsp;{Label event.attr.attendees}
+			<span class="icon personsIcon"> </span>&nbsp;{Label calendar.event.attr.attendees}
 		</td>
 		<td class="eventValue">
 		{foreach $event.persons person personData}

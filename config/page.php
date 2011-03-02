@@ -21,7 +21,7 @@
 if( Todoyu::person()->isInternal() || TodoyuAuth::isAdmin() ) {
 		// Add main menu planning area entry
 	if( allowed('calendar', 'general:area') ) {
-		TodoyuFrontend::addMenuEntry('planning', 'LLL:calendar.maintab.label', '?ext=calendar', 30);
+		TodoyuFrontend::addMenuEntry('planning', 'LLL:calendar.ext.maintab.label', '?ext=calendar', 30);
 
 			// Add sub menu entries
 		$subTabsConfig	= Todoyu::$CONFIG['EXT']['calendar']['tabs'];

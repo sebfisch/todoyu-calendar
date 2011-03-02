@@ -108,7 +108,7 @@ class TodoyuCalendarEventViewHelper {
 		$typeInfo	= $event->getTypeLabel();
 
 		if( $event->isPrivate() ) {
-			$typeInfo	.= ', ' . Label('event.attr.is_private');
+			$typeInfo	.= ', ' . Label('calendar.event.attr.is_private');
 		}
 
 		return $typeInfo;
@@ -149,11 +149,11 @@ class TodoyuCalendarEventViewHelper {
 		$options	= array();
 
 			// Event attending persons
-		$groupLabel	= Label('event.group.attendees');
+		$groupLabel	= Label('calendar.event.group.attendees');
 		$options[$groupLabel]	= self::getEmailReceiverOptions($field);
 
 			// Get staff persons (employees of internal company)
-		$groupLabel	= Label('comment.group.employees');
+		$groupLabel	= Label('comment.ext.group.employees');
 		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field);
 
 		return $options;

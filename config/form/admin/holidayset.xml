@@ -10,17 +10,17 @@
 			<elements>
 
 				<field type="text" name="title">
-					<label>calendar.holidayset.attr.name</label>
+					<label>calendar.ext.holidayset.attr.name</label>
 					<required/>
 				</field>
 
 				<field type="textarea" name="description">
-					<label>core.description</label>
+					<label>core.global.description</label>
 				</field>
 
 				<field type="databaseRelation" name="holiday">
-					<label>calendar.holidayset.attr.holiday</label>
-					<addLabel>calendar.holidayset.attr.holiday.new</addLabel>
+					<label>calendar.ext.holidayset.attr.holiday</label>
+					<addLabel>calendar.ext.holidayset.attr.holiday.new</addLabel>
 					<record>
 						<form>ext/calendar/config/form/admin/holidayset-holiday.xml</form>
 						<url>
@@ -29,7 +29,7 @@
 						</url>
 						<label type="field">
 							<field>title</field>
-							<noLabel>calendar.holidayset.attr.holiday.new</noLabel>
+							<noLabel>calendar.ext.holidayset.attr.holiday.new</noLabel>
 						</label>
 					</record>
 				</field>

@@ -7,7 +7,7 @@
 			<elements>
 
 				<field type="textAC" name="id">
-					<label>event.attr.assigned_to</label>
+					<label>calendar.event.attr.assigned_to</label>
 					<config>
 						<acName>eventperson</acName>
 						<acLabel>TodoyuContactPersonManager::getLabel</acLabel>

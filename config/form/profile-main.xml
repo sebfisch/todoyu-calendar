@@ -13,7 +13,7 @@
 			<elements>
 
 				<field type="checkbox" name="is_mailpopupdeactivated">
-					<label>calendar.profile.disableMailingQuestionAfterDraganddrop</label>
+					<label>calendar.ext.profile.disableMailingQuestionAfterDraganddrop</label>
 				</field>
 
 			</elements>

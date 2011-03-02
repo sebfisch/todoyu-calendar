@@ -87,7 +87,7 @@ Todoyu.Ext.calendar = {
 	 */
 	addHooks: function() {
 			// Add event save hook
-		Todoyu.Hook.add('calendar.quickevent.saved', this.refresh.bind(this));
+		Todoyu.Hook.add('calendar.ext.quickevent.saved', this.refresh.bind(this));
 
 			// Add event edit hook for event type
 		Todoyu.Hook.add('calendar.event.editType', this.Event.Edit.checkHideField.bind(this.Event.Edit));

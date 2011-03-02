@@ -50,10 +50,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Check rights
 		if( $idEvent === 0 ) {
 			TodoyuCalendarEventRights::restrictAdd();
-			$tabLabel	= Label('event.new');
+			$tabLabel	= Label('calendar.event.new');
 		} else {
 			TodoyuCalendarEventRights::restrictEdit($idEvent);
-			$tabLabel	= Label('event.edit') . ': ' . TodoyuString::crop($event->getTitle(), 20, '...', false);
+			$tabLabel	= Label('calendar.event.edit') . ': ' . TodoyuString::crop($event->getTitle(), 20, '...', false);
 		}
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel);
 

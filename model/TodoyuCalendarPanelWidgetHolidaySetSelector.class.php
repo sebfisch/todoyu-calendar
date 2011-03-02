@@ -45,7 +45,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget impl
 		parent::__construct(
 			'calendar',									// ext key
 			'holidaysetselector',						// panel widget ID
-			'LLL:panelwidget-holidaysetselector.title',	// widget title text
+			'LLL:calendar.panelwidget-holidaysetselector.title',	// widget title text
 			$config,									// widget config array
 			$params,									// widget parameters
 			$idArea										// area ID
@@ -105,7 +105,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget impl
 			'0'	=> array(
 				'index'		=> 0,
 				'value'		=> 0,
-				'label'		=> Label('panelwidget-holidaysetselector.showNoHolidays'),
+				'label'		=> Label('calendar.panelwidget-holidaysetselector.showNoHolidays'),
 				'class'		=> 'holidayset_none',
 				'selected'	=> count($selected) === 0 ? true : false
 			)

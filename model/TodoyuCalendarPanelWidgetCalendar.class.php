@@ -40,7 +40,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget implements Tod
 		parent::__construct(
 			'calendar',							// ext. key
 			'calendar',							// panel widget ID
-			'LLL:panelwidget-calendar.title',	// widget title text
+			'LLL:calendar.panelwidget-calendar.title',	// widget title text
 			$config,							// widget config array
 			$params,							// widget parameters
 			$idArea								// area ID

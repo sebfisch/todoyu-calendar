@@ -45,7 +45,7 @@ class TodoyuCalendarPanelWidgetEventTypeSelector extends TodoyuPanelWidget imple
 		parent::__construct(
 			'calendar',									// ext key
 			'eventtypeSelector',						// panel widget ID
-			'LLL:panelwidget-eventtypeselector.title',	// widget title text
+			'LLL:calendar.panelwidget-eventtypeselector.title',	// widget title text
 			$config,									// widget config array
 			$params,									// widget parameters
 			$idArea										// area ID

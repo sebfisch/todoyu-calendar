@@ -40,7 +40,7 @@
 							{$class .= ' inSelMonthTitle'}
 						{/if}
 
-						<td id="createEventAt-{date 'Y-m-d' $timestamps[$dayCounter]}" title="{dateFormat $timestamps[$dayCounter] DlongD2MlongY4}{if $timestamps[$dayCounter] == $timestamp_today} ({Label calendar.today}){/if}" class="{$class}">
+						<td id="createEventAt-{date 'Y-m-d' $timestamps[$dayCounter]}" title="{dateFormat $timestamps[$dayCounter] DlongD2MlongY4}{if $timestamps[$dayCounter] == $timestamp_today} ({Label calendar.ext.today}){/if}" class="{$class}">
 							{* ------ Week number (only for mondays) ----- *}
 							{if $dayCounter == $dayFrom}
 								<span class="weekNumber" title="{dateFormat $timestamps[$dayCounter] calendarweek}" onclick="Todoyu.Ext.calendar.showWeek('{date 'Y-m-d' $timestamps[$dayCounter]}')">

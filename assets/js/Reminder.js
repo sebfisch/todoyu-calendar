@@ -84,7 +84,7 @@ Todoyu.Ext.calendar.Reminder = {
 
 		var popupID	= 'reminder' + idEvent;
 
-		Todoyu.Popup.openWindow(popupID, '[LLL:calendar.reminder.popup.title]', 460, url, options);
+		Todoyu.Popup.openWindow(popupID, '[LLL:calendar.ext.reminder.popup.title]', 460, url, options);
 	},
 
 
@@ -149,7 +149,7 @@ Todoyu.Ext.calendar.Reminder = {
 		var idDelaySelector		= form.down('select[name="reminder[date_remindagain]"]');
 		var idEvent				= $F(idEventElement);
 		var delayTime			= $F(idDelaySelector);
-		
+
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
 			'parameters': {

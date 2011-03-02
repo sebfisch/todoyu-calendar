@@ -9,7 +9,7 @@
 				<span id="{$id}-time-tracking">{HourMinSec $tracking}</span>
 				<span id="{$id}-time-percent">{if $showPercent}(<span id="{$id}-time-percent-value">{$percent}</span>%){/if}</span>
 			</li>
-			<li class="stop">{Button id="timetracking-stop-current-task" label="core.stop" class="stopTracking" onclick="Todoyu.Ext.timetracking.Headlet.Timetracking.stopTask($idTask)"}</li>
+			<li class="stop">{Button id="timetracking-stop-current-task" label="core.global.stop" class="stopTracking" onclick="Todoyu.Ext.timetracking.Headlet.Timetracking.stopTask($idTask)"}</li>
 		</ul>
 	</div>
 </div>

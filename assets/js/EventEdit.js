@@ -359,7 +359,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	onEventSaved: function(response) {
 		if( response.hasTodoyuError() ) {
 				// Notify of invalid data
-			Todoyu.notifyError('[LLL:event.saved.error]');
+			Todoyu.notifyError('[LLL:calendar.event.ext.saved.error]');
 			$('event-form').replace(response.responseText);
 		} else {
 			if( response.hasTodoyuHeader('overbookingwarning') ) {
@@ -382,11 +382,11 @@ Todoyu.Ext.calendar.Event.Edit = {
 			} else {
 				if( response.getTodoyuHeader('sentEmail') ) {
 						// Notify of sent mail
-					Todoyu.notifySuccess('[LLL:event.mail.notification.sent]');
+					Todoyu.notifySuccess('[LLL:calendar.event.ext.mail.notification.sent]');
 				}
-	
+
 					// Event saved - notify success
-				Todoyu.notifySuccess('[LLL:event.saved.ok]');
+				Todoyu.notifySuccess('[LLL:calendar.event.ext.saved.ok]');
 				var time	= response.getTodoyuHeader('time');
 				var idEvent	= response.getTodoyuHeader('idEvent');
 				this.ext.QuickInfoEvent.removeFromCache(idEvent);
@@ -419,7 +419,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 */
 	onPersonAcCompleted: function(response, autocompleter) {
 		if( response.isEmptyAcResult() ) {
-			Todoyu.notifyInfo('[LLL:event.ac.personassignment.notFoundInfo]');
+			Todoyu.notifyInfo('[LLL:calendar.event.ext.ac.personassignment.notFoundInfo]');
 			return false;
 		}
 	},

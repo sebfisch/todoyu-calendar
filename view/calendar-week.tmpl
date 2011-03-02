@@ -8,12 +8,12 @@
 					{* --------------- Day names and dates ----------------------- *}
 					<tr>
 						<td rowspan="3" class="wk-tzlabel">
-							<div id="toggleDayView" class="{if $fullDayView}full{/if}" title="{if $fullDayView}{Label calendar.dayview.workinghours}{else}{Label calendar.dayview.fullday}{/if}" onclick="Todoyu.Ext.calendar.Navi.toggleFullDayView()"></div>
+							<div id="toggleDayView" class="{if $fullDayView}full{/if}" title="{if $fullDayView}{Label calendar.ext.dayview.workinghours}{else}{Label calendar.ext.dayview.fullday}{/if}" onclick="Todoyu.Ext.calendar.Navi.toggleFullDayView()"></div>
 						</td>
 						{* ---------- Header: dates of the rendered week ------------ *}
 						{for weekday 0 6}
 							{$dayDateKey = date('Ymd', $timestamps[$weekday])}
-							<th class="wk-dayname {if $timestamps[$weekday] == $timestamp_today}today todaywk-dayname{/if} {cycle values="odd,even"}" title="{dateFormat $timestamps.$weekday DlongD2MlongY4}{if $timestamps.$weekday == $timestamp_today} ({Label calendar.today}){/if}" scope="col" onclick="Todoyu.Ext.calendar.showDay('{date('Y-m-d', $timestamps[$weekday])}')">
+							<th class="wk-dayname {if $timestamps[$weekday] == $timestamp_today}today todaywk-dayname{/if} {cycle values="odd,even"}" title="{dateFormat $timestamps.$weekday DlongD2MlongY4}{if $timestamps.$weekday == $timestamp_today} ({Label calendar.ext.today}){/if}" scope="col" onclick="Todoyu.Ext.calendar.showDay('{date('Y-m-d', $timestamps[$weekday])}')">
 								{dateFormat $timestamps[$weekday] DshortD2M2}
 								{if sizeof($holidays[$dayDateKey])>0}
 									<span id="holiday-{$timestamps[$weekday]}" class="holiday quickInfoHoliday"></span>

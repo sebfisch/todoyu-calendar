@@ -112,7 +112,7 @@ class TodoyuCalendarEventRenderer {
 	 * @return	Array
 	 */
 	private static function hidePrivateData(array $data) {
-		$data['title']			= '<' . Label('event.privateEvent.info') . '>';
+		$data['title']			= '<' . Label('calendar.event.privateEvent.info') . '>';
 		$data['description']	= '';
 
 		return $data;
@@ -369,17 +369,17 @@ class TodoyuCalendarEventRenderer {
 			// Set the appropriate subject (created, updated, deleted)
 		switch($operationID) {
 			case OPERATIONTYPE_RECORD_CREATE:
-				$subject	= Label('event.mail.popup.subject.create');
+				$subject	= Label('calendar.event.mail.popup.subject.create');
 				break;
 			case OPERATIONTYPE_RECORD_DELETE:
-				$subject	= Label('event.mail.popup.subject.delete');
+				$subject	= Label('calendar.event.mail.popup.subject.delete');
 
 					// Remove "don't ask again" button in form of deleted events
 				$form->getFieldset('buttons')->removeField('dontaskagain');
 				break;
 			case OPERATIONTYPE_RECORD_UPDATE:
 			default:
-				$subject	= Label('event.mail.popup.subject.update');
+				$subject	= Label('calendar.event.mail.popup.subject.update');
 				break;
 		}
 

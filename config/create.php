@@ -20,7 +20,7 @@
 
 if( (Todoyu::person()->isInternal() || TodoyuAuth::isAdmin()) && allowed('calendar', 'event:add') ) {
 		// Add quick create types
-	TodoyuQuickCreateManager::addEngine('calendar', 'event', 'event.create.label', 50, array('calendar'));
+	TodoyuQuickCreateManager::addEngine('calendar', 'event', 'calendar.event.create.label', 50, array('calendar'));
 }
 
 ?>

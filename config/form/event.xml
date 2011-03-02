@@ -15,12 +15,12 @@
 			<elements>
 
 				<field type="text" name="title">
-					<label>core.title</label>
+					<label>core.global.title</label>
 					<required />
 				</field>
 
 				<field type="select" name="eventtype">
-					<label>event.attr.eventtype</label>
+					<label>calendar.event.attr.eventtype</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getEventTypeOptions</function>
 					</source>
@@ -29,28 +29,28 @@
 				</field>
 
 				<field type="checkbox" name="is_dayevent">
-					<label>event.attr.is_dayevent</label>
+					<label>calendar.event.attr.is_dayevent</label>
 					<onchange>Todoyu.Ext.calendar.Event.Edit.setFulldayTime(this)</onchange>
 				</field>
 
 				<field type="checkbox" name="is_private">
-					<label>event.attr.is_private</label>
+					<label>calendar.event.attr.is_private</label>
 					<validate>
-						<user msg="LLL:event.error.privateEvent">
+						<user msg="LLL:calendar.event.ext.error.privateEvent">
 							<function>TodoyuCalendarEventFormValidator::eventIsAssignableToCurrentPersonOnly</function>
 						</user>
 					</validate>
 				</field>
 
 				<field type="datetime" name="date_start">
-					<label>event.attr.startdate</label>
+					<label>calendar.event.attr.startdate</label>
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event')"</extraAttributes>
 					<class>datetime</class>
-					<required label="event.error.date_start" />
+					<required label="calendar.event.error.date_start" />
 				</field>
 
 				<field type="datetime" name="date_end">
-					<label>event.attr.enddate</label>
+					<label>calendar.event.attr.enddate</label>
 					<validate>
 						<dateTimeNotBefore msg="event.error.starttimeAfterEndtime">
 							<field>date_start</field>
@@ -73,16 +73,16 @@
 			<elements>
 
 				<field type="text" name="place">
-					<label>event.attr.place</label>
+					<label>calendar.event.attr.place</label>
 				</field>
 
 				<field type="textarea" name="description">
-					<label>core.description</label>
+					<label>core.global.description</label>
 				</field>
 
 				<field type="databaseRelation" name="persons">
-					<addLabel>contact.person.new</addLabel>
-					<label>event.attr.assigned_to</label>
+					<addLabel>contact.ext.person.new</addLabel>
+					<label>calendar.event.attr.assigned_to</label>
 					<record>
 						<form>ext/calendar/config/form/event-person.xml</form>
 						<url>
@@ -95,10 +95,10 @@
 						</label>
 					</record>
 					<validate>
-						<user msg="LLL:event.error.overbooked">
+						<user msg="LLL:calendar.event.ext.error.overbooked">
 							<function>TodoyuCalendarEventFormValidator::personsAreBookable</function>
 						</user>
-						<user msg="LLL:event.error.hasInternalPerson">
+						<user msg="LLL:calendar.event.ext.error.hasInternalPerson">
 							<function>TodoyuCalendarEventFormValidator::hasInternalPerson</function>
 						</user>
 					</validate>
@@ -106,7 +106,7 @@
 				</field>
 <!--
 				<field type="textAC" name="id_project">
-					<label>event.attr.id_project</label>
+					<label>calendar.event.attr.id_project</label>
 					<config>
 						<acName>project</acName>
 						<acLabel>TodoyuProjectProjectManager::getLabel</acLabel>
@@ -114,7 +114,7 @@
 				</field>
 
 				<field type="textAC" name="id_task">
-					<label>event.attr.id_task</label>
+					<label>calendar.event.attr.id_task</label>
 					<config>
 						<acName>task</acName>
 						<acLabel>TodoyuProjectTaskManager::getLabel</acLabel>
@@ -127,7 +127,7 @@
 		<fieldset name="email">
 			<elements>
 				<field type="checkbox" name="sendasemail">
-					<label>event.edit.sendasemail</label>
+					<label>calendar.event.edit.sendasemail</label>
 					<onclick>Todoyu.Ext.calendar.Event.Mail.onToggleSendAsEmail(this)</onclick>
 					<restrict>
 						<allow ext="comment" right="comment:sendAsEmail" />
@@ -135,7 +135,7 @@
 				</field>
 
 				<field type="selectgrouped" name="emailreceivers">
-					<label>comment.edit.sentEmailTo</label>
+					<label>comment.ext.edit.sentEmailTo</label>
 					<source type="function">
 						<function>TodoyuCalendarEventViewHelper::getEmailReceiverGroupedOptions</function>
 						<lazyInit/>

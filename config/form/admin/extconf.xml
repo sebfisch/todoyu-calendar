@@ -8,7 +8,7 @@
 		<fieldset name="config">
 			<elements>
 				<field type="checkbox" name="allowoverbooking">
-					<label>calendar.extconf.allowoverbooking.label</label>
+					<label>calendar.ext.extconf.allowoverbooking.label</label>
 				</field>
 
 		</elements>
@@ -17,7 +17,7 @@
 		<fieldset name="eventsreminder">
 			<elements>
 				<field type="select" name="reminderpopup_roles">
-					<label>calendar.extconf.reminderpopup_roles.label</label>
+					<label>calendar.ext.extconf.reminderpopup_roles.label</label>
 					<source type="function">
 						<function>TodoyuRoleViewHelper::getRoleOptions</function>
 						<lazyInit/>
@@ -27,11 +27,11 @@
 				</field>
 
 				<field type="duration" name="reminderpopup_advancetime">
-					<label>calendar.extconf.reminderpopup_advancetime.label</label>
+					<label>calendar.ext.extconf.reminderpopup_advancetime.label</label>
 				</field>
 
 				<field type="checkbox" name="audioreminder_active">
-					<label>calendar.extconf.audioreminder_active.label</label>
+					<label>calendar.ext.extconf.audioreminder_active.label</label>
 				</field>
 
 			</elements>
@@ -40,7 +40,7 @@
 		<fieldset name="eventsmailing">
 			<elements>
 			<field type="select" name="autosendeventmail">
-					<label>calendar.extconf.autosendeventmail.label</label>
+					<label>calendar.ext.extconf.autosendeventmail.label</label>
 					<source type="function">
 						<function>TodoyuRoleViewHelper::getRoleOptions</function>
 						<lazyInit/>

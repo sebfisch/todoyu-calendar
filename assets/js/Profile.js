@@ -69,7 +69,7 @@ Todoyu.Ext.calendar.Profile =  {
 	 * @param	{Ajax.Response}		response
 	 */
 	onMainSaved: function(response) {
-		Todoyu.notifySuccess('[LLL:calendar.profile.main.saved]');
+		Todoyu.notifySuccess('[LLL:calendar.ext.profile.main.saved]');
 	}
 
 };

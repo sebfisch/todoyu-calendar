@@ -40,16 +40,16 @@ class TodoyuCalendarViewHelper {
 		$title		= '';
 
 		if( $mode === CALENDAR_MODE_DAY ) {
-			$format= label('calendar.calendartitle.dateformat.day');
+			$format= label('calendar.ext.calendartitle.dateformat.day');
 			$title	.= strftime($format, $dateStart);
 		} elseif( $mode === CALENDAR_MODE_WEEK ) {
-			$title	.= strftime(label('calendar.calendartitle.dateformat.week.part1'), $dateStart);
-			$title .= strftime(label('calendar.calendartitle.dateformat.week.part2'), $dateEnd);
+			$title	.= strftime(label('calendar.ext.calendartitle.dateformat.week.part1'), $dateStart);
+			$title .= strftime(label('calendar.ext.calendartitle.dateformat.week.part2'), $dateEnd);
 		} elseif( $mode === CALENDAR_MODE_MONTH ) {
 			$date	= $dateStart + TodoyuTime::SECONDS_WEEK;
-			$title	.= strftime(label('calendar.calendartitle.dateformat.month.part1'), $date);
-			$title	.= strftime(label('calendar.calendartitle.dateformat.month.part2'), $dateStart);
-			$title	.= strftime(label('calendar.calendartitle.dateformat.month.part3'), $dateEnd);
+			$title	.= strftime(label('calendar.ext.calendartitle.dateformat.month.part1'), $date);
+			$title	.= strftime(label('calendar.ext.calendartitle.dateformat.month.part2'), $dateStart);
+			$title	.= strftime(label('calendar.ext.calendartitle.dateformat.month.part3'), $dateEnd);
 		} else {
 			$title = 'Invalid mode';
 		}

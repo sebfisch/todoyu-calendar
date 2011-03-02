@@ -668,7 +668,7 @@ class TodoyuCalendarEventManager {
 				$errorMessages = array();
 				foreach($overbookedInfos as $idPerson => $infos) {
 					foreach($infos['events'] as $event) {
-						$errorMessages[] = Label('LLL:event.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
+						$errorMessages[] = Label('LLL:calendar.event.ext.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
 					}
 				}
 

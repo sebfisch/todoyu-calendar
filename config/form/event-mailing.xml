@@ -14,7 +14,7 @@
 		<fieldset name="email">
 			<elements>
 				<field type="selectgrouped" name="emailreceivers">
-					<label>comment.edit.sentEmailTo</label>
+					<label>comment.ext.edit.sentEmailTo</label>
 					<source type="function">
 						<function>TodoyuCalendarEventViewHelper::getEmailReceiverGroupedOptions</function>
 						<lazyInit/>
@@ -39,14 +39,14 @@
 				</field>
 
 				<field type="button" name="sendAsEmail">
-					<text>event.mail.popup.button.sendAsEmail</text>
+					<text>calendar.event.mail.popup.button.sendAsEmail</text>
 					<class>sendemail</class>
 					<onclick>Todoyu.Ext.calendar.Event.Mail.sendMail(#id_event#, Todoyu.Ext.calendar.Event.operationTypeID.update, $F('event-0-field-emailreceivers'));Todoyu.Popup.closeLastPopup()</onclick>
 					<hasIcon/>
 				</field>
 
 				<field type="button" name="dontaskagain">
-					<text>event.mail.popup.button.dontaskagain</text>
+					<text>calendar.event.mail.popup.button.dontaskagain</text>
 					<class>exclamation</class>
 					<onclick>Todoyu.Ext.calendar.Event.Mail.deactivatePopup();Todoyu.Popup.closeLastPopup()</onclick>
 					<hasIcon/>

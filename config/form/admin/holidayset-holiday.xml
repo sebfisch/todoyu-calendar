@@ -13,7 +13,7 @@
 			<elements>
 
 				<field type="select" name="id">
-					<label>calendar.holidayset.attr.holiday</label>
+					<label>calendar.ext.holidayset.attr.holiday</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getHolidayOptions</function>
 					</source>

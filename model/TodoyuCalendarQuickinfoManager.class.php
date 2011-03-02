@@ -46,11 +46,11 @@ class TodoyuCalendarQuickinfoManager {
 				if( $canSeeDetails ) {
 					$quickInfo->addInfo('place', $event->getPlace(), 40);
 				} else {
-					$quickInfo->addInfo('place', Label('event.privateEvent.info'), 40);
+					$quickInfo->addInfo('place', Label('calendar.event.privateEvent.info'), 40);
 				}
 			}
 		} else {
-			$quickInfo->addInfo('title', '<' . Label('event.privateEvent.info') . '>', 10);
+			$quickInfo->addInfo('title', '<' . Label('calendar.event.privateEvent.info') . '>', 10);
 		}
 
 		$quickInfo->addInfo('type',	$typeInfo, 20);
@@ -77,9 +77,9 @@ class TodoyuCalendarQuickinfoManager {
 		$holiday	= array_shift($holidays);
 
 		$quickInfo->addInfo('title', $holiday['title']);
-		$quickInfo->addInfo('type', Label('calendar.holidayset.attr.holiday'));
+		$quickInfo->addInfo('type', Label('calendar.ext.holidayset.attr.holiday'));
 		$quickInfo->addInfo('date', TodoyuTime::format($holiday['date'], 'date'));
-		$quickInfo->addInfo('work', round($holiday['workingtime'] / 3600, 1) . ' ' . Label('date.time.hours'));
+		$quickInfo->addInfo('work', round($holiday['workingtime'] / 3600, 1) . ' ' . Label('core.date.time.hours'));
 	}
 
 
@@ -99,7 +99,7 @@ class TodoyuCalendarQuickinfoManager {
 
 		$quickInfo->addInfo('name',		TodoyuString::crop($person->getFullName(), 25, '...', false));
 		$quickInfo->addInfo('date',		TodoyuTime::format($person->getBirthday(), 'date'));
-		$quickInfo->addInfo('birthday',	$age . ' ' . Label('calendar.yearsold'));
+		$quickInfo->addInfo('birthday',	$age . ' ' . Label('calendar.ext.yearsold'));
 	}
 
 }

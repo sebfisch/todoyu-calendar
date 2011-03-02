@@ -46,21 +46,21 @@ Todoyu::$CONFIG['EXT']['calendar']['tabs'] = array(
 	'day'	=> array(
 		'key'		=> 'day',
 		'id'		=> 'day',
-		'label'		=> 'LLL:date.day',
+		'label'		=> 'LLL:core.date.day',
 		'require'	=> 'calendar.general:area',
 		'position'	=> 62
 	),
 	'week'	=> array(
 		'key'		=> 'week',
 		'id'		=> 'week',
-		'label'		=> 'LLL:date.week',
+		'label'		=> 'LLL:core.date.week',
 		'require'	=> 'calendar.general:area',
 		'position'	=> 63
 	),
 	'month'	=> array(
 		'key'		=> 'month',
 		'id'		=> 'month',
-		'label'		=> 'LLL:date.month',
+		'label'		=> 'LLL:core.date.month',
 		'require'	=> 'calendar.general:area',
 		'position'	=> 64
 	)
@@ -83,17 +83,17 @@ Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
 /* -------------------
 	Event Types
    ------------------- */
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'event.type.general');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'event.type.away');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'event.type.awayofficial');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_BIRTHDAY, 'birthday', 'event.type.birthday');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_VACATION, 'vacation', 'event.type.vacation');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_EDUCATION, 'education', 'event.type.education');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MEETING, 'meeting', 'event.type.meeting');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'event.type.homeoffice');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'event.type.compensation');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'event.type.milestone');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'event.type.reminder');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'calendar.event.type.general');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'calendar.event.type.away');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'calendar.event.type.awayofficial');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_BIRTHDAY, 'birthday', 'calendar.event.type.birthday');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_VACATION, 'vacation', 'calendar.event.type.vacation');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_EDUCATION, 'education', 'calendar.event.type.education');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MEETING, 'meeting', 'calendar.event.type.meeting');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'calendar.event.type.homeoffice');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'calendar.event.type.compensation');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'calendar.event.type.milestone');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'calendar.event.type.reminder');
 
 	// Which event types have no relevance to overbooking prevention?
 Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'] = array(
@@ -151,7 +151,7 @@ if( TodoyuExtensions::isInstalled('profile') && allowed('calendar', 'mailing.sen
 		'position'	=> 5,
 		'tabs'		=> 'TodoyuCalendarProfileRenderer::renderTabs',
 		'content'	=> 'TodoyuCalendarProfileRenderer::renderContent',
-		'label'		=> 'calendar.profile.module',
+		'label'		=> 'calendar.ext.profile.module',
 		'class'		=> 'calendar'
 	));
 }
@@ -159,7 +159,7 @@ if( TodoyuExtensions::isInstalled('profile') && allowed('calendar', 'mailing.sen
 Todoyu::$CONFIG['EXT']['profile']['calendarTabs'] = array(
 	array(
 		'id'			=> 'main',
-		'label'			=> 'LLL:calendar.profile.module.main.tab',
+		'label'			=> 'LLL:calendar.ext.profile.module.main.tab',
 //		'require'		=> 'calendar.settings:editbookmarks'
 	)
 );

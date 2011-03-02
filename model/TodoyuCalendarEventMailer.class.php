@@ -141,13 +141,13 @@ class TodoyuCalendarEventMailer {
 	public static function getSubjectLabelByOperation($operationID) {
 		switch( $operationID ) {
 			case OPERATIONTYPE_RECORD_CREATE:
-				$subject	= Label('event.mail.title.create');
+				$subject	= Label('calendar.event.mail.title.create');
 				break;
 			case OPERATIONTYPE_RECORD_UPDATE:
-				$subject	= Label('event.mail.title.update');
+				$subject	= Label('calendar.event.mail.title.update');
 				break;
 			case OPERATIONTYPE_RECORD_DELETE: default:
-				$subject	= Label('event.mail.title.deleted');
+				$subject	= Label('calendar.event.mail.title.deleted');
 				break;
 		}
 

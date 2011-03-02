@@ -6,7 +6,7 @@
 		{* ------- Event entry ------- *}
 		<div id="event-{$event.id}" class="event {cycle values="odd,even"} type{ucfirst(EventTypeKey($event.eventtype))} contextmenuEventPortal">
 			<h3 id="event-{$event.id}-header" name="event-{$event.id}">
-				<span class="icon type" title="{Label event.attr.eventtype}: {EventTypeLabel $event.eventtype}"> </span>
+				<span class="icon type" title="{Label calendar.event.attr.eventtype}: {EventTypeLabel $event.eventtype}"> </span>
 				<span id="acknowledge-{$event.id}" class="icon acknowledge {if ! $event.is_acknowledged}not{/if}{if $event.is_updated} updated{/if}" {if ! $event.is_acknowledged}onclick="Todoyu.Ext.calendar.EventPortal.acknowledgeEvent({$event.id}, {$event.id_person})"{/if}> </span>
 				<span class="label" onclick="Todoyu.Ext.calendar.EventPortal.toggleDetails({$idEvent})">
 					<span class="date">{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime}</span>
@@ -19,13 +19,13 @@
 		</div>
 		{* ------- End: event entry ------- *}
 	{else}
-		{contentMessage 'event.error.noAppointmentsFound'}
+		{contentMessage 'calendar.event.error.noAppointmentsFound'}
 	{/foreach}
 	</div>
 
 {if $showHolidays && count($holidays) > 0}
 	<br/>
-	{Header title="LLL:event.eventslist.holidaysWithinTheNextweeks"}
+	{Header title="LLL:calendar.event.ext.eventslist.holidaysWithinTheNextweeks"}
 	<div id="holidays">
 		{include file="holidayslist.tmpl"}
 	</div>
@@ -33,7 +33,7 @@
 
 {if $showBirthdays && count($birthdays) > 0}
 	<br/>
-	{$headerTitle = implode(array(Label('LLL:event.eventslist.birthdaysWithinTheNextweeks'), ' (', strval(sizeof($birthdays)), ')'))}
+	{$headerTitle = implode(array(Label('LLL:calendar.event.ext.eventslist.birthdaysWithinTheNextweeks'), ' (', strval(sizeof($birthdays)), ')'))}
 	{Header title=$headerTitle}
 	<div id="birthdays">
 		{include file="birthdayslist.tmpl"}
