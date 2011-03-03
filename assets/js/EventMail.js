@@ -128,7 +128,7 @@ Todoyu.Ext.calendar.Event.Mail = {
 	 * @method	onPopupDeactivated
 	 */
 	onPopupDeactivated: function() {
-		Todoyu.Notification.notifySuccess('[LLL:calendar.event.ext.mail.notification.popup.deactivated]');
+		Todoyu.Notification.notifySuccess('[LLL:calendar.event.mail.notification.popup.deactivated]');
 	},
 
 
@@ -167,7 +167,7 @@ Todoyu.Ext.calendar.Event.Mail = {
 	onMailSent: function(idEvent, response) {
 		if( response.getTodoyuHeader('sentEmail') ) {
 				// Notify of sent mail
-			Todoyu.Notification.notifySuccess('[LLL:calendar.event.ext.mail.notification.sent]');
+			Todoyu.Notification.notifySuccess('[LLL:calendar.event.mail.notification.sent]');
 		}
 	}
 

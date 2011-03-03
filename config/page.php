@@ -25,7 +25,7 @@ if( Todoyu::person()->isInternal() || TodoyuAuth::isAdmin() ) {
 
 			// Add sub menu entries
 		$subTabsConfig	= Todoyu::$CONFIG['EXT']['calendar']['tabs'];
-		$prefix			= Label('calendar.subMenuEntries.prefix') . ' > ';
+		$prefix			= Label('calendar.ext.subMenuEntries.prefix') . ' > ';
 
 		TodoyuFrontend::addSubMenuEntriesFromTabsConf('calendar', 'planning', $subTabsConfig, $prefix);
 	}

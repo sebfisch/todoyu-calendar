@@ -150,7 +150,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{Number}		idEvent
 	 */
 	remove: function(idEvent) {
-		if( confirm('[LLL:calendar.event.ext.delete.confirm]') ) {
+		if( confirm('[LLL:calendar.event.delete.confirm]') ) {
 				// Show mailing popup
 			this.Mail.initEventMailPopup(idEvent, this.operationTypeID.remove);
 

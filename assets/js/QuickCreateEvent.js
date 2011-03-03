@@ -83,13 +83,13 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	 */
 	onSaved: function(response) {
 		if( response.hasTodoyuError() ) {
-			Todoyu.notifyError('[LLL:calendar.event.ext.saved.error]');
+			Todoyu.notifyError('[LLL:calendar.event.saved.error]');
 
 			Todoyu.Popup.setContent('quickcreate', response.responseText);
 		} else {
 			var idEvent	= response.getTodoyuHeader('idEvent');
 
-			Todoyu.notifySuccess('[LLL:calendar.event.ext.saved.ok]');
+			Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]');
 			Todoyu.Popup.close('quickcreate');
 
 			Todoyu.Hook.exec('calendar.ext.quickevent.saved', idEvent);

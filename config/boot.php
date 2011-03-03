@@ -25,14 +25,6 @@ define('PATH_EXT_CALENDAR', PATH_EXT . '/calendar');
 require_once(PATH_EXT_CALENDAR . '/config/constants.php');
 require_once(PATH_EXT_CALENDAR . '/dwoo/plugins.php');
 
-	// Register module locales
-//TodoyuLabelManager::register('calendar', 'calendar', 'ext.xml');
-//TodoyuLabelManager::register('event', 'calendar', 'event.xml');
-//TodoyuLabelManager::register('panelwidget-calendar', 'calendar', 'panelwidget-calendar.xml');
-//TodoyuLabelManager::register('panelwidget-eventtypeselector', 'calendar', 'panelwidget-eventtypeselector.xml');
-//TodoyuLabelManager::register('panelwidget-holidaysetselector', 'calendar', 'panelwidget-holidaysetselector.xml');
-
-
 // Add holiday set selector to company address form
 TodoyuFormHook::registerBuildForm('ext/contact/config/form/address.xml', 'TodoyuCalendarManager::modifyAddressFormfields');
 
