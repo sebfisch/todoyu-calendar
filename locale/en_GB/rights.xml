@@ -10,5 +10,6 @@
 	<label index="event.add">Add New Appointment</label>
 	<label index="event.search">Search For Appointments</label>
 	<label index="event.assignOthers">Assign appoinments to other persons</label>
+	<label index="mailing">Event email</label>
 	<label index="mailing.sendAsEmail">Send Emails about appointments to selectable receivers</label>
 </labels>
