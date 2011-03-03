@@ -30,10 +30,10 @@
 				 <span class="desc" style="color:{$color.text|default:"#000"}">
 					{if $is_private}
 						{if isPersonID($id_person)}
-							{htmlencode(wordwrap($description 8 cut=true))}
+							{htmlencode($description 8 cut=true)}
 						{/if}
 					{else}
-					{htmlencode(wordwrap($description 8 cut=true))}
+					{htmlencode($description 8 cut=true)}
 					{/if}
 				</span>
 			</dd>
