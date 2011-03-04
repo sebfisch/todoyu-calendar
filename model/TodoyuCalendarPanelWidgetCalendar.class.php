@@ -60,8 +60,8 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget implements Tod
 	private static function addCalendarLocalizationJS() {
 		$code = "// Localize date object (for scal)\n"
 				. 'Object.extend(Date.prototype, {'
-				. 'monthnames:[\'' . Label('date.month.january') . '\',\'' . Label('date.month.february') . '\',\'' . Label('date.month.march') . '\',\'' . Label('date.month.april') . '\',\'' . Label('date.month.may') . "','" . Label('date.month.june') . "','" . Label('date.month.july') . '\',\'' . Label('date.month.august') . "','" . Label('date.month.september') . "','" . Label('date.month.october') . "','" . Label('date.month.november') . "','" . Label('date.month.december') . '\'],'
-				. 'daynames:[\'' . Label('date.weekday.sunday') . '\',\'' . Label('date.weekday.monday') . '\', \'' . Label('date.weekday.tuesday') . '\',\'' . Label('date.weekday.wednesday') . "','" . Label('date.weekday.thursday') . "','" . Label('date.weekday.friday') . "','" . Label('date.weekday.saturday') . '\']'
+				. 'monthnames:[\'' . Label('core.date.month.january') . '\',\'' . Label('core.date.month.february') . '\',\'' . Label('core.date.month.march') . '\',\'' . Label('core.date.month.april') . '\',\'' . Label('core.date.month.may') . "','" . Label('core.date.month.june') . "','" . Label('core.date.month.july') . '\',\'' . Label('core.date.month.august') . "','" . Label('core.date.month.september') . "','" . Label('core.date.month.october') . "','" . Label('core.date.month.november') . "','" . Label('core.date.month.december') . '\'],'
+				. 'daynames:[\'' . Label('core.date.weekday.sunday') . '\',\'' . Label('core.date.weekday.monday') . '\', \'' . Label('core.date.weekday.tuesday') . '\',\'' . Label('core.date.weekday.wednesday') . "','" . Label('core.date.weekday.thursday') . "','" . Label('core.date.weekday.friday') . "','" . Label('core.date.weekday.saturday') . '\']'
 				. '});';
 
 		TodoyuPage::addJsInline($code);
