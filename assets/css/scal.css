@@ -176,8 +176,9 @@
 }
 
 .todoyuskin .daybox {
-	border:0 dotted #818181;
-	border-left-width:1px;
+	border-width:0 0 0 1px;
+	border-color:#818181;
+	border-style:dotted;
 }
 
 .inSelMonth {
@@ -185,8 +186,9 @@
 }
 
 .todoyuskin .dayboxname {
-	border:0 solid #e4eace;
-	border-right-width:1px;
+	border-width:0 1px 0 0;
+	border-color:#e4eace;
+	border-style:solid; 
 }
 
 
