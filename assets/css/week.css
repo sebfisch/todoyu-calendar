@@ -75,10 +75,9 @@ div.weekMode table.st-grid td {
 	background-color:#f2f3ed;
 	font-size:11px;
 	line-height:14px;
-	border-left:1px solid #848484;
-	border-right:1px solid #E8E5DE;
-	border-bottom:1px solid #E8E5DE;
-	border-top:1px solid #848484;
+	border:1px solid #848484;
+	border-right-color:#e8e5de;
+	border-bottom-color:#e8e5de;
 	padding:1px 1px 1px 0;
 }
 
@@ -157,9 +156,7 @@ div.weekMode table.st-grid td {
 	border-left:3px double #ddd;
 	overflow:hidden;
 	vertical-align:top;
-	background-image:url(../img/background-week-today.png);
-	background-repeat:repeat-y;
-	background-position:left 1px;
+	background:url(../img/background-week-today.png) repeat-y left 1px;
 	position:relative;
 }
 
@@ -188,8 +185,7 @@ td.weekModeHourHotspotCell {
 }
 
 td.noEventCell {
-	background-image:url(../img/background-noevent.png);
-	background-repeat:repeat-x;
+	background:url(../img/background-noevent.png) repeat-x;
 }
 th.wk-dayname {
 	text-align:center;

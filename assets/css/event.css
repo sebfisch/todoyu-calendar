@@ -81,8 +81,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 
 
 .dayevent {
-	margin:0;
-	margin-bottom:1px;
+	margin:0 0 1px;
 	height:16px;
 	padding-top:1px;
 	border:1px solid;
@@ -256,8 +255,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 }
 
 #birthdays h3 {
-	background-color:#fff;
-	background:url(../../../contact/assets/img/icons.png) no-repeat scroll 4px -325px;
+	background:#fff url(../../../contact/assets/img/icons.png) no-repeat scroll 4px -325px;
 	padding-left:35px;
 }
 
@@ -432,11 +430,10 @@ button.editEvent .icon {
 	Holidays
    ---------------------- */
 .holidays {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -390px;
+	background:#9b9b9b url(../img/icons.png) no-repeat scroll 0 -390px;
 	padding:0 0 0 15px;
 	margin:0 0 2px 1px;
 	color:#fff;
-	background-color:#9b9b9b;
 	overflow:hidden;
 	min-height:17px;
 }

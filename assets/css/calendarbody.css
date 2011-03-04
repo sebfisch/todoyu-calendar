@@ -29,9 +29,7 @@
 
 
 #tgnowptr {
-	background-image:url(../img/background-hours.png);
-	background-repeat:repeat-y;
-	background-color:#f2f3ed;
+	background:#f2f3ed url(../img/background-hours.png) repeat-y;
 }
 
 
@@ -40,9 +38,7 @@
 	opacity:0.9;
 	filter:alpha(opacity=90);
 	width:40px;
-	background-image:url(../img/background-hours.png);
-	background-repeat:repeat-y;
-	background-color:#f2f3ed;
+	background:#f2f3ed url(../img/background-hours.png) repeat-y;
 }
 
 #calendar .colHours .hour {

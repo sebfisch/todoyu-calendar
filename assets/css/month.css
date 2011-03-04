@@ -42,8 +42,7 @@
 	/* border color and style */
 .mv-daynames-table th,
 .st-grid td {
-	border-color:#d7dcc6;
-	border-style:solid;
+	border:solid #d7dcc6;
 }
 
 	.mv-event-container {

@@ -35,7 +35,6 @@ calendar 1.0.6 - not released yet
 	* Bugfix: quickinfos now always hide when starting to drag events
 	* Feature: made quickinfos deactivatible
 	* Bugfix: event drag & drop in week & day views had wrong hour offset (-1h)
-
  	* Feature: Added placeholders for to-be spanish locale files
 	* Feature: Added changelog
 

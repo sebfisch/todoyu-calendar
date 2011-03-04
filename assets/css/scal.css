@@ -176,9 +176,8 @@
 }
 
 .todoyuskin .daybox {
-	border-width:0 0 0 1px;
-	border-color:#818181;
-	border-style:dotted;
+	border:0 dotted #818181;
+	border-left-width:1px;
 }
 
 .inSelMonth {
@@ -186,9 +185,8 @@
 }
 
 .todoyuskin .dayboxname {
-	border-width:0 1px 0 0;
-	border-color:#e4eace;
-	border-style:solid;
+	border:0 solid #e4eace;
+	border-right-width:1px;
 }
 
 
@@ -197,7 +195,8 @@
 	Grid container
    ----------------------- */
 #gridcontainer.dayMode, #gridcontainer.weekMode {
-	overflow-y:visible; height:100%;
+	overflow-y:visible;
+	height:100%;
 }
 
 #gridcontainer.monthMode {
