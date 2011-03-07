@@ -9,9 +9,9 @@
 				<field type="textAC" name="id">
 					<label>calendar.event.attr.assigned_to</label>
 					<config>
-						<acName>eventperson</acName>
 						<acLabel>TodoyuContactPersonManager::getLabel</acLabel>
 						<options>
+							<acName>eventperson</acName>
 							<onComplete>Todoyu.Ext.calendar.Event.Edit.onPersonAcCompleted</onComplete>
 							<onSelected>Todoyu.Ext.calendar.Event.Edit.onPersonAcSelected</onSelected>
 						</options>
