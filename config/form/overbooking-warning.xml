@@ -8,11 +8,11 @@
 			<elements>
 
 				<field type="cancelButton" name="cancel">
-					<onclick>Todoyu.Popup.closeLastPopup()</onclick>
+					<onclick>Todoyu.Popups.closeLast()</onclick>
 				</field>
 
 				<field type="saveButton" name="save">
-					<onclick>Todoyu.Popup.closeLastPopup(); Todoyu.Ext.calendar.Event.Edit.saveEvent(true); $('event-form').blur()</onclick>
+					<onclick>Todoyu.Popups.closeLast(); Todoyu.Ext.calendar.Event.Edit.saveEvent(true); $('event-form').blur()</onclick>
 				</field>
 
 			</elements>

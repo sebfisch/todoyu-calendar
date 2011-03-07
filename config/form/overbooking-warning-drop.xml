@@ -8,11 +8,11 @@
 			<elements>
 
 				<field type="cancelButton" name="cancel">
-					<onclick>Todoyu.Popup.closeLastPopup(); Todoyu.Ext.calendar.refresh()</onclick>
+					<onclick>Todoyu.Popups.closeLast(); Todoyu.Ext.calendar.refresh()</onclick>
 				</field>
 
 				<field type="saveButton" name="save">
-					<onclick>Todoyu.Popup.closeLastPopup(); Todoyu.Ext.calendar.DragDrop.saveDroppingConfirmed();</onclick>
+					<onclick>Todoyu.Popups.closeLast(); Todoyu.Ext.calendar.DragDrop.saveDroppingConfirmed();</onclick>
 				</field>
 
 			</elements>

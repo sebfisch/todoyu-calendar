@@ -378,7 +378,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 				});
 					// Open confirmation prompt in popup
 				var warning	= response.getTodoyuHeader('overbookingwarning');
-				Todoyu.Popup.openContentInWindow('Warning', warning, 'Overbooking Warning', 376);
+				Todoyu.Popups.openContent('Warning', warning, 'Overbooking Warning', 376);
 			} else {
 				if( response.getTodoyuHeader('sentEmail') ) {
 						// Notify of sent mail

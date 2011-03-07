@@ -405,7 +405,7 @@ Todoyu.Ext.calendar.DragDrop = {
 			};
 
 			var warning	= response.getTodoyuHeader('overbookingwarning');
-			Todoyu.Popup.openContentInWindow('Warning', warning, 'Overbooking Warning', 376);
+			Todoyu.Popups.openContent('Warning', warning, 'Overbooking Warning', 376);
 		} else {
 			if( response.hasTodoyuError() ) {
 					// Overbooking detected and is disallowed - show notification

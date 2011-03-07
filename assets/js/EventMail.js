@@ -96,8 +96,7 @@ Todoyu.Ext.calendar.Event.Mail = {
 		var showPopup	= parseInt(response.getHeader('showPopup'), 10);
 
 		if( showPopup == 1 ) {
-			var content	= response.responseText;
-			Todoyu.Popup.openContentInWindow('Mailing', content, 'Mailing', 460);
+			Todoyu.Popups.openContent('Mailing', response.responseText, 'Mailing', 460);
 		}
 	},
 

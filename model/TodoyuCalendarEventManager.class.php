@@ -50,7 +50,7 @@ class TodoyuCalendarEventManager {
 		$form->setAttribute('action', '?ext=calendar&amp;controller=quickcreateevent');
 		$form->setAttribute('onsubmit', 'return false');
 		$form->getFieldset('buttons')->getField('save')->setAttribute('onclick', 'Todoyu.Ext.calendar.QuickCreateEvent.save(this.form)');
-		$form->getFieldset('buttons')->getField('cancel')->setAttribute('onclick', 'Todoyu.Popup.close(\'quickcreate\')');
+		$form->getFieldset('buttons')->getField('cancel')->setAttribute('onclick', 'Todoyu.Popups.close(\'quickcreate\')');
 
 		return $form;
 	}

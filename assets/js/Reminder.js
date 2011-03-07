@@ -84,7 +84,7 @@ Todoyu.Ext.calendar.Reminder = {
 
 		var popupID	= 'reminder' + idEvent;
 
-		Todoyu.Popup.openWindow(popupID, '[LLL:calendar.ext.reminder.popup.title]', 460, url, options);
+		Todoyu.Popups.open(popupID, '[LLL:calendar.ext.reminder.popup.title]', 460, url, options);
 	},
 
 
@@ -184,7 +184,7 @@ Todoyu.Ext.calendar.Reminder = {
 	 */
 	closePopup: function(idEvent) {
 		var popupID	= 'reminder' + idEvent;
-		Todoyu.Popup.close(popupID);
+		Todoyu.Popups.close(popupID);
 	}
 
 };
