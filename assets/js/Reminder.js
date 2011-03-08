@@ -36,6 +36,7 @@ Todoyu.Ext.calendar.Reminder = {
 	/**
 	 * Initialize popup reminder of upcoming events
 	 *
+	 * @method	init
 	 * @param	{JSON}	upcomingEvents
 	 */
 	init: function(upcomingEvents) {
@@ -51,6 +52,7 @@ Todoyu.Ext.calendar.Reminder = {
 	/**
 	 * Install timeout observers for given events
 	 *
+	 * @method	installObservers
 	 * @param	{JSON}	events
 	 */
 	installObservers: function(events) {
@@ -70,6 +72,7 @@ Todoyu.Ext.calendar.Reminder = {
 	/**
 	 * Show event reminder popup
 	 *
+	 * @method	show
 	 * @param	{Number}	idEvent
 	 */
 	show: function(idEvent) {
@@ -92,6 +95,7 @@ Todoyu.Ext.calendar.Reminder = {
 	/**
 	 * Event handler when reminder popup has been loaded - play reminder audio
 	 *
+	 * @method	onPopupLoaded
 	 * @param	{Ajax.Response}	response
 	 */
 	onPopupLoaded: function(response) {
@@ -107,6 +111,7 @@ Todoyu.Ext.calendar.Reminder = {
 	/**
 	 * Dismiss event reminder (don't show again)
 	 *
+	 * @method	dismiss
 	 * @param	{Element}	form
 	 */
 	dismiss: function(form) {
@@ -130,6 +135,7 @@ Todoyu.Ext.calendar.Reminder = {
 	/**
 	 * Handler when event reminder has been dismissed - close related popup
 	 *
+	 * @method	onDismissed
 	 * @param	{Number}			idEvent
 	 * @param	{Ajax.Response}		response
 	 */
@@ -142,6 +148,7 @@ Todoyu.Ext.calendar.Reminder = {
 	/**
 	 * Reschedule event reminder for showing again at a later time
 	 *
+	 * @method	reschedule
 	 * @param	{Element}	form
 	 */
 	reschedule: function(form) {
@@ -168,6 +175,7 @@ Todoyu.Ext.calendar.Reminder = {
 	/**
 	 * Handler when event reminder has been rescheduled - close popup
 	 *
+	 * @method	onRescheduled
 	 * @param	{Number}	idEvent
 	 * @param	{Ajax.Response}	response
 	 */
@@ -180,6 +188,7 @@ Todoyu.Ext.calendar.Reminder = {
 	/**
 	 * Close reminder popup of given event
 	 *
+	 * @method	closePopup
 	 * @param	{Number}	idEvent
 	 */
 	closePopup: function(idEvent) {

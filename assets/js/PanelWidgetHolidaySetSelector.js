@@ -130,6 +130,8 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	/**
 	 * Select 'no set'-option only
+	 *
+	 * @method	selectNoSetOption
 	 */
 	selectNoSetOption: function() {
 		this.unselectAllHolidaySets();
@@ -142,7 +144,8 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Get IDs of selected holidaySets
 	 *
-	 * @return	Array
+	 * @method	getSelectedHolidaySetIDs
+	 * @return	{Array}
 	 */
 	getSelectedHolidaySetIDs: function() {
 		var setIDs = [];
@@ -161,6 +164,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Get amount of selected holidaySets
 	 *
+	 * @method	getAmountOfselectedSets
 	 * @return	{Number}
 	 */
 	getAmountOfselectedSets: function() {
@@ -180,6 +184,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Check if any type is currently selected
 	 *
+	 * @method	isAnyHolidaySetSelected
 	 * @return	{Boolean}
 	 */
 	isAnyHolidaySetSelected: function() {
@@ -191,6 +196,8 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 	/**
 	 * Store prefs
+	 *
+	 * @method	savePrefs
 	 */
 	savePrefs: function() {
 		var typeIDs	= this.getSelectedHolidaySetIDs().join(',');
@@ -216,6 +223,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	/**
 	 * Handler after prefs saved: evoke refresh
 	 *
+	 * @method	onPrefsSaved
 	 * @param	{Ajax.Response}	response
 	 */
 	onPrefsSaved: function(response) {
