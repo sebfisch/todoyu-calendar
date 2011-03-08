@@ -77,7 +77,6 @@ class TodoyuCalendarPortalRenderer {
 			}
 		}
 
-
 		$tmpl	= 'ext/calendar/view/tab-portal-eventslist.tmpl';
 		$data	= array(
 			'events'		=> $events,
