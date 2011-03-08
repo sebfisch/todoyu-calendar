@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Calendar
  */
-class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget implements TodoyuPanelWidgetIf {
+class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 
 	/**
 	 * @var string		Preference name
@@ -89,11 +89,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget implements Tod
 			'daysInMonth'	=> date('t', $date)
 		);
 
-		$content	= render($tmpl, $data);
-
-		$this->setContent($content);
-
-		return $content;
+		return render($tmpl, $data);
 	}
 
 
@@ -105,8 +101,6 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget implements Tod
 	 */
 	public function render() {
 		self::addCalendarLocalizationJS();
-
-		$this->renderContent();
 
 		return parent::render();
 	}
