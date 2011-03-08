@@ -29,7 +29,7 @@ class TodoyuCalendarEventViewHelper {
 	/**
 	 * Get event types (sorted by label) in a form-readable format
 	 *
-	 * @param 	TodoyuFormElement 	$field
+	 * @param	TodoyuFormElement 	$field
 	 * @return	Array
 	 */
 	public static function getEventTypeOptions(TodoyuFormElement $field) {

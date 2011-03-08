@@ -79,7 +79,7 @@ function Dwoo_Plugin_isAllowedEditEvent(Dwoo $dwoo, $idEvent) {
  * @subpackage	Template
  *
  * @param	Dwoo_Compiler $compiler
- * @param 	Integer		$idEvent
+ * @param	Integer		$idEvent
  * @return	String
  */
 function Dwoo_Plugin_EventFullLabel_compile(Dwoo_Compiler $compiler, $idEvent) {
@@ -94,9 +94,9 @@ function Dwoo_Plugin_EventFullLabel_compile(Dwoo_Compiler $compiler, $idEvent) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param 		Dwoo_Compiler 	$compiler
- * @param 		Integer			$idEventIndex
- * @return		String
+ * @param	Dwoo_Compiler 	$compiler
+ * @param	Integer			$idEventIndex
+ * @return	String
  */
 function Dwoo_Plugin_EventTypeLabel_compile(Dwoo_Compiler $compiler, $idEventIndex) {
 	return 'TodoyuCalendarEventTypeManager::getEventTypeLabel(' . $idEventIndex . ')';
@@ -110,7 +110,7 @@ function Dwoo_Plugin_EventTypeLabel_compile(Dwoo_Compiler $compiler, $idEventInd
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param 		Dwoo_Compiler 	$compiler
+ * @param		Dwoo_Compiler 	$compiler
  * @param		Integer			$idEventIndex
  * @return		String
  */
@@ -126,8 +126,8 @@ function Dwoo_Plugin_EventTypeKey_compile(Dwoo_Compiler $compiler, $idEventIndex
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param 		Dwoo 		$dwoo
- * @param 		Integer		$dayNum
+ * @param		Dwoo 		$dwoo
+ * @param		Integer		$dayNum
  * @return		String
  */
 function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
@@ -143,8 +143,8 @@ function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param 		Dwoo 		$dwoo
- * @param 		Integer		$dayNum
+ * @param		Dwoo 		$dwoo
+ * @param		Integer		$dayNum
  * @return		String
  */
 function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {

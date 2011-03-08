@@ -173,7 +173,7 @@ class TodoyuCalendarPreferences {
 	/**
 	 * Save the current active tab as pref
 	 *
-	 * @param 	String	 $idTab		Name of the tab
+	 * @param	String		$idTab		Name of the tab
 	 */
 	public static function saveActiveTab($tabKey) {
 		self::savePref('tab', $tabKey, 0, true);

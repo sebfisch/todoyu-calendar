@@ -29,8 +29,8 @@ class TodoyuCalendarEventRenderer {
 	/**
 	 * Render create event form popup
 	 *
-	 * @param 	Array	$data
-	 * @return 	String	Form
+	 * @param	Array	$data
+	 * @return	String	Form
 	 */
 	public static function renderCreateQuickEvent($time = 0, $isDayEvent = false) {
 		$time	= intval($time);
@@ -209,7 +209,7 @@ class TodoyuCalendarEventRenderer {
 	/**
 	 * Get height of  starting hour
 	 *
-	 * @param 	Integer	$dateStart	UNIX Timestamp of the starttime or endtime
+	 * @param	Integer	$dateStart	UNIX Timestamp of the starttime or endtime
 	 * @return	Integer				Top-Y of starting hour
 	 */
 	public static function getTimeCoordinate($dateStart) {
@@ -225,10 +225,12 @@ class TodoyuCalendarEventRenderer {
 	/**
 	 * Get height of an event entry
 	 *
-	 * @param 	Integer	topCoordinate	top coordinate (y) of the event entry
-	 * @param 	Integer	$endtime		Endtime of the event
+	 * @param	Integer	topCoordinate	top coordinate (y) of the event entry
+	 * @param	Integer	$endtime		Endtime of the event
 	 * @return	Integer					Height of the event
 	 */
+
+
 
 	/**
 	 * Get height of an event in day or week view
@@ -316,8 +318,8 @@ class TodoyuCalendarEventRenderer {
 	/**
 	 * Render content of event reminder popup
 	 *
-	 * @param 	Integer		$idEvent
-	 * @return 	String
+	 * @param	Integer		$idEvent
+	 * @return	String
 	 */
 	public static function renderEventReminder($idEvent) {
 		$idEvent= intval($idEvent);
