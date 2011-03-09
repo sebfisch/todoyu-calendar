@@ -36,14 +36,13 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	/**
 	 * Constructor of PanelWidgetCalendar (initialize widget)
 	 */
-	public function __construct(array $config, array $params = array(), $idArea = 0) {
+	public function __construct(array $config, array $params = array()) {
 		parent::__construct(
 			'calendar',							// ext. key
 			'calendar',							// panel widget ID
 			'LLL:calendar.panelwidget-calendar.title',	// widget title text
 			$config,							// widget config array
-			$params,							// widget parameters
-			$idArea								// area ID
+			$params							// widget parameters
 		);
 
 		$this->addHasIconClass();
