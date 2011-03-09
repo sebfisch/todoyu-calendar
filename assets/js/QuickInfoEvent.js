@@ -25,15 +25,22 @@
 Todoyu.Ext.calendar.QuickInfoEvent = {
 
 	/**
-	 * Extension backlink
+	 * Reference to extension
+	 *
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext:		Todoyu.Ext.calendar,
 
 
 	/**
-	 * Selector for event quickinfo
+	 * Selector (sizzle) for event quickinfo
+	 *
+	 * @property	selector
+	 * @type		String
 	 */
 	selector:	'div.quickInfoEvent',
+
 
 
 	/**

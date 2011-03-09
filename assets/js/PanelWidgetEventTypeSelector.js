@@ -25,12 +25,17 @@
 Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 
 	/**
-	 * Extension backlink
+	 * Reference to extension
 	 *
-	 * @var	{Object}	ext
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext:	Todoyu.Ext.calendar,
 
+	/**
+	 * @property	list
+	 * @type		Element
+	 */
 	list:	null,
 
 

@@ -25,23 +25,29 @@
 Todoyu.Ext.calendar.QuickInfoBirthday = {
 
 	/**
-	 * Extension backlink
+	 * Reference to extension
 	 *
-	 * @var	{Object}	ext
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext:		Todoyu.Ext.calendar,
 
 	/**
-	 * Birthday quickinfo stays for 5 seconds in cache
-	 * Prevents same quickinfo for all years once loaded
+	 * Birthday quickinfo stays for 5 seconds in cache. Prevents same quickinfo for all years once loaded
+	 *
+	 * @property	cacheTime
+	 * @type		Number
 	 */
 	cacheTime: 5,
 
-
 	/**
-	 * Selector for event quickinfo
+	 * Selector (sizzle) for event quickinfo
+	 *
+	 * @property	selector
+	 * @type		String
 	 */
 	selector:	'div.quickInfoBirthday',
+
 
 
 	/**

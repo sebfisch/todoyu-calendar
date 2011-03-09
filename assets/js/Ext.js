@@ -30,35 +30,58 @@ Todoyu.Ext.calendar = {
 
 	/**
 	 * Instantiate panel widgets
+	 *
+	 * @property	PanelWidget
+	 * @type		Object
 	 */
 	PanelWidget: {},
 
 	/**
 	 * Headlet container
+	 *
+	 * @property	Headlet
+	 * @type		Object
 	 */
 	Headlet: {},
 
 	/**
 	 * List of observed elements (to be easy able to stop observing)
+	 *
+	 * @property	createEventObserverElements
+	 * @type		Array
 	 */
 	createEventObserverElements:			[],
 
+	/**
+	 * @property	showEventQuickinfoObservedElements
+	 * @type		Array
+	 */
 	showEventQuickinfoObservedElements:		[],
 
+	/**
+	 * @property	showHolidayQuickinfoObservedElements
+	 * @type		Array
+	 */
 	showHolidayQuickinfoObservedElements:	[],
 
+	/**
+	 * @property	updateEventObserverElements
+	 * @type		Array
+	 */
 	updateEventObserverElements:			[],
-
-
 
 	/**
 	 * Extend sCal options (weekdaystart = monday, yearprev = symbol to go backwards, yearnext = symbol to go forwards
+	 *
+	 * @property	calOptions
+	 * @type		Object
 	 */
 	calOptions: {
 		weekdaystart:	1,
 		yearprev:		'&laquo;&laquo;',
 		yearnext:		'&raquo;&raquo;'
 	},
+
 
 
 	/**

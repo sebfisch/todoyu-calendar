@@ -25,11 +25,14 @@
 Todoyu.Ext.calendar.EventPortal = {
 
 	/**
-	 * Extension backlink
+	 * Reference to extension
 	 *
-	 * @var	{Object}	ext
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext: Todoyu.Ext.calendar,
+
+
 
 	/**
 	 * Toggle details of listed event entry (in listing of e.g portal's events tab). Used for eventslist only

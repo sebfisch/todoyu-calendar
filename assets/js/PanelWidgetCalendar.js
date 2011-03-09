@@ -25,34 +25,52 @@
 Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 	/**
-	 * Extension backlink
+	 * Reference to extension
 	 *
-	 * @var	{Object}	ext
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext:				Todoyu.Ext.calendar,
 
+	/**
+	 * @property	key
+	 * @type		String
+	 */
 	key:				'calendar',
 
+	/**
+	 * @property	calName
+	 * @type		String
+	 */
 	calName:			'panelwidget-calendar-scal',
 
 	/**
 	 * Scal object
+	 *
+	 * @property	Calendar
+	 * @type		Object
 	 */
 	Calendar:			null,
 
+	/**
+	 * @property	prefSavingEnabled
+	 * @type		Boolean
+	 */
 	prefSavingEnabled:	true,
 
 	/**
 	 * Update of the calender is delayed. Timeout is stored here
 	 *
-	 * @param	{Function}
+	 * @property	updateTimeout
+	 * @type		Function
 	 */
 	updateTimeout:		null,
 
 	/**
 	 * Seconds for update delay
 	 *
-	 * @param	{Number}
+	 * @property	updateTimeoutWait
+	 * @type		Number
 	 */
 	updateTimeoutWait:	0.2,
 

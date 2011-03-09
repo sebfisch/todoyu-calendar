@@ -27,11 +27,14 @@
 Todoyu.Ext.calendar.ContextMenuEvent = {
 
 	/**
-	 * Extension backlink
+	 * Reference to extension
 	 *
-	 * @var	{Object}	ext
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext:	Todoyu.Ext.calendar,
+
+
 
 	/**
 	 * Attach event context menu

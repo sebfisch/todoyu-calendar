@@ -25,14 +25,18 @@
 Todoyu.Ext.calendar.Tabs = {
 
 	/**
-	 * Extension backlink
+	 * Reference to extension
 	 *
-	 * @var	{Object}	ext
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext:	Todoyu.Ext.calendar,
 
 	/**
-	 * Current active tab (day, week, month, view)
+	 * Key of current active tab (day, week, month, view)
+	 *
+	 * @property	active
+	 * @type		String
 	 */
 	active: null,
 

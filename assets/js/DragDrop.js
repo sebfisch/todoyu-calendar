@@ -25,9 +25,10 @@
 Todoyu.Ext.calendar.DragDrop = {
 
 	/**
-	 * Ext shortcut
+	 * Reference to extension
 	 *
-	 * @var	{Object}	ext
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext: Todoyu.Ext.calendar,
 
@@ -48,7 +49,6 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @type		Object
 	 */
 	draggableOptions: {},
-
 
 	/**
 	 * Storage for modified event data when saving is interrupted by confirmation (e.g. overbooking warning)

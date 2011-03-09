@@ -30,14 +30,23 @@
 Todoyu.Ext.calendar.CalendarBody = {
 
 	/**
-	 * Extension backlink
+	 * Reference to extension
 	 *
-	 * @var	{Object}	ext
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext:			Todoyu.Ext.calendar,
 
+	/**
+	 * @property	idArea
+	 * @type		String
+	 */
 	idArea:			'calendararea',
 
+	/**
+	 * @property	calendarBody
+	 * @type		Element
+	 */
 	calendarBody:	null,
 
 
