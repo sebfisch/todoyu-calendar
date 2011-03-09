@@ -273,7 +273,15 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getSelectedPersons() {
-		return TodoyuContactPanelWidgetStaffSelector::getSelectedPersons();
+		$widget	= TodoyuPanelWidgetManager::getPanelWidget('contact', 'StaffSelector');
+		/**
+		 * @var	TodoyuContactPanelWidgetStaffSelector	$widget
+		 */
+		return $widget->getSelectedPersons();
+
+
+
+//		return TodoyuContactPanelWidgetStaffSelectorOLD::getSelectedPersons();
 	}
 
 

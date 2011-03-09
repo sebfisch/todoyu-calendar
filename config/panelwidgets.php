@@ -26,15 +26,15 @@
  */
 
 	// PanelWidgets configurations
-$panelWidgetConfigCalendar				= array('class'	=> 'todoyuskin');
-$panelWidgetConfigHolidaySetSelector	= array();
-$panelWidgetConfigStaffSelector			= array('colorizePersonOptions' => true);
-$panelWidgetConfigEventTypeSelector		= array('selectAllOnFirstRun'	=> true);
+$panelWidgetConfigCalendar			= array('class'	=> 'todoyuskin');
+$panelWidgetConfigStaffSelector		= array('colorizePersonOptions' => true);
+$panelWidgetConfigEventTypeSelector	= array('selectAllOnFirstRun'	=> true);
 
 	// Add default (for all persons) panel widgets
-TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuCalendarPanelWidgetCalendar', 			10, $panelWidgetConfigCalendar);
-TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuContactPanelWidgetStaffSelector',		30,	$panelWidgetConfigStaffSelector );
-TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuCalendarPanelWidgetEventTypeSelector',	40,	$panelWidgetConfigEventTypeSelector );
-TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'TodoyuCalendarPanelWidgetHolidaySetSelector',	50, $panelWidgetConfigHolidaySetSelector);
+TodoyuPanelWidgetManager::addPanelWidget('calendar', 'calendar', 'Calendar', 			10, $panelWidgetConfigCalendar);
+TodoyuPanelWidgetManager::addPanelWidget('calendar', 'contact', 'StaffSelector',			20);
+//TodoyuPanelWidgetManager::addDefaultPanelWidget('calendar', 'contact', 'StaffSelectorOLD',		30,	$panelWidgetConfigStaffSelector );
+TodoyuPanelWidgetManager::addPanelWidget('calendar', 'calendar', 'EventTypeSelector',	40,	$panelWidgetConfigEventTypeSelector );
+TodoyuPanelWidgetManager::addPanelWidget('calendar', 'calendar', 'HolidaySetSelector',	50);
 
 ?>

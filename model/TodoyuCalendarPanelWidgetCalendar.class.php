@@ -100,7 +100,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 * @return	String
 	 */
 	public function render() {
-		self::addCalendarLocalizationJS();
+		$this->addCalendarLocalizationJS();
 
 		return parent::render();
 	}
@@ -112,7 +112,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 *
 	 * @return	Integer
 	 */
-	public static function getDate() {
+	public function getDate() {
 		return TodoyuCalendarPreferences::getDate(AREA);
 	}
 
@@ -124,7 +124,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 * @param	Integer		$time
 	 * @param	Integer		$idArea
 	 */
-	public static function saveDate($time) {
+	public function saveDate($time) {
 		$time	= intval($time);
 
 		TodoyuCalendarPreferences::saveDate($time, AREA);
