@@ -31,6 +31,7 @@ calendar 1.1.0 (requires core >= 2.1) - not released yet
 
  
 calendar 1.0.6 - not released yet
+	* Feature: Different format in single view of events by duration - multi-day / mult-hour / minutes
 	* Bugfix: Removed wrong wordwrapping (inserted spaces) from event descriptions
 	* Bugfix: quickinfos now always hide when starting to drag events
 	* Feature: made quickinfos deactivatible

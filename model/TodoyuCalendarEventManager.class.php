@@ -1035,6 +1035,21 @@ class TodoyuCalendarEventManager {
 
 
 	/**
+	 * Get amount of days which intersect the event duration
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	Integer
+	 */
+	public static function getAmountDaysIntersected($idEvent) {
+		$event	= self::getEvent($idEvent);
+		$days	= TodoyuTime::getDaysInTimespan($event->getStartDate(), $event->getEndDate());
+
+		return count($days);
+	}
+
+
+
+	/**
 	 * Check event for overbookings (regardless whether allowed) and render warning message content if any found
 	 *
 	 * @param	Integer		$idEvent

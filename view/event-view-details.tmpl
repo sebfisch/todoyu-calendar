@@ -16,9 +16,19 @@
 			<span class="icon dateIcon"> </span>&nbsp;{Label calendar.event.attr.timespan}
 		</td>
 		<td class="eventValue">
-			{math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}
-			{math equation="d / 3600" d=$duration assign=duration}
-			{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} {Label core.date.time.hours})</td>
+			{if $event.duration.daysIntersected > 1}
+				{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime}
+				({$event.duration.daysIntersected} {Label core.date.days})
+			{else}
+				{dateFormat $event.date_start date}
+				{dateFormat $event.date_start time} - {dateFormat $event.date_end time}
+				{if $event.duration.minutes > 59}
+					({dateFormat $event.duration.seconds time} {Label core.date.time.hours})
+				{else}
+					({$event.duration.minutes} {Label core.date.time.minutes})
+				{/if}
+			{/if}
+		</td>
 	</tr>
 {if !empty($event.description)}
 	<tr>

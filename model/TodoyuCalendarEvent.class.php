@@ -72,6 +72,30 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Get amount of hours of event duration
+	 *
+	 * @param	Integer		$precision
+	 * @return	Integer
+	 */
+	public function getDurationHours($precision = 0) {
+		return round(($this->getEndDate() - $this->getStartDate()) / TodoyuTime::SECONDS_HOUR, $precision);
+	}
+
+
+
+	/**
+	 * Get amount of minutes of event duration
+	 *
+	 * @param	Integer		$precision
+	 * @return	Integer
+	 */
+	public function getDurationMinutes($precision = 0) {
+		return round(($this->getEndDate() - $this->getStartDate()) / TodoyuTime::SECONDS_MIN, $precision);
+	}
+
+
+
+	/**
 	 * Get place of event
 	 *
 	 * @return	String
@@ -280,6 +304,14 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 		if( $loadCreatorPersonData ) {
 			$this->data['person_create']	= TodoyuContactPersonManager::getPersonArray($this->data['id_person_create']);
 		}
+
+			// Add calculated event duration in hours, amount of intersected days
+		$this->data['duration']	= array(
+			'seconds'			=> $this->getDuration(),
+			'minutes'			=> $this->getDurationMinutes(),
+			'hours'				=> $this->getDurationHours(1),
+			'daysIntersected'	=> TodoyuCalendarEventManager::getAmountDaysIntersected($this->id)
+		);
 
 		return parent::getTemplateData();
 	}
