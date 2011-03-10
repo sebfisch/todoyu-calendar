@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Calendar navigation
  *
  * @namespace	Todoyu.Ext.calendar.Navi

@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Event quickcreation (headlet) functions
  *
  * @namespace	Todoyu.Ext.calendar.QuickCreateEvent

@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Calendar birthday quickinfo (Todoyu.Ext.calendar.Quickinfo.Birthday)
  *
  * @namespace	Todoyu.Ext.calendar.QuickInfoBirthday

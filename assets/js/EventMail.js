@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Functions for event mailing
  *
  * @namespace	Todoyu.Ext.calendar.Event.Mail

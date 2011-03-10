@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Calendar section in profile
  *
  * @namespace	Todoyu.Ext.calendar.Profile

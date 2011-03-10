@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Functions for events in portal
  *
  * @namespace	Todoyu.Ext.calendar.EventPortal

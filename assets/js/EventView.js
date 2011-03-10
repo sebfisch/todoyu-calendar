@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Functions for event view
  *
  * @namespace	Todoyu.Ext.calendar.Event.View

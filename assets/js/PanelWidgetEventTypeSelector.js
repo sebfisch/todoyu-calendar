@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Panel widget: event type selector
  *
  * @namespace	Todoyu.Ext.calendar.PanelWidget.EventTypeSelector

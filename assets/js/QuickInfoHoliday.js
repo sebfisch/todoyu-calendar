@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * @namespace	Todoyu.Ext.calendar.QuickInfoHoliday
  */
 Todoyu.Ext.calendar.QuickInfoHoliday = {

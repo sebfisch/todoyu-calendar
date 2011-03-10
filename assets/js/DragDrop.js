@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Drag'n'Drop support for the calendar
  *
  * @namespace	Todoyu.Ext.calendar.DragDrop

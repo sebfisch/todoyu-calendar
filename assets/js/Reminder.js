@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Calendar event reminder functions
  *
  * @namespace	Todoyu.Ext.calendar.Reminder

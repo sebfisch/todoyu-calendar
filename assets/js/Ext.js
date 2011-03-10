@@ -24,7 +24,8 @@
 /**
  * Main calendar object
  *
- * @namespace	Todoyu.Ext.calendar
+ * @class		Calendar
+ * @namespace	Todoyu.Ext
  */
 Todoyu.Ext.calendar = {
 

@@ -18,11 +18,14 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Context menu for tasks
  *
  * @namespace	Todoyu.Ext.calendar.ContextMenuEventPortal
 */
-
 Todoyu.Ext.calendar.ContextMenuEventPortal = {
 
 	/**

@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Panel widget JS: Calendar
  *
  * @namespace	Todoyu.Ext.calendar.PanelWidget.Calendar

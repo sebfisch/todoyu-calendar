@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Panel widget: holidaySet selector
  *
  * @namespace	Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector
