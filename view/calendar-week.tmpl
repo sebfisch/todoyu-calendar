@@ -45,15 +45,11 @@
 									<tr>
 										{foreach $dayDayEvents dayEvent}
 											{if is_array($dayEvent)}
-												<td colspan="{$dayEvent.dayLength}">
+												<td colspan="{$dayEvent.daysInView}">
 													{$dayEvent.html}
 												</td>
-											{else}
-												{if $dayEvent == 0}
-													<td>
-														&nbsp;
-													</td>
-												{/if}
+											{elseif $dayEvent == 0}
+												<td>&nbsp;</td>
 											{/if}
 										{/foreach}
 									</tr>

@@ -91,6 +91,7 @@ class TodoyuCalendarRenderer {
 				return self::renderCalendarMonth($time);
 				break;
 
+				// Event single view
 			case 'view':
 				$idEvent	= intval($params['event']);
 				return TodoyuCalendarEventRenderer::renderEventView($idEvent);
@@ -235,7 +236,7 @@ class TodoyuCalendarRenderer {
 
 
 	/**
-	 * Prerender events for week view
+	 * Pre-render events for week view
 	 *
 	 * @param	Integer		$dateStart
 	 * @param	Array		$eventTypes
@@ -329,7 +330,7 @@ class TodoyuCalendarRenderer {
 
 				$event['height']	= TodoyuCalendarEventRenderer::getEventHeight($dayTime, $event['date_start'], $event['date_end'] );
 
-					// Render
+					// Add rendered event HTML to array
 				$renderedEvents[$dateKey][] = TodoyuCalendarEventRenderer::renderEvent($event, $mode);
 			}
 		}
@@ -398,9 +399,9 @@ class TodoyuCalendarRenderer {
 
 	/**
 	 * Render all birthdays in the range
-	 * Prerendered birthdays are stored as elements of their dateKey
+	 * Pre-rendered birthdays are stored as elements of their dateKey
 	 * $birthdays[20091231][0] = array('id'=>)
-	 * The birthday records are person records with the following special keys: age, birthyear
+	 * The birthday records are person records with the following special keys: age, year of birth
 	 *
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$dateEnd

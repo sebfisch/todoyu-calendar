@@ -379,9 +379,10 @@ class TodoyuCalendarManager {
 		$mapping[] = $emptyMap;
 
 		foreach($events as $event) {
-			$eventDayKeys	= self::getDayKeys($event['date_start'], $event['date_end']);
+			$eventDayKeys		= self::getDayKeys($event['date_start'], $event['date_end']);
 			$event['dayLength']	= sizeof($eventDayKeys);
-			$found		= false;
+			$event['daysInView']= sizeof(TodoyuTime::getIntersectingDays($dateStart, $dateEnd, $event['date_start'], $event['date_end']));
+			$found				= false;
 
 				// Check all map lines for an empty space
 			foreach($mapping as $lineIndex => $lineMap) {
@@ -392,7 +393,7 @@ class TodoyuCalendarManager {
 					}
 				}
 
-					// If a free spot was found (loop not canceled)
+					// If a free spot was found (loop not cancelled)
 				$firstDayKey	= array_shift($eventDayKeys);
 				$mapping[$lineIndex][$firstDayKey] = $event;
 				$found	= true;
@@ -400,6 +401,7 @@ class TodoyuCalendarManager {
 				foreach($eventDayKeys as $eventDayKey) {
 					$mapping[$lineIndex][$eventDayKey] = 1;
 				}
+				ksort($mapping[$lineIndex]);
 
 					// Free space found, stop checking
 				break;
@@ -415,6 +417,8 @@ class TodoyuCalendarManager {
 				foreach($eventDayKeys as $eventDayKey) {
 					$mapping[$newIndex][$eventDayKey] = 1;
 				}
+
+				ksort($mapping[$newIndex]);
 			}
 		}
 

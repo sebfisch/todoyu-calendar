@@ -61,7 +61,7 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Get duration of event
+	 * Get duration of event in seconds
 	 *
 	 * @return	Integer
 	 */
