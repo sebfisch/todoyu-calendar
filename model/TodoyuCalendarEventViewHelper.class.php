@@ -53,7 +53,7 @@ class TodoyuCalendarEventViewHelper {
 	 */
 	public static function getQuickinfoDateInfo($event) {
 		if( $event->isMultiDay() ) {
-				// Define format for dayevents and multiday events
+				// Define format for day-events and multi-day events
 			if( $event->isDayevent() ) {
 				$break	= ' - ';
 				$format	= 'MlongD2';
@@ -77,7 +77,7 @@ class TodoyuCalendarEventViewHelper {
 
 
 	/**
-	 * Build preformated person(s) info for event quickinfo tooltip
+	 * Build pre-formatted person(s) info for event quickinfo tooltip
 	 *
 	 * @param	TodoyuCalendarEvent		$event
 	 * @param	Integer			$maxLenPersonLabel
