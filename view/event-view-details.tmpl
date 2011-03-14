@@ -1,17 +1,19 @@
 <table class="eventView">
-	<tr>
+	<tr>{* -------------------- Title -------------------- *}
 		<td class="eventAttrTitle">
 			<span class="icon eventTitleIcon"> </span>&nbsp;{Label core.global.title}
 		</td>
 		<td class="eventValue">{$event.title}</td>
 	</tr>
-	<tr>
+{if ! empty($event.place)}
+	<tr>{* -------------------- Place -------------------- *}
 		<td class="eventAttrTitle">
 			<span class="icon placeIcon"> </span>&nbsp;{Label calendar.event.attr.place}
 		</td>
 		<td class="eventValue">{$event.place}</td>
 	</tr>
-	<tr>
+{/if}
+	<tr>{* -------------------- Timespan -------------------- *}
 		<td class="eventAttrTitle">
 			<span class="icon dateIcon"> </span>&nbsp;{Label calendar.event.attr.timespan}
 		</td>
@@ -30,15 +32,15 @@
 			{/if}
 		</td>
 	</tr>
-{if !empty($event.description)}
-	<tr>
+{if ! empty($event.description)}
+	<tr>{* -------------------- Description -------------------- *}
 		<td class="eventAttrTitle">
 			<span class="icon"> </span>&nbsp;{Label core.global.description}
 		</td>
 		<td class="eventValue">{$event.description|default:"-"}</td>
 	</tr>
 {/if}
-	<tr>
+	<tr>{* -------------------- Creator person -------------------- *}
 		<td class="eventAttrTitle">
 			<span class="icon"> </span>&nbsp;{Label calendar.event.attr.creator}
 		</td>
@@ -47,7 +49,7 @@
 			<br /><br />
 		</td>
 	</tr>
-	<tr>
+	<tr>{* -------------------- Attendees -------------------- *}
 		<td class="eventAttrTitle ">
 			<span class="icon personsIcon"> </span>&nbsp;{Label calendar.event.attr.attendees}
 		</td>
