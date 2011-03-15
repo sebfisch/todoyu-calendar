@@ -420,7 +420,7 @@ class TodoyuCalendarEventManager {
 		unset($otherEvents[$idEvent]);
 
 		foreach($otherEvents as $otherEvent) {
-				// Don't check for conflicts if is dayevent as long its not an absence
+				// Don't check for conflicts if is day-event as long its not an absence
 			$absenceEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE']);
 
 			if( $otherEvent['is_dayevent'] == 1 && ! in_array($otherEvent['eventtype'], $absenceEventTypes)) {
@@ -516,7 +516,7 @@ class TodoyuCalendarEventManager {
 		unset($data['person']);
 		unset($data['persons']);
 
-			// Changes dates if is dayevent
+			// Changes dates if is day-event
 		if( intval($data['is_dayevent']) === 1 ) {
 			$data['date_start']	= TodoyuTime::getStartOfDay($data['date_start']);
 			$data['date_end']	= TodoyuTime::getEndOfDay($data['date_end']);
