@@ -159,7 +159,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 .event.typeBirthday .type,
 .dayMode .event .typeBirthday,
 .monthMode .event .typeBirthday {
-	background:url(../../../contact/assets/img/icons.png) no-repeat 3px -330px;
+	background:url(../../../contact/asset/img/icons.png) no-repeat 3px -330px;
 }
 
 .event.typeVacation .headInner,
@@ -255,7 +255,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 }
 
 #birthdays h3 {
-	background:#fff url(../../../contact/assets/img/icons.png) no-repeat scroll 4px -325px;
+	background:#fff url(../../../contact/asset/img/icons.png) no-repeat scroll 4px -325px;
 	padding-left:35px;
 }
 
@@ -334,12 +334,12 @@ div.weekMode div#calendararea div.event dd span.desc {
 
 /*#events .headLabel span.acknowledge.not {*/
 #events h3 span.icon.acknowledge.not {
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1260px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1260px;
 	cursor:pointer;
 }
 
 #events h3 span.icon.acknowledge.not.updated {
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1434px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1434px;
 	cursor:pointer;
 }
 
@@ -382,22 +382,22 @@ div.eventDetails dd {
 	/* Person has acknowledged the event */
 .eventperson-acknowledged {
 	padding-left:20px;
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1314px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1314px;
 }
 	/* Person has not acknowledged the event */
 .eventperson-unacknowledged {
 	padding-left:20px;
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1288px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1288px;
 }
 	/* Person has acknowledged event AND received it via email */
 .eventperson-acknowledged-email {
 	padding-left:23px;
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1402px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1402px;
 }
 	/* Person has NOT acknowledged event AND received it via email */
 .eventperson-unacknowledged-email {
 	padding-left:23px;
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1368px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1368px;
 }
 
 
@@ -445,7 +445,7 @@ button.editEvent .icon {
    ---------------------- */
 /*
 .event.typeBirthday {
-	background:url(../../../contact/assets/img/icons.png) no-repeat scroll 1px -330px;
+	background:url(../../../contact/asset/img/icons.png) no-repeat scroll 1px -330px;
 	padding:0 0 0 18px;
 	margin:0 0 2px 1px;
 	color:#000;

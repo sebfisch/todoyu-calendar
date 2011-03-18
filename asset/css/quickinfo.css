@@ -5,7 +5,7 @@
 span.eventTitleIcon {
 	background:url(../img/icons.png) no-repeat 4px 4px;
 }
-  
+
 #quickinfo dt.dateIcon,
 span.dateIcon {
 	background:url(../img/icons.png) no-repeat 4px -568px;
@@ -22,5 +22,5 @@ span.placeIcon {
 
 #quickinfo dt.personsIcon,
 span.personsIcon {
-	background:url(../../../contact/assets/img/icons.png) no-repeat 4px 2px;
+	background:url(../../../contact/asset/img/icons.png) no-repeat 4px 2px;
 }

@@ -28,79 +28,79 @@
 Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 	'js' => array(
 		array(
-			'file' => 'ext/calendar/assets/js/Ext.js',
+			'file' => 'ext/calendar/asset/js/Ext.js',
 			'position' => 100
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/Profile.js',
+			'file' => 'ext/calendar/asset/js/Profile.js',
 			'position' => 101
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/QuickCreateEvent.js',
+			'file' => 'ext/calendar/asset/js/QuickCreateEvent.js',
 			'position' => 101
 		),
 		array(
-				'file' => 'ext/calendar/assets/js/HolidayEditor.js',
+				'file' => 'ext/calendar/asset/js/HolidayEditor.js',
 				'position' => 102
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/Tabs.js',
+			'file' => 'ext/calendar/asset/js/Tabs.js',
 			'position' => 103
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/Navi.js',
+			'file' => 'ext/calendar/asset/js/Navi.js',
 			'position' => 104
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/QuickInfoBirthday.js',
+			'file' => 'ext/calendar/asset/js/QuickInfoBirthday.js',
 			'position' => 107
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/QuickInfoEvent.js',
+			'file' => 'ext/calendar/asset/js/QuickInfoEvent.js',
 			'position' => 108
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/QuickInfoHoliday.js',
+			'file' => 'ext/calendar/asset/js/QuickInfoHoliday.js',
 			'position' => 109
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/Event.js',
+			'file' => 'ext/calendar/asset/js/Event.js',
 			'position' => 117
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/EventView.js',
+			'file' => 'ext/calendar/asset/js/EventView.js',
 			'position' => 118
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/EventEdit.js',
+			'file' => 'ext/calendar/asset/js/EventEdit.js',
 			'position' => 119
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/EventMail.js',
+			'file' => 'ext/calendar/asset/js/EventMail.js',
 			'position' => 119
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/EventPortal.js',
+			'file' => 'ext/calendar/asset/js/EventPortal.js',
 			'position' => 119
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/CalendarBody.js',
+			'file' => 'ext/calendar/asset/js/CalendarBody.js',
 			'position' => 120
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/DragDrop.js',
+			'file' => 'ext/calendar/asset/js/DragDrop.js',
 			'position' => 121
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/ContextMenuCalendarBody.js',
+			'file' => 'ext/calendar/asset/js/ContextMenuCalendarBody.js',
 			'position' => 121
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/ContextMenuEvent.js',
+			'file' => 'ext/calendar/asset/js/ContextMenuEvent.js',
 			'position' => 122
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/ContextMenuEventPortal.js',
+			'file' => 'ext/calendar/asset/js/ContextMenuEventPortal.js',
 			'position' => 123
 		),
 		array(
@@ -108,19 +108,19 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 			'position' => 30
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/PanelWidgetCalendar.js',
+			'file' => 'ext/calendar/asset/js/PanelWidgetCalendar.js',
 			'position' => 110
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/PanelWidgetEventTypeSelector.js',
+			'file' => 'ext/calendar/asset/js/PanelWidgetEventTypeSelector.js',
 			'position' => 140
 		),
 		array(
-			'file' => 'ext/calendar/assets/js/PanelWidgetHolidaySetSelector.js',
+			'file' => 'ext/calendar/asset/js/PanelWidgetHolidaySetSelector.js',
 			'position' => 150
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/js/Reminder.js',
+			'file'		=> 'ext/calendar/asset/js/Reminder.js',
 			'position'	=> 200
 		),
 		array(
@@ -130,59 +130,59 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 	),
 	'css' => array(
 		array(
-			'file'		=> 'ext/calendar/assets/css/contextmenu.css',
+			'file'		=> 'ext/calendar/asset/css/contextmenu.css',
 			'position'	=> 80
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/css/quickinfo.css',
+			'file'		=> 'ext/calendar/asset/css/quickinfo.css',
 			'position'	=> 100
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/css/ext.css',
+			'file'		=> 'ext/calendar/asset/css/ext.css',
 			'position'	=> 100
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/css/profile.css',
+			'file'		=> 'ext/calendar/asset/css/profile.css',
 			'position'	=> 101
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/css/calendarbody.css',
+			'file'		=> 'ext/calendar/asset/css/calendarbody.css',
 			'poisition' => 101
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/css/day.css',
+			'file'		=> 'ext/calendar/asset/css/day.css',
 			'poisition' => 102
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/css/week.css',
+			'file'		=> 'ext/calendar/asset/css/week.css',
 			'poisition'	=> 103
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/css/month.css',
+			'file'		=> 'ext/calendar/asset/css/month.css',
 			'poisition' => 104
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/css/scal.css',
+			'file'		=> 'ext/calendar/asset/css/scal.css',
 			'position'	=> 105
 		),
 		array(
-			'file'		=> 'ext/calendar/assets/css/event.css',
+			'file'		=> 'ext/calendar/asset/css/event.css',
 			'position'	=> 106
 		),
 		array(
-			'file' => 'ext/calendar/assets/css/scal.css',
+			'file' => 'ext/calendar/asset/css/scal.css',
 			'position' => 30
 		),
 		array(
-			'file' => 'ext/calendar/assets/css/panelwidget-calendar.css',
+			'file' => 'ext/calendar/asset/css/panelwidget-calendar.css',
 			'position' => 110
 		),
 		array(
-			'file' => 'ext/calendar/assets/css/panelwidget-eventtpyeselector.css',
+			'file' => 'ext/calendar/asset/css/panelwidget-eventtpyeselector.css',
 			'position' => 140
 		),
 		array(
-			'file' => 'ext/calendar/assets/css/panelwidget-holidaysetselector.css',
+			'file' => 'ext/calendar/asset/css/panelwidget-holidaysetselector.css',
 			'position' => 150
 		)
 	)
