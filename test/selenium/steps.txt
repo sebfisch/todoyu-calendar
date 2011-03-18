@@ -1,4 +1,5 @@
 todoyu selenium testsuite steps: calendar extension
 ---------------------------------------------------
 
-* no steps yet
+* planning area
+	use main tab, go to area, main tab activated?
