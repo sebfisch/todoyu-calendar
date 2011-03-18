@@ -50,7 +50,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	 * @method	init
 	 */
 	init: function() {
-		this.list	= $('panelwidget-eventtypeSelector-list');
+		this.list	= $('panelwidget-eventtypeselector-list');
 
 		this.installObservers();
 	},
