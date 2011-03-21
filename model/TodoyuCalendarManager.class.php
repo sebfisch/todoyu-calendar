@@ -381,7 +381,7 @@ class TodoyuCalendarManager {
 		foreach($events as $event) {
 			$eventDayKeys		= self::getDayKeys($event['date_start'], $event['date_end']);
 			$event['dayLength']	= sizeof($eventDayKeys);
-			$event['daysInView']= sizeof(TodoyuTime::getIntersectingDays($dateStart, $dateEnd, $event['date_start'], $event['date_end']));
+			$event['daysInView']= sizeof(TodoyuTime::getIntersectingDayTimestamps($dateStart, $dateEnd, $event['date_start'], $event['date_end']));
 			$found				= false;
 
 				// Check all map lines for an empty space

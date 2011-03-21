@@ -1042,7 +1042,7 @@ class TodoyuCalendarEventManager {
 	 */
 	public static function getAmountDaysIntersected($idEvent) {
 		$event	= self::getEvent($idEvent);
-		$days	= TodoyuTime::getDaysInTimespan($event->getStartDate(), $event->getEndDate());
+		$days	= TodoyuTime::getDayTimestampsInRange($event->getStartDate(), $event->getEndDate());
 
 		return count($days);
 	}
