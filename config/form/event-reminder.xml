@@ -17,7 +17,7 @@
 				<field type="select" name="date_remindagain">
 					<label>calendar.ext.reminder.remindagainin</label>
 					<source type="function">
-						<function>TodoyuCalendarViewHelper::getReminderOptions::#id_event#</function>
+						<function>TodoyuCalendarViewHelper::getReminderOptions</function>
 					</source>
 					<noPleaseSelect/>
 				</field>

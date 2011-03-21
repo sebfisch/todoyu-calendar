@@ -173,14 +173,10 @@ class TodoyuCalendarReminderManager {
 	public static function getSoundFilename($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		$filename	= 'default.wav';
-		$filename	= TodoyuHookManager::callHookDataModifier('calendar', 'getReminderSoundFilename', $filename, array('event'	=> $idEvent));
+		$pathDefaultFile= 'ext/calendar/asset/audio/reminder.wav';
+		$pathFile		= TodoyuHookManager::callHookDataModifier('calendar', 'getReminderSoundFilename', $pathDefaultFile, array('event'	=> $idEvent));
 
-		if( ! file_exists( 'sounds' . DIR_SEP . $filename) ) {
-			$filename	= 'default.wav';
-		}
-
-		return file_exists('sounds' . DIR_SEP . $filename) ? $filename : false;
+		return TodoyuFileManager::pathWeb($pathFile, true);
 	}
 
 
@@ -223,6 +219,17 @@ class TodoyuCalendarReminderManager {
 		);
 
 		return Todoyu::db()->doUpdate($table, $where, $update) === 1;
+	}
+
+
+
+	/**
+	 * Check whether the audio reminder is enabled (play sound)
+	 *
+	 * @return	Boolean
+	 */
+	public static function isAudioReminderEnabled() {
+		return TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'audioreminder_active') ? true : false;
 	}
 
 }

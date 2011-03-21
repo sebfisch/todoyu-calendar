@@ -104,9 +104,9 @@ Todoyu.Ext.calendar.Reminder = {
 	 * @param	{Ajax.Response}	response
 	 */
 	onPopupLoaded: function(response) {
-		if( response.hasTodoyuHeader('soundfile') ) {
-			var soundFilename	= response.getTodoyuHeader('soundfile');
-			Sound.play('sounds/' + soundFilename);
+		if( response.hasTodoyuHeader('sound') ) {
+			var soundFilename	= response.getTodoyuHeader('sound');
+			Sound.play(soundFilename);
 			Sound.enable();
 		}
 	},
@@ -120,16 +120,15 @@ Todoyu.Ext.calendar.Reminder = {
 	 * @param	{Element}	form
 	 */
 	dismiss: function(form) {
-		var idEventElement	= form.down('input[name="reminder[id_event]"]');
-		var idEvent			= $F(idEventElement);
+		var idEvent			= $F(form.down('input[name="reminder[id_event]"]'));
 
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
-			'parameters': {
-				'action':	'dismiss',
-				'event':	idEvent
+			parameters: {
+				action:	'dismiss',
+				event:	idEvent
 			},
-			'onComplete': this.onDismissed.bind(this, idEvent)
+			onComplete: this.onDismissed.bind(this, idEvent)
 		};
 
 		Todoyu.send(url, options);

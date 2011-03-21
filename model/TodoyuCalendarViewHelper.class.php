@@ -121,8 +121,8 @@ class TodoyuCalendarViewHelper {
 	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
-	public static function getReminderOptions(TodoyuFormElement $field, $idEvent) {
-		$idEvent	= intval($idEvent);
+	public static function getReminderOptions(TodoyuFormElement $field) {
+		$idEvent	= intval($field->getForm()->getRecordID());
 
 		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 		$timeLeft	=  $event->getStartDate() - NOW;

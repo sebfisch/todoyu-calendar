@@ -45,12 +45,10 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 	public function popupAction(array $params) {
 		$idEvent	= intval($params['event']);
 
-		$isAudioActivated	= TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'audioreminder_active') ? true : false;
+		$isAudioActivated	= TodoyuCalendarReminderManager::isAudioReminderEnabled();
 		if( $isAudioActivated ) {
 			$soundFilename	= TodoyuCalendarReminderManager::getSoundFilename($idEvent);
-			if( $soundFilename !== false ) {
-				TodoyuHeader::sendTodoyuHeader('soundfile', $soundFilename);
-			}
+			TodoyuHeader::sendTodoyuHeader('sound', $soundFilename);
 		}
 
 		return TodoyuCalendarEventRenderer::renderEventReminder($idEvent);

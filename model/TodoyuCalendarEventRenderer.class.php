@@ -327,7 +327,7 @@ class TodoyuCalendarEventRenderer {
 
 			// Construct form object for inline form
 		$xmlPath	= 'ext/calendar/config/form/event-reminder.xml';
-		$form		= TodoyuFormManager::getForm($xmlPath, 0, array(), array('#id_event#'=> $idEvent));
+		$form		= TodoyuFormManager::getForm($xmlPath, $idEvent);
 		$form->setFormData(array('id_event' => $idEvent));
 		$buttonsForm= $form->render();
 
