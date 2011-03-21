@@ -3,6 +3,7 @@ todoyu selenium testsuite steps: calendar extension
 
 * planning area
 	use main tab, go to area, main tab activated?
+	calendar sub tabs accessible? (day, week, month)
 * calendar panelwidget
 	alle elements present?
 	toggle expand/collapse incl. pref
