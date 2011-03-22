@@ -52,7 +52,7 @@
 				<field type="datetime" name="date_end">
 					<label>calendar.event.attr.enddate</label>
 					<validate>
-						<dateTimeNotBefore msg="event.error.starttimeAfterEndtime">
+						<dateTimeNotBefore msg="calendar.event.error.starttimeAfterEndtime">
 							<field>date_start</field>
 							<allow>
 								<fieldEquals>
