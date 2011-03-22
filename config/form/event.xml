@@ -91,7 +91,7 @@
 						</url>
 						<label type="function">
 							<function>TodoyuContactViewHelper::getPersonLabel</function>
-							<noLabel>event.attr.assigned_to.noLabel</noLabel>
+							<noLabel>calendar.event.attr.assigned_to.noLabel</noLabel>
 						</label>
 					</record>
 					<validate>
