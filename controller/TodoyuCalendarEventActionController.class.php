@@ -139,7 +139,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$tab		= trim($params['tab']);
 		$isConfirmed= $params['confirmed'] == '1';
 
-		// Check right
+			// Check right
 		TodoyuCalendarEventRights::restrictEdit($idEvent);
 
 		$overbookings	= TodoyuCalendarEventManager::moveEvent($idEvent, $timeStart, $tab, $isConfirmed);

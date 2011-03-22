@@ -635,10 +635,10 @@ class TodoyuCalendarEventManager {
 	/**
 	 * Move an event to a new start date
 	 *
-	 * @param	Integer		$idEvent
-	 * @param	Integer		$newStartDate
-	 * @param	String		$mode
-	 * @param	Boolean		$overbookingConfirmed
+	 * @param	Integer				$idEvent
+	 * @param	Integer				$newStartDate
+	 * @param	String				$mode
+	 * @param	Boolean|Array		True or array of overbooking infos
 	 */
 	public static function moveEvent($idEvent, $newStartDate, $mode, $overbookingConfirmed = false) {
 		$event	= self::getEvent($idEvent);
@@ -672,7 +672,7 @@ class TodoyuCalendarEventManager {
 					}
 				}
 
-				return $errorMessages;
+				return array_unique($errorMessages);
 			}
 		}
 

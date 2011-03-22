@@ -347,7 +347,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * Save new date of an event
 	 *
 	 * @method	saveDropping
-	 * @param	{String}	tab
+	 * @param	{String}	tab				'week' or 'month'
 	 * @param	{Number}	idEvent
 	 * @param	{Number}	date
 	 * @param	{Boolean}	isConfirmed
@@ -417,10 +417,9 @@ Todoyu.Ext.calendar.DragDrop = {
 			} else {
 					// Have mailing popup shown
 				this.ext.Event.Mail.initEventMailPopup(idEvent, this.ext.Event.operationTypeID.update);
-
-					// Saving succeeded
-				this.ext.refresh();
 			}
+				// Refresh to have event pop into place or revert
+			this.ext.refresh();
 		}
 	}
 
