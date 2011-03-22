@@ -75,15 +75,20 @@ class TodoyuCalendarPortalManager {
 	 * @return	Array
 	 */
 	public static function getBirthdays() {
-		if( TodoyuCalendarEventRights::isAllowedSeeBirthdaysInPortal() ) {
+		$birthdays	= array();
+		$allowed	= TodoyuCalendarEventRights::isAllowedSeeBirthdaysInPortal();
+
+		if( $allowed ) {
 			$weeksBirthday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksBirthday']);
 			$dateStart		= TodoyuTime::getStartOfDay();
 			$dateEnd		= TodoyuTime::addDays($dateStart, $weeksBirthday * 7);
 
-			return TodoyuContactPersonManager::getBirthdayPersons($dateStart, $dateEnd);
+			$birthdays		= TodoyuContactPersonManager::getBirthdayPersons($dateStart, $dateEnd);
 		}
+		
+		TodoyuDebug::printInFireBug($birthdays, 'birthdays');
 
-		return array();
+		return $birthdays;
 	}
 
 }

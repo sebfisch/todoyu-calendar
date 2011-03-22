@@ -3,6 +3,6 @@
 		<div class="type">&nbsp;</div>
 		<div class="date">{dateFormat $personData.date D2MshortY4}</div>
 		<div class="name">{personLabel idPrefix='birthdayperson' idRecord=0 idPerson=$personData.id}</div>
-		<div class="age">({$personData.age} {Label calendar.ext.yearsold})</div>
+		<div class="age">{$personData.age} {Label calendar.ext.yearsold}</div>
 	</div>
 {/foreach}
