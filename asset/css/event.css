@@ -153,14 +153,14 @@ div.weekMode div#calendararea div.event dd span.desc {
 .event.typeGeneral .type,
 .dayMode .event .typeGeneral,
 .monthMode .event .typeGeneral {
-	background:url(../img/icons.png) no-repeat scroll 2px -660px;
+	background:url(../img/icons.png) no-repeat scroll 0 -660px;
 }
 
 .event.typeAway .headInner,
 .event.typeAway .type,
 .dayMode .event .typeAway,
 .monthMode .event .typeAway {
-	background:url(../img/icons.png) no-repeat scroll 3px -690px;
+	background:url(../img/icons.png) no-repeat scroll 1px -690px;
 }
 
 .event.typeBirthday .headInner,
@@ -174,42 +174,42 @@ div.weekMode div#calendararea div.event dd span.desc {
 .event.typeVacation .type,
 .dayMode .event .typeVacation,
 .monthMode .event .typeVacation {
-	background:url(../img/icons.png) no-repeat scroll 3px -389px;
+	background:url(../img/icons.png) no-repeat scroll 0 -390px;
 }
 
 .event.typeEducation .headInner,
 .event.typeEducation .type,
 .dayMode .event .typeEducation,
 .monthMode .event .typeEducation {
-	background:url(../img/icons.png) no-repeat scroll 3px -720px;
+	background:url(../img/icons.png) no-repeat scroll 0 -720px;
 }
 
 .event.typeMeeting .headInner,
 .event.typeMeeting .type,
 .dayMode .event .typeMeeting,
 .monthMode .event .typeMeeting {
-	background:url(../img/icons.png) no-repeat scroll 3px -750px;
+	background:url(../img/icons.png) no-repeat scroll 0 -751px;
 }
 
 .event.typeAwayofficial .headInner,
 .event.typeAwayofficial .type,
 .dayMode .event .typeAwayofficial,
 .monthMode .event .typeAwayofficial {
-	background:url(../img/icons.png) no-repeat scroll 1px -782px;
+	background:url(../img/icons.png) no-repeat scroll 0 -782px;
 }
 
 .event.typeHomeoffice .headInner,
 .event.typeHomeoffice .type,
 .dayMode .event .typeHomeoffice,
 .monthMode .event .typeHomeoffice {
-	background:url(../img/icons.png) no-repeat scroll 3px -810px;
+	background:url(../img/icons.png) no-repeat scroll 1px -811px;
 }
 
 .event.typeCompensation .headInner,
 .event.typeCompensation .type,
 .dayMode .event .typeCompensation,
 .monthMode .event .typeCompensation {
-	background:url(../img/icons.png) no-repeat scroll 3px -900px;
+	background:url(../img/icons.png) no-repeat scroll 0 -900px;
 }
 .event.typeMilestone .headInner,
 .event.typeMilestone .type,
@@ -222,7 +222,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 .event.typeReminder .type,
 .dayMode .event .typeReminder,
 .monthMode .event .typeReminder {
-	background:url(../img/icons.png) no-repeat scroll 3px -960px;
+	background:url(../img/icons.png) no-repeat scroll 1px -961px;
 }
 
 
