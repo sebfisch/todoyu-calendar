@@ -29,5 +29,6 @@ require_once(PATH_EXT_CALENDAR . '/dwoo/plugins.php');
 TodoyuFormHook::registerBuildForm('ext/contact/config/form/address.xml', 'TodoyuCalendarManager::modifyAddressFormfields');
 
 TodoyuFormHook::registerSaveData('ext/calendar/config/form/event.xml', 'TodoyuCalendarEventManager::hookSaveEvent');
+TodoyuFormHook::registerSaveData('ext/calendar/config/form/event.xml', 'TodoyuCalendarEventManager::hookSaveEventSendEmail');
 
 ?>
