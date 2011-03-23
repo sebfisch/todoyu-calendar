@@ -175,12 +175,14 @@ class TodoyuCalendarEventFormValidator {
 			return false;
 		}
 
+		$personIDs	= TodoyuArray::intImplode($personIDs);
+
 		$fields	= '	c.id';
 		$tables	= '	ext_contact_mm_company_person mmcp,
 					ext_contact_company c';
-		$where	= '		mmcp.id_person IN(' . implode(',', $personIDs) . ')
-					AND	mmcp.id_company	= c.id
-					AND	c.is_internal	= 1';
+		$where	= '		mmcp.id_person IN(' . $personIDs . ') '
+				. '	AND	mmcp.id_company	= c.id '
+				. '	AND	c.is_internal	= 1';
 		$limit	= 1;
 
 		return Todoyu::db()->hasResult($fields, $tables, $where, '', '', $limit);
