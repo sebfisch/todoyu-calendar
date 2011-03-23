@@ -78,12 +78,12 @@ Todoyu.Ext.calendar.Event.Edit = {
 	loadForm: function(idEvent, time) {
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
-			'parameters': {
-				'action':	'edit',
+			parameters: {
+				action:	'edit',
 				'event':	idEvent,
 				'date':		Todoyu.Time.getDateTimeString(time)
 			},
-			'onComplete': this.onFormLoaded.bind(this, idEvent)
+			onComplete: this.onFormLoaded.bind(this, idEvent)
 		};
 		var target	= 'calendar-edit';
 
@@ -345,11 +345,11 @@ Todoyu.Ext.calendar.Event.Edit = {
 		isOverbookingConfirmed	= isOverbookingConfirmed ? isOverbookingConfirmed : false;
 
 		$('event-form').request({
-			'parameters': {
-				'action':					'save',
+			parameters: {
+				action:					'save',
 				'isOverbookingConfirmed':	(isOverbookingConfirmed ? '1' : '0')
 			},
-			'onComplete': this.onEventSaved.bind(this)
+			onComplete: this.onEventSaved.bind(this)
 		});
 	},
 

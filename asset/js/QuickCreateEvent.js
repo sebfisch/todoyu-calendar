@@ -71,10 +71,10 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	 */
 	save: function(form) {
 		$(form).request({
-			'parameters': {
-				'action':	'save'
+			parameters: {
+				action:	'save'
 			},
-			'onComplete': this.onSaved.bind(this)
+			onComplete: this.onSaved.bind(this)
 		});
 	},
 

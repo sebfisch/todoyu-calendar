@@ -67,11 +67,11 @@ Todoyu.Ext.calendar.EventPortal = {
 	loadDetails: function(idEvent) {
 		var url		= Todoyu.getUrl('calendar', 'portal');
 		var options	= {
-			'parameters': {
-				'action': 	'detail',
+			parameters: {
+				action: 	'detail',
 				'event': 	idEvent
 			},
-			'onComplete': this.onDetailsLoaded.bind(idEvent)
+			onComplete: this.onDetailsLoaded.bind(idEvent)
 		};
 		var target	= 'event-' + idEvent + '-header';
 
@@ -131,12 +131,12 @@ Todoyu.Ext.calendar.EventPortal = {
 		var url = Todoyu.getUrl('calendar', 'event');
 
 		var options = {
-			'parameters': {
-				'action':	'acknowledge',
+			parameters: {
+				action:	'acknowledge',
 				'event':	idEvent,
 				'person':	idPerson
 			},
-			'onComplete': this.onAcknowledged.bind(this, idEvent, idPerson)
+			onComplete: this.onAcknowledged.bind(this, idEvent, idPerson)
 		};
 
 		this.setAcknowledgeStatus(idEvent);

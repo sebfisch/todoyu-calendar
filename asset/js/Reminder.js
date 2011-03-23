@@ -83,11 +83,11 @@ Todoyu.Ext.calendar.Reminder = {
 	show: function(idEvent) {
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
-			'parameters': {
-				'action':	'popup',
+			parameters: {
+				action:	'popup',
 				'event':	idEvent
 			},
-			'onComplete':	this.onPopupLoaded.bind(this)
+			onComplete:	this.onPopupLoaded.bind(this)
 		};
 
 		var popupID	= 'reminder' + idEvent;
@@ -163,12 +163,12 @@ Todoyu.Ext.calendar.Reminder = {
 
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
-			'parameters': {
-				'action':	'reschedule',
+			parameters: {
+				action:	'reschedule',
 				'event':	idEvent,
 				'delay':	delayTime
 			},
-			'onComplete': this.onRescheduled.bind(this, idEvent)
+			onComplete: this.onRescheduled.bind(this, idEvent)
 		};
 
 		Todoyu.send(url, options);

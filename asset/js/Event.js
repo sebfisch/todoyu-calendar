@@ -164,11 +164,11 @@ Todoyu.Ext.calendar.Event = {
 
 			var url		= Todoyu.getUrl('calendar', 'event');
 			var options	= {
-				'parameters': {
-					'action':	'delete',
+				parameters: {
+					action:	'delete',
 					'event':	idEvent
 				},
-				'onComplete': this.onRemoved.bind(this, idEvent)
+				onComplete: this.onRemoved.bind(this, idEvent)
 			};
 
 			Todoyu.send(url, options);

@@ -388,12 +388,12 @@ Todoyu.Ext.calendar = {
 
 		var url 	= Todoyu.getUrl('calendar', 'calendar');
 		var options	= {
-			'parameters': {
+			parameters: {
 				action:	'update',
 				tab:		this.getActiveTab(),
 				date:		this.getDateString()
 			},
-			'onComplete': this.onCalendarBodyUpdated.bind(this)
+			onComplete: this.onCalendarBodyUpdated.bind(this)
 		};
 			// Update view
 		this.updateCalendarBody(url, options);

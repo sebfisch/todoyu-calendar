@@ -58,10 +58,10 @@ Todoyu.Ext.calendar.Profile =  {
 	 */
 	saveMain: function(form) {
 		form.request({
-			'parameters': {
-				'action': 'saveMain'
+			parameters: {
+				action: 'saveMain'
 			},
-			'onComplete': this.onMainSaved.bind(this)
+			onComplete: this.onMainSaved.bind(this)
 		});
 	},
 

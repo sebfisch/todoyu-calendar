@@ -360,7 +360,7 @@ Todoyu.Ext.calendar.DragDrop = {
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
 			parameters: {
-				'action':		'dragDrop',
+				action:		'dragDrop',
 				'event':		idEvent,
 				'date':			dateStr,
 				'tab':			tab,

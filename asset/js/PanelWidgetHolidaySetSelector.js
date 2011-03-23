@@ -217,13 +217,13 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 		var url		= Todoyu.getUrl('calendar', 'preference');
 		var options	= {
-			'parameters': {
-				'action':		'panelwidgetholidaysetselector',
+			parameters: {
+				action:		'panelwidgetholidaysetselector',
 				'preference':	this.key,
 				'area':			Todoyu.getArea(),
 				'value':		typeIDs
 			},
-			'onComplete': function(response) {
+			onComplete: function(response) {
 				this.onPrefsSaved(response);
 			}.bind(this)
 		};

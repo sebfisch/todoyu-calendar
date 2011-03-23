@@ -76,12 +76,12 @@ Todoyu.Ext.calendar.Event.Mail = {
 	initEventMailPopup: function(idEvent, operationTypeID) {
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
-			'parameters': {
-				'action':		'getEventMailPopup',
+			parameters: {
+				action:		'getEventMailPopup',
 				'event':		idEvent,
 				'operation':	operationTypeID
 			},
-			'onComplete': this.onEventMailPopupInitialized.bind(this, idEvent)
+			onComplete: this.onEventMailPopupInitialized.bind(this, idEvent)
 		};
 
 		Todoyu.send(url, options);
@@ -115,10 +115,10 @@ Todoyu.Ext.calendar.Event.Mail = {
 	deactivatePopup: function() {
 		var url		= Todoyu.getUrl('calendar', 'profile');
 		var options	= {
-			'parameters': {
-				'action':	'deactivatePopupPreference'
+			parameters: {
+				action:	'deactivatePopupPreference'
 			},
-			'onComplete': this.onPopupDeactivated.bind(this)
+			onComplete: this.onPopupDeactivated.bind(this)
 		};
 
 		Todoyu.send(url, options);
@@ -148,13 +148,13 @@ Todoyu.Ext.calendar.Event.Mail = {
 	sendMail: function(idEvent, operationTypeID, personIDs) {
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
-			'parameters': {
-				'action':		'sendMail',
+			parameters: {
+				action:		'sendMail',
 				'event':		idEvent,
 				'persons':		personIDs.toArray().join(','),
 				'operation':	operationTypeID
 			},
-			'onComplete': this.onMailSent.bind(this, idEvent)
+			onComplete: this.onMailSent.bind(this, idEvent)
 		};
 
 		Todoyu.send(url, options);
