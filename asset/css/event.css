@@ -286,7 +286,6 @@ div.weekMode div#calendararea div.event dd span.desc {
 #events .event h3{
 	background-color:#fff;
 	border-bottom:1px dotted #848484;
-	border-left:5px solid #bbb;
 }
 
 #holidays h3 {
@@ -373,8 +372,12 @@ div.eventDetails dd {
 	padding-left:20px;
 }
 
+#holidays .holidayDate {
+	padding-left:30px;
+	background:url(../img/icons.png) no-repeat scroll 0 -390px;
+}
 #holidays .holidayTitle {
-	padding-left:15px;
+	padding-left: 15px;
 }
 
 #holidays .holidayWorkinghours,
