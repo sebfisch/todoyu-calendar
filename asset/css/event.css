@@ -1,3 +1,11 @@
+/* remove dragNdrop-cursor from day-events temporarily */
+td.wk-allday div.event span.headInner {
+	cursor:default !important;
+}
+
+
+
+
 .dayMode .event,
 .weekMode .event {
 	-moz-user-select:none;
