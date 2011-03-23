@@ -85,8 +85,6 @@ class TodoyuCalendarPortalManager {
 
 			$birthdays		= TodoyuContactPersonManager::getBirthdayPersons($dateStart, $dateEnd);
 		}
-		
-		TodoyuDebug::printInFireBug($birthdays, 'birthdays');
 
 		return $birthdays;
 	}
