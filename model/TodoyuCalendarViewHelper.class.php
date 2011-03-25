@@ -131,12 +131,12 @@ class TodoyuCalendarViewHelper {
 		$intervals	= Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_RESCHEDULEINTERVALS'];
 		foreach($intervals as $minutes) {
 			$minutesUntil	= TodoyuTime::SECONDS_MIN * $minutes;
-			if( $timeLeft > $minutesUntil ) {
+//			if( $timeLeft > $minutesUntil ) {
 				$options[] = array(
 					'value'	=> $minutesUntil,
 					'label'	=> $minutes . ' Minutes'
 				);
-			}
+//			}
 		}
 
 		return $options;
