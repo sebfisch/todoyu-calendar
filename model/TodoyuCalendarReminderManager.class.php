@@ -68,10 +68,9 @@ class TodoyuCalendarReminderManager {
 	 * @return	Boolean
 	 */
 	public static function isPersonActivatedForReminders() {
-		$personRoles	= TodoyuContactPersonManager::getRoleIDs(personid());
-		$reminderRoles	= TodoyuArray::intExplode(',', TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_roles'));
-
-		$personReminderRoles	= array_intersect($personRoles, $reminderRoles);
+		$personRoles		= TodoyuContactPersonManager::getRoleIDs(personid());
+		$reminderRoles		= TodoyuArray::intExplode(',', TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_roles'));
+		$personReminderRoles= array_intersect($personRoles, $reminderRoles);
 
 		return sizeof($personReminderRoles) > 0;
 	}
@@ -79,7 +78,7 @@ class TodoyuCalendarReminderManager {
 
 
 	/**
-	 * Get upcoming events to remind current person of
+	 * Get reminder popup settings of upcoming events of current person
 	 *
 	 * @return	Array
 	 */
@@ -92,20 +91,20 @@ class TodoyuCalendarReminderManager {
 
 		$events	= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
 
-			// Add event foreign data and generic data of reminder
 		foreach($events as $idEvent => $eventData) {
-			if( self::isReminderDismissed($idEvent) ) {
+			if( false && self::isReminderDismissed($idEvent) ) {
 					// Remove dismissed reminders from schedule
 				unset($events[$idEvent]);
 			} else {
 					// Setup event reminder data
-				$showTime	= self::getTimeUntilShow($idEvent);
+				$showTime	= self::getPopupTime($idEvent);
 				if( $showTime !== false ) {
-					$event	= TodoyuCalendarEventManager::getEvent($idEvent);
-//					$events[$idEvent]	= $event->getTemplateData(true, true);
-					$events[$idEvent]['person_create']			= $event->getPerson('create')->getTemplateData();
-					$events[$idEvent]['attendees']				= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true);
-					$events[$idEvent]['time_untilshowreminder']	=  $showTime;
+					$events[$idEvent]	= array(
+								'id'				=> $idEvent,
+								'dismissed'			=> 0,
+								'time_popup'		=>  $showTime,
+								'event.date_start'	=> $eventData['date_start'],
+					);
 				}
 			}
 		}
@@ -121,21 +120,19 @@ class TodoyuCalendarReminderManager {
 	 * @param	Integer		$idEvent
 	 * @return	Integer
 	 */
-	public static function getTimeUntilShow($idEvent) {
+	public static function getPopupTime($idEvent) {
 		$reminder	= self::getReminder($idEvent);
 
 		if( $reminder->isDismissed() ) {
 			$showTime	= false;
 		} elseif( $reminder->isReschudeled() ) {
 				// Get time until scheduled next popup
-			$showTime	= $reminder->getDateRemindAgain() - NOW;
+			$showTime	= $reminder->getDateRemindAgain();
 		} else {
 				//	Calculate time until next popup from starting time of event
 			$timeWarnBefore	= intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_advancetime'));
-			$event			= TodoyuCalendarEventManager::getEvent($idEvent);
-			$dateStart		= $event->getStartDate();
-
-			$showTime	= $dateStart - NOW - $timeWarnBefore;
+			$startTime		= TodoyuCalendarEventManager::getEvent($idEvent)->getStartDate();
+			$showTime		= $startTime - $timeWarnBefore;
 		}
 
 			// Missed reminders of events in the past? show immediately
