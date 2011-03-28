@@ -250,7 +250,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 	background-position:0 -325px;
 	height:16px;
 	width:30px;
-	margin-left:20px;
+	margin-left:10px;
 }
 #birthdays div.event div.date {
 	width:80px;
@@ -291,12 +291,15 @@ div.weekMode div#calendararea div.event dd span.desc {
 #holidays h3 {
 	white-space:normal;
 }
+#holidays h3.holidaysList {
+	padding-left:10px;
+}
 
 #events .event .headLabel {
 	padding:0 0 0 20px;
 }
 
-#events .event .headLabel .icon{
+#events .event .headLabel .icon {
 	padding:0 5px 0 0;
 }
 
@@ -372,18 +375,25 @@ div.eventDetails dd {
 	padding-left:20px;
 }
 
+#holidays .holidaysList span {
+	display:block;
+	float:left;
+}
+
 #holidays .holidayDate {
-	padding-left:30px;
+	width:60px;
+	padding-left:35px;
 	background:url(../img/icons.png) no-repeat scroll 0 -390px;
 }
 #holidays .holidayTitle {
-	padding-left: 15px;
+	padding-left:20px;
+	float:left;
+	width:180px;
 }
-
 #holidays .holidayWorkinghours,
 #holidays .holidayDescription {
 	position:relative;
-	margin:0 15px 0 15px;
+	width:120px;
 }
 
 
