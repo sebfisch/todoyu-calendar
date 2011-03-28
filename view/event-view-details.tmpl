@@ -37,7 +37,9 @@
 		<td class="eventAttrTitle">
 			<span class="icon"> </span>&nbsp;{Label core.global.description}
 		</td>
-		<td class="eventValue">{$event.description|default:"-"}</td>
+		<td class="eventValue">
+			{substituteLinkableElements(cleanHtml($event.description))}
+		</td>
 	</tr>
 {/if}
 	<tr>{* -------------------- Creator person -------------------- *}
