@@ -25,7 +25,7 @@
 				{dateFormat $event.date_start date}
 				{dateFormat $event.date_start time} - {dateFormat $event.date_end time}
 				{if $event.duration.minutes > 59}
-					({dateFormat $event.duration.seconds time} {Label core.date.time.hours})
+					({timeFormat $event.duration.seconds} {Label core.date.time.hours})
 				{else}
 					({$event.duration.minutes} {Label core.date.time.minutes})
 				{/if}
