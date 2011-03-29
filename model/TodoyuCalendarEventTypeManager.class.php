@@ -75,7 +75,7 @@ class TodoyuCalendarEventTypeManager {
 		$label		= $eventType['label'];
 
 		if( $parsed ) {
-			$label = TodoyuLabelManager::getLabel($label);
+			$label = Label($label);
 		}
 
 		return $label;
