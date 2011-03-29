@@ -444,6 +444,9 @@ table.eventView {
 table.eventView td {
 	text-align:left;
 }
+table.eventView td a {
+	text-decoration: underline;
+}
 
 button.editEvent .icon {
 	background:url(../img/icons.png) no-repeat 0 -28px;
