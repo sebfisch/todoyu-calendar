@@ -413,29 +413,34 @@ class TodoyuCalendarEventManager {
 			// Make empty overbooking data
 		$overbooked	= array();
 
-			// Get all (not-overbookable / conflicting) events in the duration of the event
-		$eventTypes	= TodoyuCalendarEventTypeManager::getNotOverbookableTypeIndexes();
-		$otherEvents= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
-			// Remove current event
-		unset($otherEvents[$idEvent]);
+		if( $dateEnd >= $dateStart ) {
+				// Get all (not-overbookable / conflicting) events in the duration of the event
+			$eventTypes	= TodoyuCalendarEventTypeManager::getNotOverbookableTypeIndexes();
+			$otherEvents= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
+				// Remove current event
+			unset($otherEvents[$idEvent]);
 
-		foreach($otherEvents as $otherEvent) {
-				// Don't check for conflicts if is day-event as long its not an absence
-			$absenceEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE']);
+			foreach($otherEvents as $otherEvent) {
+					// Don't check for conflicts if is day-event as long its not an absence
+				$absenceEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE']);
 
-			if( $otherEvent['is_dayevent'] == 1 && ! in_array($otherEvent['eventtype'], $absenceEventTypes)) {
-				continue;
-			}
-
-			$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($otherEvent['id']);
-			$assignedPersonIDs	= TodoyuArray::getColumn($assignedPersons, 'id_person');
-			$conflictedPersonIDs= array_intersect($personIDs, $assignedPersonIDs);
-
-			foreach($conflictedPersonIDs as $idPerson) {
-				if( ! isset($overbooked[$idPerson]['person']) ) {
-					$overbooked[$idPerson]['person'] = $idPerson;
+				if( $otherEvent['is_dayevent'] == 1 && ! in_array($otherEvent['eventtype'], $absenceEventTypes)) {
+					continue;
 				}
-				$overbooked[$idPerson]['events'][] = $otherEvent;
+
+				$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($otherEvent['id']);
+				$assignedPersonIDs	= TodoyuArray::getColumn($assignedPersons, 'id_person');
+				$conflictedPersonIDs= array_intersect($personIDs, $assignedPersonIDs);
+
+				foreach($conflictedPersonIDs as $idPerson) {
+					if( ! isset($overbooked[$idPerson]['person']) ) {
+						$overbooked[$idPerson]['person'] = $idPerson;
+					}
+
+					if( count($overbooked[$idPerson]['events']) < Todoyu::$CONFIG['EXT']['calendar']['maxShownOverbookingsPerPerson'] ) {
+						$overbooked[$idPerson]['events'][] = $otherEvent;
+					}
+				}
 			}
 		}
 

@@ -101,6 +101,9 @@ Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'] = array(
 	EVENTTYPE_MILESTONE,
 	EVENTTYPE_REMINDER
 );
+	// How many conflicting appointments per person to be shown in overbooking warning?
+Todoyu::$CONFIG['EXT']['calendar']['maxShownOverbookingsPerPerson']	= 5;
+
 	// Which event types define absences?
 Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'] = array(
 	EVENTTYPE_AWAY,
