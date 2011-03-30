@@ -167,7 +167,7 @@ class TodoyuCalendarEventViewHelper {
 
 			// Get staff persons (employees of internal company)
 		$groupLabel	= Label('comment.ext.group.employees');
-		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field);
+		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field, true);
 
 		return $options;
 	}
