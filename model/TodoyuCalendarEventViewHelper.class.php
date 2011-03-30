@@ -89,8 +89,10 @@ class TodoyuCalendarEventViewHelper {
 
 		foreach($persons as $person) {
 			$label	= TodoyuContactPersonManager::getLabel($person['id']);
+			$label	= TodoyuString::crop($label, 25, '...', false);
+			$label	= '<a href="?ext=contact&controller=person&action=detail&person=' . $person['id'] . '">' . $label . '</a>';
 
-			$personInfo[]	= TodoyuString::crop($label, 25, '...', false);
+			$personInfo[]	= $label;
 		}
 
 		return implode("\n", $personInfo);

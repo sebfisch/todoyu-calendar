@@ -1,6 +1,7 @@
 todoyu calendar extension changelog
 
 calendar 1.1.0 (requires core >= 2.1) - not released yet
+	* Feature: Added linkage (to detail view contact) to appointment quickinfo persons
 	* Bugfix: Fixed holidays list to be ordered by date
 	* Changed: Added monthday abbreviation to appointment headers in list view
 	* Bugfix: After overbooking error after drag and dropping events did not revert to original time

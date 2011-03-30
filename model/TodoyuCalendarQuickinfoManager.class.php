@@ -58,7 +58,7 @@ class TodoyuCalendarQuickinfoManager {
 
 		$amountAssignedPersons	= count( $event->getAssignedPersonsData() );
 		if( $amountAssignedPersons > 0 ) {
-			$quickInfo->addInfo('persons', $personInfo, 50);
+			$quickInfo->addInfo('persons', $personInfo, 50, false);
 		}
 	}
 
