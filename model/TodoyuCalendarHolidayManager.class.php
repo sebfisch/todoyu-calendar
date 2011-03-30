@@ -286,8 +286,9 @@ class TodoyuCalendarHolidayManager {
 				. ' AND	hhmm.id_holidayset IN(' . implode(',', $holidaySetIDs) . ')'
 				. ' AND	h.date BETWEEN ' . $dateStart . ' AND ' . $dateEnd;
 		$group	= '	h.id';
+		$order	= 'h.date';
 
-		return Todoyu::db()->getArray($fields, $table, $where, $group);
+		return Todoyu::db()->getArray($fields, $table, $where, $group, $order);
 	}
 
 
