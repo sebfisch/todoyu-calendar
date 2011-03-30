@@ -72,7 +72,6 @@ Todoyu.Ext.calendar.Reminder = {
 		this.events	= Object.values(upcomingEvents) || {};
 
 		if( upcomingEvents ) {
-			console.log(upcomingEvents);
 				// Start periodical executer
 			this.pe = new PeriodicalExecuter(this.onReminderTimeout.bind(this), this.peSeconds);
 		}
