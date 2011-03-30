@@ -1,6 +1,7 @@
 todoyu calendar extension changelog
 
 calendar 1.1.0 (requires core >= 2.1) - not released yet
+	* Changed: Added monthday abbreviation to appointment headers in list view
 	* Bugfix: After overbooking error after drag and dropping events did not revert to original time
 	* Changed: Reduced templates of event list-view details and single view into one template
 	* Feature: Improved event list view, added person quickinfos and status icons (acknowledged/emailed)

@@ -1,21 +1,24 @@
 <table class="eventView">
 	<tr>{* -------------------- Title -------------------- *}
 		<td class="eventAttrTitle">
-			<span class="icon eventTitleIcon"> </span>&nbsp;{Label core.global.title}
+			<span class="icon eventTitleIcon"> </span>
+			{Label core.global.title}
 		</td>
 		<td class="eventValue">{$event.title}</td>
 	</tr>
 {if ! empty($event.place)}
 	<tr>{* -------------------- Place -------------------- *}
 		<td class="eventAttrTitle">
-			<span class="icon placeIcon"> </span>&nbsp;{Label calendar.event.attr.place}
+			<span class="icon placeIcon"> </span>
+			{Label calendar.event.attr.place}
 		</td>
 		<td class="eventValue">{$event.place}</td>
 	</tr>
 {/if}
 	<tr>{* -------------------- Timespan -------------------- *}
 		<td class="eventAttrTitle">
-			<span class="icon dateIcon"> </span>&nbsp;{Label calendar.event.attr.timespan}
+			<span class="icon dateIcon"> </span>
+			{Label calendar.event.attr.timespan}
 		</td>
 		<td class="eventValue">
 			{if $event.duration.daysIntersected > 1}
