@@ -72,6 +72,7 @@ Todoyu.Ext.calendar.Reminder = {
 		this.events	= Object.values(upcomingEvents) || {};
 
 		if( upcomingEvents ) {
+			console.log(upcomingEvents);
 				// Start periodical executer
 			this.pe = new PeriodicalExecuter(this.onReminderTimeout.bind(this), this.peSeconds);
 		}
@@ -172,7 +173,7 @@ Todoyu.Ext.calendar.Reminder = {
 	onDismissed: function(idEvent, response) {
 		this.events.each(function(event){
 			if( event.id == idEvent ) {
-				this.events[event.id].dismissed	= 1;
+				event.dismissed	= 1;
 			}
 		}, this);
 
