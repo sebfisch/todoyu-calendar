@@ -196,11 +196,11 @@ Todoyu.Ext.calendar.Reminder = {
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
 			parameters: {
-				action:	'reschedule',
+				action:		'reschedule',
 				'event':	idEvent,
 				'delay':	delayTime
 			},
-			onComplete: this.onRescheduled.bind(this, idEvent)
+			onComplete: this.onRescheduled.bind(this, idEvent, delayTime)
 		};
 
 		Todoyu.send(url, options);
@@ -213,12 +213,19 @@ Todoyu.Ext.calendar.Reminder = {
 	 *
 	 * @method	onRescheduled
 	 * @param	{Number}			idEvent
+	 * @param	{Number}			delayTime
 	 * @param	{Ajax.Response}		response
 	 */
-	onRescheduled: function(idEvent, response) {
-		this.closePopup(idEvent);
+	onRescheduled: function(idEvent, delayTime, response) {
+			// Update scheduled popup time of reminder in cache
+		this.events.each(function(event){
+			if( event.id == idEvent ) {
+				event.time_popup	+= delayTime * 1000;
+			}
+		}, this);
 
-		setTimeout('location.reload()', 1000);
+			// Close reminder popup
+		this.closePopup(idEvent);
 	},
 
 
