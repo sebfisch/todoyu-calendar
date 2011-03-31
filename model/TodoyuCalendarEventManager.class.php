@@ -487,10 +487,6 @@ class TodoyuCalendarEventManager {
 			$idEvent = self::addEvent(array());
 		}
 
-			// Remove mail fields (not stored directly in event record)
-		unset($data['sendasemail']);
-		unset($data['emailreceivers']);
-
 			// Extract person IDs from foreign data array (easier to handle)
 		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
 
@@ -607,7 +603,6 @@ class TodoyuCalendarEventManager {
 	 */
 	public static function hookSaveEventSendEmail(array $data, $idEvent, array $params = array()) {
 		$sendAsEmail	= intval($data['sendasemail']) === 1;
-
 		if( $sendAsEmail ) {
 			$mailReceiverPersonIDs	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
 
