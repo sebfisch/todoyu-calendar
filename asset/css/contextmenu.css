@@ -1,6 +1,3 @@
-/* ---------------------------
-	Event contextmenu
-   ---------------------------  */
 a.eventContextMenu {
 	background:url(../img/contextmenu.png) no-repeat;
 }
@@ -28,6 +25,11 @@ a.eventContextMenu.eventAdd {
 	background-position:5px -298px;
 }
 
+
+
+/* ---------------------------------------
+	Show in calendar views
+   --------------------------------------- */
 a.eventContextMenu.showInCalendarDay {
 	background-position:6px -205px;
 }
@@ -38,4 +40,35 @@ a.eventContextMenu.showInCalendarWeek {
 
 a.eventContextMenu.showInCalendarMonth {
 	background-position:6px -265px;
+}
+
+
+
+/* ---------------------------------------
+	Reminder options (email and popup)
+   --------------------------------------- */
+a.eventContextMenu.eventReminderEmail {
+	background-position:5px -148px;
+}
+
+a.eventContextMenu.eventReminderPopup {
+	background-position:5px -180px;
+}
+
+#contextmenu-reminderemail-submenu .reminderTimeNone,
+#contextmenu-reminderpopup-submenu .reminderTimeNone {
+	background:url(../../../../core/asset/img/icons.png) no-repeat 12px -1493px #fff;
+}
+
+.context-submenu .reminderTime0,
+.context-submenu .reminderTime5m,
+.context-submenu .reminderTime15m,
+.context-submenu .reminderTime30m,
+.context-submenu .reminderTime1h,
+.context-submenu .reminderTime2h,
+.context-submenu .reminderTime12h,
+.context-submenu .reminderTime1d,
+.context-submenu .reminderTime2d,
+.context-submenu .reminderTime1w {
+	background-image:none !important;
 }

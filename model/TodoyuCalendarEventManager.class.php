@@ -220,7 +220,7 @@ class TodoyuCalendarEventManager {
 
 						foreach($column as $columnEventIndex) {
 								// Check if the event overlaps with the current column element
-							if( self::areEventsOverlaping($eventsByDay[$dayKey][$columnEventIndex], $event) ) {
+							if( self::areEventsOverlapping($eventsByDay[$dayKey][$columnEventIndex], $event) ) {
 									// Overlapping in this column, try next
 								$overlaps	= true;
 								break;
@@ -269,7 +269,7 @@ class TodoyuCalendarEventManager {
 	 * @param	Array		$event2
 	 * @return	Boolean
 	 */
-	public static function areEventsOverlaping(array $event1, array $event2) {
+	public static function areEventsOverlapping(array $event1, array $event2) {
 			// Make sure event1 lasts at least 30 min
 		if( ($event1['date_end'] - $event1['date_start']) < CALENDAR_EVENT_MIN_DURATION ) {
 			$event1['date_end'] = $event1['date_start'] + CALENDAR_EVENT_MIN_DURATION;
@@ -945,7 +945,7 @@ class TodoyuCalendarEventManager {
 		}
 
 			// Options: edit event, delete event
-			// Edit event: right:editAll OR is assigned and right editAssigned OR is creater
+			// Edit event: right:editAll OR is assigned and right editAssigned OR is creator
 		if( TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
 			$allowed['edit']	= $own['edit'];
 			$allowed['delete']	= $own['remove'];
@@ -954,6 +954,16 @@ class TodoyuCalendarEventManager {
 			// Option: add event
 		if( TodoyuCalendarEventRights::isAddAllowed() ) {
 			$allowed['add'] = $own['add'];
+		}
+
+			// Option: popup reminder
+		if( 1 ) {
+			$allowed['reminderemail']	= $own['reminderemail'];
+		}
+
+			// Option: email reminder
+		if( 1 ) {
+			$allowed['reminderpopup']	= $own['reminderpopup'];
 		}
 
 		$items = array_merge_recursive($items, $allowed);
