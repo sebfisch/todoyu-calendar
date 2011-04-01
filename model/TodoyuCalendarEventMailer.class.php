@@ -75,7 +75,7 @@ class TodoyuCalendarEventMailer {
 			$operationID	= OPERATIONTYPE_RECORD_DELETE;
 		}
 
-		$personWrite	= $event->getCreatePerson();
+//		$personWrite	= $event->getCreatePerson();
 		$person			= TodoyuContactPersonManager::getPerson($idPerson);
 		$eventTitle		= $event->getTitle();
 
@@ -109,6 +109,8 @@ class TodoyuCalendarEventMailer {
 
 			// Add "to" address (recipient)
 		$mail->AddAddress($person->getEmail(), $person->getFullName());
+		
+		TodoyuDebug::printInFireBug($person->getEmail(), 'sent email to');
 
 //	@todo	verify
 //		if( DIR_SEP !== '\\' ) {
