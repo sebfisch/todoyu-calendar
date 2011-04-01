@@ -109,8 +109,6 @@ class TodoyuCalendarEventMailer {
 
 			// Add "to" address (recipient)
 		$mail->AddAddress($person->getEmail(), $person->getFullName());
-		
-		TodoyuDebug::printInFireBug($person->getEmail(), 'sent email to');
 
 //	@todo	verify
 //		if( DIR_SEP !== '\\' ) {
