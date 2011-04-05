@@ -14,7 +14,9 @@ h1.extIconCalendar .title {
 /* --------------------------------------------
 	Main menu: Sub menu entries in planning
    -------------------------------------------- */
-#navi-main-list-planning li.item a {
+#navi-main-list-planning li.itemCalendarDay a,
+#navi-main-list-planning li.itemCalendarWeek a,
+#navi-main-list-planning li.itemCalendarMonth a {
 	background-image:url(../img/icons.png) !important;
 	background-repeat:no-repeat;
 }
