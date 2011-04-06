@@ -479,8 +479,13 @@ class TodoyuCalendarEventManager {
 	public static function saveEvent(array $data) {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 
-		$idEvent	= intval($data['id']);
-		$isNewEvent	= $idEvent === 0;
+		$idEvent		= intval($data['id']);
+		$isNewEvent		= $idEvent === 0;
+		$sendAsMail		= $data['sendasemail'];
+		$emailReceivers	= $data['emailreceivers'];
+
+		unset($data['sendasemail']);
+		unset($data['emailreceivers']);
 
 			// Add empty event
 		if( $idEvent === 0 ) {
@@ -525,6 +530,10 @@ class TodoyuCalendarEventManager {
 			// Remove record and query from cache
 		self::removeEventFromCache($idEvent);
 
+		if( $sendAsMail ) {
+			self::eventSendEmail($idEvent, $emailReceivers, $isNewEvent);
+		}
+
 		return $idEvent;
 	}
 
@@ -566,6 +575,13 @@ class TodoyuCalendarEventManager {
 			// Create an empty event
 		$idEvent	= self::addEvent();
 
+			// handel e-mail fields
+		$sendAsMail		= $data['sendasemail'];
+		$emailReceivers	= $data['emailreceivers'];
+
+		unset($data['sendasemail']);
+		unset($data['emailreceivers']);
+
 			// Add person
 		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
 
@@ -588,6 +604,11 @@ class TodoyuCalendarEventManager {
 			// Remove record and query from cache
 		self::removeEventFromCache($idEvent);
 
+			// send mail if necessary
+		if( $sendAsMail ) {
+			self::eventSendEmail($idEvent, $emailReceivers, true);
+		}
+		
 		return $idEvent;
 	}
 
@@ -601,29 +622,21 @@ class TodoyuCalendarEventManager {
 	 * @param	Array		$params
 	 * @return	Array
 	 */
-	public static function hookSaveEventSendEmail(array $data, $idEvent, array $params = array()) {
-		$sendAsEmail	= intval($data['sendasemail']) === 1;
-		if( $sendAsEmail ) {
-			$mailReceiverPersonIDs	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
+	public static function eventSendEmail($idEvent, $receivers, $isNewEvent = false) {
+		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intExplode(',', $receivers, true, true));
 
-			if( sizeof($mailReceiverPersonIDs) > 0 ) {
-				$operationID	= $params['newEvent'] ? OPERATIONTYPE_RECORD_UPDATE : OPERATIONTYPE_RECORD_UPDATE;
+		if( sizeof($mailReceiverPersonIDs) > 0 ) {
+			$operationID	= $isNewEvent ? OPERATIONTYPE_RECORD_CREATE : OPERATIONTYPE_RECORD_UPDATE;
 
-				$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $mailReceiverPersonIDs, $operationID);
-				if( $sent ) {
-					TodoyuCalendarEventMailManager::saveMailsSent($idEvent, $mailReceiverPersonIDs);
-					/**
-					 * @todo	Sending headers here is bad!
-					 */
-					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
-				}
+			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $mailReceiverPersonIDs, $operationID);
+			if( $sent ) {
+				TodoyuCalendarEventMailManager::saveMailsSent($idEvent, $mailReceiverPersonIDs);
+				/**
+				* @todo	Sending headers here is bad!
+				*/
+				TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 			}
 		}
-
-		unset($data['sendasemail']);
-		unset($data['emailreceivers']);
-
-		return $data;
 	}
 
 

@@ -1,6 +1,7 @@
 todoyu calendar extension changelog
 
 calendar 1.1.0 (requires core >= 2.1) - not released yet
+	* Bugfix: Fixed sending of notification for events
 	* Changed: No more overbooking check for invalid event timespans
 	* Changed: Added max amount configuration of displayed conflicted appointments in overbooking info
 	* Feature: Added linkage (to detail view contact) to appointment quickinfo persons
