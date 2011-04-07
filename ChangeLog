@@ -1,20 +1,10 @@
 todoyu calendar extension changelog
 
-calendar 1.1.0 (requires core >= 2.1) - not released yet
-	* Bugfix: Fixed sending of notification for events
-	* Changed: No more overbooking check for invalid event timespans
-	* Changed: Added max amount configuration of displayed conflicted appointments in overbooking info
+calendar 1.1.0 - beta release
+	* Changed: Requires core 2.1
+	* Changed: Structure for 2.1
+	* Changed: All classes are prefixed with extension name
 	* Feature: Added linkage (to detail view contact) to appointment quickinfo persons
-	* Bugfix: Fixed holidays list to be ordered by date
-	* Changed: Added monthday abbreviation to appointment headers in list view
-	* Bugfix: After overbooking error after drag and dropping events did not revert to original time
-	* Changed: Reduced templates of event list-view details and single view into one template
-	* Feature: Improved event list view, added person quickinfos and status icons (acknowledged/emailed)
-	* Feature: Changed events (by other persons) are marked with green star (list mode)
-	* Changed: Moved logging of sent event mails into TodoyuMailManager of core / table system_log_email table
-	* Feature: Cleanup of Rights Management
-	* Bugfix: Added noAccess class to ALL events which can't be edited (Drag&Drop)
-	* Bugfix: Removed empty values from event detail view (description, place)
 	* Feature: new right "Send event as email"
 	* Feature: logging of sent event mails (not yet displayed in attendee's list)
 	* Feature: events emailing after event deletion (not deactivateable)
@@ -22,22 +12,30 @@ calendar 1.1.0 (requires core >= 2.1) - not released yet
 	* Feature: events emailing with popup confirmation after drag and drop modification of events
 	* Feature: events emailing inline in create, update form
 	* Feature: calendar section in profile
-	* Bugfix: Fixed EventManager to not delete events physically anymore (use "deleted" flag)
-	* Changed: Unified form handling of event type toggeling in event inline- and quickcreation- form
-	* Bugfix: Fixed event type toggeling handling in event quickcreation form
+	* Feature: Added overbooking warning even if allowed (edit via form + drag & drop)
+	* Feature: Added event reminders (popup)
+	* Feature: Improved event list view, added person quickinfos and status icons (acknowledged/emailed)
+	* Feature: Changed events (by other persons) are marked with green star (list mode)
 	* Added: Added callback into quickcreation popup hook
  	* Changed: Made event comply with global conventions: Optional event attributes are hidden via "hidden" class instead of style="display:none"
 	* Changed: Added separate fieldset for reminder options in calendar extconf
-	* Feature: Added overbooking warning even if allowed (edit via form + drag & drop)
-	* Bugfix: Quickinfos now always hide when starting to drag events
+	* Changed: Unified form handling of event type toggeling in event inline- and quickcreation- form
+	* Changed: Moved logging of sent event mails into TodoyuMailManager of core / table system_log_email table
+	* Changed: Added monthday abbreviation to appointment headers in list view
+	* Changed: Reduced templates of event list-view details and single view into one template
+	* Changed: No more overbooking check for invalid event timespans
+	* Changed: Added max amount configuration of displayed conflicted appointments in overbooking info
+ 	* Changed: Quickinfos now always hide when starting to drag events
 	* Bugfix: Event drag & drop in week & day views had wrong hour offset (-1h)
-	* Feature: Added event reminders (popup)
-	* Feature: Cleanup (topical order and readability) of extension config (init.php) file
-	* Feature: Forms restyled
- 	* Changed: Updated loading structure: (core: boot.php, init: request,) extensions: init.php
+	* Bugfix: Fixed event type toggeling handling in event quickcreation form
+	* Bugfix: Fixed EventManager to not delete events physically anymore (use "deleted" flag)
+ 	* Bugfix: Added noAccess class to ALL events which can't be edited (Drag&Drop)
+	* Bugfix: Removed empty values from event detail view (description, place)
+	* Bugfix: Fixed holidays list to be ordered by date
+ 	* Bugfix: After overbooking error after drag and dropping events did not revert to original time
+ 	* Bugfix: Fixed sending of notification for events
 
- 
-calendar 1.0.6 - not released yet
+ calendar 1.0.6 - not released yet
 	* Feature: Different format in single view of events by duration - multi-day / mult-hour / minutes
 	* Bugfix: Removed wrong wordwrapping (inserted spaces) from event descriptions
 	* Bugfix: quickinfos now always hide when starting to drag events
@@ -142,6 +140,6 @@ calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Changed: Fetched holidays now contain related set ID, holidayset changed from autocompleter to select
 	* Bugfix: Timestamps of month range, multi-day events duration calculation, enumerated colors
 	* Bugfix: Month view timespan to be rendered from selected (was current) year, months intersecting 6 weeks were cut-off after w5
- 
+
 
 bookmark 1.0.0 - released 2010-05-10
