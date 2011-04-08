@@ -86,14 +86,23 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 	 * @param	Array		$params
 	 */
 	public function saveRemindersAction(array $params) {
-		$prefName		= 'is_reminderpopupactive';
-		$isPopupActive	= ( $params['reminders'][$prefName] == '1' ) ? 1 : 0;
-		TodoyuCalendarPreferences::savePref($prefName, $isPopupActive, 0, true, 0, personid());
+			// Email reminder prefs
+		$prefName	= 'is_reminderemailactive';
+		$prefValue	= $params['reminders'][$prefName] == '1' ? 1 : 0;
+		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, personid());
 
-		$prefName		= 'is_reminderemailactive';
-		$isPopupActive	= ( $params['reminders'][$prefName] == '1' ) ? 1 : 0;
-		TodoyuCalendarPreferences::savePref($prefName, $isPopupActive, 0, true, 0, personid());
-		
+		$prefName	= 'reminderemail_advancetime';
+		$prefValue	= intval($params['reminders'][$prefName]);
+		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, personid());
+
+			// Popup reminder prefs
+		$prefName	= 'is_reminderpopupactive';
+		$prefValue	= $params['reminders'][$prefName] == '1' ? 1 : 0;
+		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, personid());
+
+		$prefName	= 'reminderpopup_advancetime';
+		$prefValue	= intval($params['reminders'][$prefName]);
+		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, personid());
 	}
 
 }

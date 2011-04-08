@@ -114,16 +114,22 @@ class TodoyuCalendarProfileRenderer {
 
 			// Reminders send via email
 		if( allowed('calendar', 'reminders:email') ) {
-			$reminderEmailActive				= TodoyuCalendarPreferences::getPref('is_reminderemailactive', 0, 0, false, personid());
-			$formData['is_reminderemailactive']	= $reminderEmailActive ? true : false;
+			$emailActive		= TodoyuCalendarPreferences::getPref('is_reminderemailactive', 0, 0, false, personid());
+			$emailAdvanceTime	= TodoyuCalendarPreferences::getPref('reminderemail_advancetime', 0, 0, false, personid());
+
+			$formData['is_reminderemailactive']		= $emailActive ? true : false;
+			$formData['reminderemail_advancetime']	= intval($emailAdvanceTime);
 		} else {
 			$form->getFieldset('reminders')->removeField('is_reminderemailactive');
 			$form->getFieldset('reminders')->removeField('reminderemail_advancetime');
 		}
 			// Reminders shown as popup
 		if( allowed('calendar', 'reminders:popup') ) {
-			$reminderPopupActive				= TodoyuCalendarPreferences::getPref('is_reminderpopupactive', 0, 0, false, personid());
-			$formData['is_reminderpopupactive']	= $reminderPopupActive ? true : false;
+			$popupActive		= TodoyuCalendarPreferences::getPref('is_reminderpopupactive', 0, 0, false, personid());
+			$popupAdvanceTime	= TodoyuCalendarPreferences::getPref('reminderpopup_advancetime', 0, 0, false, personid());
+
+			$formData['is_reminderpopupactive']		= $popupActive ? true : false;
+			$formData['reminderpopup_advancetime']	= intval($popupAdvanceTime);
 		} else {
 			$form->getFieldset('reminders')->removeField('is_reminderpopupactive');
 			$form->getFieldset('reminders')->removeField('reminderpopup_advancetime');
