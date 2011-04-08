@@ -40,9 +40,11 @@
 	<label index="reminder.remindagainin">Remind me again in...</label>
 	<label index="reminder.button.remindlater">Remind Me Later</label>
 	<label index="extconf.allowoverbooking.label">Allow multiple simultaneous appointments for 1 person?</label>
-	<label index="extconf.reminderpopup_roles.label">Roles to get appointment reminder (popup)</label>
-	<label index="extconf.reminderpopup_advancetime.label">Time before appointment to show reminder</label>
-	<label index="extconf.audioreminder_active.label">Activate Audio Warning?</label>
+	<label index="extconf.reminder.popup_roles.label">Roles to get appointment reminder popup</label>
+	<label index="extconf.reminder.popup.advancetime.label">Time before appointment to show reminder</label>
+	<label index="extconf.reminder.audio.active.label">Activate Audio Warning?</label>
+	<label index="extconf.reminder.email_roles.label">Roles to get appointment reminder email</label>
+	<label index="extconf.reminder.email.advancetime.label">Time before appointment to send reminder</label>
 	<label index="extconf.autosendeventmail.label">Roles to automatically send email of new / changed / deleted appointments to internal participants of appointment (removes mailing option)?</label>
 	<label index="profile.module">Calendar</label>
 	<label index="profile.module.main.tab">Main</label>
