@@ -236,6 +236,30 @@ class TodoyuCalendarPreferences {
 		return intval(self::getPref('portal-event-expanded', $idEvent)) === 1;
 	}
 
+
+
+	/**
+	 * Get preference: "email reminder active?" if set, otherwise assume yes if right given
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	Boolean
+	 */
+	public static function getReminderEmailIsActive($idPerson = 0) {
+		$idPerson	= personid($idPerson);
+
+		if( allowed('calendar', 'reminder:email') ) {
+			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'is_reminderemailactive', 0, null, 0, personid()) ) {
+					// Return pref. from profile
+				return self::getPref('is_reminderemailactive', 0, 0, false, $idPerson) ? true : false;
+			} else {
+					// Return pref. from extconf
+				return true;
+			}
+		}
+			// No
+		return false;
+	}
+
  }
 
 ?>

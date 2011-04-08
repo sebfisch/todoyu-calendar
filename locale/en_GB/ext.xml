@@ -40,6 +40,8 @@
 	<label index="reminder.remindagainin">Remind me again in...</label>
 	<label index="reminder.button.remindlater">Remind Me Later</label>
 	<label index="extconf.allowoverbooking.label">Allow multiple simultaneous appointments for 1 person?</label>
+	<label index="extconf.reminder.reminderemail_active.label">Activate appointment reminders per email</label>
+	<label index="extconf.reminder.reminderpopup_active.label">Activate appointment reminders per popup</label>
 	<label index="extconf.reminder.popup_roles.label">Roles to get appointment reminder popup</label>
 	<label index="extconf.reminder.popup.advancetime.label">Time before appointment to show reminder</label>
 	<label index="extconf.reminder.audio.active.label">Play audio with reminder popup?</label>

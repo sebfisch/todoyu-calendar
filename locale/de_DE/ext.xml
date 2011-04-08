@@ -40,6 +40,8 @@
 	<label index="reminder.remindagainin">Erneut erinnern in...</label>
 	<label index="reminder.button.remindlater">Später erneut erinnern</label>
 	<label index="extconf.allowoverbooking.label">Überbuchungen erlauben?</label>
+	<label index="extconf.reminder.reminderemail_active.label">Terminerrinnerungen per Email aktivieren</label>
+	<label index="extconf.reminder.reminderpopup_active.label">Terminerrinnerungen per Popup aktivieren</label>
 	<label index="extconf.reminder.popup_roles.label">Rollen die Termin-Erinnerungspopup erhalten</label>
 	<label index="extconf.reminder.popup.advancetime.label">Default Zeit vor Termin um Erinnerungs-Popup anzuzeigen</label>
 	<label index="extconf.reminder.audio.active.label">Audio-Warnung bei Popup?</label>

@@ -31,6 +31,46 @@ class TodoyuCalendarReminderPopupManager {
 	 */
 	const TABLE = 'ext_calendar_mm_event_person';
 
+
+	/**
+	 * Check whether popup reminders are activated in profile of current person, fallback: extconf
+	 *
+	 * @return	Boolean
+	 */
+	public static function isActivatedForCurrentPerson() {
+		if( allowed('calendar', 'reminder:popup') ) {
+			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'is_reminderpopupactive', 0, null, 0, personid()) ) {
+					// Return pref. from profile
+				return TodoyuCalendarPreferences::getPref('is_reminderpopupactive', 0, 0, false, personid()) ? true : false;
+			} else {
+					// Return pref. from extconf
+				return TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'is_reminderpopup_active') ? true : false;
+			}
+		}
+			// No
+		return false;
+	}
+
+
+
+	/**
+	 * Get current person's event reminder popups advance time from current person prefs, fallback: extconf
+	 *
+	 * @return	Integer
+	 */
+	public static function getCurrentPersonDefaultAdvanceTime() {
+		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'reminderpopup_advancetime', 0, null, 0, personid()) ) {
+			TodoyuDebug::printInFirebug('xxx');
+				// Return pref. from profile
+			return intval(TodoyuCalendarPreferences::getPref('reminderpopup_advancetime', 0, 0, false, personid()));
+		}
+
+			// Fallback: take preset from extconf
+		return intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_advancetime'));
+	}
+
+
+
 	/**
 	 * Get current person's reminder to given event
 	 *
