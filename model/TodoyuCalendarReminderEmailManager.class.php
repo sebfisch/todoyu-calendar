@@ -61,6 +61,26 @@ class TodoyuCalendarReminderEmailManager {
 			// Fallback: take preset from extconf
 		return intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderemail_advancetime'));
 	}
+
+
+
+	/**
+	 * Check whether given/current person can schedule a reminder for the event of the given ID
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	Boolean
+	 */
+	public static function isEventSchedulable($idEvent, $idPerson = 0) {
+		if( ! allowed('calendar', 'reminders:email') ) {
+			return false;
+		}
+
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		return TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson);
+	}
+
 }
 
 ?>

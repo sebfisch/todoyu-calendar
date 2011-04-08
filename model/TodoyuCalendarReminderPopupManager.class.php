@@ -32,6 +32,21 @@ class TodoyuCalendarReminderPopupManager {
 	const TABLE = 'ext_calendar_mm_event_person';
 
 
+
+	/**
+	 * Get current person's reminder to given event
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	TodoyuCalendarReminderPopup
+	 */
+	public static function getReminder($idEvent) {
+		$idEvent	= intval($idEvent);
+
+		return new TodoyuCalendarReminderPopup($idEvent);
+	}
+
+
+
 	/**
 	 * Check whether popup reminders are activated in profile of current person, fallback: extconf
 	 *
@@ -54,13 +69,31 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
+	 * Check whether given/current person can schedule a reminder for the event of the given ID
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	Boolean
+	 */
+	public static function isEventSchedulable($idEvent, $idPerson = 0) {
+		if( ! allowed('calendar', 'reminders:popup') ) {
+			return false;
+		}
+
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		return TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson);
+	}
+
+
+
+	/**
 	 * Get current person's event reminder popups advance time from current person prefs, fallback: extconf
 	 *
 	 * @return	Integer
 	 */
 	public static function getCurrentPersonDefaultAdvanceTime() {
 		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'reminderpopup_advancetime', 0, null, 0, personid()) ) {
-			TodoyuDebug::printInFirebug('xxx');
 				// Return pref. from profile
 			return intval(TodoyuCalendarPreferences::getPref('reminderpopup_advancetime', 0, 0, false, personid()));
 		}
@@ -72,29 +105,17 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
-	 * Get current person's reminder to given event
-	 *
-	 * @param	Integer		$idEvent
-	 * @return	TodoyuCalendarReminderPopup
-	 */
-	public static function getReminder($idEvent) {
-		$idEvent	= intval($idEvent);
-
-		return new TodoyuCalendarReminderPopup($idEvent);
-	}
-
-
-
-	/**
 	 * Get initialization javaScript of reminder to be added into page
 	 */
 	public static function getReminderJsPageInit() {
-		$upcomingEvents	= self::getEvents();
+		$init	= false;
 
-		if( sizeof($upcomingEvents) > 0 && ! TodoyuRequest::isAjaxRequest() ) {
-			$init	= 'Todoyu.Ext.calendar.Reminder.init.bind(Todoyu.Ext.calendar.Reminder, ' . json_encode($upcomingEvents) . ')';
-		} else {
-			$init	= false;
+		if( allowed('calendar', 'reminders:popup') ) {
+			$upcomingEvents	= self::getEvents();
+
+			if( sizeof($upcomingEvents) > 0 && ! TodoyuRequest::isAjaxRequest() ) {
+				$init	= 'Todoyu.Ext.calendar.Reminder.init.bind(Todoyu.Ext.calendar.Reminder, ' . json_encode($upcomingEvents) . ')';
+			}
 		}
 
 		return $init;
@@ -150,24 +171,13 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Integer
 	 */
 	public static function getPopupTime($idEvent) {
-		$reminder	= self::getReminder($idEvent);
-
-		if( $reminder->isDismissed() ) {
-			$showTime	= false;
-		} elseif( $reminder->isReschudeled() ) {
-				// Get time until scheduled next popup
-			$showTime	= $reminder->getDateRemindAgain();
-		} else {
-				//	Calculate time until next popup from starting time of event
-			$timeWarnBefore	= intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_advancetime'));
-			$startTime		= TodoyuCalendarEventManager::getEvent($idEvent)->getStartDate();
-			$showTime		= $startTime - $timeWarnBefore;
-		}
+		$showTime	= self::getReminder($idEvent)->getShowTime();
 
 			// Missed reminders of events in the past? show immediately
-		if( $showTime !== false && $showTime <= NOW ) {
-			$showTime	= NOW + 30;
-		}
+/** @todo	decide whether to add this as an option to extconf? */
+//		if( $showTime !== false && $showTime <= NOW ) {
+//			$showTime	= NOW + 30;
+//		}
 
 		return $showTime;
 	}

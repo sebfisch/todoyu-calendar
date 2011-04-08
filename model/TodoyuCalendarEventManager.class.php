@@ -964,13 +964,13 @@ class TodoyuCalendarEventManager {
 			$allowed['add'] = $own['add'];
 		}
 
-			// Option: popup reminder
-		if( 1 ) {
+			// Option: email reminder
+		if( TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent) ) {
 			$allowed['reminderemail']	= $own['reminderemail'];
 		}
 
-			// Option: email reminder
-		if( 1 ) {
+			// Option: popup reminder
+		if( TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent) ) {
 			$allowed['reminderpopup']	= $own['reminderpopup'];
 		}
 

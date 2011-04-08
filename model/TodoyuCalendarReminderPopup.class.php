@@ -42,7 +42,29 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 
 
 	/**
-	 * Get ID of reminder to given event of given/current person
+	 * Get ID of event of reminder
+	 *
+	 * @return	Integer
+	 */
+	public function getEventID() {
+		return intval($this->data['id_event']);
+	}
+
+
+
+	/**
+	 * Get event of reminder
+	 *
+	 * @return TodoyuCalendarEvent
+	 */
+	public function getEvent() {
+		return TodoyuCalendarEventManager::getEvent($this->getEventID());
+	}
+
+
+
+	/**
+	 * Get ID of reminder (is ID of event_person MM record) to given event of given/current person
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
@@ -67,6 +89,42 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 
 
 	/**
+	 * Get starting time of event of reminder
+	 *
+	 * @return	Integer
+	 */
+	public function getStartDate() {
+		return TodoyuCalendarEventManager::getEvent($this->getID())->getStartDate();
+	}
+
+
+
+	/**
+	 * Get timestamp when to the reminder popup
+	 *
+	 * @return	Integer|Boolean
+	 */
+	public function getShowTime() {
+		if( $this->isDismissed() ) {
+			return	false;
+		}
+
+		if( $this->isReschudeled() ) {
+				// Get time until scheduled next popup time
+			$showTime	= $this->getDateRemindAgain();
+		} else {
+				//	Calculate time until next popup from starting time of event
+			$timeWarnBefore	= intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_advancetime'));
+			$startTime		= $this->getStartDate();
+			$showTime		= $startTime - $timeWarnBefore;
+		}
+
+		return $showTime;
+	}
+
+
+
+	/**
 	 * Get scheduled next reminding time
 	 *
 	 * @return	String
@@ -83,7 +141,7 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 	 * @return	Boolean
 	 */
 	public function isReschudeled() {
-		return ( $this->getDateRemindAgain() > 0 );
+		return $this->getDateRemindAgain() > 0;
 	}
 
 
@@ -105,10 +163,7 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 	 * @return	Boolean
 	 */
 	public function isDayevent() {
-		$idEvent= $this->data['id_event'];
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
-
-		return $event->isDayevent();
+		return $this->getEvent()->isDayevent();
 	}
 
 
@@ -119,10 +174,7 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 	 * @return	Boolean
 	 */
 	public function isPrivate() {
-		$idEvent= $this->data['id_event'];
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
-
-		return $event->isPrivate();
+		return $this->getEvent()->isPrivate();
 	}
 
 }
