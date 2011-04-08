@@ -79,6 +79,19 @@ class TodoyuCalendarReminderEmailManager {
 
 
 	/**
+	 * @static
+	 * @param	Integer		$idEvent
+	 * @return	String
+	 */
+	public static function getSelectedAdvanceTimeContextMenuOptionKey($idEvent) {
+		$idEvent	= intval($idEvent);
+
+		return '5m';
+	}
+
+
+
+	/**
 	 * Check whether given/current person can schedule a reminder for the event of the given ID
 	 *
 	 * @param	Integer		$idEvent

@@ -55,11 +55,7 @@ a.eventContextMenu.eventReminderPopup {
 	background-position:5px -180px;
 }
 
-#contextmenu-reminderemail-submenu .reminderTimeNone,
-#contextmenu-reminderpopup-submenu .reminderTimeNone {
-	background:url(../../../../core/asset/img/icons.png) no-repeat 12px -1493px #fff;
-}
-
+.context-submenu .reminderTimeNone,
 .context-submenu .reminderTime0,
 .context-submenu .reminderTime5m,
 .context-submenu .reminderTime15m,
@@ -70,5 +66,11 @@ a.eventContextMenu.eventReminderPopup {
 .context-submenu .reminderTime1d,
 .context-submenu .reminderTime2d,
 .context-submenu .reminderTime1w {
+	background-color:#fff;
 	background-image:none !important;
+}
+
+#contextmenu-reminderemail-submenu .selected,
+#contextmenu-reminderpopup-submenu .selected {
+	background:url(../../../../core/asset/img/icons.png) no-repeat 12px -870px #c9dbd4;
 }

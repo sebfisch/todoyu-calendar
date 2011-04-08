@@ -312,11 +312,10 @@ class TodoyuCalendarEventRenderer {
 			$eventData['timeReminderEmail']	= TodoyuCalendarReminderEmailManager::getMailTime($idEvent);
 		}
 
-		$tmpl		= 'ext/calendar/view/event-view.tmpl';
-
-		$data		= array(
-			'event'		=> $eventData,
-			'tabs'		=> self::renderEventViewTabs($idEvent)
+		$tmpl	= 'ext/calendar/view/event-view.tmpl';
+		$data	= array(
+			'event'	=> $eventData,
+			'tabs'	=> self::renderEventViewTabs($idEvent)
 		);
 
 		return render($tmpl, $data);
@@ -335,8 +334,8 @@ class TodoyuCalendarEventRenderer {
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 			// Construct form object for inline form
-		$xmlPath	= 'ext/calendar/config/form/event-reminder.xml';
-		$form		= TodoyuFormManager::getForm($xmlPath, $idEvent);
+		$xmlPath= 'ext/calendar/config/form/event-reminder.xml';
+		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
 		$form->setFormData(array('id_event' => $idEvent));
 		$buttonsForm= $form->render();
 
@@ -364,8 +363,8 @@ class TodoyuCalendarEventRenderer {
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 			// Construct form object for inline form
-		$xmlPath	= 'ext/calendar/config/form/event-mailing.xml';
-		$form		= TodoyuFormManager::getForm($xmlPath, 0, array(), array('#id_event#'=> $idEvent));
+		$xmlPath= 'ext/calendar/config/form/event-mailing.xml';
+		$form	= TodoyuFormManager::getForm($xmlPath, 0, array(), array('#id_event#'=> $idEvent));
 
 			// Have all email persons but user himself preselected
 		$emailPersonIDs	= array_keys(TodoyuCalendarEventManager::getEmailReceivers($idEvent, false));

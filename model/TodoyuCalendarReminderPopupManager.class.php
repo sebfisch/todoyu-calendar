@@ -105,6 +105,19 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
+	 * @static
+	 * @param	Integer		$idEvent
+	 * @return	String
+	 */
+	public static function getSelectedAdvanceTimeContextMenuOptionKey($idEvent) {
+		$idEvent	= intval($idEvent);
+
+		return '5m';
+	}
+
+
+
+	/**
 	 * Get initialization javaScript of reminder to be added into page
 	 */
 	public static function getReminderJsPageInit() {
