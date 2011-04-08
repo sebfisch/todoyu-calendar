@@ -153,7 +153,6 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 	 * @return	String
 	 */
 	public function isPassed() {
-		TodoyuDebug::printInFirebug(date('d.m.Y',$this->getEventStartDate()));
 		return $this->getEventStartDate() < NOW;
 	}
 

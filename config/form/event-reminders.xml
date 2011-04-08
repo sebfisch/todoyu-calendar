@@ -6,11 +6,11 @@
 			
 			<elements>
 				<field type="checkbox" name="is_reminderemail_active">
-					<label>calendar.ext.extconf.reminder.reminderemail_active.label</label>
+					<label>calendar.event.attr.reminderemail_active</label>
 				</field>
 
 				<field type="select" name="reminderemail_advancetime">
-					<label>calendar.ext.extconf.reminder.email.advancetime.label</label>
+					<label>calendar.event.attr.email_advancetime</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
 						<lazyInit/>
@@ -19,11 +19,11 @@
 				</field>
 
 				<field type="checkbox" name="is_reminderpopup_active">
-					<label>calendar.ext.extconf.reminder.reminderpopup_active.label</label>
+					<label>calendar.event.attr.reminderpopup_active</label>
 				</field>
 
 				<field type="select" name="reminderpopup_advancetime">
-					<label>calendar.ext.extconf.reminder.popup.advancetime.label</label>
+					<label>calendar.event.attr.popup_advancetime</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
 						<lazyInit/>

@@ -100,26 +100,32 @@ class TodoyuCalendarEventEditRenderer {
 
 		if( $idEvent === 0 ) {
 			TodoyuCalendarEventManager::createNewEventWithDefaultsInCache($time);
-		} else {
-				// Person can schedule reminders? add the resp. fieldset
-			if(		TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent)
-				||	TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent)
-			) {
-				$xmlPathReminders	= 'ext/calendar/config/form/event-reminders.xml';
-				$remindersForm		= TodoyuFormManager::getForm($xmlPathReminders);
-				$reminders			= $remindersForm->getFieldset('reminders');
-
-				$form->addFieldset('reminders', $reminders, 'before:buttons');
-
-//			$form->getFieldset('reminders')->removeField('is_reminderpopupactive');
-//			$form->getFieldset('reminders')->removeField('reminderpopup_advancetime');
-			}
-
 		}
 
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
-
 		$data	= $event->getTemplateData(true);
+
+			// Person can schedule reminders? add the resp. fieldset
+			// @todo	move into hooked callback?
+		$reminderEmailSchedulable	= TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent);
+		$reminderPopupSchedulable	= TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent);
+		if( $idEvent != 0 && ($reminderEmailSchedulable || $reminderPopupSchedulable) ) {
+			$xmlPathReminders	= 'ext/calendar/config/form/event-reminders.xml';
+			$remindersForm		= TodoyuFormManager::getForm($xmlPathReminders);
+			$reminders			= $remindersForm->getFieldset('reminders');
+
+			$form->addFieldset('reminders', $reminders, 'before:buttons');
+
+			if( ! $reminderEmailSchedulable ) {
+				$form->getFieldset('reminders')->removeField('is_reminderemail_active');
+				$form->getFieldset('reminders')->removeField('reminderemail_advancetime');
+			}
+			if( ! $reminderPopupSchedulable ) {
+				$form->getFieldset('reminders')->removeField('is_reminderpopup_active');
+				$form->getFieldset('reminders')->removeField('reminderpopup_advancetime');
+			}
+		}
+
 			// Call hooked load functions
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
 
