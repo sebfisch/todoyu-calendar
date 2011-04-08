@@ -43,6 +43,10 @@
 	<label index="attr.assigned_to.noLabel">[Kein Benutzer ausgewählt]</label>
 	<label index="attr.id_project">Projekt</label>
 	<label index="attr.id_task">Aufgabe</label>
+	<label index="reminders">Erinnerungen</label>
+	<label index="reminderEmail">Email</label>
+	<label index="reminderPopup">Popup</label>
+	<label index="myreminders">Meine Erinnerungen</label>
 	<label index="tree.header.title">Termin-Titel</label>
 	<label index="eventslist.birthdaysWithinTheNextweeks">Geburtstage in den nächsten Wochen</label>
 	<label index="eventslist.holidaysWithinTheNextweeks">Feiertage in den nächsten Wochen</label>

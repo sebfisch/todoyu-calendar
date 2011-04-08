@@ -93,8 +93,8 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 	 *
 	 * @return	Integer
 	 */
-	public function getStartDate() {
-		return TodoyuCalendarEventManager::getEvent($this->getID())->getStartDate();
+	public function getEventStartDate() {
+		return $this->getEvent()->getStartDate();
 	}
 
 
@@ -105,7 +105,7 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 	 * @return	Integer|Boolean
 	 */
 	public function getShowTime() {
-		if( $this->isDismissed() ) {
+		if( $this->isPassed() || $this->isDismissed() ) {
 			return	false;
 		}
 
@@ -115,8 +115,9 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 		} else {
 				//	Calculate time until next popup from starting time of event
 			$timeWarnBefore	= intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_advancetime'));
-			$startTime		= $this->getStartDate();
-			$showTime		= $startTime - $timeWarnBefore;
+
+			$eventStartTime		= $this->getEventStartDate();
+			$showTime		= $eventStartTime - $timeWarnBefore;
 		}
 
 		return $showTime;
@@ -142,6 +143,18 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 	 */
 	public function isReschudeled() {
 		return $this->getDateRemindAgain() > 0;
+	}
+
+
+
+	/**
+	 * Is event in past already?
+	 *
+	 * @return	String
+	 */
+	public function isPassed() {
+		TodoyuDebug::printInFirebug(date('d.m.Y',$this->getEventStartDate()));
+		return $this->getEventStartDate() < NOW;
 	}
 
 

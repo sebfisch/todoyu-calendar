@@ -153,4 +153,36 @@ function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {
 	return Label('core.date.weekday.' . strtolower(date('D', $timestamp)) );
 }
 
+
+
+/**
+ * Check right of current person to schedule popup reminder of given event
+ *
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param	Dwoo 		$dwoo
+ * @param	Integer		$idEvent
+ * @return	Boolean
+ */
+function Dwoo_Plugin_isAllowedEventReminderPopup(Dwoo $dwoo, $idEvent) {
+	return TodoyuCalendarEventReminderRights::isPopupSchedulingAllowed($idEvent);
+}
+
+
+
+/**
+ * Check right of current person to schedule email reminder of given event
+ *
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param	Dwoo 		$dwoo
+ * @param	Integer		$idEvent
+ * @return	Boolean
+ */
+function Dwoo_Plugin_isAllowedEventReminderEmail(Dwoo $dwoo, $idEvent) {
+	return TodoyuCalendarEventReminderRights::isEmailSchedulingAllowed($idEvent);
+}
+
 ?>

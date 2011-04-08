@@ -24,3 +24,7 @@ span.placeIcon {
 span.personsIcon {
 	background:url(../../../contact/asset/img/icons.png) no-repeat 4px 2px;
 }
+
+span.reminderIcon {
+	background:url(../img/icons.png) no-repeat 4px -958px;
+}

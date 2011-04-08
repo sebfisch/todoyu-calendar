@@ -1,24 +1,27 @@
 <table class="eventView">
-	<tr>{* -------------------- Title -------------------- *}
+{* ------------------------ Title *}
+	<tr>
 		<td class="eventAttrTitle">
 			<span class="icon eventTitleIcon"> </span>
-			{Label core.global.title}
+			&nbsp;{Label core.global.title}
 		</td>
 		<td class="eventValue">{$event.title}</td>
 	</tr>
+{* ------------------------ Place *}
 {if ! empty($event.place)}
-	<tr>{* -------------------- Place -------------------- *}
+	<tr>
 		<td class="eventAttrTitle">
 			<span class="icon placeIcon"> </span>
-			{Label calendar.event.attr.place}
+			&nbsp;{Label calendar.event.attr.place}
 		</td>
 		<td class="eventValue">{$event.place}</td>
 	</tr>
 {/if}
-	<tr>{* -------------------- Timespan -------------------- *}
+{* ------------------------ Timespan *}
+	<tr>
 		<td class="eventAttrTitle">
 			<span class="icon dateIcon"> </span>
-			{Label calendar.event.attr.timespan}
+			&nbsp;{Label calendar.event.attr.timespan}
 		</td>
 		<td class="eventValue">
 			{if $event.duration.daysIntersected > 1}
@@ -35,28 +38,35 @@
 			{/if}
 		</td>
 	</tr>
+{* ------------------------ Description *}
 {if ! empty($event.description)}
-	<tr>{* -------------------- Description -------------------- *}
+	<tr>
 		<td class="eventAttrTitle">
-			<span class="icon"> </span>&nbsp;{Label core.global.description}
+			<span class="icon"> </span>
+			&nbsp;{Label core.global.description}
 		</td>
 		<td class="eventValue">
 			{substituteLinkableElements(cleanHtml($event.description))}
 		</td>
 	</tr>
 {/if}
-	<tr>{* -------------------- Creator person -------------------- *}
+{* ------------------------ Creator person *}
+	<tr>
 		<td class="eventAttrTitle">
-			<span class="icon"> </span>&nbsp;{Label calendar.event.attr.creator}
+			<span class="icon"> </span>
+			&nbsp;{Label calendar.event.attr.creator}
 		</td>
 		<td class="eventValue">
 			{personLabel idPrefix="event-personcreate" idRecord=$event.person_create.id idPerson=$event.person_create.id}
 			<br /><br />
 		</td>
 	</tr>
-	<tr>{* -------------------- Attendees -------------------- *}
+
+{* ------------------------ Attendees *}
+	<tr>
 		<td class="eventAttrTitle ">
-			<span class="icon personsIcon"> </span>&nbsp;{Label calendar.event.attr.attendees}
+			<span class="icon personsIcon"> </span>
+			&nbsp;{Label calendar.event.attr.attendees}
 		</td>
 		<td class="eventValue">
 		{foreach $event.persons person personData}
@@ -65,6 +75,26 @@
 			{personLabel idPrefix="event-personattend" idRecord=$personData.id idPerson=$personData.id class=$class}
 			<br/>
 		{/foreach}
+			<br/>
 		</td>
 	</tr>
+{* ------------------------ Scheduled Reminders *}
+{if isAllowedEventReminderPopup($event.id) || isAllowedEventReminderEmail($event.id)}
+	<tr>
+		<td class="eventReminders ">
+			<span class="icon reminderIcon"> </span>
+			&nbsp;{Label calendar.event.myreminders}
+		</td>
+	{if isAllowedEventReminderPopup($event.id)}
+		{Label calendar.event.reminderEmail}:
+		{dateFormat $event.timeReminderEmail datetime}
+		<br/>
+	{/if}
+	{if isAllowedEventReminderEmail($event.id)}
+		{Label calendar.event.reminderPopup}:
+		{dateFormat $event.timeReminderPopup datetime}
+		<br/>
+	{/if}
+	</tr>
+{/if}
 </table>

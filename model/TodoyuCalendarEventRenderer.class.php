@@ -301,12 +301,21 @@ class TodoyuCalendarEventRenderer {
 	 */
 	public static function renderEventView($idEvent) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+
+		$eventData	= TodoyuCalendarEventManager::getEvent($idEvent)->getTemplateData(true, true);
+
+			// Add scheduled reminder timestamps
+		if( TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent) ) {
+			$eventData['timeReminderPopup']	= TodoyuCalendarReminderPopupManager::getPopupTime($idEvent);
+		}
+		if( TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent) ) {
+			$eventData['timeReminderEmail']	= TodoyuCalendarReminderEmailManager::getMailTime($idEvent);
+		}
 
 		$tmpl		= 'ext/calendar/view/event-view.tmpl';
 
 		$data		= array(
-			'event'		=> $event->getTemplateData(true, true),
+			'event'		=> $eventData,
 			'tabs'		=> self::renderEventViewTabs($idEvent)
 		);
 

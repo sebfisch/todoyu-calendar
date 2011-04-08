@@ -65,6 +65,20 @@ class TodoyuCalendarReminderEmailManager {
 
 
 	/**
+	 * Get current person's event reminder emails advance time for given event
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	Integer
+	 */
+	public static function getCurrentPersonReminderAdvanceTime($idEvent) {
+		$idEvent	= intval($idEvent);
+// @todo	change this to be event specific!
+		return self::getCurrentPersonDefaultAdvanceTime();
+	}
+
+
+
+	/**
 	 * Check whether given/current person can schedule a reminder for the event of the given ID
 	 *
 	 * @param	Integer		$idEvent
@@ -79,6 +93,29 @@ class TodoyuCalendarReminderEmailManager {
 		$idPerson	= personid($idPerson);
 
 		return TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson);
+	}
+
+
+	/**
+	 * Get (next) reminder mailing time of given event
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	Boolean
+	 */
+	public static function getMailTime($idEvent) {
+		if( ! allowed('calendar', 'reminders:email') ) {
+			return false;
+		}
+
+		$idEvent	= intval($idEvent);
+		$eventStart	= TodoyuCalendarEventManager::getEvent($idEvent)->getStartDate();
+
+		if( $eventStart < NOW ) {
+				// Mails are only send BEFORE events
+			return false;
+		}
+
+		return $eventStart - self::getCurrentPersonReminderAdvanceTime($idEvent);
 	}
 
 }
