@@ -45,13 +45,40 @@ Todoyu.Ext.calendar.Profile =  {
 	 * @param	{String}	tabKey
 	 */
 	onTabClick: function(event, tabKey) {
-//		this.loadTab(tabKey);
+		this.loadTab(tabKey);
 	},
 
 
 
 	/**
-	 * Save settings of profile main tab
+	 * Load given tab of calendar section in profile
+	 *
+	 * @method	loadTab
+	 * @param	{String}	tab
+	 */
+	loadTab: function(tab) {
+		var url		= Todoyu.getUrl('calendar', 'profile');
+		var options	= {
+			parameters: {
+				action:	'tab',
+				'tab':		tab
+			}
+//			onComplete:	this.onTabLoaded.bind(this, tab)
+		};
+
+		Todoyu.Ui.updateContentBody(url, options);
+	},
+
+
+
+//	onTabLoaded: function(tab, response) {
+//
+//	},
+
+
+
+	/**
+	 * Save settings of profile calendar main tab
 	 *
 	 * @method	saveMain
 	 * @param	{Element}		form
@@ -75,6 +102,35 @@ Todoyu.Ext.calendar.Profile =  {
 	 */
 	onMainSaved: function(response) {
 		Todoyu.notifySuccess('[LLL:calendar.ext.profile.main.saved]');
+	},
+
+
+
+	/**
+	 * Save settings of profile calendar reminders tab
+	 *
+	 * @method	saveReminders
+	 * @param	{Element}		form
+	 */
+	saveReminders: function(form) {
+		form.request({
+			parameters: {
+				action: 'saveReminders'
+			},
+			onComplete: this.onRemindersSaved.bind(this)
+		});
+	},
+
+
+
+	/**
+	 * Notify about profile saving success, have browser reload
+	 *
+	 * @method	onRemindersSaved
+	 * @param	{Ajax.Response}		response
+	 */
+	onRemindersSaved: function(response) {
+		Todoyu.notifySuccess('[LLL:calendar.ext.profile.reminders.saved]');
 	}
 
 };

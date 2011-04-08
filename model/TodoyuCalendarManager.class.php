@@ -244,8 +244,8 @@ class TodoyuCalendarManager {
 	 * Add reminder JS init to page
 	 */
 	public static function addReminderJsInitToPage() {
-		if( TodoyuCalendarReminderManager::isPersonActivatedForReminders() ) {
-			$jsInitCode	= TodoyuCalendarReminderManager::getReminderJsPageInit();
+		if( allowed('calendar', 'reminders:popup') ) {
+			$jsInitCode	= TodoyuCalendarReminderPopupManager::getReminderJsPageInit();
 
 			if( $jsInitCode !== false ) {
 				TodoyuPage::addJsOnloadedFunction($jsInitCode, 100);

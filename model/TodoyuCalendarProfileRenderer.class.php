@@ -64,6 +64,10 @@ class TodoyuCalendarProfileRenderer {
 			default:
 				return self::renderContentMain();
 				break;
+
+			case 'reminders':
+				return self::renderContentReminders();
+				break;
 		}
 	}
 
@@ -88,6 +92,49 @@ class TodoyuCalendarProfileRenderer {
 		$tmpl	= 'ext/calendar/view/profile-main.tmpl';
 		$data	= array(
 			'name'	=> Todoyu::person()->getFullName(),
+			'form'	=> $form->render()
+		);
+
+		return render($tmpl, $data);
+	}
+
+
+
+	/**
+	 * Render content for profile's reminders tab of calendar section
+	 *
+	 * @return	String
+	 */
+	public static function renderContentReminders() {
+		$xmlPath	= 'ext/calendar/config/form/profile-reminders.xml';
+		$form		= TodoyuFormManager::getForm($xmlPath);
+		$formData	= array();
+
+			// Preset form data from prefs or remove disallowed prefs from form
+
+			// Reminders send via email
+		if( allowed('calendar', 'reminders:email') ) {
+			$reminderEmailActive				= TodoyuCalendarPreferences::getPref('is_reminderemailactive', 0, 0, false, personid());
+			$formData['is_reminderemailactive']	= $reminderEmailActive ? true : false;
+		} else {
+			$form->getFieldset('reminders')->removeField('is_reminderemailactive');
+			$form->getFieldset('reminders')->removeField('reminderemail_advancetime');
+		}
+			// Reminders shown as popup
+		if( allowed('calendar', 'reminders:popup') ) {
+			$reminderPopupActive				= TodoyuCalendarPreferences::getPref('is_reminderpopupactive', 0, 0, false, personid());
+			$formData['is_reminderpopupactive']	= $reminderPopupActive ? true : false;
+		} else {
+			$form->getFieldset('reminders')->removeField('is_reminderpopupactive');
+			$form->getFieldset('reminders')->removeField('reminderpopup_advancetime');
+		}
+
+			// Set form data
+		$form->setFormData($formData);
+
+			// Render tab content
+		$tmpl	= 'ext/calendar/view/profile-reminders.tmpl';
+		$data	= array(
 			'form'	=> $form->render()
 		);
 

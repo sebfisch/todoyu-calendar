@@ -16,14 +16,13 @@
 
 		<fieldset name="eventsreminder">
 			<elements>
-				<field type="select" name="reminderpopup_roles">
-					<label>calendar.ext.extconf.reminder.popup_roles.label</label>
+				<field type="select" name="reminderemail_advancetime">
+					<label>calendar.ext.extconf.reminder.email.advancetime.label</label>
 					<source type="function">
-						<function>TodoyuRoleViewHelper::getRoleOptions</function>
+						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
 						<lazyInit/>
 					</source>
-					<size>6</size>
-					<multiple>1</multiple>
+					<noPleaseSelect/>
 				</field>
 
 				<field type="select" name="reminderpopup_advancetime">
@@ -38,28 +37,6 @@
 				<field type="checkbox" name="audioreminder_active">
 					<label>calendar.ext.extconf.reminder.audio.active.label</label>
 				</field>
-
-
-
-				<field type="select" name="reminderemail_roles">
-					<label>calendar.ext.extconf.reminder.email_roles.label</label>
-					<source type="function">
-						<function>TodoyuRoleViewHelper::getRoleOptions</function>
-						<lazyInit/>
-					</source>
-					<size>6</size>
-					<multiple>1</multiple>
-				</field>
-
-				<field type="select" name="reminderemail_advancetime">
-					<label>calendar.ext.extconf.reminder.email.advancetime.label</label>
-					<source type="function">
-						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
-						<lazyInit/>
-					</source>
-					<noPleaseSelect/>
-				</field>
-
 			</elements>
 		</fieldset>
 

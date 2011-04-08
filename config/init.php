@@ -151,7 +151,7 @@ Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_RESCHEDULEINTERVALS'] = array
 /* -------------------------------------
 	Add calendar module to profile
    ------------------------------------- */
-if( TodoyuExtensions::isInstalled('profile') && allowed('calendar', 'mailing.sendAsEmail') ) {
+if( TodoyuExtensions::isInstalled('profile') ) {
 	TodoyuProfileManager::addModule('calendar', array(
 		'position'	=> 5,
 		'tabs'		=> 'TodoyuCalendarProfileRenderer::renderTabs',
@@ -159,14 +159,25 @@ if( TodoyuExtensions::isInstalled('profile') && allowed('calendar', 'mailing.sen
 		'label'		=> 'calendar.ext.profile.module',
 		'class'		=> 'calendar'
 	));
+
+		// Tabs for calendar section in profile
+	Todoyu::$CONFIG['EXT']['profile']['calendarTabs'] = array();
+
+	if( allowed('calendar', 'mailing:sendAsEmail') ) {
+		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
+			'id'			=> 'main',
+			'label'			=> 'LLL:calendar.ext.profile.module.main.tab',
+//			'require'		=> 'calendar.settings:editbookmarks'
+		);
+	}
+
+	if( allowed('calendar', 'reminders:popup') ||  allowed('calendar', 'reminders:email') ) {
+		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
+			'id'			=> 'reminders',
+			'label'			=> 'LLL:calendar.ext.profile.module.reminders.tab',
+//			'require'		=> 'calendar.settings:editbookmarks'
+		);
+	}
 }
-	// Tabs for calendar section in profile
-Todoyu::$CONFIG['EXT']['profile']['calendarTabs'] = array(
-	array(
-		'id'			=> 'main',
-		'label'			=> 'LLL:calendar.ext.profile.module.main.tab',
-//		'require'		=> 'calendar.settings:editbookmarks'
-	)
-);
 
 ?>

@@ -18,4 +18,9 @@
 		<right name="sendAsEmail" />
 	</section>
 
+	<section name="reminders" require="general:use">
+		<right name="popup" />
+		<right name="email" />
+	</section>
+
 </rights>

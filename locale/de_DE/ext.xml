@@ -41,13 +41,20 @@
 	<label index="reminder.button.remindlater">Später erneut erinnern</label>
 	<label index="extconf.allowoverbooking.label">Überbuchungen erlauben?</label>
 	<label index="extconf.reminder.popup_roles.label">Rollen die Termin-Erinnerungspopup erhalten</label>
-	<label index="extconf.reminder.popup.advancetime.label">Zeit vor Termin um Erinnerungs-Popup anzuzeigen</label>
-	<label index="extconf.reminder.audio.active.label">Audio-Warnung aktivieren?</label>
+	<label index="extconf.reminder.popup.advancetime.label">Default Zeit vor Termin um Erinnerungs-Popup anzuzeigen</label>
+	<label index="extconf.reminder.audio.active.label">Audio-Warnung bei Popup?</label>
 	<label index="extconf.reminder.email_roles.label">Rollen die Termin-Erinnerungsemail erhalten</label>
-	<label index="extconf.reminder.email.advancetime.label">Zeit vor Termin um Erinnerungsmail zu versenden</label>
+	<label index="extconf.reminder.email.advancetime.label">Default Zeit vor Termin um Erinnerungsmail zu versenden</label>
 	<label index="profile.module">Kalender</label>
 	<label index="profile.module.main.tab">Allgemein</label>
-	<label index="profile.general.main.header">Allgemeine Einstellungen</label>
+	<label index="profile.module.main.header">Allgemeine Konfiguration des Kalenders</label>
+	<label index="profile.module.reminders.tab">Termin-Erinnerungen</label>
+	<label index="profile.module.reminders.header">Konfiguration zu Termin-Erinnerungen</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Nachfrage ob Email versendet werden soll, nach Änderung von Terminen via Drag&amp;Drop deaktivieren?</label>
+	<label index="profile.reminder.email.advancetime.label">Default Zeit vor Termin um Erinnerungsmail zu versenden</label>
+	<label index="profile.reminder.popup.advancetime.label">Default Zeit vor Termin um Erinnerungspopup anzuzeigen</label>
+	<label index="profile.is_reminderpopupactive">Termin-Erinnerungen per Popup aktivieren</label>
+	<label index="profile.is_reminderemailactive">Termin-Erinnerungen per Email aktivieren</label>
 	<label index="profile.main.saved">Die Einstellungen wurden gespeichert.</label>
+	<label index="profile.reminders.saved">Einstellungen zu Erinnerungen wurden gespeichert.</label>
 </labels>

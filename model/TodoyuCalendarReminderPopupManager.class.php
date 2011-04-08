@@ -19,12 +19,12 @@
 *****************************************************************************/
 
 /**
- * Event Manager
+ * Event Reminder Popups Manager
  *
  * @package			Todoyu
  * @subpackage		Calendar
  */
-class TodoyuCalendarReminderManager {
+class TodoyuCalendarReminderPopupManager {
 
 	/**
 	 * @var String		Default table for database requests
@@ -35,12 +35,12 @@ class TodoyuCalendarReminderManager {
 	 * Get current person's reminder to given event
 	 *
 	 * @param	Integer		$idEvent
-	 * @return	TodoyuCalendarReminder
+	 * @return	TodoyuCalendarReminderPopup
 	 */
 	public static function getReminder($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		return new TodoyuCalendarReminder($idEvent);
+		return new TodoyuCalendarReminderPopup($idEvent);
 	}
 
 
@@ -63,48 +63,37 @@ class TodoyuCalendarReminderManager {
 
 
 	/**
-	 * Check whether currently logged-in person is configured to see reminders
-	 *
-	 * @return	Boolean
-	 */
-	public static function isPersonActivatedForReminders() {
-		$personRoles		= TodoyuContactPersonManager::getRoleIDs(personid());
-		$reminderRoles		= TodoyuArray::intExplode(',', TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_roles'));
-		$personReminderRoles= array_intersect($personRoles, $reminderRoles);
-
-		return sizeof($personReminderRoles) > 0;
-	}
-
-
-
-	/**
 	 * Get reminder popup settings of upcoming events of current person
 	 *
 	 * @return	Array
 	 */
 	public static function getEvents() {
-			// Get upcoming events
-		$dateStart	= NOW - Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKBACK'];
-		$dateEnd	= NOW + Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKAHEAD'];
-		$personIDs	= array(personid());
-		$eventTypes	= Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP'];
+		$events	= array();
 
-		$events	= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
+		if( allowed('calendar', 'reminders:popup') ) {
+				// Get upcoming events
+			$dateStart	= NOW - Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKBACK'];
+			$dateEnd	= NOW + Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKAHEAD'];
+			$personIDs	= array(personid());
+			$eventTypes	= Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP'];
 
-		foreach($events as $idEvent => $eventData) {
-			if( false && self::isReminderDismissed($idEvent) ) {
-					// Remove dismissed reminders from schedule
-				unset($events[$idEvent]);
-			} else {
-					// Setup event reminder data
-				$showTime	= self::getPopupTime($idEvent);
-				if( $showTime !== false ) {
-					$events[$idEvent]	= array(
-								'id'				=> $idEvent,
-								'dismissed'			=> 0,
-								'time_popup'		=>  $showTime,
-								'event.date_start'	=> $eventData['date_start'],
-					);
+			$events	= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
+
+			foreach($events as $idEvent => $eventData) {
+				if( false && self::isReminderDismissed($idEvent) ) {
+						// Remove dismissed reminders from schedule
+					unset($events[$idEvent]);
+				} else {
+						// Setup event reminder data
+					$showTime	= self::getPopupTime($idEvent);
+					if( $showTime !== false ) {
+						$events[$idEvent]	= array(
+							'id'				=> $idEvent,
+							'dismissed'			=> 0,
+							'time_popup'		=>  $showTime,
+							'event.date_start'	=> $eventData['date_start'],
+						);
+					}
 				}
 			}
 		}

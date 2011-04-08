@@ -92,7 +92,7 @@ class TodoyuCalendarEventViewHelper {
 			$label	= TodoyuString::crop($label, 25, '...', false);
 
 				// Add person label, linked to contacts detail view if allowed to be seen
-			if( allowed('contact', 'general.area') ) {
+			if( allowed('contact', 'general:area') ) {
 				$linkParams	= array(
 					'ext'		=> 'contact',
 					'controller'=> 'person',

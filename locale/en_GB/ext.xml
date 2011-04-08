@@ -42,13 +42,20 @@
 	<label index="extconf.allowoverbooking.label">Allow multiple simultaneous appointments for 1 person?</label>
 	<label index="extconf.reminder.popup_roles.label">Roles to get appointment reminder popup</label>
 	<label index="extconf.reminder.popup.advancetime.label">Time before appointment to show reminder</label>
-	<label index="extconf.reminder.audio.active.label">Activate Audio Warning?</label>
+	<label index="extconf.reminder.audio.active.label">Play audio with reminder popup?</label>
 	<label index="extconf.reminder.email_roles.label">Roles to get appointment reminder email</label>
 	<label index="extconf.reminder.email.advancetime.label">Time before appointment to send reminder</label>
 	<label index="extconf.autosendeventmail.label">Roles to automatically send email of new / changed / deleted appointments to internal participants of appointment (removes mailing option)?</label>
 	<label index="profile.module">Calendar</label>
 	<label index="profile.module.main.tab">Main</label>
-	<label index="profile.general.main.header">Main Config</label>
+	<label index="profile.module.reminders.tab">Appointment Reminders</label>
+	<label index="profile.module.reminders.header">Config for appointment reminders</label>
+	<label index="profile.module.main.header">Main Calendar Config</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Disable asking whether to send email after modification of appointments via drag and drop?</label>
+	<label index="profile.reminder.email.advancetime.label">Default time before appointment to send email reminder</label>
+	<label index="profile.reminder.popup.advancetime.label">Default time before appointment to show popup reminder</label>
+	<label index="profile.is_reminderpopupactive">Activate appointment reminder popups</label>
+	<label index="profile.is_reminderemailactive">Activate appointment reminder mailing</label>
 	<label index="profile.main.saved">Settings have been saved.</label>
+	<label index="profile.reminders.saved">Reminders settings have been saved.</label>
 </labels>

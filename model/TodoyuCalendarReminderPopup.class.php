@@ -19,13 +19,13 @@
 *****************************************************************************/
 
 /**
- * Event
+ * Event Reminder
  *
  * @package		Todoyu
  * @subpackage	Calendar
  *
  */
-class TodoyuCalendarReminder extends TodoyuBaseObject {
+class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 
 	/**
 	 * Initialize reminder (based on event's person assignment)

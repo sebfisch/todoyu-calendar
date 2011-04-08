@@ -39,10 +39,21 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 
 
 	/**
-	 * Save calendar preference from profile
+	 * Load tab content
 	 *
 	 * @param	Array		$params
-	 * @return	String		Form HTML or bookmark ID
+	 * @return	String
+	 */
+	public function tabAction(array $params) {
+		return TodoyuCalendarProfileRenderer::renderContent($params);
+	}
+
+
+
+	/**
+	 * Save calendar general preference from main tab of profile
+	 *
+	 * @param	Array		$params
 	 */
 	public function saveMainAction(array $params) {
 		restrict('calendar', 'mailing:sendAsEmail');
@@ -65,6 +76,24 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 		$isRequestDeactivated	= '1';
 
 		TodoyuCalendarPreferences::savePref($prefName, $isRequestDeactivated, 0, true, 0, personid());
+	}
+
+
+
+	/**
+	 * Save calendar preference from reminders tab of profile
+	 *
+	 * @param	Array		$params
+	 */
+	public function saveRemindersAction(array $params) {
+		$prefName		= 'is_reminderpopupactive';
+		$isPopupActive	= ( $params['reminders'][$prefName] == '1' ) ? 1 : 0;
+		TodoyuCalendarPreferences::savePref($prefName, $isPopupActive, 0, true, 0, personid());
+
+		$prefName		= 'is_reminderemailactive';
+		$isPopupActive	= ( $params['reminders'][$prefName] == '1' ) ? 1 : 0;
+		TodoyuCalendarPreferences::savePref($prefName, $isPopupActive, 0, true, 0, personid());
+		
 	}
 
 }

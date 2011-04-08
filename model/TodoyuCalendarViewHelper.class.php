@@ -125,11 +125,11 @@ class TodoyuCalendarViewHelper {
 
 		$intervals	= Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'];
 		foreach($intervals as $minutes) {
-			$minutesUntil	= TodoyuTime::SECONDS_MIN * $minutes;
+			$secondsUntil	= TodoyuTime::SECONDS_MIN * $minutes;
 
 			$options[] = array(
-				'value'	=> $minutesUntil,
-				'label'	=> TodoyuTime::autoformatDuration($minutesUntil)
+				'value'	=> $secondsUntil,
+				'label'	=> TodoyuTime::autoformatDuration($secondsUntil)
 			);
 		}
 

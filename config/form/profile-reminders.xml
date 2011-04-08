@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<attributes>
+		<attribute name="action">?ext=calendar&amp;controller=profile</attribute>
+		<attribute name="name">reminders</attribute>
+		<attribute name="onsubmit">return false</attribute>
+	</attributes>
+	<fieldsets>
+
+		<fieldset name="reminders">
+			<elements>
+				<field type="checkbox" name="is_reminderemailactive">
+					<label>calendar.ext.profile.is_reminderemailactive</label>
+				</field>
+
+				<field type="select" name="reminderemail_advancetime">
+					<label>calendar.ext.profile.reminder.email.advancetime.label</label>
+					<source type="function">
+						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
+						<lazyInit/>
+					</source>
+					<noPleaseSelect/>
+				</field>
+
+
+
+				<field type="checkbox" name="is_reminderpopupactive">
+					<label>calendar.ext.profile.is_reminderpopupactive</label>
+				</field>
+
+				<field type="select" name="reminderpopup_advancetime">
+					<label>calendar.ext.profile.reminder.popup.advancetime.label</label>
+					<source type="function">
+						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
+						<lazyInit/>
+					</source>
+					<noPleaseSelect/>
+				</field>
+
+			</elements>
+		</fieldset>
+
+		<fieldset name="buttons">
+			<legend>Actions</legend>
+			<class>buttons</class>
+			<elements>
+				<field type="saveButton" name="save">
+					<onclick>Todoyu.Ext.calendar.Profile.saveReminders(this.form)</onclick>
+				</field>
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>
