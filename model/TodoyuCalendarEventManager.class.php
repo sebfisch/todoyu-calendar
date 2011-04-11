@@ -300,7 +300,7 @@ class TodoyuCalendarEventManager {
 					,mm.is_acknowledged';
 		if( $getRemindersData ) {
 			$fields	.= ',mm.date_remindemail
-						,date_remindpopup';
+						,mm.date_remindpopup';
 		}
 		$tables		= '	ext_calendar_mm_event_person mm';
 		$where		= '	mm.id_event = ' . $idEvent;

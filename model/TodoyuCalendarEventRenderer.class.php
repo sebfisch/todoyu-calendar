@@ -78,7 +78,7 @@ class TodoyuCalendarEventRenderer {
 	 */
 	public static function prepareEventRenderData($mode = CALENDAR_MODE_MONTH, array $data) {
 		$idEvent			= intval($data['id']);
-		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true );
+		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
 		$idAssignedPerson	= count($assignedPersons) == 1 ? $assignedPersons[0]['id_person'] : 0;
 
 		$color = self::getEventColorData($idAssignedPerson);
@@ -149,7 +149,7 @@ class TodoyuCalendarEventRenderer {
 		$eventData	= self::prepareEventRenderData('list', $eventData);
 
 		$eventData['person_create']	= $event->getPerson('create')->getTemplateData();
-		$eventData['persons']		= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true);
+		$eventData['persons']		= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
 
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(

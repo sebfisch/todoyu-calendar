@@ -184,6 +184,7 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	/**
 	 * Get data of the assigned persons
 	 *
+	 * @param	Boolean		$getRemindersData
 	 * @return	Array
 	 */
 	public function getAssignedPersonsData($getRemindersData = false) {
@@ -298,6 +299,7 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	 *
 	 * @param	Boolean		$loadForeignData
 	 * @param	Boolean		$loadCreatorPersonData
+	 * @param	Boolean		$loadRemindersData
 	 * @return	Array
 	 */
 	public function getTemplateData($loadForeignData = false, $loadCreatorPersonData = false, $loadRemindersData = false) {
