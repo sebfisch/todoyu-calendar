@@ -751,7 +751,9 @@ class TodoyuCalendarEventManager {
 			'id_event'			=> $idEvent,
 			'id_person'			=> $idPerson,
 			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0,
-			'is_updated'		=> $isUpdate ? 1 : 0
+			'is_updated'		=> $isUpdate ? 1 : 0,
+			'date_remindemail'	=> TodoyuCalendarReminderEmailManager::getNewEventMailTime($idEvent),
+			'date_remindpopup'	=> TodoyuCalendarReminderPopupManager::getNewEventPopupTime($idEvent),
 		);
 
 		Todoyu::db()->addRecord($table, $data);

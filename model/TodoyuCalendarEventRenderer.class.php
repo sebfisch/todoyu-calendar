@@ -309,7 +309,7 @@ class TodoyuCalendarEventRenderer {
 			$eventData['timeReminderPopup']	= TodoyuCalendarReminderPopupManager::getPopupTime($idEvent);
 		}
 		if( TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent) ) {
-			$eventData['timeReminderEmail']	= TodoyuCalendarReminderEmailManager::getMailTime($idEvent);
+			$eventData['timeReminderEmail']	= TodoyuCalendarReminderEmailManager::getEventMailTime($idEvent);
 		}
 
 		$tmpl	= 'ext/calendar/view/event-view.tmpl';

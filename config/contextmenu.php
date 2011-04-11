@@ -82,7 +82,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 			'none'	=> array(
 				'key'		=> 'remindertime-none',
 				'label'		=> 'calendar.event.contextmenu.reminderTime.none',
-				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_PLANNING . ')',
+				'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.disable(#ID#)',
 				'class'		=> 'eventContextMenu reminderTimeNone'
 			),
 			'0'	=> array(
@@ -147,6 +147,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 			)
 		)
 	),
+		// Reminders via popup
 	'reminderpopup' => array(
 		'key'		=> 'reminderpopup',
 		'label'		=> 'calendar.event.contextmenu.eventReminderPopup',
@@ -157,7 +158,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 			'none'	=> array(
 				'key'		=> 'remindertime-none',
 				'label'		=> 'calendar.event.contextmenu.reminderTime.none',
-				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_PLANNING . ')',
+				'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.disable(#ID#)',
 				'class'		=> 'eventContextMenu reminderTimeNone'
 			),
 			'0'	=> array(

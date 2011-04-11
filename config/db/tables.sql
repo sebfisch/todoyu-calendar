@@ -24,6 +24,28 @@ CREATE TABLE `ext_calendar_event` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ext_calendar_mm_event_person`
+--
+
+CREATE TABLE `ext_calendar_mm_event_person` (
+	`id` int(10) NOT NULL AUTO_INCREMENT,
+	`id_event` int(10) unsigned NOT NULL DEFAULT '0',
+	`id_person` int(10) unsigned NOT NULL,
+	`is_acknowledged` tinyint(2) NOT NULL DEFAULT '0',
+	`is_updated` tinyint(1) unsigned NOT NULL DEFAULT '0',
+	`date_remindemail` int(10) unsigned NOT NULL DEFAULT '0',
+	`date_remindpopup` int(10) unsigned NOT NULL DEFAULT '0',
+
+	`is_reminderdismissed` tinyint(1) unsigned NOT NULL DEFAULT '0',
+	`date_remindagain` int(10) unsigned NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`),
+	KEY `event` (`id_event`),
+	KEY `person` (`id_person`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ext_calendar_holiday`
 --
 
@@ -72,21 +94,3 @@ CREATE TABLE `ext_calendar_mm_holiday_holidayset` (
 	KEY `holidayset` (`id_holidayset`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `ext_calendar_mm_event_person`
---
-
-CREATE TABLE `ext_calendar_mm_event_person` (
-	`id` int(10) NOT NULL AUTO_INCREMENT,
-	`id_event` int(10) unsigned NOT NULL DEFAULT '0',
-	`id_person` int(10) unsigned NOT NULL,
-	`is_acknowledged` tinyint(2) NOT NULL DEFAULT '0',
-	`is_updated` tinyint(1) unsigned NOT NULL DEFAULT '0',
-	`is_reminderdismissed` tinyint(1) unsigned NOT NULL DEFAULT '0',
-	`date_remindagain` int(10) unsigned NOT NULL DEFAULT '0',
-	PRIMARY KEY (`id`),
-	KEY `event` (`id_event`),
-	KEY `person` (`id_person`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

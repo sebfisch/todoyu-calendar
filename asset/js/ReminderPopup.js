@@ -24,9 +24,9 @@
 /**
  * Calendar event reminder functions
  *
- * @namespace	Todoyu.Ext.calendar.Reminder
+ * @namespace	Todoyu.Ext.calendar.ReminderPopup
  */
-Todoyu.Ext.calendar.Reminder = {
+Todoyu.Ext.calendar.ReminderPopup = {
 
 	/**
 	 * Reference to extension

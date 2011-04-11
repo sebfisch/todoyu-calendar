@@ -27,11 +27,70 @@
 class TodoyuCalendarReminderEmailManager {
 
 	/**
-	 * Check whether email reminders are activated in profile of current person, fallback: extconf
+	 * Get email reminder of given event/person
 	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return	TodoyuCalendarReminderEmail
+	 */
+	public static function getReminder($idEvent, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		return new TodoyuCalendarReminderEmail($idEvent, $idPerson);
+	}
+
+
+
+	/**
+	 * Get timestamp for email reminder of newly assigned event (advance-time from profile, fallback: extconf)
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	public static function getNewEventMailTime($idEvent, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$dateStart	= $event->getStartDate();
+		$advanceTime= self::getDefaultAdvanceTime($idPerson);
+
+		return $dateStart  - $advanceTime;
+	}
+
+
+
+	/**
+	 * Get scheduled reminder mailing time of given event
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
-	public static function isActivatedForCurrentPerson() {
+	public static function getEventMailTime($idEvent, $idPerson = 0) {
+		if( ! allowed('calendar', 'reminders:email') ) {
+			return false;
+		}
+
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		return self::getReminder($idEvent, $idPerson)->getDateRemindEmail();
+	}
+
+
+
+	/**
+	 * Check whether email reminders are activated in profile of current person, fallback: extconf
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	Boolean
+	 */
+	public static function isActivatedForPerson($idPerson = 0) {
+		$idPerson	= personid($idPerson);
+
 		if( allowed('calendar', 'reminder:email') ) {
 			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'is_reminderemailactive', 0, null, 0, personid()) ) {
 					// Return pref. from profile
@@ -50,30 +109,19 @@ class TodoyuCalendarReminderEmailManager {
 	/**
 	 * Get current person's event reminder emails advance time from current person prefs, fallback: extconf
 	 *
+	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getCurrentPersonDefaultAdvanceTime() {
-		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'reminderemail_advancetime', 0, null, 0, personid()) ) {
+	public static function getDefaultAdvanceTime($idPerson = 0) {
+		$idPerson	= personid($idPerson);
+
+		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'reminderemail_advancetime', 0, null, 0, $idPerson) ) {
 				// Return pref. from profile
-			return intval(TodoyuCalendarPreferences::getPref('reminderemail_advancetime', 0, 0, false, personid()));
+			return intval(TodoyuCalendarPreferences::getPref('reminderemail_advancetime', 0, 0, false, $idPerson));
 		}
 
 			// Fallback: take preset from extconf
 		return intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderemail_advancetime'));
-	}
-
-
-
-	/**
-	 * Get current person's event reminder emails advance time for given event
-	 *
-	 * @param	Integer		$idEvent
-	 * @return	Integer
-	 */
-	public static function getCurrentPersonReminderAdvanceTime($idEvent) {
-		$idEvent	= intval($idEvent);
-// @todo	change this to be event specific!
-		return self::getCurrentPersonDefaultAdvanceTime();
 	}
 
 
@@ -106,29 +154,6 @@ class TodoyuCalendarReminderEmailManager {
 		$idPerson	= personid($idPerson);
 
 		return TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson);
-	}
-
-
-	/**
-	 * Get (next) reminder mailing time of given event
-	 *
-	 * @param	Integer		$idEvent
-	 * @return	Boolean
-	 */
-	public static function getMailTime($idEvent) {
-		if( ! allowed('calendar', 'reminders:email') ) {
-			return false;
-		}
-
-		$idEvent	= intval($idEvent);
-		$eventStart	= TodoyuCalendarEventManager::getEvent($idEvent)->getStartDate();
-
-		if( $eventStart < NOW ) {
-				// Mails are only send BEFORE events
-			return false;
-		}
-
-		return $eventStart - self::getCurrentPersonReminderAdvanceTime($idEvent);
 	}
 
 }
