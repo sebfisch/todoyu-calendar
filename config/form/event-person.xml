@@ -16,6 +16,7 @@
 							<onSelected>Todoyu.Ext.calendar.Event.Edit.onPersonAcSelected</onSelected>
 						</options>
 					</config>
+					<wizard name="person" />
 					<required />
 				</field>
 
