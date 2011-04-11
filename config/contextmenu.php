@@ -79,69 +79,79 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 		'class'		=> 'eventContextMenu eventReminderEmail',
 		'position'	=> 50,
 		'submenu'	=> array(
-			'none'	=> array(
+			'0'	=> array(
 				'key'		=> 'remindertime-none',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.none',
+				'label'		=> 'calendar.event.contextmenu.reminder.none',
 				'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.disable(#ID#)',
 				'class'		=> 'eventContextMenu reminderTimeNone'
 			),
-			'0'	=> array(
-				'key'		=> 'remindertime-0',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.0',
+				// At the time of the event
+			'1'	=> array(
+				'key'		=> 'remindertime-1',
+				'label'		=> 'calendar.event.contextmenu.reminder.atEventStart',
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime0'
 			),
-			'5m'	=> array(
+				// 5 minutes before
+			'300'	=> array(
 				'key'		=> 'remindertime-5m',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.5m',
+				'label'		=> TodoyuTime::autoformatDuration(300) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime5m'
 			),
-			'15m'	=> array(
+				// 15 minutes before
+			'900'	=> array(
 				'key'		=> 'remindertime-15m',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.15m',
+				'label'		=> TodoyuTime::autoformatDuration(900) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime15m'
 			),
-			'30m'	=> array(
+				// 30 minutes before
+			'1800'	=> array(
 				'key'		=> 'remindertime-30m',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.30m',
+				'label'		=> TodoyuTime::autoformatDuration(1800) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime30m'
 			),
-			'1h'	=> array(
+				// 1 hour before
+			'3600'	=> array(
 				'key'		=> 'reminderemail-1h',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.1h',
+				'label'		=> TodoyuTime::autoformatDuration(3600) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime1h'
 			),
-			'2h'	=> array(
+				// 2 hours before
+			'7200'	=> array(
 				'key'		=> 'remindertime-2h',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.2h',
+				'label'		=> TodoyuTime::autoformatDuration(7200) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime2h'
 			),
-			'12h'	=> array(
+				// 12 hours before
+			'43200'	=> array(
 				'key'		=> 'remindertime-12h',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.12h',
+				'label'		=> TodoyuTime::autoformatDuration(43200) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime12h'
 			),
-			'1d'	=> array(
+				// 1 day before
+			'86400'	=> array(
 				'key'		=> 'remindertime-1d',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.1d',
+				'label'		=> TodoyuTime::autoformatDuration(86400) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime1d'
 			),
-			'2d'	=> array(
+				// 2 days before
+			'172800'	=> array(
 				'key'		=> 'remindertime-2d',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.2d',
+				'label'		=> TodoyuTime::autoformatDuration(172800) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime2d'
 			),
-			'1w'	=> array(
+				// 1 week before
+			'604800'	=> array(
 				'key'		=> 'remindertime-1w',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.1w',
+				'label'		=> TodoyuTime::autoformatDuration(604800) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime1w'
 			)
@@ -155,69 +165,79 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 		'class'		=> 'eventContextMenu eventReminderPopup',
 		'position'	=> 60,
 		'submenu'	=> array(
-			'none'	=> array(
+			'0'	=> array(
 				'key'		=> 'remindertime-none',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.none',
+				'label'		=> 'calendar.event.contextmenu.reminder.none',
 				'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.disable(#ID#)',
 				'class'		=> 'eventContextMenu reminderTimeNone'
 			),
-			'0'	=> array(
+				// At the time of the event
+			'1'	=> array(
 				'key'		=> 'remindertime-0',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.0',
+				'label'		=> 'calendar.event.contextmenu.reminder.atEventStart',
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime0'
 			),
-			'5m'	=> array(
+				// 5 minutes before
+			'300'	=> array(
 				'key'		=> 'remindertime-5m',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.5m',
+				'label'		=> TodoyuTime::autoformatDuration(300) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime5m'
 			),
-			'15m'	=> array(
+				// 15 minutes before
+			'900'	=> array(
 				'key'		=> 'remindertime-15m',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.15m',
+				'label'		=> TodoyuTime::autoformatDuration(900) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime15m'
 			),
-			'30m'	=> array(
+				// 30 minutes before
+			'1800'	=> array(
 				'key'		=> 'remindertime-30m',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.30m',
+				'label'		=> TodoyuTime::autoformatDuration(1800) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime30m'
 			),
-			'1h'	=> array(
+				// 1 hour before
+			'3600'	=> array(
 				'key'		=> 'reminderemail-1h',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.1h',
+				'label'		=> TodoyuTime::autoformatDuration(3600) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime1h'
 			),
-			'2h'	=> array(
+				// 2 hours before
+			'7200'	=> array(
 				'key'		=> 'remindertime-2h',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.2h',
+				'label'		=> TodoyuTime::autoformatDuration(7200) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime2h'
 			),
-			'12h'	=> array(
+				// 12 hours before
+			'43200'	=> array(
 				'key'		=> 'remindertime-12h',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.12h',
+				'label'		=> TodoyuTime::autoformatDuration(43200) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime12h'
 			),
-			'1d'	=> array(
+				// 1 day before
+			'86400'	=> array(
 				'key'		=> 'remindertime-1d',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.1d',
+				'label'		=> TodoyuTime::autoformatDuration(86400) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //'Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime1d'
 			),
-			'2d'	=> array(
+				// 2 days before
+			'172800'	=> array(
 				'key'		=> 'remindertime-2d',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.2d',
+				'label'		=> TodoyuTime::autoformatDuration(172800) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime2d'
 			),
-			'1w'	=> array(
+				// 1 week before
+			'604800'	=> array(
 				'key'		=> 'remindertime-1w',
-				'label'		=> 'calendar.event.contextmenu.reminderTime.1w',
+				'label'		=> TodoyuTime::autoformatDuration(604800) . ' ' . Label('calendar.event.contextmenu.reminder.before'),
 				'jsAction'	=> '', //Todoyu.Ext.project.Task.updateStatus(#ID#, ' . STATUS_OPEN . ')',
 				'class'		=> 'eventContextMenu reminderTime1w'
 			)

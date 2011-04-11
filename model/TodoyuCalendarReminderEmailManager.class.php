@@ -69,7 +69,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
-	public static function getEventMailTime($idEvent, $idPerson = 0) {
+	public static function getReminderMailTime($idEvent, $idPerson = 0) {
 		if( ! allowed('calendar', 'reminders:email') ) {
 			return false;
 		}
@@ -92,9 +92,9 @@ class TodoyuCalendarReminderEmailManager {
 		$idPerson	= personid($idPerson);
 
 		if( allowed('calendar', 'reminder:email') ) {
-			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'is_reminderemailactive', 0, null, 0, personid()) ) {
+			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'is_reminderemailactive', 0, null, 0, $idPerson) ) {
 					// Return pref. from profile
-				return TodoyuCalendarPreferences::getPref('is_reminderemail_active', 0, 0, false, personid()) ? true : false;
+				return TodoyuCalendarPreferences::getPref('is_reminderemail_active', 0, 0, false, $idPerson) ? true : false;
 			} else {
 					// Return pref. from extconf
 				return TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'is_reminderemail_active');
@@ -102,6 +102,22 @@ class TodoyuCalendarReminderEmailManager {
 		}
 			// No
 		return false;
+	}
+
+
+
+	/**
+	 * Get amount of time before event when to send reminder email
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return	Integer					Amount of seconds
+	 */
+	public static function getAdvanceTime($idEvent, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		return self::getReminder($idEvent, $idPerson)->getAdvanceTime();
 	}
 
 
@@ -133,6 +149,9 @@ class TodoyuCalendarReminderEmailManager {
 	 */
 	public static function getSelectedAdvanceTimeContextMenuOptionKey($idEvent) {
 		$idEvent	= intval($idEvent);
+
+			// Get time amount before the event when sending email is scheduled
+		$advanceTime	= self::getAdvanceTime($idEvent);
 
 		return '5m';
 	}

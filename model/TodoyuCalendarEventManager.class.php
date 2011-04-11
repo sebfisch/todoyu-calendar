@@ -289,17 +289,23 @@ class TodoyuCalendarEventManager {
 	 * Get all persons assigned to an event
 	 *
 	 * @param	Integer 	$idEvent
-	 * @param	Boolean 	$getPersonData		get also person data (not only the ID)?
+	 * @param	Boolean 	$getPersonData		Get also person data?
+	 * @param	Boolean 	$getRemindersData	Get also persons reminders data?
 	 * @return	Array
 	 */
-	public static function getAssignedPersonsOfEvent($idEvent, $getPersonData = false) {
+	public static function getAssignedPersonsOfEvent($idEvent, $getPersonData = false, $getRemindersData = false) {
 		$idEvent	= intval($idEvent);
 
-		$fields	= '	mm.id_person,
-					mm.is_acknowledged';
-		$tables	= '	ext_calendar_mm_event_person mm';
-		$where	= '	mm.id_event = ' . $idEvent;
-		$group	= ' mm.id_person';
+		$fields	= '	 mm.id_person
+					,mm.is_acknowledged';
+		if( $getRemindersData ) {
+			$fields	.= ',mm.date_remindemail
+						,date_remindpopup';
+		}
+		$tables		= '	ext_calendar_mm_event_person mm';
+		$where		= '	mm.id_event = ' . $idEvent;
+		$group		= ' mm.id_person';
+		$indexField	= 'id_person';
 
 		if( $getPersonData ) {
 			$fields .= ',p.*';
@@ -307,7 +313,7 @@ class TodoyuCalendarEventManager {
 			$where	.= ' AND mm.id_person = p.id';
 		}
 
-		return Todoyu::db()->getArray($fields, $tables, $where, $group);
+		return Todoyu::db()->getArray($fields, $tables, $where, $group, '', '', $indexField);
 	}
 
 
@@ -460,7 +466,6 @@ class TodoyuCalendarEventManager {
 		$where	= 'id = ' . $idEvent;
 
 		Todoyu::db()->setDeleted(self::TABLE, $where);
-
 //			// Delete event
 //		Todoyu::db()->deleteRecord(self::TABLE , $idEvent);
 //
@@ -511,7 +516,7 @@ class TodoyuCalendarEventManager {
 			$data['persons'][] = 0;
 		}
 
-			// Add persons
+			// Add persons (includes setting up reminder defaults)
 		self::assignPersonsToEvent($idEvent, $data['persons'], ! $isNewEvent);
 
 			// Remove not needed fields
@@ -752,8 +757,8 @@ class TodoyuCalendarEventManager {
 			'id_person'			=> $idPerson,
 			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0,
 			'is_updated'		=> $isUpdate ? 1 : 0,
-			'date_remindemail'	=> TodoyuCalendarReminderEmailManager::getNewEventMailTime($idEvent),
-			'date_remindpopup'	=> TodoyuCalendarReminderPopupManager::getNewEventPopupTime($idEvent),
+			'date_remindemail'	=> TodoyuCalendarReminderEmailManager::getNewEventMailTime($idEvent, $idPerson),
+			'date_remindpopup'	=> TodoyuCalendarReminderPopupManager::getNewEventPopupTime($idEvent, $idPerson),
 		);
 
 		Todoyu::db()->addRecord($table, $data);

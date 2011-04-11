@@ -80,6 +80,7 @@
 	</tr>
 {* ------------------------ Scheduled Reminders *}
 {if isAllowedEventReminderPopup($event.id) || isAllowedEventReminderEmail($event.id)}
+	{$personID = personid()}
 	<tr>
 		<td class="eventReminders ">
 			<span class="icon reminderIcon"> </span>
@@ -87,12 +88,12 @@
 		</td>
 	{if isAllowedEventReminderPopup($event.id)}
 		{Label calendar.event.reminderEmail}:
-		{dateFormat $event.timeReminderEmail datetime}
+		{dateFormat $event.persons[$personID][date_remindemail] datetime}
 		<br/>
 	{/if}
 	{if isAllowedEventReminderEmail($event.id)}
 		{Label calendar.event.reminderPopup}:
-		{dateFormat $event.timeReminderPopup datetime}
+		{dateFormat $event.persons[$personID][date_remindpopup] datetime}
 		<br/>
 	{/if}
 	</tr>

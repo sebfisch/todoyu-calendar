@@ -186,8 +186,8 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	 *
 	 * @return	Array
 	 */
-	public function getAssignedPersonsData() {
-		return TodoyuCalendarEventManager::getAssignedPersonsOfEvent($this->id, true);
+	public function getAssignedPersonsData($getRemindersData = false) {
+		return TodoyuCalendarEventManager::getAssignedPersonsOfEvent($this->id, true, $getRemindersData);
 	}
 
 
@@ -276,13 +276,17 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Load event foreign data (assigned persons)
+	 * Load event foreign data
+	 *
+	 * @param	Boolean	$getRemindersData
 	 */
-	protected function loadForeignData() {
+	protected function loadForeignData($getRemindersData = false) {
+			// Add assigned persons of event
 		if( ! isset($this->data['persons']) ) {
-			$this->data['persons'] 	= $this->getAssignedPersonsData();
+			$this->data['persons'] 	= $this->getAssignedPersonsData($getRemindersData);
 		}
 
+			// Add email receivers infos
 		$emailPersons	= TodoyuMailManager::getEmailPersons(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $this->data['id']);
 		$this->data['persons_email']	= $emailPersons;
 	}
@@ -296,9 +300,9 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	 * @param	Boolean		$loadCreatorPersonData
 	 * @return	Array
 	 */
-	public function getTemplateData($loadForeignData = false, $loadCreatorPersonData = false) {
+	public function getTemplateData($loadForeignData = false, $loadCreatorPersonData = false, $loadRemindersData = false) {
 		if( $loadForeignData ) {
-			$this->loadForeignData();
+			$this->loadForeignData($loadRemindersData);
 		}
 
 		if( $loadCreatorPersonData ) {

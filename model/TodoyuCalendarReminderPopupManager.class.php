@@ -50,6 +50,26 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
+	 * Get timestamp for popup reminder of newly assigned event (advance-time from profile, fallback: extconf)
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	public static function getNewEventPopupTime($idEvent, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$dateStart	= $event->getStartDate();
+		$advanceTime= self::getDefaultAdvanceTime($idPerson);
+
+		return $dateStart  - $advanceTime;
+	}
+
+
+
+	/**
 	 * Check whether popup reminders are activated in profile of current person, fallback: extconf
 	 *
 	 * @param	Integer		$idPerson
@@ -167,7 +187,7 @@ class TodoyuCalendarReminderPopupManager {
 					unset($events[$idEvent]);
 				} else {
 						// Setup event reminder data
-					$showTime	= self::getPopupTime($idEvent);
+					$showTime	= self::getReminderPopupTime($idEvent);
 					if( $showTime !== false ) {
 						$events[$idEvent]	= array(
 							'id'				=> $idEvent,
@@ -191,7 +211,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @param	Integer		$idEvent
 	 * @return	Integer
 	 */
-	public static function getPopupTime($idEvent) {
+	public static function getReminderPopupTime($idEvent) {
 		$showTime	= self::getReminder($idEvent)->getShowTime();
 
 			// Missed reminders of events in the past? show immediately

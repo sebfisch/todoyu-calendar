@@ -119,6 +119,23 @@ class TodoyuCalendarReminderEmail extends TodoyuBaseObject {
 
 
 	/**
+	 * Get amount of time before event when to send reminder email
+	 *
+	 * @return	Boolean|Integer
+	 */
+	public function getAdvanceTime() {
+		$dateSendMail	= $this->getDateRemindEmail();
+
+		if( $dateSendMail > 0 ) {
+			return $this->getEventStartDate() - $this->getDateRemindEmail();
+		}
+
+		return false;
+	}
+
+
+
+	/**
 	 * Is event in past already?
 	 *
 	 * @return	String

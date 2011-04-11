@@ -62,9 +62,10 @@ class TodoyuCalendarPortalManager {
 	 */
 	public static function getHolidays() {
 		$weeksHoliday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksHoliday']);
+		$startTime		= TodoyuTime::getStartOfDay();
 		$endTime		= NOW + $weeksHoliday * TodoyuTime::SECONDS_WEEK;
 
-		return TodoyuCalendarHolidayManager::getPersonHolidaysInTimespan(array(personid()), NOW, $endTime);
+		return TodoyuCalendarHolidayManager::getPersonHolidaysInTimespan(array(personid()), $startTime, $endTime);
 	}
 
 
