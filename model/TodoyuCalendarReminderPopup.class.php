@@ -71,19 +71,7 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 	 * @return	Integer
 	 */
 	private static function getIDreminder($idEvent, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
-
-		$field	= 'id';
-		$table	= 'ext_calendar_mm_event_person';
-
-		$where	= '		id_event 	= ' . $idEvent
-				.=' AND	id_person	= ' . $idPerson;
-
-		$limit	= '1';
-
-		$row	= Todoyu::db()->getColumn($field, $table, $where, '', '', $limit, 'id');
-		return $row[0];
+		return TodoyuCalendarReminderHelper::getMMrelationRecordID($idEvent, $idPerson);
 	}
 
 

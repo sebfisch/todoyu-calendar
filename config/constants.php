@@ -69,6 +69,12 @@ define('CALENDAR_EVENT_MIN_DURATION', 1800);
 
 
 
+	// Event Reminder Types
+define('REMINDERTYPE_EMAIL', 1);
+define('REMINDERTYPE_POPUP', 2);
+
+
+
 	// Possible types of actions on event records
 define('OPERATIONTYPE_RECORD_CREATE',	1);
 define('OPERATIONTYPE_RECORD_UPDATE',	2);

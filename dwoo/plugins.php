@@ -185,4 +185,20 @@ function Dwoo_Plugin_isAllowedEventReminderEmail(Dwoo $dwoo, $idEvent) {
 	return TodoyuCalendarEventReminderRights::isEmailSchedulingAllowed($idEvent);
 }
 
+
+
+/**
+ * Render duration in suiting format
+ *
+ * @package		Todoyu
+ * @subpackage	Template
+ *
+ * @param	Dwoo 		$dwoo
+ * @param	Integer		$idEvent
+ * @return	Boolean
+ */
+function Dwoo_Plugin_durationFormat(Dwoo $dwoo, $seconds) {
+	return TodoyuTime::autoformatDuration($seconds);
+}
+
 ?>

@@ -27,6 +27,18 @@
 class TodoyuCalendarReminderEmailManager {
 
 	/**
+	 * @var String		Default table for database requests
+	 */
+	const TABLE = 'ext_calendar_mm_event_person';
+
+	/**
+	 * @var	String		Type of reminder
+	 */
+	const TYPE = REMINDERTYPE_EMAIL;
+
+
+
+	/**
 	 * Get email reminder of given event/person
 	 *
 	 * @param	Integer		$idEvent
@@ -34,10 +46,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @return	TodoyuCalendarReminderEmail
 	 */
 	public static function getReminder($idEvent, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
-
-		return new TodoyuCalendarReminderEmail($idEvent, $idPerson);
+		return TodoyuCalendarReminderHelper::getReminder(self::TYPE, $idEvent, $idPerson);
 	}
 
 
@@ -50,22 +59,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer		$idPerson
 	 */
 	public static function updateReminderTime($idEvent, $timeEmail, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
-		$timeEmail	= intval($timeEmail);
-		$idPerson	= personid($idPerson);
-
-		$reminder	= self::getReminder($idEvent, $idPerson);
-
-		if( $reminder->getEvent()->isPersonAssigned($idPerson) ) {
-			$table		= 'ext_calendar_mm_event_person';
-			$idRecord	= $reminder->getID();
-
-			$fieldValues	= array(
-				'date_remindemail'	=> $timeEmail,
-			);
-
-			Todoyu::db()->updateRecord($table, $idRecord, $fieldValues);
-		}
+		TodoyuCalendarReminderHelper::updateReminderTime(REMINDERTYPE_EMAIL, $idEvent, $timeEmail, $idPerson);
 	}
 
 
@@ -80,11 +74,7 @@ class TodoyuCalendarReminderEmailManager {
 		$idPerson	= personid($idPerson);
 		$idEvent	= intval($data['id']);
 
-		if( $data['is_reminderemail_active'] ) {
-			$timeRemind	= $data['date_start'] - $data['reminderemail_advancetime'];
-		} else {
-			$timeRemind	= 0;
-		}
+		$timeRemind	= TodoyuCalendarReminderHelper::getRemindingTimeByEventData(REMINDERTYPE_EMAIL, $data);
 
 		self::updateReminderTime($idEvent, $timeRemind, $idPerson);
 	}
@@ -102,11 +92,10 @@ class TodoyuCalendarReminderEmailManager {
 		$idEvent	= intval($idEvent);
 		$idPerson	= personid($idPerson);
 
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
-		$dateStart	= $event->getStartDate();
-		$advanceTime= self::getDefaultAdvanceTime($idPerson);
+		$dateStartEvent	= TodoyuCalendarEventManager::getEvent($idEvent)->getStartDate();
+		$advanceTime	= self::getDefaultAdvanceTime($idPerson);
 
-		return $dateStart  - $advanceTime;
+		return $dateStartEvent  - $advanceTime;
 	}
 
 
@@ -138,19 +127,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @return	Boolean
 	 */
 	public static function isActivatedForPerson($idPerson = 0) {
-		$idPerson	= personid($idPerson);
-
-		if( allowed('calendar', 'reminder:email') ) {
-			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'is_reminderemailactive', 0, null, 0, $idPerson) ) {
-					// Return pref. from profile
-				return TodoyuCalendarPreferences::getPref('is_reminderemail_active', 0, 0, false, $idPerson) ? true : false;
-			} else {
-					// Return pref. from extconf
-				return TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'is_reminderemail_active');
-			}
-		}
-			// No
-		return false;
+		return TodoyuCalendarReminderHelper::isReminderGenerallyActivated(self::TYPE, $idPerson);
 	}
 
 
@@ -178,15 +155,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @return	Integer
 	 */
 	public static function getDefaultAdvanceTime($idPerson = 0) {
-		$idPerson	= personid($idPerson);
-
-		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'reminderemail_advancetime', 0, null, 0, $idPerson) ) {
-				// Return pref. from profile
-			return intval(TodoyuCalendarPreferences::getPref('reminderemail_advancetime', 0, 0, false, $idPerson));
-		}
-
-			// Fallback: take preset from extconf
-		return intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderemail_advancetime'));
+		TodoyuCalendarReminderHelper::getDefaultAdvanceTime(REMINDERTYPE_EMAIL, $idPerson);
 	}
 
 
@@ -218,10 +187,34 @@ class TodoyuCalendarReminderEmailManager {
 			return false;
 		}
 
-		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		return TodoyuCalendarReminderHelper::isEventSchedulable(self::TYPE, $idEvent, $idPerson);
+	}
 
-		return TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson);
+
+
+	/**
+	 * Get reminder context menu options (hilite selected, deactivate past options)
+	 *
+	 * @param	Integer	$idEvent
+	 * @param	Array	$options
+	 * @return	Array
+	 */
+	public static function getContextMenuItems($idEvent) {
+		$idEvent	= intval($idEvent);
+		$options	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event']['reminderemail'];
+
+			// Set selected option CSS class
+		$selectedTimeOptionKey	= TodoyuCalendarReminderEmailManager::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
+
+		if( key_exists($selectedTimeOptionKey, $options['submenu']) ) {
+			$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
+		}
+
+			// Set options disabled which are in the past already
+		$options['submenu']	= TodoyuCalendarReminderHelper::disableTimeKeyOptionsInThePast($options['submenu'], $idEvent);
+		
+
+		return $options;
 	}
 
 }

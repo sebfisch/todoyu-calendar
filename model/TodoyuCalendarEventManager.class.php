@@ -985,22 +985,13 @@ class TodoyuCalendarEventManager {
 
 			// Option: email reminder
 		if( TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent) ) {
-			$allowed['reminderemail']	= $own['reminderemail'];
-				// Set selected option CSS class
-			$selectedTimeOptionKey	= TodoyuCalendarReminderEmailManager::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
-			if( key_exists($selectedTimeOptionKey, $allowed['reminderemail']['submenu']) ) {
-				$allowed['reminderemail']['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
-			}
+				// Setup email reminder context menu sub options (hilite selected, deactivate past options)
+			$allowed['reminderemail']	= TodoyuCalendarReminderEmailManager::getContextMenuItems($idEvent);
 		}
 
 			// Option: popup reminder
 		if( TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent) ) {
-			$allowed['reminderpopup']	= $own['reminderpopup'];
-				// Set selected option CSS class
-			$selectedTimeOptionKey	= TodoyuCalendarReminderPopupManager::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
-			if( key_exists($selectedTimeOptionKey, $allowed['reminderpopup']['submenu']) ) {
-				$allowed['reminderpopup']['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
-			}
+			$allowed['reminderemail']	= TodoyuCalendarReminderPopupManager::getContextMenuItems($idEvent);
 		}
 
 		$items = array_merge_recursive($items, $allowed);
