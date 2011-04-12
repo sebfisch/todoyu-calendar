@@ -86,7 +86,7 @@ class TodoyuCalendarReminderEmail extends TodoyuBaseObject {
 		$table	= 'ext_calendar_mm_event_person';
 
 		$where	= '		id_event 	= ' . $idEvent
-				.=' AND	id_person	= ' . $idPerson;
+				. ' AND	id_person	= ' . $idPerson;
 
 		$limit	= '1';
 

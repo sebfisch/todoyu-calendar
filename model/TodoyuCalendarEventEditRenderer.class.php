@@ -89,10 +89,10 @@ class TodoyuCalendarEventEditRenderer {
 	 * @return	TodoyuForm
 	 */
 	public static function renderEventForm($idEvent, $time = 0) {
-		$xmlPath= 'ext/calendar/config/form/event.xml';
-
 		$idEvent= intval($idEvent);
 		$time	= intval($time);
+
+		$xmlPath= 'ext/calendar/config/form/event.xml';
 
 		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
 

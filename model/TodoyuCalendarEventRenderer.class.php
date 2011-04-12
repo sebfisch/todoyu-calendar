@@ -106,7 +106,7 @@ class TodoyuCalendarEventRenderer {
 
 
 	/**
-	 * Hide private data
+	 * Hide private data out from event attributes
 	 *
 	 * @param	Array	$data
 	 * @return	Array
@@ -121,7 +121,7 @@ class TodoyuCalendarEventRenderer {
 
 
 	/**
-	 * Render event entry
+	 * Render event entry as calendar item
 	 *
 	 * @param	Array		$event				Event details
 	 * @param	Integer		$calendarMode		CALENDAR_MODE_MONTH / ..WEEK / ..DAY
@@ -137,6 +137,7 @@ class TodoyuCalendarEventRenderer {
 
 
 	/**
+	 * Render event details view for display inside expanded event in list mode
 	 *
 	 * @param	Integer		$idEvent
 	 */
@@ -145,7 +146,7 @@ class TodoyuCalendarEventRenderer {
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 		$colors = self::getEventColorData(personid());
 
-		$eventData	= $event->getTemplateData(true);
+		$eventData	= $event->getTemplateData(true, false, true);
 		$eventData	= self::prepareEventRenderData('list', $eventData);
 
 		$eventData['person_create']	= $event->getPerson('create')->getTemplateData();
@@ -153,8 +154,8 @@ class TodoyuCalendarEventRenderer {
 
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(
-			'event'			=> $eventData,
-			'color'			=> $colors[personid()]
+			'event'	=> $eventData,
+			'color'	=> $colors[personid()]
 		);
 
 		return render($tmpl, $data);

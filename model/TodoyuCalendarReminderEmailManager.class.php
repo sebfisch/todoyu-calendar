@@ -43,6 +43,55 @@ class TodoyuCalendarReminderEmailManager {
 
 
 	/**
+	 * Update email reminder sending time of given event/person
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$timeEmail
+	 * @param	Integer		$idPerson
+	 */
+	public static function updateReminderTime($idEvent, $timeEmail, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$timeEmail	= intval($timeEmail);
+		$idPerson	= personid($idPerson);
+
+		$reminder	= self::getReminder($idEvent, $idPerson);
+
+		if( $reminder->getEvent()->isPersonAssigned($idPerson) ) {
+			$table		= 'ext_calendar_mm_event_person';
+			$idRecord	= $reminder->getID();
+
+			$fieldValues	= array(
+				'date_remindemail'	=> $timeEmail,
+			);
+
+			Todoyu::db()->updateRecord($table, $idRecord, $fieldValues);
+		}
+	}
+
+
+
+	/**
+	 * Update email reminder scheduling of given event from given form data
+	 *
+	 * @param	Array	$data
+	 * @param	Integer	$idPerson
+	 */
+	public static function updateReminderTimeFromEventData(array $data, $idPerson = 0) {
+		$idPerson	= personid($idPerson);
+		$idEvent	= intval($data['id']);
+
+		if( $data['is_reminderemail_active'] ) {
+			$timeRemind	= $data['date_start'] - $data['reminderemail_advancetime'];
+		} else {
+			$timeRemind	= 0;
+		}
+
+		self::updateReminderTime($idEvent, $timeRemind, $idPerson);
+	}
+
+
+
+	/**
 	 * Get timestamp for email reminder of newly assigned event (advance-time from profile, fallback: extconf)
 	 *
 	 * @param	Integer		$idEvent

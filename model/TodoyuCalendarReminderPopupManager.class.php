@@ -50,6 +50,55 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
+	 * Update scheduled popup reminder display time of given event/person
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$timePopup
+	 * @param	Integer		$idPerson
+	 */
+	public static function updateReminderTime($idEvent, $timePopup, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$timePopup	= intval($timePopup);
+		$idPerson	= personid($idPerson);
+
+		$reminder	= self::getReminder($idEvent, $idPerson);
+
+		if( $reminder->getEvent()->isPersonAssigned($idPerson) ) {
+			$table		= 'ext_calendar_mm_event_person';
+			$idRecord	= $reminder->getID();
+
+			$fieldValues	= array(
+				'date_remindpopup'	=> $timePopup,
+			);
+
+			Todoyu::db()->updateRecord($table, $idRecord, $fieldValues);
+		}
+	}
+
+
+
+	/**
+	 * Update popup reminder scheduling of given event from given form data
+	 *
+	 * @param	Array	$data
+	 * @param	Integer	$idPerson
+	 */
+	public static function updateReminderTimeFromEventData(array $data, $idPerson = 0) {
+		$idPerson	= personid($idPerson);
+		$idEvent	= intval($data['id']);
+
+		if( $data['is_reminderpopup_active'] ) {
+			$timeRemind	= $data['date_start'] - $data['reminderpopup_advancetime'];
+		} else {
+			$timeRemind	= 0;
+		}
+
+		self::updateReminderTime($idEvent, $timeRemind, $idPerson);
+	}
+
+
+
+	/**
 	 * Get timestamp for popup reminder of newly assigned event (advance-time from profile, fallback: extconf)
 	 *
 	 * @param	Integer		$idEvent

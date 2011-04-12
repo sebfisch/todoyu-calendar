@@ -110,6 +110,11 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			if( $needToShowWarning === false ) {
 				$data	= $form->getStorageData();
 
+				$data['is_reminderemail_active']	= $params['event']['is_reminderemail_active'];
+				$data['reminderemail_advancetime']	= $params['event']['reminderemail_advancetime'];
+				$data['is_reminderpopup_active']	= $params['event']['is_reminderpopup_active'];
+				$data['reminderpopup_advancetime']	= $params['event']['reminderpopup_advancetime'];
+
 				$idEvent= TodoyuCalendarEventManager::saveEvent($data);
 				$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
