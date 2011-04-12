@@ -106,7 +106,7 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 	 */
 	public function getShowTime() {
 		if( $this->isPassed() || $this->isDismissed() ) {
-			return	false;
+			return false;
 		}
 
 		if( $this->isReschudeled() ) {

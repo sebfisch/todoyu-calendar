@@ -43,7 +43,7 @@ class TodoyuCalendarManager {
 			CALENDAR_MODE_MONTH	=> 'month'
 		);
 
-		return	$modes[$mode];
+		return $modes[$mode];
 	}
 
 
