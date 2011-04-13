@@ -47,6 +47,8 @@
 	<label index="reminderEmail">Email</label>
 	<label index="reminderPopup">Popup</label>
 	<label index="reminder.deactivated">Erinnerung deaktiviert</label>
+	<label index="reminder.notify.email.deactivated">Email-Erinnerung deaktiviert.</label>
+	<label index="reminder.notify.popup.deactivated">Popup-Erinnerung deaktiviert.</label>
 	<label index="reminder.beforeDateStart">vor Terminbeginn</label>
 	<label index="myreminders">Meine Erinnerungen</label>
 	<label index="tree.header.title">Termin-Titel</label>

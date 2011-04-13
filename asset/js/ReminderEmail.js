@@ -39,11 +39,48 @@ Todoyu.Ext.calendar.ReminderEmail = {
 
 
 	/**
-	 * Disable email reminding of given event
+	 * Deactivate email reminding of given event for current person
 	 *
+	 * @method	deactivate
 	 * @param	{Number}	idEvent
 	 */
-	disable: function(idEvent) {
+	deactivate: function(idEvent) {
+		var url		= Todoyu.getUrl('calendar', 'reminder');
+		var options	= {
+			'parameters': {
+				'action':			'deactivate',
+				'remindertype':		'email',
+				'event':			idEvent
+			},
+			'onComplete': this.onDeactivated.bind(this, idEvent)
+		};
+
+		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 * Handler called after deactivation of event: notify success
+	 *
+	 * @method	onDeactivated
+	 * @param	{Number}			idEvent
+	 * @param	{Ajax.Response}		response
+	 */
+	onDeactivated: function(idEvent, response) {
+		Todoyu.notifySuccess('[LLL:calendar.event.reminder.notify.email.deactivated');
+	},
+
+
+
+	/**
+	 * Update email reminder scheduling of given event and current person
+	 *
+	 * @method	updateReminderTime
+	 * @param	{Number}	idEvent
+	 * @param	{Number}	secondsBefore
+	 */
+	updateReminderTime: function(idEvent, secondsBefore) {
 		alert(idEvent);
 	}
 

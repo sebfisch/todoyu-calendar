@@ -164,12 +164,18 @@ class TodoyuCalendarReminderEmailManager {
 
 
 	/**
-	 * @static
-	 * @param	Integer		$idEvent
-	 * @return	String
+	 * Get key of context menu sub-option of selected advance time
+	 *
+	 * @param	Integer				$idEvent
+	 * @return	Integer|Boolean
 	 */
 	public static function getSelectedAdvanceTimeContextMenuOptionKey($idEvent) {
 		$idEvent	= intval($idEvent);
+
+		$scheduledTime	= self::getReminderMailTime($idEvent);
+		if( $scheduledTime == 0 ) {
+			return false;
+		}
 
 		return self::getAdvanceTime($idEvent);
 	}
@@ -205,10 +211,11 @@ class TodoyuCalendarReminderEmailManager {
 
 			// Set selected option CSS class
 		$selectedTimeOptionKey	= self::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
-		if( key_exists($selectedTimeOptionKey, $options['submenu']) ) {
+		if( $selectedTimeOptionKey === false ) {
+			$options['submenu'][0]['class'] .= ' selected';
+		} elseif( key_exists($selectedTimeOptionKey, $options['submenu']) ) {
 			$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
 		}
-
 			// Set options disabled which are in the past already
 		$options['submenu']	= TodoyuCalendarReminderHelper::disablePastTimeKeyOptions($options['submenu'], $idEvent);
 

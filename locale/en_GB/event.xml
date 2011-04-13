@@ -50,7 +50,9 @@
 	<label index="reminders">Reminders</label>
 	<label index="reminderEmail">Email</label>
 	<label index="reminderPopup">Popup</label>
-	<label index="reminder.deactivated">Reminder deactivated</label>
+	<label index="reminder.deactivated">Reminder Deactivated</label>
+	<label index="reminder.notify.email.deactivated">Reminder Email Deactivated</label>
+	<label index="reminder.notify.popup.deactivated">Reminder Popup Deactivated</label>
 	<label index="reminder.beforeDateStart">before appointment</label>
 	<label index="myreminders">My Reminders</label>
 	<label index="tree.header.title">Event Title</label>

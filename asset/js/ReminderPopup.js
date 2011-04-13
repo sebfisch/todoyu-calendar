@@ -36,6 +36,68 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 */
 	ext:	Todoyu.Ext.calendar,
 
+
+
+	/**
+	 * Deactivate reminder popup of given event
+	 *
+	 * @param	{Number}	idEvent
+	 */
+	deactivate: function(idEvent) {
+		var url		= Todoyu.getUrl('calendar', 'reminder');
+		var options	= {
+			'parameters': {
+				'action':			'deactivate',
+				'remindertype':		'popup',
+				'event':			idEvent
+			},
+			'onComplete': this.onDeactivated.bind(this, idEvent)
+		};
+
+		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 * Handler called after deactivation of event: notify success
+	 *
+	 * @method	onDeactivated
+	 * @param	{Number}			idEvent
+	 * @param	{Ajax.Response}		response
+	 */
+	onDeactivated: function(idEvent, response) {
+		Todoyu.notifySuccess('[LLL:calendar.event.reminder.notify.popup.deactivated');
+	},
+
+
+
+	/**
+	 * Update reminder popup scheduling of given event and current person
+	 *
+	 * @param	{Number}	idEvent
+	 * @param	{Number}	secondsBefore
+	 */
+	updateReminderTime: function(idEvent, secondsBefore) {
+		alert(idEvent);
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * Events to show reminder popups for
 	 *

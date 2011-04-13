@@ -153,6 +153,22 @@ class TodoyuCalendarReminderHelper {
 
 
 	/**
+	 * Deactivate (set time to 0) given reminder of given type, person and event
+	 *
+	 * @param	Integer		$reminderType
+	 * @param  	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 */
+	public static function deactivateReminder($reminderType, $idEvent, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		self::updateReminderTime($reminderType, $idEvent, 0, $idPerson);
+	}
+
+
+
+	/**
 	 * Update reminder activation (popup / mailing) time of given reminder
 	 *
 	 * @param	Integer		$reminderType
