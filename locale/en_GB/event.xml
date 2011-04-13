@@ -53,6 +53,8 @@
 	<label index="reminder.deactivated">Reminder Deactivated</label>
 	<label index="reminder.notify.email.deactivated">Reminder Email Deactivated</label>
 	<label index="reminder.notify.popup.deactivated">Reminder Popup Deactivated</label>
+	<label index="reminder.notify.email.timeupdated">Email reminder schedule has been changed</label>
+	<label index="reminder.notify.popup.timeupdated">Popup reminder schedule has been changed</label>
 	<label index="reminder.beforeDateStart">before appointment</label>
 	<label index="myreminders">My Reminders</label>
 	<label index="tree.header.title">Event Title</label>

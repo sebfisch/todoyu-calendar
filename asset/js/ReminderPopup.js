@@ -79,7 +79,31 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 * @param	{Number}	secondsBefore
 	 */
 	updateReminderTime: function(idEvent, secondsBefore) {
-		alert(idEvent);
+		var url		= Todoyu.getUrl('calendar', 'reminder');
+		var options	= {
+			'parameters': {
+				'action':			'updateremindertime',
+				'remindertype':		'popup',
+				'event':			idEvent,
+				'secondsbefore':	secondsBefore
+			},
+			'onComplete': this.onReminderTimeUpdated.bind(this, idEvent)
+		};
+
+		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 * Handler called after deactivation of event: notify success
+	 *
+	 * @method	onDeactivated
+	 * @param	{Number}			idEvent
+	 * @param	{Ajax.Response}		response
+	 */
+	onReminderTimeUpdated: function(idEvent, response) {
+		Todoyu.notifySuccess('[LLL:calendar.event.reminder.notify.popup.timeupdated');
 	},
 
 

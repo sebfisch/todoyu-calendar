@@ -51,6 +51,26 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 
 
 	/**
+	 * Update scheduled reminding time of given event and reminder type of current person
+	 *
+	 * @param	Array	$params
+	 */
+	public function updateremindertimeAction(array $params) {
+		$idEvent		= intval($params['event']);
+		$reminderType	= $params['remindertype'] == 'popup' ? REMINDERTYPE_POPUP : REMINDERTYPE_EMAIL;
+		$secondsBefore	= intval($params['secondsbefore']);
+
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$timestamp	= $event->getStartDate() - $secondsBefore;
+
+		TodoyuCalendarReminderHelper::updateReminderTime($reminderType, $idEvent, $timestamp, personid());
+	}
+
+
+
+
+
+	/**
 	 * Render event reminder for display in popUp
 	 *
 	 * @param	Array	$params
