@@ -217,7 +217,7 @@ class TodoyuCalendarReminderHelper {
 			if( $secondsBefore > 0 ) {
 				$timeScheduled	= $eventDateStart - $secondsBefore;
 				if( $timeScheduled <= NOW ) {
-					$subOptions[$secondsBefore]['class'] .= ' past disabled';
+					$subOptions[$secondsBefore]['class'] .= ' disabled';
 				}
 			}
 		}

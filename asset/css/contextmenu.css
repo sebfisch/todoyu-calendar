@@ -67,10 +67,17 @@ a.eventContextMenu.eventReminderPopup {
 .context-submenu .reminderTime2d,
 .context-submenu .reminderTime1w {
 	background-color:#fff;
-	background-image:none !important;
+	background-image:none;
 }
 
-#contextmenu-reminderemail-submenu .selected,
-#contextmenu-reminderpopup-submenu .selected {
-	background:url(../../../../core/asset/img/icons.png) no-repeat 12px -870px #c9dbd4;
+
+.context-submenu li a.eventContextMenu.selected {
+	background-image:none;
+	background-color:#c9dbd4 !important;
+}
+.context-submenu li a.eventContextMenu.disabled.selected {
+	cursor:default !important;
+	color:#999 !important;
+	background:url(../../../../core/asset/img/icons.png) repeat-x 0 -1570px !important;
+	background-color:#c9dbd4 !important;
 }
