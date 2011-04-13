@@ -34,7 +34,7 @@ class TodoyuCalendarReminderPopupManager {
 	/**
 	 * @var	String		Type of reminder
 	 */
-	const TYPE = REMINDERTYPE_POPUP;
+	const REMINDERTYPE = REMINDERTYPE_POPUP;
 
 
 
@@ -46,7 +46,10 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	TodoyuCalendarReminderPopup
 	 */
 	public static function getReminder($idEvent, $idPerson = 0) {
-		return TodoyuCalendarReminderHelper::getReminder(self::TYPE, $idEvent, $idPerson);
+		$idEvent	= intval($idEvent);
+		$idPerson	= intval($idPerson);
+
+		return new TodoyuCalendarReminderPopup($idEvent, $idPerson);
 	}
 
 
@@ -107,7 +110,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Boolean
 	 */
 	public static function isActivatedForPerson($idPerson = 0) {
-		return TodoyuCalendarReminderHelper::isReminderGenerallyActivated(self::TYPE, $idPerson);
+		return TodoyuCalendarReminderHelper::isReminderGenerallyActivated(REMINDERTYPE_POPUP, $idPerson);
 	}
 
 
@@ -123,7 +126,7 @@ class TodoyuCalendarReminderPopupManager {
 			return false;
 		}
 
-		return TodoyuCalendarReminderHelper::isEventSchedulable(self::TYPE, $idEvent, $idPerson);
+		return TodoyuCalendarReminderHelper::isEventSchedulable(REMINDERTYPE_POPUP, $idEvent, $idPerson);
 	}
 
 
@@ -339,7 +342,7 @@ class TodoyuCalendarReminderPopupManager {
 		}
 
 			// Set options disabled which are in the past already
-		$options['submenu']	= TodoyuCalendarReminderHelper::disableTimeKeyOptionsInThePast($options['submenu'], $idEvent);
+		$options['submenu']	= TodoyuCalendarReminderHelper::disablePastTimeKeyOptions($options['submenu'], $idEvent);
 
 		return $options;
 	}

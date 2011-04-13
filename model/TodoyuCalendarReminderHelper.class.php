@@ -74,7 +74,6 @@ class TodoyuCalendarReminderHelper {
 	 * @return TodoyuCalendarReminderEmail|TodoyuCalendarReminderPopup
 	 */
 	public static function getReminder($reminderType, $idEvent, $idPerson = 0) {
-		TodoyuDebug::printInFirebug($reminderType);
 		$reminderType	= intval($reminderType);
 		$idPerson		= personid($idPerson);
 
@@ -120,7 +119,7 @@ class TodoyuCalendarReminderHelper {
 	 * @param	Integer		$reminderType
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @return 
+	 * @return
 	 */
 	public static function isEventSchedulable($reminderType, $idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
@@ -212,7 +211,7 @@ class TodoyuCalendarReminderHelper {
 	 * @param	Integer	$idEvent
 	 * @return	Array
 	 */
-	public static function disableTimeKeyOptionsInThePast(array $subOptions, $idEvent) {
+	public static function disablePastTimeKeyOptions(array $subOptions, $idEvent) {
 		$idEvent		= intval($idEvent);
 		$eventDateStart	= TodoyuCalendarEventManager::getEvent($idEvent)->getStartDate();
 
