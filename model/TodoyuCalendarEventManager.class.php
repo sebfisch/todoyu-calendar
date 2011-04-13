@@ -991,7 +991,7 @@ class TodoyuCalendarEventManager {
 
 			// Option: popup reminder
 		if( TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent) ) {
-			$allowed['reminderemail']	= TodoyuCalendarReminderPopupManager::getContextMenuItems($idEvent);
+			$allowed['reminderpopup']	= TodoyuCalendarReminderPopupManager::getContextMenuItems($idEvent);
 		}
 
 		$items = array_merge_recursive($items, $allowed);
@@ -1025,6 +1025,21 @@ class TodoyuCalendarEventManager {
 
 		foreach($ownItems['show']['submenu'] as $key => $config) {
 			$ownItems['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', $dateStart, $config['jsAction']);
+		}
+
+			// Option: email reminder
+		if( TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent) ) {
+				// Setup email reminder context menu sub options (hilite selected, deactivate past options)
+			$ownItems['reminderemail']	= TodoyuCalendarReminderEmailManager::getContextMenuItems($idEvent);
+		} else {
+			unset($ownItems['reminderemail']);
+		}
+
+			// Option: popup reminder
+		if( TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent) ) {
+			$ownItems['reminderpopup']	= TodoyuCalendarReminderPopupManager::getContextMenuItems($idEvent);
+		} else {
+			unset($ownItems['reminderpopup']);
 		}
 
 		$items = array_merge_recursive($items, $ownItems);

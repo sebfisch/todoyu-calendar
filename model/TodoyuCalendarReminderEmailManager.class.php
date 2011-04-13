@@ -62,7 +62,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer		$idPerson
 	 */
 	public static function updateReminderTime($idEvent, $timeEmail, $idPerson = 0) {
-		TodoyuCalendarReminderHelper::updateReminderTime(REMINDERTYPE_EMAIL, $idEvent, $timeEmail, $idPerson);
+		TodoyuCalendarReminderHelper::updateReminderTime(self::REMINDERTYPE, $idEvent, $timeEmail, $idPerson);
 	}
 
 
@@ -77,7 +77,7 @@ class TodoyuCalendarReminderEmailManager {
 		$idPerson	= personid($idPerson);
 		$idEvent	= intval($data['id']);
 
-		$timeRemind	= TodoyuCalendarReminderHelper::getRemindingTimeByEventData(REMINDERTYPE_EMAIL, $data);
+		$timeRemind	= TodoyuCalendarReminderHelper::getRemindingTimeByEventData(self::REMINDERTYPE, $data);
 
 		self::updateReminderTime($idEvent, $timeRemind, $idPerson);
 	}
@@ -130,7 +130,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @return	Boolean
 	 */
 	public static function isActivatedForPerson($idPerson = 0) {
-		return TodoyuCalendarReminderHelper::isReminderGenerallyActivated(REMINDERTYPE_EMAIL, $idPerson);
+		return TodoyuCalendarReminderHelper::isReminderGenerallyActivated(self::REMINDERTYPE, $idPerson);
 	}
 
 
@@ -158,7 +158,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @return	Integer
 	 */
 	public static function getDefaultAdvanceTime($idPerson = 0) {
-		TodoyuCalendarReminderHelper::getDefaultAdvanceTime(REMINDERTYPE_EMAIL, $idPerson);
+		TodoyuCalendarReminderHelper::getDefaultAdvanceTime(self::REMINDERTYPE, $idPerson);
 	}
 
 
@@ -190,7 +190,7 @@ class TodoyuCalendarReminderEmailManager {
 			return false;
 		}
 
-		return TodoyuCalendarReminderHelper::isEventSchedulable(REMINDERTYPE_EMAIL, $idEvent, $idPerson);
+		return TodoyuCalendarReminderHelper::isEventSchedulable(self::REMINDERTYPE, $idEvent, $idPerson);
 	}
 
 
