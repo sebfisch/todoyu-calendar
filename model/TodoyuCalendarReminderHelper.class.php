@@ -125,9 +125,7 @@ class TodoyuCalendarReminderHelper {
 		$idEvent	= intval($idEvent);
 		$idPerson	= personid($idPerson);
 
-		$event	= self::getReminder($reminderType, $idEvent, $idPerson)->getEvent();
-
-		return $event->isPersonAssigned($idPerson);
+		return TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson);
 	}
 
 

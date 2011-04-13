@@ -3,7 +3,7 @@
 	<fieldsets>
 
 		<fieldset name="reminders">
-			
+			<legend>My reminders for this appointment</legend>
 			<elements>
 				<field type="checkbox" name="is_reminderemail_active">
 					<label>calendar.event.attr.reminderemail_active</label>

@@ -38,7 +38,7 @@ class TodoyuCalendarReminderEmail extends TodoyuBaseObject {
 
 		if( ! TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson) ) {
 				// Given person not assigned? Prevent reminder construction
-			Todoyu::log('Instantiating reinder failed because person ' . $idPerson . ' is not assigned to event ' . $idEvent, TodoyuLogger::LEVEL_ERROR);
+			Todoyu::log('Instantiating reminder failed because person ' . $idPerson . ' is not assigned to event ' . $idEvent, TodoyuLogger::LEVEL_ERROR);
 			return false;
 		}
 
@@ -114,11 +114,7 @@ class TodoyuCalendarReminderEmail extends TodoyuBaseObject {
 	public function getAdvanceTime() {
 		$dateSendMail	= $this->getDateRemindEmail();
 
-		if( $dateSendMail > 0 ) {
-			return $this->getEventStartDate() - $this->getDateRemindEmail();
-		}
-
-		return false;
+		return $dateSendMail > 0 ? ($this->getEventStartDate() - $dateSendMail) : false;
 	}
 
 

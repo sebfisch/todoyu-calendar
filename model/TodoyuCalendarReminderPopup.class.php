@@ -114,6 +114,17 @@ class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 
 
 	/**
+	 * Get amount of time before event when to send reminder email
+	 *
+	 * @return	Boolean|Integer
+	 */
+	public function getAdvanceTime() {
+		return $this->getEventStartDate() - $this->get('date_remindpopup');
+	}
+
+
+
+	/**
 	 * Get scheduled next reminding time
 	 *
 	 * @return	String

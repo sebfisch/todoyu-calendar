@@ -128,9 +128,10 @@ class TodoyuCalendarViewHelper {
 			$secondsUntil	= TodoyuTime::SECONDS_MIN * $minutes;
 
 			$options[] = array(
-				'value'	=> $secondsUntil,
-				'label'	=> TodoyuTime::autoformatDuration($secondsUntil)
+				'value'		=> $secondsUntil,
+				'label'		=> TodoyuTime::autoformatDuration($secondsUntil),
 			);
+
 		}
 
 		return $options;

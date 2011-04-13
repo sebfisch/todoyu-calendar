@@ -116,6 +116,22 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
+	 * Get amount of time before event when to show reminder popup
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return	Integer					Amount of seconds
+	 */
+	public static function getAdvanceTime($idEvent, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		return self::getReminder($idEvent, $idPerson)->getAdvanceTime();
+	}
+
+
+
+	/**
 	 * Check whether given/current person can schedule a reminder for the event of the given ID
 	 *
 	 * @param	Integer		$idEvent
