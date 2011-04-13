@@ -171,10 +171,7 @@ class TodoyuCalendarReminderEmailManager {
 	public static function getSelectedAdvanceTimeContextMenuOptionKey($idEvent) {
 		$idEvent	= intval($idEvent);
 
-			// Get time amount before the event when sending email is scheduled
-		$advanceTime	= self::getAdvanceTime($idEvent);
-
-		return '5m';
+		return self::getAdvanceTime($idEvent);
 	}
 
 
@@ -207,8 +204,7 @@ class TodoyuCalendarReminderEmailManager {
 		$options	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event']['reminderemail'];
 
 			// Set selected option CSS class
-		$selectedTimeOptionKey	= TodoyuCalendarReminderEmailManager::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
-
+		$selectedTimeOptionKey	= self::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
 		if( key_exists($selectedTimeOptionKey, $options['submenu']) ) {
 			$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
 		}

@@ -167,7 +167,7 @@ class TodoyuCalendarReminderPopupManager {
 	public static function getSelectedAdvanceTimeContextMenuOptionKey($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		return '5m';
+		return self::getAdvanceTime($idEvent);
 	}
 
 
