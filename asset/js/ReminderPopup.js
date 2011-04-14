@@ -67,7 +67,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onDeactivated: function(idEvent, response) {
-		Todoyu.notifySuccess('[LLL:calendar.event.reminder.notify.popup.deactivated');
+		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.popup.deactivated');
 	},
 
 
@@ -103,7 +103,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onReminderTimeUpdated: function(idEvent, response) {
-		Todoyu.notifySuccess('[LLL:calendar.event.reminder.notify.popup.timeupdated');
+		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.popup.timeupdated');
 	},
 
 

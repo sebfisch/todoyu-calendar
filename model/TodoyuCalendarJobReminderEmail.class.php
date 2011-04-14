@@ -37,7 +37,13 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 			// Send emails
 		foreach($reminderIDs as $idReminder) {
 			$reminder	= TodoyuCalendarReminderManager::getReminder($idReminder);
-			echo $idReminder."\n";
+			$idPerson	= $reminder->getPersonAssignedID();
+
+				// Only send to persons having the right to use email reminders
+			if( TodoyuCalendarReminderEmailManager::isActivatedForPerson($idPerson) ) {
+				self::sendMail($idReminder);
+			}
+
 		}
 	}
 
@@ -48,7 +54,7 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 *
 	 * @return	Array
 	 */
-	private function getUnsentDueReminderIDs() {
+	private static function getUnsentDueReminderIDs() {
 		$field	= 'id';
 		$table	= 'ext_calendar_mm_event_person';
 		$where	= '		is_remindemailsent	= 0'
@@ -58,6 +64,93 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 		return Todoyu::db()->getColumn($field, $table, $where, $field, $field);
 	}
 
+
+
+	/**
+	 * Send an event email to a person
+	 *
+	 * @param	Integer		$idReminder
+	 * @return	Boolean		Success
+	 */
+	private static function sendMail($idReminder) {
+		$idReminder	= intval($idReminder);
+		$reminder	= TodoyuCalendarReminderManager::getReminder($idReminder);
+		$event		= $reminder->getEvent();
+
+		if( $event->isDeleted() ) {
+			return false;
+		}
+
+		$idPerson	= $reminder->getPersonAssignedID();
+		$person		= $reminder->getPersonAssigned();
+		$eventTitle	= $event->getTitle();
+
+			// Set mail config
+		$mail			= new PHPMailerLite(true);
+		$mail->Mailer	= 'mail';
+		$mail->CharSet	= 'utf-8';
+
+			// Set "from" name and email address from system config
+		$mail->SetFrom(Todoyu::$CONFIG['SYSTEM']['name'], Todoyu::$CONFIG['SYSTEM']['email']);
+
+			// Set "subject"
+		$mail->Subject	= Label('calendar.reminder.email.subject') . ': ' . $eventTitle;
+
+			// Add message body as HTML and plain text
+		$htmlBody	= self::getMailContent($idReminder, $idPerson, $hideEmails, true, $operationID);
+		$textBody	= self::getMailContent($idReminder, $idPerson, $hideEmails, false, $operationID);
+
+		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
+		$mail->AltBody	= $textBody;
+
+			// Add "to" address (recipient)
+		$mail->AddAddress($person->getEmail(), $person->getFullName());
+
+		try {
+			$sendStatus	= $mail->Send();
+		} catch(phpmailerException $e) {
+			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
+		} catch(Exception $e) {
+			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
+		}
+
+		return $sendStatus;
+	}
+
+
+	/**
+	 * Render content for HTML mail
+	 *
+	 * @param	Integer		$idEvent		Event to send
+	 * @param	Integer		$idPerson		Person to send the email to
+	 * @param	Boolean		$hideEmails
+	 * @param	Integer		$operationID	what's been done? (create, update, delete)
+	 * @return	String
+	 */
+	private static function getMailContent($idEvent, $idPerson, $hideEmails = true, $modeHTML = true, $operationID) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= intval($idPerson);
+
+		$tmpl				= self::getMailTemplateName($modeHTML);
+		$data				= TodoyuCalendarEventMailManager::getMailData($idEvent, $idPerson);
+		$data['hideEmails']	= $hideEmails;
+
+		return render($tmpl, $data);
+	}
+
+
+
+	/**
+	 * Get filename of event reminder email template to current mode (text/HTML)
+	 *
+	 * @param	Boolean		$modeHTML
+	 * @return	String
+	 */
+	public static function getMailTemplateName($modeHTML = false) {
+		$path	= 'ext/calendar/view/emails/event-reminder';
+
+		return $path . ( $modeHTML ? '-html' : '-text' ) . '.tmpl';
+	}
 }
 
 ?>

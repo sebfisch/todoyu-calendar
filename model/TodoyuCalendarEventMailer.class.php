@@ -164,30 +164,7 @@ class TodoyuCalendarEventMailer {
 	 * @return	Array
 	 */
 	private static function getMailData($idEvent, $idPerson) {
-		$idEvent		= intval($idEvent);
-		$idPerson		= intval($idPerson);
-
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent, true);
-
-		$personWrite	= $event->getCreatePerson();
-		$personReceive	= TodoyuContactPersonManager::getPerson($idPerson);
-		$personSend		= TodoyuAuth::getPerson();
-
-		$data	= array(
-			'event'			=> $event->getTemplateData(),
-			'personReceive'	=> $personReceive->getTemplateData(),
-			'personWrite'	=> $personWrite->getTemplateData(),
-			'personSend'	=> $personSend->getTemplateData(),
-			'attendees'		=> TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true)
-		);
-
-		$data['eventlink'] = TodoyuString::buildUrl(array(
-			'ext'		=> 'calendar',
-			'event'		=> $idEvent,
-			'tab'		=> 'week'
-		), 'event-' . $idEvent, true);
-
-		return $data;
+		return TodoyuCalendarEventMailManager::getMailData($idEvent, $idPerson);
 	}
 
 

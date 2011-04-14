@@ -64,6 +64,28 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 
 
 	/**
+	 * Get ID of person to be reminded (= person assigned to event of reminder)
+	 *
+	 * @return	Integer
+	 */
+	public function getPersonAssignedID() {
+		return $this->data['id_person'];
+	}
+
+
+
+	/**
+	 * Get (object of) person to be reminded (=person assigned to event of reminder)
+	 *
+	 * @return	TodoyuContactPerson
+	 */
+	public function getPersonAssigned() {
+		return TodoyuContactPersonManager::getPerson($this->getPersonAssignedID());
+	}
+
+
+
+	/**
 	 * Get ID of event of reminder
 	 *
 	 * @return	Integer

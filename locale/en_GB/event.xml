@@ -47,16 +47,6 @@
 	<label index="attr.email_advancetime">Time before appointment to send reminder email</label>
 	<label index="attr.reminderpopup_active">Activate Popup Reminder</label>
 	<label index="attr.popup_advancetime">Time before appointment to show reminder popup</label>
-	<label index="reminders">Reminders</label>
-	<label index="reminderEmail">Email</label>
-	<label index="reminderPopup">Popup</label>
-	<label index="reminder.deactivated">Reminder Deactivated</label>
-	<label index="reminder.notify.email.deactivated">Reminder Email Deactivated</label>
-	<label index="reminder.notify.popup.deactivated">Reminder Popup Deactivated</label>
-	<label index="reminder.notify.email.timeupdated">Email reminder schedule has been changed</label>
-	<label index="reminder.notify.popup.timeupdated">Popup reminder schedule has been changed</label>
-	<label index="reminder.beforeDateStart">before appointment</label>
-	<label index="myreminders">My Reminders</label>
 	<label index="tree.header.title">Event Title</label>
 	<label index="eventslist.birthdaysWithinTheNextweeks">Birthdays within the next weeks</label>
 	<label index="eventslist.holidaysWithinTheNextweeks">Holidays within the next weeks</label>

@@ -178,7 +178,7 @@ class TodoyuCalendarReminderManager {
 				return TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'is_reminder' . $typePrefix . '_active') ? true : false;
 			}
 		}
-			// No
+
 		return false;
 	}
 

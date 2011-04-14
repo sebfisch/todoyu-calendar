@@ -1,26 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Comment Mail</title>
-<style type="text/css">
-body, p {
-	margin:0;
-	padding:0;
-	font-family:Arial;
-	font-size:11px;
-}
-
-td {
-	font-family:Arial;
-	font-size:11px;
-}
-</style>
-</head>
-
-<body bgcolor="#f8fff0">
-{* Event type colors *}
-{assign array("" "#7f007f" "#FF0000" "#FFAC00" "#FFFC00" "#77DC00" "green" "#A60000" "grey" "#2335e0" "pink") colors}
+{include file="parts-event-start-html.tmpl"}
 
 <table width="600" border="0" cellspacing="0" cellpadding="0">
 	<tr>
@@ -35,74 +13,7 @@ td {
 			<br /><br />
 		</td>
 	</tr>
-	<tr>
-		<td>
-			{math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}{math equation="d / 3600" d=$duration assign=duration}
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td>{Label core.global.title}:	</td>
-					<td>{htmlencode $event.title}</td>
-				</tr>
-				<tr>
-					<td>{Label calendar.event.attr.timespan}: </td>
-					<td>{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} {Label core.date.time.hours})</td>
-				</tr>
-				{if ! empty($event.place)}
-				<tr>
-					<td>{Label calendar.event.attr.place}: </td>
-					<td>{$event.place}</td>
-				</tr>
-				{/if}
-				<tr>
-					<td><br /></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>
-						{Label calendar.event.mail.event.from}:
-					</td>
-					<td>
-						{$personWrite.firstname} {$personWrite.lastname}{if $hideEmails != true} <{$personWrite.email}>{/if}
-					</td>
-				</tr>
-				{if $personWrite.id !== $personSend.id}
-				<tr>
-					<td>{Label calendar.event.mail.sentBy}:	</td>
-					<td>
-						{$personSend.firstname} {$personSend.lastname}{if $hideEmails != true} <{$personSend.email}>{/if}
-					</td>
-				</tr>
-				{/if}
-				{if ! empty($event.description)}
-				<tr>
-					<td>{Label core.global.description}:	</td>
-					<td>
-						{html2text $event.description}
-					</td>
-				</tr>
-				{/if}
-				<tr>
-					<td> </td>
-					<td> </td>
-				</tr>
-				<tr>
-					<td>
-						<br /><br />
-						{Label calendar.event.attr.attendees}:
-					</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						{foreach $attendees personData}
-							{$personData.firstname} {$personData.lastname}<br />
-						{/foreach}
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
+	{include file="parts-event-details-html.tmpl"}
 	<tr>
 		<td>
 			<br /><br />
