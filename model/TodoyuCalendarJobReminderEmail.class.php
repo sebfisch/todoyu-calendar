@@ -97,8 +97,8 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 		$mail->Subject	= Label('calendar.reminder.email.subject') . ': ' . $eventTitle;
 
 			// Add message body as HTML and plain text
-		$htmlBody	= self::getMailContent($idReminder, $idPerson, $hideEmails, true, $operationID);
-		$textBody	= self::getMailContent($idReminder, $idPerson, $hideEmails, false, $operationID);
+		$htmlBody	= self::getMailContent($idReminder, $idPerson, false, true);
+		$textBody	= self::getMailContent($idReminder, $idPerson, false, false);
 
 		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
 		$mail->AltBody	= $textBody;
@@ -124,10 +124,10 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 * @param	Integer		$idEvent		Event to send
 	 * @param	Integer		$idPerson		Person to send the email to
 	 * @param	Boolean		$hideEmails
-	 * @param	Integer		$operationID	what's been done? (create, update, delete)
+	 * @param	Boolean		$modeHTML
 	 * @return	String
 	 */
-	private static function getMailContent($idEvent, $idPerson, $hideEmails = true, $modeHTML = true, $operationID) {
+	private static function getMailContent($idEvent, $idPerson, $hideEmails = true, $modeHTML = true) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 

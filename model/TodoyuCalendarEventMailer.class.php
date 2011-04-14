@@ -174,7 +174,7 @@ class TodoyuCalendarEventMailer {
 	 *
 	 * @param	Integer		$operationID
 	 * @param	Boolean		$modeHTML
-	 * @return	String
+	 * @return	String|Boolean
 	 */
 	public static function getMailTemplateName($operationID, $modeHTML = false) {
 		$path	= 'ext/calendar/view/emails/';
@@ -188,8 +188,10 @@ class TodoyuCalendarEventMailer {
 				break;
 			case OPERATIONTYPE_RECORD_UPDATE:
 				$tmpl	= $path . 'event-update';
+				break;
 			default:
-
+				Todoyu::log('Mail template missing because of wrong operation ID: ' . $operationID, TodoyuLogger::LEVEL_ERROR);
+				$tmpl	= false;
 				break;
 		}
 
@@ -205,17 +207,22 @@ class TodoyuCalendarEventMailer {
 	 * @param	Integer		$idPerson		Person to send the email to
 	 * @param	Boolean		$hideEmails
 	 * @param	Integer		$operationID	what's been done? (create, update, delete)
-	 * @return	String
+	 * @return	String|Boolean
 	 */
 	private static function getMailContent($idEvent, $idPerson, $hideEmails = true, $modeHTML = true, $operationID) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 
-		$tmpl				= self::getMailTemplateName($operationID, $modeHTML);
-		$data				= self::getMailData($idEvent, $idPerson);
-		$data['hideEmails']	= $hideEmails;
+		$tmpl	= self::getMailTemplateName($operationID, $modeHTML);
 
-		return render($tmpl, $data);
+		if($tmpl !== false) {
+			$data				= self::getMailData($idEvent, $idPerson);
+			$data['hideEmails']	= $hideEmails;
+
+			return render($tmpl, $data);
+		}
+
+		return false;
 	}
 
 }
