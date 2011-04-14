@@ -39,13 +39,13 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
-	 * Get current person's reminder to given event
+	 * Get person's reminder to given event
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
 	 * @return	TodoyuCalendarReminderPopup
 	 */
-	public static function getReminder($idEvent, $idPerson = 0) {
+	public static function getReminderByAssignment($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 
@@ -126,7 +126,7 @@ class TodoyuCalendarReminderPopupManager {
 		$idEvent	= intval($idEvent);
 		$idPerson	= personid($idPerson);
 
-		return self::getReminder($idEvent, $idPerson)->getAdvanceTime();
+		return self::getReminderByAssignment($idEvent, $idPerson)->getAdvanceTime();
 	}
 
 
@@ -244,7 +244,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Integer
 	 */
 	public static function getReminderPopupTime($idEvent) {
-		$showTime	= self::getReminder($idEvent)->getTimePopup();
+		$showTime	= self::getReminderByAssignment($idEvent)->getTimePopup();
 
 			// Missed reminders of events in the past? show immediately
 /** @todo	decide whether to add this as an option to extconf? */
@@ -268,7 +268,7 @@ class TodoyuCalendarReminderPopupManager {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 
-		return self::getReminder($idEvent, $idPerson)->isDismissed();
+		return self::getReminderByAssignment($idEvent, $idPerson)->isDismissed();
 	}
 
 
@@ -302,7 +302,7 @@ class TodoyuCalendarReminderPopupManager {
 		$where	= '		`id_event`	= ' . $idEvent
 				. ' AND	`id_person`	= ' . personid();
 		$update	= array(
-			'is_reminderdismissed'	=> 1
+			'is_remindpopupdismissed'	=> 1
 		);
 
 		return Todoyu::db()->doUpdate($table, $where, $update) === 1;

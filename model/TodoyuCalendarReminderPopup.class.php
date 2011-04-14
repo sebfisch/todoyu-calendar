@@ -25,7 +25,6 @@
  * @subpackage	Calendar
  *
  */
-//class TodoyuCalendarReminderPopup extends TodoyuBaseObject {
 class TodoyuCalendarReminderPopup extends TodoyuCalendarReminder {
 
 	/**
@@ -104,7 +103,7 @@ class TodoyuCalendarReminderPopup extends TodoyuCalendarReminder {
 	 * @return	String
 	 */
 	public function isDismissed() {
-		return $this->get('is_reminderdismissed') ? true : false;
+		return $this->get('is_remindpopupdismissed') ? true : false;
 	}
 
 }

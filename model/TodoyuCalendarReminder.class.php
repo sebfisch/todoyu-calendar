@@ -30,7 +30,8 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 	/**
 	 * Initialize reminder (based on event's person assignment)
 	 *
-	 * @param	Integer		$idReminder
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
 	 */
 	public function __construct($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
@@ -42,7 +43,7 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 			return false;
 		}
 
-		$idReminder	= self::getMMid($idEvent, $idPerson);
+		$idReminder	= self::getReminderIDbyAssignment($idEvent, $idPerson);
 
 		parent::__construct($idReminder, 'ext_calendar_mm_event_person');
 	}
@@ -56,8 +57,8 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	private static function getMMid($idEvent, $idPerson = 0) {
-		return TodoyuCalendarReminderManager::getMMrecordID($idEvent, $idPerson);
+	private static function getReminderIDbyAssignment($idEvent, $idPerson = 0) {
+		return TodoyuCalendarReminderManager::getReminderIDbyAssignment($idEvent, $idPerson);
 	}
 
 

@@ -27,14 +27,66 @@
 class TodoyuCalendarReminderManager {
 
 	/**
+	 * @var String		Default table for database requests
+	 */
+	const TABLE = 'ext_calendar_mm_event_person';
+
+
+	
+	/**
+	 * Get reminder object to given event/person
+	 *
+	 * @param	Integer		$idReminder
+	 * @return	TodoyuCalendarReminder
+	 */
+	public static function getReminder($idReminder) {
+		$idReminder	= intval($idReminder);
+		$recordData	= self::getReminderRecord($idReminder);
+
+		return new TodoyuCalendarReminder($recordData['id_event'], $recordData['id_person']);
+	}
+
+
+
+	/**
+	 * Get reminder record data
+	 *
+	 * @param	Integer		$idReminder
+	 * @return	Array
+	 */
+	private static function getReminderRecord($idReminder) {
+		$idReminder	= intval($idReminder);
+
+		return Todoyu::db()->getRecord(self::TABLE, $idReminder);
+	}
+
+
+
+	/**
 	 * Get reminder object to given event/person
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
 	 * @return	TodoyuCalendarReminder
 	 */
-	public static function getReminder($idEvent, $idPerson) {
+	public static function getReminderByAssignment($idEvent, $idPerson) {
 		return new TodoyuCalendarReminder($idEvent, $idPerson);
+	}
+
+
+
+	/**
+	 * Get record ID of event-person MM relation of given event/person
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	public static function getReminderIDbyAssignment($idEvent, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
+		return Todoyu::db()->getMMid('ext_calendar_mm_event_person', 'id_event', $idEvent, 'id_person', $idPerson);
 	}
 
 
@@ -54,22 +106,6 @@ class TodoyuCalendarReminderManager {
 
 
 	/**
-	 * Get record ID of event-person MM relation of given event/person
-	 *
-	 * @param	Integer		$idEvent
-	 * @param	Integer		$idPerson
-	 * @return	Integer
-	 */
-	public static function getMMrecordID($idEvent, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
-
-		return Todoyu::db()->getMMid('ext_calendar_mm_event_person', 'id_event', $idEvent, 'id_person', $idPerson);
-	}
-
-
-
-	/**
 	 * Get reminder object of given type, event and person
 	 *
 	 * @param	Integer		$reminderType
@@ -82,9 +118,9 @@ class TodoyuCalendarReminderManager {
 		$idPerson		= personid($idPerson);
 
 		if( $reminderType == REMINDERTYPE_EMAIL ) {
-			return TodoyuCalendarReminderEmailManager::getReminder($idEvent, $idPerson);
+			return TodoyuCalendarReminderEmailManager::getReminderByAssignment($idEvent, $idPerson);
 		} else {
-			return TodoyuCalendarReminderPopupManager::getReminder($idEvent, $idPerson);
+			return TodoyuCalendarReminderPopupManager::getReminderByAssignment($idEvent, $idPerson);
 		}
 	}
 
@@ -251,8 +287,7 @@ class TodoyuCalendarReminderManager {
 		$personIDs		= TodoyuCalendarEventManager::getEvent($idEvent)->getAssignedPersonIDs();
 
 		foreach($personIDs as $idPerson) {
-			$mmID		= self::getMMrecordID($idEvent, $idPerson);
-			$reminder	= self::getReminder($idEvent, $idPerson);
+			$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
 
 			$dateRemindEmail	= $reminder->getDateRemind(REMINDERTYPE_EMAIL);
 			$dateRemindPopup	= $reminder->getDateRemind(REMINDERTYPE_POPUP);
@@ -268,7 +303,7 @@ class TodoyuCalendarReminderManager {
 			}
 
 			if( ! empty($fieldValues) ) {
-				self::updateMMrecord($mmID, $fieldValues);
+				self::updateMMrecord($reminder->getID(), $fieldValues);
 			}
 		}
 	}

@@ -202,7 +202,7 @@ class TodoyuCalendarEventMailer {
 	public static function getMailTemplateName($operationID, $modeHTML = false) {
 		$path	= 'ext/calendar/view/emails/';
 
-		switch( $operationID ) {
+		switch($operationID) {
 			case OPERATIONTYPE_RECORD_CREATE:
 				$tmpl	= $path . 'event-new';
 				break;

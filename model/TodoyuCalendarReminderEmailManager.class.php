@@ -45,7 +45,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer		$idPerson
 	 * @return	TodoyuCalendarReminderEmail
 	 */
-	public static function getReminder($idEvent, $idPerson = 0) {
+	public static function getReminderByAssignment($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 
@@ -118,7 +118,7 @@ class TodoyuCalendarReminderEmailManager {
 		$idEvent	= intval($idEvent);
 		$idPerson	= personid($idPerson);
 
-		return self::getReminder($idEvent, $idPerson)->getDateRemindEmail();
+		return self::getReminderByAssignment($idEvent, $idPerson)->getDateRemindEmail();
 	}
 
 
@@ -146,7 +146,7 @@ class TodoyuCalendarReminderEmailManager {
 		$idEvent	= intval($idEvent);
 		$idPerson	= personid($idPerson);
 
-		return self::getReminder($idEvent, $idPerson)->getAdvanceTime();
+		return self::getReminderByAssignment($idEvent, $idPerson)->getAdvanceTime();
 	}
 
 

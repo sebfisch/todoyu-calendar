@@ -18,6 +18,13 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/* ------------------------
+	Schedule Cronjobs
+   ------------------------ */
+TodoyuScheduler::addJob('TodoyuCalendarJobReminderEmail', 0);
+
+
+
 /* ----------------------------
 	Context Menu Callbacks
    ---------------------------- */
