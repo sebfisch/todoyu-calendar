@@ -64,7 +64,7 @@ class TodoyuCalendarReminderPopupManager {
 		$idPerson	= personid($idPerson);
 		$idEvent	= intval($data['id']);
 
-		$timeRemind	= TodoyuCalendarReminderHelper::getRemindingTimeByEventData(self::REMINDERTYPE, $data);
+		$timeRemind	= TodoyuCalendarReminderManager::getRemindingTimeByEventData(self::REMINDERTYPE, $data);
 
 		self::updateReminderTime($idEvent, $timeRemind, $idPerson);
 	}
@@ -79,7 +79,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @param	Integer		$idPerson
 	 */
 	public static function updateReminderTime($idEvent, $timePopup, $idPerson = 0) {
-		TodoyuCalendarReminderHelper::updateReminderTime(self::REMINDERTYPE, $idEvent, $timePopup, $idPerson);
+		TodoyuCalendarReminderManager::updateReminderTime(self::REMINDERTYPE, $idEvent, $timePopup, $idPerson);
 	}
 
 
@@ -110,7 +110,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Boolean
 	 */
 	public static function isActivatedForPerson($idPerson = 0) {
-		return TodoyuCalendarReminderHelper::isReminderGenerallyActivated(self::REMINDERTYPE, $idPerson);
+		return TodoyuCalendarReminderManager::isRemindertypeActivated(self::REMINDERTYPE, $idPerson);
 	}
 
 
@@ -142,7 +142,7 @@ class TodoyuCalendarReminderPopupManager {
 			return false;
 		}
 
-		return TodoyuCalendarReminderHelper::isEventSchedulable(self::REMINDERTYPE, $idEvent, $idPerson);
+		return TodoyuCalendarReminderManager::isEventSchedulable(self::REMINDERTYPE, $idEvent, $idPerson);
 	}
 
 
@@ -154,7 +154,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Integer
 	 */
 	public static function getDefaultAdvanceTime($idPerson = 0) {
-		return TodoyuCalendarReminderHelper::getDefaultAdvanceTime(self::REMINDERTYPE, $idPerson);
+		return TodoyuCalendarReminderManager::getDefaultAdvanceTime(self::REMINDERTYPE, $idPerson);
 	}
 
 
@@ -244,7 +244,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Integer
 	 */
 	public static function getReminderPopupTime($idEvent) {
-		$showTime	= self::getReminder($idEvent)->getShowTime();
+		$showTime	= self::getReminder($idEvent)->getTimePopup();
 
 			// Missed reminders of events in the past? show immediately
 /** @todo	decide whether to add this as an option to extconf? */
@@ -362,7 +362,7 @@ class TodoyuCalendarReminderPopupManager {
 			$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
 		}
 			// Set options disabled which are in the past already
-		$options['submenu']	= TodoyuCalendarReminderHelper::disablePastTimeKeyOptions($options['submenu'], $idEvent);
+		$options['submenu']	= TodoyuCalendarReminderManager::disablePastTimeKeyOptions($options['submenu'], $idEvent);
 
 		return $options;
 	}

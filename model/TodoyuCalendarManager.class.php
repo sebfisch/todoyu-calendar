@@ -61,6 +61,8 @@ class TodoyuCalendarManager {
 		if( sizeof($holidaySets) > 0 ) {
 			$holidays	= TodoyuCalendarHolidayManager::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySets);
 			$grouped	= TodoyuCalendarHolidayManager::groupHolidaysByDays($holidays);
+		} else {
+			$grouped	= array();
 		}
 
 		return $grouped;
@@ -317,12 +319,12 @@ class TodoyuCalendarManager {
 	public static function modifyAddressFormfields(TodoyuForm $form, $index, array $params) {
 		if( $params['field'] instanceof TodoyuFormElement ) {
 			$parentForm	= $params['field']->getForm()->getName();
-		}
 
-		if( $parentForm == 'company' ) {
-				// Extend company record form with holiday set selector
-			$xmlPath	= 'ext/calendar/config/form/addressholidayset.xml';
-			$form->addElementsFromXML($xmlPath);
+			if( $parentForm == 'company' ) {
+					// Extend company record form with holiday set selector
+				$xmlPath	= 'ext/calendar/config/form/addressholidayset.xml';
+				$form->addElementsFromXML($xmlPath);
+			}
 		}
 
 		return $form;

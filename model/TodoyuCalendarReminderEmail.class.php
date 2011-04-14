@@ -25,7 +25,7 @@
  * @subpackage	Calendar
  *
  */
-class TodoyuCalendarReminderEmail extends TodoyuBaseObject {
+class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 
 	/**
 	 * Initialize reminder (based on event's person assignment)
@@ -33,64 +33,7 @@ class TodoyuCalendarReminderEmail extends TodoyuBaseObject {
 	 * @param	Integer		$idReminder
 	 */
 	public function __construct($idEvent, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
-
-		if( ! TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson) ) {
-				// Given person not assigned? Prevent reminder construction
-			Todoyu::log('Instantiating reminder failed because person ' . $idPerson . ' is not assigned to event ' . $idEvent, TodoyuLogger::LEVEL_ERROR);
-			return false;
-		}
-
-		$idReminder	= self::getIDreminder($idEvent, $idPerson);
-
-		parent::__construct($idReminder, 'ext_calendar_mm_event_person');
-	}
-
-
-
-	/**
-	 * Get ID of event of reminder
-	 *
-	 * @return	Integer
-	 */
-	public function getIDevent() {
-		return intval($this->data['id_event']);
-	}
-
-
-
-	/**
-	 * Get event of reminder
-	 *
-	 * @return TodoyuCalendarEvent
-	 */
-	public function getEvent() {
-		return TodoyuCalendarEventManager::getEvent($this->getIDevent());
-	}
-
-
-
-	/**
-	 * Get ID of reminder (is ID of event_person MM record) to given event of given/current person
-	 *
-	 * @param	Integer		$idEvent
-	 * @param	Integer		$idPerson
-	 * @return	Integer
-	 */
-	private static function getIDreminder($idEvent, $idPerson = 0) {
-		return TodoyuCalendarReminderHelper::getMMrelationRecordID($idEvent, $idPerson);
-	}
-
-
-
-	/**
-	 * Get starting time of event of reminder
-	 *
-	 * @return	Integer
-	 */
-	public function getEventStartDate() {
-		return $this->getEvent()->getStartDate();
+		parent::__construct($idEvent, $idPerson);
 	}
 
 
@@ -112,20 +55,7 @@ class TodoyuCalendarReminderEmail extends TodoyuBaseObject {
 	 * @return	Boolean|Integer
 	 */
 	public function getAdvanceTime() {
-		$dateSendMail	= $this->getDateRemindEmail();
-
-		return $dateSendMail > 0 ? ($this->getEventStartDate() - $dateSendMail) : false;
-	}
-
-
-
-	/**
-	 * Is event in past already?
-	 *
-	 * @return	String
-	 */
-	public function isPassed() {
-		return $this->getEventStartDate() < NOW;
+		return parent::getAdvanceTime(REMINDERTYPE_EMAIL);
 	}
 
 
@@ -136,29 +66,7 @@ class TodoyuCalendarReminderEmail extends TodoyuBaseObject {
 	 * @return	String
 	 */
 	public function isDisabled() {
-		return $this->get('date_remindemail') === 0;
-	}
-
-
-
-	/**
-	 * Check whether event of reminder is a full-day event
-	 *
-	 * @return	Boolean
-	 */
-	public function isDayevent() {
-		return $this->getEvent()->isDayevent();
-	}
-
-
-
-	/**
-	 * Check whether event of reminder is private
-	 *
-	 * @return	Boolean
-	 */
-	public function isPrivate() {
-		return $this->getEvent()->isPrivate();
+		return parent::isDisabled(REMINDERTYPE_EMAIL);
 	}
 
 }

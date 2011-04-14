@@ -149,7 +149,7 @@ class TodoyuCalendarViewHelper {
 		$idEvent	= intval($field->getForm()->getRecordID());
 
 		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
-		$timeLeft	=  $event->getStartDate() - NOW;
+//		$timeLeft	= $event->getStartDate() - NOW;
 		$options	= array();
 
 		$intervals	= Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_RESCHEDULEINTERVALS'];

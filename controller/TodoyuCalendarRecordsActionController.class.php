@@ -57,11 +57,12 @@ class TodoyuCalendarRecordsActionController extends TodoyuActionController {
 				break;
 
 			case 'holidayset':
+			default:
 				$xmlPath	= $xmlBase . '/holiday.xml';
 				break;
 		}
 
-		$form		= TodoyuFormManager::getForm($xmlPath, $idRecord);
+		$form	= TodoyuFormManager::getForm($xmlPath, $idRecord);
 
 			// Load form data
 		$formData	= $form->getFormData();

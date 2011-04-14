@@ -24,7 +24,7 @@
  * @package			Todoyu
  * @subpackage		Calendar
  */
-class TodoyuCalendarReminderHelper {
+class TodoyuCalendarReminderManager {
 
 	/**
 	 * Get prefix ('email' / 'popup') of given reminder type
@@ -47,20 +47,42 @@ class TodoyuCalendarReminderHelper {
 	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getMMrelationRecordID($idEvent, $idPerson = 0) {
+	public static function getMMrecordID($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= personid($idPerson);
 
-		$field	= 'id';
-		$table	= 'ext_calendar_mm_event_person';
+		return Todoyu::db()->getMMid('ext_calendar_mm_event_person', 'id_event', $idEvent, 'id_person', $idPerson);
+	}
 
-		$where	= '		id_event 	= ' . $idEvent
-				. ' AND	id_person	= ' . $idPerson;
 
-		$limit	= '1';
 
-		$row	= Todoyu::db()->getColumn($field, $table, $where, '', '', $limit, 'id');
-		return $row[0];
+//	/**
+//	 * Get record ID of event-person MM relation of given event/person
+//	 *
+//	 * @param	Integer		$idEvent
+//	 * @param	Integer		$idPerson
+//	 * @return	Integer
+//	 */
+//	public static function getMMrecordData($idEvent, $idPerson = 0) {
+//		$idEvent	= intval($idEvent);
+//		$idPerson	= personid($idPerson);
+//
+//
+//	}
+
+
+
+	/**
+	 * Update event-person MM record of given ID
+	 *
+	 * @param	Integer		$idRecord
+	 * @param	Array		$fieldValues
+	 */
+	public static function updateMMrecord($idRecord, array $fieldValues) {
+		$table		= 'ext_calendar_mm_event_person';
+		$idRecord	= intval($idRecord);
+
+		Todoyu::db()->updateRecord($table, $idRecord, $fieldValues);
 	}
 
 
@@ -93,7 +115,7 @@ class TodoyuCalendarReminderHelper {
 	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
-	public static function isReminderGenerallyActivated($reminderType, $idPerson = 0) {
+	public static function isRemindertypeActivated($reminderType, $idPerson = 0) {
 		$idPerson	= personid($idPerson);
 		$typePrefix	= self::getReminderTypePrefix($reminderType);
 
@@ -185,16 +207,38 @@ class TodoyuCalendarReminderHelper {
 		$event		= $reminder->getEvent();
 
 		if( $event->isPersonAssigned($idPerson) ) {
-			$table		= 'ext_calendar_mm_event_person';
 			$idRecord	= $reminder->getID();
 			$typePrefix	= self::getReminderTypePrefix($reminderType);
 
 			$fieldValues	= array(
 				'date_remind' . $typePrefix	=> $timestamp,
 			);
-
-			Todoyu::db()->updateRecord($table, $idRecord, $fieldValues);
+			self::updateMMrecord($idRecord, $fieldValues);
 		}
+	}
+
+
+
+	/**
+	 * Update scheduled reminders relative to shifted time of event
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$dateStartOld
+	 * @param	Integer		$dateStartNew
+	 */
+	public static function updateRemindersAfterMoveEvent($idEvent, $dateStartOld, $dateStartNew) {
+		$idEvent		= intval($idEvent);
+		$dateStartOld	= intval($dateStartOld);
+		$dateStartNew	= intval($dateStartNew);
+
+		$secondsShifted	= $dateStartOld - $dateStartNew;
+		$personIDs		= TodoyuCalendarEventManager::getEvent($idEvent)->getAssignedPersonIDs();
+
+		foreach($personIDs as $idPerson) {
+			$mmID	= self::getMMrecordID($idEvent, $idPerson);
+
+		}
+
 	}
 
 

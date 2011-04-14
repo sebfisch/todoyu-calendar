@@ -62,7 +62,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer		$idPerson
 	 */
 	public static function updateReminderTime($idEvent, $timeEmail, $idPerson = 0) {
-		TodoyuCalendarReminderHelper::updateReminderTime(self::REMINDERTYPE, $idEvent, $timeEmail, $idPerson);
+		TodoyuCalendarReminderManager::updateReminderTime(self::REMINDERTYPE, $idEvent, $timeEmail, $idPerson);
 	}
 
 
@@ -77,7 +77,7 @@ class TodoyuCalendarReminderEmailManager {
 		$idPerson	= personid($idPerson);
 		$idEvent	= intval($data['id']);
 
-		$timeRemind	= TodoyuCalendarReminderHelper::getRemindingTimeByEventData(self::REMINDERTYPE, $data);
+		$timeRemind	= TodoyuCalendarReminderManager::getRemindingTimeByEventData(self::REMINDERTYPE, $data);
 
 		self::updateReminderTime($idEvent, $timeRemind, $idPerson);
 	}
@@ -130,7 +130,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @return	Boolean
 	 */
 	public static function isActivatedForPerson($idPerson = 0) {
-		return TodoyuCalendarReminderHelper::isReminderGenerallyActivated(self::REMINDERTYPE, $idPerson);
+		return TodoyuCalendarReminderManager::isRemindertypeActivated(self::REMINDERTYPE, $idPerson);
 	}
 
 
@@ -158,7 +158,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @return	Integer
 	 */
 	public static function getDefaultAdvanceTime($idPerson = 0) {
-		TodoyuCalendarReminderHelper::getDefaultAdvanceTime(self::REMINDERTYPE, $idPerson);
+		TodoyuCalendarReminderManager::getDefaultAdvanceTime(self::REMINDERTYPE, $idPerson);
 	}
 
 
@@ -193,7 +193,7 @@ class TodoyuCalendarReminderEmailManager {
 			return false;
 		}
 
-		return TodoyuCalendarReminderHelper::isEventSchedulable(self::REMINDERTYPE, $idEvent, $idPerson);
+		return TodoyuCalendarReminderManager::isEventSchedulable(self::REMINDERTYPE, $idEvent, $idPerson);
 	}
 
 
@@ -217,7 +217,7 @@ class TodoyuCalendarReminderEmailManager {
 			$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
 		}
 			// Set options disabled which are in the past already
-		$options['submenu']	= TodoyuCalendarReminderHelper::disablePastTimeKeyOptions($options['submenu'], $idEvent);
+		$options['submenu']	= TodoyuCalendarReminderManager::disablePastTimeKeyOptions($options['submenu'], $idEvent);
 
 		return $options;
 	}

@@ -727,6 +727,10 @@ class TodoyuCalendarEventManager {
 			}
 		}
 
+			// Update scheduled reminders relative to shifted time of event
+		TodoyuCalendarReminderManager::updateRemindersAfterMoveEvent($idEvent, $event->getStartDate(), $dateStart);
+
+			// Update event record data
 		self::updateEvent($idEvent, $data);
 
 		return true;

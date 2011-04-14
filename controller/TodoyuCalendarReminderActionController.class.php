@@ -45,7 +45,7 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 		$idEvent		= intval($params['event']);
 		$reminderType	= $params['remindertype'] == 'popup' ? REMINDERTYPE_POPUP : REMINDERTYPE_EMAIL;
 
-		TodoyuCalendarReminderHelper::deactivateReminder($reminderType, $idEvent, personid());
+		TodoyuCalendarReminderManager::deactivateReminder($reminderType, $idEvent, personid());
 	}
 
 
@@ -63,7 +63,7 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 		$timestamp	= $event->getStartDate() - $secondsBefore;
 
-		TodoyuCalendarReminderHelper::updateReminderTime($reminderType, $idEvent, $timestamp, personid());
+		TodoyuCalendarReminderManager::updateReminderTime($reminderType, $idEvent, $timestamp, personid());
 	}
 
 
