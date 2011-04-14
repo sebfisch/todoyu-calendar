@@ -371,6 +371,11 @@ div.eventDetails dd {
 	cursor:pointer;
 }
 
+#events .event h3 .label .date {
+	width:225px;
+	display:inline-block;
+}
+
 #events .event h3 .label .title {
 	padding-left:20px;
 }
