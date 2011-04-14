@@ -27,6 +27,19 @@
 class TodoyuCalendarReminderManager {
 
 	/**
+	 * Get reminder object to given event/person
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return	TodoyuCalendarReminder
+	 */
+	public static function getReminder($idEvent, $idPerson) {
+		return new TodoyuCalendarReminder($idEvent, $idPerson);
+	}
+
+
+
+	/**
 	 * Get prefix ('email' / 'popup') of given reminder type
 	 *
 	 * @param	Integer		$reminderType
@@ -52,6 +65,27 @@ class TodoyuCalendarReminderManager {
 		$idPerson	= personid($idPerson);
 
 		return Todoyu::db()->getMMid('ext_calendar_mm_event_person', 'id_event', $idEvent, 'id_person', $idPerson);
+	}
+
+
+
+	/**
+	 * Get reminder object of given type, event and person
+	 *
+	 * @param	Integer		$reminderType
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return TodoyuCalendarReminderEmail|TodoyuCalendarReminderPopup
+	 */
+	public static function getReminderType($reminderType, $idEvent, $idPerson = 0) {
+		$reminderType	= intval($reminderType);
+		$idPerson		= personid($idPerson);
+
+		if( $reminderType == REMINDERTYPE_EMAIL ) {
+			return TodoyuCalendarReminderEmailManager::getReminder($idEvent, $idPerson);
+		} else {
+			return TodoyuCalendarReminderPopupManager::getReminder($idEvent, $idPerson);
+		}
 	}
 
 
@@ -83,27 +117,6 @@ class TodoyuCalendarReminderManager {
 		$idRecord	= intval($idRecord);
 
 		Todoyu::db()->updateRecord($table, $idRecord, $fieldValues);
-	}
-
-
-
-	/**
-	 * Get reminder object of given type, event and person
-	 *
-	 * @param	Integer		$reminderType
-	 * @param	Integer		$idEvent
-	 * @param	Integer		$idPerson
-	 * @return TodoyuCalendarReminderEmail|TodoyuCalendarReminderPopup
-	 */
-	public static function getReminder($reminderType, $idEvent, $idPerson = 0) {
-		$reminderType	= intval($reminderType);
-		$idPerson		= personid($idPerson);
-
-		if( $reminderType == REMINDERTYPE_EMAIL ) {
-			return TodoyuCalendarReminderEmailManager::getReminder($idEvent, $idPerson);
-		} else {
-			return TodoyuCalendarReminderPopupManager::getReminder($idEvent, $idPerson);
-		}
 	}
 
 
@@ -144,8 +157,9 @@ class TodoyuCalendarReminderManager {
 	 * @return
 	 */
 	public static function isEventSchedulable($reminderType, $idEvent, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		$reminderType	= intval($reminderType);
+		$idEvent		= intval($idEvent);
+		$idPerson		= personid($idPerson);
 
 		return TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson);
 	}
@@ -160,16 +174,18 @@ class TodoyuCalendarReminderManager {
 	 * @return	Integer
 	 */
 	public static function getDefaultAdvanceTime($reminderType, $idPerson = 0) {
-		$idPerson	= personid($idPerson);
+		$reminderType	= intval($reminderType);
+		$idPerson		= personid($idPerson);
+
 		$typePrefix	= self::getReminderTypePrefix($reminderType);
+		$preference	= 'reminder' . $typePrefix . '_advancetime';
 
-		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'reminder' . $typePrefix . '_advancetime', 0, null, 0, $idPerson) ) {
+		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, $preference, 0, null, 0, $idPerson) ) {
 				// Return pref. from profile
-			return intval(TodoyuCalendarPreferences::getPref('reminder' . $typePrefix . '_advancetime', 0, 0, false, $idPerson));
+			return intval(TodoyuCalendarPreferences::getPref($preference, 0, 0, false, $idPerson));
 		}
-
 			// Fallback: take preset from extconf
-		return intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminder' . $typePrefix . '_advancetime'));
+		return intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', $preference));
 	}
 
 
@@ -202,7 +218,7 @@ class TodoyuCalendarReminderManager {
 		$timestamp	= intval($timestamp);
 		$idPerson	= personid($idPerson);
 
-		$reminder	= self::getReminder($reminderType, $idEvent, $idPerson);
+		$reminder	= self::getReminderType($reminderType, $idEvent, $idPerson);
 		/** @var TodoyuCalendarEvent	$event */
 		$event		= $reminder->getEvent();
 
@@ -220,25 +236,41 @@ class TodoyuCalendarReminderManager {
 
 
 	/**
-	 * Update scheduled reminders relative to shifted time of event
+	 * Update scheduled reminders (of all assigned persons of event) relative to shifted time of event
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$dateStartOld
 	 * @param	Integer		$dateStartNew
 	 */
-	public static function updateRemindersAfterMoveEvent($idEvent, $dateStartOld, $dateStartNew) {
+	public static function shiftRemindingTimes($idEvent, $dateStartOld, $dateStartNew) {
 		$idEvent		= intval($idEvent);
 		$dateStartOld	= intval($dateStartOld);
 		$dateStartNew	= intval($dateStartNew);
 
-		$secondsShifted	= $dateStartOld - $dateStartNew;
+		$secondsShifted	= $dateStartNew - $dateStartOld;
 		$personIDs		= TodoyuCalendarEventManager::getEvent($idEvent)->getAssignedPersonIDs();
 
 		foreach($personIDs as $idPerson) {
-			$mmID	= self::getMMrecordID($idEvent, $idPerson);
+			$mmID		= self::getMMrecordID($idEvent, $idPerson);
+			$reminder	= self::getReminder($idEvent, $idPerson);
 
+			$dateRemindEmail	= $reminder->getDateRemind(REMINDERTYPE_EMAIL);
+			$dateRemindPopup	= $reminder->getDateRemind(REMINDERTYPE_POPUP);
+
+			$fieldValues	= array();
+
+			if( $dateRemindEmail > 0 ) {
+				$fieldValues['date_remindemail']	= $dateRemindEmail + $secondsShifted;
+			}
+
+			if( $dateRemindEmail > 0 ) {
+				$fieldValues['date_remindpopup']	= $dateRemindPopup + $secondsShifted;
+			}
+
+			if( ! empty($fieldValues) ) {
+				self::updateMMrecord($mmID, $fieldValues);
+			}
 		}
-
 	}
 
 
