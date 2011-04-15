@@ -70,54 +70,23 @@ class TodoyuCalendarEventMailer {
 		$operationID= intval($operationID);
 
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
-
 		if( $event->isDeleted() ) {
 			$operationID	= OPERATIONTYPE_RECORD_DELETE;
 		}
-
-//		$personWrite	= $event->getCreatePerson();
 		$person			= TodoyuContactPersonManager::getPerson($idPerson);
-		$eventTitle		= $event->getTitle();
-
-			// Get mailer
-		$mailer	= TodoyuMailManager::getPHPMailerLite(true);
-
-			// Set "from" (sender) name and email address
-		$fromName		= Todoyu::person()->getFullName() . ' (todoyu)';
+					// Setup mail data
+		$mailSubject	= self::getSubjectLabelByOperation($operationID) . ': ' . $event->getTitle();
 		$fromAddress	= $setSenderFromPersonMail ? Todoyu::person()->getEmail() : Todoyu::$CONFIG['SYSTEM']['email'];
-		$mailer->SetFrom($fromAddress, $fromName);
+		$fromName		= Todoyu::person()->getFullName() . ' (todoyu)';
+		$toAddress		= $person->getEmail();
+		$toName			= $person->getFullName();
+		$htmlBody		= self::getMailContent($idEvent, $idPerson, $hideEmails, true, $operationID);
+		$textBody		= self::getMailContent($idEvent, $idPerson, $hideEmails, false, $operationID);
 
-			// Set "replyTo", "subject"
-		$mailer->AddReplyTo(Todoyu::person()->getEmail(), Todoyu::person()->getFullName());
-		$subject		= self::getSubjectLabelByOperation($operationID) . ': ' . $eventTitle;
-		$mailer->Subject	= $subject;
+		$baseURL	= PATH_EXT_COMMENT;
 
-			// Add message body as HTML and plain text
-		$htmlBody	= self::getMailContent($idEvent, $idPerson, $hideEmails, true, $operationID);
-		$textBody	= self::getMailContent($idEvent, $idPerson, $hideEmails, false, $operationID);
-
-		$mailer->MsgHTML($htmlBody, PATH_EXT_COMMENT);
-		$mailer->AltBody	= $textBody;
-
-			// Add "to" address (recipient)
-		$mailer->AddAddress($person->getEmail(), $person->getFullName());
-
-//	@todo	verify
-//		if( DIR_SEP !== '\\' ) {
-//				// Non-Windows (e.g Linux)
-//			$mail->AddAddress($person->getEmail(), $person->getFullName());
-//		} else {
-//				// Windows
-//			$mail->AddAddress($person->getEmail(), '');
-//		}
-
-		try {
-			$sendStatus	= $mailer->Send();
-		} catch(phpmailerException $e) {
-			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
-		} catch(Exception $e) {
-			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
-		}
+			// Send mail
+		$sendStatus	= TodoyuMailManager::sendMail($mailSubject, $fromAddress, $fromName, $toAddress, $toName, $htmlBody, $textBody, $baseURL);
 
 		return $sendStatus;
 	}

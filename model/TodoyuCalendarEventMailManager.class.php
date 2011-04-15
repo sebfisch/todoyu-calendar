@@ -83,34 +83,71 @@ class TodoyuCalendarEventMailManager {
 	 * Get data array to render email
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$idPerson
+	 * @param	Integer		$idPersonMailtTo
+	 * @param	Boolean		$isSentBySystem
+	 * @param	Integer		$idPersonSender
 	 * @return	Array
 	 */
-	public static function getMailData($idEvent, $idPerson) {
+	public static function getMailData($idEvent, $idPersonMailtTo, $isSentBySystem = false, $idPersonSender = 0) {
 		$idEvent		= intval($idEvent);
-		$idPerson		= intval($idPerson);
+		$idPersonMailtTo= intval($idPersonMailtTo);
+		$idPersonSender = personid($idPersonSender);
 
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent, true);
-
-		$personWrite	= $event->getCreatePerson();
-		$personReceive	= TodoyuContactPersonManager::getPerson($idPerson);
-		$personSend		= TodoyuAuth::getPerson();
+		$event			= TodoyuCalendarEventManager::getEvent($idEvent, true);
 
 		$data	= array(
 			'event'			=> $event->getTemplateData(),
-			'personReceive'	=> $personReceive->getTemplateData(),
-			'personWrite'	=> $personWrite->getTemplateData(),
-			'personSend'	=> $personSend->getTemplateData(),
+			'personReceive'	=> TodoyuContactPersonManager::getPerson($idPersonMailtTo)->getTemplateData(),
+			'personSend'	=> self::getPersonSendTemplateData($idPersonSender, $isSentBySystem),
+			'personWrite'	=> self::getPersonWriteTemplateData($event),
 			'attendees'		=> TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true)
 		);
 
-		$data['eventlink'] = TodoyuString::buildUrl(array(
-			'ext'		=> 'calendar',
-			'event'		=> $idEvent,
-			'tab'		=> 'week'
-		), 'event-' . $idEvent, true);
+		$urlParams	= array(
+			'ext'	=> 'calendar',
+			'event'	=> $idEvent,
+			'tab'	=> 'week'
+		);
+		$data['eventlink'] = TodoyuString::buildUrl($urlParams, 'event-' . $idEvent, true);
 
 		return $data;
+	}
+
+
+
+	/**
+	 * Get event email sender person template data
+	 *
+	 * @param	Integer		$idPersonSender
+	 * @param	Boolean		$isSentBySystem			Automatically sent, not by a person?
+	 * @return	Array
+	 */
+	public static function getPersonSendTemplateData($idPersonSender, $isSentBySystem = false) {
+		if( $isSentBySystem ) {
+			return array(
+				'firstname'	=> Todoyu::$CONFIG['SYSTEM']['name']
+			);
+		}
+
+		return TodoyuAuth::getPerson($idPersonSender)->getTemplateData();
+	}
+
+
+
+	/**
+	 * Get event email sender person template data
+	 *
+	 * @param	TodoyuCalendarEvent		$event
+	 * @return	Array
+	 */
+	public static function getPersonWriteTemplateData(TodoyuCalendarEvent $event) {
+		$personWrite	= $event->getCreatePerson();
+
+		if( $personWrite !== false ) {
+			return $personWrite->getTemplateData();
+		}
+
+		 return array();
 	}
 
 }

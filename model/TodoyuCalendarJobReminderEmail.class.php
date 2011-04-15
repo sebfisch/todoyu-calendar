@@ -76,64 +76,61 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 
 		$reminder	= TodoyuCalendarReminderManager::getReminder($idReminder);
 		$event		= $reminder->getEvent();
-		$idPerson	= $reminder->getPersonAssignedID();
 		$person		= $reminder->getPersonAssigned();
 		$email		= $person->getEmail();
 
-			// Don't (try) sending when event or person's email is missing 
+			// Don't (try) sending when event or person's email is missing
 		if( $event->isDeleted() || empty($email) ) {
 			return false;
 		}
 
-			// Get mailer config
-		$mailer	= TodoyuMailManager::getPHPMailerLite(true);
+		$idEvent	= $reminder->getEventID();
+		$idPerson	= $reminder->getPersonAssignedID();
 
-			// Set "from" name and email address from system config
-		$mailer->SetFrom(Todoyu::$CONFIG['SYSTEM']['name'], Todoyu::$CONFIG['SYSTEM']['email']);
+			// Setup mail data
+		$mailSubject	= Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
+		$fromAddress	= Todoyu::$CONFIG['SYSTEM']['email'];
+		$fromName		= Todoyu::$CONFIG['SYSTEM']['name'];
+		$toAddress		= $email;
+		$toName			= $person->getFullName();
+		$htmlBody		= self::getMailContent($idEvent, $idPerson, false, true);
+		$textBody		= self::getMailContent($idEvent, $idPerson, false, false);
 
-			// Set "subject"
-		$mailer->Subject	= Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
+		$baseURL	= PATH_EXT_CALENDAR;
 
-			// Add message body as HTML and plain text
-		$htmlBody	= self::getMailContent($idReminder, $idPerson, false, true);
-		$textBody	= self::getMailContent($idReminder, $idPerson, false, false);
-
-		$mailer->MsgHTML($htmlBody, PATH_EXT_COMMENT);
-		$mailer->AltBody	= $textBody;
-
-			// Add "to" address (recipient)
-		$mailer->AddAddress($email, $person->getFullName());
-
-		try {
-			$sendStatus	= $mailer->Send();
-		} catch(phpmailerException $e) {
-			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
-		} catch(Exception $e) {
-			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
-		}
+			// Send mail
+		$sendStatus	= TodoyuMailManager::sendMail($mailSubject, $fromAddress, $fromName, $toAddress, $toName, $htmlBody, $textBody, $baseURL, true);
 
 		return $sendStatus;
 	}
 
 
+
 	/**
-	 * Render content for HTML mail
+	 * Render content for HTML/plaintext mail
 	 *
 	 * @param	Integer		$idEvent		Event to send
-	 * @param	Integer		$idPerson		Person to send the email to
+	 * @param	Integer		$idPersonMailTo
 	 * @param	Boolean		$hideEmails
 	 * @param	Boolean		$modeHTML
 	 * @return	String
 	 */
-	private static function getMailContent($idEvent, $idPerson, $hideEmails = true, $modeHTML = true) {
+	private static function getMailContent($idEvent, $idPersonMailTo, $hideEmails = true, $modeHTML = true) {
 		$idEvent	= intval($idEvent);
-		$idPerson	= intval($idPerson);
+		$idPersonMailTo	= intval($idPersonMailTo);
 
 		$tmpl				= self::getMailTemplateName($modeHTML);
-		$data				= TodoyuCalendarEventMailManager::getMailData($idEvent, $idPerson);
+		$data				= TodoyuCalendarEventMailManager::getMailData($idEvent, $idPersonMailTo, true);
 		$data['hideEmails']	= $hideEmails;
 
-		return render($tmpl, $data);
+			// Switch to locale of email receiver person
+		$locale	= TodoyuContactPersonManager::getPerson($idPersonMailTo)->getLocale();
+		TodoyuLabelManager::setLocale($locale);
+
+			// Render
+		$content	= render($tmpl, $data);
+
+		return $content;
 	}
 
 
@@ -146,9 +143,11 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 */
 	public static function getMailTemplateName($modeHTML = false) {
 		$path	= 'ext/calendar/view/emails/event-reminder';
+		$path  .= $modeHTML ? '-html' : '-text';
 
-		return $path . ( $modeHTML ? '-html' : '-text' ) . '.tmpl';
+		return $path . '.tmpl';
 	}
+
 }
 
 ?>
