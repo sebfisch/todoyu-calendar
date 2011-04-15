@@ -158,11 +158,7 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 		$idReminder	= $reminder->getID();
 
 			// Set "is_sent"-flag in ext_calendar_mm_event_person
-		$fieldValues	= array(
-			'is_remindemailsent'	=> 1
-		);
-
-		TodoyuCalendarReminderManager::updateMMrecord($idReminder, $fieldValues);
+		TodoyuCalendarReminderManager::updateMMrecord($idReminder, array('is_remindemailsent'	=> 1));
 
 			// Save log record about sent mail
 		$idPerson	= $reminder->getPersonAssignedID();

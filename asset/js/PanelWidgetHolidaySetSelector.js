@@ -121,7 +121,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	 * @method	selectAllHolidaySets
 	 */
 	selectAllHolidaySets: function() {
-		$$('#panelwidget-holidaysetselector-list option').each(function(item) {
+		$(this.list).select('option').each(function(item) {
 			item.selected = true;
 		});
 	},
@@ -134,7 +134,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	 * @method	unselectAllHolidaySets
 	 */
 	unselectAllHolidaySets: function() {
-		$$('#panelwidget-holidaysetselector-list option').each(function(item) {
+		$(this.list).select('option').each(function(item) {
 			item.selected = false;
 		});
 	},
@@ -148,7 +148,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	 */
 	selectNoSetOption: function() {
 		this.unselectAllHolidaySets();
-		$('panelwidget-holidaysetselector-list').options[0].selected= true;
+		$(this.list).options[0].selected= true;
 
 	},
 
@@ -163,7 +163,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	getSelectedHolidaySetIDs: function() {
 		var setIDs = [];
 
-		$$('#panelwidget-holidaysetselector-list option').each(function(item) {
+		$(this.list).select('option').each(function(item) {
 			if( item.selected ) {
 				setIDs.push(item.value);
 			}
@@ -183,7 +183,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	getAmountOfselectedSets: function() {
 		var amount = 0;
 
-		$$('#panelwidget-holidaysetselector-list option').each(function(item) {
+		$(this.list).select('option').each(function(item) {
 			if( item.selected ) {
 				amount++;
 			}

@@ -378,7 +378,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 					$('overbooking-warning-inline').remove();
 				}
 
-				$$('#formElement-event-field-persons-inputbox .clear').last().insert({
+				$('formElement-event-field-persons-inputbox').select('.clear').last().insert({
 					after: inlineWarning
 				});
 					// Open confirmation prompt in popup
