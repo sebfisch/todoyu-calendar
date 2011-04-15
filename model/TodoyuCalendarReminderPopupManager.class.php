@@ -34,7 +34,7 @@ class TodoyuCalendarReminderPopupManager {
 	/**
 	 * @var	String		Type of reminder
 	 */
-	const REMINDERTYPE = REMINDERTYPE_POPUP;
+	const REMINDERTYPE = CALENDAR_TYPE_EVENTREMINDER_POPUP;
 
 
 

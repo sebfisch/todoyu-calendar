@@ -124,7 +124,7 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 	 * @param	Integer		$reminderType
 	 * @return	Integer
 	 */
-	public function getDateRemind($reminderType = REMINDERTYPE_EMAIL) {
+	public function getDateRemind($reminderType = CALENDAR_TYPE_EVENTREMINDER_EMAIL) {
 		$typePrefix	= TodoyuCalendarReminderManager::getReminderTypePrefix($reminderType);
 
 		return intval($this->get('date_remind' . $typePrefix));
@@ -137,7 +137,7 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 	 *
 	 * @return	Boolean|Integer
 	 */
-	public function getAdvanceTime($reminderType = REMINDERTYPE_EMAIL) {
+	public function getAdvanceTime($reminderType = CALENDAR_TYPE_EVENTREMINDER_EMAIL) {
 		$dateRemind	= $this->getDateRemind($reminderType);
 
 		return $dateRemind > 0 ? ($this->getEventStartDate() - $dateRemind) : false;
@@ -161,7 +161,7 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 	 *
 	 * @return	String
 	 */
-	public function isDisabled($reminderType = REMINDERTYPE_EMAIL) {
+	public function isDisabled($reminderType = CALENDAR_TYPE_EVENTREMINDER_EMAIL) {
 		$typePrefix = TodoyuCalendarReminderManager::getReminderTypePrefix($reminderType);
 
 		return $this->get('date_remind' . $typePrefix) === 0;

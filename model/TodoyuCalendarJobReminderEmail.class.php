@@ -41,7 +41,10 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 
 				// Only send to persons having the right to use email reminders
 			if( TodoyuCalendarReminderEmailManager::isActivatedForPerson($idPerson) ) {
-				self::sendMail($idReminder);
+				$sentSuccessfully	= self::sendMail($reminder);
+				if( $sentSuccessfully ) {
+					self::saveReminderSent($reminder);
+				}
 			}
 		}
 	}
@@ -68,13 +71,10 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	/**
 	 * Send an event email to a person
 	 *
-	 * @param	Integer		$idReminder
+	 * @param	TodoyuCalendarReminder		$reminder
 	 * @return	Boolean		Success
 	 */
-	private static function sendMail($idReminder) {
-		$idReminder	= intval($idReminder);
-
-		$reminder	= TodoyuCalendarReminderManager::getReminder($idReminder);
+	private static function sendMail(TodoyuCalendarReminder $reminder) {
 		$event		= $reminder->getEvent();
 		$person		= $reminder->getPersonAssigned();
 		$email		= $person->getEmail();
@@ -88,18 +88,18 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 		$idPerson	= $reminder->getPersonAssignedID();
 
 			// Setup mail data
-		$mailSubject	= Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
-		$fromAddress	= Todoyu::$CONFIG['SYSTEM']['email'];
-		$fromName		= Todoyu::$CONFIG['SYSTEM']['name'];
-		$toAddress		= $email;
-		$toName			= $person->getFullName();
-		$htmlBody		= self::getMailContent($idEvent, $idPerson, false, true);
-		$textBody		= self::getMailContent($idEvent, $idPerson, false, false);
+		$subject	= Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
+		$fromAddress= Todoyu::$CONFIG['SYSTEM']['email'];
+		$fromName	= Todoyu::$CONFIG['SYSTEM']['name'];
+		$toAddress	= $email;
+		$toName		= $person->getFullName();
+		$htmlBody	= self::getMailContent($idEvent, $idPerson, false, true);
+		$textBody	= self::getMailContent($idEvent, $idPerson, false, false);
 
 		$baseURL	= PATH_EXT_CALENDAR;
 
 			// Send mail
-		$sendStatus	= TodoyuMailManager::sendMail($mailSubject, $fromAddress, $fromName, $toAddress, $toName, $htmlBody, $textBody, $baseURL, true);
+		$sendStatus	= TodoyuMailManager::sendMail($subject, $fromAddress, $fromName, $toAddress, $toName, $htmlBody, $textBody, $baseURL, true);
 
 		return $sendStatus;
 	}
@@ -146,6 +146,27 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 		$path  .= $modeHTML ? '-html' : '-text';
 
 		return $path . '.tmpl';
+	}
+
+
+	/**
+	 * Set "is_sent" flag of reminder true, store
+	 *
+	 * @param	TodoyuCalendarReminder	$reminder
+	 */
+	public static function saveReminderSent(TodoyuCalendarReminder $reminder) {
+		$idReminder	= $reminder->getID();
+
+			// Set "is_sent"-flag in ext_calendar_mm_event_person
+		$fieldValues	= array(
+			'is_remindemailsent'	=> 1
+		);
+
+		TodoyuCalendarReminderManager::updateMMrecord($idReminder, $fieldValues);
+
+			// Save log record about sent mail
+		$idPerson	= $reminder->getPersonAssignedID();
+		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idReminder, array($idPerson));
 	}
 
 }

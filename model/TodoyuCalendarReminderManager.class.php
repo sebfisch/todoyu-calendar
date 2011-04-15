@@ -100,7 +100,7 @@ class TodoyuCalendarReminderManager {
 	public static function getReminderTypePrefix($reminderType) {
 		$reminderType	= intval($reminderType);
 
-		return $reminderType === REMINDERTYPE_EMAIL ? 'email' : 'popup';
+		return $reminderType === CALENDAR_TYPE_EVENTREMINDER_EMAIL ? 'email' : 'popup';
 	}
 
 
@@ -117,7 +117,7 @@ class TodoyuCalendarReminderManager {
 		$reminderType	= intval($reminderType);
 		$idPerson		= personid($idPerson);
 
-		if( $reminderType == REMINDERTYPE_EMAIL ) {
+		if( $reminderType == CALENDAR_TYPE_EVENTREMINDER_EMAIL ) {
 			return TodoyuCalendarReminderEmailManager::getReminderByAssignment($idEvent, $idPerson);
 		} else {
 			return TodoyuCalendarReminderPopupManager::getReminderByAssignment($idEvent, $idPerson);
@@ -289,8 +289,8 @@ class TodoyuCalendarReminderManager {
 		foreach($personIDs as $idPerson) {
 			$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
 
-			$dateRemindEmail	= $reminder->getDateRemind(REMINDERTYPE_EMAIL);
-			$dateRemindPopup	= $reminder->getDateRemind(REMINDERTYPE_POPUP);
+			$dateRemindEmail	= $reminder->getDateRemind(CALENDAR_TYPE_EVENTREMINDER_EMAIL);
+			$dateRemindPopup	= $reminder->getDateRemind(CALENDAR_TYPE_EVENTREMINDER_POPUP);
 
 			$fieldValues	= array();
 

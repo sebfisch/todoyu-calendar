@@ -34,7 +34,7 @@ class TodoyuCalendarReminderEmailManager {
 	/**
 	 * @var	String		Type of reminder
 	 */
-	const REMINDERTYPE = REMINDERTYPE_EMAIL;
+	const REMINDERTYPE = CALENDAR_TYPE_EVENTREMINDER_EMAIL;
 
 
 

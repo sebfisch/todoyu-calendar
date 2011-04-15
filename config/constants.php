@@ -28,6 +28,8 @@
 
 	// Calendar record types
 define('CALENDAR_TYPE_EVENT',	1);
+define('CALENDAR_TYPE_EVENTREMINDER_EMAIL',	2);
+define('CALENDAR_TYPE_EVENTREMINDER_POPUP',	3);
 
 
 
@@ -66,12 +68,6 @@ define('CALENDAR_WEEK_EVENT_WIDTH', 86);
 define('CALENDAR_MAXDATE', 1924988399);
 	// Minimal duration of an event for rendering
 define('CALENDAR_EVENT_MIN_DURATION', 1800);
-
-
-
-	// Event Reminder Types
-define('REMINDERTYPE_EMAIL', 1);
-define('REMINDERTYPE_POPUP', 2);
 
 
 
