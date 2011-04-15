@@ -275,16 +275,14 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 */
 	reschedule: function(form) {
 		var idEventElement		= form.down('input[name="reminder[id_event]"]');
-		var idDelaySelector		= form.down('select[name="reminder[date_remindagain]"]');
-		var idEvent				= $F(idEventElement);
-		var delayTime			= $F(idDelaySelector);
+		var idDelaySelector		= form.down('select[name="reminder[date_remindpopup]"]');
 
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
 			parameters: {
 				action:		'reschedule',
-				'event':	idEvent,
-				'delay':	delayTime
+				'event':	$F(idEventElement),
+				'delay':	$F(idDelaySelector)
 			},
 			onComplete: this.onRescheduled.bind(this, idEvent, delayTime)
 		};

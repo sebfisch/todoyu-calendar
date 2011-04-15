@@ -116,31 +116,19 @@ class TodoyuCalendarViewHelper {
 
 
 	/**
-	 * @static
+	 * Get reminder scheduling time options
+	 *
 	 * @param	TodoyuFormElement $field
 	 * @return	Array
 	 */
 	public static function getReminderTimeOptions(TodoyuFormElement $field) {
-		$options	= array();
-
-		$intervals	= Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'];
-		foreach($intervals as $minutes) {
-			$secondsUntil	= TodoyuTime::SECONDS_MIN * $minutes;
-
-			$options[] = array(
-				'value'		=> $secondsUntil,
-				'label'		=> TodoyuTime::autoformatDuration($secondsUntil),
-			);
-
-		}
-
-		return $options;
+		return self::getRemindingTimeOptionsArray(true);
 	}
 
 
 
 	/**
-	 * Get options for reminder interval
+	 * Get options for reminder interval (same as in context menu, but w/o dates in the past)
 	 *
 	 * @param	TodoyuFormElement	$field
 	 * @return	Array
@@ -148,19 +136,33 @@ class TodoyuCalendarViewHelper {
 	public static function getRemindAgainOptions(TodoyuFormElement $field) {
 		$idEvent	= intval($field->getForm()->getRecordID());
 
-//		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
-//		$timeLeft	= $event->getStartDate() - NOW;
-		$options	= array();
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$timeLeft	= $event->getStartDate() - NOW;
 
-		$intervals	= Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_RESCHEDULEINTERVALS'];
+		return self::getRemindingTimeOptionsArray(false, $timeLeft);
+	}
+
+
+
+	/**
+	 * Get options array of reminder scheduling times
+	 *
+	 * @param	Boolean		$includePastOptions
+	 * @param	Integer		$timeLeft
+	 * @return	Array
+	 */
+	public static function getRemindingTimeOptionsArray($includePastOptions = true, $timeLeft = 0) {
+		$intervals	= Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'];
+
+		$options	= array();
 		foreach($intervals as $minutes) {
-			$minutesUntil	= TodoyuTime::SECONDS_MIN * $minutes;
-//			if( $timeLeft > $minutesUntil ) {
+			$secondsUntil	= TodoyuTime::SECONDS_MIN * $minutes;
+			if( $includePastOptions || $timeLeft > $secondsUntil ) {
 				$options[] = array(
-					'value'	=> $minutesUntil,
-					'label'	=> $minutes . ' Minutes'
+					'value'		=> $secondsUntil,
+					'label'		=> TodoyuTime::autoformatDuration($secondsUntil),
 				);
-//			}
+			}
 		}
 
 		return $options;

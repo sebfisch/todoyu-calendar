@@ -106,7 +106,9 @@ class TodoyuCalendarEventEditRenderer {
 		$data	= $event->getTemplateData(true, false, true);
 
 			// Person can schedule reminders? add the resp. fieldset
-		$form	= self::addReminderFieldsetToEventForm($form, $idEvent);
+		if( $idEvent > 0 ) {
+			$form	= self::addReminderFieldsetToEventForm($form, $idEvent);
+		}
 
 			// Call hooked load functions
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
@@ -131,7 +133,7 @@ class TodoyuCalendarEventEditRenderer {
 		$reminderPopupSchedulable	= TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent);
 
 		if( $idEvent != 0 && ($reminderEmailSchedulable || $reminderPopupSchedulable) ) {
-			$xmlPathReminders	= 'ext/calendar/config/form/event-reminders.xml';
+			$xmlPathReminders	= 'ext/calendar/config/form/event-creatorreminder.xml';
 			$remindersForm		= TodoyuFormManager::getForm($xmlPathReminders);
 			$remindersFieldset	= $remindersForm->getFieldset('reminders');
 

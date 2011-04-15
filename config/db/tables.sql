@@ -37,7 +37,6 @@ CREATE TABLE `ext_calendar_mm_event_person` (
 	`is_remindemailsent` tinyint(1) unsigned NOT NULL DEFAULT '0',
 	`date_remindpopup` int(10) unsigned NOT NULL DEFAULT '0',
 	`is_remindpopupdismissed` tinyint(1) unsigned NOT NULL DEFAULT '0',
-	`date_remindagain` int(10) unsigned NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`),
 	KEY `event` (`id_event`),
 	KEY `person` (`id_person`)

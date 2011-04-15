@@ -39,32 +39,6 @@ class TodoyuCalendarReminderPopup extends TodoyuCalendarReminder {
 
 
 	/**
-	 * Get timestamp when to the reminder popup
-	 *
-	 * @return	Integer|Boolean
-	 */
-	public function getTimePopup() {
-		if( $this->isEventPassed() || $this->isDismissed() ) {
-			return false;
-		}
-
-		if( $this->isReschudeled() ) {
-				// Get time until scheduled next popup time
-			$showTime	= $this->getDateRemindAgain();
-		} else {
-				//	Calculate time until next popup from starting time of event
-			$timeWarnBefore	= intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'reminderpopup_advancetime'));
-
-			$eventStartTime		= $this->getEventStartDate();
-			$showTime		= $eventStartTime - $timeWarnBefore;
-		}
-
-		return $showTime;
-	}
-
-
-
-	/**
 	 * Get amount of time before event when to send reminder email
 	 *
 	 * @return	Boolean|Integer
@@ -76,23 +50,12 @@ class TodoyuCalendarReminderPopup extends TodoyuCalendarReminder {
 
 
 	/**
-	 * Get scheduled next reminding time
+	 * Get scheduled popup reminder time
 	 *
-	 * @return	String
+	 * @return	Integer
 	 */
-	public function getDateRemindAgain() {
-		return $this->get('date_remindagain');
-	}
-
-
-
-	/**
-	 * Check whether the reminder has been re-scheduled to be shown at a later time
-	 *
-	 * @return	Boolean
-	 */
-	public function isReschudeled() {
-		return $this->getDateRemindAgain() > 0;
+	public function getDateRemind() {
+		return parent::getDateRemind(CALENDAR_TYPE_EVENTREMINDER_POPUP);
 	}
 
 
@@ -103,7 +66,10 @@ class TodoyuCalendarReminderPopup extends TodoyuCalendarReminder {
 	 * @return	String
 	 */
 	public function isDismissed() {
-		return $this->get('is_remindpopupdismissed') ? true : false;
+			// Already dismissed or not scheduled at all?
+		$isDismissed	= $this->get('is_remindpopupdismissed') || ($this->getDateRemind() == 0);
+
+		return $isDismissed;
 	}
 
 }

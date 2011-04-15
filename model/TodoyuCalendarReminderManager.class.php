@@ -113,7 +113,7 @@ class TodoyuCalendarReminderManager {
 	 * @param	Integer		$idPerson
 	 * @return TodoyuCalendarReminderEmail|TodoyuCalendarReminderPopup
 	 */
-	public static function getReminderType($reminderType, $idEvent, $idPerson = 0) {
+	public static function getReminderTypeByAssignment($reminderType, $idEvent, $idPerson = 0) {
 		$reminderType	= intval($reminderType);
 		$idPerson		= personid($idPerson);
 
@@ -254,7 +254,7 @@ class TodoyuCalendarReminderManager {
 		$timestamp	= intval($timestamp);
 		$idPerson	= personid($idPerson);
 
-		$reminder	= self::getReminderType($reminderType, $idEvent, $idPerson);
+		$reminder	= self::getReminderTypeByAssignment($reminderType, $idEvent, $idPerson);
 		/** @var TodoyuCalendarEvent	$event */
 		$event		= $reminder->getEvent();
 
@@ -275,17 +275,13 @@ class TodoyuCalendarReminderManager {
 	 * Update scheduled reminders (of all assigned persons of event) relative to shifted time of event
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$dateStartOld
-	 * @param	Integer		$dateStartNew
+	 * @param	Integer		$offset
 	 */
-	public static function shiftRemindingTimes($idEvent, $dateStartOld, $dateStartNew) {
-		$idEvent		= intval($idEvent);
-		$dateStartOld	= intval($dateStartOld);
-		$dateStartNew	= intval($dateStartNew);
+	public static function shiftRemindingTimes($idEvent, $offset) {
+		$idEvent= intval($idEvent);
+		$offset	= intval($offset);
 
-		$secondsShifted	= $dateStartNew - $dateStartOld;
-		$personIDs		= TodoyuCalendarEventManager::getEvent($idEvent)->getAssignedPersonIDs();
-
+		$personIDs	= TodoyuCalendarEventManager::getEvent($idEvent)->getAssignedPersonIDs();
 		foreach($personIDs as $idPerson) {
 			$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
 
@@ -295,11 +291,11 @@ class TodoyuCalendarReminderManager {
 			$fieldValues	= array();
 
 			if( $dateRemindEmail > 0 ) {
-				$fieldValues['date_remindemail']	= $dateRemindEmail + $secondsShifted;
+				$fieldValues['date_remindemail']	= $dateRemindEmail + $offset;
 			}
 
 			if( $dateRemindEmail > 0 ) {
-				$fieldValues['date_remindpopup']	= $dateRemindPopup + $secondsShifted;
+				$fieldValues['date_remindpopup']	= $dateRemindPopup + $offset;
 			}
 
 			if( ! empty($fieldValues) ) {

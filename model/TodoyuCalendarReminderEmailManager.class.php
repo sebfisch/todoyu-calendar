@@ -87,18 +87,15 @@ class TodoyuCalendarReminderEmailManager {
 	/**
 	 * Get timestamp for email reminder of newly assigned event (advance-time from profile, fallback: extconf)
 	 *
-	 * @param	Integer		$idEvent
+	 * @param	Integer		$dateStart
 	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getNewEventMailTime($idEvent, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
+	public static function getNewEventMailTime($dateStart, $idPerson = 0) {
+		$dateStart	= intval($dateStart);
 		$idPerson	= personid($idPerson);
 
-		$dateStartEvent	= TodoyuCalendarEventManager::getEvent($idEvent)->getStartDate();
-		$advanceTime	= self::getDefaultAdvanceTime($idPerson);
-
-		return $dateStartEvent  - $advanceTime;
+		return $dateStart  - self::getDefaultAdvanceTime($idPerson);
 	}
 
 

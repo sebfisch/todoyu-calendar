@@ -39,7 +39,9 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 
 		if( ! TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson) ) {
 				// Given person not assigned? Prevent reminder construction
+//			TodoyuDebug::printInFirebug(debug_backtrace(false),true);
 			Todoyu::log('Instantiating reminder failed because person ' . $idPerson . ' is not assigned to event ' . $idEvent, TodoyuLogger::LEVEL_ERROR);
+
 			return false;
 		}
 
@@ -119,7 +121,7 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 
 
 	/**
-	 * Get scheduled email reminder time
+	 * Get scheduled reminder time
 	 *
 	 * @param	Integer		$reminderType
 	 * @return	Integer
