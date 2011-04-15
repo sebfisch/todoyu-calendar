@@ -18,7 +18,7 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-	// Include mail library
+	// Include mailer library
 require_once( PATH_LIB . '/php/phpmailer/class.phpmailer-lite.php' );
 
 /**
@@ -79,36 +79,28 @@ class TodoyuCalendarEventMailer {
 		$person			= TodoyuContactPersonManager::getPerson($idPerson);
 		$eventTitle		= $event->getTitle();
 
-			// Set mail config
-		$mail			= new PHPMailerLite(true);
-		$mail->Mailer	= 'mail';
-		$mail->CharSet	= 'utf-8';
-		//
-		//			// Change mail program
-		//		if( PHP_OS !== 'Linux' ) {
-		//				// Windows Server: use 'mail' instead of 'sendmail'
-		//			$mail->Mailer	= 'mail';
-		//		}
+			// Get mailer
+		$mailer	= TodoyuMailManager::getPHPMailerLite(true);
 
 			// Set "from" (sender) name and email address
 		$fromName		= Todoyu::person()->getFullName() . ' (todoyu)';
 		$fromAddress	= $setSenderFromPersonMail ? Todoyu::person()->getEmail() : Todoyu::$CONFIG['SYSTEM']['email'];
-		$mail->SetFrom($fromAddress, $fromName);
+		$mailer->SetFrom($fromAddress, $fromName);
 
 			// Set "replyTo", "subject"
-		$mail->AddReplyTo(Todoyu::person()->getEmail(), Todoyu::person()->getFullName());
+		$mailer->AddReplyTo(Todoyu::person()->getEmail(), Todoyu::person()->getFullName());
 		$subject		= self::getSubjectLabelByOperation($operationID) . ': ' . $eventTitle;
-		$mail->Subject	= $subject;
+		$mailer->Subject	= $subject;
 
 			// Add message body as HTML and plain text
 		$htmlBody	= self::getMailContent($idEvent, $idPerson, $hideEmails, true, $operationID);
 		$textBody	= self::getMailContent($idEvent, $idPerson, $hideEmails, false, $operationID);
 
-		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
-		$mail->AltBody	= $textBody;
+		$mailer->MsgHTML($htmlBody, PATH_EXT_COMMENT);
+		$mailer->AltBody	= $textBody;
 
 			// Add "to" address (recipient)
-		$mail->AddAddress($person->getEmail(), $person->getFullName());
+		$mailer->AddAddress($person->getEmail(), $person->getFullName());
 
 //	@todo	verify
 //		if( DIR_SEP !== '\\' ) {
@@ -120,7 +112,7 @@ class TodoyuCalendarEventMailer {
 //		}
 
 		try {
-			$sendStatus	= $mail->Send();
+			$sendStatus	= $mailer->Send();
 		} catch(phpmailerException $e) {
 			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
 		} catch(Exception $e) {

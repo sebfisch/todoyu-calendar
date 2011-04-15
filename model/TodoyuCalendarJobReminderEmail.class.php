@@ -43,7 +43,6 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 			if( TodoyuCalendarReminderEmailManager::isActivatedForPerson($idPerson) ) {
 				self::sendMail($idReminder);
 			}
-
 		}
 	}
 
@@ -74,40 +73,39 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 */
 	private static function sendMail($idReminder) {
 		$idReminder	= intval($idReminder);
+
 		$reminder	= TodoyuCalendarReminderManager::getReminder($idReminder);
 		$event		= $reminder->getEvent();
+		$idPerson	= $reminder->getPersonAssignedID();
+		$person		= $reminder->getPersonAssigned();
+		$email		= $person->getEmail();
 
-		if( $event->isDeleted() ) {
+			// Don't (try) sending when event or person's email is missing 
+		if( $event->isDeleted() || empty($email) ) {
 			return false;
 		}
 
-		$idPerson	= $reminder->getPersonAssignedID();
-		$person		= $reminder->getPersonAssigned();
-		$eventTitle	= $event->getTitle();
-
-			// Set mail config
-		$mail			= new PHPMailerLite(true);
-		$mail->Mailer	= 'mail';
-		$mail->CharSet	= 'utf-8';
+			// Get mailer config
+		$mailer	= TodoyuMailManager::getPHPMailerLite(true);
 
 			// Set "from" name and email address from system config
-		$mail->SetFrom(Todoyu::$CONFIG['SYSTEM']['name'], Todoyu::$CONFIG['SYSTEM']['email']);
+		$mailer->SetFrom(Todoyu::$CONFIG['SYSTEM']['name'], Todoyu::$CONFIG['SYSTEM']['email']);
 
 			// Set "subject"
-		$mail->Subject	= Label('calendar.reminder.email.subject') . ': ' . $eventTitle;
+		$mailer->Subject	= Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
 
 			// Add message body as HTML and plain text
 		$htmlBody	= self::getMailContent($idReminder, $idPerson, false, true);
 		$textBody	= self::getMailContent($idReminder, $idPerson, false, false);
 
-		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
-		$mail->AltBody	= $textBody;
+		$mailer->MsgHTML($htmlBody, PATH_EXT_COMMENT);
+		$mailer->AltBody	= $textBody;
 
 			// Add "to" address (recipient)
-		$mail->AddAddress($person->getEmail(), $person->getFullName());
+		$mailer->AddAddress($email, $person->getFullName());
 
 		try {
-			$sendStatus	= $mail->Send();
+			$sendStatus	= $mailer->Send();
 		} catch(phpmailerException $e) {
 			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
 		} catch(Exception $e) {
