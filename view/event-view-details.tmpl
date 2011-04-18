@@ -43,10 +43,11 @@
 	<tr>
 		<td class="eventAttrTitle">
 			<span class="icon"> </span>
-			&nbsp;{Label core.global.description}
+			<br/>&nbsp;{Label core.global.description}
 		</td>
 		<td class="eventValue">
-			{substituteLinkableElements(cleanHtml($event.description))}
+			<br/>{substituteLinkableElements(nl2br(cleanHtml($event.description)))}
+			<br/><br/>
 		</td>
 	</tr>
 {/if}

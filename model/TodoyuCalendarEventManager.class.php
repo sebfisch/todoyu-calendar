@@ -1031,6 +1031,8 @@ class TodoyuCalendarEventManager {
 			unset($ownItems['delete']);
 		}
 
+		$ownItems['show']['jsAction'] = str_replace('#DATE#', $dateStart, $ownItems['show']['jsAction']);
+
 		foreach($ownItems['show']['submenu'] as $key => $config) {
 			$ownItems['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', $dateStart, $config['jsAction']);
 		}
