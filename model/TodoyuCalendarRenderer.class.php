@@ -41,7 +41,7 @@ class TodoyuCalendarRenderer {
 	 * @return	String	Code of the calendar
 	 */
 	public static function render($activeTab = '', array $params = array()) {
-		$time	= TodoyuCalendarPanelWidgetCalendar::getDate(EXTID_CALENDAR);
+		$time	= TodoyuCalendarPanelWidgetCalendar::getDate();
 
 			// Get tab from preferences if not set
 		if( empty($activeTab) ) {
