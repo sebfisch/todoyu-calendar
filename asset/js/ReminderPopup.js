@@ -36,92 +36,6 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 */
 	ext:	Todoyu.Ext.calendar,
 
-
-
-	/**
-	 * Deactivate reminder popup of given event
-	 *
-	 * @param	{Number}	idEvent
-	 */
-	deactivate: function(idEvent) {
-		var url		= Todoyu.getUrl('calendar', 'reminder');
-		var options	= {
-			'parameters': {
-				'action':			'deactivate',
-				'remindertype':		'popup',
-				'event':			idEvent
-			},
-			'onComplete': this.onDeactivated.bind(this, idEvent)
-		};
-
-		Todoyu.send(url, options);
-	},
-
-
-
-	/**
-	 * Handler called after deactivation of event: notify success
-	 *
-	 * @method	onDeactivated
-	 * @param	{Number}			idEvent
-	 * @param	{Ajax.Response}		response
-	 */
-	onDeactivated: function(idEvent, response) {
-		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.popup.deactivated');
-	},
-
-
-
-	/**
-	 * Update reminder popup scheduling of given event and current person
-	 *
-	 * @param	{Number}	idEvent
-	 * @param	{Number}	secondsBefore
-	 */
-	updateReminderTime: function(idEvent, secondsBefore) {
-		var url		= Todoyu.getUrl('calendar', 'reminder');
-		var options	= {
-			'parameters': {
-				'action':			'updateremindertime',
-				'remindertype':		'popup',
-				'event':			idEvent,
-				'secondsbefore':	secondsBefore
-			},
-			'onComplete': this.onReminderTimeUpdated.bind(this, idEvent)
-		};
-
-		Todoyu.send(url, options);
-	},
-
-
-
-	/**
-	 * Handler called after deactivation of event: notify success
-	 *
-	 * @method	onDeactivated
-	 * @param	{Number}			idEvent
-	 * @param	{Ajax.Response}		response
-	 */
-	onReminderTimeUpdated: function(idEvent, response) {
-		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.popup.timeupdated');
-	},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * Events to show reminder popups for
 	 *
@@ -176,7 +90,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 		this.events.each(function(event){
 			var popupTime	= event.time_popup * 1000;	// Convert to milliseconds
 
-			if( event.dismissed == 0 && (now) >= popupTime  ) {
+			if( event.dismissed == 0 && 1 || (now) >= popupTime  ) {
 				this.show(event.id);
 			}
 		}, this);
@@ -226,21 +140,33 @@ Todoyu.Ext.calendar.ReminderPopup = {
 
 
 	/**
-	 * Dismiss event reminder (don't show again)
+	 * Get ID of event out of popup form
 	 *
-	 * @method	dismiss
+	 * @param	{Element}	form
+	 * @return	{Number}
+	 */
+	getEventIDfromForm: function(form) {
+		return $F(form.down('input[name="reminder[id_event]"]'));
+	},
+
+
+
+	/**
+	 * Deactivate reminder popup of given event
+	 *
 	 * @param	{Element}	form
 	 */
-	dismiss: function(form) {
-		var idEvent	= $F(form.down('input[name="reminder[id_event]"]'));
+	deactivate: function(form) {
+		var idEvent	= this.getEventIDfromForm(form);
 
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
-			parameters: {
-				action:	'dismiss',
-				event:	idEvent
+			'parameters': {
+				'action':			'deactivate',
+				'remindertype':		'popup',
+				'event':			idEvent
 			},
-			onComplete: this.onDismissed.bind(this, idEvent)
+			'onComplete': this.onDeactivated.bind(this, idEvent)
 		};
 
 		Todoyu.send(url, options);
@@ -249,13 +175,14 @@ Todoyu.Ext.calendar.ReminderPopup = {
 
 
 	/**
-	 * Handler when event reminder has been dismissed - close related popup
+	 * Handler called after deactivation of event: notify success
 	 *
-	 * @method	onDismissed
+	 * @method	onDeactivated
 	 * @param	{Number}			idEvent
 	 * @param	{Ajax.Response}		response
 	 */
-	onDismissed: function(idEvent, response) {
+	onDeactivated: function(idEvent, response) {
+			// Deactivate cached event popup
 		this.events.each(function(event){
 			if( event.id == idEvent ) {
 				event.dismissed	= 1;
@@ -263,28 +190,46 @@ Todoyu.Ext.calendar.ReminderPopup = {
 		}, this);
 
 		this.closePopup(idEvent);
+
+			// Notify
+		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.popup.deactivated');
 	},
 
 
 
 	/**
-	 * Reschedule event reminder for showing again at a later time
+	 * From within the reminder popup: update popup schedule of given event (for current person)
 	 *
-	 * @method	reschedule
+	 * @method	rescheduleReminderTime
 	 * @param	{Element}	form
 	 */
-	reschedule: function(form) {
-		var idEventElement		= form.down('input[name="reminder[id_event]"]');
-		var idDelaySelector		= form.down('select[name="reminder[date_remindpopup]"]');
+	rescheduleReminderTime: function(form) {
+		var idEvent					= this.getEventIDfromForm(form);
+		var idDateRemindSelector	= form.down('select[name="reminder[date_remindpopup]"]');
+		var secondsBefore			= $F(idDateRemindSelector);
 
+		this.closePopup(idEvent);
+		this.updateReminderTime(idEvent, secondsBefore);
+	},
+
+
+
+	/**
+	 * Update reminder popup scheduling of given event and current person
+	 *
+	 * @param	{Number}	idEvent
+	 * @param	{Number}	secondsBefore
+	 */
+	updateReminderTime: function(idEvent, secondsBefore) {
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
-			parameters: {
-				action:		'reschedule',
-				'event':	$F(idEventElement),
-				'delay':	$F(idDelaySelector)
+			'parameters': {
+				'action':			'updateremindertime',
+				'remindertype':		'popup',
+				'event':			idEvent,
+				'secondsbefore':	secondsBefore
 			},
-			onComplete: this.onRescheduled.bind(this, idEvent, delayTime)
+			'onComplete': this.onReminderTimeUpdated.bind(this, idEvent)
 		};
 
 		Todoyu.send(url, options);
@@ -293,23 +238,14 @@ Todoyu.Ext.calendar.ReminderPopup = {
 
 
 	/**
-	 * Handler when event reminder has been rescheduled - close popup and reload page
+	 * Handler called after deactivation of event: notify success
 	 *
-	 * @method	onRescheduled
+	 * @method	onDeactivated
 	 * @param	{Number}			idEvent
-	 * @param	{Number}			delayTime
 	 * @param	{Ajax.Response}		response
 	 */
-	onRescheduled: function(idEvent, delayTime, response) {
-			// Update scheduled popup time of reminder in cache
-		this.events.each(function(event){
-			if( event.id == idEvent ) {
-				event.time_popup	+= delayTime * 1000;
-			}
-		}, this);
-
-			// Close reminder popup
-		this.closePopup(idEvent);
+	onReminderTimeUpdated: function(idEvent, response) {
+		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.popup.timeupdated');
 	},
 
 

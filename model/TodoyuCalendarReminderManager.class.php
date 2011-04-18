@@ -265,6 +265,11 @@ class TodoyuCalendarReminderManager {
 			$fieldValues	= array(
 				'date_remind' . $typePrefix	=> $timestamp,
 			);
+
+			if( $reminderType == CALENDAR_TYPE_EVENTREMINDER_POPUP ) {
+				$fieldValues['is_remindpopupdismissed']	= $timestamp == 0 ? 1 : 0;
+			}
+
 			self::updateMMrecord($idRecord, $fieldValues);
 		}
 	}

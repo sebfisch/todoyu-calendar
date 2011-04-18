@@ -37,7 +37,7 @@
 	<label index="calendartitle.dateformat.month.part3">CW %W)</label><!-- timestamp: last displayed day -->
 	<label index="reminder.popup.title">Appointment Reminder</label>
 	<label index="reminder.upcomingevent">Remember: You have the following appointment soon.</label>
-	<label index="reminder.remindagainin">Remind me again in...</label>
+	<label index="reminder.remindagain">Remind me again...</label>
 	<label index="reminder.button.remindlater">Remind Me Later</label>
 	<label index="extconf.allowoverbooking.label">Allow multiple simultaneous appointments for 1 person?</label>
 	<label index="extconf.reminder.reminderemail_active.label">Activate appointment reminders per email</label>

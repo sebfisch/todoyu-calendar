@@ -159,8 +159,8 @@ class TodoyuCalendarViewHelper {
 			$secondsUntil	= TodoyuTime::SECONDS_MIN * $minutes;
 			if( $includePastOptions || $timeLeft > $secondsUntil ) {
 				$options[] = array(
-					'value'		=> $secondsUntil,
-					'label'		=> TodoyuTime::autoformatDuration($secondsUntil),
+					'value'	=> $secondsUntil,
+					'label'	=> TodoyuTime::autoformatDuration($secondsUntil) . ' ' . Label('calendar.reminder.beforeDateStart'),
 				);
 			}
 		}

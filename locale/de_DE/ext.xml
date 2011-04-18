@@ -37,7 +37,7 @@
 	<label index="calendartitle.dateformat.month.part3">KW %W)</label><!-- timestamp: last displayed day -->
 	<label index="reminder.popup.title">Termin-Erinnerung</label>
 	<label index="reminder.upcomingevent">Nicht Vergessen: Sie haben bald den folgenden Termin.</label>
-	<label index="reminder.remindagainin">Erneut erinnern in...</label>
+	<label index="reminder.remindagain">Erneut erinnern...</label>
 	<label index="reminder.button.remindlater">Später erneut erinnern</label>
 	<label index="extconf.allowoverbooking.label">Überbuchungen erlauben?</label>
 	<label index="extconf.reminder.reminderemail_active.label">Terminerrinnerungen per Email aktivieren</label>

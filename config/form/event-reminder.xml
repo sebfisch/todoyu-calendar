@@ -15,7 +15,7 @@
 			<class>reminderschedule</class>
 			<elements>
 				<field type="select" name="date_remindpopup">
-					<label>calendar.ext.reminder.remindagainin</label>
+					<label>calendar.ext.reminder.remindagain</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getRemindAgainOptions</function>
 					</source>
@@ -30,13 +30,13 @@
 			<elements>
 				<field type="cancelButton" name="dismiss">
 					<text>core.global.dismiss</text>
-					<onclick>Todoyu.Ext.calendar.ReminderPopup.dismiss(this.form)</onclick>
+					<onclick>Todoyu.Ext.calendar.ReminderPopup.deactivate(this.form)</onclick>
 				</field>
 
 				<field type="button" name="ok">
 					<text>calendar.ext.reminder.button.remindlater</text>
 					<class>rescheduleReminderButton</class>
-					<onclick>Todoyu.Ext.calendar.ReminderPopup.reschedule(this.form)</onclick>
+					<onclick>Todoyu.Ext.calendar.ReminderPopup.rescheduleReminderTime(this.form)</onclick>
 					<hasIcon/>
 				</field>
 			</elements>
