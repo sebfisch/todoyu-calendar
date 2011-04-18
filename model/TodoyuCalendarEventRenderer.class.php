@@ -36,7 +36,7 @@ class TodoyuCalendarEventRenderer {
 		$time	= intval($time);
 		$time	= TodoyuTime::getRoundedTime($time, 15);
 
-					// Get form object
+			// Get form object
 		$form	= TodoyuCalendarEventManager::getQuickCreateForm();
 
 			// Set event start and ending timestamps
@@ -50,15 +50,12 @@ class TodoyuCalendarEventRenderer {
 			$timeEnd	= $timeStart + TodoyuTime::SECONDS_MIN * 30;
 		}
 
-			// Get person data
-		$person	= TodoyuAuth::getPerson()->getTemplateData();
-
 			// Set form data
 		$formData	= array(
 			'date_start' 	=> $timeStart,
 			'date_end' 		=> $timeEnd,
 			'is_dayevent'	=> $isDayEvent,
-			'persons'		=> array($person)
+			'persons'		=> array(TodoyuAuth::getPerson()->getTemplateData())
 		);
 
 		$form->setFormData($formData);
@@ -252,7 +249,7 @@ class TodoyuCalendarEventRenderer {
 		$dateStart	= TodoyuNumeric::intInRange($dateStart, $viewRange['start'], $viewRange['end']);
 		$dateEnd	= TodoyuNumeric::intInRange($dateEnd, $viewRange['start'], $viewRange['end']);
 
-		$timeDiffHour	= ($dateEnd - $dateStart)/TodoyuTime::SECONDS_HOUR;
+		$timeDiffHour	= ($dateEnd - $dateStart) / TodoyuTime::SECONDS_HOUR;
 
 		$height		= ceil($timeDiffHour * CALENDAR_HEIGHT_HOUR);
 

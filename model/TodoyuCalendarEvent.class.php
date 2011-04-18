@@ -138,7 +138,7 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	/**
 	 * Get event type (ID)
 	 *
-	 * @return	String
+	 * @return	Integer
 	 */
 	public function getType() {
 		return $this->get('eventtype');
@@ -169,7 +169,7 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 
 
 	/**
-	 * Get the IDs if the assigned persons
+	 * Get the IDs if assigned persons of event
 	 *
 	 * @return	Array
 	 */
