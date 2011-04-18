@@ -143,9 +143,9 @@ function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param		Dwoo 		$dwoo
- * @param		Integer		$dayNum
- * @return		String
+ * @param	Dwoo 		$dwoo
+ * @param	Integer		$dayNum
+ * @return	String
  */
 function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {
 	$timestamp	= intval($timestamp);

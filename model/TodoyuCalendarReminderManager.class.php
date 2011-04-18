@@ -214,7 +214,7 @@ class TodoyuCalendarReminderManager {
 	 * Deactivate (set time to 0) given reminder of given type, person and event
 	 *
 	 * @param	Integer		$reminderType
-	 * @param  	Integer		$idEvent
+	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
 	 */
 	public static function deactivateReminder($reminderType, $idEvent, $idPerson = 0) {

@@ -176,7 +176,7 @@ class TodoyuCalendarEventMailer {
 
 		$tmpl	= self::getMailTemplateName($operationID, $modeHTML);
 
-		if($tmpl !== false) {
+		if( $tmpl !== false ) {
 			$data				= self::getMailData($idEvent, $idPerson);
 			$data['hideEmails']	= $hideEmails;
 
