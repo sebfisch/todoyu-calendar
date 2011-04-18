@@ -90,7 +90,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 		this.events.each(function(event){
 			var popupTime	= event.time_popup * 1000;	// Convert to milliseconds
 
-			if( event.dismissed == 0 && 1 || (now) >= popupTime  ) {
+			if( event.dismissed == 0 && (now) >= popupTime  ) {
 				this.show(event.id);
 			}
 		}, this);
@@ -208,6 +208,14 @@ Todoyu.Ext.calendar.ReminderPopup = {
 		var idDateRemindSelector	= form.down('select[name="reminder[date_remindpopup]"]');
 		var secondsBefore			= $F(idDateRemindSelector);
 
+			// Reschedule cached event popup
+		this.events.each(function(event){
+			if( event.id == idEvent ) {
+				event.time_popup	= event.date_start - (secondsBefore * 1000);
+			}
+		}, this);
+
+			// Update in DB
 		this.closePopup(idEvent);
 		this.updateReminderTime(idEvent, secondsBefore);
 	},
