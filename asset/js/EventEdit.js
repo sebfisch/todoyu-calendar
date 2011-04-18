@@ -172,7 +172,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 
 	/**
-	 * Check if a field has to be hidden for an event type
+	 * Check whether a field has to be hidden for an event type
 	 *
 	 * @method	checkHideField
 	 * @param	{String}	fieldName
@@ -251,7 +251,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 			});
 		}
 
-			// Delay activation, because tabhandler activates add tab after this function
+			// Delay activation, because tab handler activates add tab after this function
 		Todoyu.Tabs.setActive.defer('calendar' ,'edit');
 	},
 

@@ -72,18 +72,16 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$data	= $params['event'];
 		$idEvent= intval($data['id']);
 
-			// Check rights
+			// Check rights (new event creation / updating existing event)
 		if( $idEvent === 0 ) {
-				// New event
 			TodoyuCalendarEventRights::restrictAdd();
 		} else {
-				// Edit event
 			TodoyuCalendarEventRights::restrictEdit($idEvent);
 		}
 
 			// Set form data
-		$xmlPath	= 'ext/calendar/config/form/event.xml';
-		$form		= TodoyuFormManager::getForm($xmlPath, $idEvent);
+		$xmlPath= 'ext/calendar/config/form/event.xml';
+		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
 
 		$form->setFormData($data);
 
@@ -91,44 +89,73 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 
 		if( $form->isValid() ) {
-			$needToShowWarning	= false;
-
-				// Check for (allowed) entered overbooking, ask user to confirm saving if any occurs
-			$isOverbookingConfirmed	= intval($params['isOverbookingConfirmed']);
-			if( TodoyuCalendarManager::isOverbookingAllowed() && ! $isOverbookingConfirmed ) {
-				$overbookedWarning	= TodoyuCalendarEventManager::getOverbookingWarning($idEvent, $data);
-				if( ! empty($overbookedWarning) ) {
-					$needToShowWarning	= true;
-					TodoyuHeader::sendTodoyuHeader('overbookingwarning', $overbookedWarning);
-
-					$overboookingWarningInline	= TodoyuCalendarEventManager::getOverbookingWarning($idEvent, $data, false);
-					TodoyuHeader::sendTodoyuHeader('overbookingwarningInline', $overboookingWarningInline);
-				}
+				// Check for warnings and send resp. headers
+			$warningHeaders	= self::getOverbookingWarningHeaders($idEvent, $params);
+			foreach($warningHeaders as $headerName => $headerValue) {
+				TodoyuHeader::sendTodoyuHeader($headerName, $headerValue);
 			}
 
-				// Save or update event (and send email if mail-option activated)
-			if( $needToShowWarning === false ) {
+				// No warnings - save or update event (and send email if mail-option activated)
+			if( sizeof($warningHeaders) === 0 ) {
 				$data	= $form->getStorageData();
-
-				$data['is_reminderemail_active']	= $params['event']['is_reminderemail_active'];
-				$data['reminderemail_advancetime']	= $params['event']['reminderemail_advancetime'];
-				$data['is_reminderpopup_active']	= $params['event']['is_reminderpopup_active'];
-				$data['reminderpopup_advancetime']	= $params['event']['reminderpopup_advancetime'];
+				$data	= self::copyReminderParamsToEventData($data, $params['event']);
 
 				$idEvent= TodoyuCalendarEventManager::saveEvent($data);
-				$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
-				TodoyuHeader::sendTodoyuHeader('time', $event->get('date_start'));
+				TodoyuHeader::sendTodoyuHeader('time', TodoyuCalendarEventManager::getEvent($idEvent)->get('date_start'));
 				TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 			}
 		} else {
 				// Handle errors
 			TodoyuHeader::sendTodoyuErrorHeader();
-
 			$form->setUseRecordID(false);
 
 			return $form->render();
 		}
+	}
+
+
+
+	/**
+	 * Copy reminder scheduling parameters into event data array (used when saving event with inline personal scheduling)
+	 *
+	 * @param	Array	$data
+	 * @param	Array	$eventParams
+	 * @return	Array
+	 */
+	private static function copyReminderParamsToEventData(array $data, array $eventParams) {
+		$data['is_reminderemail_active']	= $eventParams['is_reminderemail_active'];
+		$data['reminderemail_advancetime']	= $eventParams['reminderemail_advancetime'];
+
+		$data['is_reminderpopup_active']	= $eventParams['is_reminderpopup_active'];
+		$data['reminderpopup_advancetime']	= $eventParams['reminderpopup_advancetime'];
+
+		return $data;
+	}
+
+
+
+	/**
+	 * Check for warnings to be shown prior to saving
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$params
+	 * @return	Array
+	 */
+	private static function getOverbookingWarningHeaders($idEvent, array $params) {
+		$warnings	= array();
+
+				// Check for (allowed) entered overbooking, ask user to confirm saving if any occurs
+		$isOverbookingConfirmed	= intval($params['isOverbookingConfirmed']);
+		if( TodoyuCalendarManager::isOverbookingAllowed() && ! $isOverbookingConfirmed ) {
+			$overbookedWarning	= TodoyuCalendarEventManager::getOverbookingWarning($idEvent, $params['event']);
+			if( ! empty($overbookedWarning) ) {
+				$warnings['overbookingwarning'] 		= $overbookedWarning;
+				$warnings['overbookingwarningInline']	= TodoyuCalendarEventManager::getOverbookingWarning($idEvent, $params['event'], false);
+			}
+		}
+
+		return $warnings;
 	}
 
 

@@ -126,22 +126,6 @@ class TodoyuCalendarReminderManager {
 
 
 
-//	/**
-//	 * Get record ID of event-person MM relation of given event/person
-//	 *
-//	 * @param	Integer		$idEvent
-//	 * @param	Integer		$idPerson
-//	 * @return	Integer
-//	 */
-//	public static function getMMrecordData($idEvent, $idPerson = 0) {
-//		$idEvent	= intval($idEvent);
-//		$idPerson	= personid($idPerson);
-//
-//
-//	}
-
-
-
 	/**
 	 * Update event-person MM record of given ID
 	 *
