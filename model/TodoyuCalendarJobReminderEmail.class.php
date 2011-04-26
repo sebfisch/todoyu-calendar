@@ -28,6 +28,16 @@
 class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 
 	/**
+	 * Frequency the cron job is executed
+	 * You can't change frequency with this config
+	 *
+	 * @var	Integer
+	 */
+	private $frequency = 1;
+
+
+
+	/**
 	 * Executed from TodoyuScheduler: send scheduled event reminder emails
 	 */
 	public function execute() {
@@ -41,10 +51,7 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 
 				// Only send to persons having the right to use email reminders
 			if( TodoyuCalendarReminderEmailManager::isActivatedForPerson($idPerson) ) {
-				$sentSuccessfully	= self::sendMail($reminder);
-				if( $sentSuccessfully ) {
-					self::saveReminderSent($reminder);
-				}
+				$this->sendMail($reminder);
 			}
 		}
 	}
@@ -52,16 +59,17 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 
 
 	/**
-	 * Get records of unsent reminders (from ext_calendar_mm_event_person) which are due 
+	 * Get records of unsent reminders (from ext_calendar_mm_event_person) which are due
 	 *
 	 * @return	Array
 	 */
-	private static function getUnsentDueReminderIDs() {
+	private function getUnsentDueReminderIDs() {
+		$checkDate	= NOW + $this->frequency * 60;
 		$field	= 'id';
 		$table	= 'ext_calendar_mm_event_person';
 		$where	= '		is_remindemailsent	= 0'
 				. ' AND	date_remindemail	> 0'
-				. ' AND	date_remindemail	<= ' . NOW;
+				. ' AND	date_remindemail	< ' . $checkDate;
 
 		return Todoyu::db()->getColumn($field, $table, $where, $field, $field);
 	}
@@ -74,7 +82,7 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 * @param	TodoyuCalendarReminder		$reminder
 	 * @return	Boolean		Success
 	 */
-	private static function sendMail(TodoyuCalendarReminder $reminder) {
+	private function sendMail(TodoyuCalendarReminder $reminder) {
 		$event		= $reminder->getEvent();
 		$person		= $reminder->getPersonAssigned();
 		$email		= $person->getEmail();
@@ -93,13 +101,17 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 		$fromName	= Todoyu::$CONFIG['SYSTEM']['name'];
 		$toAddress	= $email;
 		$toName		= $person->getFullName();
-		$htmlBody	= self::getMailContent($idEvent, $idPerson, false, true);
-		$textBody	= self::getMailContent($idEvent, $idPerson, false, false);
+		$htmlBody	= $this->getMailContent($idEvent, $idPerson, false, true);
+		$textBody	= $this->getMailContent($idEvent, $idPerson, false, false);
 
 		$baseURL	= PATH_EXT_CALENDAR;
 
 			// Send mail
 		$sendStatus	= TodoyuMailManager::sendMail($subject, $fromAddress, $fromName, $toAddress, $toName, $htmlBody, $textBody, $baseURL, true);
+
+		if( $sendStatus ) {
+			$this->saveReminderSent($reminder);
+		}
 
 		return $sendStatus;
 	}
@@ -115,11 +127,11 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 * @param	Boolean		$modeHTML
 	 * @return	String
 	 */
-	private static function getMailContent($idEvent, $idPersonMailTo, $hideEmails = true, $modeHTML = true) {
-		$idEvent	= intval($idEvent);
+	private function getMailContent($idEvent, $idPersonMailTo, $hideEmails = true, $modeHTML = true) {
+		$idEvent		= intval($idEvent);
 		$idPersonMailTo	= intval($idPersonMailTo);
 
-		$tmpl				= self::getMailTemplateName($modeHTML);
+		$tmpl				= $this->getMailTemplateName($modeHTML);
 		$data				= TodoyuCalendarEventMailManager::getMailData($idEvent, $idPersonMailTo, true);
 		$data['hideEmails']	= $hideEmails;
 
@@ -141,7 +153,7 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 * @param	Boolean		$modeHTML
 	 * @return	String
 	 */
-	public static function getMailTemplateName($modeHTML = false) {
+	private function getMailTemplateName($modeHTML = false) {
 		$path	= 'ext/calendar/view/emails/event-reminder';
 		$path  .= $modeHTML ? '-html' : '-text';
 
@@ -154,7 +166,7 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 *
 	 * @param	TodoyuCalendarReminder	$reminder
 	 */
-	public static function saveReminderSent(TodoyuCalendarReminder $reminder) {
+	public function saveReminderSent(TodoyuCalendarReminder $reminder) {
 		$idReminder	= $reminder->getID();
 
 			// Set "is_sent"-flag in ext_calendar_mm_event_person

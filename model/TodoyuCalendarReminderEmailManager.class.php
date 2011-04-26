@@ -190,6 +190,10 @@ class TodoyuCalendarReminderEmailManager {
 			return false;
 		}
 
+		if( ! TodoyuCalendarReminderManager::isEmailReminderEnabled() ) {
+			return false;
+		}
+
 		return TodoyuCalendarReminderManager::isEventSchedulable(self::REMINDERTYPE, $idEvent, $idPerson);
 	}
 

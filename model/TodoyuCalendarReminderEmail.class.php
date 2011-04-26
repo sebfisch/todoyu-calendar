@@ -27,16 +27,6 @@
  */
 class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 
-	/**
-	 * Initialize reminder (based on event's person assignment)
-	 *
-	 * @param	Integer		$idReminder
-	 */
-	public function __construct($idEvent, $idPerson = 0) {
-		parent::__construct($idEvent, $idPerson);
-	}
-
-
 
 	/**
 	 * Get scheduled email reminder time

@@ -139,6 +139,10 @@ class TodoyuCalendarReminderPopupManager {
 			return false;
 		}
 
+		if( ! TodoyuCalendarReminderManager::isPopupReminderEnabled() ) {
+			return false;
+		}
+
 		return TodoyuCalendarReminderManager::isEventSchedulable(self::REMINDERTYPE, $idEvent, $idPerson);
 	}
 
