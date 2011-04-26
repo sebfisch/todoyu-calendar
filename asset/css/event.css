@@ -450,7 +450,7 @@ table.eventView td {
 	text-align:left;
 }
 table.eventView td a {
-	text-decoration: underline;
+	text-decoration:underline;
 }
 
 button.editEvent .icon {
