@@ -235,12 +235,12 @@ div.weekMode div#calendararea div.event dd span.desc {
 }
 
 .portalEventsList #events div.eventDetails	{
-	border-bottom:1px dotted #848484;
+	border-bottom:1px solid #ddd;
 }
 
 #birthdays div.event {
 	background-color:#FFF !important;
-	border-bottom:1px dotted #848484;
+	border-bottom:1px solid #ddd;
 }
 #birthdays div.event div {
 	display:inline-block;
@@ -285,7 +285,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 #holidays h3,
 #events .event h3{
 	background-color:#fff;
-	border-bottom:1px dotted #848484;
+	border-bottom:1px solid #ddd;
 }
 
 #holidays h3 {

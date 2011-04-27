@@ -154,8 +154,8 @@ div.quickinfoHoliday_content span.holiday {
 }
 
 #mvEventContainer {
-	border-left:1px dotted #818181;
-	border-right:1px dotted #818181;
+	border-left:1px solid #ddd;
+	border-right:1px solid #ddd;
 }
 
 th.mv-dayname.odd{

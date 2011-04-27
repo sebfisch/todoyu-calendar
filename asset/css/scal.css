@@ -162,12 +162,12 @@
    ---------------- */
 .todoyuskin .calweekswrapper {
 	border-width:1px 1px 0 0;
-	border-color:#818181;
-	border-style:dotted;
+	border-color:#ddd;
+	border-style:solid;
 }
 
 .todoyuskin .weekbox {
-	border-bottom:1px dotted #818181;
+	border-bottom:1px solid #ddd;
 }
 
 .todoyuskin .weekboxname {
@@ -177,8 +177,8 @@
 
 .todoyuskin .daybox {
 	border-width:0 0 0 1px;
-	border-color:#818181;
-	border-style:dotted;
+	border-color:#ddd;
+	border-style:solid;
 }
 
 .inSelMonth {

@@ -2,7 +2,7 @@
 	Grid
    --------------- */
 .mainGrid {
-	border-bottom:2px solid #999;
+	border-bottom:1px solid #ddd;
 	background:#d7dcc6;
 }
 
@@ -109,8 +109,8 @@ div.weekMode table.st-grid td {
 	overflow-y:scroll;
 	overflow-x:hidden;
 	border-top:1px solid #999;
-	border-left:1px dotted #818181;
-	border-right:1px dotted #818181;
+	border-left:1px solid #ddd;
+	border-right:1px solid #ddd;
 	border-bottom:1px solid #fff;
 	padding:0;
 	font-size:11px;
