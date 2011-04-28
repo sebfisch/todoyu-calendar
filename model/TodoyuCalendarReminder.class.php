@@ -30,23 +30,9 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 	/**
 	 * Initialize reminder (based on event's person assignment)
 	 *
-	 * @param	Integer		$idEvent
-	 * @param	Integer		$idPerson
+	 * @param	Integer		$idReminder
 	 */
-	public function __construct($idEvent, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
-
-		if( ! TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson) ) {
-				// Given person not assigned? Prevent reminder construction
-//			TodoyuDebug::printInFirebug(debug_backtrace(false),true);
-			Todoyu::log('Instantiating reminder failed because person ' . $idPerson . ' is not assigned to event ' . $idEvent, TodoyuLogger::LEVEL_ERROR);
-
-			return false;
-		}
-
-		$idReminder	= self::getReminderIDbyAssignment($idEvent, $idPerson);
-
+	public function __construct($idReminder) {
 		parent::__construct($idReminder, 'ext_calendar_mm_event_person');
 	}
 
@@ -161,9 +147,9 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 	/**
 	 * Check whether email reminding for this event/person is disabled
 	 *
-	 * @return	String
+	 * @return	Boolean
 	 */
-	public function isDisabled($reminderType = CALENDAR_TYPE_EVENTREMINDER_EMAIL) {
+	protected function isDisabled($reminderType) {
 		$typePrefix = TodoyuCalendarReminderManager::getReminderTypePrefix($reminderType);
 
 		return $this->get('date_remind' . $typePrefix) === 0;

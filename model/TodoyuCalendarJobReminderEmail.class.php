@@ -33,7 +33,7 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 *
 	 * @var	Integer
 	 */
-	private $frequency = 1;
+	private $frequency = 60;
 
 
 
@@ -46,13 +46,9 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 
 			// Send emails
 		foreach($reminderIDs as $idReminder) {
-			$reminder	= TodoyuCalendarReminderManager::getReminder($idReminder);
-			$idPerson	= $reminder->getPersonAssignedID();
+			$reminder	= TodoyuCalendarReminderEmailManager::getReminder($idReminder);
 
-				// Only send to persons having the right to use email reminders
-			if( TodoyuCalendarReminderEmailManager::isActivatedForPerson($idPerson) ) {
-				$this->sendMail($reminder);
-			}
+			$reminder->sendAsEmail();
 		}
 	}
 
@@ -71,110 +67,7 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 				. ' AND	date_remindemail	> 0'
 				. ' AND	date_remindemail	< ' . $checkDate;
 
-		return Todoyu::db()->getColumn($field, $table, $where, $field, $field);
-	}
-
-
-
-	/**
-	 * Send an event email to a person
-	 *
-	 * @param	TodoyuCalendarReminder		$reminder
-	 * @return	Boolean		Success
-	 */
-	private function sendMail(TodoyuCalendarReminder $reminder) {
-		$event		= $reminder->getEvent();
-		$person		= $reminder->getPersonAssigned();
-		$email		= $person->getEmail();
-
-			// Don't (try) sending when event or person's email is missing
-		if( $event->isDeleted() || empty($email) ) {
-			return false;
-		}
-
-		$idEvent	= $reminder->getEventID();
-		$idPerson	= $reminder->getPersonAssignedID();
-
-			// Setup mail data
-		$subject	= Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
-		$fromAddress= Todoyu::$CONFIG['SYSTEM']['email'];
-		$fromName	= Todoyu::$CONFIG['SYSTEM']['name'];
-		$toAddress	= $email;
-		$toName		= $person->getFullName();
-		$htmlBody	= $this->getMailContent($idEvent, $idPerson, false, true);
-		$textBody	= $this->getMailContent($idEvent, $idPerson, false, false);
-
-		$baseURL	= PATH_EXT_CALENDAR;
-
-			// Send mail
-		$sendStatus	= TodoyuMailManager::sendMail($subject, $fromAddress, $fromName, $toAddress, $toName, $htmlBody, $textBody, $baseURL, true);
-
-		if( $sendStatus ) {
-			$this->saveReminderSent($reminder);
-		}
-
-		return $sendStatus;
-	}
-
-
-
-	/**
-	 * Render content for HTML/plaintext mail
-	 *
-	 * @param	Integer		$idEvent		Event to send
-	 * @param	Integer		$idPersonMailTo
-	 * @param	Boolean		$hideEmails
-	 * @param	Boolean		$modeHTML
-	 * @return	String
-	 */
-	private function getMailContent($idEvent, $idPersonMailTo, $hideEmails = true, $modeHTML = true) {
-		$idEvent		= intval($idEvent);
-		$idPersonMailTo	= intval($idPersonMailTo);
-
-		$tmpl				= $this->getMailTemplateName($modeHTML);
-		$data				= TodoyuCalendarEventMailManager::getMailData($idEvent, $idPersonMailTo, true);
-		$data['hideEmails']	= $hideEmails;
-
-			// Switch to locale of email receiver person
-		$locale	= TodoyuContactPersonManager::getPerson($idPersonMailTo)->getLocale();
-		TodoyuLabelManager::setLocale($locale);
-
-			// Render
-		$content	= render($tmpl, $data);
-
-		return $content;
-	}
-
-
-
-	/**
-	 * Get filename of event reminder email template to current mode (text/HTML)
-	 *
-	 * @param	Boolean		$modeHTML
-	 * @return	String
-	 */
-	private function getMailTemplateName($modeHTML = false) {
-		$path	= 'ext/calendar/view/emails/event-reminder';
-		$path  .= $modeHTML ? '-html' : '-text';
-
-		return $path . '.tmpl';
-	}
-
-
-	/**
-	 * Set "is_sent" flag of reminder true, store
-	 *
-	 * @param	TodoyuCalendarReminder	$reminder
-	 */
-	public function saveReminderSent(TodoyuCalendarReminder $reminder) {
-		$idReminder	= $reminder->getID();
-
-			// Set "is_sent"-flag in ext_calendar_mm_event_person
-		TodoyuCalendarReminderManager::updateMMrecord($idReminder, array('is_remindemailsent'	=> 1));
-
-			// Save log record about sent mail
-		$idPerson	= $reminder->getPersonAssignedID();
-		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idReminder, array($idPerson));
+		return Todoyu::db()->getColumn($field, $table, $where);
 	}
 
 }

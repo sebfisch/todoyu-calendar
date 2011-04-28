@@ -36,8 +36,8 @@ if( Todoyu::person()->isInternal() || TodoyuAuth::isAdmin() ) {
 }
 
 	// Add JavaScript init to page body
-if( allowed('calendar', 'general:use') ) {
-	TodoyuCalendarManager::addReminderJsInitToPage();
+if( allowed('calendar', 'reminders:popup') ) {
+	TodoyuCalendarReminderPopupManager::addReminderJsInitToPage();
 }
 
 ?>

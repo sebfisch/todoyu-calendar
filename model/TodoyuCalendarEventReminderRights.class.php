@@ -45,7 +45,7 @@ class TodoyuCalendarEventReminderRights {
 	 * @return	Boolean
 	 */
 	public static function isPopupSchedulingAllowed($idEvent) {
-		return TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent);
+		return TodoyuCalendarReminderPopupManager::isReminderAllowed($idEvent);
 	}
 
 
@@ -57,7 +57,7 @@ class TodoyuCalendarEventReminderRights {
 	 * @return	Boolean
 	 */
 	public static function isEmailSchedulingAllowed($idEvent) {
-		return TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent);
+		return TodoyuCalendarReminderEmailManager::isReminderAllowed($idEvent);
 	}
 
 

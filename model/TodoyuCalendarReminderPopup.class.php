@@ -62,6 +62,16 @@ class TodoyuCalendarReminderPopup extends TodoyuCalendarReminder {
 		return $isDismissed;
 	}
 
+
+	/**
+	 * Check whether email reminding for this event/person is disabled
+	 *
+	 * @return	Boolean
+	 */
+	public function isDisabled() {
+		return parent::isDisabled(CALENDAR_TYPE_EVENTREMINDER_POPUP);
+	}
+
 }
 
 ?>

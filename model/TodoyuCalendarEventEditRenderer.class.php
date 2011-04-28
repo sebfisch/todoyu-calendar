@@ -129,8 +129,8 @@ class TodoyuCalendarEventEditRenderer {
 	 */
 	private static function addReminderFieldsetToEventForm($form, $idEvent) {
 		$idEvent					= intval($idEvent);
-		$reminderEmailSchedulable	= TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent);
-		$reminderPopupSchedulable	= TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent);
+		$reminderEmailSchedulable	= TodoyuCalendarReminderEmailManager::isReminderAllowed($idEvent);
+		$reminderPopupSchedulable	= TodoyuCalendarReminderPopupManager::isReminderAllowed($idEvent);
 
 		if( $idEvent != 0 && ($reminderEmailSchedulable || $reminderPopupSchedulable) ) {
 			$xmlPathReminders	= 'ext/calendar/config/form/event-creatorreminder.xml';

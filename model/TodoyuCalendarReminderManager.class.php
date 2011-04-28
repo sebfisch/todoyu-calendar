@@ -41,9 +41,8 @@ class TodoyuCalendarReminderManager {
 	 */
 	public static function getReminder($idReminder) {
 		$idReminder	= intval($idReminder);
-		$recordData	= self::getReminderRecord($idReminder);
 
-		return new TodoyuCalendarReminder($recordData['id_event'], $recordData['id_person']);
+		return TodoyuRecordManager::getRecord('TodoyuCalendarReminder', $idReminder);
 	}
 
 
@@ -70,7 +69,9 @@ class TodoyuCalendarReminderManager {
 	 * @return	TodoyuCalendarReminder
 	 */
 	public static function getReminderByAssignment($idEvent, $idPerson) {
-		return new TodoyuCalendarReminder($idEvent, $idPerson);
+		$idReminder	= self::getReminderIDByAssignment($idEvent, $idPerson);
+
+		return self::getReminder($idReminder);
 	}
 
 
@@ -82,7 +83,7 @@ class TodoyuCalendarReminderManager {
 	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getReminderIDbyAssignment($idEvent, $idPerson = 0) {
+	public static function getReminderIDByAssignment($idEvent, $idPerson) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= personid($idPerson);
 
@@ -171,13 +172,11 @@ class TodoyuCalendarReminderManager {
 	/**
 	 * Check whether given/current person can schedule a reminder for the event of the given type / ID
 	 *
-	 * @param	Integer		$reminderType
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
 	 * @return
 	 */
-	public static function isEventSchedulable($reminderType, $idEvent, $idPerson = 0) {
-		$reminderType	= intval($reminderType);
+	public static function isPersonAssigned($idEvent, $idPerson = 0) {
 		$idEvent		= intval($idEvent);
 		$idPerson		= personid($idPerson);
 
@@ -257,12 +256,12 @@ class TodoyuCalendarReminderManager {
 	 * Update reminder activation (popup / mailing) time of given reminder
 	 *
 	 * @param	Integer		$reminderType
-	 * @param	Integer		$timestamp
+	 * @param	Integer		$dateRemind
 	 * @param	Integer		$idPerson
 	 */
-	public static function updateReminderTime($reminderType, $idEvent, $timestamp, $idPerson = 0) {
+	public static function updateReminderTime($reminderType, $idEvent, $dateRemind, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
-		$timestamp	= intval($timestamp);
+		$dateRemind	= intval($dateRemind);
 		$idPerson	= personid($idPerson);
 
 		$reminder	= self::getReminderTypeByAssignment($reminderType, $idEvent, $idPerson);
@@ -275,12 +274,12 @@ class TodoyuCalendarReminderManager {
 
 				// Update reminding time
 			$fieldValues	= array(
-				'date_remind' . $typePrefix	=> $timestamp,
+				'date_remind' . $typePrefix	=> $dateRemind,
 			);
 			self::updateMMrecord($idRecord, $fieldValues);
 
 				// Update dismission flag
-			$isDismissed = $timestamp == 0;
+			$isDismissed = $dateRemind == 0;
 			self::updateReminderDismission($reminderType, $idRecord, $isDismissed);
 		}
 	}

@@ -626,7 +626,7 @@ class TodoyuCalendarEventManager {
 		if( $sendAsMail ) {
 			self::eventSendEmail($idEvent, $emailReceivers, true);
 		}
-		
+
 		return $idEvent;
 	}
 
@@ -991,17 +991,6 @@ class TodoyuCalendarEventManager {
 			$allowed['add'] = $own['add'];
 		}
 
-			// Option: email reminder
-		if( TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent) ) {
-				// Setup email reminder context menu sub options (hilite selected, deactivate past options)
-			$allowed['reminderemail']	= TodoyuCalendarReminderEmailManager::getContextMenuItems($idEvent);
-		}
-
-			// Option: popup reminder
-		if( TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent) ) {
-			$allowed['reminderpopup']	= TodoyuCalendarReminderPopupManager::getContextMenuItems($idEvent);
-		}
-
 		$items = array_merge_recursive($items, $allowed);
 
 		return $items;
@@ -1038,7 +1027,7 @@ class TodoyuCalendarEventManager {
 		}
 
 			// Option: email reminder
-		if( TodoyuCalendarReminderEmailManager::isEventSchedulable($idEvent) ) {
+		if( TodoyuCalendarReminderEmailManager::isReminderAllowed($idEvent) ) {
 				// Setup email reminder context menu sub options (hilite selected, deactivate past options)
 			$ownItems['reminderemail']	= TodoyuCalendarReminderEmailManager::getContextMenuItems($idEvent);
 		} else {
@@ -1046,7 +1035,7 @@ class TodoyuCalendarEventManager {
 		}
 
 			// Option: popup reminder
-		if( TodoyuCalendarReminderPopupManager::isEventSchedulable($idEvent) ) {
+		if( TodoyuCalendarReminderPopupManager::isReminderAllowed($idEvent) ) {
 			$ownItems['reminderpopup']	= TodoyuCalendarReminderPopupManager::getContextMenuItems($idEvent);
 		} else {
 			unset($ownItems['reminderpopup']);

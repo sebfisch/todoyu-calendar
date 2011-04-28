@@ -21,7 +21,7 @@
 /* ------------------------
 	Schedule Cronjobs
    ------------------------ */
-TodoyuScheduler::addJob('TodoyuCalendarJobReminderEmail', 1);
+TodoyuScheduler::addJob('TodoyuCalendarJobReminderEmail', 0);
 
 
 
@@ -32,11 +32,22 @@ TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarEventManager::getC
 TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuCalendarEventManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::addFunction('CalendarBody', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
+if( allowed('calendar', 'reminders:email') ) {
+	TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarReminderEmailManager::getContextMenuItems', 10);
+}
+if( allowed('calendar', 'reminders:popup') ) {
+	TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarReminderPopupManager::getContextMenuItems', 10);
+}
+
+
 TodoyuQuickinfoManager::addFunction('event', 'TodoyuCalendarQuickinfoManager::addQuickinfoEvent');
 TodoyuQuickinfoManager::addFunction('holiday', 'TodoyuCalendarQuickinfoManager::addQuickinfoHoliday');
 TodoyuQuickinfoManager::addFunction('birthday', 'TodoyuCalendarQuickinfoManager::addQuickinfoBirthday');
 
 TodoyuAutocompleter::addAutocompleter('eventperson', 'TodoyuCalendarManager::autocompleteEventPersons', array('calendar', 'general:use'));
+
+
+
 
 
 

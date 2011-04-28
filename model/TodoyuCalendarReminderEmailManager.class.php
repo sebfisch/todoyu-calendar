@@ -37,6 +37,18 @@ class TodoyuCalendarReminderEmailManager {
 	const REMINDERTYPE = CALENDAR_TYPE_EVENTREMINDER_EMAIL;
 
 
+	/**
+	 *
+	 * @param	Integer		$idReminder
+	 * @return	TodoyuCalendarReminderEmail
+	 */
+	public static function getReminder($idReminder) {
+		$idReminder	= intval($idReminder);
+
+		return TodoyuRecordManager::getRecord('TodoyuCalendarReminderEmail', $idReminder);
+	}
+
+
 
 	/**
 	 * Get email reminder of given event/person
@@ -45,11 +57,10 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer		$idPerson
 	 * @return	TodoyuCalendarReminderEmail
 	 */
-	public static function getReminderByAssignment($idEvent, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= intval($idPerson);
+	public static function getReminderByAssignment($idEvent, $idPerson) {
+		$idReminder	= TodoyuCalendarReminderManager::getReminderIDByAssignment($idEvent, $idPerson);
 
-		return new TodoyuCalendarReminderEmail($idEvent, $idPerson);
+		return self::getReminder($idReminder);
 	}
 
 
@@ -185,7 +196,10 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer		$idEvent
 	 * @return	Boolean
 	 */
-	public static function isEventSchedulable($idEvent, $idPerson = 0) {
+	public static function isReminderAllowed($idEvent, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= personid($idPerson);
+
 		if( ! allowed('calendar', 'reminders:email') ) {
 			return false;
 		}
@@ -194,33 +208,33 @@ class TodoyuCalendarReminderEmailManager {
 			return false;
 		}
 
-		return TodoyuCalendarReminderManager::isEventSchedulable(self::REMINDERTYPE, $idEvent, $idPerson);
+		return TodoyuCalendarReminderManager::isPersonAssigned($idEvent, $idPerson);
 	}
 
 
 
-	/**
-	 * Get reminder context menu options (hilite selected, deactivate past options)
-	 *
-	 * @param	Integer	$idEvent
-	 * @param	Array	$options
-	 * @return	Array
-	 */
-	public static function getContextMenuItems($idEvent) {
+	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent	= intval($idEvent);
-		$options	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event']['reminderemail'];
+		$allowed	= array();
 
-			// Set selected option CSS class
-		$selectedTimeOptionKey	= self::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
-		if( $selectedTimeOptionKey === false ) {
-			$options['submenu'][0]['class'] .= ' selected';
-		} elseif( key_exists($selectedTimeOptionKey, $options['submenu']) ) {
-			$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
+				// Option: email reminder
+		if( self::isReminderAllowed($idEvent) ) {
+			$options	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event']['reminderemail'];
+
+				// Set selected option CSS class
+			$selectedTimeOptionKey	= self::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
+			if( $selectedTimeOptionKey === false ) {
+				$options['submenu'][0]['class'] .= ' selected';
+			} elseif( key_exists($selectedTimeOptionKey, $options['submenu']) ) {
+				$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
+			}
+				// Set options disabled which are in the past already
+			$options['submenu']	= TodoyuCalendarReminderManager::disablePastTimeKeyOptions($options['submenu'], $idEvent);
+
+			$allowed['reminderemail'] = $options;
 		}
-			// Set options disabled which are in the past already
-		$options['submenu']	= TodoyuCalendarReminderManager::disablePastTimeKeyOptions($options['submenu'], $idEvent);
 
-		return $options;
+		return array_merge_recursive($items, $allowed);
 	}
 
 }
