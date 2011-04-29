@@ -12,7 +12,7 @@
 			<elements>
 				<field type="comment" name="tokenpersonal">
 					<label>calendar.ext.share.token.personal.label</label>
-					<comment>LLL:calendar.ext.share.token.noneyet</comment>
+					<comment/>
 					<class>tokentext</class>
 				</field>
 				<field type="button" name="generatetokenpersonal">
@@ -29,7 +29,7 @@
 			<elements>
 				<field type="comment" name="tokenavailability">
 					<label>calendar.ext.share.token.availability.label</label>
-					<comment>LLL:calendar.ext.share.token.noneyet</comment>
+					<comment/>
 					<class>tokentext</class>
 				</field>
 				<field type="button" name="generatetokenavailability">

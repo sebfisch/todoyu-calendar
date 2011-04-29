@@ -155,13 +155,24 @@ class TodoyuCalendarProfileRenderer {
 	public static function renderContentShare() {
 		$xmlPath	= 'ext/calendar/config/form/profile-share-tokens.xml';
 		$form		= TodoyuFormManager::getForm($xmlPath);
-		$formData	= array();
 
-			// Remove disallowed options' fieldsets
-		if( ! allowed('calendar', 'export_ics:personal') ) {
+			// Set form data
+		$formData	= array();
+		$form->setFormData($formData);
+
+			// Set token comments / remove disallowed options' fieldsets
+			// 1. Token for sharing personal calendar data
+		if( allowed('calendar', 'export_ics:personal') ) {
+			$tokenPersonal	= TodoyuTokenManager::getTokenByOwner(personid(), EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
+			$form->getFieldset('personal')->getField('tokenpersonal')->setAttribute('comment', $tokenPersonal);
+		} else {
 			$form->getFieldset('personal')->remove();
 		}
-		if( ! allowed('calendar', 'export_ics:availability') ) {
+			// 2. Token for sharing availability
+		if( allowed('calendar', 'export_ics:availability') ) {
+			$tokenAvailability	= TodoyuTokenManager::getTokenByOwner(personid(), EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
+			$form->getFieldset('personal')->getField('tokenavailability')->setAttribute('comment', $tokenAvailability);
+		} else {
 			$form->getFieldset('availability')->remove();
 		}
 

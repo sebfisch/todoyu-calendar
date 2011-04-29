@@ -115,7 +115,7 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 	public function getTokenAction(array $params) {
 		$tokenType	= intval($params['type']);
 
-		return TodoyuTokenManager::generateHash($tokenType, personid(), true);
+		return TodoyuTokenManager::generateHash($tokenType, EXTID_CALENDAR, personid(), true);
 	}
 }
 
