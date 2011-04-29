@@ -593,7 +593,7 @@ class TodoyuCalendarEventManager {
 			// Create an empty event
 		$idEvent	= self::addEvent();
 
-			// handel e-mail fields
+			// Handle e-mail fields
 		$sendAsMail		= $data['sendasemail'];
 		$emailReceivers	= $data['emailreceivers'];
 
@@ -622,7 +622,7 @@ class TodoyuCalendarEventManager {
 			// Remove record and query from cache
 		self::removeEventFromCache($idEvent);
 
-			// send mail if necessary
+			// Send mail if necessary
 		if( $sendAsMail ) {
 			self::eventSendEmail($idEvent, $emailReceivers, true);
 		}

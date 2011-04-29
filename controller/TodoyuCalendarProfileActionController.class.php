@@ -105,6 +105,18 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, personid());
 	}
 
+
+
+	/**
+	 * Generate new calendar data access token
+	 *
+	 * @param	Array 	$params
+	 */
+	public function getTokenAction(array $params) {
+		$tokenType	= intval($params['type']);
+
+		return TodoyuTokenManager::generateHash($tokenType, personid(), true);
+	}
 }
 
 ?>

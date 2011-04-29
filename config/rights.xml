@@ -23,4 +23,9 @@
 		<right name="email" />
 	</section>
 
+	<section name="export_ics" require="general:use">
+		<right name="personal" />
+		<right name="availability" />
+	</section>
+
 </rights>

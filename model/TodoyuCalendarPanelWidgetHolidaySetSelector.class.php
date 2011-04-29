@@ -43,11 +43,11 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 	public function __construct(array $config, array $params = array()) {
 			// Construct PanelWidget (init basic configuration)
 		parent::__construct(
-			'calendar',									// ext key
-			'holidaysetselector',						// panel widget ID
+			'calendar',												// ext key
+			'holidaysetselector',									// panel widget ID
 			'LLL:calendar.panelwidget-holidaysetselector.title',	// widget title text
-			$config,									// widget config array
-			$params									// widget parameters
+			$config,												// widget config array
+			$params													// widget parameters
 		);
 
 		$this->addHasIconClass();
@@ -146,7 +146,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 	 */
 	public function savePreference($idArea = 0, $prefVals = '') {
 		TodoyuPreferenceManager::savePreference(
-			EXTID_CALENDAR,							// ext ID
+			EXTID_CALENDAR,						// ext ID
 			'panelwidget-holidaysetselector', 	// preference
 			$prefVals, 							// value
 			0,									// item ID

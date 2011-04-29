@@ -39,6 +39,10 @@
 	<label index="reminder.upcomingevent">Remember: You have the following appointment soon.</label>
 	<label index="reminder.remindagain">Remind me again...</label>
 	<label index="reminder.button.remindlater">Remind Me Later</label>
+	<label index="share.token.personal.label">Personal calendar data token</label>
+	<label index="share.token.availability.label">Availability data token</label>
+	<label index="share.button.generatetoken">Generate New Token</label>
+	<label index="share.token.noneyet">No Token Yet!</label>
 	<label index="extconf.allowoverbooking.label">Allow multiple simultaneous appointments for 1 person?</label>
 	<label index="extconf.reminder.reminderemail_active.label">Activate appointment reminders per email</label>
 	<label index="extconf.reminder.reminderpopup_active.label">Activate appointment reminders per popup</label>
@@ -60,4 +64,6 @@
 	<label index="profile.is_reminderemailactive">Activate appointment reminder mailing</label>
 	<label index="profile.main.saved">Settings have been saved.</label>
 	<label index="profile.reminders.saved">Reminders settings have been saved.</label>
+	<label index="profile.module.share.tab">Share Calendar</label>
+	<label index="profile.module.share.header">Configuration of calendar data sharing</label>
 </labels>

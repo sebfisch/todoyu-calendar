@@ -176,9 +176,8 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
-	 * @static
 	 * @param	Integer		$idEvent
-	 * @return	String
+	 * @return	Integer					Amount of seconds
 	 */
 	public static function getSelectedAdvanceTimeContextMenuOptionKey($idEvent) {
 		$idEvent	= intval($idEvent);

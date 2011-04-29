@@ -68,13 +68,17 @@ class TodoyuCalendarProfileRenderer {
 			case 'reminders':
 				return self::renderContentReminders();
 				break;
+
+			case 'share':
+				return self::renderContentShare();
+				break;
 		}
 	}
 
 
 
 	/**
-	 * Render content for profile's main tab of calendar section
+	 * Render content for profile's "main" tab of calendar section
 	 *
 	 * @return	String
 	 */
@@ -101,7 +105,7 @@ class TodoyuCalendarProfileRenderer {
 
 
 	/**
-	 * Render content for profile's reminders tab of calendar section
+	 * Render content for profile's "reminders" tab of calendar section
 	 *
 	 * @return	String
 	 */
@@ -134,6 +138,27 @@ class TodoyuCalendarProfileRenderer {
 
 			// Render tab content
 		$tmpl	= 'ext/calendar/view/profile-reminders.tmpl';
+		$data	= array(
+			'form'	=> $form->render()
+		);
+
+		return render($tmpl, $data);
+	}
+
+
+
+	/**
+	 * Render content for profile's "share" tab of calendar section
+	 *
+	 * @return	String
+	 */
+	public static function renderContentShare() {
+		$xmlPath	= 'ext/calendar/config/form/profile-share-tokens.xml';
+		$form		= TodoyuFormManager::getForm($xmlPath);
+		$formData	= array();
+
+			// Render tab content
+		$tmpl	= 'ext/calendar/view/profile-share.tmpl';
 		$data	= array(
 			'form'	=> $form->render()
 		);

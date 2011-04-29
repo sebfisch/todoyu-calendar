@@ -131,6 +131,52 @@ Todoyu.Ext.calendar.Profile =  {
 	 */
 	onRemindersSaved: function(response) {
 		Todoyu.notifySuccess('[LLL:calendar.ext.profile.reminders.saved]');
+	},
+
+
+
+	/**
+	 * Request newly generated token by AJAX
+	 * (This updates the shown token comment and stores the token in the session
+	 * to be unmanipulateable available for later saving.)
+	 *
+	 * @method	generateToken
+	 * @param	{Number}	idTokenType
+	 * @param	{String}	idTokenButton
+	 */
+	generateToken: function(idTokenType, idTokenButton) {
+			// Get element ID of comment field to resp. token of button
+		var idCommentField			= "formElement-" + idTokenButton;
+		var idCommentFieldPostFix	= idCommentField.split('-').last();
+
+		idCommentField	= idCommentField.replace(idCommentFieldPostFix, idCommentFieldPostFix.replace('generate', '')) + "-inputbox";
+
+			// Request generation of new token
+		var url		= Todoyu.getUrl('calendar', 'profile');
+		var options	= {
+			parameters: {
+				action:	'gettoken',
+				'type':  idTokenType
+			},
+			onComplete:	this.onTokenGenerated.bind(this, idCommentField)
+		};
+
+		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 * Update token comment field text with newly generated token
+	 *
+	 * @method	onTokenGenerated
+	 * @param	{String}			idTokenCommentField
+	 * @param	{Ajax.Response}		response
+	 */
+	onTokenGenerated: function(idTokenCommentField, response) {
+		var tokenSpan	= $(idTokenCommentField).select('span')[0];
+
+		tokenSpan.update(response.responseText);
 	}
 
 };

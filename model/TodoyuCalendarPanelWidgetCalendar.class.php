@@ -38,11 +38,11 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 */
 	public function __construct(array $config, array $params = array()) {
 		parent::__construct(
-			'calendar',							// ext. key
-			'calendar',							// panel widget ID
+			'calendar',									// ext. key
+			'calendar',									// panel widget ID
 			'LLL:calendar.panelwidget-calendar.title',	// widget title text
-			$config,							// widget config array
-			$params							// widget parameters
+			$config,									// widget config array
+			$params										// widget parameters
 		);
 
 		$this->addHasIconClass();

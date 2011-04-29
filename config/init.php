@@ -194,6 +194,14 @@ if( TodoyuExtensions::isInstalled('profile') ) {
 //			'require'		=> 'calendar.settings:editbookmarks'
 		);
 	}
+
+	if( allowed('calendar', 'share:personal') ||  allowed('calendar', 'share:availability') ) {
+		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
+			'id'			=> 'share',
+			'label'			=> 'LLL:calendar.ext.profile.module.share.tab',
+//			'require'		=> 'calendar.settings:editbookmarks'
+		);
+	}
 }
 
 ?>

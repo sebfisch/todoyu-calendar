@@ -14,3 +14,20 @@
 #calendar-tabs .tabkey-reminders .icon {
 	background:url("../img/icons.png") no-repeat scroll 0 -956px transparent;
 }
+
+#calendar-tabs .tabkey-share .icon {
+	background:url("../img/icons.png") no-repeat scroll 0 -1256px transparent;
+	margin-right:4px;
+}
+
+
+
+/* --------------------
+	Sharing Tokens Tab
+   -------------------- */
+form.formShare span.tokentext {
+	padding:4px 8px;
+	background-color:#eee;
+	font-family:courier;
+	color:#222;
+}

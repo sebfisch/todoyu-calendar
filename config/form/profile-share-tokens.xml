@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<attributes>
+		<attribute name="action">?ext=calendar&amp;controller=profile</attribute>
+		<attribute name="name">share</attribute>
+		<attribute name="onsubmit">return false</attribute>
+	</attributes>
+	<fieldsets>
+
+		<fieldset name="personal">
+			<legend>Token for accessing your full personal calendar data</legend>
+			<elements>
+				<field type="comment" name="tokenpersonal">
+					<label>calendar.ext.share.token.personal.label</label>
+					<comment>LLL:calendar.ext.share.token.noneyet</comment>
+					<class>tokentext</class>
+				</field>
+				<field type="button" name="generatetokenpersonal">
+					<text>calendar.ext.share.button.generatetoken</text>
+					<class>generate</class>
+					<onclick>Todoyu.Ext.calendar.Profile.generateToken(Todoyu.Ext.calendar.Share.tokenIDs.personal, this.id)</onclick>
+					<hasIcon/>
+				</field>
+			</elements>
+		</fieldset>
+
+		<fieldset name="availability">
+			<legend>Token for accessing your summarized availability (no details, just when you're free or occupied)</legend>
+			<elements>
+				<field type="comment" name="tokenavailability">
+					<label>calendar.ext.share.token.availability.label</label>
+					<comment>LLL:calendar.ext.share.token.noneyet</comment>
+					<class>tokentext</class>
+				</field>
+				<field type="button" name="generatetokenavailability">
+					<text>calendar.ext.share.button.generatetoken</text>
+					<class>generate</class>
+					<onclick>Todoyu.Ext.calendar.Profile.generateToken(Todoyu.Ext.calendar.Share.tokenIDs.availability, this.id)</onclick>
+					<hasIcon/>
+				</field>
+			</elements>
+		</fieldset>
+
+		<fieldset name="buttons">
+			<legend>Actions</legend>
+			<class>buttons</class>
+			<elements>
+				<field type="saveButton" name="save">
+					<onclick>Todoyu.Ext.calendar.Profile.generateToken(this.id)</onclick>
+				</field>
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>
