@@ -157,6 +157,14 @@ class TodoyuCalendarProfileRenderer {
 		$form		= TodoyuFormManager::getForm($xmlPath);
 		$formData	= array();
 
+			// Remove disallowed options' fieldsets
+		if( ! allowed('calendar', 'export_ics:personal') ) {
+			$form->getFieldset('personal')->remove();
+		}
+		if( ! allowed('calendar', 'export_ics:availability') ) {
+			$form->getFieldset('availability')->remove();
+		}
+
 			// Render tab content
 		$tmpl	= 'ext/calendar/view/profile-share.tmpl';
 		$data	= array(
