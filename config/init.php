@@ -40,10 +40,25 @@ if( allowed('calendar', 'reminders:popup') ) {
 }
 
 
+/* ----------------------------
+	Context Menu Callbacks
+   ---------------------------- */
+TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL, 'TodoyuCalendarIcsManager::getPersonalIcsExport');
+TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_AVAILABILITY, 'TodoyuCalendarIcsManager::getAvailabilityIcsExport');
+
+
+
+/* ----------------------------
+	Quickinfo Callbacks
+   ---------------------------- */
 TodoyuQuickinfoManager::addFunction('event', 'TodoyuCalendarQuickinfoManager::addQuickinfoEvent');
 TodoyuQuickinfoManager::addFunction('holiday', 'TodoyuCalendarQuickinfoManager::addQuickinfoHoliday');
 TodoyuQuickinfoManager::addFunction('birthday', 'TodoyuCalendarQuickinfoManager::addQuickinfoBirthday');
 
+
+/* ----------------------------
+	Autocompleter Callbacks
+   ---------------------------- */
 TodoyuAutocompleter::addAutocompleter('eventperson', 'TodoyuCalendarManager::autocompleteEventPersons', array('calendar', 'general:use'));
 
 
