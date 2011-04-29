@@ -136,6 +136,35 @@ Todoyu.Ext.calendar.Profile =  {
 
 
 	/**
+	 * Save settings of calendar sharing tab
+	 *
+	 * @method	saveSharingTokens
+	 * @param	{Element}		form
+	 */
+	saveSharingTokens: function(form) {
+		form.request({
+			parameters: {
+				action: 'saveSharing'
+			},
+			onComplete: this.onSharingTokensSaved.bind(this)
+		});
+	},
+
+
+
+	/**
+	 * Notify about saving success
+	 *
+	 * @method	onSharingTokensSaved
+	 * @param	{Ajax.Response}		response
+	 */
+	onSharingTokensSaved: function(response) {
+		Todoyu.notifySuccess('[LLL:calendar.ext.profile.sharing.saved]');
+	},
+
+
+
+	/**
 	 * Request newly generated token by AJAX
 	 * (This updates the shown token comment and stores the token in the session
 	 * to be unmanipulateable available for later saving.)

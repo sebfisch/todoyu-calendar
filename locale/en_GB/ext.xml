@@ -66,4 +66,5 @@
 	<label index="profile.reminders.saved">Reminders settings have been saved.</label>
 	<label index="profile.module.share.tab">Share Calendar</label>
 	<label index="profile.module.share.header">Configuration of calendar data sharing</label>
+	<label index="profile.sharing.saved">Configuration of calendar sharing sharing</label>
 </labels>

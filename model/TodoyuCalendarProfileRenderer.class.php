@@ -163,15 +163,21 @@ class TodoyuCalendarProfileRenderer {
 			// Set token comments / remove disallowed options' fieldsets
 			// 1. Token for sharing personal calendar data
 		if( allowed('calendar', 'export_ics:personal') ) {
-			$tokenPersonal	= TodoyuTokenManager::getTokenByOwner(personid(), EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
-			$form->getFieldset('personal')->getField('tokenpersonal')->setAttribute('comment', $tokenPersonal);
+			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
+			$hash	= $token->getHash();
+			if( ! empty($hash) ) {
+				$form->getFieldset('personal')->getField('tokenpersonal')->setAttribute('comment', $hash);
+			}
 		} else {
 			$form->getFieldset('personal')->remove();
 		}
 			// 2. Token for sharing availability
 		if( allowed('calendar', 'export_ics:availability') ) {
-			$tokenAvailability	= TodoyuTokenManager::getTokenByOwner(personid(), EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
-			$form->getFieldset('personal')->getField('tokenavailability')->setAttribute('comment', $tokenAvailability);
+			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
+			$hash	= $token->getHash();
+			if( ! empty($hash) ) {
+				$form->getFieldset('availability')->getField('tokenavailability')->setAttribute('comment', $hash);
+			}
 		} else {
 			$form->getFieldset('availability')->remove();
 		}

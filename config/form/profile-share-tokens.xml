@@ -12,7 +12,7 @@
 			<elements>
 				<field type="comment" name="tokenpersonal">
 					<label>calendar.ext.share.token.personal.label</label>
-					<comment/>
+					<comment>LLL:calendar.ext.share.token.noneyet</comment>
 					<class>tokentext</class>
 				</field>
 				<field type="button" name="generatetokenpersonal">
@@ -29,7 +29,7 @@
 			<elements>
 				<field type="comment" name="tokenavailability">
 					<label>calendar.ext.share.token.availability.label</label>
-					<comment/>
+					<comment>LLL:calendar.ext.share.token.noneyet</comment>
 					<class>tokentext</class>
 				</field>
 				<field type="button" name="generatetokenavailability">
@@ -46,7 +46,7 @@
 			<class>buttons</class>
 			<elements>
 				<field type="saveButton" name="save">
-					<onclick>Todoyu.Ext.calendar.Profile.generateToken(this.id)</onclick>
+					<onclick>Todoyu.Ext.calendar.Profile.saveSharingTokens(this.form)</onclick>
 				</field>
 			</elements>
 		</fieldset>
