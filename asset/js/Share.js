@@ -45,6 +45,18 @@ Todoyu.Ext.calendar.Share =  {
 	tokenIDs: {
 		personal:		4,
 		availability:	5
+	},
+
+
+
+	/**
+	 * Get token type ID to given type key
+	 *
+	 * @param	{String}	tokenTypeKey
+	 * @return	{Number}
+	 */
+	getTokenTypeIdFromKey: function(tokenTypeKey) {
+		return parseInt(this.tokenIDs[tokenTypeKey], 10);
 	}
 
 };

@@ -5,6 +5,10 @@
 		<attribute name="name">share</attribute>
 		<attribute name="onsubmit">return false</attribute>
 	</attributes>
+	<hiddenFields>
+		<field name="is_tokenpersonal_changed" />
+		<field name="is_tokenavailability_changed" />
+	</hiddenFields>
 	<fieldsets>
 
 		<fieldset name="personal">

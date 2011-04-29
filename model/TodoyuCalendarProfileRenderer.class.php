@@ -164,7 +164,7 @@ class TodoyuCalendarProfileRenderer {
 			// 1. Token for sharing personal calendar data
 		if( allowed('calendar', 'export_ics:personal') ) {
 			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
-			$hash	= $token->getHash();
+			$hash	= $token ? $token->getHash() : '';
 			if( ! empty($hash) ) {
 				$form->getFieldset('personal')->getField('tokenpersonal')->setAttribute('comment', $hash);
 			}
@@ -174,7 +174,7 @@ class TodoyuCalendarProfileRenderer {
 			// 2. Token for sharing availability
 		if( allowed('calendar', 'export_ics:availability') ) {
 			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
-			$hash	= $token->getHash();
+			$hash	= $token ? $token->getHash() : '';
 			if( ! empty($hash) ) {
 				$form->getFieldset('availability')->getField('tokenavailability')->setAttribute('comment', $hash);
 			}

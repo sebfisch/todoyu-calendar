@@ -144,7 +144,7 @@ Todoyu.Ext.calendar.Profile =  {
 	saveSharingTokens: function(form) {
 		form.request({
 			parameters: {
-				action: 'saveSharing'
+				action: 'saveSharingTokens'
 			},
 			onComplete: this.onSharingTokensSaved.bind(this)
 		});
@@ -177,8 +177,14 @@ Todoyu.Ext.calendar.Profile =  {
 			// Get element ID of comment field to resp. token of button
 		var idCommentField			= "formElement-" + idTokenButton;
 		var idCommentFieldPostFix	= idCommentField.split('-').last();
-
 		idCommentField	= idCommentField.replace(idCommentFieldPostFix, idCommentFieldPostFix.replace('generate', '')) + "-inputbox";
+
+		var keyTokenType			= idCommentFieldPostFix.replace('generatetoken', '');
+		var idTokenType				= this.ext.Share.getTokenTypeIdFromKey( keyTokenType);
+
+			// Mark token type as being changed
+		var isChangedField	= $('share-0-field-is-token' +  keyTokenType + '-changed');
+		isChangedField.value	= 1;
 
 			// Request generation of new token
 		var url		= Todoyu.getUrl('calendar', 'profile');
