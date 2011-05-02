@@ -43,8 +43,8 @@ if( allowed('calendar', 'reminders:popup') ) {
 /* ----------------------------
 	Context Menu Callbacks
    ---------------------------- */
-TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL, 'TodoyuCalendarIcsManager::getPersonalIcsExport');
-TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY, 'TodoyuCalendarIcsManager::getFreeBusyIcsExport');
+TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL, 'TodoyuCalendarIcalManager::getPersonalExport');
+TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY, 'TodoyuCalendarIcalManager::getFreeBusyExport');
 
 
 
