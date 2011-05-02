@@ -171,9 +171,9 @@ class TodoyuCalendarProfileRenderer {
 		} else {
 			$form->getFieldset('personal')->remove();
 		}
-			// 2. Token for sharing free/busy time
+			// 2. Token for sharing freebusy time
 		if( allowed('calendar', 'export_ics:freebusy') ) {
-			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
+			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY);
 			$hash	= $token ? $token->getHash() : '';
 			if( ! empty($hash) ) {
 				$form->getFieldset('freebusy')->getField('tokenfreebusy')->setAttribute('comment', $hash);
