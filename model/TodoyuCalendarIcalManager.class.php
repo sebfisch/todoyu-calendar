@@ -58,7 +58,7 @@ class TodoyuCalendarIcalManager {
 	 */
 	public static function getFreeBusyExport($idPersonOwner = 0) {
 		$idPersonOwner = intval($idPersonOwner);
-		
+
 		$iCal	= new TodoyuIcal();
 
 		$events	= self::getEventsOfPerson($idPersonOwner);

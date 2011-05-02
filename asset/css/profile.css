@@ -25,9 +25,13 @@
 /* --------------------
 	Sharing Tokens Tab
    -------------------- */
+.iCalBaseURL {
+	margin-left:16px;
+}
+.iCalBaseURL,
 form.formShare span.tokentext {
 	padding:4px 8px;
-	background-color:#eee;
 	font-family:courier;
+	background-color:#eee;
 	color:#222;
 }
