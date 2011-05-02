@@ -44,7 +44,7 @@ Todoyu.Ext.calendar.Share =  {
 	 */
 	tokenIDs: {
 		personal:		4,
-		availability:	5
+		freebusy:	5
 	},
 
 

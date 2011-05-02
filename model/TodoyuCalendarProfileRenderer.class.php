@@ -171,15 +171,15 @@ class TodoyuCalendarProfileRenderer {
 		} else {
 			$form->getFieldset('personal')->remove();
 		}
-			// 2. Token for sharing availability
-		if( allowed('calendar', 'export_ics:availability') ) {
+			// 2. Token for sharing free/busy time
+		if( allowed('calendar', 'export_ics:freebusy') ) {
 			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
 			$hash	= $token ? $token->getHash() : '';
 			if( ! empty($hash) ) {
-				$form->getFieldset('availability')->getField('tokenavailability')->setAttribute('comment', $hash);
+				$form->getFieldset('freebusy')->getField('tokenfreebusy')->setAttribute('comment', $hash);
 			}
 		} else {
-			$form->getFieldset('availability')->remove();
+			$form->getFieldset('freebusy')->remove();
 		}
 
 			// Render tab content

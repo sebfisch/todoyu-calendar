@@ -40,7 +40,7 @@
 	<label index="reminder.remindagain">Remind me again...</label>
 	<label index="reminder.button.remindlater">Remind Me Later</label>
 	<label index="share.token.personal.label">Personal calendar data token</label>
-	<label index="share.token.availability.label">Availability data token</label>
+	<label index="share.token.freebusy.label">Free/Busy data token</label>
 	<label index="share.button.generatetoken">Generate New Token</label>
 	<label index="share.token.noneyet">No Token Yet!</label>
 	<label index="extconf.allowoverbooking.label">Allow multiple simultaneous appointments for 1 person?</label>

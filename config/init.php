@@ -44,7 +44,7 @@ if( allowed('calendar', 'reminders:popup') ) {
 	Context Menu Callbacks
    ---------------------------- */
 TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL, 'TodoyuCalendarIcsManager::getPersonalIcsExport');
-TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_AVAILABILITY, 'TodoyuCalendarIcsManager::getAvailabilityIcsExport');
+TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY, 'TodoyuCalendarIcsManager::getFreeBusyIcsExport');
 
 
 
@@ -210,7 +210,7 @@ if( TodoyuExtensions::isInstalled('profile') ) {
 		);
 	}
 
-	if( allowed('calendar', 'share:personal') ||  allowed('calendar', 'share:availability') ) {
+	if( allowed('calendar', 'share:personal') ||  allowed('calendar', 'share:freebusy') ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'share',
 			'label'			=> 'LLL:calendar.ext.profile.module.share.tab',

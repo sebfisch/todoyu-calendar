@@ -7,7 +7,7 @@
 	</attributes>
 	<hiddenFields>
 		<field name="is_tokenpersonal_changed" />
-		<field name="is_tokenavailability_changed" />
+		<field name="is_tokenfreebusy_changed" />
 	</hiddenFields>
 	<fieldsets>
 
@@ -28,18 +28,18 @@
 			</elements>
 		</fieldset>
 
-		<fieldset name="availability">
-			<legend>Token for accessing your summarized availability (no details, just when you're free or occupied)</legend>
+		<fieldset name="freebusy">
+			<legend>Token for accessing your summarized availability (free/busy time w/o details)</legend>
 			<elements>
-				<field type="comment" name="tokenavailability">
-					<label>calendar.ext.share.token.availability.label</label>
+				<field type="comment" name="tokenfreebusy">
+					<label>calendar.ext.share.token.freebusy.label</label>
 					<comment>LLL:calendar.ext.share.token.noneyet</comment>
 					<class>tokentext</class>
 				</field>
-				<field type="button" name="generatetokenavailability">
+				<field type="button" name="generatetokenfreebusy">
 					<text>calendar.ext.share.button.generatetoken</text>
 					<class>generate</class>
-					<onclick>Todoyu.Ext.calendar.Profile.generateToken(Todoyu.Ext.calendar.Share.tokenIDs.availability, this.id)</onclick>
+					<onclick>Todoyu.Ext.calendar.Profile.generateToken(Todoyu.Ext.calendar.Share.tokenIDs.freebusy, this.id)</onclick>
 					<hasIcon/>
 				</field>
 			</elements>

@@ -17,5 +17,5 @@
 	<label index="reminders.email">Use reminder mailing</label>
 	<label index="share">Allow sharing calendar data with other applications and services</label>
 	<label index="share.personal">Personal Appointments</label>
-	<label index="share.availability">Availability</label>
+	<label index="share.freebusy">Free/Busy</label>
 </labels>

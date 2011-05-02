@@ -127,14 +127,14 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 	 */
 	public function saveSharingTokensAction(array $params) {
 		$isChangedPersonalSharingToken		= intval($params['share']['is_tokenpersonal_changed']);
-		$isChangedAvailabilitySharingToken	= intval($params['share']['is_tokenavailability_changed']);
+		$isChangedFreebusySharingToken	= intval($params['share']['is_tokenfreebusy_changed']);
 
 			// Store changed tokens
 		if( $isChangedPersonalSharingToken ) {
 			TodoyuTokenManager::saveTokenFromSession(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
 		}
-		if( $isChangedAvailabilitySharingToken ) {
-			TodoyuTokenManager::saveTokenFromSession(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_AVAILABILITY);
+		if( $isChangedFreebusySharingToken ) {
+			TodoyuTokenManager::saveTokenFromSession(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY);
 		}
 	}
 
