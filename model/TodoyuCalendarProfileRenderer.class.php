@@ -185,7 +185,7 @@ class TodoyuCalendarProfileRenderer {
 			// Render tab content
 		$tmpl	= 'ext/calendar/view/profile-share.tmpl';
 		$data	= array(
-			'iCalURL'	=> $_SERVER['SERVER_NAME'] . '/index.pgp?token=',
+			'iCalURL'	=> $_SERVER['SERVER_NAME'] . '/index.php?token=',
 			'form'		=> $form->render()
 		);
 
