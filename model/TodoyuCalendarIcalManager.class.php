@@ -29,14 +29,21 @@ class TodoyuCalendarIcalManager {
 	/**
 	 * Get personal calendar rendered in iCal format (.ics)
 	 *
+	 * @param	String		$hash
 	 * @param	Integer		$idPersonOwner
-	 * @return	String
 	 */
-	public static function getPersonalExport($idPersonOwner = 0) {
-		$idPersonOwner = intval($idPersonOwner);
+	public static function getPersonalExport($hash, $idPersonOwner = 0) {
+		$idPersonOwner	= intval($idPersonOwner);
 
-		$iCal	= new TodoyuIcal();
+			// Init iCal object
+		$personName		= TodoyuContactPersonManager::getPerson($idPersonOwner)->getFullName();
 
+		$name		= 'todoyu personal calendar';
+		$description= 'Appointments data of ' . $personName;
+
+		$iCal	= TodoyuIcalManager::getIcal($hash, $name, $description);
+
+			// Add events data (as vevent components)
 		$events	= self::getEventsOfPerson($idPersonOwner);
 
 		foreach($events as $eventData) {
@@ -45,6 +52,7 @@ class TodoyuCalendarIcalManager {
 		}
 
 			// Return iCal formatted output
+//		$iCal->send();
 		return $iCal->render();
 	}
 
@@ -53,14 +61,21 @@ class TodoyuCalendarIcalManager {
 	/**
 	 * Get personal free/busy data rendered in iCal format (.ics)
 	 *
+	 * @param	String		$hash
 	 * @param	Integer		$idPersonOwner
-	 * @return	String
 	 */
-	public static function getFreeBusyExport($idPersonOwner = 0) {
+	public static function getFreeBusyExport($hash, $idPersonOwner = 0) {
 		$idPersonOwner = intval($idPersonOwner);
 
-		$iCal	= new TodoyuIcal();
+			// Init iCal object
+		$personName	= TodoyuContactPersonManager::getPerson($idPersonOwner)->getFullName();
 
+		$name		= 'todoyu freebusy calendar';
+		$description= 'Freebusy data of ' . $personName;
+
+		$iCal	= TodoyuIcalManager::getIcal($hash, $name, $description);
+
+			// Add events data (as vfreebusy components)
 		$events	= self::getEventsOfPerson($idPersonOwner);
 
 		foreach($events as $eventData) {
@@ -69,6 +84,7 @@ class TodoyuCalendarIcalManager {
 		}
 
 			// Return iCal formatted output
+//		$iCal->send();
 		return $iCal->render();
 	}
 
