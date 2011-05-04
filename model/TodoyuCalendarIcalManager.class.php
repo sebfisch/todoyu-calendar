@@ -35,10 +35,10 @@ class TodoyuCalendarIcalManager {
 	 */
 	public static function getPersonalExport($hash, $idPersonOwner = 0) {
 		$idPersonOwner	= intval($idPersonOwner);
+		$personOwner	= TodoyuContactPersonManager::getPerson($idPersonOwner);
 
-		$personName	= TodoyuContactPersonManager::getPerson($idPersonOwner)->getFullName();
-		$name		= 'todoyu personal calendar';
-		$description= 'Appointments data of ' . $personName;
+		$name		= 'todoyu personal calendar ' . $personOwner->getShortname();
+		$description= 'Appointments data of ' . $personOwner->getFullName();
 
 		$iCal	= TodoyuIcalManager::getIcal($hash, $name, $description);
 
@@ -70,11 +70,11 @@ class TodoyuCalendarIcalManager {
 	 * @return	Void|String
 	 */
 	public static function getFreeBusyExport($hash, $idPersonOwner = 0) {
-		$idPersonOwner = intval($idPersonOwner);
+		$idPersonOwner	= intval($idPersonOwner);
+		$personOwner	= TodoyuContactPersonManager::getPerson($idPersonOwner);
 
-		$personName	= TodoyuContactPersonManager::getPerson($idPersonOwner)->getFullName();
-		$name		= 'todoyu freebusy calendar';
-		$description= 'Freebusy data of ' . $personName;
+		$name		= 'todoyu freebusy calendar ' . $personOwner->getShortname();
+		$description= 'Freebusy data of ' . $personOwner->getFullName();
 
 		$iCal	= TodoyuIcalManager::getIcal($hash, $name, $description);
 
@@ -95,7 +95,6 @@ class TodoyuCalendarIcalManager {
 			return $iCal->render();
 		}
 	}
-
 
 
 
