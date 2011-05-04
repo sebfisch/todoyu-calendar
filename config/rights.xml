@@ -23,7 +23,7 @@
 		<right name="email" />
 	</section>
 
-	<section name="export_ics" require="general:use">
+	<section name="ical_token" require="general:use">
 		<right name="personal" />
 		<right name="freebusy" />
 	</section>

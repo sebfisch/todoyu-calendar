@@ -210,7 +210,7 @@ if( TodoyuExtensions::isInstalled('profile') ) {
 		);
 	}
 
-	if( allowed('calendar', 'share:personal') ||  allowed('calendar', 'share:freebusy') ) {
+	if( allowed('calendar', 'ical_token:personal') ||  allowed('calendar', 'ical_token:freebusy') ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'share',
 			'label'			=> 'LLL:calendar.ext.profile.module.share.tab',

@@ -162,7 +162,7 @@ class TodoyuCalendarProfileRenderer {
 
 			// Set token comments / remove disallowed options' fieldsets
 			// 1. Token for sharing personal calendar data
-		if( allowed('calendar', 'export_ics:personal') ) {
+		if( allowed('calendar', 'ical_token:personal') ) {
 			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
 			$hash	= $token ? $token->getHash() : '';
 			if( ! empty($hash) ) {
@@ -172,7 +172,7 @@ class TodoyuCalendarProfileRenderer {
 			$form->getFieldset('personal')->remove();
 		}
 			// 2. Token for sharing freebusy time
-		if( allowed('calendar', 'export_ics:freebusy') ) {
+		if( allowed('calendar', 'ical_token:freebusy') ) {
 			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY);
 			$hash	= $token ? $token->getHash() : '';
 			if( ! empty($hash) ) {
