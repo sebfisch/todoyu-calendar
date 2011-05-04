@@ -31,13 +31,12 @@ class TodoyuCalendarIcalManager {
 	 *
 	 * @param	String		$hash
 	 * @param	Integer		$idPersonOwner
+	 * @return	Void|String
 	 */
 	public static function getPersonalExport($hash, $idPersonOwner = 0) {
 		$idPersonOwner	= intval($idPersonOwner);
 
-			// Init iCal object
-		$personName		= TodoyuContactPersonManager::getPerson($idPersonOwner)->getFullName();
-
+		$personName	= TodoyuContactPersonManager::getPerson($idPersonOwner)->getFullName();
 		$name		= 'todoyu personal calendar';
 		$description= 'Appointments data of ' . $personName;
 
@@ -51,25 +50,28 @@ class TodoyuCalendarIcalManager {
 			$iCal->addEvent($eventData);
 		}
 
-			// Return iCal formatted output
-//		$iCal->send();
-		return $iCal->render();
+			// Send file or return iCal formatted output
+		$sendFile	= TodoyuRequest::getParam('download', true);
+		if( $sendFile === 1 ) {
+			$iCal->send();
+		} else {
+			return $iCal->render();
+		}
 	}
 
 
 
 	/**
-	 * Get personal free/busy data rendered in iCal format (.ics)
+	 * Get/send personal free/busy data rendered in iCal format (.ics)
 	 *
 	 * @param	String		$hash
 	 * @param	Integer		$idPersonOwner
+	 * @return	Void|String
 	 */
 	public static function getFreeBusyExport($hash, $idPersonOwner = 0) {
 		$idPersonOwner = intval($idPersonOwner);
 
-			// Init iCal object
 		$personName	= TodoyuContactPersonManager::getPerson($idPersonOwner)->getFullName();
-
 		$name		= 'todoyu freebusy calendar';
 		$description= 'Freebusy data of ' . $personName;
 
@@ -83,9 +85,13 @@ class TodoyuCalendarIcalManager {
 			$iCal->addFreebusy($eventData, true);
 		}
 
-			// Return iCal formatted output
-//		$iCal->send();
-		return $iCal->render();
+			// Send file or return iCal formatted output
+		$sendFile	= TodoyuRequest::getParam('download', true);
+		if( $sendFile === 1 ) {
+			$iCal->send();
+		} else {
+			return $iCal->render();
+		}
 	}
 
 

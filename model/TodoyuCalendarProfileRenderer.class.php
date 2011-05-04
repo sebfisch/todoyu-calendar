@@ -191,8 +191,9 @@ class TodoyuCalendarProfileRenderer {
 		}
 
 		$data	= array(
-			'iCalURL'	=> $serverURL . '/index.php?token=',
-			'form'		=> $form->render()
+			'iCalURL'			=> $serverURL . '/index.php?token=',
+			'iCalURLdownload'	=> $serverURL . '/index.php?download=1&token=',
+			'form'				=> $form->render()
 		);
 
 		return render($tmpl, $data);

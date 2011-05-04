@@ -68,6 +68,7 @@
 	<label index="profile.module.share.header">Configuration of calendar data sharing</label>
 	<label index="profile.module.share.explanation1">You can share the todoyu calendar data with other applications and services.</label>
 	<label index="profile.module.share.explanation2">This enables you to sync your calendar management application (on your computer or smartphone, etc.) with your appointments stored in todoyu.</label>
-	<label index="profile.module.share.explanation3">To import todoyu calendar data in iCal format use the following URL with the respective token appended:</label>
+	<label index="profile.module.share.explanation3">To access the calendar data in iCal format use the following URL with the respective token appended:</label>
+	<label index="profile.module.share.explanation4">To directly download the iCal file into another application or service, use the following URL with the token appended:</label>
 	<label index="profile.sharing.saved">Configuration of calendar sharing sharing</label>
 </labels>
