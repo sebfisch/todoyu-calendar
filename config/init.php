@@ -41,10 +41,12 @@ if( allowed('calendar', 'reminders:popup') ) {
 
 
 /* ----------------------------
-	Context Menu Callbacks
+	iCal token callbacks and export settings
    ---------------------------- */
 TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL, 'TodoyuCalendarIcalManager::getPersonalExport');
 TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY, 'TodoyuCalendarIcalManager::getFreeBusyExport');
+	// How many days into the past are included in exported calendar data (0 = all the past!)
+Todoyu::$CONFIG['EXT']['calendar']['icalScopeStartWeeksInPast']	= 28;
 
 
 

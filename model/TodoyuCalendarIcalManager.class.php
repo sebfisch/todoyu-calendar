@@ -43,7 +43,8 @@ class TodoyuCalendarIcalManager {
 		$iCal	= TodoyuIcalManager::getIcal($hash, $name, $description);
 
 			// Add events data (as vevent components)
-		$events	= self::getEventsOfPerson($idPersonOwner);
+		$fromTimestamp	= NOW - TodoyuTime::SECONDS_DAY * Todoyu::$CONFIG['EXT']['calendar']['icalScopeStartWeeksInPast'];
+		$events			= self::getEventsOfPerson($idPersonOwner, $fromTimestamp);
 
 		foreach($events as $eventData) {
 			$eventData['attendees']	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($eventData['id'], false);
@@ -78,7 +79,8 @@ class TodoyuCalendarIcalManager {
 		$iCal	= TodoyuIcalManager::getIcal($hash, $name, $description);
 
 			// Add events data (as vfreebusy components)
-		$events	= self::getEventsOfPerson($idPersonOwner);
+		$fromTimestamp	= NOW - TodoyuTime::SECONDS_DAY * Todoyu::$CONFIG['EXT']['calendar']['icalScopeStartWeeksInPast'];
+		$events			= self::getEventsOfPerson($idPersonOwner, $fromTimestamp);
 
 		foreach($events as $eventData) {
 			$eventData['attendees']	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($eventData['id'], false);
@@ -101,13 +103,15 @@ class TodoyuCalendarIcalManager {
 	 * Get all events (using given filtering)
 	 *
 	 * @param	Integer	$idPerson
+	 * @param	Integer	$from				Timestamp from when the earliest
 	 * @param	Array	$eventTypes
 	 * @param	Mixed	$dayEvents
 	 * @param	String	$indexField
 	 * @return	Array
 	 */
-	private static function getEventsOfPerson($idPerson, array $eventTypes = array(), $dayEvents = null, $indexField = 'id') {
+	private static function getEventsOfPerson($idPerson, $from = 0, array $eventTypes = array(), $dayEvents = null, $indexField = 'id') {
 		$idPerson	= intval($idPerson);
+		$from		= intval($from);
 
 		$tables	= 	'ext_calendar_event				e,
 					ext_calendar_mm_event_person	mmep';
@@ -118,6 +122,11 @@ class TodoyuCalendarIcalManager {
 
 		$where	= '		e.id		= mmep.id_event
 					AND e.deleted	= 0';
+
+		if( $from != 0 ) {
+			$where	.= ' AND e.date_start > ' . $from;
+		}
+
 		$group	= '';
 		$order	= 'e.date_start, duration DESC';
 		$limit	= '';
