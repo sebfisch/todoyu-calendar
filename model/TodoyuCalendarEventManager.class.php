@@ -1026,24 +1026,7 @@ class TodoyuCalendarEventManager {
 			$ownItems['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', $dateStart, $config['jsAction']);
 		}
 
-			// Option: email reminder
-		if( TodoyuCalendarReminderEmailManager::isReminderAllowed($idEvent) ) {
-				// Setup email reminder context menu sub options (hilite selected, deactivate past options)
-			$ownItems['reminderemail']	= TodoyuCalendarReminderEmailManager::getContextMenuItems($idEvent, $ownItems['reminderemail']);
-		} else {
-			unset($ownItems['reminderemail']);
-		}
-
-			// Option: popup reminder
-		if( TodoyuCalendarReminderPopupManager::isReminderAllowed($idEvent) ) {
-			$ownItems['reminderpopup']	= TodoyuCalendarReminderPopupManager::getContextMenuItems($idEvent, $ownItems['reminderpopup']);
-		} else {
-			unset($ownItems['reminderpopup']);
-		}
-
-		$items = array_merge_recursive($items, $ownItems);
-
-		return $items;
+		return array_merge_recursive($items, $ownItems);
 	}
 
 

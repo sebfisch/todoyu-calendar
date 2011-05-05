@@ -34,9 +34,11 @@ TodoyuContextMenuManager::addFunction('CalendarBody', 'TodoyuCalendarManager::ge
 
 if( allowed('calendar', 'reminders:email') ) {
 	TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarReminderEmailManager::getContextMenuItems', 10);
+	TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuCalendarReminderEmailManager::getContextMenuItems', 10);
 }
 if( allowed('calendar', 'reminders:popup') ) {
 	TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarReminderPopupManager::getContextMenuItems', 10);
+	TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuCalendarReminderPopupManager::getContextMenuItems', 10);
 }
 
 

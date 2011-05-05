@@ -213,13 +213,21 @@ class TodoyuCalendarReminderEmailManager {
 
 
 
+	/**
+	 * Get context menu items for email reminder in event contextmenu
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$items
+	 * @return	Array
+	 */
 	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent	= intval($idEvent);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 		$allowed	= array();
 
 				// Option: email reminder
-		if( self::isReminderAllowed($idEvent) ) {
-			$options	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event']['reminderemail'];
+		if( $event->getStartDate() > NOW && self::isReminderAllowed($idEvent) ) {
+			$options	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderemail'];
 
 				// Set selected option CSS class
 			$selectedTimeOptionKey	= self::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
@@ -236,6 +244,7 @@ class TodoyuCalendarReminderEmailManager {
 
 		return array_merge_recursive($items, $allowed);
 	}
+
 
 }
 
