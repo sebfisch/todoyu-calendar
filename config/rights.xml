@@ -6,15 +6,16 @@
 		<right name="area" require="general:use" />
 	</section>
 
-	<section name="event" require="general:use">
+	<section name="event" require="general:area">
 		<right name="seeAll" />
 		<right name="add" />
-		<right name="assignOthers" />
-		<right name="editAndDeleteAssigned" />
-		<right name="editAndDeleteAll" require="event:seeAll" />
+		<right name="editAssigned" />
+		<right name="deleteAssigned" />
+		<right name="editAll" require="event:seeAll" />
+		<right name="deleteAll" require="event:seeAll" />
 	</section>
 
-	<section name="mailing" require="general:use">
+	<section name="mailing" require="event:add">
 		<right name="sendAsEmail" />
 	</section>
 

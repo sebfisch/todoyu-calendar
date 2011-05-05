@@ -5,8 +5,10 @@
 	<label index="general.area">Kalender-Bereich verwenden</label>
 	<label index="event">Termin</label>
 	<label index="event.seeAll">Alle Termine sehen</label>
-	<label index="event.editAndDeleteAssigned">Zugewiesenen oder selbst erstellten Termin editieren und löschen</label>
-	<label index="event.editAndDeleteAll">Alle Termine editieren und löschen</label>
+	<label index="event.editAssigned">Zugewiesenen editieren</label>
+	<label index="event.editAll">Alle Termine editieren</label>
+	<label index="event.deleteAssigned">Zugewiesenen löschen</label>
+	<label index="event.deleteAll">Alle Termine löschen</label>
 	<label index="event.add">Neuen Termin Erstellen</label>
 	<label index="event.assignOthers">Termine anderen Benutzern zuweisen</label>
 	<label index="event.search">Nach Terminen suchen</label>

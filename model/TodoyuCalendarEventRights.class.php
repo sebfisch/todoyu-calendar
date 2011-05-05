@@ -110,12 +110,49 @@ class TodoyuCalendarEventRights {
 
 	/**
 	 * Check whether person can edit an event
-	 * Check whether person has edit rights and is assigned if necessary
+	 *
 	 *
 	 * @param	Integer		$idEvent
 	 * @return	Boolean
 	 */
 	public static function isEditAllowed($idEvent) {
+		$idEvent	= intval($idEvent);
+
+		return self::isEditOrDeleteAllowed('edit', $idEvent);
+	}
+
+
+
+	/**
+	 * Check whether person is allowed to delete an event
+	 *
+	 * @static
+	 * @param	Integer		$idEvent
+	 * @return	Boolean
+	 */
+	public static function isDeleteAllowed($idEvent) {
+		$idEvent	= intval($idEvent);
+
+		return self::isEditOrDeleteAllowed('delete', $idEvent);
+	}
+
+
+
+	/**
+	 * Check whether person is allowed to do the requested action (delete / edit) for an event
+	 *
+	 * Check whether person has edit rights and is assigned if necessary
+	 *
+	 * @static
+	 * @param	String		$right
+	 * @param	Integer		$idEvent
+	 * @return	Boolean
+	 */
+	private static function isEditOrDeleteAllowed($action, $idEvent) {
+		if( TodoyuAuth::isAdmin() ) {
+			return true;
+		}
+
 		$idEvent	= intval($idEvent);
 
 		$event				= TodoyuCalendarEventManager::getEvent($idEvent);
@@ -124,12 +161,12 @@ class TodoyuCalendarEventRights {
 
 		$idPerson	= personid();
 
-			// Person is assigned to event and has right to edit events it's assigned to
-		if( allowed('calendar', 'event:editAndDeleteAssigned')  && in_array($idPerson, $assignedPersons) ) {
+			// Person is assigned to event and has right to edit/delete events it's assigned to
+		if( allowed('calendar', 'event:' . $action . 'Assigned')  && in_array($idPerson, $assignedPersons) ) {
 			return true;
 		}
-			// Person can edit all events and event is not private,
-		if( allowed('calendar', 'event:editAndDeleteAll') && ! $isPrivate ) {
+			// Person can edit/delete all events and event is not private,
+		if( allowed('calendar', 'event:' . $action . 'All') && ! $isPrivate ) {
 			return true;
 		}
 
@@ -140,7 +177,6 @@ class TodoyuCalendarEventRights {
 
 		return false;
 	}
-
 
 
 	/**
@@ -191,7 +227,21 @@ class TodoyuCalendarEventRights {
 	 */
 	public static function restrictEdit($idEvent) {
 		if( ! self::isEditAllowed($idEvent) ) {
-			self::deny('event:editAndDeleteAssigned');
+			self::deny('event:editAssigned');
+		}
+	}
+
+
+
+	/**
+	 * Restrict access to persons who are allowed to delete events
+	 *
+	 * @static
+	 * @param	Integer		$idEvent
+	 */
+	public static function restrictDelete($idEvent) {
+		if( ! self::isDeleteAllowed($idEvent) ) {
+			self::deny('event:deleteAssigned');
 		}
 	}
 

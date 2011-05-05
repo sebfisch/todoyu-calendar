@@ -198,7 +198,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent= intval($params['event']);
 
 			// Check right
-		TodoyuCalendarEventRights::restrictEdit($idEvent);
+		TodoyuCalendarEventRights::restrictDelete($idEvent);
 
 		TodoyuCalendarEventManager::deleteEvent($idEvent);
 	}

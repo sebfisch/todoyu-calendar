@@ -983,6 +983,9 @@ class TodoyuCalendarEventManager {
 			// Edit event: right:editAll OR is assigned and right editAssigned OR is creator
 		if( TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
 			$allowed['edit']	= $own['edit'];
+		}
+
+		if( TodoyuCalendarEventRights::isDeleteAllowed($idEvent) ) {
 			$allowed['delete']	= $own['remove'];
 		}
 
@@ -1017,6 +1020,9 @@ class TodoyuCalendarEventManager {
 
 		if( ! TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
 			unset($ownItems['edit']);
+		}
+
+		if( ! TodoyuCalendarEventRights::isDeleteAllowed($idEvent) ) {
 			unset($ownItems['delete']);
 		}
 

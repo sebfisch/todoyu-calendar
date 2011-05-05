@@ -154,7 +154,7 @@ class TodoyuCalendarEventRenderer {
 			'event'	=> $eventData,
 			'color'	=> $colors[personid()]
 		);
-
+		
 		return render($tmpl, $data);
 	}
 
