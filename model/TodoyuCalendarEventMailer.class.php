@@ -151,7 +151,7 @@ class TodoyuCalendarEventMailer {
 				$tmpl	= $path . 'event-update';
 				break;
 			default:
-				Todoyu::log('Mail template missing because of wrong operation ID: ' . $operationID, TodoyuLogger::LEVEL_ERROR);
+				TodoyuLogger::logError('Mail template missing because of wrong operation ID: ' . $operationID);
 				$tmpl	= false;
 				break;
 		}
