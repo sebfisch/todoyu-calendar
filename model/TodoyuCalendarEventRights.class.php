@@ -126,7 +126,6 @@ class TodoyuCalendarEventRights {
 	/**
 	 * Check whether person is allowed to delete an event
 	 *
-	 * @static
 	 * @param	Integer		$idEvent
 	 * @return	Boolean
 	 */
@@ -140,10 +139,8 @@ class TodoyuCalendarEventRights {
 
 	/**
 	 * Check whether person is allowed to do the requested action (delete / edit) for an event
-	 *
 	 * Check whether person has edit rights and is assigned if necessary
 	 *
-	 * @static
 	 * @param	String		$right
 	 * @param	Integer		$idEvent
 	 * @return	Boolean
@@ -236,7 +233,6 @@ class TodoyuCalendarEventRights {
 	/**
 	 * Restrict access to persons who are allowed to delete events
 	 *
-	 * @static
 	 * @param	Integer		$idEvent
 	 */
 	public static function restrictDelete($idEvent) {
