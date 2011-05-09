@@ -20,23 +20,23 @@
 
 if( Todoyu::person()->isInternal() || TodoyuAuth::isAdmin() ) {
 		// Add main menu planning area entry
-	if( allowed('calendar', 'general:area') ) {
+	if( Todoyu::allowed('calendar', 'general:area') ) {
 		TodoyuFrontend::addMenuEntry('planning', 'LLL:calendar.ext.maintab.label', '?ext=calendar', 30);
 
 			// Add sub menu entries
 		$subTabsConfig	= Todoyu::$CONFIG['EXT']['calendar']['tabs'];
-		$prefix			= Label('calendar.ext.subMenuEntries.prefix') . ' > ';
+		$prefix			= Todoyu::Label('calendar.ext.subMenuEntries.prefix') . ' > ';
 
 		TodoyuFrontend::addSubMenuEntriesFromTabsConf('calendar', 'planning', $subTabsConfig, $prefix);
 	}
 
-	if( TodoyuExtensions::isInstalled('portal') && allowed('calendar', 'general:use') ) {
+	if( TodoyuExtensions::isInstalled('portal') && Todoyu::allowed('calendar', 'general:use') ) {
 		TodoyuPortalManager::addTab('appointment', 'TodoyuCalendarPortalRenderer::getAppointmentTabLabel', 'TodoyuCalendarPortalRenderer::getAppointmentTabContent', 50);
 	}
 }
 
 	// Add JavaScript init to page body
-if( allowed('calendar', 'reminders:popup') ) {
+if( Todoyu::allowed('calendar', 'reminders:popup') ) {
 	TodoyuCalendarReminderPopupManager::addReminderJsInitToPage();
 }
 

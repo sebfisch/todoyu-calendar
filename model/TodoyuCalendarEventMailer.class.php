@@ -102,13 +102,13 @@ class TodoyuCalendarEventMailer {
 	public static function getSubjectLabelByOperation($operationID) {
 		switch( $operationID ) {
 			case OPERATIONTYPE_RECORD_CREATE:
-				$subject	= Label('calendar.event.mail.title.create');
+				$subject	= Todoyu::Label('calendar.event.mail.title.create');
 				break;
 			case OPERATIONTYPE_RECORD_UPDATE:
-				$subject	= Label('calendar.event.mail.title.update');
+				$subject	= Todoyu::Label('calendar.event.mail.title.update');
 				break;
 			case OPERATIONTYPE_RECORD_DELETE: default:
-				$subject	= Label('calendar.event.mail.title.deleted');
+				$subject	= Todoyu::Label('calendar.event.mail.title.deleted');
 				break;
 		}
 
@@ -180,7 +180,7 @@ class TodoyuCalendarEventMailer {
 			$data				= self::getMailData($idEvent, $idPerson);
 			$data['hideEmails']	= $hideEmails;
 
-			return render($tmpl, $data);
+			return Todoyu::render($tmpl, $data);
 		}
 
 		return false;

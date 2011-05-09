@@ -148,8 +148,8 @@ class TodoyuCalendarEventManager {
 		}
 
 			// Not allowed to see all events? Limit to own events!
-		if( ! allowed('calendar', 'event:seeAll') ) {
-			$where .= ' AND mmep.id_person IN(' . personid() . ')';
+		if( ! Todoyu::allowed('calendar', 'event:seeAll') ) {
+			$where .= ' AND mmep.id_person IN(' . Todoyu::personid() . ')';
 		} elseif( sizeof($persons) > 0 ) {
 				// Limit to given assigned persons
 			$where	.= ' AND mmep.id_person IN(' . implode(',', $persons) . ')';
@@ -523,12 +523,12 @@ class TodoyuCalendarEventManager {
 		}
 
 			// Add creator if assigned (includes individual reminder scheduling)
-		if( in_array(personid(), $data['persons']) && ! $isNewEvent ) {
-			self::assignPersonToEvent($idEvent, personid(), $data['date_start'], ! $isNewEvent);
+		if( in_array(Todoyu::personid(), $data['persons']) && ! $isNewEvent ) {
+			self::assignPersonToEvent($idEvent, Todoyu::personid(), $data['date_start'], ! $isNewEvent);
 			TodoyuCalendarReminderEmailManager::updateReminderTimeFromEventData($data);
 			TodoyuCalendarReminderPopupManager::updateReminderTimeFromEventData($data);
 
-			$data['persons']	= TodoyuArray::removeByValue($data['persons'], array(personid()));
+			$data['persons']	= TodoyuArray::removeByValue($data['persons'], array(Todoyu::personid()));
 		}
 		unset($data['is_reminderpopup_active']);
 		unset($data['reminderemail_advancetime']);
@@ -573,7 +573,7 @@ class TodoyuCalendarEventManager {
 		$where	= '	id_event = ' . $idEvent;
 
 		if( ! $resetForCurrentUser ) {
-			$where .= ' AND	id_person != ' . personid();
+			$where .= ' AND	id_person != ' . Todoyu::personid();
 		}
 
 		Todoyu::db()->doUpdate($table, $where, $update);
@@ -720,7 +720,7 @@ class TodoyuCalendarEventManager {
 				$errorMessages = array();
 				foreach($overbookedInfos as $idPerson => $infos) {
 					foreach($infos['events'] as $event) {
-						$errorMessages[] = Label('calendar.event.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
+						$errorMessages[] = Todoyu::Label('calendar.event.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
 					}
 				}
 
@@ -769,13 +769,13 @@ class TodoyuCalendarEventManager {
 	 */
 	public static function assignPersonToEvent($idEvent, $idPerson = 0, $dateStart, $isUpdate = false) {
 		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		$table	= 'ext_calendar_mm_event_person';
 		$data	= array(
 			'id_event'			=> $idEvent,
 			'id_person'			=> $idPerson,
-			'is_acknowledged'	=> personid() == $idPerson ? 1 : 0,
+			'is_acknowledged'	=> Todoyu::personid() == $idPerson ? 1 : 0,
 			'is_updated'		=> $isUpdate ? 1 : 0,
 			'date_remindemail'	=> TodoyuCalendarReminderEmailManager::getNewEventMailTime($dateStart, $idPerson),
 			'date_remindpopup'	=> TodoyuCalendarReminderPopupManager::getNewEventPopupTime($dateStart, $idPerson),
@@ -829,7 +829,7 @@ class TodoyuCalendarEventManager {
 	protected static function createNewEvent() {
 		$insertArray	= array(
 			'date_create'		=> NOW,
-			'id_person_create'	=> personid(),
+			'id_person_create'	=> Todoyu::personid(),
 			'deleted'			=> 0
 		);
 
@@ -869,7 +869,7 @@ class TodoyuCalendarEventManager {
 				$fields	= array(
 					'id_event'			=> $idEvent,
 					'id_person'			=> $idPerson,
-					'is_acknowledged'	=> $idPerson == personid() ? 1 : 0,
+					'is_acknowledged'	=> $idPerson == Todoyu::personid() ? 1 : 0,
 				);
 
 				Todoyu::db()->doInsert($table, $fields);
@@ -897,7 +897,7 @@ class TodoyuCalendarEventManager {
 	 */
 	public static function acknowledgeEvent($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		$where 	= '		id_event	= ' . $idEvent .
 				  ' AND	id_person	= ' . $idPerson;
@@ -1159,7 +1159,7 @@ class TodoyuCalendarEventManager {
 				$formData['buttonsFieldset']	= $buttonsForm;
 			}
 
-			$warning	= render($tmpl, $formData);
+			$warning	= Todoyu::render($tmpl, $formData);
 		}
 
 		return $warning;

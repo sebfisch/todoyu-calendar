@@ -33,7 +33,7 @@ class TodoyuCalendarPortalRenderer {
 	 * @return	String
 	 */
 	public static function getAppointmentTabLabel($count = true) {
-		$label		= Label('calendar.ext.portal.tab.appointments');
+		$label		= Todoyu::Label('calendar.ext.portal.tab.appointments');
 
 		if( $count ) {
 			$events	= TodoyuCalendarPortalManager::getAppointments();
@@ -88,7 +88,7 @@ class TodoyuCalendarPortalRenderer {
 			'javascript'	=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();Todoyu.Ext.calendar.installQuickinfos();'
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 }

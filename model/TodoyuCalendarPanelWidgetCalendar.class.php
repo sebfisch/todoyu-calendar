@@ -59,8 +59,8 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	private static function addCalendarLocalizationJS() {
 		$code = "// Localize date object (for scal)\n"
 				. 'Object.extend(Date.prototype, {'
-				. 'monthnames:[\'' . Label('core.date.month.january') . '\',\'' . Label('core.date.month.february') . '\',\'' . Label('core.date.month.march') . '\',\'' . Label('core.date.month.april') . '\',\'' . Label('core.date.month.may') . "','" . Label('core.date.month.june') . "','" . Label('core.date.month.july') . '\',\'' . Label('core.date.month.august') . "','" . Label('core.date.month.september') . "','" . Label('core.date.month.october') . "','" . Label('core.date.month.november') . "','" . Label('core.date.month.december') . '\'],'
-				. 'daynames:[\'' . Label('core.date.weekday.sunday') . '\',\'' . Label('core.date.weekday.monday') . '\', \'' . Label('core.date.weekday.tuesday') . '\',\'' . Label('core.date.weekday.wednesday') . "','" . Label('core.date.weekday.thursday') . "','" . Label('core.date.weekday.friday') . "','" . Label('core.date.weekday.saturday') . '\']'
+				. 'monthnames:[\'' . Todoyu::Label('core.date.month.january') . '\',\'' . Todoyu::Label('core.date.month.february') . '\',\'' . Todoyu::Label('core.date.month.march') . '\',\'' . Todoyu::Label('core.date.month.april') . '\',\'' . Todoyu::Label('core.date.month.may') . "','" . Todoyu::Label('core.date.month.june') . "','" . Todoyu::Label('core.date.month.july') . '\',\'' . Todoyu::Label('core.date.month.august') . "','" . Todoyu::Label('core.date.month.september') . "','" . Todoyu::Label('core.date.month.october') . "','" . Todoyu::Label('core.date.month.november') . "','" . Todoyu::Label('core.date.month.december') . '\'],'
+				. 'daynames:[\'' . Todoyu::Label('core.date.weekday.sunday') . '\',\'' . Todoyu::Label('core.date.weekday.monday') . '\', \'' . Todoyu::Label('core.date.weekday.tuesday') . '\',\'' . Todoyu::Label('core.date.weekday.wednesday') . "','" . Todoyu::Label('core.date.weekday.thursday') . "','" . Todoyu::Label('core.date.weekday.friday') . "','" . Todoyu::Label('core.date.weekday.saturday') . '\']'
 				. '});';
 
 		TodoyuPage::addJsInline($code);
@@ -88,7 +88,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 			'daysInMonth'	=> date('t', $date)
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -137,7 +137,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 * @return	Boolean
 	 */
 	public static function isAllowed() {
-		return allowed('calendar', 'general:use');
+		return Todoyu::allowed('calendar', 'general:use');
 	}
 
 }

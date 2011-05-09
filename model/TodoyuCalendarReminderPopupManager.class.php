@@ -76,7 +76,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @param	Integer	$idPerson
 	 */
 	public static function updateReminderTimeFromEventData(array $data, $idPerson = 0) {
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 		$idEvent	= intval($data['id']);
 
 		$timeRemind	= TodoyuCalendarReminderManager::getRemindingTimeByEventData(self::REMINDERTYPE, $data);
@@ -108,7 +108,7 @@ class TodoyuCalendarReminderPopupManager {
 	 */
 	public static function getNewEventPopupTime($dateStart, $idPerson = 0) {
 		$dateStart	= intval($dateStart);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		return $dateStart  - self::getDefaultAdvanceTime($idPerson);
 	}
@@ -136,7 +136,7 @@ class TodoyuCalendarReminderPopupManager {
 	 */
 	public static function getAdvanceTime($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		return self::getReminderByAssignment($idEvent, $idPerson)->getAdvanceTime();
 	}
@@ -150,7 +150,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Boolean
 	 */
 	public static function isReminderAllowed($idEvent, $idPerson = 0) {
-		if( ! allowed('calendar', 'reminders:popup') ) {
+		if( ! Todoyu::allowed('calendar', 'reminders:popup') ) {
 			return false;
 		}
 
@@ -214,7 +214,7 @@ class TodoyuCalendarReminderPopupManager {
 			// Get upcoming events
 		$dateStart	= NOW - Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKBACK'];
 		$dateEnd	= NOW + Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKAHEAD'];
-		$personIDs	= array(personid());
+		$personIDs	= array(Todoyu::personid());
 		$eventTypes	= Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP'];
 
 		$events	= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
@@ -245,7 +245,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Integer					UNIX timestamp when to display the reminder popup
 	 */
 	public static function getDateRemind($idEvent) {
-		$reminder	= self::getReminderByAssignment($idEvent, personid());
+		$reminder	= self::getReminderByAssignment($idEvent, Todoyu::personid());
 
 		return $reminder->getDateRemind();
 	}
@@ -295,7 +295,7 @@ class TodoyuCalendarReminderPopupManager {
 
 		$table	= self::TABLE;
 		$where	= '		`id_event`	= ' . $idEvent
-				. ' AND	`id_person`	= ' . personid();
+				. ' AND	`id_person`	= ' . Todoyu::personid();
 		$update	= array(
 			'is_remindpopupdismissed'	=> 1
 		);
@@ -317,7 +317,7 @@ class TodoyuCalendarReminderPopupManager {
 
 		$table	= self::TABLE;
 		$where	= '		`id_event`	= ' . $idEvent
-				. ' AND	`id_person`	= ' . personid();
+				. ' AND	`id_person`	= ' . Todoyu::personid();
 		$update	= array(
 			'is_remindpopupdismissed'	=> 0,
 			'date_remindpopup'			=> $timeShowAgain

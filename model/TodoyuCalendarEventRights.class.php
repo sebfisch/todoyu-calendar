@@ -59,7 +59,7 @@ class TodoyuCalendarEventRights {
 		}
 
 			// Person can see all events and event is not private,
-		if( allowed('calendar', 'event:seeAll') && ! $event->isPrivate() ) {
+		if( Todoyu::allowed('calendar', 'event:seeAll') && ! $event->isPrivate() ) {
 			return true;
 		}
 
@@ -103,7 +103,7 @@ class TodoyuCalendarEventRights {
 	 * @return	Boolean
 	 */
 	public static function isAddAllowed() {
-		return allowed('calendar', 'event:add');
+		return Todoyu::allowed('calendar', 'event:add');
 	}
 
 
@@ -156,14 +156,13 @@ class TodoyuCalendarEventRights {
 		$isPrivate			= $event->get('is_private') === '1';
 		$assignedPersons	= $event->getAssignedPersonIDs();
 
-		$idPerson	= personid();
 
 			// Person is assigned to event and has right to edit/delete events it's assigned to
-		if( allowed('calendar', 'event:' . $action . 'Assigned')  && in_array($idPerson, $assignedPersons) ) {
+		if( Todoyu::allowed('calendar', 'event:' . $action . 'Assigned')  && in_array($idPerson, $assignedPersons) ) {
 			return true;
 		}
 			// Person can edit/delete all events and event is not private,
-		if( allowed('calendar', 'event:' . $action . 'All') && ! $isPrivate ) {
+		if( Todoyu::allowed('calendar', 'event:' . $action . 'All') && ! $isPrivate ) {
 			return true;
 		}
 
@@ -186,7 +185,7 @@ class TodoyuCalendarEventRights {
 			return true;
 		}
 
-		$person	= TodoyuContactPersonManager::getPerson(personid());
+		$person	= TodoyuContactPersonManager::getPerson(Todoyu::personid());
 
 		return $person->isInternal();
 	}
@@ -238,7 +237,7 @@ class TodoyuCalendarEventRights {
 	public static function restrictDelete($idEvent) {
 		if( ! self::isDeleteAllowed($idEvent) ) {
 			self::deny('event:deleteAssigned');
-		}
+}
 	}
 
 }

@@ -41,7 +41,7 @@ class TodoyuCalendarEventFormValidator {
 		if( $formData['is_private'] == 1 ) {
 			if( count($formData['persons']) == 1 ) {
 				$person = array_shift($formData['persons']);
-				if( intval($person['id']) !== personid() ) {
+				if( intval($person['id']) !== Todoyu::personid() ) {
 					return false;
 				}
 			} else {
@@ -152,7 +152,7 @@ class TodoyuCalendarEventFormValidator {
 			'overbooked'	=> $overbookedInfos
 		);
 
-		$error	= render($tmpl, $data);
+		$error	= Todoyu::render($tmpl, $data);
 		$formElement->setErrorMessage($error);
 	}
 

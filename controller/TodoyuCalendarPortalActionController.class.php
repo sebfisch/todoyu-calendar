@@ -30,8 +30,8 @@ class TodoyuCalendarPortalActionController extends TodoyuActionController {
 	 * Initialize (restrict rights)
 	 */
 	public function init() {
-		restrict('calendar', 'general:use');
-		restrictInternal();
+		Todoyu::restrict('calendar', 'general:use');
+		Todoyu::restrictInternal();
 	}
 
 

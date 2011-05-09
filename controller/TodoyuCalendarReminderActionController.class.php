@@ -30,8 +30,8 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 	 * Initialize (restrict rights)
 	 */
 	public function init() {
-		restrict('calendar', 'general:use');
-		restrictInternal();
+		Todoyu::restrict('calendar', 'general:use');
+		Todoyu::restrictInternal();
 	}
 
 
@@ -63,7 +63,7 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 		$timestamp	= $event->getStartDate() - $secondsBefore;
 
-		TodoyuCalendarReminderManager::updateReminderTime($reminderType, $idEvent, $timestamp, personid());
+		TodoyuCalendarReminderManager::updateReminderTime($reminderType, $idEvent, $timestamp, Todoyu::personid());
 	}
 
 

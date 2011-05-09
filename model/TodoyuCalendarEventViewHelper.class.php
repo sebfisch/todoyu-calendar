@@ -92,7 +92,7 @@ class TodoyuCalendarEventViewHelper {
 			$label	= TodoyuString::crop($label, 25, '...', false);
 
 				// Add person label, linked to contacts detail view if allowed to be seen
-			if( allowed('contact', 'general:area') ) {
+			if( Todoyu::allowed('contact', 'general:area') ) {
 				$linkParams	= array(
 					'ext'		=> 'contact',
 					'controller'=> 'person',
@@ -121,7 +121,7 @@ class TodoyuCalendarEventViewHelper {
 		$typeInfo	= $event->getTypeLabel();
 
 		if( $event->isPrivate() ) {
-			$typeInfo	.= ', ' . Label('calendar.event.attr.is_private');
+			$typeInfo	.= ', ' . Todoyu::Label('calendar.event.attr.is_private');
 		}
 
 		return $typeInfo;
@@ -162,11 +162,11 @@ class TodoyuCalendarEventViewHelper {
 		$options	= array();
 
 			// Event attending persons
-		$groupLabel	= Label('calendar.event.group.attendees');
+		$groupLabel	= Todoyu::Label('calendar.event.group.attendees');
 		$options[$groupLabel]	= self::getEmailReceiverOptions($field);
 
 			// Get staff persons (employees of internal company)
-		$groupLabel	= Label('comment.ext.group.employees');
+		$groupLabel	= Todoyu::Label('comment.ext.group.employees');
 		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field, true);
 
 		return $options;

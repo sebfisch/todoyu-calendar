@@ -86,7 +86,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 			'selected'	=> self::getSelectedHolidaySetIDs()
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -104,7 +104,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 			'0'	=> array(
 				'index'		=> 0,
 				'value'		=> 0,
-				'label'		=> Label('calendar.panelwidget-holidaysetselector.showNoHolidays'),
+				'label'		=> Todoyu::Label('calendar.panelwidget-holidaysetselector.showNoHolidays'),
 				'class'		=> 'holidayset_none',
 				'selected'	=> count($selected) === 0 ? true : false
 			)
@@ -162,7 +162,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 	 * @return	Boolean
 	 */
 	public static function isAllowed() {
-		return allowed('calendar', 'general:use');
+		return Todoyu::allowed('calendar', 'general:use');
 	}
 
 }

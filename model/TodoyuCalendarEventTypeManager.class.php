@@ -55,7 +55,7 @@ class TodoyuCalendarEventTypeManager {
 		$eventType	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['eventtypes'][$index]);
 
 		if( $parseLabel === true ) {
-			$eventType['label']	= Label($eventType['label']);
+			$eventType['label']	= Todoyu::Label($eventType['label']);
 		}
 
 		return $eventType;
@@ -75,7 +75,7 @@ class TodoyuCalendarEventTypeManager {
 		$label		= $eventType['label'];
 
 		if( $parsed ) {
-			$label = Label($label);
+			$label = Todoyu::Label($label);
 		}
 
 		return $label;
@@ -110,7 +110,7 @@ class TodoyuCalendarEventTypeManager {
 			$eventTypes[$index]['value'] 	= $index;
 
 			if( $parseLabels ) {
-				$eventTypes[$index]['label'] 	= Label($eventType['label']);
+				$eventTypes[$index]['label'] 	= Todoyu::Label($eventType['label']);
 			}
 
 			$eventTypes[$index]['class'] = 'eventtype_' . $eventType['key'];

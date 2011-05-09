@@ -34,7 +34,7 @@ class TodoyuCalendarPortalManager {
 	public static function getAppointments() {
 		$timespan	= self::getAppointmentsTimespan();
 
-		return TodoyuCalendarEventManager::getEventsInTimespan($timespan['start'], $timespan['end'], array(personid()));
+		return TodoyuCalendarEventManager::getEventsInTimespan($timespan['start'], $timespan['end'], array(Todoyu::personid()));
 	}
 
 
@@ -65,7 +65,7 @@ class TodoyuCalendarPortalManager {
 		$startTime		= TodoyuTime::getStartOfDay();
 		$endTime		= NOW + $weeksHoliday * TodoyuTime::SECONDS_WEEK;
 
-		return TodoyuCalendarHolidayManager::getPersonHolidaysInTimespan(array(personid()), $startTime, $endTime);
+		return TodoyuCalendarHolidayManager::getPersonHolidaysInTimespan(array(Todoyu::personid()), $startTime, $endTime);
 	}
 
 

@@ -40,16 +40,16 @@ class TodoyuCalendarViewHelper {
 		$title		= '';
 
 		if( $mode === CALENDAR_MODE_DAY ) {
-			$format= label('calendar.ext.calendartitle.dateformat.day');
+			$format= Todoyu::Label('calendar.ext.calendartitle.dateformat.day');
 			$title	.= strftime($format, $dateStart);
 		} elseif( $mode === CALENDAR_MODE_WEEK ) {
-			$title	.= strftime(label('calendar.ext.calendartitle.dateformat.week.part1'), $dateStart);
-			$title .= strftime(label('calendar.ext.calendartitle.dateformat.week.part2'), $dateEnd);
+			$title	.= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.week.part1'), $dateStart);
+			$title .= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.week.part2'), $dateEnd);
 		} elseif( $mode === CALENDAR_MODE_MONTH ) {
 			$date	= $dateStart + TodoyuTime::SECONDS_WEEK;
-			$title	.= strftime(label('calendar.ext.calendartitle.dateformat.month.part1'), $date);
-			$title	.= strftime(label('calendar.ext.calendartitle.dateformat.month.part2'), $dateStart);
-			$title	.= strftime(label('calendar.ext.calendartitle.dateformat.month.part3'), $dateEnd);
+			$title	.= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.month.part1'), $date);
+			$title	.= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.month.part2'), $dateStart);
+			$title	.= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.month.part3'), $dateEnd);
 		} else {
 			$title = 'Invalid mode';
 		}
@@ -160,7 +160,7 @@ class TodoyuCalendarViewHelper {
 			if( $includePastOptions || $timeLeft > $secondsUntil ) {
 				$options[] = array(
 					'value'	=> $secondsUntil,
-					'label'	=> TodoyuTime::autoformatDuration($secondsUntil) . ' ' . Label('calendar.reminder.beforeDateStart'),
+					'label'	=> TodoyuTime::autoformatDuration($secondsUntil) . ' ' . Todoyu::Label('calendar.reminder.beforeDateStart'),
 				);
 			}
 		}

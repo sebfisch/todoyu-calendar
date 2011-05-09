@@ -30,8 +30,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * Initialize (restrict rights)
 	 */
 	public function init() {
-		restrict('calendar', 'general:use');
-		restrictInternal();
+		Todoyu::restrict('calendar', 'general:use');
+		Todoyu::restrictInternal();
 	}
 
 
@@ -50,10 +50,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Check rights
 		if( $idEvent === 0 ) {
 			TodoyuCalendarEventRights::restrictAdd();
-			$tabLabel	= Label('calendar.event.new');
+			$tabLabel	= Todoyu::Label('calendar.event.new');
 		} else {
 			TodoyuCalendarEventRights::restrictEdit($idEvent);
-			$tabLabel	= Label('calendar.event.edit') . ': ' . TodoyuString::crop($event->getTitle(), 20, '...', false);
+			$tabLabel	= Todoyu::Label('calendar.event.edit') . ': ' . TodoyuString::crop($event->getTitle(), 20, '...', false);
 		}
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel);
 
@@ -265,7 +265,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public function addSubformAction(array $params) {
-		restrictIfNone('calendar', 'event:editAll,event:editAndDeleteAssigned');
+		Todoyu::restrictIfNone('calendar', 'event:editAll,event:editAndDeleteAssigned');
 
 		$index		= intval($params['index']);
 		$fieldName	= $params['field'];

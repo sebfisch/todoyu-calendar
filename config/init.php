@@ -32,11 +32,11 @@ TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarEventManager::getC
 TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuCalendarEventManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::addFunction('CalendarBody', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
-if( allowed('calendar', 'reminders:email') ) {
+if( Todoyu::allowed('calendar', 'reminders:email') ) {
 	TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarReminderEmailManager::getContextMenuItems', 10);
 	TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuCalendarReminderEmailManager::getContextMenuItems', 10);
 }
-if( allowed('calendar', 'reminders:popup') ) {
+if( Todoyu::allowed('calendar', 'reminders:popup') ) {
 	TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarReminderPopupManager::getContextMenuItems', 10);
 	TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuCalendarReminderPopupManager::getContextMenuItems', 10);
 }
@@ -198,7 +198,7 @@ if( TodoyuExtensions::isInstalled('profile') ) {
 		// Tabs for calendar section in profile
 	Todoyu::$CONFIG['EXT']['profile']['calendarTabs'] = array();
 
-	if( allowed('calendar', 'mailing:sendAsEmail') ) {
+	if( Todoyu::allowed('calendar', 'mailing:sendAsEmail') ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'main',
 			'label'			=> 'LLL:calendar.ext.profile.module.main.tab',
@@ -206,7 +206,7 @@ if( TodoyuExtensions::isInstalled('profile') ) {
 		);
 	}
 
-	if( allowed('calendar', 'reminders:popup') ||  allowed('calendar', 'reminders:email') ) {
+	if( Todoyu::allowed('calendar', 'reminders:popup') ||  Todoyu::allowed('calendar', 'reminders:email') ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'reminders',
 			'label'			=> 'LLL:calendar.ext.profile.module.reminders.tab',
@@ -214,7 +214,7 @@ if( TodoyuExtensions::isInstalled('profile') ) {
 		);
 	}
 
-	if( allowed('calendar', 'ical_token:personal') ||  allowed('calendar', 'ical_token:freebusy') ) {
+	if( Todoyu::allowed('calendar', 'ical_token:personal') ||  Todoyu::allowed('calendar', 'ical_token:freebusy') ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'share',
 			'label'			=> 'LLL:calendar.ext.profile.module.share.tab',

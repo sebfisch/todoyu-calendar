@@ -32,8 +32,8 @@ class TodoyuCalendarCalendarActionController extends TodoyuActionController {
 	 * @param	Array	$params
 	 */
 	public function init(array $params) {
-		restrict('calendar', 'general:use');
-		restrictInternal();
+		Todoyu::restrict('calendar', 'general:use');
+		Todoyu::restrictInternal();
 	}
 
 

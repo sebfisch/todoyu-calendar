@@ -85,7 +85,7 @@ class TodoyuCalendarReminderManager {
 	 */
 	public static function getReminderIDByAssignment($idEvent, $idPerson) {
 		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		return Todoyu::db()->getMMid('ext_calendar_mm_event_person', 'id_event', $idEvent, 'id_person', $idPerson);
 	}
@@ -116,7 +116,7 @@ class TodoyuCalendarReminderManager {
 	 */
 	public static function getReminderTypeByAssignment($reminderType, $idEvent, $idPerson = 0) {
 		$reminderType	= intval($reminderType);
-		$idPerson		= personid($idPerson);
+		$idPerson		= Todoyu::personid($idPerson);
 
 		if( $reminderType == CALENDAR_TYPE_EVENTREMINDER_EMAIL ) {
 			return TodoyuCalendarReminderEmailManager::getReminderByAssignment($idEvent, $idPerson);
@@ -150,10 +150,10 @@ class TodoyuCalendarReminderManager {
 	 * @return	Boolean
 	 */
 	public static function isRemindertypeActivated($reminderType, $idPerson = 0) {
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 		$typePrefix	= self::getReminderTypePrefix($reminderType);
 
-		if( allowed('calendar', 'reminder:' . $typePrefix) ) {
+		if( Todoyu::allowed('calendar', 'reminder:' . $typePrefix) ) {
 			$preference	= 'is_reminder' . $typePrefix . 'active';
 			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, $preference, 0, null, 0, $idPerson) ) {
 					// Return pref. from profile
@@ -178,7 +178,7 @@ class TodoyuCalendarReminderManager {
 	 */
 	public static function isPersonAssigned($idEvent, $idPerson = 0) {
 		$idEvent		= intval($idEvent);
-		$idPerson		= personid($idPerson);
+		$idPerson		= Todoyu::personid($idPerson);
 
 		return TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson);
 	}
@@ -221,7 +221,7 @@ class TodoyuCalendarReminderManager {
 	 */
 	public static function getDefaultAdvanceTime($reminderType, $idPerson = 0) {
 		$reminderType	= intval($reminderType);
-		$idPerson		= personid($idPerson);
+		$idPerson		= Todoyu::personid($idPerson);
 
 		$typePrefix	= self::getReminderTypePrefix($reminderType);
 		$preference	= 'reminder' . $typePrefix . '_advancetime';
@@ -245,7 +245,7 @@ class TodoyuCalendarReminderManager {
 	 */
 	public static function deactivateReminder($reminderType, $idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		self::updateReminderTime($reminderType, $idEvent, 0, $idPerson);
 	}
@@ -262,7 +262,7 @@ class TodoyuCalendarReminderManager {
 	public static function updateReminderTime($reminderType, $idEvent, $dateRemind, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
 		$dateRemind	= intval($dateRemind);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		$reminder	= self::getReminderTypeByAssignment($reminderType, $idEvent, $idPerson);
 		/** @var TodoyuCalendarEvent	$event */

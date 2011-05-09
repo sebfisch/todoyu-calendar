@@ -36,9 +36,9 @@ class TodoyuCalendarEventMailManager {
 		$idEvent	= intval($idEvent);
 
 		$prefName		= 'is_mailpopupdeactivated';
-		$isDeactivated	= TodoyuCalendarPreferences::getPref($prefName, 0, 0, false, personid());
+		$isDeactivated	= TodoyuCalendarPreferences::getPref($prefName, 0, 0, false, Todoyu::personid());
 
-		return $isDeactivated ? false : TodoyuCalendarEventManager::hasAnyEventPersonAnEmailAddress($idEvent, array(personid()));
+		return $isDeactivated ? false : TodoyuCalendarEventManager::hasAnyEventPersonAnEmailAddress($idEvent, array(Todoyu::personid()));
 	}
 
 
@@ -91,7 +91,7 @@ class TodoyuCalendarEventMailManager {
 	public static function getMailData($idEvent, $idPersonMailtTo, $isSentBySystem = false, $idPersonSender = 0) {
 		$idEvent		= intval($idEvent);
 		$idPersonMailtTo= intval($idPersonMailtTo);
-		$idPersonSender = personid($idPersonSender);
+		$idPersonSender = Todoyu::personid($idPersonSender);
 
 		$event			= TodoyuCalendarEventManager::getEvent($idEvent, true);
 

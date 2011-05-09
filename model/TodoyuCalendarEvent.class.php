@@ -247,7 +247,7 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	 * @return	Boolean
 	 */
 	public function isCurrentPersonAssigned() {
-		return $this->isPersonAssigned(personid());
+		return $this->isPersonAssigned(Todoyu::personid());
 	}
 
 

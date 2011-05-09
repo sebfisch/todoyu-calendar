@@ -62,7 +62,7 @@ class TodoyuCalendarRenderer {
 			$data['date']	= $event->getStartDate();
 		}
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -137,7 +137,7 @@ class TodoyuCalendarRenderer {
 			'title'			=> TodoyuCalendarViewHelper::getCalendarTitle($dateStart, $dateEnd, CALENDAR_MODE_DAY)
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -172,7 +172,7 @@ class TodoyuCalendarRenderer {
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($dateStart, $dateEnd, CALENDAR_MODE_WEEK)
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -211,7 +211,7 @@ class TodoyuCalendarRenderer {
 			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($dateStart, $dateEnd, CALENDAR_MODE_MONTH),
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -422,7 +422,7 @@ class TodoyuCalendarRenderer {
 					$birthday['fullname']		= $birthday['lastname'] . ', ' . $birthday['firstname'];
 					$birthday['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
 
-					$birthdaysByDay[$dateKey][$index] = render($tmpl, $birthday);
+					$birthdaysByDay[$dateKey][$index] = Todoyu::render($tmpl, $birthday);
 				}
 			}
 		}

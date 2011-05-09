@@ -76,7 +76,7 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 		}
 
 			// Setup mail data
-		$subject	= Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
+		$subject	= Todoyu::Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
 		$htmlBody	= $this->getMailContent(false, true);
 		$textBody	= $this->getMailContent(false, false);
 
@@ -149,7 +149,7 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 	private function renderEmail(array $data, $asHTML = true) {
 		$tmpl	= $this->getTemplate($asHTML);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 

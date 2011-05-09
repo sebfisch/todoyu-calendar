@@ -245,10 +245,10 @@ class TodoyuCalendarPreferences {
 	 * @return	Boolean
 	 */
 	public static function getReminderEmailIsActive($idPerson = 0) {
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
-		if( allowed('calendar', 'reminder:email') ) {
-			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'is_reminderemailactive', 0, null, 0, personid()) ) {
+		if( Todoyu::allowed('calendar', 'reminder:email') ) {
+			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'is_reminderemailactive', 0, null, 0, Todoyu::personid()) ) {
 					// Return pref. from profile
 				return self::getPref('is_reminderemailactive', 0, 0, false, $idPerson) ? true : false;
 			} else {

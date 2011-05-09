@@ -86,7 +86,7 @@ class TodoyuCalendarProfileRenderer {
 		$xmlPath= 'ext/calendar/config/form/profile-main.xml';
 		$form	= TodoyuFormManager::getForm($xmlPath);
 
-		$mailPopupDeactivated	= TodoyuCalendarPreferences::getPref('is_mailpopupdeactivated', 0, 0, false, personid());
+		$mailPopupDeactivated	= TodoyuCalendarPreferences::getPref('is_mailpopupdeactivated', 0, 0, false, Todoyu::personid());
 
 		$formData	= array(
 			'is_mailpopupdeactivated'	=> $mailPopupDeactivated ? true : false
@@ -99,7 +99,7 @@ class TodoyuCalendarProfileRenderer {
 			'form'	=> $form->render()
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -117,7 +117,7 @@ class TodoyuCalendarProfileRenderer {
 			// Preset form data from prefs or remove disallowed prefs from form
 
 			// Reminders send via email
-		if( allowed('calendar', 'reminders:email') ) {
+		if( Todoyu::allowed('calendar', 'reminders:email') ) {
 			$formData['is_reminderemailactive']		= TodoyuCalendarReminderEmailManager::isActivatedForPerson();
 			$formData['reminderemail_advancetime']	= TodoyuCalendarReminderEmailManager::getDefaultAdvanceTime();
 		} else {
@@ -125,7 +125,7 @@ class TodoyuCalendarProfileRenderer {
 			$form->getFieldset('reminders')->removeField('reminderemail_advancetime');
 		}
 			// Reminders shown as popup
-		if( allowed('calendar', 'reminders:popup') ) {
+		if( Todoyu::allowed('calendar', 'reminders:popup') ) {
 			$formData['is_reminderpopupactive']		= TodoyuCalendarReminderPopupManager::isActivatedForPerson();
 			$formData['reminderpopup_advancetime']	= TodoyuCalendarReminderPopupManager::getDefaultAdvanceTime();
 		} else {
@@ -142,7 +142,7 @@ class TodoyuCalendarProfileRenderer {
 			'form'	=> $form->render()
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -162,7 +162,7 @@ class TodoyuCalendarProfileRenderer {
 
 			// Set token comments / remove disallowed options' fieldsets
 			// 1. Token for sharing personal calendar data
-		if( allowed('calendar', 'ical_token:personal') ) {
+		if( Todoyu::allowed('calendar', 'ical_token:personal') ) {
 			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
 			$hash	= $token ? $token->getHash() : '';
 			if( ! empty($hash) ) {
@@ -172,7 +172,7 @@ class TodoyuCalendarProfileRenderer {
 			$form->getFieldset('personal')->remove();
 		}
 			// 2. Token for sharing freebusy time
-		if( allowed('calendar', 'ical_token:freebusy') ) {
+		if( Todoyu::allowed('calendar', 'ical_token:freebusy') ) {
 			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY);
 			$hash	= $token ? $token->getHash() : '';
 			if( ! empty($hash) ) {
@@ -196,7 +196,7 @@ class TodoyuCalendarProfileRenderer {
 			'form'				=> $form->render()
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 }

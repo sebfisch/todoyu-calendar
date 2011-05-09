@@ -233,7 +233,7 @@ class TodoyuCalendarManager {
 		$allowed= array();
 		$own	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area'];
 
-		if( allowed('calendar', 'event:add') ) {
+		if( Todoyu::allowed('calendar', 'event:add') ) {
 			$allowed[] = $own['add'];
 		}
 

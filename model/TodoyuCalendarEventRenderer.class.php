@@ -89,7 +89,7 @@ class TodoyuCalendarEventRenderer {
 		$assignedPersons = TodoyuArray::getColumn($data['assignedPersons'], 'id');
 
 			// Hide visible data if event is private and current user not assigned
-		if( intval($data['is_private']) === 1 && ! in_array(personid(), $assignedPersons) ) {
+		if( intval($data['is_private']) === 1 && ! in_array(Todoyu::personid(), $assignedPersons) ) {
 			$data = self::hidePrivateData($data);
 		}
 
@@ -109,7 +109,7 @@ class TodoyuCalendarEventRenderer {
 	 * @return	Array
 	 */
 	private static function hidePrivateData(array $data) {
-		$data['title']			= '<' . Label('calendar.event.privateEvent.info') . '>';
+		$data['title']			= '<' . Todoyu::Label('calendar.event.privateEvent.info') . '>';
 		$data['description']	= '';
 
 		return $data;
@@ -128,7 +128,7 @@ class TodoyuCalendarEventRenderer {
 		$tmpl	= 'ext/calendar/view/event.tmpl';
 		$data	= self::prepareEventRenderData($mode, $event);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -141,7 +141,7 @@ class TodoyuCalendarEventRenderer {
 	public static function renderEventDetailsInList($idEvent) {
 		$idEvent= intval($idEvent);
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
-		$colors = self::getEventColorData(personid());
+		$colors = self::getEventColorData(Todoyu::personid());
 
 		$eventData	= $event->getTemplateData(true, false, true);
 		$eventData	= self::prepareEventRenderData('list', $eventData);
@@ -152,10 +152,10 @@ class TodoyuCalendarEventRenderer {
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(
 			'event'	=> $eventData,
-			'color'	=> $colors[personid()]
+			'color'	=> $colors[Todoyu::personid()]
 		);
 		
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -175,7 +175,7 @@ class TodoyuCalendarEventRenderer {
 		$color				= self::getEventColorData($idAssignedPerson);
 		$data['color']		= $color[$idAssignedPerson];
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -308,7 +308,7 @@ class TodoyuCalendarEventRenderer {
 			'tabs'	=> self::renderEventViewTabs($idEvent)
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -336,7 +336,7 @@ class TodoyuCalendarEventRenderer {
 
 		$tmpl	= 'ext/calendar/view/event-reminder.tmpl';
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -358,7 +358,7 @@ class TodoyuCalendarEventRenderer {
 
 			// Have all email persons but user himself preselected
 		$emailPersonIDs	= array_keys(TodoyuCalendarEventManager::getEmailReceivers($idEvent, false));
-		$emailPersonIDs	= TodoyuArray::removeByValue($emailPersonIDs, array(personid()), false);
+		$emailPersonIDs	= TodoyuArray::removeByValue($emailPersonIDs, array(Todoyu::personid()), false);
 
 			// Set mail form data
 		$form->setFormData(array(
@@ -369,17 +369,17 @@ class TodoyuCalendarEventRenderer {
 			// Set the appropriate subject (created, updated, deleted)
 		switch($operationID) {
 			case OPERATIONTYPE_RECORD_CREATE:
-				$subject	= Label('calendar.event.mail.popup.subject.create');
+				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.create');
 				break;
 			case OPERATIONTYPE_RECORD_DELETE:
-				$subject	= Label('calendar.event.mail.popup.subject.delete');
+				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.delete');
 
 					// Remove "don't ask again" button in form of deleted events
 				$form->getFieldset('buttons')->removeField('dontaskagain');
 				break;
 			case OPERATIONTYPE_RECORD_UPDATE:
 			default:
-				$subject	= Label('calendar.event.mail.popup.subject.update');
+				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.update');
 				break;
 		}
 
@@ -392,7 +392,7 @@ class TodoyuCalendarEventRenderer {
 
 		$tmpl	= 'ext/calendar/view/event-mailing.tmpl';
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 }

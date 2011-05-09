@@ -25,7 +25,7 @@
  * @subpackage	Calendar
  */
 
-if( (Todoyu::person()->isInternal() || TodoyuAuth::isAdmin()) && allowed('calendar', 'general:use') ) {
+if( (Todoyu::person()->isInternal() || TodoyuAuth::isAdmin()) && Todoyu::allowed('calendar', 'general:use') ) {
 	TodoyuSearchManager::addEngine('event', 'TodoyuCalendarEventSearch::getSuggestions', 'calendar.ext.search.label', 'calendar.ext.search.mode.label', 50);
 }
 

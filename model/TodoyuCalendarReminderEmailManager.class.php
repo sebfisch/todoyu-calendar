@@ -85,7 +85,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer	$idPerson
 	 */
 	public static function updateReminderTimeFromEventData(array $data, $idPerson = 0) {
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 		$idEvent	= intval($data['id']);
 
 		$timeRemind	= TodoyuCalendarReminderManager::getRemindingTimeByEventData(self::REMINDERTYPE, $data);
@@ -104,7 +104,7 @@ class TodoyuCalendarReminderEmailManager {
 	 */
 	public static function getNewEventMailTime($dateStart, $idPerson = 0) {
 		$dateStart	= intval($dateStart);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		return $dateStart  - self::getDefaultAdvanceTime($idPerson);
 	}
@@ -119,12 +119,12 @@ class TodoyuCalendarReminderEmailManager {
 	 * @return	Boolean
 	 */
 	public static function getReminderMailTime($idEvent, $idPerson = 0) {
-		if( ! allowed('calendar', 'reminders:email') ) {
+		if( ! Todoyu::allowed('calendar', 'reminders:email') ) {
 			return false;
 		}
 
 		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		return self::getReminderByAssignment($idEvent, $idPerson)->getDateRemindEmail();
 	}
@@ -152,7 +152,7 @@ class TodoyuCalendarReminderEmailManager {
 	 */
 	public static function getAdvanceTime($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		return self::getReminderByAssignment($idEvent, $idPerson)->getAdvanceTime();
 	}
@@ -198,9 +198,9 @@ class TodoyuCalendarReminderEmailManager {
 	 */
 	public static function isReminderAllowed($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
-		if( ! allowed('calendar', 'reminders:email') ) {
+		if( ! Todoyu::allowed('calendar', 'reminders:email') ) {
 			return false;
 		}
 

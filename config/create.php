@@ -18,7 +18,7 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-if( (Todoyu::person()->isInternal() || TodoyuAuth::isAdmin()) && allowed('calendar', 'event:add') ) {
+if( (Todoyu::person()->isInternal() || TodoyuAuth::isAdmin()) && Todoyu::allowed('calendar', 'event:add') ) {
 		// Add quick create types
 	TodoyuQuickCreateManager::addEngine('calendar', 'event', 'calendar.event.create.label', 50, array('calendar'));
 }
