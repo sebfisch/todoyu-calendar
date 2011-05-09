@@ -27,6 +27,8 @@
  */
 class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 
+	private $settingsBackup = array();
+
 
 	/**
 	 * Get scheduled email reminder time
@@ -77,8 +79,13 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 
 			// Setup mail data
 		$subject	= Todoyu::Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
+
+
+			// Create content with changes locale/timezone
+		$this->setAssignedPersonSettings();
 		$htmlBody	= $this->getMailContent(false, true);
 		$textBody	= $this->getMailContent(false, false);
+		$this->resetSettings();
 
 		$mail		= new TodoyuCalendarReminderMail();
 		$mail->setSubject($subject);
@@ -94,6 +101,25 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 		}
 
 		return $sendStatus;
+	}
+
+
+	private function setAssignedPersonSettings() {
+		$this->settingsBackup = array(
+			'locale'	=> Todoyu::getLocale(),
+			'timezone'	=> Todoyu::getTimezone()
+		);
+
+		$userLocale		= $this->getPersonAssigned()->getLocale();
+		$userTimezone	= $this->getPersonAssigned()->getTimezone();
+
+		TodoyuLabelManager::setLocale($userLocale);
+		Todoyu::setTimezone($userTimezone);
+	}
+
+	private function resetSettings() {
+		TodoyuLabelManager::setLocale($this->settingsBackup['locale']);
+		Todoyu::setTimezone($this->settingsBackup['timezone']);
 	}
 
 
@@ -129,10 +155,6 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 	private function getMailContent($hideEmails = true, $asHTML = true) {
 		$data				= TodoyuCalendarEventMailManager::getMailData($this->getEventID(), $this->getPersonAssignedID(), true);
 		$data['hideEmails']	= $hideEmails;
-
-			// Switch to locale of email receiver person
-		$locale	= $this->getPersonAssigned()->getLocale();
-		TodoyuLabelManager::setLocale($locale);
 
 		return $this->renderEmail($data, $asHTML);
 	}
