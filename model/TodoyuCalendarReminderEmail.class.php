@@ -19,16 +19,13 @@
 *****************************************************************************/
 
 /**
- * Event Reminder
+ * Event Reminder Email
  *
  * @package		Todoyu
  * @subpackage	Calendar
  *
  */
 class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
-
-	private $settingsBackup = array();
-
 
 	/**
 	 * Get scheduled email reminder time
@@ -77,24 +74,10 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 			return false;
 		}
 
-			// Setup mail data
-		$subject	= Todoyu::Label('calendar.reminder.email.subject') . ': ' . $event->getTitle();
+		$mail		= new TodoyuCalendarReminderEmailMail($this->getID());
+		$sendStatus	= $mail->send();
 
-
-			// Create content with changes locale/timezone
-		$this->setAssignedPersonSettings();
-		$htmlBody	= $this->getMailContent(false, true);
-		$textBody	= $this->getMailContent(false, false);
-		$this->resetSettings();
-
-		$mail		= new TodoyuCalendarReminderMail();
-		$mail->setSubject($subject);
-		$mail->addReceiver($person->getID());
-		$mail->setHtmlContent($htmlBody);
-		$mail->setTextContent($textBody);
-
-		$sendStatus	= $mail->Send();
-//		echo "SEND EMAIL TO: " . $person->getEmail() . "\n";
+//		echo "SEND EMAIL TO: " . $person->getFullName() . ' ' . $person->getID() . ' (' . $person->getEmail() . ")\n";
 
 		if( $sendStatus ) {
 			$this->saveAsSent();
@@ -104,31 +87,12 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 	}
 
 
-	private function setAssignedPersonSettings() {
-		$this->settingsBackup = array(
-			'locale'	=> Todoyu::getLocale(),
-			'timezone'	=> Todoyu::getTimezone()
-		);
-
-		$userLocale		= $this->getPersonAssigned()->getLocale();
-		$userTimezone	= $this->getPersonAssigned()->getTimezone();
-
-		TodoyuLabelManager::setLocale($userLocale);
-		Todoyu::setTimezone($userTimezone);
-	}
-
-	private function resetSettings() {
-		TodoyuLabelManager::setLocale($this->settingsBackup['locale']);
-		Todoyu::setTimezone($this->settingsBackup['timezone']);
-	}
-
-
 
 	/**
 	 * Set "is_sent" flag of reminder true, store
 	 *
 	 */
-	public function saveAsSent() {
+	private function saveAsSent() {
 		$idReminder	= $this->getID();
 		$idPerson	= $this->getPersonAssignedID();
 
@@ -139,53 +103,6 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 
 			// Save log record about sent mail
 		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idReminder, array($idPerson));
-	}
-
-
-
-	/**
-	 * Render content for HTML/plaintext mail
-	 *
-	 * @param	Integer		$idEvent		Event to send
-	 * @param	Integer		$idPersonMailTo
-	 * @param	Boolean		$hideEmails
-	 * @param	Boolean		$asHTML
-	 * @return	String
-	 */
-	private function getMailContent($hideEmails = true, $asHTML = true) {
-		$data				= TodoyuCalendarEventMailManager::getMailData($this->getEventID(), $this->getPersonAssignedID(), true);
-		$data['hideEmails']	= $hideEmails;
-
-		return $this->renderEmail($data, $asHTML);
-	}
-
-
-
-	/**
-	 * Render email with template
-	 *
-	 * @param	Array		$data
-	 * @param	Boolean		$asHTML
-	 * @return	String
-	 */
-	private function renderEmail(array $data, $asHTML = true) {
-		$tmpl	= $this->getTemplate($asHTML);
-
-		return Todoyu::render($tmpl, $data);
-	}
-
-
-
-	/**
-	 * Get filename of event reminder email template to current mode (text/HTML)
-	 *
-	 * @param	Boolean		$asHTML
-	 * @return	String
-	 */
-	private function getTemplate($asHTML = true) {
-		$type	= $asHTML ? 'html' : 'text';
-
-		 return 'ext/calendar/view/emails/event-reminder-' . $type . '.tmpl';
 	}
 
 }

@@ -42,7 +42,7 @@ class TodoyuCalendarEventMailer {
 
 		$succeeded	= true;
 		foreach($personIDs as $idPerson) {
-			$result = self::sendMail($idEvent, $idPerson, false, true, $operationID);
+			$result = self::sendInfoMail($idEvent, $idPerson, $operationID);
 
 			if( $result === false ) {
 				$succeeded	= false;
@@ -64,31 +64,19 @@ class TodoyuCalendarEventMailer {
  	 * @param	Integer		$operationID				What's done- create, update, delete?
 	 * @return	Boolean		Success
 	 */
-	public static function sendMail($idEvent, $idPerson, $setSenderFromPersonMail = false, $hideEmails = true, $operationID) {
+	public static function sendInfoMail($idEvent, $idPerson, $operationID = OPERATIONTYPE_RECORD_CREATE) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 		$operationID= intval($operationID);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 		if( $event->isDeleted() ) {
 			$operationID	= OPERATIONTYPE_RECORD_DELETE;
 		}
-		$person			= TodoyuContactPersonManager::getPerson($idPerson);
-					// Setup mail data
-		$mailSubject	= self::getSubjectLabelByOperation($operationID) . ': ' . $event->getTitle();
-		$fromAddress	= $setSenderFromPersonMail ? Todoyu::person()->getEmail() : Todoyu::$CONFIG['SYSTEM']['email'];
-		$fromName		= Todoyu::person()->getFullName() . ' (todoyu)';
-		$toAddress		= $person->getEmail();
-		$toName			= $person->getFullName();
-		$htmlBody		= self::getMailContent($idEvent, $idPerson, $hideEmails, true, $operationID);
-		$textBody		= self::getMailContent($idEvent, $idPerson, $hideEmails, false, $operationID);
 
-		$baseURL	= PATH_EXT_COMMENT;
+		$mail		= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $operationID);
 
-			// Send mail
-		$sendStatus	= TodoyuMailManager::sendMail($mailSubject, $fromAddress, $fromName, $toAddress, $toName, $htmlBody, $textBody, $baseURL);
-
-		return $sendStatus;
+		return $mail->send();
 	}
 
 

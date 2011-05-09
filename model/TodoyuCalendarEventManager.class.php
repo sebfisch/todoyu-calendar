@@ -549,7 +549,7 @@ class TodoyuCalendarEventManager {
 		self::removeEventFromCache($idEvent);
 
 		if( $sendAsMail ) {
-			self::eventSendEmail($idEvent, $emailReceivers, $isNewEvent);
+			self::sendEventAsEmail($idEvent, $emailReceivers, $isNewEvent);
 		}
 
 		return $idEvent;
@@ -624,7 +624,7 @@ class TodoyuCalendarEventManager {
 
 			// Send mail if necessary
 		if( $sendAsMail ) {
-			self::eventSendEmail($idEvent, $emailReceivers, true);
+			self::sendEventAsEmail($idEvent, $emailReceivers, true);
 		}
 
 		return $idEvent;
@@ -640,7 +640,7 @@ class TodoyuCalendarEventManager {
 	 * @param	Array		$params
 	 * @return	Array
 	 */
-	public static function eventSendEmail($idEvent, $receivers, $isNewEvent = false) {
+	public static function sendEventAsEmail($idEvent, $receivers, $isNewEvent = false) {
 		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intExplode(',', $receivers, true, true));
 
 		if( sizeof($mailReceiverPersonIDs) > 0 ) {
