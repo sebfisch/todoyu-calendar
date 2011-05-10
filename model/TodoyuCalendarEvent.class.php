@@ -96,6 +96,16 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Get duration as string
+	 * @return String
+	 */
+	public function getDurationString() {
+		return TodoyuString::getRangeString($this->getStartDate(), $this->getEndDate(), true);
+	}
+
+
+
+	/**
 	 * Get place of event
 	 *
 	 * @return	String
@@ -316,8 +326,10 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 			'seconds'			=> $this->getDuration(),
 			'minutes'			=> $this->getDurationMinutes(),
 			'hours'				=> $this->getDurationHours(),
-			'daysIntersected'	=> TodoyuCalendarEventManager::getAmountDaysIntersected($this->id)
+			'daysIntersected'	=> TodoyuCalendarEventManager::getAmountDaysIntersected($this->getID())
 		);
+
+		$this->data['durationString']	= $this->getDurationString();
 
 		return parent::getTemplateData();
 	}

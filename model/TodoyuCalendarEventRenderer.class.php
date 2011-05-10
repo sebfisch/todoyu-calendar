@@ -76,20 +76,17 @@ class TodoyuCalendarEventRenderer {
 	public static function prepareEventRenderData($mode = CALENDAR_MODE_MONTH, array $data) {
 		$idEvent			= intval($data['id']);
 		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
-		$idAssignedPerson	= count($assignedPersons) == 1 ? $assignedPersons[0]['id_person'] : 0;
-
-		$color = self::getEventColorData($idAssignedPerson);
+		$idAssignedPerson	= count($assignedPersons) == 1 ? $assignedPersons[key($assignedPersons)]['id_person'] : 0;
 
 		$data['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
 		$data['assignedPersons']= $assignedPersons;
-		$data['color']			= $color[$idAssignedPerson];
+		$data['color']			= self::getEventColorData($idAssignedPerson);
 		$data['eventtypeKey']	= TodoyuCalendarEventTypeManager::getEventTypeKey($data['eventtype']);
 
-
-		$assignedPersons = TodoyuArray::getColumn($data['assignedPersons'], 'id');
+		$assignedPersonIDs = array_keys($assignedPersons);
 
 			// Hide visible data if event is private and current user not assigned
-		if( intval($data['is_private']) === 1 && ! in_array(Todoyu::personid(), $assignedPersons) ) {
+		if( intval($data['is_private']) === 1 && ! in_array(Todoyu::personid(), $assignedPersonIDs) ) {
 			$data = self::hidePrivateData($data);
 		}
 
@@ -139,22 +136,20 @@ class TodoyuCalendarEventRenderer {
 	 * @param	Integer		$idEvent
 	 */
 	public static function renderEventDetailsInList($idEvent) {
-		$idEvent= intval($idEvent);
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
-		$colors = self::getEventColorData(Todoyu::personid());
-
+		$idEvent	= intval($idEvent);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 		$eventData	= $event->getTemplateData(true, false, true);
 		$eventData	= self::prepareEventRenderData('list', $eventData);
 
-		$eventData['person_create']	= $event->getPerson('create')->getTemplateData();
+		$eventData['person_create']	= $event->getCreatePerson()->getTemplateData();
 		$eventData['persons']		= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
 
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(
 			'event'	=> $eventData,
-			'color'	=> $colors[Todoyu::personid()]
+			'color'	=> self::getEventColorData(Todoyu::personid())
 		);
-		
+
 		return Todoyu::render($tmpl, $data);
 	}
 
@@ -172,8 +167,7 @@ class TodoyuCalendarEventRenderer {
 		$data	= self::prepareEventRenderData($mode, $data);
 
 		$idAssignedPerson	= intval($data['assignedPersons'][0]['id']);
-		$color				= self::getEventColorData($idAssignedPerson);
-		$data['color']		= $color[$idAssignedPerson];
+		$data['color']		= self::getEventColorData($idAssignedPerson);
 
 		return Todoyu::render($tmpl, $data);
 	}
@@ -183,23 +177,21 @@ class TodoyuCalendarEventRenderer {
 	/**
 	 * Get event rendering color data
 	 *
-	 * @param	Integer		$idAssignedPerson
+	 * @param	Integer		$idPerson
 	 * @return	Array
 	 */
-	public static function getEventColorData($idAssignedPerson) {
-		if( $idAssignedPerson > 0 ) {
-				//  Unique person assigned to event?
-			$eventColorData	= TodoyuContactPersonManager::getSelectedPersonColor(array($idAssignedPerson));
-		} else {
-			// Multiple / no person assigned?
-			$eventColorData = array(
-				'0'	=> array(
-					'id'		=> 'multiOrNone',
-				)
-			);
-		}
+	public static function getEventColorData($idPerson) {
+		$idPerson	= intval($idPerson);
 
-		return $eventColorData;
+		if( $idPerson === 0 ) {
+			return array(
+				'id' => 'multiOrNone'
+			);
+		} else {
+			$personColors	= TodoyuContactPersonManager::getSelectedPersonColor(array($idPerson));
+
+			return $personColors[$idPerson];
+		}
 	}
 
 
@@ -299,12 +291,11 @@ class TodoyuCalendarEventRenderer {
 	 */
 	public static function renderEventView($idEvent) {
 		$idEvent	= intval($idEvent);
-
-		$eventData	= TodoyuCalendarEventManager::getEvent($idEvent)->getTemplateData(true, true, true);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 
 		$tmpl	= 'ext/calendar/view/event-view.tmpl';
 		$data	= array(
-			'event'	=> $eventData,
+			'event'	=> $event->getTemplateData(true, true, true),
 			'tabs'	=> self::renderEventViewTabs($idEvent)
 		);
 

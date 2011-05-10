@@ -24,18 +24,7 @@
 			&nbsp;{Label calendar.event.attr.timespan}
 		</td>
 		<td class="eventValue">
-			{if $event.duration.daysIntersected > 1}
-				{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime}
-				({$event.duration.daysIntersected} {Label core.date.days})
-			{else}
-				{dateFormat $event.date_start date}
-				{dateFormat $event.date_start time} - {dateFormat $event.date_end time}
-				{if $event.duration.minutes > 59}
-					({timeFormat $event.duration.seconds} {Label core.date.time.hours})
-				{else}
-					({$event.duration.minutes} {Label core.date.time.minutes})
-				{/if}
-			{/if}
+			{$event.durationString}
 		</td>
 	</tr>
 {* ------------------------ Description *}
