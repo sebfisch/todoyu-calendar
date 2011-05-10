@@ -88,6 +88,8 @@ class TodoyuCalendarPortalRenderer {
 			'javascript'	=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();Todoyu.Ext.calendar.installQuickinfos();'
 		);
 
+		TodoyuHeader::sendTodoyuHeader('items', sizeof($events));
+
 		return Todoyu::render($tmpl, $data);
 	}
 
