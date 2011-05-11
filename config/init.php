@@ -42,15 +42,6 @@ if( Todoyu::allowed('calendar', 'reminders:popup') ) {
 }
 
 
-/* ----------------------------
-	iCal token callbacks and export settings
-   ---------------------------- */
-TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL, 'TodoyuCalendarIcalManager::getPersonalExport');
-TodoyuTokenCallbackManager::addFunction(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY, 'TodoyuCalendarIcalManager::getFreeBusyExport');
-	// How many days into the past are included in exported calendar data (0 = all the past!)
-Todoyu::$CONFIG['EXT']['calendar']['icalScopeStartWeeksInPast']	= 28;
-
-
 
 /* ----------------------------
 	Quickinfo Callbacks
@@ -213,14 +204,6 @@ if( TodoyuExtensions::isInstalled('profile') ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'reminders',
 			'label'			=> 'LLL:calendar.ext.profile.module.reminders.tab',
-//			'require'		=> 'calendar.settings:editbookmarks'
-		);
-	}
-
-	if( Todoyu::allowed('calendar', 'ical_token:personal') ||  Todoyu::allowed('calendar', 'ical_token:freebusy') ) {
-		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
-			'id'			=> 'share',
-			'label'			=> 'LLL:calendar.ext.profile.module.share.tab',
 //			'require'		=> 'calendar.settings:editbookmarks'
 		);
 	}

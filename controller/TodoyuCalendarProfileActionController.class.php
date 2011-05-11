@@ -105,39 +105,6 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, Todoyu::personid());
 	}
 
-
-
-	/**
-	 * Generate new calendar data access token
-	 *
-	 * @param	Array 	$params
-	 */
-	public function getTokenAction(array $params) {
-		$idTokenType	= intval($params['type']);
-
-		return TodoyuTokenManager::generateHash(EXTID_CALENDAR, $idTokenType, Todoyu::personid(), true);
-	}
-
-
-
-	/**
-	 * Save calendar sharing tokens (tokens from session, which ones from $params)
-	 *
-	 * @param	Array $params
-	 */
-	public function saveSharingTokensAction(array $params) {
-		$isChangedPersonalSharingToken		= intval($params['share']['is_tokenpersonal_changed']);
-		$isChangedFreebusySharingToken	= intval($params['share']['is_tokenfreebusy_changed']);
-
-			// Store changed tokens
-		if( $isChangedPersonalSharingToken ) {
-			TodoyuTokenManager::saveTokenFromSession(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
-		}
-		if( $isChangedFreebusySharingToken ) {
-			TodoyuTokenManager::saveTokenFromSession(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY);
-		}
-	}
-
 }
 
 ?>

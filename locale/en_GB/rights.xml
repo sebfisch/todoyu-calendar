@@ -17,7 +17,4 @@
 	<label index="reminders">Appointment Reminders</label>
 	<label index="reminders.popup">Use reminder popups</label>
 	<label index="reminders.email">Use reminder mailing</label>
-	<label index="ical_token">Allow sharing calendar data (iCal) with other applications and services</label>
-	<label index="ical_token.personal">Personal Appointments</label>
-	<label index="ical_token.freebusy">Free/Busy</label>
 </labels>

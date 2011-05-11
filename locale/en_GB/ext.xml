@@ -39,10 +39,6 @@
 	<label index="reminder.upcomingevent">Remember: You have the following appointment soon.</label>
 	<label index="reminder.remindagain">Remind me again...</label>
 	<label index="reminder.button.remindlater">Remind Me Later</label>
-	<label index="share.token.personal.label">Personal calendar data token</label>
-	<label index="share.token.freebusy.label">Free/Busy data token</label>
-	<label index="share.button.generatetoken">Generate New Token</label>
-	<label index="share.token.noneyet">No Token Yet!</label>
 	<label index="extconf.allowoverbooking.label">Allow multiple simultaneous appointments for 1 person?</label>
 	<label index="extconf.reminder.reminderemail_active.label">Activate appointment reminders per email</label>
 	<label index="extconf.reminder.reminderpopup_active.label">Activate appointment reminders per popup</label>
@@ -64,11 +60,4 @@
 	<label index="profile.is_reminderemailactive">Enable email reminder by default</label>
 	<label index="profile.main.saved">Settings have been saved.</label>
 	<label index="profile.reminders.saved">Reminders settings have been saved.</label>
-	<label index="profile.module.share.tab">Share Calendar</label>
-	<label index="profile.module.share.header">Configuration of calendar data sharing</label>
-	<label index="profile.module.share.explanation1">You can share the todoyu calendar data with other applications and services.</label>
-	<label index="profile.module.share.explanation2">This enables you to sync your calendar management application (on your computer or smartphone, etc.) with your appointments stored in todoyu.</label>
-	<label index="profile.module.share.explanation3">To access the calendar data in iCal format use the following URL with the respective token appended:</label>
-	<label index="profile.module.share.explanation4">To directly download the iCal file into another application or service, use the following URL with the token appended:</label>
-	<label index="profile.sharing.saved">Configuration of calendar sharing sharing</label>
 </labels>

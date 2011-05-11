@@ -17,7 +17,4 @@
 	<label index="reminders">Termin-Erinnerungen</label>
 	<label index="reminders.popup">Popup-Erinnerungen bestellen</label>
 	<label index="reminders.email">Erinnerungs-Mailing abonnieren</label>
-	<label index="ical_token">Termine zu externen Applikationen und Services exportieren (iCal-Format)</label>
-	<label index="ical_token.personal">Vollständige Termine</label>
-	<label index="ical_token.freebusy">Ausbuchungsstatus</label>
 </labels>

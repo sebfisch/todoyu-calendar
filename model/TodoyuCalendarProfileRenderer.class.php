@@ -68,10 +68,6 @@ class TodoyuCalendarProfileRenderer {
 			case 'reminders':
 				return self::renderContentReminders();
 				break;
-
-			case 'share':
-				return self::renderContentShare();
-				break;
 		}
 	}
 
@@ -140,60 +136,6 @@ class TodoyuCalendarProfileRenderer {
 		$tmpl	= 'ext/calendar/view/profile-reminders.tmpl';
 		$data	= array(
 			'form'	=> $form->render()
-		);
-
-		return Todoyu::render($tmpl, $data);
-	}
-
-
-
-	/**
-	 * Render content for profile's "share" tab of calendar section
-	 *
-	 * @return	String
-	 */
-	public static function renderContentShare() {
-		$xmlPath	= 'ext/calendar/config/form/profile-share-tokens.xml';
-		$form		= TodoyuFormManager::getForm($xmlPath);
-
-			// Set form data
-		$formData	= array();
-		$form->setFormData($formData);
-
-			// Set token comments / remove disallowed options' fieldsets
-			// 1. Token for sharing personal calendar data
-		if( Todoyu::allowed('calendar', 'ical_token:personal') ) {
-			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_PERSONAL);
-			$hash	= $token ? $token->getHash() : '';
-			if( ! empty($hash) ) {
-				$form->getFieldset('personal')->getField('tokenpersonal')->setAttribute('comment', $hash);
-			}
-		} else {
-			$form->getFieldset('personal')->remove();
-		}
-			// 2. Token for sharing freebusy time
-		if( Todoyu::allowed('calendar', 'ical_token:freebusy') ) {
-			$token	= TodoyuTokenManager::getTokenByOwner(EXTID_CALENDAR, CALENDAR_TYPE_SHARINGTOKEN_FREEBUSY);
-			$hash	= $token ? $token->getHash() : '';
-			if( ! empty($hash) ) {
-				$form->getFieldset('freebusy')->getField('tokenfreebusy')->setAttribute('comment', $hash);
-			}
-		} else {
-			$form->getFieldset('freebusy')->remove();
-		}
-
-			// Render tab content
-		$tmpl	= 'ext/calendar/view/profile-share.tmpl';
-
-		$serverURL	= $_SERVER['SERVER_NAME'];
-		if( substr($serverURL, 0, 4) !== 'http' ) {
-			$serverURL	= 'http://' . $serverURL;
-		}
-
-		$data	= array(
-			'iCalURL'			=> $serverURL . '/index.php?token=',
-			'iCalURLdownload'	=> $serverURL . '/index.php?download=1&token=',
-			'form'				=> $form->render()
 		);
 
 		return Todoyu::render($tmpl, $data);

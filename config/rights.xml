@@ -24,9 +24,4 @@
 		<right name="email" />
 	</section>
 
-	<section name="ical_token" require="general:use">
-		<right name="personal" />
-		<right name="freebusy" />
-	</section>
-
 </rights>
