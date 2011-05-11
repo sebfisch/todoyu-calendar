@@ -836,7 +836,8 @@ class TodoyuCalendarEventManager {
 		$diff		= $newDateStart - $event->getStartDate();
 
 		$data	= array(
-			'is_updated'		=> 1
+			'is_updated'				=> 1,
+			'is_remindpopupdismissed'	=> 0
 		);
 
 		if( $diff > 0 ) {
@@ -849,7 +850,7 @@ class TodoyuCalendarEventManager {
 		}
 
 		$table	= 'ext_calendar_mm_event_person';
-		$where	= '	id_event		= ' . $idEvent
+		$where	= '		id_event	= ' . $idEvent
 				. ' AND id_person	= ' . $idPerson;
 
 		Todoyu::db()->doUpdate($table, $where, $data);

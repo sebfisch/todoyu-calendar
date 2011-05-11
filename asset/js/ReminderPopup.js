@@ -75,9 +75,9 @@ Todoyu.Ext.calendar.ReminderPopup = {
 		this.events	= upcomingEvents;
 
 		if( upcomingEvents.size() > 0 ) {
-			this.onReminderTimeout();
+			this.showDueReminderPopups();
 				// Start periodical executer
-			this.pe = new PeriodicalExecuter(this.onReminderTimeout.bind(this), this.peSeconds);
+			this.pe = new PeriodicalExecuter(this.showDueReminderPopups.bind(this), this.peSeconds);
 		}
 
 			// Listen to event changes to update event list
@@ -124,6 +124,8 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 */
 	onEventListRefreshed: function(response) {
 		this.events = response.responseJSON ? response.responseJSON : [];
+
+		this.showDueReminderPopups();
 	},
 
 
@@ -133,11 +135,11 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 *
 	 * @method	onReminderTimeout
 	 */
-	onReminderTimeout: function() {
+	showDueReminderPopups: function() {
 		var now	= new Date().getTime();
 
 		this.events.each(function(event){
-			var popupTime	= event.time_popup * 1000;	// Convert to milliseconds
+			var popupTime	= event.popup * 1000;	// Convert to milliseconds
 
 			if( ! event.dismissed && now >= popupTime  ) {
 				this.show(event.id);
@@ -299,7 +301,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 		});
 
 			// Reschedule cached event popup
-		event.time_popup = event.date_start - secondsBefore*1000;
+		event.popup = event.start - secondsBefore*1000;
 
 			// Update in DB
 		this.closePopup(idEvent);

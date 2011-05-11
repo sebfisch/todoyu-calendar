@@ -208,18 +208,17 @@ class TodoyuCalendarReminderPopupManager {
 		$dateEnd	= NOW + Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKAHEAD'];
 		$personIDs	= array(Todoyu::personid());
 		$eventTypes	= Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP'];
-		$reminders	= array();
 
-		$events	= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
+		$reminders	= array();
+		$events		= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
 
 		foreach($events as $idEvent => $eventData) {
 				// Setup event reminder data / remove dismissed reminders from schedule
 			if( ! self::isDismissed($idEvent) ) {
 				$reminders[] = array(
-					'id'			=> $idEvent,
-					'dismissed'		=> 0,
-					'time_popup'	=> self::getDateRemind($idEvent),
-					'date_start'	=> $eventData['date_start']
+					'id'	=> $idEvent,
+					'popup'	=> self::getDateRemind($idEvent),
+					'start'	=> intval($eventData['date_start'])
 				);
 			}
 		}
