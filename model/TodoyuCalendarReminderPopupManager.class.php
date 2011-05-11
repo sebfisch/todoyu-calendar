@@ -70,23 +70,6 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
-	 * Update popup reminder scheduling of given event from given form data
-	 *
-	 * @param	Array	$data
-	 * @param	Integer	$idPerson
-	 */
-	public static function updateReminderTimeFromEventData(array $data, $idPerson = 0) {
-		$idPerson	= Todoyu::personid($idPerson);
-		$idEvent	= intval($data['id']);
-
-		$timeRemind	= TodoyuCalendarReminderManager::getRemindingTimeByEventData(self::REMINDERTYPE, $data);
-
-		self::updateReminderTime($idEvent, $timeRemind, $idPerson);
-	}
-
-
-
-	/**
 	 * Update scheduled popup reminder display time of given event/person
 	 *
 	 * @param	Integer		$idEvent
@@ -122,7 +105,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Boolean
 	 */
 	public static function isActivatedForPerson($idPerson = 0) {
-		return TodoyuCalendarReminderManager::isRemindertypeActivated(self::REMINDERTYPE, $idPerson);
+		return TodoyuCalendarReminderDefaultManager::isPopupDefaultActivationEnabled();
 	}
 
 
@@ -137,8 +120,13 @@ class TodoyuCalendarReminderPopupManager {
 	public static function getAdvanceTime($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= Todoyu::personid($idPerson);
+		$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
 
-		return self::getReminderByAssignment($idEvent, $idPerson)->getAdvanceTime();
+		if( $idEvent === 0 ) {
+			return TodoyuCalendarReminderDefaultManager::getPopupDefaultAdvanceTime($idPerson);
+		}
+
+		return $reminder->getAdvanceTime();
 	}
 
 
@@ -158,6 +146,10 @@ class TodoyuCalendarReminderPopupManager {
 			return false;
 		}
 
+		if( $idEvent === 0 ) {
+			return true;
+		}
+
 		return TodoyuCalendarReminderManager::isPersonAssigned($idEvent, $idPerson);
 	}
 
@@ -170,7 +162,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * @return	Integer
 	 */
 	public static function getDefaultAdvanceTime($idPerson = 0) {
-		return TodoyuCalendarReminderManager::getDefaultAdvanceTime(self::REMINDERTYPE, $idPerson);
+		return TodoyuCalendarReminderDefaultManager::getDefaultAdvanceTime(self::REMINDERTYPE, $idPerson);
 	}
 
 
@@ -216,24 +208,23 @@ class TodoyuCalendarReminderPopupManager {
 		$dateEnd	= NOW + Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKAHEAD'];
 		$personIDs	= array(Todoyu::personid());
 		$eventTypes	= Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP'];
+		$reminders	= array();
 
 		$events	= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
 
 		foreach($events as $idEvent => $eventData) {
 				// Setup event reminder data / remove dismissed reminders from schedule
-			if( self::isDismissed($idEvent) ) {
-				unset($events[$idEvent]);
-			} else {
-				$events[$idEvent]	= array(
-					'id'				=> $idEvent,
-					'dismissed'			=> 0,
-					'time_popup'		=> self::getDateRemind($idEvent),
-					'event.date_start'	=> $eventData['date_start'],
+			if( ! self::isDismissed($idEvent) ) {
+				$reminders[] = array(
+					'id'			=> $idEvent,
+					'dismissed'		=> 0,
+					'time_popup'	=> self::getDateRemind($idEvent),
+					'date_start'	=> $eventData['date_start']
 				);
 			}
 		}
 
-		return $events;
+		return $reminders;
 	}
 
 

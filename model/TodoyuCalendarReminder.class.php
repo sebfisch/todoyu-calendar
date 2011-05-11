@@ -119,16 +119,29 @@ class TodoyuCalendarReminder extends TodoyuBaseObject {
 	}
 
 
+	public function getDateRemindEmail() {
+		return $this->getDateRemind(CALENDAR_TYPE_EVENTREMINDER_EMAIL);
+	}
+
+	public function getDateRemindPopup() {
+		return $this->getDateRemind(CALENDAR_TYPE_EVENTREMINDER_POPUP);
+	}
+
+
 
 	/**
 	 * Get amount of time before event when given reminder type is scheduled
 	 *
-	 * @return	Boolean|Integer
+	 * @return	Integer|Boolean
 	 */
 	public function getAdvanceTime($reminderType = CALENDAR_TYPE_EVENTREMINDER_EMAIL) {
 		$dateRemind	= $this->getDateRemind($reminderType);
 
-		return $dateRemind > 0 ? ($this->getEventStartDate() - $dateRemind) : false;
+		if( $dateRemind > 0 ) {
+			return $this->getEventStartDate() - $dateRemind;
+		} else {
+			return false;
+		}
 	}
 
 

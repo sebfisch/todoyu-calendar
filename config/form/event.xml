@@ -105,23 +105,7 @@
 					</validate>
 					<required />
 				</field>
-<!--
-				<field type="textAC" name="id_project">
-					<label>calendar.event.attr.id_project</label>
-					<config>
-						<acName>project</acName>
-						<acLabel>TodoyuProjectProjectManager::getLabel</acLabel>
-					</config>
-				</field>
 
-				<field type="textAC" name="id_task">
-					<label>calendar.event.attr.id_task</label>
-					<config>
-						<acName>task</acName>
-						<acLabel>TodoyuProjectTaskManager::getLabel</acLabel>
-					</config>
-				</field>
--->
 			</elements>
 		</fieldset>
 

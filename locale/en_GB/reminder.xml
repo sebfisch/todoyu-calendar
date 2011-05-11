@@ -10,6 +10,8 @@
 	<label index="notify.email.timeupdated">Email reminder schedule has been changed</label>
 	<label index="notify.popup.timeupdated">Popup reminder schedule has been changed</label>
 	<label index="beforeDateStart">before appointment</label>
+	<label index="atDateStart">When appointment starts</label>
 	<label index="email.subject">Appointment Reminder</label>
 	<label index="email.title">Automatic Appointment Reminder</label>
+	<label index="noReminder">Don't remind me</label>
 </labels>

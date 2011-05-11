@@ -105,11 +105,6 @@ class TodoyuCalendarEventEditRenderer {
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 		$data	= $event->getTemplateData(true, false, true);
 
-			// Person can schedule reminders? add the resp. fieldset
-		if( $idEvent > 0 ) {
-			$form	= self::addReminderFieldsetToEventForm($form, $idEvent);
-		}
-
 			// Call hooked load functions
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
 
@@ -118,51 +113,6 @@ class TodoyuCalendarEventEditRenderer {
 		return $form->render();
 	}
 
-
-
-	/**
-	 * Check whether current user can schedule any reminders to event of form and add reminder fieldset if
-	 *
-	 * @param	TodoyuForm		$form
-	 * @param	Integer			$idEvent
-	 * @return	TodoyuForm
-	 */
-	private static function addReminderFieldsetToEventForm($form, $idEvent) {
-		$idEvent					= intval($idEvent);
-		$reminderEmailSchedulable	= TodoyuCalendarReminderEmailManager::isReminderAllowed($idEvent);
-		$reminderPopupSchedulable	= TodoyuCalendarReminderPopupManager::isReminderAllowed($idEvent);
-
-		if( $idEvent != 0 && ($reminderEmailSchedulable || $reminderPopupSchedulable) ) {
-			$xmlPathReminders	= 'ext/calendar/config/form/event-creatorreminder.xml';
-			$remindersForm		= TodoyuFormManager::getForm($xmlPathReminders);
-			$remindersFieldset	= $remindersForm->getFieldset('reminders');
-
-			$form->addFieldset('reminders', $remindersFieldset, 'before:buttons');
-
-				// Preset email/popup reminder fields or remove them if not schedulable
-			if( $reminderEmailSchedulable ) {
-				$isActivated	= TodoyuCalendarReminderEmailManager::isActivatedForPerson();
-				$advanceTime	= TodoyuCalendarReminderEmailManager::getAdvanceTime($idEvent);
-
-				$form->getFieldset('reminders')->getField('is_reminderemail_active')->setValue($isActivated);
-				$form->getFieldset('reminders')->getField('reminderemail_advancetime')->setValue($advanceTime);
-			} else {
-				$form->getFieldset('reminders')->removeField('is_reminderemail_active');
-				$form->getFieldset('reminders')->removeField('reminderemail_advancetime');
-			}
-			if( $reminderPopupSchedulable ) {
-				$isActivated	= TodoyuCalendarReminderPopupManager::isActivatedForPerson();
-				$advanceTime	= TodoyuCalendarReminderPopupManager::getAdvanceTime($idEvent);
-				$form->getFieldset('reminders')->getField('is_reminderpopup_active')->setValue($isActivated);
-				$form->getFieldset('reminders')->getField('reminderpopup_advancetime')->setValue($advanceTime);
-			} else {
-				$form->getFieldset('reminders')->removeField('is_reminderpopup_active');
-				$form->getFieldset('reminders')->removeField('reminderpopup_advancetime');
-			}
-		}
-
-		return $form;
-	}
 }
 
 ?>

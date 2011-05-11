@@ -98,7 +98,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				// No warnings - save or update event (and send email if mail-option activated)
 			if( sizeof($warningHeaders) === 0 ) {
 				$data	= $form->getStorageData();
-				$data	= self::copyReminderParamsToEventData($data, $params['event']);
 
 				$idEvent= TodoyuCalendarEventManager::saveEvent($data);
 
@@ -136,24 +135,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		}
 
 		return $warnings;
-	}
-
-
-	/**
-	 * Copy reminder scheduling parameters into event data array (used when saving event with inline personal scheduling)
-	 *
-	 * @param	Array	$data
-	 * @param	Array	$eventParams
-	 * @return	Array
-	 */
-	private static function copyReminderParamsToEventData(array $data, array $eventParams) {
-		$data['is_reminderemail_active']	= $eventParams['is_reminderemail_active'];
-		$data['reminderemail_advancetime']	= $eventParams['reminderemail_advancetime'];
-
-		$data['is_reminderpopup_active']	= $eventParams['is_reminderpopup_active'];
-		$data['reminderpopup_advancetime']	= $eventParams['reminderpopup_advancetime'];
-
-		return $data;
 	}
 
 

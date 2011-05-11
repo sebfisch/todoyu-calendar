@@ -66,7 +66,10 @@ TodoyuQuickinfoManager::addFunction('birthday', 'TodoyuCalendarQuickinfoManager:
 TodoyuAutocompleter::addAutocompleter('eventperson', 'TodoyuCalendarManager::autocompleteEventPersons', array('calendar', 'general:use'));
 
 
-
+/* ----------------------------
+	Form Hooks
+   ---------------------------- */
+TodoyuFormHook::registerBuildForm('ext/calendar/config/form/event.xml', 'TodoyuCalendarReminderManager::hookAddReminderFieldsToEvent');
 
 
 
@@ -179,7 +182,7 @@ Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKAHEAD'] = 57600;	// 16 ho
 	// How long to remind of events in the past?
 Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKBACK'] = 0;
 	// Time bofore event for event reminders to occur
-Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'] = array(0, 5, 15, 30, 60, 120, 720, 1440, 2880, 10080);
+Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'] = array(1, 5, 15, 30, 60, 120, 720, 1440, 2880, 10080);
 
 
 

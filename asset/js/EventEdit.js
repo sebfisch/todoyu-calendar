@@ -391,6 +391,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 				}
 
 					// Event saved - notify success
+				Todoyu.Hook.exec('calendar.event.saved', idEvent);
 				Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]');
 				var time	= response.getTodoyuHeader('time');
 				var idEvent	= response.getTodoyuHeader('idEvent');

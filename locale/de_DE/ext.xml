@@ -53,10 +53,10 @@
 	<label index="profile.module.reminders.tab">Termin-Erinnerungen</label>
 	<label index="profile.module.reminders.header">Konfiguration zu Termin-Erinnerungen</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Nachfrage ob Email versendet werden soll, nach Änderung von Terminen via Drag&amp;Drop deaktivieren?</label>
-	<label index="profile.reminder.email.advancetime.label">Default Zeit vor Termin um Erinnerungsmail zu versenden</label>
-	<label index="profile.reminder.popup.advancetime.label">Default Zeit vor Termin um Erinnerungspopup anzuzeigen</label>
-	<label index="profile.is_reminderpopupactive">Termin-Erinnerungen per Popup aktivieren</label>
-	<label index="profile.is_reminderemailactive">Termin-Erinnerungen per Email aktivieren</label>
+	<label index="profile.reminder.email.advancetime.label">Voreingestellte Zeit</label>
+	<label index="profile.reminder.popup.advancetime.label">Voreingestellte Zeit</label>
+	<label index="profile.is_reminderpopupactive">PopUp automatisch aktivieren</label>
+	<label index="profile.is_reminderemailactive">Email automatisch aktivieren</label>
 	<label index="profile.main.saved">Die Einstellungen wurden gespeichert.</label>
 	<label index="profile.reminders.saved">Einstellungen zu Erinnerungen wurden gespeichert.</label>
 </labels>

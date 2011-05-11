@@ -42,7 +42,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 * @property	reminders
 	 * @type		Object
 	 */
-	events: {},
+	events: [],
 
 	/**
 	 * Periodical executer
@@ -61,6 +61,9 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	peSeconds:	30,
 
 
+	popups: {},
+
+
 
 	/**
 	 * Initialize popup reminder of upcoming events
@@ -69,12 +72,58 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 * @param	{JSON}	upcomingEvents
 	 */
 	init: function(upcomingEvents) {
-		this.events	= Object.values(upcomingEvents) || {};
+		this.events	= upcomingEvents;
 
-		if( upcomingEvents ) {
+		if( upcomingEvents.size() > 0 ) {
+			this.onReminderTimeout();
 				// Start periodical executer
 			this.pe = new PeriodicalExecuter(this.onReminderTimeout.bind(this), this.peSeconds);
 		}
+
+			// Listen to event changes to update event list
+		Todoyu.Hook.add('calendar.event.moved', this.onEventChanged.bind(this));
+		Todoyu.Hook.add('calendar.event.saved', this.onEventChanged.bind(this));
+	},
+
+
+
+	/**
+	 * Hook called when event was changed (updated or dragged)
+	 *
+	 * @param	{Number}	idEvent
+	 * @param	{Number}	date
+	 */
+	onEventChanged: function(idEvent, date) {
+		this.refreshReminderList();
+	},
+
+
+
+	/**
+	 * Refresh list of events with popup reminders
+	 *
+	 */
+	refreshReminderList: function() {
+		var url		= Todoyu.getUrl('calendar', 'reminder');
+		var options	= {
+			parameters: {
+				action: 'updateEventsList'
+			},
+			onComplete: this.onEventListRefreshed.bind(this)
+		};
+
+		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 * Update events list with new JSON data
+	 *
+	 * @param	{Ajax.Response}		response
+	 */
+	onEventListRefreshed: function(response) {
+		this.events = response.responseJSON ? response.responseJSON : [];
 	},
 
 
@@ -90,7 +139,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 		this.events.each(function(event){
 			var popupTime	= event.time_popup * 1000;	// Convert to milliseconds
 
-			if( event.dismissed == 0 && (now) >= popupTime  ) {
+			if( ! event.dismissed && now >= popupTime  ) {
 				this.show(event.id);
 			}
 		}, this);
@@ -112,12 +161,12 @@ Todoyu.Ext.calendar.ReminderPopup = {
 			var options	= {
 				parameters: {
 					action:	'popup',
-					'event':	idEvent
+					event:	idEvent
 				},
-				onComplete:	this.onPopupLoaded.bind(this)
+				onComplete:	this.onPopupLoaded.bind(this, idEvent)
 			};
 
-			Todoyu.Popups.open(popupID, '[LLL:calendar.ext.reminder.popup.title]', 460, url, options);
+			this.popups[idEvent] = Todoyu.Popups.open(popupID, '[LLL:calendar.ext.reminder.popup.title]', 460, url, options);
 		}
 	},
 
@@ -129,11 +178,45 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 * @method	onPopupLoaded
 	 * @param	{Ajax.Response}	response
 	 */
-	onPopupLoaded: function(response) {
+	onPopupLoaded: function(idEvent, response) {
 		if( response.hasTodoyuHeader('sound') ) {
-			var soundFilename	= response.getTodoyuHeader('sound');
-			Sound.play(soundFilename);
-			Sound.enable();
+			var file	= response.getTodoyuHeader('sound');
+			this.playSound(file);
+		}
+
+		this.initRemindAgainInPopup(idEvent);
+	},
+
+
+
+	/**
+	 * Play reminder sound
+	 *
+	 * @param	{String}	file
+	 */
+	playSound: function(file) {
+		Sound.play(file);
+		Sound.enable();
+	},
+
+
+
+	/**
+	 * Initialize reminder popup
+	 * Hide remind again if no options available
+	 *
+	 * @param	{Number}	idEvent
+	 */
+	initRemindAgainInPopup: function(idEvent) {
+		var content	= this.popups[idEvent].getContent();
+		var select	= content.down('form fieldset.reminderschedule select');
+		var options	= select.select('option');
+
+		if( options.size() === 0 ) {
+			select.up('fieldset').hide();
+			content.down('button.rescheduleReminderButton').hide();
+		} else {
+			options.last().selected = true;
 		}
 	},
 
@@ -154,19 +237,18 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	/**
 	 * Deactivate reminder popup of given event
 	 *
-	 * @param	{Element}	form
+	 * @param	{Number}	idEvent
 	 */
-	deactivate: function(form) {
-		var idEvent	= this.getEventIDfromForm(form);
-
+	deactivate: function(idEvent, closePopup) {
+		closePopup	= closePopup || false;
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
-			'parameters': {
-				'action':			'deactivate',
-				'remindertype':		'popup',
-				'event':			idEvent
+			parameters: {
+				action:			'deactivate',
+				remindertype:	'popup',
+				event:			idEvent
 			},
-			'onComplete': this.onDeactivated.bind(this, idEvent)
+			onComplete: this.onDeactivated.bind(this, idEvent, closePopup)
 		};
 
 		Todoyu.send(url, options);
@@ -179,17 +261,21 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 *
 	 * @method	onDeactivated
 	 * @param	{Number}			idEvent
+	 * @param	{Boolean}			closePopup
 	 * @param	{Ajax.Response}		response
 	 */
-	onDeactivated: function(idEvent, response) {
-			// Deactivate cached event popup
-		this.events.each(function(event){
-			if( event.id == idEvent ) {
-				event.dismissed	= 1;
-			}
-		}, this);
+	onDeactivated: function(idEvent, closePopup, response) {
+		var event = this.events.detect(function(event){
+			return event.id == idEvent;
+		});
 
-		this.closePopup(idEvent);
+		if( event ) {
+			event.dismissed = true;
+		}
+
+		if( closePopup ) {
+			this.closePopup(idEvent);
+		}
 
 			// Notify
 		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.popup.deactivated');
@@ -208,12 +294,12 @@ Todoyu.Ext.calendar.ReminderPopup = {
 		var idDateRemindSelector	= form.down('select[name="reminder[date_remindpopup]"]');
 		var secondsBefore			= $F(idDateRemindSelector);
 
+		var event = this.events.detect(function(event){
+			return event.id == idEvent;
+		});
+
 			// Reschedule cached event popup
-		this.events.each(function(event){
-			if( event.id == idEvent ) {
-				event.time_popup	= event.date_start - (secondsBefore * 1000);
-			}
-		}, this);
+		event.time_popup = event.date_start - secondsBefore*1000;
 
 			// Update in DB
 		this.closePopup(idEvent);
@@ -231,13 +317,13 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	updateReminderTime: function(idEvent, secondsBefore) {
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
-			'parameters': {
-				'action':			'updateremindertime',
-				'remindertype':		'popup',
-				'event':			idEvent,
-				'secondsbefore':	secondsBefore
+			parameters: {
+				action:			'updateremindertime',
+				remindertype:	'popup',
+				event:			idEvent,
+				secondsbefore:	secondsBefore
 			},
-			'onComplete': this.onReminderTimeUpdated.bind(this, idEvent)
+			onComplete: this.onReminderTimeUpdated.bind(this, idEvent, secondsBefore)
 		};
 
 		Todoyu.send(url, options);
@@ -252,8 +338,11 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 * @param	{Number}			idEvent
 	 * @param	{Ajax.Response}		response
 	 */
-	onReminderTimeUpdated: function(idEvent, response) {
+	onReminderTimeUpdated: function(idEvent, secondsBefore, response) {
 		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.popup.timeupdated');
+
+			// Update event list
+		this.refreshReminderList();
 	},
 
 

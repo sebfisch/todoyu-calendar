@@ -79,23 +79,6 @@ class TodoyuCalendarReminderEmailManager {
 
 
 	/**
-	 * Update email reminder scheduling of given event from given form data
-	 *
-	 * @param	Array	$data
-	 * @param	Integer	$idPerson
-	 */
-	public static function updateReminderTimeFromEventData(array $data, $idPerson = 0) {
-		$idPerson	= Todoyu::personid($idPerson);
-		$idEvent	= intval($data['id']);
-
-		$timeRemind	= TodoyuCalendarReminderManager::getRemindingTimeByEventData(self::REMINDERTYPE, $data);
-
-		self::updateReminderTime($idEvent, $timeRemind, $idPerson);
-	}
-
-
-
-	/**
 	 * Get timestamp for email reminder of newly assigned event (advance-time from profile, fallback: extconf)
 	 *
 	 * @param	Integer		$dateStart
@@ -137,8 +120,21 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
-	public static function isActivatedForPerson($idPerson = 0) {
-		return TodoyuCalendarReminderManager::isRemindertypeActivated(self::REMINDERTYPE, $idPerson);
+	public static function isActivated($idEvent, $idPerson = 0) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= Todoyu::personid($idPerson);
+
+		if( $idEvent === 0 ) {
+			return TodoyuCalendarReminderDefaultManager::isEmailDefaultActivationEnabled($idPerson);
+		} else {
+			$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
+
+//			return $reminder->is
+		}
+
+
+
+		return TodoyuCalendarReminderDefaultManager::isEmailDefaultActivationEnabled($idPerson);
 	}
 
 
@@ -148,13 +144,19 @@ class TodoyuCalendarReminderEmailManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @return	Integer					Amount of seconds
+	 * @return	Integer
 	 */
 	public static function getAdvanceTime($idEvent, $idPerson = 0) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= Todoyu::personid($idPerson);
 
-		return self::getReminderByAssignment($idEvent, $idPerson)->getAdvanceTime();
+		if( $idEvent === 0 ) {
+			return TodoyuCalendarReminderDefaultManager::getEmailDefaultAdvanceTime($idPerson);
+		} else {
+			$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
+
+			return $reminder->getAdvanceTime();
+		}
 	}
 
 
@@ -166,7 +168,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @return	Integer
 	 */
 	public static function getDefaultAdvanceTime($idPerson = 0) {
-		return TodoyuCalendarReminderManager::getDefaultAdvanceTime(self::REMINDERTYPE, $idPerson);
+		return TodoyuCalendarReminderDefaultManager::getDefaultAdvanceTime(self::REMINDERTYPE, $idPerson);
 	}
 
 
@@ -206,6 +208,10 @@ class TodoyuCalendarReminderEmailManager {
 
 		if( ! TodoyuCalendarReminderManager::isEmailReminderEnabled() ) {
 			return false;
+		}
+
+		if( $idEvent === 0 ) {
+			return true;
 		}
 
 		return TodoyuCalendarReminderManager::isPersonAssigned($idEvent, $idPerson);

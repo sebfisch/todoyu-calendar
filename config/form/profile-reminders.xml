@@ -7,7 +7,8 @@
 	</attributes>
 	<fieldsets>
 
-		<fieldset name="reminders">
+		<fieldset name="emailreminders">
+			<legend>Email Reminders</legend>
 			<elements>
 				<field type="checkbox" name="is_reminderemailactive">
 					<label>calendar.ext.profile.is_reminderemailactive</label>
@@ -22,7 +23,12 @@
 					<noPleaseSelect/>
 				</field>
 
+			</elements>
+		</fieldset>
 
+		<fieldset name="popupreminders">
+			<legend>Popup Reminders</legend>
+			<elements>
 
 				<field type="checkbox" name="is_reminderpopupactive">
 					<label>calendar.ext.profile.is_reminderpopupactive</label>
@@ -39,6 +45,8 @@
 
 			</elements>
 		</fieldset>
+
+
 
 		<fieldset name="buttons">
 			<legend>Actions</legend>

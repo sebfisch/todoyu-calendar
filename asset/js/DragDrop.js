@@ -361,10 +361,10 @@ Todoyu.Ext.calendar.DragDrop = {
 		var options	= {
 			parameters: {
 				action:		'dragDrop',
-				'event':		idEvent,
-				'date':			dateStr,
-				'tab':			tab,
-				'confirmed':	isConfirmed
+				event:		idEvent,
+				date:		dateStr,
+				tab:		tab,
+				confirmed:	isConfirmed
 			},
 			onComplete: this.onDroppingSaved.bind(this, tab, idEvent, date)
 		};
@@ -418,6 +418,9 @@ Todoyu.Ext.calendar.DragDrop = {
 					// Have mailing popup shown
 				this.ext.Event.Mail.initEventMailPopup(idEvent, this.ext.Event.operationTypeID.update);
 			}
+
+			Todoyu.Hook.exec('calendar.event.moved', idEvent, date);
+
 				// Refresh to have event pop into place or revert
 			this.ext.refresh();
 		}

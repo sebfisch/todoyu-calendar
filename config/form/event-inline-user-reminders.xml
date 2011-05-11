@@ -6,12 +6,9 @@
 		<fieldset name="reminders">
 			<legend>My reminders for this appointment</legend>
 			<elements>
-				<field type="checkbox" name="is_reminderemail_active">
-					<label>calendar.event.attr.reminderemail_active</label>
-				</field>
 
-				<field type="select" name="reminderemail_advancetime">
-					<label>calendar.event.attr.email_advancetime</label>
+				<field type="select" name="reminder_email">
+					<label>calendar.event.attr.reminder_email</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
 						<lazyInit/>
@@ -19,12 +16,8 @@
 					<noPleaseSelect/>
 				</field>
 
-				<field type="checkbox" name="is_reminderpopup_active">
-					<label>calendar.event.attr.reminderpopup_active</label>
-				</field>
-
-				<field type="select" name="reminderpopup_advancetime">
-					<label>calendar.event.attr.popup_advancetime</label>
+				<field type="select" name="reminder_popup">
+					<label>calendar.event.attr.reminder_popup</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
 						<lazyInit/>

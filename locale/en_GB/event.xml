@@ -43,10 +43,8 @@
 	<label index="attr.assigned_to.noLabel">[No Person Selected]</label>
 	<label index="attr.id_project">Project</label>
 	<label index="attr.id_task">Task</label>
-	<label index="attr.reminderemail_active">Activate Email Reminder</label>
-	<label index="attr.email_advancetime">Time before appointment to send reminder email</label>
-	<label index="attr.reminderpopup_active">Activate Popup Reminder</label>
-	<label index="attr.popup_advancetime">Time before appointment to show reminder popup</label>
+	<label index="attr.reminder_email">Remind me by email</label>
+	<label index="attr.reminder_popup">Remind me by popup</label>
 	<label index="tree.header.title">Event Title</label>
 	<label index="eventslist.birthdaysWithinTheNextweeks">Birthdays within the next weeks</label>
 	<label index="eventslist.holidaysWithinTheNextweeks">Holidays within the next weeks</label>

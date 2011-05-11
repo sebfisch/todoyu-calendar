@@ -494,7 +494,7 @@ class TodoyuCalendarEventManager {
 
 			// Add empty event
 		if( $idEvent === 0 ) {
-			$idEvent = self::addEvent(array());
+			$idEvent = self::addEvent();
 		}
 
 			// Extract person IDs from foreign data array (easier to handle)
@@ -508,35 +508,17 @@ class TodoyuCalendarEventManager {
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent, array('newEvent'=>$isNewEvent));
 
-			// Remove already assigned person
-		self::removeAllPersonAssignments($idEvent);
-
-			// If no persons assigned, assign to person "0"
-		if( sizeof($data['persons']) === 0 ) {
-			$data['persons'][] = 0;
-		}
-
 			// Change dates if is (full-) day-event
 		if( intval($data['is_dayevent']) === 1 ) {
 			$data['date_start']	= TodoyuTime::getStartOfDay($data['date_start']);
 			$data['date_end']	= TodoyuTime::getEndOfDay($data['date_end']);
 		}
 
-			// Add creator if assigned (includes individual reminder scheduling)
-		if( in_array(Todoyu::personid(), $data['persons']) && ! $isNewEvent ) {
-			self::assignPersonToEvent($idEvent, Todoyu::personid(), $data['date_start'], ! $isNewEvent);
-			TodoyuCalendarReminderEmailManager::updateReminderTimeFromEventData($data);
-			TodoyuCalendarReminderPopupManager::updateReminderTimeFromEventData($data);
+			// Save person assignments
+		self::saveAssignments($idEvent, $data['persons'], $data['date_start']);
 
-			$data['persons']	= TodoyuArray::removeByValue($data['persons'], array(Todoyu::personid()));
-		}
-		unset($data['is_reminderpopup_active']);
-		unset($data['reminderemail_advancetime']);
-		unset($data['is_reminderemail_active']);
-		unset($data['reminderpopup_advancetime']);
-
-			// Assign other than logged-in persons
-		self::assignPersonsToEvent($idEvent, $data['persons'], $data['date_start'], ! $isNewEvent);
+			// Save the reminder settings for current person
+		$data	= self::updateRemindersForCurrentPerson($idEvent, $data);
 
 			// Remove not needed fields
 		unset($data['person']);
@@ -553,6 +535,29 @@ class TodoyuCalendarEventManager {
 		}
 
 		return $idEvent;
+	}
+
+
+
+	/**
+	 * Update reminders for current person
+	 * Remove extra form data fields (email+popup)
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$data
+	 * @return	Array
+	 */
+	private static function updateRemindersForCurrentPerson($idEvent, array $data) {
+		$dateReminderEmail	= intval($data['reminder_email']);
+		$dateReminderPopup	= intval($data['reminder_popup']);
+		$dateStart			= intval($data['date_start']);
+
+		self::updateAssignmentWithReminders($idEvent, $dateStart, $dateReminderEmail, $dateReminderPopup);
+
+		unset($data['reminder_email']);
+		unset($data['reminder_popup']);
+
+		return $data;
 	}
 
 
@@ -611,7 +616,7 @@ class TodoyuCalendarEventManager {
 			$data['persons'][] = 0;
 		}
 
-		self::assignPersonsToEvent($idEvent, $data['persons'], $data['date_start']);
+		self::saveAssignments($idEvent, $data['persons'], $data['date_start']);
 
 		unset($data['persons']);
 
@@ -745,43 +750,202 @@ class TodoyuCalendarEventManager {
 	 * @param	Integer		$idEvent
 	 * @param	Array		$personIDs
 	 * @param	Integer		$dateStart
-	 * @param	Boolean		$isUpdate
 	 */
-	public static function assignPersonsToEvent($idEvent, array $personIDs, $dateStart, $isUpdate = false) {
-		$idEvent	= intval($idEvent);
-		$personIDs	= TodoyuArray::intval($personIDs, true, true);
+	public static function saveAssignments($idEvent, array $personIDs, $dateStart) {
+		$idEvent			= intval($idEvent);
+		$personIDs			= TodoyuArray::intval($personIDs, true, true);
+		$assignedPersonIDs	= self::getAssignedPersonIDs($idEvent);
+		$newAssignments		= TodoyuArray::diffLeft($personIDs, $assignedPersonIDs);
+		$removedAssignments	= TodoyuArray::diffLeft($assignedPersonIDs, $personIDs);
+		$keptAssignments	= array_intersect($personIDs, $assignedPersonIDs);
 
-		foreach($personIDs as $idPerson) {
-			self::assignPersonToEvent($idEvent, $idPerson, $dateStart, $isUpdate);
+			// Add new assignments
+		foreach($newAssignments as $idPerson) {
+			self::addAssignment($idEvent, $idPerson);
+		}
+
+			// Remove deleted assignments
+		foreach($removedAssignments as $idPerson) {
+			self::removeAssignment($idEvent, $idPerson);
+		}
+
+			// Update untouched assignments
+		foreach($keptAssignments as $idPerson) {
+			self::updateAssignment($idEvent, $idPerson, $dateStart);
 		}
 	}
 
 
 
 	/**
-	 * Assign a single person to given event
+	 * Assign person to the event
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @param	Integer		$dateStart
-	 * @param	Boolean		$isUpdate
-	 * @return	Integer						ID of new MM-record
+	 * @return	Integer
 	 */
-	public static function assignPersonToEvent($idEvent, $idPerson = 0, $dateStart, $isUpdate = false) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= Todoyu::personid($idPerson);
+	private static function addAssignment($idEvent, $idPerson) {
+		$idEvent		= intval($idEvent);
+		$idPerson		= intval($idPerson);
+		$acknowledged	= Todoyu::personid() == $idPerson ? 1 : 0;
 
 		$table	= 'ext_calendar_mm_event_person';
 		$data	= array(
 			'id_event'			=> $idEvent,
 			'id_person'			=> $idPerson,
-			'is_acknowledged'	=> Todoyu::personid() == $idPerson ? 1 : 0,
-			'is_updated'		=> $isUpdate ? 1 : 0,
-			'date_remindemail'	=> TodoyuCalendarReminderEmailManager::getNewEventMailTime($dateStart, $idPerson),
-			'date_remindpopup'	=> TodoyuCalendarReminderPopupManager::getNewEventPopupTime($dateStart, $idPerson),
+			'is_acknowledged'	=> $acknowledged,
+			'is_updated'		=> 0
 		);
 
 		return Todoyu::db()->addRecord($table, $data);
+	}
+
+
+
+	/**
+	 * Remove the given person's assignment from the given event
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 */
+	public static function removeAssignment($idEvent, $idPerson) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= intval($idPerson);
+
+		$table		= 'ext_calendar_mm_event_person';
+		$where		= '		id_event	= ' . $idEvent .
+					  ' AND	id_person	= ' . $idPerson;
+
+		Todoyu::db()->doDelete($table, $where);
+	}
+
+
+
+	/**
+	 * Update assignment for a person
+	 * Update reminders if set
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @param	Integer		$newDateStart
+	 */
+	public static function updateAssignment($idEvent, $idPerson, $newDateStart) {
+		$assignment	= self::getAssignment($idEvent, $idPerson);
+		$event		= self::getEvent($idEvent);
+		$reminder	= TodoyuCalendarReminderManager::getReminderByAssignment($idEvent, $idPerson);
+		$diff		= $newDateStart - $event->getStartDate();
+
+		$data	= array(
+			'is_updated'		=> 1
+		);
+
+		if( $diff > 0 ) {
+			if( $assignment['date_remindemail'] > 0 ) {
+				$data['date_remindemail']	= $reminder->getDateRemindEmail() + $diff;
+			}
+			if( $assignment['date_remindpopup'] > 0 ) {
+				$data['date_remindpopup']	= $reminder->getDateRemindPopup() + $diff;
+			}
+		}
+
+		$table	= 'ext_calendar_mm_event_person';
+		$where	= '	id_event		= ' . $idEvent
+				. ' AND id_person	= ' . $idPerson;
+
+		Todoyu::db()->doUpdate($table, $where, $data);
+	}
+
+
+
+	/**
+	 * Update reminders in assignment for current person
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$timeReminderEmail		Reminder time before event start for email
+	 * @param	Integer		$timeReminderPopup		Reminder time before event start for popup
+	 */
+	public static function updateAssignmentWithReminders($idEvent, $dateStart, $timeReminderEmail, $timeReminderPopup) {
+		$idEvent			= intval($idEvent);
+		$idPerson			= TodoyuAuth::getPersonID();
+		$dateStart			= intval($dateStart);
+		$timeReminderEmail	= intval($timeReminderEmail);
+		$timeReminderPopup	= intval($timeReminderPopup);
+
+		$table	= 'ext_calendar_mm_event_person';
+		$where	= '		id_event	= ' . $idEvent
+				. ' AND id_person	= ' . $idPerson;
+		$data	= array();
+
+		if( $timeReminderEmail === 0 ) {
+			$data['date_remindemail']	= 0;
+		} else {
+			$data['date_remindemail']	= $dateStart - $timeReminderEmail;
+		}
+
+		if( $timeReminderPopup === 0 ) {
+			$data['date_remindpopup']	= 0;
+		} else {
+			$data['date_remindpopup']	= $dateStart - $timeReminderPopup;
+		}
+
+		Todoyu::db()->doUpdate($table, $where, $data);
+	}
+
+
+
+	/**
+	 * Get assignment record
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return	Array
+	 */
+	public static function getAssignment($idEvent, $idPerson) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= intval($idPerson);
+
+		$fields	= '*';
+		$table	= 'ext_calendar_mm_event_person';
+		$where	= '		id_event	= ' . $idEvent
+				. ' AND id_person	= ' . $idPerson;
+
+		return Todoyu::db()->getRecordByQuery($fields, $table, $where);
+	}
+
+
+
+	/**
+	 * Get IDs of persons which are assigned to the event
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	Array
+	 */
+	public static function getAssignedPersonIDs($idEvent) {
+		$idEvent	= intval($idEvent);
+
+		$field	= 'id_person';
+		$table	= 'ext_calendar_mm_event_person';
+		$where	= 'id_event = ' . $idEvent;
+
+		return Todoyu::db()->getColumn($field, $table, $where);
+	}
+
+
+
+	/**
+	 * Check whether person is assigned
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @return	Boolean
+	 */
+	public static function isPersonAssigned($idEvent, $idPerson) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= intval($idPerson);
+		$personIDs	= self::getAssignedPersonIDs($idEvent);
+
+		return in_array($idPerson, $personIDs);
 	}
 
 
@@ -796,25 +960,6 @@ class TodoyuCalendarEventManager {
 
 		$table	= 'ext_calendar_mm_event_person';
 		$where	= 'id_event = ' . $idEvent;
-
-		Todoyu::db()->doDelete($table, $where);
-	}
-
-
-
-	/**
-	 * Remove the given person's assignment from the given event
-	 *
-	 * @param	Integer		$idEvent
-	 * @param	Integer		$idPerson
-	 */
-	public static function removePersonAssignment($idEvent, $idPerson) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= intval($idPerson);
-
-		$table		= self::TABLE;
-		$where		= '		id_event	= ' . $idEvent .
-					  ' AND	id_person	= ' . $idPerson;
 
 		Todoyu::db()->doDelete($table, $where);
 	}

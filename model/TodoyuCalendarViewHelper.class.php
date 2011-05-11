@@ -152,16 +152,35 @@ class TodoyuCalendarViewHelper {
 	 * @return	Array
 	 */
 	public static function getRemindingTimeOptionsArray($includePastOptions = true, $timeLeft = 0) {
-		$intervals	= Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'];
-
+		$intervals	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS']);
 		$options	= array();
+
+			// Add disabled reminder option for new event
+		if( $includePastOptions ) {
+			$options[] = array(
+				'value'	=> 0,
+				'label' => Todoyu::Label('calendar.reminder.noReminder')
+			);
+		}
+
+			// Build reminder time options
 		foreach($intervals as $minutes) {
 			$secondsUntil	= TodoyuTime::SECONDS_MIN * $minutes;
 			if( $includePastOptions || $timeLeft > $secondsUntil ) {
+					// 1 = dummy for "at start time"
+				if( $minutes === 1 ) {
+					$label	= Todoyu::Label('calendar.reminder.atDateStart');
+					$value	= 1;
+				} else {
+					$label	= TodoyuTime::formatDuration($secondsUntil) . ' ' . Todoyu::Label('calendar.reminder.beforeDateStart');
+					$value	= $secondsUntil;
+				}
 				$options[] = array(
-					'value'	=> $secondsUntil,
-					'label'	=> TodoyuTime::formatDuration($secondsUntil) . ' ' . Todoyu::Label('calendar.reminder.beforeDateStart'),
+					'value'	=> $value,
+					'label'	=> $label
 				);
+			} else {
+				break;
 			}
 		}
 

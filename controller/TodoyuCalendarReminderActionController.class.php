@@ -68,6 +68,22 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 
 
 
+	/**
+	 * Get list of events for reminder
+	 *
+	 * @param	Array	$params
+	 * @return	String
+	 */
+	public function updateEventsListAction(array $params) {
+		TodoyuHeader::sendTypeJSON();
+
+		$upcomingEvents	= TodoyuCalendarReminderPopupManager::getUpcomingReminderEvents();
+
+		return json_encode($upcomingEvents);
+	}
+
+
+
 
 
 	/**

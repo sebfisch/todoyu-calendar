@@ -143,33 +143,6 @@ class TodoyuCalendarReminderManager {
 
 
 	/**
-	 * Check whether email reminders of given type are activated in profile of current person, fallback: extconf
-	 *
-	 * @param	Integer		$reminderType
-	 * @param	Integer		$idPerson
-	 * @return	Boolean
-	 */
-	public static function isRemindertypeActivated($reminderType, $idPerson = 0) {
-		$idPerson	= Todoyu::personid($idPerson);
-		$typePrefix	= self::getReminderTypePrefix($reminderType);
-
-		if( Todoyu::allowed('calendar', 'reminder:' . $typePrefix) ) {
-			$preference	= 'is_reminder' . $typePrefix . 'active';
-			if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, $preference, 0, null, 0, $idPerson) ) {
-					// Return pref. from profile
-				return TodoyuCalendarPreferences::getPref($preference, 0, 0, false, $idPerson) ? true : false;
-			} else {
-					// Return pref. from extconf
-				return TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'is_reminder' . $typePrefix . '_active') ? true : false;
-			}
-		}
-
-		return false;
-	}
-
-
-
-	/**
 	 * Check whether given/current person can schedule a reminder for the event of the given type / ID
 	 *
 	 * @param	Integer		$idEvent
@@ -212,27 +185,6 @@ class TodoyuCalendarReminderManager {
 
 
 
-	/**
-	 * Get default advance (time before event) reminding time of given reminder type and person
-	 *
-	 * @param	Integer		$reminderType
-	 * @param	Integer		$idPerson
-	 * @return	Integer
-	 */
-	public static function getDefaultAdvanceTime($reminderType, $idPerson = 0) {
-		$reminderType	= intval($reminderType);
-		$idPerson		= Todoyu::personid($idPerson);
-
-		$typePrefix	= self::getReminderTypePrefix($reminderType);
-		$preference	= 'reminder' . $typePrefix . '_advancetime';
-
-		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, $preference, 0, null, 0, $idPerson) ) {
-				// Return pref. from profile
-			return intval(TodoyuCalendarPreferences::getPref($preference, 0, 0, false, $idPerson));
-		}
-			// Fallback: take preset from extconf
-		return intval(TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', $preference));
-	}
 
 
 
@@ -343,25 +295,6 @@ class TodoyuCalendarReminderManager {
 
 
 	/**
-	 * Calculate time when of reminder activation from event data array
-	 *
-	 * @param	Integer		$reminderType
-	 * @param	Array		$eventData
-	 * @return	Integer
-	 */
-	public static function getRemindingTimeByEventData($reminderType, array $data) {
-		$typePrefix	= self::getReminderTypePrefix($reminderType);
-
-		if( $data['is_reminder' . $typePrefix . '_active'] ) {
-			return $data['date_start'] - $data['reminder' . $typePrefix . '_advancetime'];
-		}
-
-		return 0;
-	}
-
-
-
-	/**
 	 * Set options disabled which are in the past already
 	 *
 	 * @param	Array	$subOptions
@@ -382,6 +315,45 @@ class TodoyuCalendarReminderManager {
 		}
 
 		return $subOptions;
+	}
+
+
+
+	/**
+	 * Hook adds reminder fields to event form if they are allowed
+	 *
+	 * @param	TodoyuForm	$form
+	 * @param	Integer		$idEvent
+	 */
+	public static function hookAddReminderFieldsToEvent(TodoyuForm $form, $idEvent) {
+		$idEvent		= intval($idEvent);
+		$emailAllowed	= TodoyuCalendarReminderEmailManager::isReminderAllowed($idEvent);
+		$popupAllowed	= TodoyuCalendarReminderPopupManager::isReminderAllowed($idEvent);
+
+		if( $emailAllowed || $popupAllowed ) {
+			$xmlPathReminders	= 'ext/calendar/config/form/event-inline-user-reminders.xml';
+			$remindersForm		= TodoyuFormManager::getForm($xmlPathReminders);
+			$remindersFieldset	= $remindersForm->getFieldset('reminders');
+
+			$form->addFieldset('reminders', $remindersFieldset, 'before:buttons');
+
+				// Email
+			if( $emailAllowed ) {
+				$advanceTime	= TodoyuCalendarReminderEmailManager::getAdvanceTime($idEvent);
+
+				$form->getFieldset('reminders')->getField('reminder_email')->setValue($advanceTime);
+			} else {
+				$form->getFieldset('reminders')->removeField('reminder_email');
+			}
+
+				// Popup
+			if( $popupAllowed ) {
+				$advanceTime	= TodoyuCalendarReminderPopupManager::getAdvanceTime($idEvent);
+				$form->getFieldset('reminders')->getField('reminder_popup')->setValue($advanceTime);
+			} else {
+				$form->getFieldset('reminders')->removeField('reminder_popup');
+			}
+		}
 	}
 
 }

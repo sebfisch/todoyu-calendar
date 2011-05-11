@@ -58,10 +58,10 @@
 	<label index="profile.module.reminders.header">Config for appointment reminders</label>
 	<label index="profile.module.main.header">Main Calendar Config</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Disable asking whether to send email after modification of appointments via drag and drop?</label>
-	<label index="profile.reminder.email.advancetime.label">Default time before appointment to send email reminder</label>
-	<label index="profile.reminder.popup.advancetime.label">Default time before appointment to show popup reminder</label>
-	<label index="profile.is_reminderpopupactive">Activate appointment reminder popups</label>
-	<label index="profile.is_reminderemailactive">Activate appointment reminder mailing</label>
+	<label index="profile.reminder.email.advancetime.label">Time Preset</label>
+	<label index="profile.reminder.popup.advancetime.label">Time Preset</label>
+	<label index="profile.is_reminderpopupactive">Enable popup reminder by default</label>
+	<label index="profile.is_reminderemailactive">Enable email reminder by default</label>
 	<label index="profile.main.saved">Settings have been saved.</label>
 	<label index="profile.reminders.saved">Reminders settings have been saved.</label>
 	<label index="profile.module.share.tab">Share Calendar</label>
