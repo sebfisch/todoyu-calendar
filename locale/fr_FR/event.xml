@@ -31,7 +31,7 @@
 	<label index="attr.attendees">Participants</label>
 	<label index="attr.timespan">Durée</label>
 	<label index="attr.startdate">Date de début</label>
-	<label index="attr.starttime">à </label>
+	<label index="attr.starttime">à</label>
 	<label index="attr.enddate">Date de fin</label>
 	<label index="attr.endtime">à</label>
 	<label index="attr.repeats">Récurrences</label>
