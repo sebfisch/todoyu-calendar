@@ -14,7 +14,7 @@
 		<dt class="head {if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
 			<span class="headInner">
 			{$firstAssignedPersonId = key($assignedPersons)}
-			{if $is_private}<span class="private {if isPersonID($assignedPersons.$firstAssignedPersonId.id)}allowed{/if}" id="event-{$id}-private-{}"></span>{/if}
+			{if $is_private}<span class="private {if isPersonID($assignedPersons.$firstAssignedPersonId.id)}allowed{/if}" id="event-{$id}-private"></span>{/if}
 			{if $calendarMode == 'day'}
 				{htmlencode $title}
 			{else}
