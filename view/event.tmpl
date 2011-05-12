@@ -13,14 +13,15 @@
 	<dl {if $calendarMode != 'month'}style="height:{$height}px"{/if}>
 		<dt class="head {if $calendarMode != 'month'}enumColBG{$color.id}{/if}">
 			<span class="headInner">
-			{if $is_private}<span class="private {if isPersonID($assignedPersons.0.id)}allowed{/if}" id="event-{$id}-private-{}"></span>{/if}
+			{$firstAssignedPersonId = key($assignedPersons)}
+			{if $is_private}<span class="private {if isPersonID($assignedPersons.$firstAssignedPersonId.id)}allowed{/if}" id="event-{$id}-private-{}"></span>{/if}
 			{if $calendarMode == 'day'}
 				{htmlencode $title}
 			{else}
 				{htmlencode(truncate($title, 16, '...', true))}
 			{/if}
 			{if $calendarMode == 'day' && count($assignedPersons) == 1}
-				({$assignedPersons.0.shortname})
+				({$assignedPersons.$firstAssignedPersonId.shortname})
 			{/if}
 			</span>
 		</dt>
