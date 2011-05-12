@@ -99,18 +99,6 @@ class TodoyuCalendarReminderPopupManager {
 
 
 	/**
-	 * Check whether popup reminders are activated in profile of current person, fallback: extconf
-	 *
-	 * @param	Integer		$idPerson
-	 * @return	Boolean
-	 */
-	public static function isActivatedForPerson($idPerson = 0) {
-		return TodoyuCalendarReminderDefaultManager::isPopupDefaultActivationEnabled();
-	}
-
-
-
-	/**
 	 * Get amount of time before event when to show reminder popup
 	 *
 	 * @param	Integer		$idEvent
@@ -139,10 +127,6 @@ class TodoyuCalendarReminderPopupManager {
 	 */
 	public static function isReminderAllowed($idEvent, $idPerson = 0) {
 		if( ! Todoyu::allowed('calendar', 'reminders:popup') ) {
-			return false;
-		}
-
-		if( ! TodoyuCalendarReminderManager::isPopupReminderEnabled() ) {
 			return false;
 		}
 

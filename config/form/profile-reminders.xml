@@ -8,11 +8,8 @@
 	<fieldsets>
 
 		<fieldset name="emailreminders">
-			<legend>Email Reminders</legend>
+			<legend>Reminder Defaults</legend>
 			<elements>
-				<field type="checkbox" name="is_reminderemailactive">
-					<label>calendar.ext.profile.is_reminderemailactive</label>
-				</field>
 
 				<field type="select" name="reminderemail_advancetime">
 					<label>calendar.ext.profile.reminder.email.advancetime.label</label>
@@ -21,17 +18,6 @@
 						<lazyInit/>
 					</source>
 					<noPleaseSelect/>
-				</field>
-
-			</elements>
-		</fieldset>
-
-		<fieldset name="popupreminders">
-			<legend>Popup Reminders</legend>
-			<elements>
-
-				<field type="checkbox" name="is_reminderpopupactive">
-					<label>calendar.ext.profile.is_reminderpopupactive</label>
 				</field>
 
 				<field type="select" name="reminderpopup_advancetime">
@@ -45,8 +31,6 @@
 
 			</elements>
 		</fieldset>
-
-
 
 		<fieldset name="buttons">
 			<legend>Actions</legend>

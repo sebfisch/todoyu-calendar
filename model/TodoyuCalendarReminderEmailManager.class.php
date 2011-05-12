@@ -115,31 +115,6 @@ class TodoyuCalendarReminderEmailManager {
 
 
 	/**
-	 * Check whether email reminders are activated in profile of current person, fallback: extconf
-	 *
-	 * @param	Integer		$idPerson
-	 * @return	Boolean
-	 */
-	public static function isActivated($idEvent, $idPerson = 0) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= Todoyu::personid($idPerson);
-
-		if( $idEvent === 0 ) {
-			return TodoyuCalendarReminderDefaultManager::isEmailDefaultActivationEnabled($idPerson);
-		} else {
-			$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
-
-//			return $reminder->is
-		}
-
-
-
-		return TodoyuCalendarReminderDefaultManager::isEmailDefaultActivationEnabled($idPerson);
-	}
-
-
-
-	/**
 	 * Get amount of time before event when to send reminder email
 	 *
 	 * @param	Integer		$idEvent
@@ -203,10 +178,6 @@ class TodoyuCalendarReminderEmailManager {
 		$idPerson	= Todoyu::personid($idPerson);
 
 		if( ! Todoyu::allowed('calendar', 'reminders:email') ) {
-			return false;
-		}
-
-		if( ! TodoyuCalendarReminderManager::isEmailReminderEnabled() ) {
 			return false;
 		}
 

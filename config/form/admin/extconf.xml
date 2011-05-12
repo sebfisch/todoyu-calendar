@@ -15,10 +15,8 @@
 		</fieldset>
 
 		<fieldset name="eventsreminder">
+			<legend>Reminder Defaults</legend>
 			<elements>
-				<field type="checkbox" name="is_reminderemail_active">
-					<label>calendar.ext.extconf.reminder.reminderemail_active.label</label>
-				</field>
 
 				<field type="select" name="reminderemail_advancetime">
 					<label>calendar.ext.extconf.reminder.email.advancetime.label</label>
@@ -27,10 +25,6 @@
 						<lazyInit/>
 					</source>
 					<noPleaseSelect/>
-				</field>
-
-				<field type="checkbox" name="is_reminderpopup_active">
-					<label>calendar.ext.extconf.reminder.reminderpopup_active.label</label>
 				</field>
 
 				<field type="select" name="reminderpopup_advancetime">

@@ -40,13 +40,9 @@
 	<label index="reminder.remindagain">Remind me again...</label>
 	<label index="reminder.button.remindlater">Remind Me Later</label>
 	<label index="extconf.allowoverbooking.label">Allow multiple simultaneous appointments for 1 person?</label>
-	<label index="extconf.reminder.reminderemail_active.label">Activate appointment reminders per email</label>
-	<label index="extconf.reminder.reminderpopup_active.label">Activate appointment reminders per popup</label>
-	<label index="extconf.reminder.popup_roles.label">Roles to get appointment reminder popup</label>
-	<label index="extconf.reminder.popup.advancetime.label">Time before appointment to show reminder</label>
+	<label index="extconf.reminder.popup.advancetime.label">System default popup reminder</label>
 	<label index="extconf.reminder.audio.active.label">Play audio with reminder popup?</label>
-	<label index="extconf.reminder.email_roles.label">Roles to get appointment reminder email</label>
-	<label index="extconf.reminder.email.advancetime.label">Time before appointment to send reminder</label>
+	<label index="extconf.reminder.email.advancetime.label">System default email reminder</label>
 	<label index="extconf.autosendeventmail.label">Roles to automatically send email of new / changed / deleted appointments to internal participants of appointment (removes mailing option)?</label>
 	<label index="profile.module">Calendar</label>
 	<label index="profile.module.main.tab">Main</label>
@@ -54,10 +50,8 @@
 	<label index="profile.module.reminders.header">Config for appointment reminders</label>
 	<label index="profile.module.main.header">Main Calendar Config</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Disable asking whether to send email after modification of appointments via drag and drop?</label>
-	<label index="profile.reminder.email.advancetime.label">Time Preset</label>
-	<label index="profile.reminder.popup.advancetime.label">Time Preset</label>
-	<label index="profile.is_reminderpopupactive">Enable popup reminder by default</label>
-	<label index="profile.is_reminderemailactive">Enable email reminder by default</label>
+	<label index="profile.reminder.email.advancetime.label">Time Preset Email</label>
+	<label index="profile.reminder.popup.advancetime.label">Time Preset Popup</label>
 	<label index="profile.main.saved">Settings have been saved.</label>
 	<label index="profile.reminders.saved">Reminders settings have been saved.</label>
 </labels>

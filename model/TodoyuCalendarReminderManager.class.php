@@ -159,36 +159,6 @@ class TodoyuCalendarReminderManager {
 
 
 	/**
-	 * Check whether reminders with emails are enabled
-	 *
-	 * @return	Boolean
-	 */
-	public static function isEmailReminderEnabled() {
-		$active	= TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'is_reminderemail_active');
-
-		return intval($active) === 1;
-	}
-
-
-
-
-	/**
-	 * Check whether reminders with popups are enabled
-	 *
-	 * @return	Boolean
-	 */
-	public static function isPopupReminderEnabled() {
-		$active	= TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'is_reminderpopup_active');
-
-		return intval($active) === 1;
-	}
-
-
-
-
-
-
-	/**
 	 * Deactivate (set time to 0) given reminder of given type, person and event
 	 *
 	 * @param	Integer		$reminderType

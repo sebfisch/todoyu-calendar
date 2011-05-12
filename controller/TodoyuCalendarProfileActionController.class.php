@@ -87,19 +87,11 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 	 */
 	public function saveRemindersAction(array $params) {
 			// Email reminder prefs
-		$prefName	= 'is_reminderemailactive';
-		$prefValue	= $params['reminders'][$prefName] == '1' ? 1 : 0;
-		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, Todoyu::personid());
-
 		$prefName	= 'reminderemail_advancetime';
 		$prefValue	= intval($params['reminders'][$prefName]);
 		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, Todoyu::personid());
 
 			// Popup reminder prefs
-		$prefName	= 'is_reminderpopupactive';
-		$prefValue	= $params['reminders'][$prefName] == '1' ? 1 : 0;
-		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, Todoyu::personid());
-
 		$prefName	= 'reminderpopup_advancetime';
 		$prefValue	= intval($params['reminders'][$prefName]);
 		TodoyuCalendarPreferences::savePref($prefName, $prefValue, 0, true, 0, Todoyu::personid());

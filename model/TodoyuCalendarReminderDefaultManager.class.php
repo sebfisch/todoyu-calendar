@@ -51,30 +51,6 @@ class TodoyuCalendarReminderDefaultManager {
 
 
 	/**
-	 * Check whether default email reminder is enabled
-	 *
-	 * @param	Integer		$idPerson
-	 * @return	Boolean
-	 */
-	public static function isEmailDefaultActivationEnabled($idPerson = 0) {
-		return self::isDefaultActivationEnabled(CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idPerson);
-	}
-
-
-
-	/**
-	 * Check whether default popup reminder is enabled
-	 *
-	 * @param	Integer		$idPerson
-	 * @return	Boolean
-	 */
-	public static function isPopupDefaultActivationEnabled($idPerson = 0) {
-		return self::isDefaultActivationEnabled(CALENDAR_TYPE_EVENTREMINDER_POPUP, $idPerson);
-	}
-
-
-
-	/**
 	 * Get default advance (time before event) reminding time of given reminder type and person
 	 *
 	 * @param	Integer		$type			Reminder type (constant)
@@ -90,25 +66,6 @@ class TodoyuCalendarReminderDefaultManager {
 		$value		= TodoyuCalendarPreferences::getPref($preference, 0, 0, false, $idPerson);
 
 		return intval($value);
-	}
-
-
-
-	/**
-	 * Check whether default values for reminder is enabled
-	 *
-	 * @param	Integer		$type
-	 * @param	Integer		$idPerson
-	 * @return	Boolean
-	 */
-	public static function isDefaultActivationEnabled($type, $idPerson) {
-		$idPerson	= Todoyu::personid($idPerson);
-		$typePrefix	= TodoyuCalendarReminderManager::getReminderTypePrefix($type);
-		$preference	= 'is_reminder' . $typePrefix . 'active';
-
-		$value		= TodoyuCalendarPreferences::getPref($preference, 0, 0, false, $idPerson);
-
-		return $value ? true : false;
 	}
 
 }
