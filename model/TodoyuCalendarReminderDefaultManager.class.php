@@ -32,8 +32,8 @@ class TodoyuCalendarReminderDefaultManager {
 	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getEmailDefaultAdvanceTime($idPerson = 0) {
-		return self::getDefaultAdvanceTime(CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idPerson);
+	public static function getEmailDefaultAdvanceTime() {
+		return self::getDefaultAdvanceTime(CALENDAR_TYPE_EVENTREMINDER_EMAIL);
 	}
 
 
@@ -44,8 +44,8 @@ class TodoyuCalendarReminderDefaultManager {
 	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getPopupDefaultAdvanceTime($idPerson = 0) {
-		return self::getDefaultAdvanceTime(CALENDAR_TYPE_EVENTREMINDER_POPUP, $idPerson);
+	public static function getPopupDefaultAdvanceTime() {
+		return self::getDefaultAdvanceTime(CALENDAR_TYPE_EVENTREMINDER_POPUP);
 	}
 
 
@@ -54,18 +54,16 @@ class TodoyuCalendarReminderDefaultManager {
 	 * Get default advance (time before event) reminding time of given reminder type and person
 	 *
 	 * @param	Integer		$type			Reminder type (constant)
-	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getDefaultAdvanceTime($type, $idPerson = 0) {
-		$type	= intval($type);
-		$idPerson		= Todoyu::personid($idPerson);
-
+	public static function getDefaultAdvanceTime($type) {
+		$type		= intval($type);
 		$typePrefix	= TodoyuCalendarReminderManager::getReminderTypePrefix($type);
-		$preference	= 'reminder' . $typePrefix . '_advancetime';
-		$value		= TodoyuCalendarPreferences::getPref($preference, 0, 0, false, $idPerson);
 
-		return intval($value);
+		$extConf	= TodoyuSysmanagerExtConfManager::getExtConf('calendar');
+		$configName	= 'reminder' . $typePrefix . '_advancetime';
+
+		return intval($extConf[$configName]);
 	}
 
 }

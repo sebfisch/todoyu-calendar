@@ -236,6 +236,79 @@ class TodoyuCalendarPreferences {
 		return intval(self::getPref('portal-event-expanded', $idEvent)) === 1;
 	}
 
+
+
+	/**
+	 * Save reminder email advance time
+	 *
+	 * @param	Integer		$time
+	 */
+	public static function saveReminderEmailTime($time) {
+		self::saveReminderTime('email', $time);
+	}
+
+
+
+	/**
+	 * Save reminder popup advance time
+	 *
+	 * @param	Integer		$time
+	 */
+	public static function saveReminderPopupTime($time) {
+		self::saveReminderTime('popup', $time);
+	}
+
+
+
+	/**
+	 * Save reminder email advance time
+	 *
+	 * @return	Integer
+	 */
+	public static function getReminderEmailTime() {
+		return self::getReminderTime('email');
+	}
+
+
+
+	/**
+	 * Save reminder popup advance time
+	 *
+	 * @return	Integer
+	 */
+	public static function getReminderPopupTime() {
+		return self::getReminderTime('popup');
+	}
+
+
+
+	/**
+	 * Save reminder advance time
+	 *
+	 * @param	String		$typeKey
+	 * @param	Integer		$time
+	 */
+	private static function saveReminderTime($typeKey, $time) {
+		$prefName	= 'reminder' . $typeKey . '_advancetime';
+		$time		= intval($time);
+
+		self::savePref($prefName, $time, 0, true);
+	}
+
+
+
+	/**
+	 * Get reminder advance time
+	 *
+	 * @param	String		$typeKey
+	 * @return	Integer|Boolean
+	 */
+	public static function getReminderTime($typeKey) {
+		$prefName	= 'reminder' . $typeKey . '_advancetime';
+
+		return self::getPref($prefName);
+	}
+
  }
 
 ?>

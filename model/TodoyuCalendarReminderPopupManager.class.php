@@ -111,7 +111,7 @@ class TodoyuCalendarReminderPopupManager {
 		$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
 
 		if( $idEvent === 0 ) {
-			return TodoyuCalendarReminderDefaultManager::getPopupDefaultAdvanceTime($idPerson);
+			return TodoyuCalendarReminderDefaultManager::getPopupDefaultAdvanceTime();
 		}
 
 		return $reminder->getAdvanceTime();

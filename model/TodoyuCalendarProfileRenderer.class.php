@@ -110,22 +110,20 @@ class TodoyuCalendarProfileRenderer {
 		$form		= TodoyuFormManager::getForm($xmlPath);
 		$formData	= array();
 
-			// Preset form data from prefs or remove disallowed prefs from form
-
 			// Reminders send via email
 		if( Todoyu::allowed('calendar', 'reminders:email') ) {
-			$formData['reminderemail_advancetime']	= TodoyuCalendarReminderEmailManager::getDefaultAdvanceTime();
+			$formData['reminderemail_advancetime']	= TodoyuCalendarPreferences::getReminderEmailTime();
 		} else {
 			$form->getFieldset('emailreminders')->remove();
 		}
 
-
 			// Reminders shown as popup
 		if( Todoyu::allowed('calendar', 'reminders:popup') ) {
-			$formData['reminderpopup_advancetime']	= TodoyuCalendarReminderPopupManager::getDefaultAdvanceTime();
+			$formData['reminderpopup_advancetime']	= TodoyuCalendarPreferences::getReminderPopupTime();
 		} else {
 			$form->getFieldset('popupreminders')->remove();
 		}
+
 
 			// Set form data
 		$form->setFormData($formData);

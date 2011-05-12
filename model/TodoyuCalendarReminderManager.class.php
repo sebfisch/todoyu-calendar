@@ -309,8 +309,7 @@ class TodoyuCalendarReminderManager {
 
 				// Email
 			if( $emailAllowed ) {
-				$advanceTime	= TodoyuCalendarReminderEmailManager::getAdvanceTime($idEvent);
-
+				$advanceTime	= self::getAdvanceTimeEmail();
 				$form->getFieldset('reminders')->getField('reminder_email')->setValue($advanceTime);
 			} else {
 				$form->getFieldset('reminders')->removeField('reminder_email');
@@ -318,12 +317,55 @@ class TodoyuCalendarReminderManager {
 
 				// Popup
 			if( $popupAllowed ) {
-				$advanceTime	= TodoyuCalendarReminderPopupManager::getAdvanceTime($idEvent);
+				$advanceTime	= self::getAdvanceTimePopup();
 				$form->getFieldset('reminders')->getField('reminder_popup')->setValue($advanceTime);
 			} else {
 				$form->getFieldset('reminders')->removeField('reminder_popup');
 			}
 		}
+	}
+
+
+
+	/**
+	 * Get advance time of reminder
+	 *
+	 * @param	Integer		$type
+	 * @return	Integer
+	 */
+	private static function getAdvanceTime($type) {
+		$typeKey= self::getReminderTypePrefix($type);
+		$pref	= TodoyuCalendarPreferences::getReminderTime($typeKey);
+
+		if( $pref === false ) {
+			$pref	= TodoyuCalendarReminderDefaultManager::getDefaultAdvanceTime($type);
+		} else {
+			$pref	= intval($pref);
+		}
+
+		return $pref;
+	}
+
+
+
+	/**
+	 * Get advance time of email reminder (user or default)
+	 *
+	 * @return	Integer
+	 */
+	public static function getAdvanceTimeEmail() {
+		return self::getAdvanceTime(CALENDAR_TYPE_EVENTREMINDER_EMAIL);
+	}
+
+
+
+	/**
+	 * Get advance time of popup reminder (user or default)
+	 *
+	 * @return	Integer
+	 */
+	public static function getAdvanceTimePopup() {
+		return self::getAdvanceTime(CALENDAR_TYPE_EVENTREMINDER_POPUP);
 	}
 
 }

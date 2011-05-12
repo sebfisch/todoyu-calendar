@@ -126,7 +126,7 @@ class TodoyuCalendarReminderEmailManager {
 		$idPerson	= Todoyu::personid($idPerson);
 
 		if( $idEvent === 0 ) {
-			return TodoyuCalendarReminderDefaultManager::getEmailDefaultAdvanceTime($idPerson);
+			return TodoyuCalendarReminderDefaultManager::getEmailDefaultAdvanceTime();
 		} else {
 			$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
 
