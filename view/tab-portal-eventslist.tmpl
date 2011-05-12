@@ -24,7 +24,7 @@
 	</div>
 
 {if $showHolidays && count($holidays) > 0}
-	<br/>
+	<br />
 	{Header title=implode(array(count($holidays), Label('LLL:calendar.event.eventslist.holidaysWithinTheNextweeks')), ' ')}
 	<div id="holidays">
 		{include file="holidayslist.tmpl"}
@@ -32,7 +32,7 @@
 {/if}
 
 {if $showBirthdays && count($birthdays) > 0}
-	<br/>
+	<br />
 	{$headerTitle = implode(array(count($birthdays), Label('calendar.event.eventslist.birthdaysWithinTheNextweeks')), ' ')}
 	{Header title=$headerTitle}
 	<div id="birthdays">

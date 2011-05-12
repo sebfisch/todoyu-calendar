@@ -32,11 +32,11 @@
 	<tr>
 		<td class="eventAttrTitle">
 			<span class="icon"> </span>
-			<br/>&nbsp;{Label core.global.description}
+			<br />&nbsp;{Label core.global.description}
 		</td>
 		<td class="eventValue">
-			<br/>{substituteLinkableElements(nl2br(cleanHtml($event.description)))}
-			<br/><br/>
+			<br />{substituteLinkableElements(nl2br(cleanHtml($event.description)))}
+			<br /><br/>
 		</td>
 	</tr>
 {/if}
@@ -63,9 +63,9 @@
 			{if $personData.is_acknowledged}{$class='eventperson-acknowledged'}{else}{$class='eventperson-unacknowledged'}{/if}
 			{if in_array($personData.id, array_keys($event.persons_email))}{$class.='-email'}{/if}
 			{personLabel idPrefix="event-personattend" idRecord=$personData.id idPerson=$personData.id class=$class}
-			<br/>
+			<br />
 		{/foreach}
-			<br/>
+			<br />
 		</td>
 	</tr>
 {* ------------------------ Scheduled Reminders *}
@@ -85,7 +85,7 @@
 					{durationFormat $event.date_start - $event.persons[$personID][date_remindemail]} {Label calendar.reminder.beforeDateStart}
 					- {dateFormat $event.persons[$personID][date_remindemail] datetime}
 				{/if}
-				<br/>
+				<br />
 			{/if}
 			{if isAllowedEventReminderPopup($event.id)}
 				{Label calendar.reminder.popup}:
@@ -95,7 +95,7 @@
 					{durationFormat $event.date_start - $event.persons[$personID][date_remindpopup]} {Label calendar.reminder.beforeDateStart}
 					- {dateFormat $event.persons[$personID][date_remindpopup] datetime}
 				{/if}
-				<br/>
+				<br />
 			{/if}
 		</td>
 	</tr>
