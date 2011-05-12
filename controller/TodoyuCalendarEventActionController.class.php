@@ -246,7 +246,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public function addSubformAction(array $params) {
-		Todoyu::restrictIfNone('calendar', 'event:editAll,event:editAndDeleteAssigned');
+		Todoyu::restrictIfNone('calendar', 'event:editAll,event:editAssigned');
 
 		$index		= intval($params['index']);
 		$fieldName	= $params['field'];
