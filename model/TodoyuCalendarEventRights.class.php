@@ -150,29 +150,26 @@ class TodoyuCalendarEventRights {
 			return true;
 		}
 
-		$idEvent	= intval($idEvent);
-
+		$idEvent			= intval($idEvent);
 		$event				= TodoyuCalendarEventManager::getEvent($idEvent);
-		$isPrivate			= $event->get('is_private') === '1';
-		$assignedPersons	= $event->getAssignedPersonIDs();
-
-
-			// Person is assigned to event and has right to edit/delete events it's assigned to
-		if( Todoyu::allowed('calendar', 'event:' . $action . 'Assigned')  && in_array($idPerson, $assignedPersons) ) {
-			return true;
-		}
-			// Person can edit/delete all events and event is not private,
-		if( Todoyu::allowed('calendar', 'event:' . $action . 'All') && ! $isPrivate ) {
-			return true;
-		}
 
 			// Creator can edit event
 		if( $event->isCurrentPersonCreator() ) {
 			return true;
 		}
 
+			// Person is assigned to event and has right to edit/delete events it's assigned to
+		if( Todoyu::allowed('calendar', 'event:' . $action . 'Assigned')  && $event->isCurrentPersonAssigned() ) {
+			return true;
+		}
+			// Person can edit/delete all events and event is not private,
+		if( Todoyu::allowed('calendar', 'event:' . $action . 'All') && ! $event->isPrivate() ) {
+			return true;
+		}
+
 		return false;
 	}
+
 
 
 	/**
