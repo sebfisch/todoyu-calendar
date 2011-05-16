@@ -51,7 +51,7 @@ class TodoyuCalendarEventViewHelper {
 	 * @param	TodoyuCalendarEvent		$event
 	 * @return	String
 	 */
-	public static function getQuickinfoDateInfo($event) {
+	public static function getQuickinfoDateInfo($event, $withDuration = false) {
 		if( $event->isMultiDay() ) {
 				// Define format for day-events and multi-day events
 			if( $event->isDayevent() ) {
@@ -69,6 +69,10 @@ class TodoyuCalendarEventViewHelper {
 			$dateInfo  = TodoyuTime::format($event->getStartDate(), 'D2MshortTime');
 			$dateInfo .= ' - ';
 			$dateInfo .= TodoyuTime::format($event->getEndDate(), 'time');
+		}
+
+		if( $withDuration ) {
+			$dateInfo .= ' (' . TodoyuTime::formatDuration($event->getDuration()) . ')';
 		}
 
 		return $dateInfo;

@@ -33,7 +33,7 @@ class TodoyuCalendarQuickinfoManager {
 		$canSeeDetails	= TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent);
 
 			// Build event infos: title, type, date, place, assigned persons
-		$dateInfo	= TodoyuCalendarEventViewHelper::getQuickinfoDateInfo($event);
+		$dateInfo	= TodoyuCalendarEventViewHelper::getQuickinfoDateInfo($event, true);
 		$personInfo	= TodoyuCalendarEventViewHelper::getQuickinfoPersonInfo($event);
 		$typeInfo	= TodoyuCalendarEventViewHelper::getQuickinfoTypeInfo($event);
 
