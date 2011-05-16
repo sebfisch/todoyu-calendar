@@ -80,6 +80,7 @@ class TodoyuCalendarEventRenderer {
 
 		$data['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
 		$data['assignedPersons']= $assignedPersons;
+		$data['timeStart']		= TodoyuCalendarEventManager::getEvent($idEvent)->getStartTime();
 		$data['color']			= self::getEventColorData($idAssignedPerson);
 		$data['eventtypeKey']	= TodoyuCalendarEventTypeManager::getEventTypeKey($data['eventtype']);
 

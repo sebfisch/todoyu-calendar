@@ -50,6 +50,17 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Get start time (at start day)
+	 *
+	 * @return	Integer
+	 */
+	public function getStartTime() {
+		return TodoyuTime::getTimeOfDay($this->get('date_start'));
+	}
+
+
+
+	/**
 	 * Get end date of event
 	 *
 	 * @return	Integer

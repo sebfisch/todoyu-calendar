@@ -43,7 +43,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @type		Object
 	 */
 	defaultDraggableOptions: {
-		handle: 'head'
+		handle:		'head'
 	},
 
 	/**
@@ -73,11 +73,18 @@ Todoyu.Ext.calendar.DragDrop = {
 			// Initialize options for current view
 		this.initOptions();
 
-			// Add drag functions to all events
+			// Add drag functions to all event and full-day event items
 		this.makeEventsDraggable();
 
+		var activeTab	= this.ext.getActiveTab();
+
+			// Add dragging for full-day event items in date header row of week view
+		if( activeTab === 'week' ) {
+			this.makeDayEventsDraggable();
+		}
+
 			// Add drop functions to day containers in month view
-		if( this.ext.getActiveTab() === 'month' ) {
+		if( activeTab === 'month' ) {
 			this.makeDaysDroppable();
 		}
 	},
@@ -117,14 +124,49 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
-	 * Get all event elements in the calendar, except the noAccess classed
+	 * Get all event elements from inside given DOM element
 	 *
 	 * @method	getEvents
+	 * @param	{String}	parentElementID
+	 * @return	{Array}
 	 */
-	getEvents: function() {
-		return $('calendararea').select('div.event').findAll(function(element){
+	getEventItems: function(parentElementID) {
+		return $(parentElementID).select('div.event').findAll(function(element){
 			return element.hasClassName('noAccess') === false;
 		});
+	},
+
+
+
+	/**
+	 * Get all event elements in the calendar, except the noAccess classed, optionally includes also day-events
+	 *
+	 * @method	getEvents
+	 * @param	{Boolean}	getDayEvents
+	 * @return	{Array}
+	 */
+	getEvents: function(getDayEvents) {
+		getDayEvents	= getDayEvents ? getDayEvents : false;
+
+		var events	= this.getEventItems('calendararea');
+
+		if( getDayEvents ) {
+			events	= events.concat(this.getDayEvents());
+		}
+
+		return events;
+	},
+
+
+
+	/**
+	 * Get all all-day long event elements, except the noAccess classed
+	 *
+	 * @method	getDayEvents
+	 * @return	{Array}
+	 */
+	getDayEvents: function() {
+		return this.getEventItems('topcontainerwk');
 	},
 
 
@@ -154,6 +196,24 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
+	 * Add drag functions to all full-day events
+	 *
+	 * @method	makeEventsDraggable
+	 */
+	makeDayEventsDraggable: function() {
+		var options	= this.draggableOptions;
+		options.constraint	= 'horizontal';
+		options.onStart		= this.onStartDragDayEvent.bind(this);
+		options.onEnd		= this.onEndDragDayEvent.bind(this);
+
+		this.getDayEvents().each(function(eventElement){
+			new Draggable(eventElement, options);
+		}, this);
+	},
+
+
+
+	/**
 	 * Add drop functions to all days
 	 *
 	 * @method	makeDaysDroppable
@@ -177,10 +237,19 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @param	{Element}	element
 	 */
 	moveEventToTopContainer: function(element) {
-			// Add auto revert function
-		element.revertToOrigin = this.revertToOrigin.bind(element, element.parentNode);
-
 		$('calendararea').insert(element);
+	},
+
+
+
+	/**
+	 * Add event draggable item auto-reverting function
+	 *
+	 * @method	initDraggableRevertToOrigin
+	 * @param	{Element}	element
+	 */
+	initDraggableRevertToOrigin: function(element) {
+		element.revertToOrigin = this.revertToOrigin.bind(element, element.parentNode);
 	},
 
 
@@ -204,7 +273,7 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
-	 * Handler when dragging starts
+	 * Handler when dragging event item starts
 	 *
 	 * @method	onStart
 	 * @param	{String}		tab				Current tab
@@ -215,12 +284,26 @@ Todoyu.Ext.calendar.DragDrop = {
 		if( tab === 'week' ) {
 				// Move event to the top element
 			this.moveEventToTopContainer(dragInfo.element);
+			this.initDraggableRevertToOrigin(dragInfo.element);
 				// Add left margin to prevent hovering the hours column
 			dragInfo.element.style.marginLeft = '42px';
 		} else if( tab === 'month' ) {
 			this.moveEventToTopContainer(dragInfo.element);
 			dragInfo.element.style.width = '90px';
 		}
+	},
+
+
+
+	/**
+	 * Handler when dragging event item starts
+	 *
+	 * @method	onStartDragDayEvent
+	 * @param	{Object}		dragInfo		Information about dragging
+	 * @param	{Event}			event
+	 */
+	onStartDragDayEvent: function(dragInfo, event) {
+		this.initDraggableRevertToOrigin(dragInfo.element);
 	},
 
 
@@ -257,6 +340,21 @@ Todoyu.Ext.calendar.DragDrop = {
 		}
 
 		Todoyu.QuickInfo.activate();
+	},
+
+
+
+	/**
+	 * Handler when dragging of day-event ends
+	 *
+	 * @method	onEndDragDayEvent
+	 * @param	{Object}		dragInfo		Information about dragging
+	 * @param	{Event}			domEvent
+	 */
+	onEndDragDayEvent: function(dragInfo, domEvent) {
+		var idEvent	= dragInfo.element.id.split('-').last();
+
+		this.saveDayEventDrop(idEvent, dragInfo);
 	},
 
 
@@ -315,7 +413,7 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
-	 * Save new position when dropped in day view
+	 * Save new position when dropped event item in week view
 	 *
 	 * @method	saveWeekDrop
 	 * @param	{Number}	idEvent
@@ -336,9 +434,37 @@ Todoyu.Ext.calendar.DragDrop = {
 		var hours		= Math.floor(offset.top / hourHeight);
 		var minutes		= Math.round(((offset.top - (hours * hourHeight)) * (60 / hourHeight)) / 15) * 15;
 
-		var newDate		= (weekStart + (24 * Todoyu.Time.seconds.hour * dayOfWeek) + hours * Todoyu.Time.seconds.hour + minutes * 60) * 1000;
+		var newDate		= (weekStart + (Todoyu.Time.seconds.day * dayOfWeek) + hours * Todoyu.Time.seconds.hour + minutes * 60) * 1000;
 
 		this.saveDropping('week', idEvent, newDate);
+	},
+
+
+
+	/**
+	 * Save new position after dropping of day-event
+	 *
+	 * @method	saveWeekDrop
+	 * @param	{Number}	idEvent
+	 * @param	{Object}	dragInfo
+	 */
+	saveDayEventDrop: function(idEvent, dragInfo) {
+		var dayWidth	= 88;
+
+		var weekStart	= this.ext.getWeekStart();
+		var offset		= dragInfo.element.positionedOffset();
+		var dayOfWeek	= Math.floor( (offset.left - 2) / dayWidth );
+
+		if( dayOfWeek >= 0 && dayOfWeek < 6 ) {
+				// Shift starting day date, keep starting time of day
+			var dropDate	= weekStart * 1000 + (Todoyu.Time.seconds.day * dayOfWeek * 1000);
+			var timeStart	= $F('eventTimeStart-' + idEvent);
+			dropDate	   += timeStart * 1000;
+
+			this.saveDropping('week', idEvent, dropDate);
+		} else {
+			dragInfo.element.revertToOrigin();
+		}
 	},
 
 
