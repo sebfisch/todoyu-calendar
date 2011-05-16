@@ -201,4 +201,18 @@ function Dwoo_Plugin_durationFormat_compile(Dwoo_Compiler $compiler, $seconds) {
 	return 'TodoyuTime::formatDuration(' . $seconds . ')';
 }
 
+/**
+ * Render timespan in suiting format
+ *
+ * @package		Todoyu
+ * @subpackage	Calendar
+ *
+ * @param	Dwoo_Compiler 		$compiler
+ * @param	Integer			$seconds
+ * @return	String
+ */
+function Dwoo_Plugin_timespanFormat_compile(Dwoo_Compiler $compiler, $dateStart, $dateEnd, $withDuration = false) {
+	return 'TodoyuTime::formatTimespan(' . $dateStart . ', ' . $dateEnd . ', ' . $withDuration . ')';
+}
+
 ?>

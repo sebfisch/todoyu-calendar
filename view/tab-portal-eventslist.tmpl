@@ -5,16 +5,17 @@
 	{foreach $events idEvent event}
 		{* ------- Event entry ------- *}
 		<div id="event-{$event.id}" class="event {cycle values="odd,even"} type{ucfirst(EventTypeKey($event.eventtype))} contextmenuEventPortal">
+
 			<h3 id="event-{$event.id}-header" name="event-{$event.id}">
 				<span class="icon type" title="{Label calendar.event.attr.eventtype}: {EventTypeLabel $event.eventtype}"> </span>
 				<span id="acknowledge-{$event.id}" class="icon acknowledge {if ! $event.is_acknowledged}not{/if}{if $event.is_updated} updated{/if}" {if ! $event.is_acknowledged}onclick="Todoyu.Ext.calendar.EventPortal.acknowledgeEvent({$event.id}, {$event.id_person})"{/if}> </span>
 				<span class="label" onclick="Todoyu.Ext.calendar.EventPortal.toggleDetails({$idEvent})">
-					<span class="date">{dateFormat $event.date_start dShortDatetime} - {dateFormat $event.date_end datetime}</span>
+					<span class="date">{timespanFormat $event.date_start $event.date_end true}</span>
 					<span class="title">{EventTypeLabel $event.eventtype}: {htmlencode $event.title}</span>
 				</span>
-
 				<div class="clear"><!-- --></div>
 			</h3>
+
 			{$event.details}
 		</div>
 		{* ------- End: event entry ------- *}
