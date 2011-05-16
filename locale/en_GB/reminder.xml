@@ -3,12 +3,12 @@
 	<label index="reminders">Reminders</label>
 	<label index="myreminders">My Reminders</label>
 	<label index="email">Email</label>
-	<label index="popup">Popup</label>
+	<label index="popup">Pop-Up</label>
 	<label index="deactivated">Reminder Deactivated</label>
 	<label index="notify.email.deactivated">Reminder Email Deactivated</label>
-	<label index="notify.popup.deactivated">Reminder Popup Deactivated</label>
+	<label index="notify.popup.deactivated">Reminder Pop-Up Deactivated</label>
 	<label index="notify.email.timeupdated">Email reminder schedule has been changed</label>
-	<label index="notify.popup.timeupdated">Popup reminder schedule has been changed</label>
+	<label index="notify.popup.timeupdated">Pop-up reminder schedule has been changed</label>
 	<label index="beforeDateStart">before appointment</label>
 	<label index="atDateStart">When appointment starts</label>
 	<label index="email.subject">Appointment Reminder</label>

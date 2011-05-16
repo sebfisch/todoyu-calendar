@@ -8,8 +8,8 @@
 	<fieldsets>
 
 		<fieldset name="general">
-			<legend>General Calendar Settings</legend>
-			<class>left</class>
+			<legend>calendar.form.legend.profile.general</legend>
+			<class>main</class>
 			<elements>
 
 				<field type="checkbox" name="is_mailpopupdeactivated">

@@ -9,6 +9,7 @@
 
 		<fieldset name="emailreminders">
 			<legend>Reminder Defaults</legend>
+			<legend>calendar.form.legend.profile.reminder.general</legend>
 			<elements>
 
 				<field type="select" name="reminderemail_advancetime">

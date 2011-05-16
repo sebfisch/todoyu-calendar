@@ -6,6 +6,7 @@
 	<fieldsets>
 
 		<fieldset name="config">
+			<legend>calendar.form.legend.admin.overbooking</legend>
 			<elements>
 				<field type="checkbox" name="allowoverbooking">
 					<label>calendar.ext.extconf.allowoverbooking.label</label>
@@ -15,8 +16,11 @@
 		</fieldset>
 
 		<fieldset name="eventsreminder">
-			<legend>Reminder Defaults</legend>
+			<legend>calendar.form.legend.admin.reminders</legend>
 			<elements>
+				<field type="checkbox" name="is_reminderemail_active">
+					<label>calendar.ext.extconf.reminder.reminderemail_active.label</label>
+				</field>
 
 				<field type="select" name="reminderemail_advancetime">
 					<label>calendar.ext.extconf.reminder.email.advancetime.label</label>
@@ -26,6 +30,11 @@
 					</source>
 					<noPleaseSelect/>
 				</field>
+
+				 <field type="checkbox" name="is_reminderpopup_active">
+					<label>calendar.ext.extconf.reminder.reminderpopup_active.label</label>
+				</field>
+
 
 				<field type="select" name="reminderpopup_advancetime">
 					<label>calendar.ext.extconf.reminder.popup.advancetime.label</label>
@@ -43,6 +52,7 @@
 		</fieldset>
 
 		<fieldset name="eventsmailing">
+			<legend>calendar.form.legend.admin.automaticEmail</legend>
 			<elements>
 			<field type="select" name="autosendeventmail">
 					<label>calendar.ext.extconf.autosendeventmail.label</label>

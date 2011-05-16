@@ -6,7 +6,7 @@
 	<fieldsets>
 
 		<fieldset name="main">
-			<legend>Main data of a holidayset</legend>
+			<legend>calendar.form.legend.admin.holidayset.record.general</legend>
 			<elements>
 
 				<field type="text" name="title">

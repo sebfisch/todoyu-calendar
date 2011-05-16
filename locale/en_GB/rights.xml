@@ -15,6 +15,6 @@
 	<label index="mailing">Event email</label>
 	<label index="mailing.sendAsEmail">Send Emails about appointments to selectable receivers</label>
 	<label index="reminders">Appointment Reminders</label>
-	<label index="reminders.popup">Use reminder popups</label>
+	<label index="reminders.popup">Use reminder pop-ups</label>
 	<label index="reminders.email">Use reminder mailing</label>
 </labels>

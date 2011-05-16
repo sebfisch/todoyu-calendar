@@ -11,7 +11,7 @@
 	<fieldsets>
 
 		<fieldset name="main">
-			<legend>Data of the event</legend>
+			<legend>calendar.form.legend.basics</legend>
 			<elements>
 
 				<field type="text" name="title">
@@ -69,7 +69,7 @@
 		</fieldset>
 
 		<fieldset name="details">
-			<legend>Details</legend>
+			<legend>calendar.form.legend.details</legend>
 			<elements>
 
 				<field type="text" name="place">
@@ -110,6 +110,7 @@
 		</fieldset>
 
 		<fieldset name="email">
+			<legend>calendar.form.legend.notification</legend>
 			<elements>
 				<field type="checkbox" name="sendasemail">
 					<label>calendar.event.edit.sendasemail</label>

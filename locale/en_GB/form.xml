@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="legend.basics">Basic information about your event [DONE]</label>
+	<label index="legend.details">Further information [DONE]</label>
+	<label index="legend.notification">Notify participants [DONE]</label>
+	<label index="legend.profile.general">General Calendar Settings [DONE]</label>
+	<label index="legend.profile.reminder.general">Configure your reminders to your needs [DONE]</label>
+	<label index="legend.admin.overbooking">Configure the overbooking behaviour [DONE]</label>
+	<label index="legend.admin.reminders">Default settings for reminders [DONE]</label>
+	<label index="legend.admin.automaticEmail">Configure the notification behaviour [DONE]</label>
+	<label index="legend.admin.holidayset.record.general">Holiday Set [DONE]</label>
+	<label index="legend.admin.holiday.record.general">Holiday [DONE]</label>
+</labels>
