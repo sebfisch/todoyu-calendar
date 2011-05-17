@@ -176,11 +176,10 @@ class TodoyuCalendarEventRenderer {
 
 
 	/**
-	 * Get event rendering color data
+	 * Get color data for event item via assigned person, if there are multiple/no persons assigned it's colored neutral
 	 *
-	 * @param	Integer		$idPerson
+	 * @param	Integer		$idEvent
 	 * @return	Array
-	 * @todo	cleanup	- change parameter from idPerson to assigned persons array or id of event
 	 */
 	public static function getEventColorData($idEvent) {
 		$idEvent		= intval($idEvent);

@@ -57,24 +57,26 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 * @method	init
 	 */
 	init: function() {
-		this.calendarBody = $(this.idArea);
+			// Ensure the calendarBody is there (it's missing when editing an event initially)
+		if( $(this.idArea) !== null ) {
+			this.calendarBody = $(this.idArea);
 
-		this.installContextMenu();
-		this.installObserversCreateEvent();
+			this.installContextMenu();
+			this.installObserversCreateEvent();
 
-		this.ext.installQuickinfos();
-		this.ext.Event.installObservers();
+			this.ext.installQuickinfos();
+			this.ext.Event.installObservers();
 
-		if( this.ext.getActiveTab() !== 'month' ) {
-			this.setFullHeight(this.isFullHeight(), false);
+			if( this.ext.getActiveTab() !== 'month' ) {
+				this.setFullHeight(this.isFullHeight(), false);
+			}
+
+				// Init drag and drop
+			this.ext.DragDrop.init();
 		}
-
-			// Init drag and drop
-		this.ext.DragDrop.init();
 
 			// Call hooked callbacks
 		Todoyu.Hook.exec('calendarBody.init');
-//
 	},
 
 
