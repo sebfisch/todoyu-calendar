@@ -76,12 +76,11 @@ class TodoyuCalendarEventRenderer {
 	public static function prepareEventRenderData($mode = CALENDAR_MODE_MONTH, array $data) {
 		$idEvent			= intval($data['id']);
 		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
-		$idAssignedPerson	= count($assignedPersons) == 1 ? $assignedPersons[key($assignedPersons)]['id_person'] : 0;
 
 		$data['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
 		$data['assignedPersons']= $assignedPersons;
 		$data['timeStart']		= TodoyuCalendarEventManager::getEvent($idEvent)->getStartTime();
-		$data['color']			= self::getEventColorData($idAssignedPerson);
+		$data['color']			= self::getEventColorData($idEvent);
 		$data['eventtypeKey']	= TodoyuCalendarEventTypeManager::getEventTypeKey($data['eventtype']);
 
 		$assignedPersonIDs = array_keys($assignedPersons);
@@ -148,7 +147,7 @@ class TodoyuCalendarEventRenderer {
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(
 			'event'	=> $eventData,
-			'color'	=> self::getEventColorData(Todoyu::personid())
+			'color'	=> self::getEventColorData($idEvent)
 		);
 
 		return Todoyu::render($tmpl, $data);
@@ -164,18 +163,12 @@ class TodoyuCalendarEventRenderer {
 	 * @return	String
 	 */
 	public static function renderFulldayEvent($mode = CALENDAR_MODE_DAY, array $data = array()) {
+		$idEvent	= intval($data['id']);
+
 		$tmpl	= $mode === CALENDAR_MODE_DAY ? 'ext/calendar/view/event-dayevent-day.tmpl' : 'ext/calendar/view/event-dayevent-week.tmpl';
 		$data	= self::prepareEventRenderData($mode, $data);
 
-		$assignedPersons	= $data['assignedPersons'];
-		if( count($assignedPersons) > 1 ) {
-			$idAssignedPerson = 0;
-		} else {
-			reset($assignedPersons);
-			$personAssigned		= current($assignedPersons);
-			$idAssignedPerson	= $personAssigned['id_person'];
-		}
-		$data['color']		= self::getEventColorData($idAssignedPerson);
+		$data['color']		= self::getEventColorData($idEvent);
 
 		return Todoyu::render($tmpl, $data);
 	}
@@ -189,14 +182,16 @@ class TodoyuCalendarEventRenderer {
 	 * @return	Array
 	 * @todo	cleanup	- change parameter from idPerson to assigned persons array or id of event
 	 */
-	public static function getEventColorData($idPerson) {
-		$idPerson	= intval($idPerson);
+	public static function getEventColorData($idEvent) {
+		$idEvent		= intval($idEvent);
+		$eventPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
 
-		if( $idPerson === 0 ) {
-			return array(
-				'id' => 'multiOrNone'
-			);
+		if( count($eventPersons) === 0 || count($eventPersons) > 1 ) {
+				// None or multiple persons assigned to event, no unique coloring possible
+			return array('id' => 'multiOrNone');
 		} else {
+				// Single person assigned, set event color accordingly
+			$idPerson		= $eventPersons[key($eventPersons)]['id_person'];
 			$personColors	= TodoyuContactPersonManager::getSelectedPersonColor(array($idPerson));
 
 			return $personColors[$idPerson];
