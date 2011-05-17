@@ -135,7 +135,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 
 	/**
-	 * Update the field visibility in the form for the selected event type
+	 * Update the field visibility in the form according to selected type of event
 	 *
 	 * @method	updateVisibleFields
 	 * @param	{Event}		event
@@ -166,7 +166,9 @@ Todoyu.Ext.calendar.Event.Edit = {
 			}.bind(this, fieldsToHide, fieldName, eventType));
 		}.bind(this, checkHooks, fieldsToHide, eventType));
 
-		fieldsToHide.each(this.hideField, this, 'event');
+		fieldsToHide.each(function(fieldName){
+			this.hideField(fieldName, 'event');
+		}, this);
 	},
 
 
@@ -183,15 +185,22 @@ Todoyu.Ext.calendar.Event.Edit = {
 		var fields	= [];
 
 		switch(eventType) {
+				// Birthday
 			case Todoyu.Ext.calendar.Event.eventTypeID.birthday:
 				fields = ['is-dayevent', 'date-end', 'person', 'place'];
 				break;
+
+				// Vaction
 			case Todoyu.Ext.calendar.Event.eventTypeID.vacation:
 				fields = ['is-dayevent'];
 				break;
+
+				// Away official
 			case Todoyu.Ext.calendar.Event.eventTypeID.awayofficial:
 				fields = ['is-private'];
 				break;
+
+				// Reminder
 			case Todoyu.Ext.calendar.Event.eventTypeID.reminder:
 				fields = ['is-dayevent', 'date-end'];
 				break;
