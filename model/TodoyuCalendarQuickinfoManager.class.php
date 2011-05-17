@@ -53,7 +53,7 @@ class TodoyuCalendarQuickinfoManager {
 			$quickInfo->addInfo('title', '<' . Todoyu::Label('calendar.event.privateEvent.info') . '>', 10);
 		}
 
-		$quickInfo->addInfo('type',	$typeInfo, 20);
+		$quickInfo->addInfo('type' . ucwords($event->getTypeKey()),	$typeInfo, 20);
 		$quickInfo->addInfo('date',	$dateInfo, 30);
 
 		$amountAssignedPersons	= count( $event->getAssignedPersonsData() );

@@ -136,7 +136,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 
 
 /* ----------------------
-	Event types
+	Event type icons
    ---------------------- */
 .eventtypeicon {
 	padding-right:16px;
@@ -216,6 +216,42 @@ div.weekMode div#calendararea div.event dd span.desc {
 .dayMode .event .typeReminder,
 .monthMode .event .typeReminder {
 	background:url(../img/icons.png) no-repeat scroll 1px -961px;
+}
+
+
+
+#quickinfo dt.typeGeneralIcon {
+	background:url(../img/icons.png) no-repeat scroll 3px -656px;	/*0 -664px;*/
+}
+#quickinfo dt.typeAwayIcon {
+	background:url(../img/icons.png) no-repeat scroll 4px -688px;
+}
+#quickinfo dt.typeBirthdayIcon {
+	background:url(../../../contact/asset/img/icons.png) no-repeat 4px -328px;
+}
+#quickinfo dt.typeVacationIcon {
+	background:url(../img/icons.png) no-repeat scroll 3px -388px;
+}
+#quickinfo dt.typeEducationIcon {
+	background:url(../img/icons.png) no-repeat scroll 3px -718px;
+}
+#quickinfo dt.typeMeetingIcon {
+	background:url(../img/icons.png) no-repeat scroll 3px -748px;
+}
+#quickinfo dt.typeAwayofficialIcon {
+	background:url(../img/icons.png) no-repeat scroll 3px -777px;
+}
+#quickinfo dt.typeHomeofficeIcon {
+	background:url(../img/icons.png) no-repeat scroll 3px -807px;
+}
+#quickinfo dt.typeCompensationIcon {
+	background:url(../img/icons.png) no-repeat scroll 3px -898px;
+}
+#quickinfo dt.typeMilestoneIcon {
+	background:url(../img/icons.png) no-repeat scroll 3px -927px;
+}
+#quickinfo dt.typeReminderIcon {
+	background:url(../img/icons.png) no-repeat scroll 3px -958px;
 }
 
 
