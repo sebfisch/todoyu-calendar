@@ -167,7 +167,14 @@ class TodoyuCalendarEventRenderer {
 		$tmpl	= $mode === CALENDAR_MODE_DAY ? 'ext/calendar/view/event-dayevent-day.tmpl' : 'ext/calendar/view/event-dayevent-week.tmpl';
 		$data	= self::prepareEventRenderData($mode, $data);
 
-		$idAssignedPerson	= intval($data['assignedPersons'][0]['id']);
+		$assignedPersons	= $data['assignedPersons'];
+		if( count($assignedPersons) > 1 ) {
+			$idAssignedPerson = 0;
+		} else {
+			reset($assignedPersons);
+			$personAssigned		= current($assignedPersons);
+			$idAssignedPerson	= $personAssigned['id_person'];
+		}
 		$data['color']		= self::getEventColorData($idAssignedPerson);
 
 		return Todoyu::render($tmpl, $data);
@@ -180,6 +187,7 @@ class TodoyuCalendarEventRenderer {
 	 *
 	 * @param	Integer		$idPerson
 	 * @return	Array
+	 * @todo	cleanup	- change parameter from idPerson to assigned persons array or id of event
 	 */
 	public static function getEventColorData($idPerson) {
 		$idPerson	= intval($idPerson);
