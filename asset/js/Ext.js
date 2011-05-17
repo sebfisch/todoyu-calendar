@@ -111,7 +111,7 @@ Todoyu.Ext.calendar = {
 	 */
 	addHooks: function() {
 			// Add event save hook
-		Todoyu.Hook.add('calendar.ext.quickevent.saved', this.refresh.bind(this));
+		Todoyu.Hook.add('calendar.ext.quickevent.saved', this.onQuickEventSaved.bind(this));
 
 			// Add event edit hook for event type
 		Todoyu.Hook.add('calendar.event.editType', this.Event.Edit.checkHideField.bind(this.Event.Edit));
@@ -485,6 +485,17 @@ Todoyu.Ext.calendar = {
 	 */
 	showCalendar: function() {
 		$('calendar').show();
+	},
+
+
+
+	/**
+	 * Hook callback when quick event was saved
+	 */
+	onQuickEventSaved: function() {
+		if( Todoyu.getArea() === 'calendar' ) {
+			this.refresh();
+		}
 	}
 
 };

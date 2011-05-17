@@ -508,11 +508,11 @@ class TodoyuCalendarEventManager {
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent, array('newEvent'=>$isNewEvent));
 
-			// Change dates if is (full-) day-event
-		if( intval($data['is_dayevent']) === 1 ) {
-			$data['date_start']	= TodoyuTime::getStartOfDay($data['date_start']);
-			$data['date_end']	= TodoyuTime::getEndOfDay($data['date_end']);
-		}
+//			// Change dates if is (full-) day-event
+//		if( intval($data['is_dayevent']) === 1 ) {
+//			$data['date_start']	= TodoyuTime::getStartOfDay($data['date_start']);
+//			$data['date_end']	= TodoyuTime::getEndOfDay($data['date_end']);
+//		}
 
 			// Save person assignments
 		self::saveAssignments($idEvent, $data['persons'], $data['date_start']);
@@ -586,54 +586,56 @@ class TodoyuCalendarEventManager {
 
 
 
-	/**
-	 * Save quick event
-	 *
-	 * @param	Array		$data
-	 * @return	Integer		event ID
-	 */
-	public static function saveQuickEvent(array $data) {
-		$xmlPath	= 'ext/calendar/config/form/event.xml';
-
-			// Create an empty event
-		$idEvent	= self::addEvent();
-
-			// Handle e-mail fields
-		$sendAsMail		= $data['sendasemail'];
-		$emailReceivers	= $data['emailreceivers'];
-
-		unset($data['sendasemail']);
-		unset($data['emailreceivers']);
-
-			// Add person
-		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
-
-			// Call hooked save data functions
-		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
-
-			// If no persons assigned, assign to person "0"
-		if( sizeof($data['persons']) === 0 ) {
-			$data['persons'][] = 0;
-		}
-
-		self::saveAssignments($idEvent, $data['persons'], $data['date_start']);
-
-		unset($data['persons']);
-
-			// Update the event with the definitive data
-		self::updateEvent($idEvent, $data);
-		self::resetAcknowledgment($idEvent);
-
-			// Remove record and query from cache
-		self::removeEventFromCache($idEvent);
-
-			// Send mail if necessary
-		if( $sendAsMail ) {
-			self::sendEventAsEmail($idEvent, $emailReceivers, true);
-		}
-
-		return $idEvent;
-	}
+//	/**
+//	 * Save quick event
+//	 *
+//	 * @param	Array		$data
+//	 * @return	Integer		event ID
+//	 */
+//	public static function saveQuickEvent(array $data) {
+//		$xmlPath	= 'ext/calendar/config/form/event.xml';
+//
+//			// Create an empty event
+//		$idEvent	= self::addEvent();
+//
+//			// Handle e-mail fields
+//		$sendAsMail		= $data['sendasemail'];
+//		$emailReceivers	= $data['emailreceivers'];
+//
+//		unset($data['sendasemail']);
+//		unset($data['emailreceivers']);
+//
+//			// Add person
+//		$data['persons'] = TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
+//
+//			// Call hooked save data functions
+//		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent);
+//
+//			// If no persons assigned, assign to person "0"
+//		if( sizeof($data['persons']) === 0 ) {
+//			$data['persons'][] = 0;
+//		}
+//
+//		self::saveAssignments($idEvent, $data['persons'], $data['date_start']);
+//
+//		$data	= self::updateRemindersForCurrentPerson($idEvent, $data);
+//
+//		unset($data['persons']);
+//
+//			// Update the event with the definitive data
+//		self::updateEvent($idEvent, $data);
+//		self::resetAcknowledgment($idEvent);
+//
+//			// Remove record and query from cache
+//		self::removeEventFromCache($idEvent);
+//
+//			// Send mail if necessary
+//		if( $sendAsMail ) {
+//			self::sendEventAsEmail($idEvent, $emailReceivers, true);
+//		}
+//
+//		return $idEvent;
+//	}
 
 
 
