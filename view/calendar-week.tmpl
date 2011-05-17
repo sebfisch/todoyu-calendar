@@ -26,8 +26,7 @@
 					<tr>
 						<td class="wk-allday" colspan="7">
 							<table class="st-grid">
-								{* --------------- Birthdays -------------------- *}
-								{if sizeof($birthdays, constant(COUNT_RECURSIVE)) > 0}
+								{* --------------- (TD Cell-width and) birthday items ------- *}
 									<tr>
 										{for weekday 0 6}
 											{$dayDateKey = date('Ymd', $timestamps[$weekday])}
@@ -40,7 +39,6 @@
 											</td>
 										{/for}
 									</tr>
-								{/if}
 								{foreach $dayEvents dayDayEvents}
 									<tr>
 										{foreach $dayDayEvents dayEvent}
