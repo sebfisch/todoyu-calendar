@@ -53,7 +53,7 @@ class TodoyuCalendarHolidayManager {
 	 */
 	public static function getAllHolidays() {
 		$where	= 'deleted = 0';
-		$order	= 'date';
+		$order	= 'date DESC';
 
 		return TodoyuRecordManager::getAllRecords(self::TABLE, $where, $order);
 	}
@@ -210,7 +210,7 @@ class TodoyuCalendarHolidayManager {
 		foreach($holidays as $holiday) {
 			$records[] = array(
 				'id'					=> $holiday['id'],
-				'label'					=> $holiday['title'],
+				'label'					=> self::getHolidayLabel($holiday['id'], true, true),
 				'additionalInformations'=> TodoyuTime::format($holiday['date'], 'date')
 			);
 		}
@@ -343,17 +343,25 @@ class TodoyuCalendarHolidayManager {
 
 
 	/**
-	 * Get label of holiday with given ID
+	 * Get label of given holiday. Includes the holiday title plus optionally it's date and holidaysets
 	 *
-	 * @param	Integer	$holidayID
+	 * @param	Integer		$holidayID
+	 * @param	Boolean		$showDate
 	 * @return	String
 	 */
-	public static function getHolidayLabel($idHoliday) {
+	public static function getHolidayLabel($idHoliday, $showDate = false) {
 		$idHoliday	= intval($idHoliday);
-
 		$holiday	= self::getHoliday($idHoliday);
 
-		return $holiday->getLabel();
+		$label	= $holiday->getLabel();
+
+			// Include date?
+		if( $showDate ) {
+			$date	= $holiday->get('date');
+			$label	= TodoyuTime::format($date, 'date') . ' - ' . $label;
+		}
+
+		return $label;
 	}
 
 
