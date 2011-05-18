@@ -41,7 +41,7 @@
 				<field type="button" name="sendAsEmail">
 					<text>calendar.event.mail.popup.button.sendAsEmail</text>
 					<class>sendemail</class>
-					<onclick>Todoyu.Ext.calendar.Event.Mail.sendReminderEmail(#id_event#, Todoyu.Ext.calendar.Event.operationTypeID.update, $F('event-0-field-emailreceivers'));Todoyu.Popups.closeLast()</onclick>
+					<onclick>Todoyu.Ext.calendar.Event.Mail.sendMail(#id_event#, Todoyu.Ext.calendar.Event.operationTypeID.update, $F('event-0-field-emailreceivers'));Todoyu.Popups.closeLast()</onclick>
 					<hasIcon/>
 				</field>
 
