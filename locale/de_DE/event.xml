@@ -76,7 +76,7 @@
 	<label index="mail.event.deleted.previousdata">Termin-Daten vor Löschung</label>
 	<label index="mail.popup.headline">Termin-Information als Email versenden</label>
 	<label index="mail.popup.button.dontaskagain">Keine Email versenden und diese Frage nicht mehr stellen.</label>
-	<label index="mail.popup.button.sendAsEmail">Termin-Email Versenden</label>
+	<label index="mail.popup.button.sendAsEmail">Termin-Email versenden</label>
 	<label index="mail.popup.subject">Betreff</label>
 	<label index="mail.popup.subject.create">Neuer Termin erstellt</label>
 	<label index="mail.popup.subject.update">Termin geändert</label>
