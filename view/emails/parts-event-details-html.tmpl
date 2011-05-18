@@ -1,18 +1,18 @@
 	<tr>
-		<td style="padding-left: 10px;" >
+		<td style="padding-left: 10px;">
 			{math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}{math equation="d / 3600" d=$duration assign=duration}
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td>{Label core.global.title}:	</td>
+					<td class="label">{Label core.global.title}:	</td>
 					<td>{htmlencode $event.title}</td>
 				</tr>
 				<tr>
-					<td>{Label calendar.event.attr.timespan}: </td>
+					<td class="label">{Label calendar.event.attr.timespan}: </td>
 					<td>{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} {Label core.date.time.hours})</td>
 				</tr>
 				{if ! empty($event.place)}
 				<tr>
-					<td>{Label calendar.event.attr.place}: </td>
+					<td class="label"">{Label calendar.event.attr.place}: </td>
 					<td>{$event.place}</td>
 				</tr>
 				{/if}
@@ -22,12 +22,12 @@
 				</tr>
 				{if ! empty($personWrite)}
 					<tr>
-						<td>{Label calendar.event.mail.event.from}:</td>
+						<td class="label">{Label calendar.event.mail.event.from}:</td>
 						<td>{$personWrite.firstname} {$personWrite.lastname}{if $hideEmails != true} <{$personWrite.email}>{/if}</td>
 					</tr>
 					{if $personWrite.id !== $personSend.id}
 						<tr>
-							<td>{Label calendar.event.mail.sentBy}:	</td>
+							<td class="label">{Label calendar.event.mail.sentBy}:	</td>
 							<td>{$personSend.firstname} {$personSend.lastname}
 								{if $hideEmails != true && ! empty($personSend.email)}<{$personSend.email}>{/if}
 							</td>
@@ -37,29 +37,29 @@
 
 				{if ! empty($event.description)}
 				<tr>
-					<td>{Label core.global.description}:	</td>
+					<td class="label">{Label core.global.description}:	</td>
 					<td>{html2text $event.description}</td>
 				</tr>
 				{/if}
 				<tr>
-					<td> </td>
-					<td> </td>
-				</tr>
-				<tr>
 					<td>
-						<br /><br />
-						{Label calendar.event.attr.attendees}:
+						<br /> <br />
 					</td>
 					<td></td>
+
 				</tr>
 				<tr>
-					<td></td>
+					<td class="label">
+
+						{Label calendar.event.attr.attendees}:
+					</td>
 					<td>
 						{foreach $attendees personData}
 							{$personData.firstname} {$personData.lastname}<br />
 						{/foreach}
 					</td>
 				</tr>
+
 			</table>
 		</td>
 	</tr>

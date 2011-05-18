@@ -1,64 +1,56 @@
-<table class="eventView">
+<table class="eventDetailView">
 {* ------------------------ Title *}
-	<tr>
-		<td class="eventAttrTitle">
-			<span class="icon eventTitleIcon"> </span>
-			&nbsp;{Label core.global.title}
+	<tr class="even">
+		<td class="title label">
+			{Label core.global.title}
 		</td>
-		<td class="eventValue">{$event.title}</td>
+		<td class="">{$event.title}</td>
 	</tr>
 {* ------------------------ Place *}
 {if ! empty($event.place)}
-	<tr>
-		<td class="eventAttrTitle">
-			<span class="icon placeIcon"> </span>
-			&nbsp;{Label calendar.event.attr.place}
+	<tr class="odd">
+		<td class="place label">
+			{Label calendar.event.attr.place}
 		</td>
-		<td class="eventValue">{$event.place}</td>
+		<td class="place">{$event.place}</td>
 	</tr>
 {/if}
 {* ------------------------ Timespan *}
-	<tr>
-		<td class="eventAttrTitle">
-			<span class="icon dateIcon"> </span>
-			&nbsp;{Label calendar.event.attr.timespan}
+	<tr  class="even">
+		<td class="label">
+			{Label calendar.event.attr.timespan}
 		</td>
-		<td class="eventValue">
+		<td class="">
 			{$event.durationString}
 		</td>
 	</tr>
 {* ------------------------ Description *}
 {if ! empty($event.description)}
-	<tr>
-		<td class="eventAttrTitle">
-			<span class="icon"> </span>
-			<br />&nbsp;{Label core.global.description}
+	<tr class="odd">
+		<td class="label">
+			{Label core.global.description}
 		</td>
-		<td class="eventValue">
-			<br />{substituteLinkableElements(nl2br(cleanHtml($event.description)))}
-			<br /><br/>
+		<td class="description">
+			{substituteLinkableElements(nl2br(cleanHtml($event.description)))}
 		</td>
 	</tr>
 {/if}
 {* ------------------------ Creator person *}
-	<tr>
-		<td class="eventAttrTitle">
-			<span class="icon"> </span>
-			&nbsp;{Label calendar.event.attr.creator}
+	<tr class="even">
+		<td class="label">
+			{Label calendar.event.attr.creator}
 		</td>
-		<td class="eventValue">
+		<td class="">
 			{personLabel idPrefix="event-personcreate" idRecord=$event.person_create.id idPerson=$event.person_create.id}
-			<br /><br />
 		</td>
 	</tr>
 
 {* ------------------------ Attendees *}
-	<tr>
-		<td class="eventAttrTitle ">
-			<span class="icon personsIcon"> </span>
-			&nbsp;{Label calendar.event.attr.attendees}
+	<tr class="odd">
+		<td class="label">
+			{Label calendar.event.attr.attendees}
 		</td>
-		<td class="eventValue">
+		<td class="">
 		{foreach $event.persons person personData}
 			{if $personData.is_acknowledged}{$class='eventperson-acknowledged'}{else}{$class='eventperson-unacknowledged'}{/if}
 			{if in_array($personData.id, array_keys($event.persons_email))}{$class.='-email'}{/if}
@@ -71,14 +63,13 @@
 {* ------------------------ Scheduled Reminders *}
 {if isAllowedEventReminderPopup($event.id) || isAllowedEventReminderEmail($event.id)}
 	{$personID = personid()}
-	<tr>
-		<td class="eventReminders ">
-			<span class="icon reminderIcon"> </span>
-			&nbsp;{Label calendar.reminder.myreminders}
+	<tr class="even">
+		<td class="label">
+			{Label calendar.reminder.myreminders}
 		</td>
 		<td>
 			{if isAllowedEventReminderPopup($event.id)}
-				{Label calendar.reminder.email}:
+				<span class="reminderLabel">{Label calendar.reminder.email}:</span>
 				{if $event.persons[$personID][date_remindemail] == 0}
 					{Label calendar.reminder.deactivated}
 				{else}
@@ -88,7 +79,7 @@
 				<br />
 			{/if}
 			{if isAllowedEventReminderPopup($event.id)}
-				{Label calendar.reminder.popup}:
+				<span class="reminderLabel">{Label calendar.reminder.popup}:</span>
 				{if $event.persons[$personID][date_remindpopup] == 0}
 					{Label calendar.reminder.deactivated}
 				{else}

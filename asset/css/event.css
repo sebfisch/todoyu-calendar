@@ -339,7 +339,13 @@ div.weekMode div#calendararea div.event dd span.desc {
 
 #events .details {
 	border-left:1px solid #ddd;
-	padding:10px 5px 10px 15px;
+	border-right:1px solid #ddd;
+
+}
+
+#events .details .label{
+	padding-left:10px;
+
 }
 
 #events .details .left {
@@ -469,17 +475,34 @@ div.eventDetails dd {
 /* ---------------------------
 	Detail view
    --------------------------- */
-table.eventView {
+table.eventDetailView {
 	/*margin:12px 0 12px 0;*/
 	width:100%;
 	line-height:20px;
 }
 
-table.eventView td {
+table.eventDetailView td {
 	text-align:left;
+	padding:7px 0 7px 0;
+
 }
-table.eventView td a {
+table.eventDetailView td a {
 	text-decoration:underline;
+}
+
+table.eventDetailView td.label {
+	font-weight:bold;
+	width:120px;
+	padding-left:2px;
+}
+
+table.eventDetailView span.reminderLabel {
+	font-weight:bold;
+}
+
+table.eventDetailView tr.odd,
+table.eventDetailView tr.even {
+	border-bottom:1px solid #ddd;
 }
 
 button.editEvent .icon {
