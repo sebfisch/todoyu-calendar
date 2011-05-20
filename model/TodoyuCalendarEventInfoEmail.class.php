@@ -70,8 +70,38 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 		$this->setSender(TodoyuAuth::getPersonID());
 		$this->setTypeSubject();
 
+		$this->setHeadlineByType();
+
+		Todoyu::setEnvironmentForPerson($this->person->getID());
+
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
+
+		Todoyu::resetEnvironment();
+	}
+
+
+
+	/**
+	 * Set headline by type
+	 *
+	 */
+	private function setHeadlineByType() {
+		$headline	= '';
+
+		switch($this->actionType) {
+			case OPERATIONTYPE_RECORD_CREATE:
+				$headline	= 'calendar.event.mail.title.create';
+				break;
+			case OPERATIONTYPE_RECORD_DELETE:
+				$headline	= 'calendar.event.mail.title.deleted';
+				break;
+			case OPERATIONTYPE_RECORD_UPDATE:
+				$headline	= 'calendar.event.mail.title.update';
+				break;
+		}
+
+		$this->setHeadline($headline);
 	}
 
 
@@ -109,22 +139,13 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * @return	String|Boolean
 	 */
 	private function getContent($asHtml = false) {
-		Todoyu::setEnvironmentForPerson($this->person->getID());
-
 		$tmpl	= $this->getTemplate($asHtml);
+		$data	= $this->getData();
 
-		if( $tmpl === false ) {
-			$content	= false;
-		} else {
-			$data				= $this->getData();
-			$data['hideEmails']	= true;
+		$data['hideEmails']	= true;
+		$data['colors']		= TodoyuCalendarEventManager::getEventTypeColors();
 
-			$content	= Todoyu::render($tmpl, $data);
-		}
-
-		Todoyu::resetEnvironment();
-
-		return $content;
+		return Todoyu::render($tmpl, $data);
 	}
 
 

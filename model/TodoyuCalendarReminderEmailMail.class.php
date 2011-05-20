@@ -58,11 +58,17 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 		$subject	= Todoyu::Label('calendar.reminder.email.subject') . ': ' . $this->reminder->getEvent()->getTitle();
 
 		$this->addReceiver($this->getPerson()->getID());
-
 		$this->setSubject($subject);
+		$this->setHeadline('calendar.reminder.email.title');
+
+		$this->addCssStyles('td.label{font-weight:bold;width:120px;}');
+
+		Todoyu::setEnvironmentForPerson($this->getPerson()->getID());
 
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
+
+		Todoyu::resetEnvironment();
 	}
 
 
@@ -99,17 +105,13 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 	 * @return	String
 	 */
 	private function getContent($asHTML = true) {
-		Todoyu::setEnvironmentForPerson($this->getPerson()->getID());
+		$tmpl	= $this->getTemplate($asHTML);
+		$data	= TodoyuCalendarEventMailManager::getMailData($this->getEvent()->getID(), $this->getPerson()->getID(), true);
 
-		$data				= TodoyuCalendarEventMailManager::getMailData($this->getEvent()->getID(), $this->getPerson()->getID(), true);
 		$data['hideEmails']	= false;
-		$tmpl				= $this->getTemplate($asHTML);
+		$data['colors']		= TodoyuCalendarEventManager::getEventTypeColors();
 
-		$content	=  Todoyu::render($tmpl, $data);
-
-		Todoyu::resetEnvironment();
-
-		return $content;
+		return Todoyu::render($tmpl, $data);
 	}
 
 

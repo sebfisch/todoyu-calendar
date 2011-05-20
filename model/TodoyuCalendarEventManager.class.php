@@ -1338,6 +1338,29 @@ class TodoyuCalendarEventManager {
 		return self::getOverbookingWarning($idEvent, $eventData, true, false, true);
 	}
 
+
+
+	/**
+	 * Get colors for event type
+	 *
+	 * @return	Array
+	 */
+	public static function getEventTypeColors() {
+		return array(
+			0						=> '',
+			EVENTTYPE_GENERAL		=> "#7f007f",
+			EVENTTYPE_AWAY			=> "#FF0000",
+			EVENTTYPE_BIRTHDAY		=> "#FFAC00",
+			EVENTTYPE_VACATION		=> "#FFFC00",
+			EVENTTYPE_EDUCATION		=> "#77DC00",
+			EVENTTYPE_MEETING		=> "green",
+			EVENTTYPE_AWAYOFFICIAL	=> "#A60000",
+			EVENTTYPE_HOMEOFFICE	=> "grey",
+			9						=> "#2335e0",
+			10						=> "pink"
+		);
+	}
+
 }
 
 ?>
