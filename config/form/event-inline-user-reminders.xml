@@ -4,7 +4,7 @@
 	<fieldsets>
 
 		<fieldset name="reminders">
-			<legend>My reminders for this appointment</legend>
+			<legend>calendar.form.legend.reminders</legend>
 			<elements>
 
 				<field type="select" name="reminder_email">

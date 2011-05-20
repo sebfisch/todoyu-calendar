@@ -8,7 +8,6 @@
 	<fieldsets>
 
 		<fieldset name="emailreminders">
-			<legend>Reminder Defaults</legend>
 			<legend>calendar.form.legend.profile.reminder.general</legend>
 			<elements>
 

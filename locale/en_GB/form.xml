@@ -3,6 +3,7 @@
 	<label index="legend.basics">Basic information about your event [DONE]</label>
 	<label index="legend.details">Further information [DONE]</label>
 	<label index="legend.notification">Notify participants [DONE]</label>
+	<label index="legend.reminders">My reminders for this appointment [DONE]</label>
 	<label index="legend.profile.general">General Calendar Settings [DONE]</label>
 	<label index="legend.profile.reminder.general">Configure your reminders to your needs [DONE]</label>
 	<label index="legend.admin.overbooking">Configure the overbooking behaviour [DONE]</label>
