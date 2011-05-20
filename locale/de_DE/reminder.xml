@@ -10,6 +10,8 @@
 	<label index="notify.email.timeupdated">Zeitpunkt der Email-Erinnerung geändert</label>
 	<label index="notify.popup.timeupdated">Zeitpunkt der Popup-Erinnerung geändert</label>
 	<label index="beforeDateStart">vor Terminbeginn</label>
+	<label index="atDateStart">mit Terminbeginn</label>
 	<label index="email.subject">Termin-Erinnerung</label>
 	<label index="email.title">Automatische Termin-Erinnerung</label>
+	<label index="noReminder">Mich nicht erinnern</label>
 </labels>

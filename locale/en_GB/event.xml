@@ -6,9 +6,9 @@
 	<label index="edit">Edit Event</label>
 	<label index="edit.sendasemail">Send notification by email</label>
 	<label index="delete">Delete Event</label>
-	<label index="create.label">New Event</label>
 	<label index="saved.ok">Event Saved</label>
 	<label index="saved.error">Saving of event failed</label>
+	<label index="create.label">New Event</label>
 	<label index="type.general">General</label>
 	<label index="type.away">Absence</label>
 	<label index="type.birthday">Birthday</label>
