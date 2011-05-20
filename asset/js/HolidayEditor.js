@@ -111,7 +111,7 @@
 	 * @param	{Ajax.Response}	response
 	 */
 	onSaved: function(response) {
-		Todoyu.notify('success', response.responseText);
+		Todoyu.notifySuccess(response.responseText);
 	}
 
  };
