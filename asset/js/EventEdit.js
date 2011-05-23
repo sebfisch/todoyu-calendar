@@ -190,7 +190,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 				fields = ['is-dayevent', 'date-end', 'person', 'place'];
 				break;
 
-				// Vaction
+				// Vacation
 			case Todoyu.Ext.calendar.Event.eventTypeID.vacation:
 				fields = ['is-dayevent'];
 				break;
@@ -231,7 +231,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 
 	/**
-	 * Set time for full-day event
+	 * Set default timespan for full-day event: 00:00 to 23:59
 	 *
 	 * @method	setFulldayTime
 	 * @param	{Element}		fullDayCheckbox
@@ -426,7 +426,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 
 	/**
-	 * Handler when event person assignment field is autocompleted
+	 * Handler when event person assignment field is auto-completed
 	 *
 	 * @method	onPersonAcCompleted
 	 * @param	{Ajax.Response}			response

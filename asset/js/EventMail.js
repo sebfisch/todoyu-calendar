@@ -149,7 +149,7 @@ Todoyu.Ext.calendar.Event.Mail = {
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
 			parameters: {
-				action:		'sendMail',
+				action:			'sendMail',
 				'event':		idEvent,
 				'persons':		personIDs.toArray().join(','),
 				'operation':	operationTypeID
