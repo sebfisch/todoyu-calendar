@@ -10,7 +10,6 @@
 	<label index="search.label">Termine</label>
 	<label index="search.mode.label">Termine finden</label>
 	<label index="portal.tab.appointments">Termine</label>
-	<label index="portal.tab.appointments">Termine</label>
 	<label index="quicknav.backward.title">Zurück</label>
 	<label index="quicknav.forward.title">Vorwärts</label>
 	<label index="quicknav.today.title">Aktuellen Tag anzeigen</label>
@@ -48,13 +47,19 @@
 	<label index="profile.module">Kalender</label>
 	<label index="profile.module.main.tab">Allgemein</label>
 	<label index="profile.module.main.header">Allgemeine Konfiguration des Kalenders</label>
-	<label index="profile.module.reminders.tab">Termin-Erinnerungen</label>
-	<label index="extconf.autosendeventmail.label">Rollen, an welche neue / geänderte / gelöschte Termine automatisch gesendet werden (falls diese Teilnehmer sind). Überschreibt die Email-Konfiguration.</label>
-	<label index="profile.module.reminders.header">Konfiguration zu Termin-Erinnerungen</label>
+	 <label index="profile.module.reminders.tab">Event Reminders [TRANSLATE]</label>
+	<label index="extconf.reminder.popup_roles.label">Roles to get event reminder pop-up [TRANSLATE]</label>
+	<label index="extconf.reminder.popup.advancetime.label">Time before event to show reminder [TRANSLATE]</label>
+ 	<label index="extconf.reminder.email_roles.label">Roles to get event reminder email [TRANSLATE]</label>
+	<label index="extconf.autosendeventmail.label">Roles to automatically send email of new / changed / deleted events to internal participants of event (removes mailing option)? [TRANSLATE]</label>
+	<label index="extconf.reminder.audio.active.label">Play audio with reminder pop-up? [TRANSLATE]</label>
+  	<label index="profile.module.reminders.header">Configuration for your event reminders [TRANSLATE]</label>
+	<label index="profile.module.main.header">Main Calendar Configuration [TRANSLATE]</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Nachfrage ob Email versendet werden soll, nach Änderung von Terminen via Drag&amp;Drop deaktivieren?</label>
-	<label index="profile.reminder.email.advancetime.label">Voreingestellte Zeit Email</label>
+	<label index="profile.is_reminderpopupactive">Enable pop-up reminder by default [TRANSLATE]</label>
+	<label index="profile.is_reminderemailactive">Enable email reminder by default [TRANSLATE]</label>
+	<label index="profile.reminder.email.advancetime.label">Time Preset Email [TRANSLATE]</label>
 	<label index="profile.reminder.popup.advancetime.label">Voreingestellte Zeit Popup</label>
 	<label index="profile.main.saved">Die Einstellungen wurden gespeichert.</label>
 	<label index="profile.reminders.saved">Einstellungen zu Erinnerungen wurden gespeichert.</label>
-
 </labels>
