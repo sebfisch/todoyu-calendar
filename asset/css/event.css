@@ -268,7 +268,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 }
 
 #birthdays div.event {
-	background-color:#FFF !important;
+	/*background-color:#FFF !important;*/
 	border-bottom:1px solid #ddd;
 }
 #birthdays div.event div {
@@ -426,8 +426,8 @@ div.eventDetails dd {
 }
 
 #holidays .holidayDate {
-	width:60px;
-	padding-left:35px;
+	width:227px;
+	padding-left:48px;
 }
 	#holidays .holidayDate.hasIcon {
 		background:url(../img/icons.png) no-repeat scroll 0 -390px;
@@ -436,12 +436,12 @@ div.eventDetails dd {
 #holidays .holidayTitle {
 	padding-left:20px;
 	float:left;
-	width:180px;
+	width:134px;
 }
 #holidays .holidayWorkinghours,
 #holidays .holidayDescription {
 	position:relative;
-	width:120px;
+	width:148px;
 }
 
 
@@ -528,14 +528,15 @@ button.editEvent .icon {
 /* ----------------------
 	Birthdays
    ---------------------- */
-/*
-.event.typeBirthday {
-	background:url(../../../contact/asset/img/icons.png) no-repeat scroll 1px -330px;
-	padding:0 0 0 18px;
-	margin:0 0 2px 1px;
-	color:#000;
-	background-color:#d7dcc6;
-	overflow:hidden;
-	min-height:17px;
+.event.odd {
+  background-color:#f3f3f3 !important;
 }
-*/
+div .typeBirthday div.type {
+	margin-right:15px;
+}
+div .typeBirthday div.date {
+	width:245px !important;
+}
+div .typeBirthday div.name {
+	width:130px !important;
+}
