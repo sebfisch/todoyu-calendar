@@ -243,8 +243,10 @@ class TodoyuCalendarReminderManager {
 		foreach($personIDs as $idPerson) {
 			$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
 
-			$dateRemindEmail	= $reminder->getDateRemind(CALENDAR_TYPE_EVENTREMINDER_EMAIL);
-			$dateRemindPopup	= $reminder->getDateRemind(CALENDAR_TYPE_EVENTREMINDER_POPUP);
+
+
+			$dateRemindEmail	= $reminder->getDateRemindEmail();
+			$dateRemindPopup	= $reminder->getDateRemindPopup();
 
 			$fieldValues	= array();
 
@@ -252,7 +254,7 @@ class TodoyuCalendarReminderManager {
 				$fieldValues['date_remindemail']	= $dateRemindEmail + $offset;
 			}
 
-			if( $dateRemindEmail > 0 ) {
+			if( $dateRemindPopup > 0 ) {
 				$fieldValues['date_remindpopup']	= $dateRemindPopup + $offset;
 			}
 
@@ -307,18 +309,26 @@ class TodoyuCalendarReminderManager {
 
 			$form->addFieldset('reminders', $remindersFieldset, 'before:buttons');
 
+				// Get advance time for reminders
+			if( $idEvent === 0 ) {
+				$advanceTimeEmail	= self::getAdvanceTimeEmail();
+				$advanceTimePopup	= self::getAdvanceTimePopup();
+			} else {
+				$event				= TodoyuCalendarEventManager::getEvent($idEvent);
+				$advanceTimeEmail	= $event->getReminderAdvanceTimeEmail();
+				$advanceTimePopup	= $event->getReminderAdvanceTimePopup();
+			}
+
 				// Email
 			if( $emailAllowed ) {
-				$advanceTime	= self::getAdvanceTimeEmail();
-				$form->getFieldset('reminders')->getField('reminder_email')->setValue($advanceTime);
+				$form->getFieldset('reminders')->getField('reminder_email')->setValue($advanceTimeEmail);
 			} else {
 				$form->getFieldset('reminders')->removeField('reminder_email');
 			}
 
 				// Popup
 			if( $popupAllowed ) {
-				$advanceTime	= self::getAdvanceTimePopup();
-				$form->getFieldset('reminders')->getField('reminder_popup')->setValue($advanceTime);
+				$form->getFieldset('reminders')->getField('reminder_popup')->setValue($advanceTimePopup);
 			} else {
 				$form->getFieldset('reminders')->removeField('reminder_popup');
 			}

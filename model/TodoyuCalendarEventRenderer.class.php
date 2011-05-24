@@ -320,10 +320,12 @@ class TodoyuCalendarEventRenderer {
 			// Construct form object for inline form
 		$xmlPath= 'ext/calendar/config/form/event-reminder.xml';
 		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
-		$form->setFormData(array('id_event' => $idEvent));
+		$form->setFormData(array(
+			'id_event' => $idEvent
+		));
 
 		$data	= array(
-			'event'				=> $event->getTemplateData(true, true),
+			'event'				=> $event->getTemplateData(true, true, true),
 			'buttonsFieldset'	=> $form->render()
 		);
 
@@ -400,7 +402,7 @@ class TodoyuCalendarEventRenderer {
 				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.update');
 				break;
 		}
-		
+
 		return $subject;
 	}
 

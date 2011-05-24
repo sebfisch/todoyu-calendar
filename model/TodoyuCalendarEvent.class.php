@@ -195,7 +195,7 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	 * @return	Array
 	 */
 	public function getAssignedPersonIDs() {
-		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($this->id, false);
+		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($this->getID(), false);
 
 		return TodoyuArray::getColumn($assignedPersons, 'id_person');
 	}
@@ -209,7 +209,96 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	 * @return	Array
 	 */
 	public function getAssignedPersonsData($getRemindersData = false) {
-		return TodoyuCalendarEventManager::getAssignedPersonsOfEvent($this->id, true, $getRemindersData);
+		return TodoyuCalendarEventManager::getAssignedPersonsOfEvent($this->getID(), true, $getRemindersData);
+	}
+
+
+
+	/**
+	 * Get reminder time for email
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	public function getReminderTimeEmail($idPerson = 0) {
+		return $this->getReminderTime('email', $idPerson);
+	}
+
+
+
+	/**
+	 * Get reminder time for popup
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	public function getReminderTimePopup($idPerson = 0) {
+		return $this->getReminderTime('popup', $idPerson);
+	}
+
+
+
+	/**
+	 * Get reminder time for type
+	 *
+	 * @param	String		$type
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	private function getReminderTime($type, $idPerson = 0) {
+		$idPerson		= Todoyu::personid($idPerson);
+		$assignedPersons= $this->getAssignedPersonsData(true);
+
+		if( array_key_exists($idPerson, $assignedPersons) ) {
+			$key	= 'date_remind' . $type;
+			return intval($assignedPersons[$idPerson][$key]);
+		} else {
+			return 0;
+		}
+	}
+
+
+
+	/**
+	 * Get reminder advance time for email (in seconds)
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	public function getReminderAdvanceTimeEmail($idPerson = 0) {
+		return $this->getReminderAdvanceTime('email', $idPerson);
+	}
+
+
+
+	/**
+	 * Get reminder advance time for popup (in seconds)
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	public function getReminderAdvanceTimePopup($idPerson = 0) {
+		return $this->getReminderAdvanceTime('popup', $idPerson);
+	}
+
+
+
+	/**
+	 * Get reminder advance time for type
+	 *
+	 * @param	String		$type
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	private function getReminderAdvanceTime($type, $idPerson = 0) {
+		$idPerson	= Todoyu::personid($idPerson);
+		$remindTime	= $this->getReminderTime($type, $idPerson);
+
+		if( $remindTime === 0 ) {
+			return 0;
+		} else {
+			return $this->getStartDate() - $remindTime;
+		}
 	}
 
 

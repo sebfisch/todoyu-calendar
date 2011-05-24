@@ -73,8 +73,7 @@
 				{if $event.persons[$personID][date_remindemail] == 0}
 					{Label calendar.reminder.deactivated}
 				{else}
-					{durationFormat $event.date_start - $event.persons[$personID][date_remindemail]} {Label calendar.reminder.beforeDateStart}
-					- {dateFormat $event.persons[$personID][date_remindemail] datetime}
+					{durationFormat $event.date_start - $event.persons[$personID][date_remindemail]} {Label calendar.reminder.beforeDateStart} - {dateFormat $event.persons[$personID][date_remindemail] datetime}
 				{/if}
 				<br />
 			{/if}
@@ -83,8 +82,7 @@
 				{if $event.persons[$personID][date_remindpopup] == 0}
 					{Label calendar.reminder.deactivated}
 				{else}
-					{durationFormat $event.date_start - $event.persons[$personID][date_remindpopup]} {Label calendar.reminder.beforeDateStart}
-					- {dateFormat $event.persons[$personID][date_remindpopup] datetime}
+					{durationFormat $event.date_start - $event.persons[$personID][date_remindpopup]} {Label calendar.reminder.beforeDateStart} - {dateFormat $event.persons[$personID][date_remindpopup] datetime}
 				{/if}
 				<br />
 			{/if}

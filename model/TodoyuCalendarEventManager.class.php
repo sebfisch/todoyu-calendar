@@ -298,19 +298,20 @@ class TodoyuCalendarEventManager {
 
 		$fields	= '	 mm.id_person
 					,mm.is_acknowledged';
-		if( $getRemindersData ) {
-			$fields	.= ',mm.date_remindemail
-						,mm.date_remindpopup';
-		}
 		$tables		= '	ext_calendar_mm_event_person mm';
 		$where		= '	mm.id_event = ' . $idEvent;
 		$group		= ' mm.id_person';
 		$indexField	= 'id_person';
 
 		if( $getPersonData ) {
-			$fields .= ',p.*';
+			$fields .= ', p.*';
 			$tables	.= ', ext_contact_person p';
 			$where	.= ' AND mm.id_person = p.id';
+		}
+
+		if( $getRemindersData ) {
+			$fields	.= ', mm.date_remindemail
+						, mm.date_remindpopup';
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, '', '', $indexField);
@@ -698,6 +699,7 @@ class TodoyuCalendarEventManager {
 	 * @param	Integer				$newStartDate
 	 * @param	String				$mode
 	 * @param	Boolean|Array		True or array of overbooking infos
+	 * @return	Array|Boolean
 	 */
 	public static function moveEvent($idEvent, $newStartDate, $mode, $overbookingConfirmed = false) {
 		$event	= self::getEvent($idEvent);
@@ -726,6 +728,9 @@ class TodoyuCalendarEventManager {
 			if( sizeof($overbookedInfos) > 0 ) {
 				$errorMessages = array();
 				foreach($overbookedInfos as $idPerson => $infos) {
+					/**
+					 * @todo	Why this loop?
+					 */
 					foreach($infos['events'] as $event) {
 						$errorMessages[] = Todoyu::Label('calendar.event.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
 					}
