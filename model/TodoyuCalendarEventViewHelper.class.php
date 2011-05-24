@@ -146,8 +146,8 @@ class TodoyuCalendarEventViewHelper {
 
 		foreach($persons as $person) {
 			$options[] 	= array(
-				'value'	=> $person['id'],
-				'label'	=> TodoyuContactPersonManager::getLabel($person['id'], true, true)
+				'value'		=> $person['id'],
+				'label'		=> TodoyuContactPersonManager::getLabel($person['id'], true, true),
 			);
 		}
 

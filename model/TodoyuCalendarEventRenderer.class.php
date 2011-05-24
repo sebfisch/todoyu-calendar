@@ -321,11 +321,10 @@ class TodoyuCalendarEventRenderer {
 		$xmlPath= 'ext/calendar/config/form/event-reminder.xml';
 		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
 		$form->setFormData(array('id_event' => $idEvent));
-		$buttonsForm= $form->render();
 
 		$data	= array(
 			'event'				=> $event->getTemplateData(true, true),
-			'buttonsFieldset'	=> $buttonsForm
+			'buttonsFieldset'	=> $form->render()
 		);
 
 		$tmpl	= 'ext/calendar/view/event-reminder.tmpl';
@@ -347,8 +346,9 @@ class TodoyuCalendarEventRenderer {
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
 			// Construct form object for inline form
-		$xmlPath= 'ext/calendar/config/form/event-mailing.xml';
-		$form	= TodoyuFormManager::getForm($xmlPath, 0, array(), array('#id_event#'=> $idEvent));
+		$xmlPath	= 'ext/calendar/config/form/event-mailing.xml';
+		$preParse	= array('#id_event#'=> $idEvent);
+		$form		= TodoyuFormManager::getForm($xmlPath, 0, array(), $preParse);
 
 			// Have all email persons but user himself preselected
 		$emailPersonIDs	= array_keys(TodoyuCalendarEventManager::getEmailReceivers($idEvent, false));
@@ -360,26 +360,14 @@ class TodoyuCalendarEventRenderer {
 			'emailreceivers'	=> $emailPersonIDs,
 		));
 
-			// Set the appropriate subject (created, updated, deleted)
-		switch($operationID) {
-			case OPERATIONTYPE_RECORD_CREATE:
-				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.create');
-				break;
-			case OPERATIONTYPE_RECORD_DELETE:
-				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.delete');
-
-					// Remove "don't ask again" button in form of deleted events
-				$form->getFieldset('buttons')->removeField('dontaskagain');
-				break;
-			case OPERATIONTYPE_RECORD_UPDATE:
-			default:
-				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.update');
-				break;
+			// Remove "don't ask again" button in form of deleted events
+		if($operationID == OPERATIONTYPE_RECORD_DELETE ) {
+			$form->getFieldset('buttons')->removeField('dontaskagain');
 		}
 
 			// Render popup content
 		$data	= array(
-			'subject'		=> $subject,
+			'subject'		=> self::getEventMailSubjectByOperationID($operationID),
 			'event'			=> $event->getTemplateData(true, true),
 			'mailingForm'	=> $form->render()
 		);
@@ -387,6 +375,33 @@ class TodoyuCalendarEventRenderer {
 		$tmpl	= 'ext/calendar/view/event-mailing.tmpl';
 
 		return Todoyu::render($tmpl, $data);
+	}
+
+
+
+	/**
+	 * Get subject label of event mail by operation ID (created, updated, deleted)
+	 *
+	 * @param	Integer		$operationID
+	 * @return	String
+	 */
+	public static function getEventMailSubjectByOperationID($operationID) {
+		$operationID	= intval($operationID);
+
+		switch($operationID) {
+			case OPERATIONTYPE_RECORD_CREATE:
+				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.create');
+				break;
+			case OPERATIONTYPE_RECORD_DELETE:
+				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.delete');
+				break;
+			case OPERATIONTYPE_RECORD_UPDATE:
+			default:
+				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.update');
+				break;
+		}
+		
+		return $subject;
 	}
 
 }
