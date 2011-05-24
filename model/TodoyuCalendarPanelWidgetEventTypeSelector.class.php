@@ -53,7 +53,7 @@ class TodoyuCalendarPanelWidgetEventTypeSelector extends TodoyuPanelWidget {
 		$this->addHasIconClass();
 
 			// Init widget JS (observers)
-		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.EventTypeSelector.init.bind(Todoyu.Ext.calendar.PanelWidget.EventTypeSelector)', 100);
+		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.EventTypeSelector.init', 100, true);
 	}
 
 
