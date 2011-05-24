@@ -87,7 +87,7 @@
 					{if $event.date_start - $event.persons[$personID][date_remindpopup] === 1}
 						{Label calendar.reminder.atDateStart}
 					{else}
-						{durationFormat $event.date_start - $event.persons[$personID][date_remindpopup]} {Label calendar.reminder.beforeDateStart}
+						{durationFormat $event.date_start - $event.persons[$personID][date_remindpopup]} {Label calendar.reminder.beforeDateStart} - {dateFormat $event.persons[$personID][date_remindpopup] datetime}
 					{/if}
 				{/if}
 				<br />
