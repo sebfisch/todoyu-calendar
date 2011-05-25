@@ -143,6 +143,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * Save changed starting date when event has been dragged to a new position
 	 *
 	 * @param	Array		$params
+	 * @return	Void|String
 	 */
 	public function dragDropAction(array $params) {
 		$idEvent	= intval($params['event']);
