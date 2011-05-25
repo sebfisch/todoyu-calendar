@@ -205,8 +205,8 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 		var message	= '[LLL:calendar.ext.reminder.popup.title';
 
 		var timeoutId = setInterval(function() {
-			document.title = document.title == message ? ' ' : message;
-		}, 500);
+			document.title = document.title == message ? oldTitle : message;
+		}, 600);
 
 		window.onmousemove = function() {
 			clearInterval(timeoutId);

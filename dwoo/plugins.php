@@ -127,7 +127,7 @@ function Dwoo_Plugin_EventTypeKey_compile(Dwoo_Compiler $compiler, $idEventIndex
  * @subpackage	Template
  *
  * @param		Dwoo 		$dwoo
- * @param		Integer		$dayNum
+ * @param		Integer		$timestamp
  * @return		String
  */
 function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
@@ -144,7 +144,7 @@ function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
  * @subpackage	Template
  *
  * @param	Dwoo 		$dwoo
- * @param	Integer		$dayNum
+ * @param	Integer		$timestamp
  * @return	String
  */
 function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {
@@ -207,8 +207,10 @@ function Dwoo_Plugin_durationFormat_compile(Dwoo_Compiler $compiler, $seconds) {
  * @package		Todoyu
  * @subpackage	Calendar
  *
- * @param	Dwoo_Compiler 		$compiler
- * @param	Integer			$seconds
+ * @param	Dwoo_Compiler 	$compiler
+ * @param	Integer			$dateStart
+ * @param	Integer			$dateEnd
+ * @param	Boolean			$withDuration
  * @return	String
  */
 function Dwoo_Plugin_timespanFormat_compile(Dwoo_Compiler $compiler, $dateStart, $dateEnd, $withDuration = false) {

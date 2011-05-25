@@ -72,4 +72,4 @@ Todoyu.Ext.calendar.Reminder = {
 
 	}
 
-}
+};
