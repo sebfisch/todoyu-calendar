@@ -146,6 +146,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 
 			if( ! event.dismissed && now >= popupTime  ) {
 				this.show(event.id);
+				this.silentAlert();
 			}
 		}, this);
 	},
@@ -190,6 +191,28 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 		}
 
 		this.initRemindAgainInPopup(idEvent);
+	},
+
+
+
+	/**
+	 * Start "silent alert": title of browser window blinks until the mouse is moved inside
+	 *
+	 * @method	silentAlert
+	 */
+	silentAlert: function() {
+		var oldTitle= document.title;
+		var message	= '[LLL:calendar.ext.reminder.popup.title';
+
+		var timeoutId = setInterval(function() {
+			document.title = document.title == message ? ' ' : message;
+		}, 500);
+
+		window.onmousemove = function() {
+			clearInterval(timeoutId);
+			document.title		= oldTitle;
+			window.onmousemove	= null;
+		};
 	},
 
 
