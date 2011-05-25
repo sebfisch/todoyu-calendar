@@ -30,13 +30,13 @@
 			<elements>
 				<field type="cancelButton" name="dismiss">
 					<text>core.global.dismiss</text>
-					<onclick>Todoyu.Ext.calendar.ReminderPopup.deactivate(#id_event#, true)</onclick>
+					<onclick>Todoyu.Ext.calendar.Reminder.Popup.deactivate(#id_event#, true)</onclick>
 				</field>
 
 				<field type="button" name="ok">
 					<text>calendar.ext.reminder.button.remindlater</text>
 					<class>rescheduleReminderButton</class>
-					<onclick>Todoyu.Ext.calendar.ReminderPopup.rescheduleReminderTime(this.form)</onclick>
+					<onclick>Todoyu.Ext.calendar.Reminder.Popup.rescheduleReminderTime(this.form)</onclick>
 					<hasIcon/>
 				</field>
 			</elements>

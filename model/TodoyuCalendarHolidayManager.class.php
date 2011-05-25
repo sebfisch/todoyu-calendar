@@ -267,6 +267,7 @@ class TodoyuCalendarHolidayManager {
 	 * @param	Integer	$dateStart		UNIX timestamp of day at beginning of timespan
 	 * @param	Integer	$dateEnd		UNIX timestamp of day at ending of timespan
 	 * @param	Array	$holidaySetIDs
+	 * @return	Array
 	 */
 	public static function getHolidaysInTimespan($dateStart = 0, $dateEnd = 0, array $holidaySetIDs) {
 		$holidaySetIDs	= TodoyuArray::intval($holidaySetIDs, true, false);
@@ -345,7 +346,7 @@ class TodoyuCalendarHolidayManager {
 	/**
 	 * Get label of given holiday. Includes the holiday title plus optionally it's date and holidaysets
 	 *
-	 * @param	Integer		$holidayID
+	 * @param	Integer		$idHoliday
 	 * @param	Boolean		$showDate
 	 * @return	String
 	 */

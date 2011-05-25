@@ -22,11 +22,11 @@
  */
 
 /**
- * Calendar event reminder functions
+ * Calendar event popup reminder functions
  *
- * @namespace	Todoyu.Ext.calendar.ReminderPopup
+ * @namespace	Todoyu.Ext.calendar.Reminder.Popup
  */
-Todoyu.Ext.calendar.ReminderPopup = {
+Todoyu.Ext.calendar.Reminder.Popup = {
 
 	/**
 	 * Reference to extension
@@ -90,6 +90,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	/**
 	 * Hook called when event was changed (updated or dragged)
 	 *
+	 * @method	onEventChanged
 	 * @param	{Number}	idEvent
 	 * @param	{Number}	date
 	 */
@@ -100,8 +101,9 @@ Todoyu.Ext.calendar.ReminderPopup = {
 
 
 	/**
-	 * Refresh list of events with popup reminders
+	 * Refresh installed list of events to pop-up reminders
 	 *
+	 * @method	refreshReminderList
 	 */
 	refreshReminderList: function() {
 		var url		= Todoyu.getUrl('calendar', 'reminder');
@@ -120,6 +122,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	/**
 	 * Update events list with new JSON data
 	 *
+	 * @method	onEventListRefreshed
 	 * @param	{Ajax.Response}		response
 	 */
 	onEventListRefreshed: function(response) {
@@ -194,6 +197,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	/**
 	 * Play reminder sound
 	 *
+	 * @method	playSound
 	 * @param	{String}	file
 	 */
 	playSound: function(file) {
@@ -207,6 +211,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	 * Initialize reminder popup
 	 * Hide remind again if no options available
 	 *
+	 * @method	initRemindAgainInPopup
 	 * @param	{Number}	idEvent
 	 */
 	initRemindAgainInPopup: function(idEvent) {
@@ -227,6 +232,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	/**
 	 * Get ID of event out of popup form
 	 *
+	 * @method	getEventIDfromForm
 	 * @param	{Element}	form
 	 * @return	{Number}
 	 */
@@ -239,6 +245,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	/**
 	 * Deactivate reminder popup of given event
 	 *
+	 * @method	deactivate
 	 * @param	{Number}	idEvent
 	 */
 	deactivate: function(idEvent, closePopup) {
@@ -313,6 +320,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	/**
 	 * Update reminder popup scheduling of given event and current person
 	 *
+	 * @method	updateReminderTime
 	 * @param	{Number}	idEvent
 	 * @param	{Number}	secondsBefore
 	 */
@@ -334,7 +342,7 @@ Todoyu.Ext.calendar.ReminderPopup = {
 
 
 	/**
-	 * Handler called after deactivation of event: notify success
+	 * Handler called after rescheduling reminder: notify success, refresh list
 	 *
 	 * @method	onDeactivated
 	 * @param	{Number}			idEvent
@@ -343,8 +351,11 @@ Todoyu.Ext.calendar.ReminderPopup = {
 	onReminderTimeUpdated: function(idEvent, secondsBefore, response) {
 		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.popup.timeupdated]');
 
-			// Update event list
+			// Update installed list of popup-timeouts
 		this.refreshReminderList();
+
+			// Update reminder details if displayed
+		this.ext.Reminder.refresh(idEvent);
 	},
 
 

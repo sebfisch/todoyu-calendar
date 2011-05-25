@@ -34,6 +34,8 @@ class TodoyuCalendarEventFormValidator {
 	 *
 	 * @param	String		$value			Assigned persons
 	 * @param	Array		$config			Field config array
+	 * @param	String		$formElement
+	 * @param	Array		$formData
 	 * @return	Boolean
 	 */
 	public static function eventIsAssignableToCurrentPersonOnly($value, array $config = array (), $formElement, $formData) {

@@ -58,8 +58,9 @@ class TodoyuCalendarEventEditRenderer {
 	/**
 	 * Render event editing tab
 	 *
-	 * @param	String	$label
-	 * @return	String	HTML
+	 * @param	String		$label
+	 * @param	Integer		$idTab
+	 * @return	String		HTML
 	 */
 	public static function renderEventEditTab($label, $idTab) {
 		$name		= 'eventedit';

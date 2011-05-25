@@ -35,6 +35,9 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 
 	/**
 	 * Constructor of PanelWidgetCalendar (initialize widget)
+	 *
+	 * @param	Array	$config
+	 * @param	Array	$params
 	 */
 	public function __construct(array $config, array $params = array()) {
 		parent::__construct(
@@ -121,7 +124,6 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 * Save calendar date for area
 	 *
 	 * @param	Integer		$time
-	 * @param	Integer		$idArea
 	 */
 	public function saveDate($time) {
 		$time	= intval($time);

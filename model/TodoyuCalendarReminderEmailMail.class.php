@@ -98,9 +98,6 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 	/**
 	 * Render content for HTML/plaintext mail
 	 *
-	 * @param	Integer		$idEvent		Event to send
-	 * @param	Integer		$idPersonMailTo
-	 * @param	Boolean		$hideEmails
 	 * @param	Boolean		$asHTML
 	 * @return	String
 	 */

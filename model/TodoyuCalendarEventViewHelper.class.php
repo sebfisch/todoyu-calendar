@@ -46,9 +46,10 @@ class TodoyuCalendarEventViewHelper {
 
 
 	/**
-	 * Build preformated date info for event quickinfo tooltip
+	 * Build pre-formatted date info for event quickinfo tooltip
 	 *
 	 * @param	TodoyuCalendarEvent		$event
+	 * @param	Boolean					$withDuration
 	 * @return	String
 	 */
 	public static function getQuickinfoDateInfo($event, $withDuration = false) {
@@ -84,7 +85,6 @@ class TodoyuCalendarEventViewHelper {
 	 * Build pre-formatted person(s) info for event quickinfo tooltip
 	 *
 	 * @param	TodoyuCalendarEvent		$event
-	 * @param	Integer			$maxLenPersonLabel
 	 * @return	String
 	 */
 	public static function getQuickinfoPersonInfo($event) {

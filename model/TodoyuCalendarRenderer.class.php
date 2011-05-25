@@ -259,6 +259,7 @@ class TodoyuCalendarRenderer {
 	 * @param	Array		$eventTypes
 	 * @param	Array		$persons
 	 * @param	Array		$personColors
+	 * @param	Integer		$monthEndAlternative
 	 * @return	Array
 	 */
 	public static function preRenderEventsForMonth($dateStart, array $eventTypes, array $persons, array $personColors, $monthEndAlternative = 0) {
@@ -446,6 +447,7 @@ class TodoyuCalendarRenderer {
 	/**
 	 * Renders the calendar tabs (day, week, month)
 	 *
+	 * @param	String	$activeTab
 	 * @return	String	HTML
 	 */
 	public static function renderTabs($activeTab = '') {

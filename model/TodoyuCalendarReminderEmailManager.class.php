@@ -171,6 +171,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * Check whether given/current person can schedule a reminder for the event of the given ID
 	 *
 	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
 	public static function isReminderAllowed($idEvent, $idPerson = 0) {

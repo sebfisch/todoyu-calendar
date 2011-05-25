@@ -147,7 +147,7 @@ class TodoyuCalendarReminderManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @return
+	 * @return	Boolean
 	 */
 	public static function isPersonAssigned($idEvent, $idPerson = 0) {
 		$idEvent		= intval($idEvent);
@@ -178,6 +178,7 @@ class TodoyuCalendarReminderManager {
 	 * Update reminder activation (popup / mailing) time of given reminder
 	 *
 	 * @param	Integer		$reminderType
+	 * @param	Integer		$idEvent
 	 * @param	Integer		$dateRemind
 	 * @param	Integer		$idPerson
 	 */

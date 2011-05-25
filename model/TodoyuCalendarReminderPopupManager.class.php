@@ -123,6 +123,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * Check whether given/current person can schedule a reminder for the event of the given ID
 	 *
 	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
 	public static function isReminderAllowed($idEvent, $idPerson = 0) {
@@ -174,7 +175,7 @@ class TodoyuCalendarReminderPopupManager {
 	public static function addReminderJsInitToPage() {
 		$upcomingEvents	= self::getUpcomingReminderEvents();
 		$json			= json_encode($upcomingEvents);
-		$jsInitCode		= 'Todoyu.Ext.calendar.ReminderPopup.init.bind(Todoyu.Ext.calendar.ReminderPopup, ' . $json . ')';
+		$jsInitCode		= 'Todoyu.Ext.calendar.Reminder.Popup.init.bind(Todoyu.Ext.calendar.Reminder.Popup, ' . $json . ')';
 
 		TodoyuPage::addJsOnloadedFunction($jsInitCode, 200);
 	}
@@ -263,6 +264,7 @@ class TodoyuCalendarReminderPopupManager {
 	 * Set given reminder dismissed
 	 *
 	 * @param	Integer		$idEvent
+	 * @return	Integer		Num affected (updated) rows
 	 */
 	public static function setReminderDismissed($idEvent) {
 		$idEvent	= intval($idEvent);
@@ -284,6 +286,7 @@ class TodoyuCalendarReminderPopupManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$timeShowAgain
+	 * @return	Integer
 	 */
 	public static function rescheduleReminder($idEvent, $timeShowAgain) {
 		$idEvent		= intval($idEvent);

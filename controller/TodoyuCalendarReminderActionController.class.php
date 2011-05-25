@@ -37,6 +37,20 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 
 
 	/**
+	 * Get rendered reminders of given event
+	 *
+	 * @param	Array	$params
+	 * @return	String
+	 */
+	public function detailsAction(array $params) {
+		$idEvent	= intval($params['event']);
+
+		return TodoyuCalendarReminderRenderer::renderEventDetailsReminders($idEvent);
+	}
+
+
+
+	/**
 	 * Set reminder of given type and event of current person deactivated
 	 *
 	 * @param	Array	$params
@@ -69,7 +83,7 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 
 
 	/**
-	 * Get list of events for reminder
+	 * Get list of events for reminder timeouts
 	 *
 	 * @param	Array	$params
 	 * @return	String
@@ -101,7 +115,7 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 			TodoyuHeader::sendTodoyuHeader('sound', $soundFilename);
 		}
 
-		return TodoyuCalendarEventRenderer::renderEventReminder($idEvent);
+		return TodoyuCalendarReminderRenderer::renderEventReminderPopup($idEvent);
 	}
 
 

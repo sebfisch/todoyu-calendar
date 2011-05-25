@@ -29,8 +29,9 @@ class TodoyuCalendarEventRenderer {
 	/**
 	 * Render create event form popup
 	 *
-	 * @param	Array	$data
-	 * @return	String	Form
+	 * @param	Integer		$time
+	 * @param	Boolean		$isDayEvent
+	 * @return	String		Form
 	 */
 	public static function renderCreateQuickEvent($time = 0, $isDayEvent = false) {
 		$time	= intval($time);
@@ -69,8 +70,8 @@ class TodoyuCalendarEventRenderer {
 	/**
 	 * Prepare event rendering data array
 	 *
-	 * @param	Integer		$calendarMode			CALENDAR_MODE_DAY / ..WEEK / ..MONTH
-	 * @param	Array		$data					event parameters
+	 * @param	Integer		$mode			CALENDAR_MODE_DAY / ..WEEK / ..MONTH
+	 * @param	Array		$data			event parameters
 	 * @return	Array
 	 */
 	public static function prepareEventRenderData($mode = CALENDAR_MODE_MONTH, array $data) {
@@ -118,7 +119,7 @@ class TodoyuCalendarEventRenderer {
 	 * Render event entry as calendar item
 	 *
 	 * @param	Array		$event				Event details
-	 * @param	Integer		$calendarMode		CALENDAR_MODE_MONTH / ..WEEK / ..DAY
+	 * @param	Integer		$mode		CALENDAR_MODE_MONTH / ..WEEK / ..DAY
 	 * @return	String
 	 */
 	public static function renderEvent(array $event, $mode = CALENDAR_MODE_MONTH) {
@@ -134,6 +135,7 @@ class TodoyuCalendarEventRenderer {
 	 * Render event details view for display inside expanded event in list mode
 	 *
 	 * @param	Integer		$idEvent
+	 * @return	String
 	 */
 	public static function renderEventDetailsInList($idEvent) {
 		$idEvent	= intval($idEvent);
@@ -158,7 +160,7 @@ class TodoyuCalendarEventRenderer {
 	/**
 	 * Render day event (events that span a whole day or more than that)
 	 *
-	 * @param	Integer		$calendarMode
+	 * @param	Integer		$mode
 	 * @param	Array		$data
 	 * @return	String
 	 */
@@ -212,16 +214,6 @@ class TodoyuCalendarEventRenderer {
 
 		return ceil($heightHour + $heightMinute);
 	}
-
-
-
-	/**
-	 * Get height of an event entry
-	 *
-	 * @param	Integer	topCoordinate	top coordinate (y) of the event entry
-	 * @param	Integer	$endtime		Endtime of the event
-	 * @return	Integer					Height of the event
-	 */
 
 
 
@@ -301,35 +293,6 @@ class TodoyuCalendarEventRenderer {
 			'event'	=> $event->getTemplateData(true, true, true),
 			'tabs'	=> self::renderEventViewTabs($idEvent)
 		);
-
-		return Todoyu::render($tmpl, $data);
-	}
-
-
-
-	/**
-	 * Render content of event reminder popup
-	 *
-	 * @param	Integer		$idEvent
-	 * @return	String
-	 */
-	public static function renderEventReminder($idEvent) {
-		$idEvent= intval($idEvent);
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
-
-			// Construct form object for inline form
-		$xmlPath= 'ext/calendar/config/form/event-reminder.xml';
-		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
-		$form->setFormData(array(
-			'id_event' => $idEvent
-		));
-
-		$data	= array(
-			'event'				=> $event->getTemplateData(true, true, true),
-			'buttonsFieldset'	=> $form->render()
-		);
-
-		$tmpl	= 'ext/calendar/view/event-reminder.tmpl';
 
 		return Todoyu::render($tmpl, $data);
 	}

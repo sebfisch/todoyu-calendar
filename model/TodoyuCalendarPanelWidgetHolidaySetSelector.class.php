@@ -37,8 +37,6 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 	 *
 	 * @param	Array		$config
 	 * @param	Array		$params
-	 * @param	Integer		$idArea
-	 * @param	Boolean		$expanded
 	 */
 	public function __construct(array $config, array $params = array()) {
 			// Construct PanelWidget (init basic configuration)
@@ -127,6 +125,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 	/**
 	 * Get IDs of selected holidaySets
 	 *
+	 * @param	String	$area
 	 * @return	Array
 	 */
 	public static function getSelectedHolidaySetIDs($area = AREA) {

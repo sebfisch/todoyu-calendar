@@ -41,7 +41,7 @@ class TodoyuCalendarEventRights {
 	/**
 	 * Check whether a person is allowed to see an event
 	 *
-	 * @param	Integer		$idTask
+	 * @param	Integer		$idEvent
 	 * @return	Boolean
 	 */
 	public static function isSeeAllowed($idEvent) {
@@ -141,7 +141,7 @@ class TodoyuCalendarEventRights {
 	 * Check whether person is allowed to do the requested action (delete / edit) for an event
 	 * Check whether person has edit rights and is assigned if necessary
 	 *
-	 * @param	String		$right
+	 * @param	String		$action
 	 * @param	Integer		$idEvent
 	 * @return	Boolean
 	 */
@@ -216,7 +216,7 @@ class TodoyuCalendarEventRights {
 	/**
 	 * Restrict access to persons who are allowed to edit events
 	 *
-	 * @param	Integer		$idTask
+	 * @param	Integer		$idEvent
 	 */
 	public static function restrictEdit($idEvent) {
 		if( ! self::isEditAllowed($idEvent) ) {

@@ -35,6 +35,7 @@ class TodoyuCalendarEventMailer {
 	 * @param	Integer		$idEvent
 	 * @param	Array		$personIDs
 	 * @param	Integer		$operationID	was has been done- create, update, delete?
+	 * @return	Boolean
 	 */
 	public static function sendEmails($idEvent, array $personIDs, $operationID) {
 		$idEvent	= intval($idEvent);
@@ -59,9 +60,7 @@ class TodoyuCalendarEventMailer {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @param	Boolean		$setSenderFromPersonMail
-	 * @param	Boolean		$hideEmails					Show event authors email addresses in message?
- 	 * @param	Integer		$operationID				What's done- create, update, delete?
+	 * @param	Integer		$operationID
 	 * @return	Boolean		Success
 	 */
 	public static function sendInfoMail($idEvent, $idPerson, $operationID = OPERATIONTYPE_RECORD_CREATE) {
@@ -155,6 +154,7 @@ class TodoyuCalendarEventMailer {
 	 * @param	Integer		$idEvent		Event to send
 	 * @param	Integer		$idPerson		Person to send the email to
 	 * @param	Boolean		$hideEmails
+	 * @param	Boolean		$modeHTML
 	 * @param	Integer		$operationID	what's been done? (create, update, delete)
 	 * @return	String|Boolean
 	 */

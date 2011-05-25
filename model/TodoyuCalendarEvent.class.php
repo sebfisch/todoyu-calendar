@@ -108,6 +108,7 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 
 	/**
 	 * Get duration as string
+	 *
 	 * @return String
 	 */
 	public function getDurationString() {

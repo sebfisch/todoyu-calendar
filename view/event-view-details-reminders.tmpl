@@ -1,0 +1,26 @@
+{if isAllowedEventReminderPopup($event.id)}
+	<span class="reminderLabel">{Label calendar.reminder.email}:</span>
+	{if $event.persons[$personID][date_remindemail] == 0}
+		{Label calendar.reminder.deactivated}
+	{else}
+		{if $event.date_start - $event.persons[$personID][date_remindemail] === 1}
+			{Label calendar.reminder.atDateStart}
+		{else}
+			{durationFormat $event.date_start - $event.persons[$personID][date_remindemail]} {Label calendar.reminder.beforeDateStart} - {dateFormat $event.persons[$personID][date_remindemail] datetime}
+		{/if}
+	{/if}
+	<br />
+{/if}
+{if isAllowedEventReminderPopup($event.id)}
+	<span class="reminderLabel">{Label calendar.reminder.popup}:</span>
+	{if $event.persons[$personID][date_remindpopup] == 0}
+		{Label calendar.reminder.deactivated}
+	{else}
+		{if $event.date_start - $event.persons[$personID][date_remindpopup] === 1}
+			{Label calendar.reminder.atDateStart}
+		{else}
+			{durationFormat $event.date_start - $event.persons[$personID][date_remindpopup]} {Label calendar.reminder.beforeDateStart} - {dateFormat $event.persons[$personID][date_remindpopup] datetime}
+		{/if}
+	{/if}
+	<br />
+{/if}

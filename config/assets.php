@@ -120,6 +120,10 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 			'position' => 150
 		),
 		array(
+			'file'		=> 'ext/calendar/asset/js/Reminder.js',
+			'position'	=> 190
+		),
+		array(
 			'file'		=> 'ext/calendar/asset/js/ReminderPopup.js',
 			'position'	=> 200
 		),

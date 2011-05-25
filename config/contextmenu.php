@@ -125,77 +125,77 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderemail'] = array(
 		'0'	=> array(
 			'key'		=> 'remindertime-none',
 			'label'		=> 'calendar.event.contextmenu.reminder.none',
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.deactivate(#ID#)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.deactivate(#ID#)',
 			'class'		=> 'eventContextMenu reminderTimeNone'
 		),
 			// At the time of the event
 		'1'	=> array(
 			'key'		=> 'remindertime-1',
 			'label'		=> 'calendar.event.contextmenu.reminder.atEventStart',
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 1)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 1)',
 			'class'		=> 'eventContextMenu reminderTime0'
 		),
 			// 5 minutes before
 		'300'	=> array(
 			'key'		=> 'remindertime-300',
 			'label'		=> TodoyuTime::formatDuration(300) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 300)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 300)',
 			'class'		=> 'eventContextMenu reminderTime5m'
 		),
 			// 15 minutes before
 		'900'	=> array(
 			'key'		=> 'remindertime-900',
 			'label'		=> TodoyuTime::formatDuration(900) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 900)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 900)',
 			'class'		=> 'eventContextMenu reminderTime15m'
 		),
 			// 30 minutes before
 		'1800'	=> array(
 			'key'		=> 'remindertime-1800',
 			'label'		=> TodoyuTime::formatDuration(1800) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 1800)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 1800)',
 			'class'		=> 'eventContextMenu reminderTime30m'
 		),
 			// 1 hour before
 		'3600'	=> array(
 			'key'		=> 'reminderemail-3600',
 			'label'		=> TodoyuTime::formatDuration(3600) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 3600)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 3600)',
 			'class'		=> 'eventContextMenu reminderTime1h'
 		),
 			// 2 hours before
 		'7200'	=> array(
 			'key'		=> 'remindertime-7200',
 			'label'		=> TodoyuTime::formatDuration(7200) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 7200)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 7200)',
 			'class'		=> 'eventContextMenu reminderTime2h'
 		),
 			// 12 hours before
 		'43200'	=> array(
 			'key'		=> 'remindertime-43200',
 			'label'		=> TodoyuTime::formatDuration(43200) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 43200)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 43200)',
 			'class'		=> 'eventContextMenu reminderTime12h'
 		),
 			// 1 day before
 		'86400'	=> array(
 			'key'		=> 'remindertime-86400',
 			'label'		=> TodoyuTime::formatDuration(86400) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 86400)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 86400)',
 			'class'		=> 'eventContextMenu reminderTime1d'
 		),
 			// 2 days before
 		'172800'	=> array(
 			'key'		=> 'remindertime-172800',
 			'label'		=> TodoyuTime::formatDuration(172800) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 172800)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 172800)',
 			'class'		=> 'eventContextMenu reminderTime2d'
 		),
 			// 1 week before
 		'604800'	=> array(
 			'key'		=> 'remindertime-604800',
 			'label'		=> TodoyuTime::formatDuration(604800) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderEmail.updateReminderTime(#ID#, 604800)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Email.updateReminderTime(#ID#, 604800)',
 			'class'		=> 'eventContextMenu reminderTime1w'
 		)
 	)
@@ -212,77 +212,77 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderpopup'] = array(
 		'0'	=> array(
 			'key'		=> 'remindertime-none',
 			'label'		=> 'calendar.event.contextmenu.reminder.none',
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.deactivate(#ID#)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.deactivate(#ID#)',
 			'class'		=> 'eventContextMenu reminderTimeNone'
 		),
 			// At the time of the event
 		'1'	=> array(
 			'key'		=> 'remindertime-1',
 			'label'		=> 'calendar.event.contextmenu.reminder.atEventStart',
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 1)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 1)',
 			'class'		=> 'eventContextMenu reminderTime0'
 		),
 			// 5 minutes before
 		'300'	=> array(
 			'key'		=> 'remindertime-300',
 			'label'		=> TodoyuTime::formatDuration(300) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 300)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 300)',
 			'class'		=> 'eventContextMenu reminderTime5m'
 		),
 			// 15 minutes before
 		'900'	=> array(
 			'key'		=> 'remindertime-900',
 			'label'		=> TodoyuTime::formatDuration(900) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 900)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 900)',
 			'class'		=> 'eventContextMenu reminderTime15m'
 		),
 			// 30 minutes before
 		'1800'	=> array(
 			'key'		=> 'remindertime-1800',
 			'label'		=> TodoyuTime::formatDuration(1800) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 1800)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 1800)',
 			'class'		=> 'eventContextMenu reminderTime30m'
 		),
 			// 1 hour before
 		'3600'	=> array(
 			'key'		=> 'reminderemail-3600',
 			'label'		=> TodoyuTime::formatDuration(3600) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 3600)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 3600)',
 			'class'		=> 'eventContextMenu reminderTime1h'
 		),
 			// 2 hours before
 		'7200'	=> array(
 			'key'		=> 'remindertime-7200',
 			'label'		=> TodoyuTime::formatDuration(7200) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 7200)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 7200)',
 			'class'		=> 'eventContextMenu reminderTime2h'
 		),
 			// 12 hours before
 		'43200'	=> array(
 			'key'		=> 'remindertime-43200',
 			'label'		=> TodoyuTime::formatDuration(43200) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 43200)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 43200)',
 			'class'		=> 'eventContextMenu reminderTime12h'
 		),
 			// 1 day before
 		'86400'	=> array(
 			'key'		=> 'remindertime-86400',
 			'label'		=> TodoyuTime::formatDuration(86400) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 86400)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 86400)',
 			'class'		=> 'eventContextMenu reminderTime1d'
 		),
 			// 2 days before
 		'172800'	=> array(
 			'key'		=> 'remindertime-172800',
 			'label'		=> TodoyuTime::formatDuration(172800) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 172800)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 172800)',
 			'class'		=> 'eventContextMenu reminderTime2d'
 		),
 			// 1 week before
 		'604800'	=> array(
 			'key'		=> 'remindertime-604800',
 			'label'		=> TodoyuTime::formatDuration(604800) . ' ' . Todoyu::Label('calendar.event.contextmenu.reminder.before'),
-			'jsAction'	=> 'Todoyu.Ext.calendar.ReminderPopup.updateReminderTime(#ID#, 604800)',
+			'jsAction'	=> 'Todoyu.Ext.calendar.Reminder.Popup.updateReminderTime(#ID#, 604800)',
 			'class'		=> 'eventContextMenu reminderTime1w'
 		)
 	)

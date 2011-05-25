@@ -153,8 +153,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	/**
 	 * Get filename of email template to current mode (text/HTML) and event operation
 	 *
-	 * @param	Integer		$operationID
-	 * @param	Boolean		$modeHTML
+	 * @param	Boolean		$asHtml
 	 * @return	String|Boolean
 	 */
 	private function getTemplate($asHtml = false) {

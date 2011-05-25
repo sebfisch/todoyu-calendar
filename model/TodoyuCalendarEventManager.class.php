@@ -37,7 +37,7 @@ class TodoyuCalendarEventManager {
 	 * Get form object form quick create
 	 *
 	 * @param	Integer		$idEvent
-	 * @return
+	 * @return	TodoyuForm
 	 */
 	public static function getQuickCreateForm($idEvent = 0) {
 		$idEvent	= intval($idEvent);
@@ -643,9 +643,9 @@ class TodoyuCalendarEventManager {
 	/**
 	 * Event save hook. Send emails
 	 *
-	 * @param	Array		$data
 	 * @param	Integer		$idEvent
-	 * @param	Array		$params
+	 * @param	Array		$receivers
+	 * @param	Boolean		$isNewEvent
 	 * @return	Array
 	 */
 	public static function sendEventAsEmail($idEvent, $receivers, $isNewEvent = false) {
@@ -698,7 +698,7 @@ class TodoyuCalendarEventManager {
 	 * @param	Integer				$idEvent
 	 * @param	Integer				$newStartDate
 	 * @param	String				$mode
-	 * @param	Boolean|Array		True or array of overbooking infos
+	 * @param	Boolean|Array		$overbookingConfirmed	True or array of overbooking infos
 	 * @return	Array|Boolean
 	 */
 	public static function moveEvent($idEvent, $newStartDate, $mode, $overbookingConfirmed = false) {
@@ -1010,6 +1010,7 @@ class TodoyuCalendarEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$formData
+	 * @return	Array
 	 */
 	public static function addAssignedEventPersonsAndSendMail($idEvent, array $formData) {
 		$idEvent	= intval($idEvent);
@@ -1085,7 +1086,7 @@ class TodoyuCalendarEventManager {
 	/**
 	 * Create event default data
 	 *
-	 * @param	Integer	$timeStamp
+	 * @param	Integer		$timestamp
 	 * @return	Array
 	 */
 	protected static function getEventDefaultData($timestamp) {

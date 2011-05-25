@@ -29,7 +29,6 @@ class TodoyuCalendarReminderDefaultManager {
 	/**
 	 * Get default reminder time for email
 	 *
-	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
 	public static function getEmailDefaultAdvanceTime() {
@@ -41,7 +40,6 @@ class TodoyuCalendarReminderDefaultManager {
 	/**
 	 * Get default reminder time for popup
 	 *
-	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
 	public static function getPopupDefaultAdvanceTime() {

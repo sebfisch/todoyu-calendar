@@ -29,6 +29,7 @@ class TodoyuCalendarHolidayViewHelper {
 	/**
 	 * Get available holiday sets (to render select-dropdown)
 	 *
+	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
 	public static function getHolidaySetOptions(TodoyuFormElement $field) {

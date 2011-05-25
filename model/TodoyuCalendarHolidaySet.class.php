@@ -36,7 +36,7 @@ class TodoyuCalendarHolidaySet extends TodoyuBaseObject {
 	/**
 	 * Constructor
 	 *
-	 * @param	Integer	$recordID
+	 * @param	Integer	$idHolidaySet
 	 */
 	function __construct($idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);

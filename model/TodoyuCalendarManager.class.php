@@ -159,7 +159,7 @@ class TodoyuCalendarManager {
 	 * Get date range for month of the timestamp
 	 * (include days of the previous and next month because of the calendar layout)
 	 *
-	 * @param	Integer		$time
+	 * @param	Integer		$timestamp
 	 * @return	Array
 	 */
 	public static function getMonthDisplayRange($timestamp) {
@@ -299,6 +299,8 @@ class TodoyuCalendarManager {
 	 * Extend company address form (hooked into contact's form building)
 	 *
 	 * @param	TodoyuForm		$form			Address form object
+	 * @param	Integer			$index
+	 * @param	Array			$params
 	 * @return	TodoyuForm
 	 */
 	public static function modifyAddressFormfields(TodoyuForm $form, $index, array $params) {

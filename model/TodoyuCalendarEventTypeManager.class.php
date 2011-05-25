@@ -30,6 +30,7 @@ class TodoyuCalendarEventTypeManager {
 	 * Add a new event type
 	 *
 	 * @param	Integer		$index
+	 * @param	String		$key
 	 * @param	String		$label
 	 */
 	public static function addEventType($index, $key, $label) {

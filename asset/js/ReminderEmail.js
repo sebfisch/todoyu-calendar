@@ -22,11 +22,11 @@
  */
 
 /**
- * Calendar event email reminder scheduling functions
+ * Calendar event email reminder functions
  *
- * @namespace	Todoyu.Ext.calendar.ReminderEmail
+ * @namespace	Todoyu.Ext.calendar.Reminder.Email
  */
-Todoyu.Ext.calendar.ReminderEmail = {
+Todoyu.Ext.calendar.Reminder.Email = {
 
 	/**
 	 * Reference to extension

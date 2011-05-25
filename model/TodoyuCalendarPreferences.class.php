@@ -132,10 +132,10 @@ class TodoyuCalendarPreferences {
 	 *
 	 * @param	Array		$types
 	 */
-	public static function saveEventTypes(array $eventTypes) {
-		$eventTypes	= implode(',', $eventTypes);
+	public static function saveEventTypes(array $types) {
+		$types	= implode(',', $types);
 
-		self::savePref('panelwidget-eventtypeselector', $eventTypes, 0, true, AREA);
+		self::savePref('panelwidget-eventtypeselector', $types, 0, true, AREA);
 	}
 
 
@@ -173,7 +173,7 @@ class TodoyuCalendarPreferences {
 	/**
 	 * Save the current active tab as pref
 	 *
-	 * @param	String		$idTab		Name of the tab
+	 * @param	String		$tabKey		Name of the tab
 	 */
 	public static function saveActiveTab($tabKey) {
 		self::savePref('tab', $tabKey, 0, true);
