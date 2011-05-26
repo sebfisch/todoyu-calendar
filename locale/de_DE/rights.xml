@@ -10,8 +10,8 @@
 	<label index="event.deleteAssigned">Zugewiesenen löschen</label>
 	<label index="event.deleteAll">Alle Termine löschen</label>
 	<label index="event.add">Neuen Termin Erstellen</label>
-	<label index="event.assignOthers">Termine anderen Benutzern zuweisen</label>
 	<label index="event.search">Nach Terminen suchen</label>
+	<label index="event.assignOthers">Termine anderen Benutzern zuweisen</label>
 	<label index="mailing">Termin E-Mail</label>
 	<label index="mailing.sendAsEmail">Email zu Terminen an wählbare Empfänger senden</label>
 	<label index="reminders">Termin-Erinnerungen</label>

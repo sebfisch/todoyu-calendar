@@ -47,7 +47,7 @@
 	<label index="profile.module">Calendar</label>
 	<label index="profile.module.main.tab">Main</label>
 	<label index="profile.module.main.header">Main Configuration</label>
-	 <label index="profile.module.reminders.tab">Event Reminders</label>
+	<label index="profile.module.reminders.tab">Event Reminders</label>
 	<label index="extconf.reminder.popup_roles.label">Roles to get event reminder pop-up</label>
 	<label index="extconf.reminder.popup.advancetime.label">Time before event to show reminder</label>
  	<label index="extconf.reminder.email_roles.label">Roles to get event reminder email</label>
@@ -56,10 +56,8 @@
   	<label index="profile.module.reminders.header">Configuration for your event reminders</label>
 	<label index="profile.module.main.header">Main Calendar Configuration</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Disable asking whether to send email after modification of events via drag and drop?</label>
-	<label index="profile.is_reminderpopupactive">Enable pop-up reminder by default</label>
-	<label index="profile.is_reminderemailactive">Enable email reminder by default</label>
 	<label index="profile.reminder.email.advancetime.label">Time Preset Email</label>
 	<label index="profile.reminder.popup.advancetime.label">Time Preset Pop-Up</label>
 	<label index="profile.main.saved">Settings have been saved.</label>
-	<label index="profile.reminders.saved">Reminders settings have been saved.</label>
+	<label index="profile.reminders.saved">Reminder settings have been saved.</label>
 </labels>
