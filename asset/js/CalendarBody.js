@@ -173,20 +173,21 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 */
 	getTimeOfMouseCoordinates: function(x, y) {
 		var calendarMode= this.ext.getActiveTab();
+		var timestamp;
 
 			// Get top coordinate, if view is minimized, add invisible part to 'top'
 		var top			= y - this.calendarBody.cumulativeOffset().top + (this.isFullHeight() ? 0 : 8 * 42);
 
 		switch(calendarMode) {
 			case 'day':
-				var timestamp	= this.ext.getDayStart() + this.getDayOffset(top, 1010);
+				timestamp	= this.ext.getDayStart() + this.getDayOffset(top, 1010);
 				break;
 
 			case 'week':
 				var left		= x - this.calendarBody.cumulativeOffset().left;
 				var numDays		= Math.floor((left - 40) / 89);
 				numDays			= numDays < 0 ? 0 : numDays;
-				var timestamp	= (this.ext.getWeekStart() + numDays * Todoyu.Time.seconds.day) + this.getDayOffset(top, 1010);
+				timestamp	= (this.ext.getWeekStart() + numDays * Todoyu.Time.seconds.day) + this.getDayOffset(top, 1010);
 				break;
 		}
 
