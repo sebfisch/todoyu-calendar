@@ -467,11 +467,6 @@ class TodoyuCalendarEventManager {
 		$where	= 'id = ' . $idEvent;
 
 		Todoyu::db()->setDeleted(self::TABLE, $where);
-//			// Delete event
-//		Todoyu::db()->deleteRecord(self::TABLE , $idEvent);
-//
-//			// Remove person-assignments
-//		self::removeAllPersonAssignments($idEvent);
 	}
 
 
@@ -716,27 +711,11 @@ class TodoyuCalendarEventManager {
 			$dateEnd	= $event->getEndDate() + $offset;
 		}
 
-		$data	= array(
-			'date_start'=> $dateStart,
-			'date_end'	=> $dateEnd
-		);
-
 		if( ! $overbookingConfirmed || ! TodoyuCalendarManager::isOverbookingAllowed() ) {
-				// Check for overbookings and request confirmation or reset event
-			$overbookedInfos= self::getOverbookingInfos($dateStart, $dateEnd, $event->getAssignedPersonIDs(), $idEvent);
-
-			if( sizeof($overbookedInfos) > 0 ) {
-				$errorMessages = array();
-				foreach($overbookedInfos as $idPerson => $infos) {
-					/**
-					 * @todo	Why this loop?
-					 */
-					foreach($infos['events'] as $event) {
-						$errorMessages[] = Todoyu::Label('calendar.event.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
-					}
-				}
-
-				return array_unique($errorMessages);
+				// Collect overbookings of assigned persons (to request confirmation or resetting event)
+			$overbookingPersonsErrors	= self::getOverbookedPersonsErrors($idEvent, $dateStart, $dateEnd);
+			if( $overbookingPersonsErrors !== false ) {
+				return $overbookingPersonsErrors;
 			}
 		}
 
@@ -744,9 +723,42 @@ class TodoyuCalendarEventManager {
 		TodoyuCalendarReminderManager::shiftRemindingTimes($idEvent, $offset);
 
 			// Update event record data
+		$data	= array(
+			'date_start'=> $dateStart,
+			'date_end'	=> $dateEnd
+		);
 		self::updateEvent($idEvent, $data);
 
 		return true;
+	}
+
+
+
+	/**
+	 * Collect overbooking errors of affected persons
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
+	 * @return	Array|Boolean
+	 */
+	public static function getOverbookedPersonsErrors($idEvent, $dateStart, $dateEnd) {
+		$idEvent	= intval($idEvent);
+
+		$event			= TodoyuCalendarEventManager::getEvent($idEvent);
+		$assignedPersons= $event->getAssignedPersonIDs();
+		$overbookedInfos= self::getOverbookingInfos($dateStart, $dateEnd, $assignedPersons, $idEvent);
+
+		if( sizeof($overbookedInfos) > 0 ) {
+			$errorMessages = array();
+			foreach($overbookedInfos as $idPerson => $infos) {
+				$errorMessages[] = Todoyu::Label('calendar.event.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
+			}
+
+			return array_unique($errorMessages);
+		}
+
+		return false;
 	}
 
 
