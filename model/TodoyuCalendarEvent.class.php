@@ -216,6 +216,55 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 
 
 	/**
+	 * Get assignment for person
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	TodoyuCalendarEventAssignment
+	 */
+	public function getAssignment($idPerson) {
+		$idPerson	= intval($idPerson);
+
+		return TodoyuCalendarEventAssignmentManager::getAssignmentByEventPerson($this->getID(), $idPerson);
+	}
+
+
+
+	/**
+	 * Get reminder for person
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	TodoyuCalendarReminder
+	 */
+	public function getReminder($idPerson = 0) {
+		$idPerson	= Todoyu::personid($idPerson);
+
+		return TodoyuCalendarReminderManager::getReminderByAssignment($this->getID(), $idPerson);
+	}
+
+
+
+	/**
+	 * Get popup reminder
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	TodoyuCalendarReminderPopup
+	 */
+	public function getReminderPopup($idPerson = 0) {
+		$idPerson	= Todoyu::personid($idPerson);
+
+		return TodoyuCalendarReminderPopupManager::getReminderByAssignment($this->getID(), $idPerson);
+	}
+
+
+	public function getReminderEmail($idPerson = 0) {
+		$idPerson	= Todoyu::personid($idPerson);
+
+		return TodoyuCalendarReminderEmailManager::getReminderByAssignment($this->getID(), $idPerson);
+	}
+
+
+
+	/**
 	 * Get reminder time for email
 	 *
 	 * @param	Integer		$idPerson

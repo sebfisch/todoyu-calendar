@@ -312,7 +312,9 @@ class TodoyuCalendarEventRenderer {
 
 			// Construct form object for inline form
 		$xmlPath	= 'ext/calendar/config/form/event-mailing.xml';
-		$preParse	= array('#id_event#'=> $idEvent);
+		$preParse	= array(
+			'#id_event#'=> $idEvent
+		);
 		$form		= TodoyuFormManager::getForm($xmlPath, 0, array(), $preParse);
 
 			// Have all email persons but user himself preselected
@@ -333,7 +335,7 @@ class TodoyuCalendarEventRenderer {
 			// Render popup content
 		$data	= array(
 			'subject'		=> self::getEventMailSubjectByOperationID($operationID),
-			'event'			=> $event->getTemplateData(true, true),
+			'event'			=> $event->getTemplateData(true, true, true),
 			'mailingForm'	=> $form->render()
 		);
 

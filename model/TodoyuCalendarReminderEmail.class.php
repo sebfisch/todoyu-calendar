@@ -67,7 +67,7 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 	 */
 	public function sendAsEmail() {
 		$event		= $this->getEvent();
-		$person		= $this->getPersonAssigned();
+		$person		= $this->getPerson();
 
 			// Don't send when event or person's email is missing
 		if( $event->isDeleted() || ! $person->hasEmail() ) {
@@ -94,10 +94,10 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 	 */
 	private function saveAsSent() {
 		$idReminder	= $this->getID();
-		$idPerson	= $this->getPersonAssignedID();
+		$idPerson	= $this->getPersonID();
 
 			// Set "is_sent"-flag in ext_calendar_mm_event_person
-		TodoyuCalendarReminderManager::updateMMrecord($idReminder, array(
+		TodoyuCalendarReminderManager::updateReminder($idReminder, array(
 			'is_remindemailsent'	=> 1
 		));
 

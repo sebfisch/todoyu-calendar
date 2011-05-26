@@ -263,10 +263,11 @@ class TodoyuCalendarPreferences {
 	/**
 	 * Save reminder email advance time
 	 *
+	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getReminderEmailTime() {
-		return self::getReminderTime('email');
+	public static function getReminderEmailTime($idPerson = 0) {
+		return self::getReminderAdvanceTime('email', $idPerson);
 	}
 
 
@@ -274,10 +275,11 @@ class TodoyuCalendarPreferences {
 	/**
 	 * Save reminder popup advance time
 	 *
+	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getReminderPopupTime() {
-		return self::getReminderTime('popup');
+	public static function getReminderPopupTime($idPerson = 0) {
+		return self::getReminderAdvanceTime('popup', $idPerson);
 	}
 
 
@@ -301,12 +303,14 @@ class TodoyuCalendarPreferences {
 	 * Get reminder advance time
 	 *
 	 * @param	String		$typeKey
+	 * @param	Integer		$idPerson
 	 * @return	Integer|Boolean
 	 */
-	public static function getReminderTime($typeKey) {
+	public static function getReminderAdvanceTime($typeKey, $idPerson = 0) {
+		$idPerson	= Todoyu::personid($idPerson);
 		$prefName	= 'reminder' . $typeKey . '_advancetime';
 
-		return self::getPref($prefName);
+		return self::getPref($prefName, 0, 0, false, $idPerson);
 	}
 
  }

@@ -90,7 +90,7 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 	 * @return	TodoyuContactPerson
 	 */
 	private function getPerson() {
-		return $this->reminder->getPersonAssigned();
+		return $this->reminder->getPerson();
 	}
 
 

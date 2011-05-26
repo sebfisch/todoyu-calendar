@@ -48,7 +48,7 @@ class TodoyuCalendarPortalActionController extends TodoyuActionController {
 		TodoyuCalendarEventRights::restrictSee( $idEvent );
 
 		TodoyuCalendarPreferences::savePortalEventExpandedStatus($idEvent);
-		TodoyuCalendarEventManager::acknowledgeEvent($idEvent);
+		TodoyuCalendarEventAssignmentManager::acknowledgeEvent($idEvent);
 
 		return $this->forward('calendar', 'event', 'detail', $params);
 	}
@@ -66,7 +66,7 @@ class TodoyuCalendarPortalActionController extends TodoyuActionController {
 
 		TodoyuCalendarEventRights::restrictSee( $idEvent );
 
-		TodoyuCalendarEventManager::acknowledgeEvent($idEvent, $idPerson);
+		TodoyuCalendarEventAssignmentManager::acknowledgeEvent($idEvent, $idPerson);
 	}
 
 }

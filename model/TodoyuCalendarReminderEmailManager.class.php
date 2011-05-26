@@ -27,11 +27,6 @@
 class TodoyuCalendarReminderEmailManager {
 
 	/**
-	 * @var String		Default table for database requests
-	 */
-	const TABLE = 'ext_calendar_mm_event_person';
-
-	/**
 	 * @var	String		Type of reminder
 	 */
 	const REMINDERTYPE = CALENDAR_TYPE_EVENTREMINDER_EMAIL;
@@ -57,7 +52,7 @@ class TodoyuCalendarReminderEmailManager {
 	 * @param	Integer		$idPerson
 	 * @return	TodoyuCalendarReminderEmail
 	 */
-	public static function getReminderByAssignment($idEvent, $idPerson) {
+	public static function getReminderByAssignment($idEvent, $idPerson = 0) {
 		$idReminder	= TodoyuCalendarReminderManager::getReminderIDByAssignment($idEvent, $idPerson);
 
 		return self::getReminder($idReminder);
@@ -108,8 +103,9 @@ class TodoyuCalendarReminderEmailManager {
 
 		$idEvent	= intval($idEvent);
 		$idPerson	= Todoyu::personid($idPerson);
+		$reminder	= self::getReminderByAssignment($idEvent, $idPerson);
 
-		return self::getReminderByAssignment($idEvent, $idPerson)->getDateRemindEmail();
+		return $reminder->getDateRemindEmail();
 	}
 
 

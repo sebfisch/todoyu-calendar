@@ -214,7 +214,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 		TodoyuCalendarEventRights::restrictSee( $idEvent );
 
-		TodoyuCalendarEventManager::acknowledgeEvent($idEvent, $idPerson);
+		TodoyuCalendarEventAssignmentManager::acknowledgeEvent($idEvent, $idPerson);
 	}
 
 
