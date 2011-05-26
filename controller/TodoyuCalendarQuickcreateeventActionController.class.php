@@ -55,8 +55,8 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 	/**
 	 * Save quickEvent (quickEvent popUp)
 	 *
-	 * @param	Array	$params
-	 * @return	String
+	 * @param	Array		$params
+	 * @return	Void|String				Failure returns re-rendered form with error messages
 	 */
 	public function saveAction(array $params) {
 		TodoyuCalendarEventRights::restrictAdd();
