@@ -40,7 +40,8 @@ Todoyu::$CONFIG['EXT']['calendar']['info'] = array(
 			'contact'	=> '1.1.0'
 		),
 		'conflicts' => array()
-	)
+	),
+	'urlDocumentation'	=> 'http://doc.todoyu.com/?calendar'
 );
 
 ?>
