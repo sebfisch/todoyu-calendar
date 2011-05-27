@@ -33,12 +33,20 @@ class TodoyuCalendarEventMailManager {
 	 * @return	Boolean
 	 */
 	public static function isMailPopupToBeShown($idEvent) {
+		$isPopupDisabled	= TodoyuCalendarPreferences::isMailPopupDisabled();
+
+		if( $isPopupDisabled ) {
+			return false;
+		}
+
 		$idEvent	= intval($idEvent);
+		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 
-		$prefName		= 'is_mailpopupdeactivated';
-		$isDeactivated	= TodoyuCalendarPreferences::getPref($prefName, 0, 0, false, Todoyu::personid());
+		if( ! $event->areOtherPersonsAssigned() ) {
+			return false;
+		}
 
-		return $isDeactivated ? false : TodoyuCalendarEventManager::hasAnyEventPersonAnEmailAddress($idEvent, array(Todoyu::personid()));
+		return $event->hasAnyAssignedPersonAnEmailAddress();
 	}
 
 

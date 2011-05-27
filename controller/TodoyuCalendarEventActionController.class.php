@@ -272,7 +272,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * @param	Array			$params
 	 * @return	String|Boolean
 	 */
-	public function getEventMailPopupAction(array $params) {
+	public function mailPopupAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$operationID= intval($params['operation']);
 
@@ -290,7 +290,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			return TodoyuCalendarEventRenderer::renderEventMailPopup($idEvent, $operationID);
 		}
 
-		return false;
+		return '';
 	}
 
 

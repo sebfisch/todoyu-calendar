@@ -378,31 +378,6 @@ class TodoyuCalendarEventManager {
 
 
 	/**
-	 * Check whether any of the participants (but the given to be excluded) of the given event has an email address stored
-	 *
-	 * @param	Integer		$idEvent
-	 * @param	Array		$excludedPersonIDs
-	 * @return	Boolean
-	 */
-	public static function hasAnyEventPersonAnEmailAddress($idEvent, array $excludedPersonIDs = array()) {
-		$idEvent			= intval($idEvent);
-		$excludedPersonIDs	= count($excludedPersonIDs) > 0 ? TodoyuArray::intval($excludedPersonIDs) : false;
-
-		$persons			= self::getEmailReceivers($idEvent, false);
-
-			// Remove all persons who are excluded
-		foreach($persons as $idPerson => $personData) {
-			if( in_array($idPerson, $excludedPersonIDs) ) {
-				unset($persons[$idPerson]);
-			}
-		}
-
-		return count($persons) > 0;
-	}
-
-
-
-	/**
 	 * Check for conflicts with other events (of non-overbookable type) for the assigned persons if overbooking is not allowed
 	 *
 	 * @param	Integer		$dateStart

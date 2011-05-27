@@ -313,6 +313,21 @@ class TodoyuCalendarPreferences {
 		return self::getPref($prefName, 0, 0, false, $idPerson);
 	}
 
+
+
+	/**
+	 * Check whether the mail popup is disabled
+	 *
+	 * @return	Boolean
+	 */
+	public static function isMailPopupDisabled() {
+		$prefName	= 'is_mailpopupdeactivated';
+		$result		= intval(self::getPref($prefName));
+
+		return $result === 1;
+	}
+
+
  }
 
 ?>

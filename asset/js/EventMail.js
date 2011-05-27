@@ -73,13 +73,13 @@ Todoyu.Ext.calendar.Event.Mail = {
 	 * @param	{Number}	idEvent
 	 * @param	{Number}	operationTypeID
 	 */
-	initEventMailPopup: function(idEvent, operationTypeID) {
+	showPopup: function(idEvent, operationTypeID) {
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
 			parameters: {
-				action:		'getEventMailPopup',
-				'event':		idEvent,
-				'operation':	operationTypeID
+				action:		'mailPopup',
+				event:		idEvent,
+				operation:	operationTypeID
 			},
 			onComplete: this.onEventMailPopupInitialized.bind(this, idEvent)
 		};
@@ -98,9 +98,7 @@ Todoyu.Ext.calendar.Event.Mail = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onEventMailPopupInitialized: function(idEvent, response) {
-		var showPopup	= parseInt(response.getHeader('showPopup'), 10);
-
-		if( showPopup == 1 ) {
+		if( response.getHeader('showPopup') == 1 ) {
 			Todoyu.Popups.openContent('Mailing', response.responseText, 'Mailing', 460);
 		}
 	},

@@ -484,6 +484,39 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 		return parent::getTemplateData();
 	}
 
+
+
+	/**
+	 * Check whether other persons than the current are assigned to the event
+	 *
+	 * @return	Boolean
+	 */
+	public function areOtherPersonsAssigned() {
+		$assignedPersonIDs	= $this->getAssignedPersonIDs();
+		$others				= array_diff($assignedPersonIDs, array(Todoyu::personid()));
+
+		return sizeof($others) > 0;
+	}
+
+
+
+	/**
+	 * Check whether any of the assigned person has an email address
+	 *
+	 * @return	Boolean
+	 */
+	public function hasAnyAssignedPersonAnEmailAddress() {
+		$personsData	= $this->getAssignedPersonsData(false);
+
+		foreach($personsData as $personData) {
+			if( trim($personData['email']) !== '' ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 }
 
 ?>
