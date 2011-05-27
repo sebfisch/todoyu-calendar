@@ -196,7 +196,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 
 
 	/**
-	 * Start "silent alert": title of browser window blinks until the mouse is moved inside
+	 * Start "silent alert": title of browser window blinks + favicon get animated until the mouse is moved inside
 	 *
 	 * @method	silentAlert
 	 */
@@ -204,13 +204,18 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 		var oldTitle= document.title;
 		var message	= '[LLL:calendar.ext.reminder.popup.title';
 
+		Todoyu.Ui.setFavIcon('ext/calendar/asset/img/alarmanimation.png');
+
 		var timeoutId = setInterval(function() {
 			document.title = document.title == message ? oldTitle : message;
-		}, 600);
+		}, 800);
 
 		window.onmousemove = function() {
 			clearInterval(timeoutId);
 			document.title		= oldTitle;
+
+			Todoyu.Ui.resetFavIcon();
+
 			window.onmousemove	= null;
 		};
 	},
