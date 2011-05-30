@@ -55,7 +55,7 @@ CREATE TABLE `ext_calendar_holiday` (
 	`id_person_create` int(10) unsigned NOT NULL,
 	`deleted` tinyint(1) NOT NULL DEFAULT '0',
 	`date` int(11) NOT NULL DEFAULT '0',
-	`title` varchar(48) NOT NULL,
+	`title` varchar(64) NOT NULL,
 	`description` varchar(256) NOT NULL,
 	`workingtime` int(11) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`)
@@ -73,7 +73,7 @@ CREATE TABLE `ext_calendar_holidayset` (
 	`date_update` int(10) unsigned NOT NULL DEFAULT '0',
 	`id_person_create` int(10) unsigned NOT NULL,
 	`deleted` tinyint(1) NOT NULL,
-	`title` varchar(32) NOT NULL,
+	`title` varchar(64) NOT NULL,
 	`description` varchar(128) NOT NULL,
 	PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
