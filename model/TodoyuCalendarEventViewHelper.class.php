@@ -33,12 +33,12 @@ class TodoyuCalendarEventViewHelper {
 	 * @return	Array
 	 */
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
-		$eventTypes	= TodoyuCalendarEventTypeManager::getEventTypes(true);
-		$reform		= array(
+		$eventTypes		= TodoyuCalendarEventTypeManager::getEventTypes(true);
+		$reformConfig	= array(
 			'index'	=> 'value',
 			'label'	=> 'label'
 		);
-		$eventTypes	= TodoyuArray::reform($eventTypes, $reform, false);
+		$eventTypes	= TodoyuArray::reform($eventTypes, $reformConfig, false);
 
 		return TodoyuArray::sortByLabel($eventTypes, 'label');
 	}

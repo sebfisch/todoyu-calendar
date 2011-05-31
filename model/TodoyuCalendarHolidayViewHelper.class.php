@@ -33,14 +33,14 @@ class TodoyuCalendarHolidayViewHelper {
 	 * @return	Array
 	 */
 	public static function getHolidaySetOptions(TodoyuFormElement $field) {
-		$holidaySets= TodoyuCalendarHolidaySetManager::getAllHolidaySets();
+		$holidaySets	= TodoyuCalendarHolidaySetManager::getAllHolidaySets();
 
-		$reform		= array(
+		$reformConfig	= array(
 			'id'	=> 'value',
 			'title'	=> 'label',
 		);
 
-		return TodoyuArray::reform($holidaySets, $reform);
+		return TodoyuArray::reform($holidaySets, $reformConfig);
 	}
 
 }
