@@ -102,7 +102,7 @@ Todoyu.Ext.calendar.DragDrop = {
 		/**
 		 * Clone default options (assign would make a reference)
 		 */
-		this.draggableOptions = Object.clone(this.defaultDraggableOptions);
+		this.draggableOptions 			= Object.clone(this.defaultDraggableOptions);
 
 			// Add event handlers
 		this.draggableOptions.onStart	= this.onStart.bind(this, tab);
@@ -201,8 +201,9 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @method	makeEventsDraggable
 	 */
 	makeDayEventsDraggable: function() {
-		var options	= this.draggableOptions;
+		var options			= Object.clone(this.defaultDraggableOptions);
 		options.constraint	= 'horizontal';
+		options.snap		= 88.5;
 		options.onStart		= this.onStartDragDayEvent.bind(this);
 		options.onEnd		= this.onEndDragDayEvent.bind(this);
 
@@ -304,6 +305,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 */
 	onStartDragDayEvent: function(dragInfo, event) {
 		this.initDraggableRevertToOrigin(dragInfo.element);
+		Todoyu.QuickInfo.hide(true);
 	},
 
 
@@ -454,12 +456,12 @@ Todoyu.Ext.calendar.DragDrop = {
 		var weekStart	= this.ext.getWeekStart();
 		var offset		= dragInfo.element.positionedOffset();
 		var dayOfWeek	= Math.floor( (offset.left - 2) / dayWidth );
+			// Normalize dayOfWeek to make sure its in the range
+		dayOfWeek		= dayOfWeek < 0 ? 0 : dayOfWeek > 6 ? 6 : dayOfWeek;
 
-		if( dayOfWeek >= 0 && dayOfWeek < 6 ) {
+		if( dayOfWeek >= 0 && dayOfWeek <= 6 ) {
 				// Shift starting day date, keep starting time of day
 			var dropDate	= weekStart * 1000 + (Todoyu.Time.seconds.day * dayOfWeek * 1000);
-			var timeStart	= $F('eventTimeStart-' + idEvent);
-			dropDate	   += timeStart * 1000;
 
 			this.saveDropping('week', idEvent, dropDate);
 		} else {
