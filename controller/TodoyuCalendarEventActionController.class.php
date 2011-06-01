@@ -255,7 +255,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idRecord	= intval($params['record']);
 
 		$xmlPath	= 'ext/calendar/config/form/event.xml';
-		$form 		= TodoyuFormManager::getForm($xmlPath, $index);
+		$form 		= TodoyuFormManager::getForm($xmlPath);
 
 			// Load form data
 		$formData	= $form->getFormData();
