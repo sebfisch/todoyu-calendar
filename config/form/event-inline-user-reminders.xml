@@ -11,18 +11,18 @@
 					<label>calendar.event.attr.reminder_email</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
-					<noPleaseSelect/>
+					<noPleaseSelect />
 				</field>
 
 				<field type="select" name="reminder_popup">
 					<label>calendar.event.attr.reminder_popup</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
-					<noPleaseSelect/>
+					<noPleaseSelect />
 				</field>
 
 			</elements>

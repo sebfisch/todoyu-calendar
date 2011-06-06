@@ -11,12 +11,12 @@
 
 				<field type="text" name="title">
 					<label>core.global.title</label>
-					<required/>
+					<required />
 				</field>
 
 				<field type="date" name="date">
 					<label>core.date.date</label>
-					<required/>
+					<required />
 				</field>
 
 				<field type="textarea" name="description">

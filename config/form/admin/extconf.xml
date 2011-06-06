@@ -26,9 +26,9 @@
 					<label>calendar.ext.extconf.reminder.email.advancetime.label</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
-					<noPleaseSelect/>
+					<noPleaseSelect />
 				</field>
 
 				 <field type="checkbox" name="is_reminderpopup_active">
@@ -40,9 +40,9 @@
 					<label>calendar.ext.extconf.reminder.popup.advancetime.label</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
-					<noPleaseSelect/>
+					<noPleaseSelect />
 				</field>
 
 				<field type="checkbox" name="audioreminder_active">
@@ -58,7 +58,7 @@
 					<label>calendar.ext.extconf.autosendeventmail.label</label>
 					<source type="function">
 						<function>TodoyuRoleViewHelper::getRoleOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
 					<multiple />
 				</field>

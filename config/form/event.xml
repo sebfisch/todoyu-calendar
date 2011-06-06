@@ -124,10 +124,10 @@
 					<label>comment.ext.edit.sentEmailTo</label>
 					<source type="function">
 						<function>TodoyuCalendarEventViewHelper::getEmailReceiverGroupedOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
 					<size>5</size>
-					<multiple/>
+					<multiple />
 					<style>display:none</style>
 					<restrict>
 						<allow ext="comment" right="comment:sendAsEmail" />

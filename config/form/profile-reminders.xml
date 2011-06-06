@@ -15,18 +15,18 @@
 					<label>calendar.ext.profile.reminder.email.advancetime.label</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
-					<noPleaseSelect/>
+					<noPleaseSelect />
 				</field>
 
 				<field type="select" name="reminderpopup_advancetime">
 					<label>calendar.ext.profile.reminder.popup.advancetime.label</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getReminderTimeOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
-					<noPleaseSelect/>
+					<noPleaseSelect />
 				</field>
 
 			</elements>

@@ -11,7 +11,7 @@
 
 				<field type="text" name="title">
 					<label>calendar.ext.holidayset.attr.name</label>
-					<required/>
+					<required />
 				</field>
 
 				<field type="textarea" name="description">

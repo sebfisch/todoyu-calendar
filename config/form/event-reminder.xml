@@ -19,7 +19,7 @@
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getRemindAgainOptions</function>
 					</source>
-					<noPleaseSelect/>
+					<noPleaseSelect />
 				</field>
 			</elements>
 		</fieldset>
@@ -37,7 +37,7 @@
 					<text>calendar.ext.reminder.button.remindlater</text>
 					<class>rescheduleReminderButton</class>
 					<onclick>Todoyu.Ext.calendar.Reminder.Popup.rescheduleReminderTime(this.form)</onclick>
-					<hasIcon/>
+					<hasIcon />
 				</field>
 			</elements>
 		</fieldset>

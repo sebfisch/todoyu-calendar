@@ -9,7 +9,7 @@
 					<label>calendar.ext.holidayset</label>
 					<source type="function">
 						<function>TodoyuCalendarHolidayViewHelper::getHolidaysetOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
 				</field>
 			</elements>
