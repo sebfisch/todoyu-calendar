@@ -202,7 +202,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 */
 	silentAlert: function() {
 		var oldTitle= document.title;
-		var message	= '[LLL:calendar.ext.reminder.popup.title';
+		var message	= '[LLL:calendar.ext.reminder.popup.title]';
 
 		Todoyu.Ui.setFavIcon('ext/calendar/asset/img/alarmanimation.png');
 
