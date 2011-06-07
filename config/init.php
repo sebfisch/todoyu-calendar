@@ -180,7 +180,7 @@ Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'] =
 /* -------------------------------------
 	Add calendar module to profile
    ------------------------------------- */
-if( TodoyuExtensions::isInstalled('profile') ) {
+if( TodoyuExtensions::isInstalled('profile') && TodoyuAuth::isInternal() ) {
 	TodoyuProfileManager::addModule('calendar', array(
 		'position'	=> 5,
 		'tabs'		=> 'TodoyuCalendarProfileRenderer::renderTabs',
