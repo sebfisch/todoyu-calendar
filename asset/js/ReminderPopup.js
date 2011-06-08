@@ -60,6 +60,14 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 */
 	peSeconds:	30,
 
+	/**
+	 * Silent alert interval (setInterval())
+	 *
+	 * @property	slientAlertInterval
+	 * @type		{Number}
+	 */
+	slientAlertInterval: null,
+
 
 	popups: {},
 
@@ -144,7 +152,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 		this.events.each(function(event){
 			var popupTime	= event.popup * 1000;	// Convert to milliseconds
 
-			if( ! event.dismissed && now >= popupTime  ) {
+			if( ! event.dismissed && now >= popupTime ) {
 				this.show(event.id);
 				this.silentAlert();
 			}
@@ -206,18 +214,21 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 
 		Todoyu.Ui.setFavIcon('ext/calendar/asset/img/alarmanimation.png');
 
-		var timeoutId = setInterval(function() {
+		clearInterval(this.slientAlertInterval);
+
+		this.slientAlertInterval = setInterval(function() {
 			document.title = document.title == message ? oldTitle : message;
 		}, 800);
 
-		window.onmousemove = function() {
-			clearInterval(timeoutId);
-			document.title		= oldTitle;
+		var eventHandler = document.body.on('mousemove', function(event){
+				// Clear interval
+			clearInterval(this.slientAlertInterval);
+				// Stop observing
+			eventHandler.stop();
 
+			document.title	= oldTitle;
 			Todoyu.Ui.resetFavIcon();
-
-			window.onmousemove	= null;
-		};
+		}.bind(this));
 	},
 
 
