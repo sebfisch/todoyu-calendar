@@ -214,19 +214,23 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 
 		Todoyu.Ui.setFavIcon('ext/calendar/asset/img/alarmanimation.png');
 
+			// Clear interval if there is already one
 		clearInterval(this.slientAlertInterval);
 
+			// Create interval function which alters title
 		this.slientAlertInterval = setInterval(function() {
 			document.title = document.title == message ? oldTitle : message;
 		}, 800);
 
+			// Observe body for mouse moves
 		var eventHandler = document.body.on('mousemove', function(event){
 				// Clear interval
 			clearInterval(this.slientAlertInterval);
 				// Stop observing
 			eventHandler.stop();
-
+				// Reset old title
 			document.title	= oldTitle;
+				// Reset favicon
 			Todoyu.Ui.resetFavIcon();
 		}.bind(this));
 	},
