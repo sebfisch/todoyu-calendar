@@ -226,9 +226,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 		var tab	= this.ext.getActiveTab();
 
 		if( tab === 'month' ) {
-			this.calendarBody.observe('dblclick', this.onEventCreateMonth.bindAsEventListener(this));
+			this.calendarBody.on('dblclick', 'td', this.onEventCreateMonth.bind(this));
 		} else {
-			this.calendarBody.observe('dblclick', this.onEventCreateDayWeek.bindAsEventListener(this));
+			this.calendarBody.on('dblclick', this.onEventCreateDayWeek.bind(this));
 		}
 	},
 
@@ -259,15 +259,11 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 * @method	onEventCreateMonth
 	 * @param	{Event}		event
 	 */
-	onEventCreateMonth: function(event) {
-		var cell	= event.findElement('td');
+	onEventCreateMonth: function(event, cell) {
+			// Get timestamp of the date in local timezone (will be reconverted later into the same timestamp again)
+		var time	= Todoyu.Time.date2Time(cell.id.split('-').slice(1).join('-'));
 
-		if( cell ) {
-				// Get timestamp of the date in local timezone (will be reconverted later into the same timestamp again)
-			var time	= Todoyu.Time.date2Time(cell.id.split('-').slice(1).join('-'));
-
-			this.ext.addEvent(time);
-		}
+		this.ext.addEvent(time);
 	}
 
 };

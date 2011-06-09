@@ -78,8 +78,8 @@ Todoyu.Ext.calendar.Event = {
 	installObservers: function() {
 			// Observe all events in the calendar
 		$('calendar-body').select('div.event').each(function(eventElement) {
-			eventElement.observe('dblclick', this.onEventDblClick.bindAsEventListener(this));
-		}.bind(this));
+			eventElement.on('dblclick', 'div.event', this.onEventDblClick.bind(this));
+		}, this);
 
 		this.ext.ContextMenuEvent.attach();
 	},
@@ -91,17 +91,16 @@ Todoyu.Ext.calendar.Event = {
 	 *
 	 * @method	onEventDblClick
 	 * @param	{Event}		event
+	 * @param	{Element}	element
 	 */
-	onEventDblClick: function(event) {
+	onEventDblClick: function(event, element) {
 		event.stop();
 
-		var eventDiv	= event.findElement('div.event');
-		var elementID	= eventDiv.id;
-		var parts		= elementID.split('-');
+		var parts		= element.id.split('-');
 		var idItem		= parts.last();
 
 			// If event is private and not allowed for current user, do nothing
-		var isPrivate = eventDiv.down('span.private');
+		var isPrivate = element.down('span.private');
 		if( isPrivate ) {
 			if( ! isPrivate.hasClassName('allowed') ) {
 				return false;

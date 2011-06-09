@@ -63,7 +63,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	 * @method	installObservers
 	 */
 	installObservers: function() {
-		this.list.observe('change', this.onSelectionChange.bind(this));
+		this.list.on('change', this.onSelectionChange.bind(this));
 	},
 
 

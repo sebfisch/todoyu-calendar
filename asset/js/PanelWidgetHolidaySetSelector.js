@@ -67,7 +67,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	 * @method	installObservers
 	 */
 	installObservers: function() {
-		$(this.list).observe('change', this.onHolidaySetSelect.bind(this));
+		$(this.list).on('change', this.onHolidaySetSelect.bind(this));
 	},
 
 

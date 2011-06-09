@@ -117,7 +117,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 * @method	observeEventType
 	 */
 	observeEventType: function() {
-		$('event-field-eventtype').observe('change', this.updateVisibleFields.bindAsEventListener(this));
+		$('event-field-eventtype').on('change', this.updateVisibleFields.bind(this));
 	},
 
 
@@ -156,15 +156,15 @@ Todoyu.Ext.calendar.Event.Edit = {
 		var checkHooks	= Todoyu.Hook.get('calendar.event.editType');
 
 			// Check all fields, if a hooks wants to hide it
-		allFieldNames.each(function(checkHooks, fieldsToHide, eventType, fieldName){
+		allFieldNames.each(function(fieldName){
 				// Check all hooks if they want to hide the field
-			checkHooks.each(function(fieldsToHide, fieldName, eventType, hook){
+			checkHooks.each(function(hook){
 				if( hook(fieldName, eventType) ) {
 					fieldsToHide.push(fieldName);
 					return;
 				}
-			}.bind(this, fieldsToHide, fieldName, eventType));
-		}.bind(this, checkHooks, fieldsToHide, eventType));
+			}, this);
+		}, this);
 
 		fieldsToHide.each(function(fieldName){
 			this.hideField(fieldName, 'event');

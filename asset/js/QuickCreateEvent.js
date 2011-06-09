@@ -57,7 +57,7 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	 */
 	observeEventType: function() {
 		if( Todoyu.exists('event-field-eventtype') ) {
-			$('event-field-eventtype').observe('change', this.ext.Event.Edit.updateVisibleFields.bindAsEventListener(this.ext.Event.Edit));
+			$('event-field-eventtype').on('change', this.ext.Event.Edit.updateVisibleFields.bind(this.ext.Event.Edit));
 		}
 	},
 
