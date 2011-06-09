@@ -116,7 +116,7 @@ class TodoyuCalendarEventMailManager {
 			'event'	=> $idEvent,
 			'tab'	=> 'week'
 		);
-		$data['eventlink'] = TodoyuString::buildUrl($urlParams, 'event-' . $idEvent, true);
+		$data['eventlink'] = TodoyuString::buildUrl($urlParams, '', true);
 
 		return $data;
 	}
