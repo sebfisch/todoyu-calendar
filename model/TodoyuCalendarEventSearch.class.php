@@ -79,10 +79,12 @@ class TodoyuCalendarEventSearch implements TodoyuSearchEngineIf {
 
 			foreach($events as $event) {
 				if( TodoyuCalendarEventRights::isSeeDetailsAllowed($event['id']) ) {
+					$labelTitle	= TodoyuTime::format($event['date_start'], 'datetime') . ' - ' . TodoyuTime::format($event['date_end'], 'datetime') . ' | ' . TodoyuString::wrap($event['title'], '<span class="keyword">|</span>');
+
 					$suggestions[] = array(
-						'labelTitle'=> TodoyuTime::format($event['date_start'], 'datetime') . ' - ' . TodoyuTime::format($event['date_end'], 'datetime') . ' | ' . TodoyuString::wrap($event['title'], '<span class="keyword">|</span>'),
+						'labelTitle'=> $labelTitle,
 						'labelInfo'	=> TodoyuString::getSubstring($event['description'], $find[0], 20, 30, false),
-						'title'		=> TodoyuTime::format($event['date_start'], 'datetime') . ' - ' . TodoyuTime::format($event['date_end'], 'datetime'),
+						'title'		=> strip_tags($labelTitle),
 						'onclick'	=> 'location.href=\'?ext=calendar&amp;tab=view&amp;event=' . $event['id'] . '\''
 					);
 				}
