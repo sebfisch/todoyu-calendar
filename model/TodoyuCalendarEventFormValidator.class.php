@@ -50,6 +50,8 @@ class TodoyuCalendarEventFormValidator {
 				return false;
 			}
 		}
+
+		return true;
 	}
 
 
