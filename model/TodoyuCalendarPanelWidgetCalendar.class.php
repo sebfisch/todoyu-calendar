@@ -51,7 +51,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 		$this->addHasIconClass();
 
 			// Init widget JS (observers)
-		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.Calendar.init.bind(Todoyu.Ext.calendar.PanelWidget.Calendar, \'' . date('Y-m-d', $this->getDate()) . '\')', 100);
+		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.Calendar.init.bind(Todoyu.Ext.calendar.PanelWidget.Calendar, \'' . date('Y-m-d', self::getDate()) . '\')', 100);
 	}
 
 
@@ -78,7 +78,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 * @return String
 	 */
 	public function renderContent() {
-		$date	= $this->getDate();
+		$date	= self::getDate();
 
 		$tmpl	= 'ext/calendar/view/panelwidgets/panelwidget-calendar.tmpl';
 		$data	= array(
@@ -114,7 +114,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 *
 	 * @return	Integer
 	 */
-	public function getDate() {
+	public static function getDate() {
 		return TodoyuCalendarPreferences::getDate(AREA);
 	}
 
