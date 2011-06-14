@@ -328,7 +328,7 @@ class TodoyuCalendarEventRenderer {
 		));
 
 			// Remove "don't ask again" button in form of deleted events
-		if($operationID == OPERATIONTYPE_RECORD_DELETE ) {
+		if( $operationID == OPERATIONTYPE_RECORD_DELETE ) {
 			$form->getFieldset('buttons')->removeField('dontaskagain');
 		}
 

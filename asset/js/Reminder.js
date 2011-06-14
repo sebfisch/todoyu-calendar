@@ -43,7 +43,7 @@ Todoyu.Ext.calendar.Reminder = {
 	 * @param	{Number}	idEvent
 	 */
 	refresh: function(idEvent) {
-		elementID	= 'event-' + idEvent + '-reminders';
+		var elementID	= 'event-' + idEvent + '-reminders';
 
 		if( Todoyu.exists(elementID) ) {
 			var url		= Todoyu.getUrl('calendar', 'reminder');
