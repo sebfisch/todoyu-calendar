@@ -53,7 +53,7 @@
  	<label index="extconf.reminder.email_roles.label">Roles to get event reminder email</label>
 	<label index="extconf.autosendeventmail.label">Roles to automatically send email of new / changed / deleted events to internal participants of event (removes mailing option)?</label>
 	<label index="extconf.reminder.audio.active.label">Play audio with reminder pop-up?</label>
-  	<label index="profile.module.reminders.header">Configuration for your event reminders</label>
+	<label index="profile.module.reminders.header">Configuration for your event reminders</label>
 	<label index="profile.module.main.header">Main Calendar Configuration</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Disable asking whether to send email after modification of events via drag and drop?</label>
 	<label index="profile.reminder.email.advancetime.label">Time Preset Email</label>
