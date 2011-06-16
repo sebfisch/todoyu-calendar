@@ -52,8 +52,7 @@
 }
 
 .dayMode .event dt{
-	/*white-space:normal;
-	*/
+	/*white-space:normal;*/
 }
 
 .monthMode .event dt {
@@ -417,9 +416,9 @@ div.eventDetails dd {
 
 
 
-/* -----------------------------------------------------------
+/* -------------------------------------
 	Holidays list
-   ----------------------------------------------------------- */
+   ------------------------------------- */
 #holidays .holidaysList span {
 	display:block;
 	float:left;
@@ -446,9 +445,9 @@ div.eventDetails dd {
 
 
 
-/* -----------------------------------------------------------
+/* -----------------------------------------
 	Event attendee persons
-   ----------------------------------------------------------- */
+   ------------------------------------------ */
 	/* Person has acknowledged the event */
 .eventperson-acknowledged {
 	padding-left:20px;
