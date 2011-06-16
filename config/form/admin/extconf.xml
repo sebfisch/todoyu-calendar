@@ -22,6 +22,12 @@
 					<label>calendar.ext.extconf.reminder.reminderemail_active.label</label>
 				</field>
 
+				<field type="comment" name="todoyuid_comment">
+					<comment type="function">
+						<function>TodoyuCalendarViewHelper::getCLIinfolinkComment</function>
+					</comment>
+				</field>
+
 				<field type="select" name="reminderemail_advancetime">
 					<label>calendar.ext.extconf.reminder.email.advancetime.label</label>
 					<source type="function">

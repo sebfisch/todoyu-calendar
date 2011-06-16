@@ -14,4 +14,5 @@
 	<label index="email.subject">Appointment Reminder</label>
 	<label index="email.title">Automatic Appointment Reminder</label>
 	<label index="noReminder">Don't remind me</label>
+	<label index="cli.infocomment">To automatically send event reminders per email, a cronjob must be setup for your todoyu installation. Instructions on how to setup the todoyu cronjob:</label>
 </labels>
