@@ -68,7 +68,7 @@ Todoyu.Ext.calendar.Reminder.Email = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onDeactivated: function(idEvent, response) {
-		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.email.deactivated');
+		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.email.deactivated]');
 	},
 
 
@@ -105,7 +105,7 @@ Todoyu.Ext.calendar.Reminder.Email = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onReminderTimeUpdated: function(idEvent, response) {
-		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.email.timeupdated');
+		Todoyu.notifySuccess('[LLL:calendar.reminder.notify.email.timeupdated]');
 	}
 
 };
