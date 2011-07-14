@@ -38,7 +38,7 @@
 				{if ! empty($event.description)}
 				<tr>
 					<td class="label">{Label core.global.description}:	</td>
-					<td>{html2text $event.description}</td>
+					<td>{nl2br(html2text($event.description))}</td>
 				</tr>
 				{/if}
 				<tr>
