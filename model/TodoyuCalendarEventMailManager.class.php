@@ -88,24 +88,24 @@ class TodoyuCalendarEventMailManager {
 
 
 	/**
-	 * Get data array to render email
+	 * Get data array to render event email
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$idPersonMailtTo
+	 * @param	Integer		$idPersonMailTo
 	 * @param	Boolean		$isSentBySystem
 	 * @param	Integer		$idPersonSender
 	 * @return	Array
 	 */
-	public static function getMailData($idEvent, $idPersonMailtTo, $isSentBySystem = false, $idPersonSender = 0) {
+	public static function getMailData($idEvent, $idPersonMailTo, $isSentBySystem = false, $idPersonSender = 0) {
 		$idEvent		= intval($idEvent);
-		$idPersonMailtTo= intval($idPersonMailtTo);
+		$idPersonMailTo= intval($idPersonMailTo);
 		$idPersonSender = Todoyu::personid($idPersonSender);
 
 		$event			= TodoyuCalendarEventManager::getEvent($idEvent, true);
 
 		$data	= array(
 			'event'			=> $event->getTemplateData(),
-			'personReceive'	=> TodoyuContactPersonManager::getPerson($idPersonMailtTo)->getTemplateData(),
+			'personReceive'	=> TodoyuContactPersonManager::getPerson($idPersonMailTo)->getTemplateData(),
 			'personSend'	=> self::getPersonSendTemplateData($idPersonSender, $isSentBySystem),
 			'personWrite'	=> self::getPersonWriteTemplateData($event),
 			'attendees'		=> TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true)
@@ -114,7 +114,7 @@ class TodoyuCalendarEventMailManager {
 		$urlParams	= array(
 			'ext'	=> 'calendar',
 			'event'	=> $idEvent,
-			'tab'	=> 'week'
+			'tab'	=> 'view' //'week'
 		);
 		$data['eventlink'] = TodoyuString::buildUrl($urlParams, '', true);
 
