@@ -418,7 +418,7 @@ Todoyu.Ext.calendar = {
 	 * Show week by date
 	 *
 	 * @method	showWeek
-	* @param	{String}	date		Format: Y-m-d (2010-08-15)
+	 * @param	{String}	date		Format: Y-m-d (2010-08-15)
 	 */
 	showWeek: function(date) {
 		var parts	= date.split('-');
@@ -491,6 +491,8 @@ Todoyu.Ext.calendar = {
 
 	/**
 	 * Hook callback when quick event was saved
+	 *
+	 * @method	onQuickEventSaved
 	 */
 	onQuickEventSaved: function() {
 		if( Todoyu.getArea() === 'calendar' ) {

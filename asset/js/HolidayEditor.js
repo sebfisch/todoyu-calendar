@@ -55,8 +55,8 @@
 	 * 'on holiday select' Event handler
 	 *
 	 * @method	onHolidaySelect
-	 * @param	{unknown}	widget
-	 * @param	{unknown}	value
+	 * @param	{Object}	widget
+	 * @param	{Number}	value
 	 */
 	onHolidaySelect: function(widget, value) {
 		this.loadHoliday(value);

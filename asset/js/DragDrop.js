@@ -524,9 +524,10 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * Refresh screen the render overlapping events properly
 	 *
 	 * @method	onDroppingSaved
-	 * @param	{String}	tab
-	 * @param	{Number}	idEvent
-	 * @param	{Number}	date
+	 * @param	{String}			tab
+	 * @param	{Number}			idEvent
+	 * @param	{Number}			date
+	 * @param	{Ajax.Response}		response
 	 */
 	onDroppingSaved: function(tab, idEvent, date, response) {
 		if( response.hasTodoyuHeader('overbookingwarning') ) {
