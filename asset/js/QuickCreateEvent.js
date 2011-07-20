@@ -84,17 +84,19 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	 * If saved, close the creation wizard popup
 	 *
 	 * @method	onSaved
-	 * @param	{Ajax.Response}		response	Response, containing startdate of the event
+	 * @param	{Ajax.Response}		response	Response, containing starting date of the event
 	 */
 	onSaved: function(response) {
+		var notificationIdentifier	= 'calendar.quickcreateevent.saved';
+
 		if( response.hasTodoyuError() ) {
-			Todoyu.notifyError('[LLL:calendar.event.saved.error]');
+			Todoyu.notifyError('[LLL:calendar.event.saved.error]', notificationIdentifier);
 
 			Todoyu.Popups.setContent('quickcreate', response.responseText);
 		} else {
 			var idEvent	= response.getTodoyuHeader('idEvent');
 
-			Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]');
+			Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]', notificationIdentifier);
 			Todoyu.Popups.close('quickcreate');
 
 			Todoyu.Hook.exec('calendar.ext.quickevent.saved', idEvent);

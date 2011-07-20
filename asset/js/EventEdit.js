@@ -371,9 +371,11 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 * @param	{Ajax.Response}	response
 	 */
 	onEventSaved: function(response) {
+		var notificationIdentifierEventSaved = 'calendar.event.saved';
+
 		if( response.hasTodoyuError() ) {
 				// Notify of invalid data
-			Todoyu.notifyError('[LLL:calendar.event.saved.error]');
+			Todoyu.notifyError('[LLL:calendar.event.saved.error]', notificationIdentifierEventSaved);
 			$('event-form').replace(response.responseText);
 		} else {
 			if( response.hasTodoyuHeader('overbookingwarning') ) {
@@ -401,7 +403,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 					// Event saved - notify success
 				Todoyu.Hook.exec('calendar.event.saved', idEvent);
-				Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]');
+				Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]', notificationIdentifierEventSaved);
 				var time	= response.getTodoyuHeader('time');
 				var idEvent	= response.getTodoyuHeader('idEvent');
 				this.ext.QuickInfoEvent.removeFromCache(idEvent);
