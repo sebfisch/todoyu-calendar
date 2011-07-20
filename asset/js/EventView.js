@@ -64,7 +64,7 @@ Todoyu.Ext.calendar.Event.View = {
 		var options	= {
 			parameters: {
 				action:	'show',
-				'event':	idEvent
+				event:	idEvent
 			},
 			onComplete: this.onDetailsLoaded.bind(this, idEvent)
 		};
@@ -106,7 +106,7 @@ Todoyu.Ext.calendar.Event.View = {
 		}
 
 			// Delay activation, because tab handler activates add tab after this function
-		Todoyu.Tabs.setActive.defer('calendar', 'view');
+		Todoyu.Tabs.setActive.bind(Todoyu.Tabs).defer('calendar', 'view');
 	},
 
 
