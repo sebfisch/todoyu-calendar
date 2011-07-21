@@ -1,9 +1,12 @@
 todoyu calendar extension changelog
 
-calendar 1.1.1 - ???
+calendar 1.1.1 - not released yet
+	* Change: Event reminder popup closing via [x] in popup titlebar now deactivates the reminder
 	* Bugfix: Invalid label in email reminder js
+	* Bugfix: todoyu link URL in event mail links to event single view now (was showing week)
 	* Bugfix: Activation of view tab caused js error because of missing context
 	* Changed: Works with scheduler API 2.1.1. Frequency changed to 5 minutes
+
 
 calendar 1.1.0 - 2011-06.17
 	* Changed: Requires core 2.1
@@ -39,6 +42,7 @@ calendar 1.1.0 - 2011-06.17
 	* Bugfix: Fixed holidays list to be ordered by date
  	* Bugfix: After overbooking error after drag and dropping events did not revert to original time
  	* Bugfix: Fixed sending of notification for events
+
 
  calendar 1.0.6 - not released yet
 	* Feature: Different format in single view of events by duration - multi-day / mult-hour / minutes
@@ -147,4 +151,4 @@ calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Bugfix: Month view timespan to be rendered from selected (was current) year, months intersecting 6 weeks were cut-off after w5
 
 
-bookmark 1.0.0 - released 2010-05-10
+calendar 1.0.0 - released 2010-05-10
