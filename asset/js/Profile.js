@@ -37,6 +37,7 @@ Todoyu.Ext.calendar.Profile =  {
 	ext:	Todoyu.Ext.calendar,
 
 
+
 	/**
 	 * Handler for tabs in calendar area of profile
 	 *

@@ -37,6 +37,7 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 	ext:		Todoyu.Ext.calendar,
 
 
+
 	/**
 	 * Selector (sizzle) for event quickinfo
 	 *

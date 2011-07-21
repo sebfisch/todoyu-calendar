@@ -35,6 +35,7 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 	ext:		Todoyu.Ext.calendar,
 
 
+
 	/**
 	 * Selector (sizzle) for holiday quickinfo
 	 *

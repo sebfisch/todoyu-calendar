@@ -68,7 +68,10 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 */
 	slientAlertInterval: null,
 
-
+	/**
+	 * @property	popups
+	 * @type		{Object}
+	 */
 	popups: {},
 
 

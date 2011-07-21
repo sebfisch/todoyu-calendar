@@ -414,6 +414,7 @@ Todoyu.Ext.calendar = {
 	},
 
 
+
 	/**
 	 * Show week by date
 	 *

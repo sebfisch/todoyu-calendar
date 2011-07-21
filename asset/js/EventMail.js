@@ -159,6 +159,7 @@ Todoyu.Ext.calendar.Event.Mail = {
 	},
 
 
+
 	/**
 	 * Handler after event mail has been sent
 	 *
