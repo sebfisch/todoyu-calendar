@@ -3,6 +3,7 @@ todoyu calendar extension changelog
 calendar 1.1.1 - ???
 	* Bugfix: Invalid label in email reminder js
 	* Bugfix: Activation of view tab caused js error because of missing context
+	* Changed: Works with scheduler API 2.1.1. Frequency changed to 5 minutes
 
 calendar 1.1.0 - 2011-06.17
 	* Changed: Requires core 2.1

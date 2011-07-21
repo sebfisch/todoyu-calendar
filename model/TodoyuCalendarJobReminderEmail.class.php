@@ -28,22 +28,12 @@
 class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 
 	/**
-	 * Frequency the cron job is executed
-	 * You can't change frequency with this config
-	 *
-	 * @var	Integer
-	 */
-	private $frequency = 60;
-
-
-
-	/**
 	 * Executed from TodoyuScheduler: send scheduled event reminder emails
 	 */
 	public function execute() {
 			// Get unsent emails with scheduled timestamp <= NOW
 		$reminderIDs	= $this->getUnsentDueReminderIDs();
-
+		
 			// Send emails
 		foreach($reminderIDs as $idReminder) {
 			$reminder	= TodoyuCalendarReminderEmailManager::getReminder($idReminder);
@@ -60,12 +50,11 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 	 * @return	Array
 	 */
 	private function getUnsentDueReminderIDs() {
-		$checkDate	= NOW + $this->frequency * 60;
-		$field	= 'id';
-		$table	= 'ext_calendar_mm_event_person';
-		$where	= '		is_remindemailsent	= 0'
-				. ' AND	date_remindemail	> 0'
-				. ' AND	date_remindemail	< ' . $checkDate;
+		$field		= 'id';
+		$table		= 'ext_calendar_mm_event_person';
+		$where		= '		is_remindemailsent	= 0'
+					. ' AND	date_remindemail	> 0'
+					. ' AND	date_remindemail	< ' . $this->getNextExecutionTime();
 
 		return Todoyu::db()->getColumn($field, $table, $where);
 	}

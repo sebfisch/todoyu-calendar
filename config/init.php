@@ -21,7 +21,7 @@
 /* ------------------------
 	Schedule Cronjobs
    ------------------------ */
-TodoyuScheduler::addJob('TodoyuCalendarJobReminderEmail', 0);
+TodoyuScheduler::addJob('TodoyuCalendarJobReminderEmail', 5);
 
 
 
