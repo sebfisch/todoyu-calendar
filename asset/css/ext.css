@@ -108,42 +108,6 @@ span.holiday {
 
 
 
-/* -------------------------
-	Holidays admin module
-   ------------------------- */
-#admin-tabs li.tabkey-holidays span.icon {
-	background:url(../img/icons.png) no-repeat 0 -404px;
-}
-
-table.holidayList {
-	width:100%;
-}
-
-table.holidayList tr {
-	height:16px;
-}
-
-table.holidayList tr td, table.holidayList th {
-	padding:2px 0 4px 12px;
-}
-
-.birthdaysList.even {
-	background-color:#fff;
-}
-
-table.holidayList tr.odd, .birthdaysList {
-	background-color:#f3f3f3;
-}
-
-ul.holidayList li div.date {
-	width:50px;
-	margin:0 18px 0 0;
-}
-
-ul.holidayList li div.title {
-	width:150px;
-	margin:0 18px 0 0;
-}
 
 form.createevent label, form.createeventMidcol label{
 	display:block;

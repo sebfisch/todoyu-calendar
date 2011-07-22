@@ -93,34 +93,6 @@
 	background-color:#fff;
 }
 
-	#calendar #createevent {
-		margin-top:10px;
-		margin-left:10px;
-	}
-
-	#calendar #createevent .formelement {
-		margin-bottom:4px;
-		clear:both;
-	}
-
-	#calendar #createevent .formelement input,
-	#calendar #createevent .formelement textarea,
-	#calendar #createevent .formelement select {
-		border:1px solid #d3dabb;
-	}
-
-	#calendar #createevent .formelement select.large {
-		width:355px;
-	}
-
-	#calendar #createevent .formelement .small {
-		width:80px;
-	}
-
-	#calendar #createevent .formelement .large {
-		width:352px;
-	}
-
 #calendar-quicknav {
 	position:absolute;
 	top:3px;
