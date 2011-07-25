@@ -6,6 +6,8 @@ calendar 1.1.1 - ???
 	* Bugfix: todoyu link URL in event mail links to event single view now (was showing week)
 	* Bugfix: Activation of view tab caused js error because of missing context
 	* Changed: Works with scheduler API 2.1.1. Frequency changed to 5 minutes
+	* Changed: CSS cleanup (removed old styles)
+	* Changed: icons.png cleanup (removed unused sprite icons)
 
 
 calendar 1.1.0 - 2011-06-17
