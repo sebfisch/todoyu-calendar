@@ -79,7 +79,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetHolidays
 	 */
 	public function testGetHolidays() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -90,7 +93,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetHolidaysForDay
 	 */
 	public function testGetHolidaysForDay() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -128,7 +134,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement testGetVisibleWeeksAmount
 	 */
 	public function testGetVisibleWeeksAmount() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -159,7 +168,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetMonthDisplayRange
 	 */
 	public function testGetMonthDisplayRange() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -203,7 +215,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testIsOverbookingAllowed
 	 */
 	public function testIsOverbookingAllowed() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -214,7 +229,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetContextMenuItems
 	 */
 	public function testGetContextMenuItems() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -225,7 +243,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetCalendarTabsConfig
 	 */
 	public function testGetCalendarTabsConfig() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -236,7 +257,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetSelectedPersons
 	 */
 	public function testGetSelectedPersons() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -247,7 +271,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetSelectedEventTypes
 	 */
 	public function testGetSelectedEventTypes() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -258,7 +285,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetSelectedHolidaySets
 	 */
 	public function testGetSelectedHolidaySets() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -269,7 +299,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testModifyAddressFormFields
 	 */
 	public function testModifyAddressFormfields() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -280,7 +313,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetBirthdaysByDay
 	 */
 	public function testGetBirthdaysByDay() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -291,7 +327,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetDayEventsWeekMapping
 	 */
 	public function testGetDayEventsWeekMapping() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -302,7 +341,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetDayKeys
 	 */
 	public function testGetDayKeys() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 
@@ -313,7 +355,10 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testAutocompleteEventPersons
 	 */
 	public function testAutocompleteEventPersons() {
-
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 }
