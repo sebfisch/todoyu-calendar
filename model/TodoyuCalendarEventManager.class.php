@@ -455,16 +455,16 @@ class TodoyuCalendarEventManager {
 	public static function saveEvent(array $data) {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 
-		$idEvent		= intval($data['id']);
-		$isNewEvent		= $idEvent === 0;
-		$sendAsMail		= $data['sendasemail'];
-		$emailReceivers	= $data['emailreceivers'];
+		$idEvent			= intval($data['id']);
+		$isNewEvent			= $idEvent === 0;
+		$sendAsMail			= $data['sendasemail'];
+		$emailReceivers		= $data['emailreceivers'];
 		$advanceTimeEmail	= intval($data['reminder_email']);
 		$advanceTimePopup	= intval($data['reminder_popup']);
 
 			// Extract person IDs from foreign data array (easier to handle)
-		$personIDs 		= TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
-		$personIDs		= TodoyuArray::intval($personIDs, true, true);
+		$personIDs 	= TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
+		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
 			// Add empty event
 		if( $idEvent === 0 ) {
@@ -1007,7 +1007,6 @@ class TodoyuCalendarEventManager {
 			case EVENTTYPE_BIRTHDAY:
 				$data['date_start']	= TodoyuTime::getStartOfDay($data['date_start']);
 				$data['date_end']	= $data['date_start'] + TodoyuTime::SECONDS_HOUR; // Fix, so event is in day period
-				$data['person']		= array();
 				$data['is_dayevent']= 1;
 				break;
 
