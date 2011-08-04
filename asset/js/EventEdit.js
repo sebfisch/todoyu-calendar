@@ -48,7 +48,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	open: function(idEvent, time) {
 		Todoyu.QuickInfo.hide();
 		Todoyu.Ui.scrollToTop();
-		this.addTab('Edit');
+		this.addTab('');
 		this.ext.hideCalendar();
 		this.loadForm(idEvent, time);
 	},
@@ -252,16 +252,9 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 * @param	{String}		label
 	 */
 	addTab: function(label) {
-		if( ! Todoyu.exists('calendar-tab-edit') ) {
-			var tab = Todoyu.Tabs.build('calendar', 'edit', '', label, true);
-
-			$('calendar-tab-month').insert({
-				'after': tab
-			});
+		if( ! Todoyu.Tabs.hasTab('calendar', 'edit') ) {
+			Todoyu.Tabs.addTab('calendar', 'edit', '', label, true, false);
 		}
-
-			// Delay activation, because tab handler activates add tab after this function
-		Todoyu.Tabs.setActive.defer('calendar' ,'edit');
 	},
 
 
