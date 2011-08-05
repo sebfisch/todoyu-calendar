@@ -3,6 +3,7 @@ todoyu calendar extension changelog
 calendar 1.1.2 - ???
 	* Bugfix: Creating the edit tab caused an error because of invalid context binding
 	* Bugfix: #186 Saving a birthday caused sql error because of surplus person field
+	* Translation: Updated french translation
 
 calendar 1.1.1 - 2011-07-25
 	* Change: Event reminder popup closing via [x] in popup titlebar now deactivates the reminder
