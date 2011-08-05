@@ -24,7 +24,8 @@
 /**
  * Calendar event popup reminder functions
  *
- * @namespace	Todoyu.Ext.calendar.Reminder.Popup
+ * @class		Popup
+ * @namespace	Todoyu.Ext.calendar.Reminder
  */
 Todoyu.Ext.calendar.Reminder.Popup = {
 
@@ -67,6 +68,14 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 * @type		{Number}
 	 */
 	slientAlertInterval: null,
+
+	/**
+	 * Old page title
+	 *
+	 * @property	oldPageTitle
+	 * @type		{String}
+	 */
+	oldPageTitle: null,
 
 	/**
 	 * @property	popups
@@ -188,7 +197,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 
 				// Setup close-button in popup titlebar to deactivate the reminder
 			this.popups[idEvent].setDestroyOnClose();
-			this.popups[idEvent].setCloseCallback(function(popup){Todoyu.Ext.calendar.Reminder.Popup.onPopupClosedFromTitlebar(popup)});
+			this.popups[idEvent].setCloseCallback(this.onPopupClosedFromTitlebar.bind(this));
 		}
 	},
 
@@ -203,7 +212,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	onPopupClosedFromTitlebar: function(popup) {
 		var idEvent	= popup.element.id.replace('reminder', '');
 
-		Todoyu.Ext.calendar.Reminder.Popup.deactivate(idEvent, false);
+		this.deactivate(idEvent, false);
 		popup.hide();
 	},
 
@@ -232,7 +241,10 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 * @method	silentAlert
 	 */
 	silentAlert: function() {
-		var oldTitle= document.title;
+		if( this.oldPageTitle === null ) {
+			this.oldPageTitle = document.title;
+		}
+		var oldTitle= this.oldPageTitle;
 		var message	= '[LLL:calendar.ext.reminder.popup.title]';
 
 		Todoyu.Ui.setFavIcon('ext/calendar/asset/img/alarmanimation.png');
@@ -247,15 +259,33 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 
 			// Observe body for mouse moves
 		var eventHandler = document.body.on('mousemove', function(event){
-				// Clear interval
-			clearInterval(this.slientAlertInterval);
 				// Stop observing
 			eventHandler.stop();
-				// Reset old title
-			document.title	= oldTitle;
-				// Reset favicon
-			Todoyu.Ui.resetFavIcon();
+				// Stop silent alert loop
+			this.stopSilentAlert();
 		}.bind(this));
+	},
+
+
+
+	/**
+	 * Stop the silent alert
+	 * Stop title switching, reset old title, reset favicon
+	 *
+	 * @method	stopSilentAlert
+	 */
+	stopSilentAlert: function() {
+			// Stop interval
+		clearInterval(this.slientAlertInterval);
+
+			// Reset page title
+		if( this.oldPageTitle !== null ) {
+			document.title	= this.oldPageTitle;
+			this.oldPageTitle = null;
+		}
+
+			// Reset favicon
+		Todoyu.Ui.resetFavIcon();
 	},
 
 
@@ -325,6 +355,8 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 			},
 			onComplete: this.onDeactivated.bind(this, idEvent, closePopup)
 		};
+
+		this.stopSilentAlert();
 
 		Todoyu.send(url, options);
 	},
