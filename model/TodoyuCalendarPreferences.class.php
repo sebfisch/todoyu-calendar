@@ -115,7 +115,7 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * Get fullday view (active?) preference
+	 * Get full-day view (active?) preference
 	 *
 	 * @return	Boolean
 	 */
@@ -160,6 +160,7 @@ class TodoyuCalendarPreferences {
 
 	/**
 	 * Gets the current active tab
+	 *
 	 * @return	String	tab name
 	 */
 	public static function getActiveTab() {
@@ -302,8 +303,8 @@ class TodoyuCalendarPreferences {
 	/**
 	 * Get reminder advance time
 	 *
-	 * @param	String		$typeKey
-	 * @param	Integer		$idPerson
+	 * @param	String				$typeKey
+	 * @param	Integer				$idPerson
 	 * @return	Integer|Boolean
 	 */
 	public static function getReminderAdvanceTime($typeKey, $idPerson = 0) {
@@ -328,6 +329,6 @@ class TodoyuCalendarPreferences {
 	}
 
 
- }
+}
 
 ?>
