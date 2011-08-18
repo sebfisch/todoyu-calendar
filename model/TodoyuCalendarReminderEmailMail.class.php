@@ -52,7 +52,6 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 
 	/**
 	 * Init email settings
-	 *
 	 */
 	private function init() {
 		$subject	= Todoyu::Label('calendar.reminder.email.subject') . ': ' . $this->reminder->getEvent()->getTitle();

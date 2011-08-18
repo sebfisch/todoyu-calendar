@@ -90,7 +90,6 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 
 	/**
 	 * Set "is_sent" flag of reminder true, store
-	 *
 	 */
 	private function saveAsSent() {
 		$idReminder	= $this->getID();

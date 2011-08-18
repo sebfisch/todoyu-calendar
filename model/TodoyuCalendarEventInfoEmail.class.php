@@ -63,7 +63,6 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 
 	/**
 	 * Initialize info email with correct data
-	 *
 	 */
 	private function init() {
 		$this->addReceiver($this->person->getID());
@@ -84,7 +83,6 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 
 	/**
 	 * Set headline by type
-	 *
 	 */
 	private function setHeadlineByType() {
 		$headline	= '';
@@ -108,7 +106,6 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 
 	/**
 	 * Set mail subject according to the action type
-	 *
 	 */
 	private function setTypeSubject() {
 		switch( $this->actionType ) {
