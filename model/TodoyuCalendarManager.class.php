@@ -310,7 +310,7 @@ class TodoyuCalendarManager {
 			if( $parentForm == 'company' ) {
 					// Extend company record form with holiday set selector
 				$xmlPath	= 'ext/calendar/config/form/addressholidayset.xml';
-				$form->addElementsFromXML($xmlPath);
+				$form->getFieldset('main')->addElementsFromXML($xmlPath);
 			}
 		}
 
