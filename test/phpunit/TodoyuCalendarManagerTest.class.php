@@ -293,19 +293,6 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 
 
 
-	/**
-	 * Test modifyAddressFormfields
-	 *
-	 * @todo	implement	testModifyAddressFormFields
-	 */
-	public function testModifyAddressFormfields() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-			'This test has not been implemented yet.'
-		);
-	}
-
-
 
 	/**
 	 * Test getBirthdaysByDay

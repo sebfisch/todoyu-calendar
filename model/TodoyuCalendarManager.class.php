@@ -303,7 +303,7 @@ class TodoyuCalendarManager {
 	 * @param	Array			$params
 	 * @return	TodoyuForm
 	 */
-	public static function modifyAddressFormfields(TodoyuForm $form, $index, array $params) {
+	public static function hookAddHolidaysetToCompanyAddress(TodoyuForm $form, $index, array $params) {
 		if( $params['field'] instanceof TodoyuFormElement ) {
 			$parentForm	= $params['field']->getForm()->getName();
 

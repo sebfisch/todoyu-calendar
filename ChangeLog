@@ -6,6 +6,7 @@ calendar 1.1.2 - ???
 	* Change: Cleanup of reminder popup and silent alert. Make sure silent alert is stopped when popup is closed
 	* Change: Moved form hooks from boot.php to init.php
 	* Change: Add holidayset for address to main fieldset directly
+	* Change: Renamed TodoyuCalendarManager::modifyAddressFormfields to hookAddHolidaysetToCompanyAddress
 	* Translation: #196 Updated french translation
 
 calendar 1.1.1 - 2011-07-25
