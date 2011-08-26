@@ -134,10 +134,12 @@ class TodoyuCalendarViewHelper {
 	 * @return	Array
 	 */
 	public static function getRemindAgainOptions(TodoyuFormElement $field) {
-		$idEvent	= intval($field->getForm()->getRecordID());
+		$idEvent	= $field->getForm()->getRecordID();
 
 		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
-		$timeLeft	= $event->getStartDate() - NOW;
+			// About the two minutes extra. Prevent showing the current active reminder time
+			// when the popup came a little bit too soon
+		$timeLeft	= $event->getStartDate() - NOW - TodoyuTime::SECONDS_MIN * 2;
 
 		return self::getRemindingTimeOptionsArray(false, $timeLeft);
 	}
