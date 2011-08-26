@@ -194,10 +194,6 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 
 				// Open popup with content to be received from AJAX
 			this.popups[idEvent] = Todoyu.Popups.open(popupID, '[LLL:calendar.ext.reminder.popup.title]', 460, url, options);
-
-				// Setup close-button in popup titlebar to deactivate the reminder
-			this.popups[idEvent].setDestroyOnClose();
-			this.popups[idEvent].setCloseCallback(this.onPopupClosedFromTitlebar.bind(this));
 		}
 	},
 
