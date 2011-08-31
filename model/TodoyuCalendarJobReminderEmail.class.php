@@ -39,6 +39,8 @@ class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 			$reminder	= TodoyuCalendarReminderEmailManager::getReminder($idReminder);
 
 			$reminder->sendAsEmail();
+
+			TodoyuHookManager::callHook('calendar', 'email.reminder', array($idReminder));
 		}
 	}
 

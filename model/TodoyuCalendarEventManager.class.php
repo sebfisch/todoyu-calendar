@@ -439,9 +439,9 @@ class TodoyuCalendarEventManager {
 	public static function deleteEvent($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		$where	= 'id = ' . $idEvent;
+		TodoyuRecordManager::deleteRecord(self::TABLE, $idEvent);
 
-		Todoyu::db()->setDeleted(self::TABLE, $where);
+		TodoyuHookManager::callHook('calendar', 'event.delete', array($idEvent));
 	}
 
 
@@ -546,7 +546,11 @@ class TodoyuCalendarEventManager {
 	 * @return	Integer
 	 */
 	public static function addEvent(array $data = array()) {
-		return TodoyuRecordManager::addRecord(self::TABLE, $data);
+		$idEvent = TodoyuRecordManager::addRecord(self::TABLE, $data);
+
+		TodoyuHookManager::callHook('calendar', 'event.add', array($idEvent));
+
+		return $idEvent;
 	}
 
 
@@ -556,14 +560,13 @@ class TodoyuCalendarEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$data
-	 * @return	Boolean
 	 */
 	public static function updateEvent($idEvent, array $data) {
-		$result	= TodoyuRecordManager::updateRecord(self::TABLE, $idEvent, $data);
+		TodoyuRecordManager::updateRecord(self::TABLE, $idEvent, $data);
 
 		self::removeEventFromCache($idEvent);
 
-		return $result;
+		TodoyuHookManager::callHook('calendar', 'event.update', array($idEvent, $data));
 	}
 
 
@@ -605,8 +608,10 @@ class TodoyuCalendarEventManager {
 			'date_start'=> $dateStart,
 			'date_end'	=> $dateEnd
 		);
-		self::updateEvent($idEvent, $data);
 
+		TodoyuHookManager::callHook('calendar', 'event.move', array($idEvent, $dateStart, $dateEnd));
+
+		self::updateEvent($idEvent, $data);
 
 			// Update scheduled reminders relative to shifted time of event
 		TodoyuCalendarReminderManager::shiftReminderDates($idEvent, $offset);
@@ -683,7 +688,6 @@ class TodoyuCalendarEventManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @return	Integer
 	 */
 	private static function addAssignment($idEvent, $idPerson) {
 		$idEvent		= intval($idEvent);
@@ -707,7 +711,9 @@ class TodoyuCalendarEventManager {
 			'date_remindpopup'	=> $dateRemindPopup
 		);
 
-		return Todoyu::db()->addRecord($table, $data);
+		Todoyu::db()->addRecord($table, $data);
+
+		TodoyuHookManager::callHook('calendar', 'event.assign', array($idEvent, $idPerson));
 	}
 
 
@@ -865,6 +871,8 @@ class TodoyuCalendarEventManager {
 		);
 
 		Todoyu::db()->doUpdate('ext_calendar_mm_event_person', $where, $update);
+
+		TodoyuHookManager::callHook('calendar', 'event.acknowledge', array($idEvent, $idPerson));
 	}
 
 

@@ -10,6 +10,7 @@ calendar 1.1.2 - not released yet
 	* Change: Moved form hooks from boot.php to init.php
 	* Change: Add holidayset for address to main fieldset directly
 	* Change: Renamed TodoyuCalendarManager::modifyAddressFormfields to hookAddHolidaysetToCompanyAddress
+	* Add: Hooks: email.info, email.reminder, event.delete, event.add, event.update, event.move, event.assign, event.acknowledge
 	* Translation: #196 Updated french translation
 
 calendar 1.1.1 - 2011-07-25

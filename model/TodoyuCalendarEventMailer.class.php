@@ -73,7 +73,9 @@ class TodoyuCalendarEventMailer {
 			$operationID	= OPERATIONTYPE_RECORD_DELETE;
 		}
 
-		$mail		= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $operationID);
+		$mail	= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $operationID);
+
+		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $idPerson, $operationID));
 
 		return $mail->send();
 	}
