@@ -1,6 +1,7 @@
 todoyu calendar extension changelog
 
 calendar 1.1.2 - not released yet
+	* Feature: Remind-again options of reminder popup are being removed when popup is left open and their rescheduling time passes
 	* Feature: Added event time range into event email subject
 	* Bugfix: Creating the edit tab caused an error because of invalid context binding
 	* Bugfix: #186 Saving a birthday caused SQL error because of surplus person field
