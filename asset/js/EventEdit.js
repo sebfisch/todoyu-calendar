@@ -372,41 +372,49 @@ Todoyu.Ext.calendar.Event.Edit = {
 			$('event-form').replace(response.responseText);
 		} else {
 			if( response.hasTodoyuHeader('overbookingwarning') ) {
-					// Add inline warning
-				var inlineWarning	= new Element('div', {
-					'id':		'overbooking-warning-inline',
-					'class':	'errorMessage'
-				}).update(response.getTodoyuHeader('overbookingwarningInline'));
+				this.updateInlineOverbookingWarning(response.getTodoyuHeader('overbookingwarningInline'));
 
-				if( Todoyu.exists('overbooking-warning-inline') ) {
-					$('overbooking-warning-inline').remove();
-				}
-
-				$('formElement-event-field-persons-inputbox').select('.clear').last().insert({
-					after: inlineWarning
-				});
 					// Open confirmation prompt in popup
 				var warning	= response.getTodoyuHeader('overbookingwarning');
 				Todoyu.Popups.openContent('Warning', warning, 'Overbooking Warning', 376);
 			} else {
 				if( response.getTodoyuHeader('sentEmail') ) {
-						// Notify of sent mail
 					Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.sent]');
 				}
 
-					// Event saved - notify success
+					// Event saved - exec hooks, clean event record cache and notify success
 				Todoyu.Hook.exec('calendar.event.saved', idEvent);
-
+				this.ext.QuickInfoEvent.removeFromCache(response.getTodoyuHeader('idEvent'));
+				
 				Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]', notificationIdentifierEventSaved);
 
-				var time	= response.getTodoyuHeader('time');
-				var idEvent	= response.getTodoyuHeader('idEvent');
-
-				this.ext.QuickInfoEvent.removeFromCache(idEvent);
-				this.ext.show(this.ext.Tabs.active, time * 1000);
+					// Update calendar body showing time of the saved event and close the edit form
+				this.ext.show(this.ext.Tabs.active, response.getTodoyuHeader('time') * 1000);
 				this.close();
 			}
 		}
+	},
+
+
+
+	/**
+	 * Update event edit form's inline overbooking warning
+	 *
+	 * @method	renderOverbookingWarningInline
+	 * @param	{String}	warningContent
+	 */
+	updateInlineOverbookingWarning: function(warningContent) {
+			// Remove old warning
+		if( Todoyu.exists('overbooking-warning-inline') ) {
+			$('overbooking-warning-inline').remove();
+		}
+			// Render and insert current warning
+		var inlineWarning	= new Element('div', {
+			'id':		'overbooking-warning-inline',
+			'class':	'errorMessage'
+		}).update(warningContent);
+
+		$('formElement-event-field-persons-inputbox').select('.clear').last().insert({after: inlineWarning});
 	},
 
 
