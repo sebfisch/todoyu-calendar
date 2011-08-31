@@ -100,9 +100,8 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	 */
 	selectAllEventTypes: function(select) {
 		var selected = select === true;
-		this.list.select('option').each(function(option){
-			option.selected = selected;
-		});
+
+		this.list.select('option').invoke('writeAttribute', 'selected', selected);
 	},
 
 

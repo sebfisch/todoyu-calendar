@@ -115,6 +115,8 @@ class TodoyuCalendarReminderActionController extends TodoyuActionController {
 			TodoyuHeader::sendTodoyuHeader('sound', $soundFilename);
 		}
 
+		TodoyuHeader::sendTodoyuHeader('dateStart', TodoyuCalendarEventManager::getEvent($idEvent)->getStartDate());
+
 		return TodoyuCalendarReminderRenderer::renderEventReminderPopup($idEvent);
 	}
 

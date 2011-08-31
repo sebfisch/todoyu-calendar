@@ -159,7 +159,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 * @method	onReminderTimeout
 	 */
 	showDueReminderPopups: function() {
-		var now	= new Date().getTime();
+		var now	= Date.now();
 
 		this.events.each(function(event){
 			var popupTime	= event.popup * 1000;	// Convert to milliseconds
@@ -226,7 +226,9 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 			this.playSound(file);
 		}
 
-		this.initRemindAgainInPopup(idEvent);
+		var dateStart	= response.getTodoyuHeader('dateStart');
+
+		this.updateRemindAgainInPopup(idEvent, dateStart);
 	},
 
 
@@ -300,23 +302,69 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 
 
 	/**
-	 * Initialize reminder popup
-	 * Hide remind again if no options available
+	 * Initialize/update "remind again.." options of reminder popup.
+	 * Remove invalid options / hide "remind me again..." if no options available,
+	 * schedule next update when next remind-again option timing reached
 	 *
 	 * @method	initRemindAgainInPopup
 	 * @param	{Number}	idEvent
+	 * @param	{Number}	dateStart		Event dateStart as UNIX timestamp
 	 */
-	initRemindAgainInPopup: function(idEvent) {
+	updateRemindAgainInPopup: function(idEvent, dateStart) {
+		console.log('update!');
+		if( this.popups[idEvent] !== undefined && Todoyu.exists(this.popups[idEvent].element) ) {
+				// Find and remove rescheduling options of past times, get seconds before event of next rescheduling option
+			var nextSecondsBefore	= this.removePastRemindAgainOptions(idEvent, dateStart);
+
+			var content	= this.popups[idEvent].getContent();
+			var select	= content.down('form fieldset.reminderschedule select');
+			var options	= select.select('option');
+
+				// Remove "remind me again.." fieldset if empty, or preselect last option
+			if( options.size() === 0 ) {
+				[select.up('fieldset'), content.down('button.rescheduleReminderButton')].invoke('hide');
+			} else {
+					// Select last option
+				options.last().selected = true;
+
+					// Set timeout to update the remind-again options at time of next option
+				if( nextSecondsBefore !== false ) {
+					var timeStampRemindOption	= dateStart - nextSecondsBefore;
+					var delayTime	= parseInt( (timeStampRemindOption - Date.now() / 1000 ) + 1, 10);
+
+					this.updateRemindAgainInPopup.bind(this).delay(delayTime, idEvent, dateStart);
+				}
+			}
+		}
+	},
+
+
+	/**
+	 * Find and remove rescheduling options pointing to past times from given event reminder popup options.
+	 *
+	 * @method	removePastRemindAgainOptions
+	 * @param	{Number}		idEvent
+	 * @param	{Number}		dateStart		Event dateStart as UNIX timestamp
+	 * @return	{Boolean|Number}				False if no more options / value of next valid remind-again option
+	 */
+	removePastRemindAgainOptions: function(idEvent, dateStart) {
 		var content	= this.popups[idEvent].getContent();
 		var select	= content.down('form fieldset.reminderschedule select');
 		var options	= select.select('option');
 
-		if( options.size() === 0 ) {
-			select.up('fieldset').hide();
-			content.down('button.rescheduleReminderButton').hide();
-		} else {
-			options.last().selected = true;
-		}
+		var timestampNow	= parseInt(Date.now() / 1000, 10);	// Convert milliseconds to seconds
+
+			// Check all options and remove passed ones
+		options.each(function(option) {
+			if( dateStart - option.value <= timestampNow ) {
+				option.remove();
+			}
+		});
+
+			// Return value of last option if any
+		options	= select.select('option');
+
+		return ( options.size() === 0 ) ? false : options.last().value;
 	},
 
 

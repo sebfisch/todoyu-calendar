@@ -177,8 +177,8 @@ Todoyu::$CONFIG['EXT']['calendar']['default']['eventDuration']	= 3600;		// 1 hou
 Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKAHEAD'] = 57600;	// 16 hours
 	// How long to remind of events in the past?
 Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKBACK'] = 60; // 1 minute
-	// Time bofore event for event reminders to occur
-Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'] = array(1, 5, 15, 30, 60, 120, 720, 1440, 2880, 10080);
+	// Time (in minutes) before event for event reminders to occur
+Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'] = array(1, 5, 15, 	16,17,18,19,20,21,22,23,24,25,26,27,28,29,		30, 	40,41,42,43,44,45,46,47,48,49,		50,51,52,53,54,55,56,57,58,59,		60, 120, 720, 1440, 2880, 10080);
 
 
 

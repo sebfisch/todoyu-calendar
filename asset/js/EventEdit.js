@@ -348,7 +348,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 		$('event-form').request({
 			parameters: {
-				action:					'save',
+				action:						'save',
 				'isOverbookingConfirmed':	(isOverbookingConfirmed ? '1' : '0')
 			},
 			onComplete: this.onEventSaved.bind(this)
@@ -396,9 +396,12 @@ Todoyu.Ext.calendar.Event.Edit = {
 
 					// Event saved - notify success
 				Todoyu.Hook.exec('calendar.event.saved', idEvent);
+
 				Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]', notificationIdentifierEventSaved);
+
 				var time	= response.getTodoyuHeader('time');
 				var idEvent	= response.getTodoyuHeader('idEvent');
+
 				this.ext.QuickInfoEvent.removeFromCache(idEvent);
 				this.ext.show(this.ext.Tabs.active, time * 1000);
 				this.close();
