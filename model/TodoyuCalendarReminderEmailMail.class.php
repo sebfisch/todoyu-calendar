@@ -54,16 +54,24 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 	 * Init email settings
 	 */
 	private function init() {
-		$subject	= Todoyu::Label('calendar.reminder.email.subject') . ': ' . $this->reminder->getEvent()->getTitle();
+		$event	= $this->reminder->getEvent();
 
-		$this->addReceiver($this->getPerson()->getID());
+			// Render and set email subject
+		$prefix	= Todoyu::Label('calendar.reminder.email.subject');
+		$subject= $prefix . ': ' . $event->getTitle() . ' - ' . $event->getDurationString();
+
 		$this->setSubject($subject);
+
+			// Add receivers, headline
+		$this->addReceiver($this->getPerson()->getID());
 		$this->setHeadline('calendar.reminder.email.title');
 
+			// Add CSS
 		$this->addCssStyles('td.label{font-weight:bold;width:120px;}');
-
+			// Set person timezone + locale
 		Todoyu::setEnvironmentForPerson($this->getPerson()->getID());
 
+			// Set content
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
 
