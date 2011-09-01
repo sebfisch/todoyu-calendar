@@ -18,6 +18,12 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * Render event edit tab and form
+ *
+ * @package		Todoyu
+ * @subpackage	Calendar
+ */
 class TodoyuCalendarEventEditRenderer {
 
 	/**

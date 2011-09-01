@@ -19,7 +19,7 @@
 *****************************************************************************/
 
 /**
- * Calendar eventtype manager
+ * Calendar eventType manager
  *
  * @package		Todoyu
  * @subpackage	Calendar

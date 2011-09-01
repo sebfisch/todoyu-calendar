@@ -23,10 +23,8 @@
  *
  * @package		Todoyu
  * @subpackage	Calendar
- *
  */
 class TodoyuCalendarReminderPopup extends TodoyuCalendarReminder {
-
 
 	/**
 	 * Get amount of time before event when to send reminder email

@@ -26,7 +26,6 @@
  */
 class TodoyuCalendarReminder extends TodoyuCalendarEventAssignment {
 
-
 	/**
 	 * Get starting time of event of reminder
 	 *

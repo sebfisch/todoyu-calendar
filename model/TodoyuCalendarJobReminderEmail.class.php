@@ -23,7 +23,6 @@
  *
  * @package		Todoyu
  * @subpackage	Calendar
- *
  */
 class TodoyuCalendarJobReminderEmail extends TodoyuSchedulerJob {
 

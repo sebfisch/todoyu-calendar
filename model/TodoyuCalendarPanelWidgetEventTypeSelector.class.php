@@ -27,7 +27,9 @@
 class TodoyuCalendarPanelWidgetEventTypeSelector extends TodoyuPanelWidget {
 
 	/**
-	 * @var string		Preference name
+	 * Preference name
+	 *
+	 * @var string
 	 */
 	const PREF = 'panelwidget-eventtypeselector';
 

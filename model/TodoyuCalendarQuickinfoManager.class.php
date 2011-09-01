@@ -18,6 +18,12 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * Quickinfo manager for calendar (events)
+ *
+ * @package		Todoyu
+ * @subpackage	Calendar
+ */
 class TodoyuCalendarQuickinfoManager {
 
 	/**

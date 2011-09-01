@@ -31,7 +31,9 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 */
 	private $array;
 
-
+	/**
+	 * @var	Array
+	 */
 	protected $testCalendarModes;
 
 

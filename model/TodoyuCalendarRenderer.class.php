@@ -27,7 +27,9 @@
 class TodoyuCalendarRenderer {
 
 	/**
-	 * @var	String		Extension key
+	 * Extension key
+	 *
+	 * @var	String
 	 */
 	const EXTKEY = 'calendar';
 

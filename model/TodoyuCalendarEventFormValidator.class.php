@@ -24,8 +24,6 @@
  * @package			Todoyu
  * @subpackage		Calendar
  */
-
-
 class TodoyuCalendarEventFormValidator {
 
 	/**
