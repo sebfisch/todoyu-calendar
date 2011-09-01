@@ -70,7 +70,11 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function saveAction(array $params) {
 		$data	= $params['event'];
+
 		$idEvent= intval($data['id']);
+		$isNewEvent		= $idEvent === 0;
+		$emailReceivers	= $data['emailreceivers'];
+		$sendAsMail		= $data['sendasemail'];
 
 			// Check rights (new event creation / updating existing event)
 		if( $idEvent === 0 ) {
@@ -94,12 +98,18 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			foreach($warningHeaders as $headerName => $headerValue) {
 				TodoyuHeader::sendTodoyuHeader($headerName, $headerValue);
 			}
-
 				// No warnings - save or update event (and send email if mail-option activated)
 			if( sizeof($warningHeaders) === 0 ) {
 				$data	= $form->getStorageData();
-
 				$idEvent= TodoyuCalendarEventManager::saveEvent($data);
+
+					// Send event email
+				if( $sendAsMail ) {
+					$sent	= TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $emailReceivers, $isNewEvent);
+					if( $sent === true ) {
+						TodoyuHeader::sendTodoyuHeader('sentEmail', true);
+					}
+				}
 
 				TodoyuHeader::sendTodoyuHeader('time', intval($data['date_start']));
 				TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);

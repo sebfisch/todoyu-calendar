@@ -72,6 +72,7 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 
 				// Save or update event
 			$idEvent	= TodoyuCalendarEventManager::saveEvent($storageData);
+
 			$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 			$startDate	= $event->getStartDate();
 
