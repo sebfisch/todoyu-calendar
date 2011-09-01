@@ -511,7 +511,7 @@ class TodoyuCalendarEventManager {
 	 * @return	Boolean
 	 */
 	public static function sendEventAsEmail($idEvent, $receivers, $isNewEvent = false) {
-		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intExplode(',', $receivers, true, true));
+		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intval($receivers, true, true));
 
 		$sent	= false;
 

@@ -104,7 +104,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				$idEvent= TodoyuCalendarEventManager::saveEvent($data);
 
 					// Send event email
-				if( $sendAsMail ) {
+				if( $sendAsMail && sizeof($emailReceivers) > 0 ) {
 					$sent	= TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $emailReceivers, $isNewEvent);
 					if( $sent === true ) {
 						TodoyuHeader::sendTodoyuHeader('sentEmail', true);

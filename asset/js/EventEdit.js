@@ -364,6 +364,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 * @param	{Ajax.Response}	response
 	 */
 	onEventSaved: function(response) {
+		var idEvent	= response.getTodoyuHeader('idEvent');
 		var notificationIdentifierEventSaved = 'calendar.event.saved';
 
 		if( response.hasTodoyuError() ) {
