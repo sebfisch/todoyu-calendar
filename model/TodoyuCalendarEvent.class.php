@@ -19,7 +19,7 @@
 *****************************************************************************/
 
 /**
- * Event
+ * Event object
  *
  * @package		Todoyu
  * @subpackage	Calendar

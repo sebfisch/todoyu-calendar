@@ -19,7 +19,7 @@
 *****************************************************************************/
 
 /**
- * Holiday
+ * Holiday object
  *
  * @package		Todoyu
  * @subpackage	Calendar

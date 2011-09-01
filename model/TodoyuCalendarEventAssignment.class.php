@@ -19,7 +19,7 @@
 *****************************************************************************/
 
 /**
- * Event-Person Assignment
+ * Event-Person assignment object
  *
  * @package		Todoyu
  * @subpackage	Calendar
