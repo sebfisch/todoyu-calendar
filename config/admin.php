@@ -27,7 +27,7 @@
 
 // Add holiday sets to records area of sysadmin
 TodoyuSysmanagerExtManager::addRecordConfig('calendar', 'holidayset', array(
-	'label'		=> 'LLL:calendar.ext.holidayset.applicable',
+	'label'		=> 'calendar.ext.holidayset.applicable',
 	'list'		=> 'TodoyuCalendarHolidaySetManager::getRecords',
 	'form'		=> 'ext/calendar/config/form/admin/holidayset.xml',
 	'object'	=> 'TodoyuCalendarHolidaySet',
@@ -38,7 +38,7 @@ TodoyuSysmanagerExtManager::addRecordConfig('calendar', 'holidayset', array(
 
 // Add holidays to records area of sysadmin
 TodoyuSysmanagerExtManager::addRecordConfig('calendar', 'holiday', array(
-	'label'		=> 'LLL:calendar.ext.holiday',
+	'label'		=> 'calendar.ext.holiday',
 	'list'		=> 'TodoyuCalendarHolidayManager::getRecords',
 	'form'		=> 'ext/calendar/config/form/admin/holiday.xml',
 	'object'	=> 'TodoyuCalendarHoliday',

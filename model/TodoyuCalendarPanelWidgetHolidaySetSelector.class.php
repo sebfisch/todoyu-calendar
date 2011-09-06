@@ -45,7 +45,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 		parent::__construct(
 			'calendar',												// ext key
 			'holidaysetselector',									// panel widget ID
-			'LLL:calendar.panelwidget-holidaysetselector.title',	// widget title text
+			'calendar.panelwidget-holidaysetselector.title',	// widget title text
 			$config,												// widget config array
 			$params													// widget parameters
 		);

@@ -54,7 +54,7 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 
 			// Initialise page template, title
 		TodoyuPage::init('ext/calendar/view/ext.tmpl');
-		TodoyuPage::setTitle('LLL:calendar.ext.page.title');
+		TodoyuPage::setTitle('calendar.ext.page.title');
 
 			// Get type from parameter or preferences
 		$activeTab	= $params['tab'];

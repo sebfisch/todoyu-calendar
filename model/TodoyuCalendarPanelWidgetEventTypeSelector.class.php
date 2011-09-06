@@ -45,7 +45,7 @@ class TodoyuCalendarPanelWidgetEventTypeSelector extends TodoyuPanelWidget {
 		parent::__construct(
 			'calendar',											// ext key
 			'eventtypeselector',								// panel widget ID
-			'LLL:calendar.panelwidget-eventtypeselector.title',	// widget title text
+			'calendar.panelwidget-eventtypeselector.title',	// widget title text
 			$config,											// widget config array
 			$params												// widget parameters
 		);

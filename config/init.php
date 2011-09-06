@@ -82,21 +82,21 @@ Todoyu::$CONFIG['EXT']['calendar']['tabs'] = array(
 	'day'	=> array(
 		'key'		=> 'day',
 		'id'		=> 'day',
-		'label'		=> 'LLL:core.date.day',
+		'label'		=> 'core.date.day',
 		'require'	=> 'calendar.general:area',
 		'position'	=> 62
 	),
 	'week'	=> array(
 		'key'		=> 'week',
 		'id'		=> 'week',
-		'label'		=> 'LLL:core.date.week',
+		'label'		=> 'core.date.week',
 		'require'	=> 'calendar.general:area',
 		'position'	=> 63
 	),
 	'month'	=> array(
 		'key'		=> 'month',
 		'id'		=> 'month',
-		'label'		=> 'LLL:core.date.month',
+		'label'		=> 'core.date.month',
 		'require'	=> 'calendar.general:area',
 		'position'	=> 64
 	)
@@ -200,7 +200,7 @@ if( TodoyuExtensions::isInstalled('profile') && TodoyuAuth::isInternal() ) {
 	if( Todoyu::allowed('calendar', 'mailing:sendAsEmail') ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'main',
-			'label'			=> 'LLL:calendar.ext.profile.module.main.tab',
+			'label'			=> 'calendar.ext.profile.module.main.tab',
 //			'require'		=> 'calendar.settings:editbookmarks'
 		);
 	}
@@ -208,7 +208,7 @@ if( TodoyuExtensions::isInstalled('profile') && TodoyuAuth::isInternal() ) {
 	if( Todoyu::allowed('calendar', 'reminders:popup') ||  Todoyu::allowed('calendar', 'reminders:email') ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'reminders',
-			'label'			=> 'LLL:calendar.ext.profile.module.reminders.tab',
+			'label'			=> 'calendar.ext.profile.module.reminders.tab',
 //			'require'		=> 'calendar.settings:editbookmarks'
 		);
 	}

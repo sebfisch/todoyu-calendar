@@ -33,7 +33,7 @@ class TodoyuCalendarEventEditRenderer {
 	 * @return	String	HTML
 	 */
 	public static function renderAddView($time = 0) {
-		$tabLabel	= Todoyu::Label('LLL:calendar.event.new');
+		$tabLabel	= Todoyu::Label('calendar.event.new');
 		$headTab	= self::renderEventEditTab($tabLabel, 'add');
 		$form		= self::renderEventForm(0, $time);
 
@@ -51,7 +51,7 @@ class TodoyuCalendarEventEditRenderer {
 	public static function renderEditView($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		$tabLabel	= Todoyu::Label('LLL:calendar.event.edit');
+		$tabLabel	= Todoyu::Label('calendar.event.edit');
 		$headTab	= self::renderEventEditTab($tabLabel, 'edit');
 
 		$form		= self::renderEventForm($idEvent);
