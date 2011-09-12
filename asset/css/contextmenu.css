@@ -7,6 +7,9 @@ a.eventContextMenu.eventEdit {
 }
 
 a.eventContextMenu.eventShow {
+	background-position:5px -120px;
+}
+a.eventContextMenu.eventShowInCalendar {
 	background-position:5px -28px;
 }
 
