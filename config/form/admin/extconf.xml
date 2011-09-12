@@ -37,7 +37,7 @@
 					<noPleaseSelect />
 				</field>
 
-				 <field type="checkbox" name="is_reminderpopup_active">
+				<field type="checkbox" name="is_reminderpopup_active">
 					<label>calendar.ext.extconf.reminder.reminderpopup_active.label</label>
 				</field>
 

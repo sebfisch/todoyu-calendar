@@ -49,7 +49,7 @@
 	<label index="profile.module.main.header">Настройки главного календаря</label>
 	<label index="profile.module.reminders.tab">Напоминания о событиях</label>
 	<label index="extconf.reminder.popup_roles.label">Роли, получающие напоминания в всплывающем окне</label>
-	<label index="extconf.reminder.email_roles.label">Роли, получающие напоминания </label>
+	<label index="extconf.reminder.email_roles.label">Роли, получающие напоминания</label>
 	<label index="profile.module.reminders.header">Настройки ваших напоминаний о событиях</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Отключить запрос посылки электронной почты после изменения событий через перенос мышью?</label>
 	<label index="profile.main.saved">Настройки сохранены.</label>
