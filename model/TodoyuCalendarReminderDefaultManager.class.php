@@ -49,7 +49,7 @@ class TodoyuCalendarReminderDefaultManager {
 
 
 	/**
-	 * Get default advance (time before event) reminding time of given reminder type and person
+	 * Get default advance (time before event) reminding time of given reminder type
 	 *
 	 * @param	Integer		$type			Reminder type (constant)
 	 * @return	Integer
