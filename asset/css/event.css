@@ -435,12 +435,11 @@ div.eventDetails dd {
 #holidays .holidayTitle {
 	padding-left:20px;
 	float:left;
-	width:134px;
+	width:250px;
 }
-#holidays .holidayWorkinghours,
-#holidays .holidayDescription {
+#holidays .holidayWorkinghours {
 	position:relative;
-	width:148px;
+	width:100px;
 }
 
 
