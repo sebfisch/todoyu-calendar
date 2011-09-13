@@ -62,10 +62,10 @@ calendar 1.1.0 - 2011-06-17
 
 
  calendar 1.0.6
-	* Feature: Different format in single view of events by duration - multi-day / mult-hour / minutes
+	* Feature: Different format in single view of events by duration - multi-day / multi-hour / minutes
 	* Bugfix: Removed wrong wordwrapping (inserted spaces) from event descriptions
 	* Bugfix: quickinfos now always hide when starting to drag events
-	* Feature: made quickinfos deactivatible
+	* Feature: made quickinfos deactivateable
 	* Bugfix: event drag & drop in week & day views had wrong hour offset (-1h)
  	* Feature: Added placeholders for to-be spanish locale files
 	* Feature: Added changelog
