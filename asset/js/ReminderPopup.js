@@ -311,7 +311,6 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 * @param	{Number}	dateStart		Event dateStart as UNIX timestamp
 	 */
 	updateRemindAgainInPopup: function(idEvent, dateStart) {
-		console.log('update!');
 		if( this.popups[idEvent] !== undefined && Todoyu.exists(this.popups[idEvent].element) ) {
 				// Find and remove rescheduling options of past times, get seconds before event of next rescheduling option
 			var nextSecondsBefore	= this.removePastRemindAgainOptions(idEvent, dateStart);
