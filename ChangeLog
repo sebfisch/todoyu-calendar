@@ -1,22 +1,22 @@
 todoyu calendar extension changelog
 
-calendar 1.1.2 - not released yet
+calendar 1.1.2 -2011-09-15
 	* Bugfix: Context menu option "Show in calendar" was missing sub menu arrow
-	* Feature: Remind-again options of reminder popup are being removed when popup is left open and their rescheduling time passes
-	* Feature: Added event time range into event email subject
+	* Changed: Remind-again options of reminder popup are being removed when popup is left open and their rescheduling time passes
+	* Added: Added event time range into event email subject
 	* Bugfix: Creating the edit tab caused an error because of invalid context binding
 	* Bugfix: #186 Saving a birthday caused SQL error because of surplus person field
 	* Bugfix: Prevent double execution of deactivation of reminder popup
 	* Bugfix: Prevent current reminder time for remind-again options (2min delta)
-	* Change: Cleanup of reminder popup and silent alert. Make sure silent alert is stopped when popup is closed
-	* Change: Moved form hooks from boot.php to init.php
-	* Change: Add holidayset for address to main fieldset directly
-	* Change: Renamed TodoyuCalendarManager::modifyAddressFormfields to hookAddHolidaysetToCompanyAddress
-	* Add: Hooks: email.info, email.reminder, event.delete, event.add, event.update, event.move, event.assign, event.acknowledge
+	* Changed: Cleanup of reminder popup and silent alert. Make sure silent alert is stopped when popup is closed
+	* Changed: Moved form hooks from boot.php to init.php
+	* Changed: Add holidayset for address to main fieldset directly
+	* Changed: Renamed TodoyuCalendarManager::modifyAddressFormfields to hookAddHolidaysetToCompanyAddress
+	* Added: Hooks: email.info, email.reminder, event.delete, event.add, event.update, event.move, event.assign, event.acknowledge
 	* Translation: #196 Updated french translation
 
 calendar 1.1.1 - 2011-07-25
-	* Change: Event reminder popup closing via [x] in popup titlebar now deactivates the reminder
+	* Changed: Event reminder popup closing via [x] in popup titlebar now deactivates the reminder
 	* Bugfix: Invalid label in email reminder js
 	* Bugfix: todoyu link URL in event mail links to event single view now (was showing week)
 	* Bugfix: Activation of view tab caused js error because of missing context
@@ -68,7 +68,6 @@ calendar 1.1.0 - 2011-06-17
 	* Feature: made quickinfos deactivateable
 	* Bugfix: event drag & drop in week & day views had wrong hour offset (-1h)
  	* Feature: Added placeholders for to-be spanish locale files
-	* Feature: Added changelog
 
 
 calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
