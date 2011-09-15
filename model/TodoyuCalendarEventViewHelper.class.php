@@ -54,7 +54,7 @@ class TodoyuCalendarEventViewHelper {
 	 */
 	public static function getQuickinfoDateInfo($event, $withDuration = false) {
 		if( $event->isMultiDay() ) {
-				// Define format for day-events and multi-day events
+				// Define format for all-day events and multi-day events
 			if( $event->isDayevent() ) {
 				$break	= ' - ';
 				$format	= 'MlongD2';

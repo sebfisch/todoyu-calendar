@@ -403,7 +403,7 @@ class TodoyuCalendarEventManager {
 			unset($otherEvents[$idEvent]);
 
 			foreach($otherEvents as $otherEvent) {
-					// Don't check for conflicts if is day-event as long its not an absence
+					// Don't check for conflicts if is all-day event as long its not an absence
 				$absenceEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE']);
 
 				if( $otherEvent['is_dayevent'] == 1 && ! in_array($otherEvent['eventtype'], $absenceEventTypes)) {

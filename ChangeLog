@@ -129,7 +129,7 @@ calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Bugfix: Assets filename cases
 	* Changed: Cleaned & adapted calendar selector widgets (event types, holidaysets) to global selector rendering
 	* Bugfix: Events of type vacation are now always full-day events
-	* Bugfix: Day-events were displayed also as non-day-events (month view)
+	* Bugfix: All-day events were displayed also as non-day-events (month view)
 	* Feature: Calendar direct links
 	* Bugfix: User label fixes
 	* Bugfix: Scripts initialization in calendar
@@ -147,7 +147,7 @@ calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Feature: Context menu on (portal) event list view items
 	* Feature: Calendar date deeplink
 	* Bugfix: Closing of event view tab
-	* Bugfix: Holiday titles, coloring of multi/non day-events, day-event context menu
+	* Bugfix: Holiday titles, coloring of multi/non all-day events, all-day event context menu
 	* Bugfix: Refresh after event deletion, wrong colors in event titles in week view
 	* Bugfix: Header date navigation (year change)
 	* Bugfix: Rights, selected month title, days range in month view

@@ -139,7 +139,7 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
-	 * Get all event elements in the calendar, except the noAccess classed, optionally includes also day-events
+	 * Get all event elements in the calendar, except the noAccess classed, optionally includes also all-day events
 	 *
 	 * @method	getEvents
 	 * @param	{Boolean}	getDayEvents
@@ -347,7 +347,7 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
-	 * Handler when dragging of day-event ends
+	 * Handler when dragging of all-day event ends
 	 *
 	 * @method	onEndDragDayEvent
 	 * @param	{Object}		dragInfo		Information about dragging
@@ -444,7 +444,7 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
-	 * Save new position after dropping of day-event
+	 * Save new position after dropping of all-day event
 	 *
 	 * @method	saveWeekDrop
 	 * @param	{Number}	idEvent
