@@ -48,6 +48,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	open: function(idEvent, time) {
 		Todoyu.QuickInfo.hide();
 		Todoyu.Ui.scrollToTop();
+
 		this.addTab('');
 		this.ext.hideCalendar();
 		this.loadForm(idEvent, time);
