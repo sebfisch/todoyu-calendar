@@ -22,7 +22,7 @@
 				<table class="st-grid"><tbody>
 					<tr>
 
-					{* -------------------- Day headers (+ event creation hotspots)  ---------------------- *}
+					{* -------------------- Day headers (+ event creation hotspots) ---------------------- *}
 					{for dayCounter $dayFrom $dayUntil}
 						{$dayDateKey=date('Ymd', $timestamps[$dayCounter])}
 						{if date('nY', $timestamps[$dayCounter]) == $selMonthYear}
@@ -64,7 +64,7 @@
 
 					</tr>
 					<tr>
-					{* --------------------------- Birthdays, Day-events, Events  ------------------------- *}
+					{* --------------------------- Birthdays, All-day events, Events ------------------------- *}
 					{for dayCounter $dayFrom $dayUntil}
 						<td id="createEventAt-{date 'Y-m-d' $timestamps[$dayCounter]}" class="content {if $timestamps[$dayCounter] == $timestamp_today}ctoday{/if}{if $dwoo.for.curDayCounter.first} first{/if}{if date('ny', $timestamps[$dayCounter])==date('ny', $timestamp_today)} inSelMonth{/if}">
 							{$dayDateKey=date('Ymd', $timestamps[$dayCounter])}
