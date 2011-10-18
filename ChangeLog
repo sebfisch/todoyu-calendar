@@ -1,6 +1,9 @@
 todoyu calendar extension changelog
 
-calendar 1.1.2 -2011-09-15
+calendar 1.1.3 - not released yet
+	* Translation: Polish
+
+calendar 1.1.2 - 2011-09-15
 	* Bugfix: Context menu option "Show in calendar" was missing sub menu arrow
 	* Changed: Remind-again options of reminder popup are being removed when popup is left open and their rescheduling time passes
 	* Added: Added event time range into event email subject
