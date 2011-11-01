@@ -192,6 +192,11 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 		array(
 			'file' => 'ext/calendar/asset/css/panelwidget-holidaysetselector.css',
 			'position' => 150
+		),
+		array(
+			'file' => 'ext/calendar/asset/css/print.css',
+			'media'	=> 'print',
+			'position' => 160
 		)
 	)
 

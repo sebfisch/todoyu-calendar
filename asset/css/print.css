@@ -1,0 +1,17 @@
+div.weekMode table .st-grid td.noEventCell {
+	border:1px solid #ddd;
+}
+.tg-timedevents {
+	position:absolute;
+	bottom:-210px;
+}
+.event {
+	padding:2px;
+}
+.event dl {
+	border:1px solid;
+}
+.event  .head .headInner {
+	font-weight:bold;
+	padding-left:2px;
+}
