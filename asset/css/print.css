@@ -1,9 +1,18 @@
+#calendararea {
+	height:auto;
+	overflow:visible;
+}
+
+#calendar-quicknav {
+	display:none;
+}
+
 div.weekMode table .st-grid td.noEventCell {
 	border:1px solid #ddd;
 }
 .tg-timedevents {
-	position:absolute;
-	bottom:-210px;
+	position:static;
+	height: auto;
 }
 .event {
 	padding:2px;
