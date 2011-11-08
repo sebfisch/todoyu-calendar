@@ -1,6 +1,7 @@
 #calendararea {
-	height:auto;
+	position:static;
 	overflow:visible;
+	height:auto;
 }
 
 #calendar-quicknav {
