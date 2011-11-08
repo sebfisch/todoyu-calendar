@@ -82,7 +82,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	public function renderContent() {
 		$date	= self::getDate();
 
-		$tmpl	= 'ext/calendar/view/panelwidgets/panelwidget-calendar.tmpl';
+		$tmpl	= 'ext/calendar/view/panelwidget/calendar.tmpl';
 		$data	= array(
 			'id'			=> $this->getID(),
 			'class'			=> $this->config['class'],

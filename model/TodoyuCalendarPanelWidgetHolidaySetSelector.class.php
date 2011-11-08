@@ -77,7 +77,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 	 * @return	String
 	 */
 	public function renderContent() {
-		$tmpl	= 'ext/calendar/view/panelwidgets/panelwidget-holidaysetselector.tmpl';
+		$tmpl	= 'ext/calendar/view/panelwidget/holidaysetselector.tmpl';
 
 		$data	= array(
 			'id'		=> $this->getID(),
