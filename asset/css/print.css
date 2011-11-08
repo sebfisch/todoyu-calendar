@@ -12,7 +12,7 @@ div.weekMode table .st-grid td.noEventCell {
 }
 .tg-timedevents {
 	position:static;
-	height: auto;
+	height:auto;
 }
 .event {
 	padding:2px;
