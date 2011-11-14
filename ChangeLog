@@ -165,7 +165,7 @@ calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Changed: Moved date locales into core/locale/date.xml
 	* Feature: Event search
 	* Changed: Weekdaystart is now monday
-	* Bugfix: UTF8 encoding, style of calendar widget, namings
+	* Bugfix: UTF-8 encoding, style of calendar widget, namings
 	* Feature: Added address-holidayset attribute into contact > company form via hooking from calendar ext
 	* Changed: Fetched holidays now contain related set ID, holidayset changed from autocompleter to select
 	* Bugfix: Timestamps of month range, multi-day events duration calculation, enumerated colors
