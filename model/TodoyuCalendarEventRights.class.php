@@ -48,6 +48,11 @@ class TodoyuCalendarEventRights {
 		$idEvent= intval($idEvent);
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
 
+			// Private event are only available for assigned users
+		if( $event->isPrivate() && !$event->isCurrentPersonAssigned() ) {
+			return false;
+		}
+
 			// Admin sees all events.
 		if( TodoyuAuth::isAdmin() ) {
 			return true;
