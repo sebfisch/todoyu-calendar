@@ -381,7 +381,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 				Todoyu.Popups.openContent('Warning', warning, 'Overbooking Warning', 376);
 			} else {
 				if( response.getTodoyuHeader('sentEmail') ) {
-					Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.sent]');
+					Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.sent]', 'calendar.notification.sent');
 				}
 
 					// Event saved - exec hooks, clean event record cache and notify success
@@ -442,7 +442,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 */
 	onPersonAcCompleted: function(response, autocompleter) {
 		if( response.isEmptyAcResult() ) {
-			Todoyu.notifyInfo('[LLL:calendar.event.ac.personassignment.notFoundInfo]');
+			Todoyu.notifyInfo('[LLL:calendar.event.ac.personassignment.notFoundInfo]', 'calendar.person.notfound');
 			return false;
 		}
 	},

@@ -542,7 +542,7 @@ Todoyu.Ext.calendar.DragDrop = {
 		} else {
 			if( response.hasTodoyuError() ) {
 					// Overbooking detected and is disallowed - show notification
-				Todoyu.Notification.notifyError(response.responseText);
+				Todoyu.Notification.notifyError(response.responseText, 'calendar.dragndrop');
 			} else {
 					// Have mailing popup shown
 				this.ext.Event.Mail.showPopup(idEvent, this.ext.Event.operationTypeID.update);
