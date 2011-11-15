@@ -60,6 +60,7 @@
 
 .st-grid {
 	border-collapse:separate;
+	border-spacing:1px;
 }
 
 	.st-grid td {
