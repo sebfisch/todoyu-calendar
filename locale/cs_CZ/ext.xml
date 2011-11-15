@@ -17,7 +17,7 @@
 	<label index="dayview.workingtime">Zobrazit pouze pracovní dobu (08h-18h)</label>
 	<label index="dayview.fullday">Zobrazit celý den(00h-24h)</label>
 	<label index="holidayset">Svátky</label>
-	<label index="holidayset.applicable">Svátek</label>
+	<label index="records.holidayset">Svátek</label>
 	<label index="holidayset.attr.name">Název</label>
 	<label index="holidayset.attr.holiday">Svátek</label>
 	<label index="holidayset.attr.holiday.new">Nový svátek</label>

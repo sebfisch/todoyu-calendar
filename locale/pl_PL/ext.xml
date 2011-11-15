@@ -15,7 +15,7 @@
 	<label index="quicknav.today.title">Skocz do dzisiejszego dnia</label>
 	<label index="dayview.workingtime">Pokarz tylko godziny pracujące (08h-18h)</label>
 	<label index="dayview.fullday">Pokarz całą dobę (00h-24h)</label>
-	<label index="holidayset.applicable">Dzień wolny ustalony</label>
+	<label index="records.holidayset">Dzień wolny ustalony</label>
 	<label index="holidayset">Dzień wolny ustalony</label>
 	<label index="holidayset.attr.name">Nazwa</label>
 	<label index="holidayset.attr.holiday">Dzień wolny</label>

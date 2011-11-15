@@ -15,7 +15,7 @@
 	<label index="quicknav.today.title">Перейти на сегодня</label>
 	<label index="dayview.workingtime">Показывать только рабочее время (08:00-18:00)</label>
 	<label index="dayview.fullday">Показывать полный день (00:00-23:59)</label>
-	<label index="holidayset.applicable">Выходные</label>
+	<label index="records.holidayset">Выходные</label>
 	<label index="holidayset">Выходные</label>
 	<label index="holidayset.attr.name">Название</label>
 	<label index="holidayset.attr.holiday">Выходной</label>

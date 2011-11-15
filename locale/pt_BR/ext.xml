@@ -18,7 +18,7 @@
 	<label index="dayview.workingtime">Mostrar Horas Trabalhadas (08h-18h)</label>
 	<label index="dayview.fullday">Mostrar Horas de Dias Cheios (00h-24h)</label>
 	<label index="holidayset">Feriado</label>
-	<label index="holidayset.applicable">Feriado</label>
+	<label index="records.holidayset">Feriado</label>
 	<label index="holidayset.attr.name">Nome</label>
 	<label index="holidayset.attr.holiday">Feriado</label>
 	<label index="holidayset.attr.holiday.new">Novo Feriado</label>

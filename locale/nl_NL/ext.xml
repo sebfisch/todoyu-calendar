@@ -19,7 +19,7 @@
 	<label index="dayview.workingtime">Alleen werktijden weergeven (08h-18h)</label>
 	<label index="dayview.fullday">Uren van hele dag weergeven (00h-24h)</label>
 	<label index="holidayset">Set feestdagen</label>
-	<label index="holidayset.applicable">Feestdagen</label>
+	<label index="records.holidayset">Feestdagen</label>
 	<label index="holidayset.attr.name">Naam</label>
 	<label index="holidayset.attr.holiday">Feestdag</label>
 	<label index="holidayset.attr.holiday.new">Nieuwe feestdag</label>

@@ -17,7 +17,7 @@
 	<label index="dayview.workingtime">Покажи радно времен (08h-18h)</label>
 	<label index="dayview.fullday">Покажи цели дан (00h-24h)</label>
 	<label index="holidayset">Постава празник-а</label>
-	<label index="holidayset.applicable">Постава празника</label>
+	<label index="records.holidayset">Постава празника</label>
 	<label index="holidayset.attr.name">Име</label>
 	<label index="holidayset.attr.holiday">Празник</label>
 	<label index="holidayset.attr.holiday.new">Нови празник</label>

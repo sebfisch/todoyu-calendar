@@ -17,7 +17,7 @@
 	<label index="dayview.workingtime">Show working hours only (08h-18h)</label>
 	<label index="dayview.fullday">Show hours of full day (00h-24h)</label>
 	<label index="holidayset">Holiday Set</label>
-	<label index="holidayset.applicable">Holiday Set</label>
+	<label index="records.holidayset">Holiday Set</label>
 	<label index="holidayset.attr.name">Name</label>
 	<label index="holidayset.attr.holiday">Holiday</label>
 	<label index="holidayset.attr.holiday.new">New Holiday</label>

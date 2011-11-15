@@ -15,7 +15,7 @@
 	<label index="quicknav.today.title">現在の日付に移動</label>
 	<label index="dayview.workingtime">勤務時間 (8時～18時) のみ表示する</label>
 	<label index="dayview.fullday">丸一日 (0時～24時) を表示する</label>
-	<label index="holidayset.applicable">休日の設定</label>
+	<label index="records.holidayset">休日の設定</label>
 	<label index="holidayset">休日の設定</label>
 	<label index="holidayset.attr.name">名前</label>
 	<label index="holidayset.attr.holiday">休日</label>
