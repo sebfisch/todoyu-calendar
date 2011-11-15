@@ -258,17 +258,20 @@ div.weekMode div#calendararea div.event dd span.desc {
 /* ------------------------
 	Portal events list
    ------------------------ */
+.portalEventsList #events .event {
+	border-bottom:1px solid #ddd;
+}
+
 .portalEventsList #events .event h3	{
 	border-left:0;
 }
-
 .portalEventsList #events div.eventDetails	{
-	border-bottom:1px solid #ddd;
+	background-color: #FFF;
 }
 
 #birthdays div.event {
 	/*background-color:#FFF !important;*/
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid #fefefe;
 }
 #birthdays div.event div {
 	display:inline-block;
@@ -310,8 +313,7 @@ div.weekMode div#calendararea div.event dd span.desc {
 /*-------------------------
 	List mode in portal
   ------------------------- */
-#holidays h3,
-#events .event h3{
+#holidays h3 {
 	background-color:#fff;
 	border-bottom:1px solid #ddd;
 }
@@ -336,9 +338,13 @@ div.weekMode div#calendararea div.event dd span.desc {
 	background-color:#f3f3f3;
 }
 
+#events .even h3 {
+	background-color:#fff;
+}
+
 #events .details {
-	border-left:1px solid #ddd;
-	border-right:1px solid #ddd;
+	border-left:1px solid #f3f3f3;
+	border-right:1px solid #f3f3f3;
 
 }
 
