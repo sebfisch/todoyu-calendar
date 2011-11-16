@@ -58,10 +58,10 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 	public function saveMainAction(array $params) {
 		Todoyu::restrict('calendar', 'mailing:sendAsEmail');
 
-		$prefName				= 'is_mailpopupdeactivated';
-		$isRequestDeactivated	= ( $params['general']['is_mailpopupdeactivated'] == '1' ) ? 1 : 0;
+		$formData				= TodoyuArray::assure($params['general']);
+		$isEmailPopupDisabled	= intval($formData['is_mailpopupdeactivated']);
 
-		TodoyuCalendarPreferences::savePref($prefName, $isRequestDeactivated, 0, true, 0, Todoyu::personid());
+		TodoyuCalendarPreferences::savePref('is_mailpopupdeactivated', $isEmailPopupDisabled, 0, true);
 	}
 
 
