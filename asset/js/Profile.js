@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.Profile
  */
-Todoyu.Ext.calendar.Profile =  {
+Todoyu.Ext.calendar.Profile = {
 
 	/**
 	 * Reference to extension

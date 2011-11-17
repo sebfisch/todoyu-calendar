@@ -1,25 +1,25 @@
 todoyu calendar extension changelog
 
 calendar 1.1.3 - not released yet
-	* Changed: Colored current days title in week-view marked yellow
 	* Bugfix: Fixed deselection of holiday sets
-	* Changed: Panel widget clean-up
+	* Changed: Colored current days title in week-view marked yellow
+	* Changed: Panelwidget clean-up
 	* Changed: Admin can't see private events of other persons anymore (was only available over direct URL access)
 	* Translation: Polish
 
 calendar 1.1.2 - 2011-09-15
 	* Bugfix: Context menu option "Show in calendar" was missing sub menu arrow
-	* Changed: Remind-again options of reminder popup are being removed when popup is left open and their rescheduling time passes
-	* Added: Added event time range into event email subject
 	* Bugfix: Creating the edit tab caused an error because of invalid context binding
 	* Bugfix: #186 Saving a birthday caused SQL error because of surplus person field
 	* Bugfix: Prevent double execution of deactivation of reminder popup
 	* Bugfix: Prevent current reminder time for remind-again options (2min delta)
+	* Added: Added event time range into event email subject
+	* Added: Hooks: email.info, email.reminder, event.delete, event.add, event.update, event.move, event.assign, event.acknowledge
+	* Changed: Remind-again options of reminder popup are being removed when popup is left open and their rescheduling time passes
 	* Changed: Cleanup of reminder popup and silent alert. Make sure silent alert is stopped when popup is closed
 	* Changed: Moved form hooks from boot.php to init.php
 	* Changed: Add holidayset for address to main fieldset directly
 	* Changed: Renamed TodoyuCalendarManager::modifyAddressFormfields to hookAddHolidaysetToCompanyAddress
-	* Added: Hooks: email.info, email.reminder, event.delete, event.add, event.update, event.move, event.assign, event.acknowledge
 	* Translation: #196 Updated french translation
 
 calendar 1.1.1 - 2011-07-25
@@ -33,9 +33,14 @@ calendar 1.1.1 - 2011-07-25
 
 
 calendar 1.1.0 - 2011-06-17
-	* Changed: Requires core 2.1
-	* Changed: Structure for 2.1
-	* Changed: All classes are prefixed with extension name
+	* Bugfix: Event drag & drop in week & day views had wrong hour offset (-1h)
+	* Bugfix: Fixed event type toggeling handling in event quickcreation form
+	* Bugfix: Fixed EventManager to not delete events physically anymore (use "deleted" flag)
+ 	* Bugfix: Added noAccess class to ALL events which can't be edited (Drag&Drop)
+	* Bugfix: Removed empty values from event detail view (description, place)
+	* Bugfix: Fixed holidays list to be ordered by date
+ 	* Bugfix: After overbooking error after drag and dropping events did not revert to original time
+ 	* Bugfix: Fixed sending of notification for events
 	* Feature: Added linkage (to detail view contact) to appointment quickinfo persons
 	* Feature: new right "Send event as email"
 	* Feature: logging of sent event mails (not yet displayed in attendee's list)
@@ -49,7 +54,10 @@ calendar 1.1.0 - 2011-06-17
 	* Feature: Improved event list view, added person quickinfos and status icons (acknowledged/emailed)
 	* Feature: Changed events (by other persons) are marked with green star (list mode)
 	* Added: Added callback into quickcreation popup hook
- 	* Changed: Made event comply with global conventions: Optional event attributes are hidden via "hidden" class instead of style="display:none"
+	* Changed: Requires core 2.1
+	* Changed: Structure for 2.1
+	* Changed: All classes are prefixed with extension name
+	* Changed: Made event comply with global conventions: Optional event attributes are hidden via "hidden" class instead of style="display:none"
 	* Changed: Added separate fieldset for reminder options in calendar extconf
 	* Changed: Unified form handling of event type toggeling in event inline- and quickcreation- form
 	* Changed: Moved logging of sent event mails into TodoyuMailManager of core / table system_log_email table
@@ -58,120 +66,112 @@ calendar 1.1.0 - 2011-06-17
 	* Changed: No more overbooking check for invalid event timespans
 	* Changed: Added max amount configuration of displayed conflicted appointments in overbooking info
  	* Changed: Quickinfos now always hide when starting to drag events
-	* Bugfix: Event drag & drop in week & day views had wrong hour offset (-1h)
-	* Bugfix: Fixed event type toggeling handling in event quickcreation form
-	* Bugfix: Fixed EventManager to not delete events physically anymore (use "deleted" flag)
- 	* Bugfix: Added noAccess class to ALL events which can't be edited (Drag&Drop)
-	* Bugfix: Removed empty values from event detail view (description, place)
-	* Bugfix: Fixed holidays list to be ordered by date
- 	* Bugfix: After overbooking error after drag and dropping events did not revert to original time
- 	* Bugfix: Fixed sending of notification for events
 
 
  calendar 1.0.6
-	* Feature: Different format in single view of events by duration - multi-day / multi-hour / minutes
 	* Bugfix: Removed wrong wordwrapping (inserted spaces) from event descriptions
 	* Bugfix: quickinfos now always hide when starting to drag events
-	* Feature: made quickinfos deactivateable
 	* Bugfix: event drag & drop in week & day views had wrong hour offset (-1h)
+	* Feature: Different format in single view of events by duration - multi-day / multi-hour / minutes
+	* Feature: made quickinfos deactivateable
  	* Feature: Added placeholders for to-be spanish locale files
 
 
 calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
-	* Changed: Incremented year in copyright notice to 2011
-	* Changed: Cleaned up quickinfo (core controller now)
-	* Feature: Added DateField Helper
-	* Feature: Optimized panelwidget styling
-	* Feature: Added EXTKEY constant
- 	* Feature: Added initialization permission checks to controllers, tabs
  	* Bugfix: Date fix for IE
- 	* Changed: Replaced time rounding function with more powerful one (TodoyuTime::getRoundedTime())
- 	* Feature: Calendar refreshes if a new event is added over quick-create while being in the calendar view
-	* Feature: Use rounded time for quick-create events (instead of exact current minute)
-	* Changed: Limited date_start and date_end to internal persons
-	* Feature: Added date string functions to Todoyu.Time
-	* Changed: Changed date format in request from timestamp to string to be timezone save
-	* Feature: Added validator for event. Event requires now at least one internal person
-	* Feature: Added enddate to overbooking error message if different from startdate
 	* Bugfix: Added missing wrap for birthday events
-	* Feature: Added portuguese translation
-	* Feature: Marked private event for day and week mode, added icon
 	* Bugfix: Fixed eventIsAssignableToCurrentPersonOnly validator
 	* Bugfix: getHolidays for portal tab
 	* Bugfix: CSS fix for week view, holiday month view styling
-	* Changed: Color fixes
-	* Feature: Event creation form presets: 'away official' cannot be private, birthday doesn't have place
 	* Bugfix: Corrected working time display in calendar holiday events quick infos
 	* Bugfix: Customers cannot see other customers' birthdays in appointments tab in portal anymore
 	* Bugfix: Rights checking and rel. access restrictions when rendering event context menu
-	* Feature: Rights checks wrapper methods added for events
-	* Changed: Switched license from GPL to BSD
-	* Changed: Added extended overbooking info, fixed overbooking check for new events
-	* Changed: Improved calendar events rendering, missing icon for private events
-	* Changed: Quick-nav layout
-  	* Feature: Added hooks documentation
-	* Feature: Added Serbian locales
-	* Feature: Moved styles from global.css to ext.css
-	* Changed: Asset handling (load all in one merge file)
-	* Feature: Added japanese translation
-	* Feature: Added czech translation
-	* Feature: Added dutch translation
-	* Feature: Added parts of french translation
 	* Bugfix: Added word wrapping to event descriptions in calendar views
 	* Bugfix: Fixed events description (was title)
-	* Feature: Added htmlencode for calendar fields
 	* Bugfix: Display of event type icons of full-day events in day and month view, removed inline style tags
-	* Feature: Added edit button into events detail view
-	* Changed: Removed is_public in event
-	* Changed: Removed manual requiring of auto-loaded config files
-	* Changed: Moved the global $CONFIG variable to Todoyu class. Is now a public static member variable
-	* Feature: Added Rights
-	* Changed: Moved page config to own config/page.php which is loaded only on page rendering
-	* Feature: Added events quick search
-	* Changed: Calendar person cleanup
-	* Feature: Attached calendar refreshing hook to quick event creation
-	* Feature: Implemented quick-creator mode: event
-	* Changed: Cleanup of quickinfo CSS
 	* Bugfix: Assets filename cases
-	* Changed: Cleaned & adapted calendar selector widgets (event types, holidaysets) to global selector rendering
 	* Bugfix: Events of type vacation are now always full-day events
 	* Bugfix: All-day events were displayed also as non-day-events (month view)
-	* Feature: Calendar direct links
 	* Bugfix: User label fixes
 	* Bugfix: Scripts initialization in calendar
-	* Changed: Renamed working hours to working time in holiday (calendar)
 	* Bugfix: Several birthday bugs in calendar, improved week view
-	* Changed: Calendar event types as constants
-	* Feature: Listing of conflicted persons in event-overbooking validator
-	* Changed: Fixed user colors,
-	* Changed: Events layout to better differ equal-coloured events positioned next to one another
-	* Feature: Optional overbooking prevention
-	* Feature: Added event in calendar context menu
 	* Bugfix: Acknowledgement initialization of self-assigned events
 	* Bugfix: Time of month range, birthday bugs, calendar templates cleanup
 	* Bugfix: Appointment tab in portal
-	* Feature: Context menu on (portal) event list view items
-	* Feature: Calendar date deeplink
 	* Bugfix: Closing of event view tab
 	* Bugfix: Holiday titles, coloring of multi/non all-day events, all-day event context menu
 	* Bugfix: Refresh after event deletion, wrong colors in event titles in week view
 	* Bugfix: Header date navigation (year change)
 	* Bugfix: Rights, selected month title, days range in month view
-	* Changed: Cleaned templates, quick-infos, rights, inline JS
 	* Bugfix: Holiday sets records rendering, event creation in month mode, removed date dropdowns
 	* Bugfix: Default value in quick-event wizard
 	* Bugfix: sCal bugs
 	* Bugfix: Appointments listing
-	* Feature: Event single detail view
-	* Feature: Removed redundant labels
-	* Changed: Moved date locales into core/locale/date.xml
-	* Feature: Event search
-	* Changed: Weekdaystart is now monday
 	* Bugfix: UTF-8 encoding, style of calendar widget, namings
-	* Feature: Added address-holidayset attribute into contact > company form via hooking from calendar ext
-	* Changed: Fetched holidays now contain related set ID, holidayset changed from autocompleter to select
 	* Bugfix: Timestamps of month range, multi-day events duration calculation, enumerated colors
 	* Bugfix: Month view timespan to be rendered from selected (was current) year, months intersecting 6 weeks were cut-off after w5
+	* Feature: Added DateField Helper
+	* Feature: Optimized panelwidget styling
+	* Feature: Added EXTKEY constant
+ 	* Feature: Added initialization permission checks to controllers, tabs
+ 	* Feature: Calendar refreshes if a new event is added over quick-create while being in the calendar view
+	* Feature: Use rounded time for quick-create events (instead of exact current minute)
+	* Feature: Added date string functions to Todoyu.Time
+	* Feature: Added validator for event. Event requires now at least one internal person
+	* Feature: Added enddate to overbooking error message if different from startdate
+	* Feature: Added portuguese translation
+	* Feature: Marked private event for day and week mode, added icon
+	* Feature: Event creation form presets: 'away official' cannot be private, birthday doesn't have place
+	* Feature: Rights checks wrapper methods added for events
+  	* Feature: Added hooks documentation
+	* Feature: Added Serbian locales
+	* Feature: Moved styles from global.css to ext.css
+	* Feature: Added japanese translation
+	* Feature: Added czech translation
+	* Feature: Added dutch translation
+	* Feature: Added parts of french translation
+	* Feature: Added htmlencode for calendar fields
+	* Feature: Added edit button into events detail view
+	* Feature: Added Rights
+	* Feature: Added events quick search
+	* Feature: Attached calendar refreshing hook to quick event creation
+	* Feature: Implemented quick-creator mode: event
+	* Feature: Calendar direct links
+	* Feature: Listing of conflicted persons in event-overbooking validator
+	* Feature: Optional overbooking prevention
+	* Feature: Added event in calendar context menu
+	* Feature: Context menu on (portal) event list view items
+	* Feature: Calendar date deeplink
+	* Feature: Event single detail view
+	* Feature: Removed redundant labels
+	* Feature: Event search
+	* Feature: Added address-holidayset attribute into contact > company form via hooking from calendar ext
+	* Changed: Incremented year in copyright notice to 2011
+	* Changed: Cleaned up quickinfo (core controller now)
+ 	* Changed: Replaced time rounding function with more powerful one (TodoyuTime::getRoundedTime())
+	* Changed: Limited date_start and date_end to internal persons
+	* Changed: Changed date format in request from timestamp to string to be timezone save
+	* Changed: Color fixes
+	* Changed: Switched license from GPL to BSD
+	* Changed: Added extended overbooking info, fixed overbooking check for new events
+	* Changed: Improved calendar events rendering, missing icon for private events
+	* Changed: Quick-nav layout
+	* Changed: Asset handling (load all in one merge file)
+	* Changed: Removed is_public in event
+	* Changed: Removed manual requiring of auto-loaded config files
+	* Changed: Moved the global $CONFIG variable to Todoyu class. Is now a public static member variable
+	* Changed: Moved page config to own config/page.php which is loaded only on page rendering
+	* Changed: Calendar person cleanup
+	* Changed: Cleanup of quickinfo CSS
+	* Changed: Cleaned & adapted calendar selector widgets (event types, holidaysets) to global selector rendering
+	* Changed: Renamed working hours to working time in holiday (calendar)
+	* Changed: Calendar event types as constants
+	* Changed: Fixed user colors,
+	* Changed: Events layout to better differ equal-coloured events positioned next to one another
+	* Changed: Cleaned templates, quick-infos, rights, inline JS
+	* Changed: Moved date locales into core/locale/date.xml
+	* Changed: Weekdaystart is now monday
+	* Changed: Fetched holidays now contain related set ID, holidayset changed from autocompleter to select
 
 
 calendar 1.0.0 - released 2010-05-10

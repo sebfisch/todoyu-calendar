@@ -126,7 +126,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	selectAllHolidaySets: function(select) {
 		var selected = select === true;
 
-		$(this.list).select('option').each(function(option)  {
+		$(this.list).select('option').each(function(option) {
 			option.selected = selected;
 		});
 	},
