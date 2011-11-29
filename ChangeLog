@@ -1,6 +1,7 @@
 todoyu calendar extension changelog
 
 calendar 1.1.3 - 2011-11-17
+	* Bugfix: Fixed physically deletion of records.
 	* Bugfix: Fixed deselection of holiday sets
 	* Changed: Colored current days title in week-view marked yellow
 	* Changed: Panelwidget clean-up

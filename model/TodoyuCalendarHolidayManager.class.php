@@ -193,7 +193,7 @@ class TodoyuCalendarHolidayManager {
 	public static function deleteHoliday($idHoliday) {
 		$idHoliday	= intval($idHoliday);
 
-		return Todoyu::db()->deleteRecord(self::TABLE, $idHoliday);
+		return TodoyuRecordManager::deleteRecord(self::TABLE, $idHoliday);
 	}
 
 
