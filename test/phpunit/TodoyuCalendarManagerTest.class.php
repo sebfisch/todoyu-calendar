@@ -154,7 +154,7 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 
 			// Assert value data type
 		$expected	= 'array';
-		$this->assertType($expected, $monthData);
+		$this->assertInternalType($expected, $monthData);
 
 			// Assert first shown days date is contained
 		$this->assertArrayHasKey('date', $monthData);
@@ -188,7 +188,7 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 
 			// Assert value data type
 		$expected	= 'array';
-		$this->assertType($expected, $dayTimestamps);
+		$this->assertInternalType($expected, $dayTimestamps);
 
 			// Assert correct amount of days in array
 		$amountDays	= sizeof($dayTimestamps);
