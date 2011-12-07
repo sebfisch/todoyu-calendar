@@ -65,8 +65,8 @@ class TodoyuCalendarEventFormValidator {
 			// Only check this if it is not a full-day event
 		if( $config['formdata']['is_dayevent'] == 0) {
 				// Convert dates and times to timestamps
-			$timeStart	= strtotime( $config['formdata']['startdate'] . ' ' . $config['formdata']['starttime'] );
-			$timeEnd	= strtotime( $config['formdata']['enddate'] . ' ' . $config['formdata']['endtime'] );
+			$timeStart	= strtotime($config['formdata']['startdate'] . ' ' . $config['formdata']['starttime']);
+			$timeEnd	= strtotime($config['formdata']['enddate'] . ' ' . $config['formdata']['endtime']);
 
 				// Start time must be before the end time
 			if( $timeEnd <= $timeStart ) {
@@ -74,8 +74,8 @@ class TodoyuCalendarEventFormValidator {
 			}
 		} else {
 				// Convert dates to timestamps
-			$dateStart	= strtotime( $config['formdata']['startdate'] );
-			$dateEnd	= strtotime( $config['formdata']['enddate'] );
+			$dateStart	= strtotime($config['formdata']['startdate']);
+			$dateEnd	= strtotime($config['formdata']['enddate']);
 
 			if( $dateStart > $dateEnd ) {
 				return false;

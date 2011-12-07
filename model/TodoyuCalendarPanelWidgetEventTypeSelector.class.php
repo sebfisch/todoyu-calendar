@@ -85,7 +85,7 @@ class TodoyuCalendarPanelWidgetEventTypeSelector extends TodoyuPanelWidget {
 	 * @return	String
 	 */
 	public function render() {
-		$this->setContent( $this->renderContent() );
+		$this->setContent($this->renderContent());
 
 		return parent::render();
 	}

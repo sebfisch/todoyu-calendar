@@ -334,7 +334,7 @@ class TodoyuCalendarEventManager {
 			$tables	= 'ext_calendar_mm_event_person';
 			$where	= 'id_event IN (' . TodoyuArray::intImplode($eventIDs) . ') ';
 
-			$epLinks= Todoyu::db()->getArray($fields, $tables, $where, '', 'id_event', '' );
+			$epLinks= Todoyu::db()->getArray($fields, $tables, $where, '', 'id_event', '');
 
 			foreach($epLinks as $epLink) {
 				$persons[ $epLink['id_event'] ][] = $epLink['id_person'];

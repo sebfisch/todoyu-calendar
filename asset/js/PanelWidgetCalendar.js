@@ -151,13 +151,13 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 			// Get first day of displayed month
 		var dayNum				= 1;
-		var date				= new Date( date.getFullYear(), date.getMonth(), dayNum );
+		var date				= new Date(date.getFullYear(), date.getMonth(), dayNum);
 		var dateFirstShownDay	= date;
 
 			// Go back to first monday before the 1st day of the displayed month
 		while( dateFirstShownDay.getDay() > 1 ) {
 			dayNum--;
-			dateFirstShownDay	= new Date( date.getFullYear(), date.getMonth(), dayNum );
+			dateFirstShownDay	= new Date(date.getFullYear(), date.getMonth(), dayNum);
 		}
 
 		return dateFirstShownDay.getTime() / 1000;
@@ -247,7 +247,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 */
 	shiftDate: function(duration, saveDatePreference) {
 		this.prefSavingEnabled	= saveDatePreference;
-		this.setDate( this.getDate() + duration );
+		this.setDate(this.getDate() + duration);
 		this.prefSavingEnabled	= true;
 	},
 
@@ -260,7 +260,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 */
 	saveCurrentDate: function() {
 		if( this.prefSavingEnabled ) {
-			Todoyu.Pref.save('calendar', 'date', this.getTime() );
+			Todoyu.Pref.save('calendar', 'date', this.getTime());
 		}
 	}
 

@@ -133,7 +133,7 @@ function Dwoo_Plugin_EventTypeKey_compile(Dwoo_Compiler $compiler, $idEventIndex
 function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
 	$timestamp	= intval($timestamp);
 
-	return Todoyu::Label('core.date.weekday.' . strtolower(date('l', $timestamp)) );
+	return Todoyu::Label('core.date.weekday.' . strtolower(date('l', $timestamp)));
 }
 
 
@@ -150,7 +150,7 @@ function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
 function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {
 	$timestamp	= intval($timestamp);
 
-	return Todoyu::Label('core.date.weekday.' . strtolower(date('D', $timestamp)) );
+	return Todoyu::Label('core.date.weekday.' . strtolower(date('D', $timestamp)));
 }
 
 

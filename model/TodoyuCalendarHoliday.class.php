@@ -41,7 +41,7 @@ class TodoyuCalendarHoliday extends TodoyuBaseObject {
 	public function __construct($idHoliday) {
 		$idHoliday	= intval($idHoliday);
 
-		parent::__construct($idHoliday, self::TABLE );
+		parent::__construct($idHoliday, self::TABLE);
 	}
 
 

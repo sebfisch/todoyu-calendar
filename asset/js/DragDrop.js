@@ -431,7 +431,7 @@ Todoyu.Ext.calendar.DragDrop = {
 		offset.top	+= 40;
 
 		var weekStart	= this.ext.getWeekStart();
-		var dayOfWeek	= Math.floor( Math.abs(offset.left - hourColWidth) / dayWidth );
+		var dayOfWeek	= Math.floor(Math.abs(offset.left - hourColWidth) / dayWidth);
 
 		var hours		= Math.floor(offset.top / hourHeight);
 		var minutes		= Math.round(((offset.top - (hours * hourHeight)) * (60 / hourHeight)) / 15) * 15;
@@ -455,7 +455,7 @@ Todoyu.Ext.calendar.DragDrop = {
 
 		var weekStart	= this.ext.getWeekStart();
 		var offset		= dragInfo.element.positionedOffset();
-		var dayOfWeek	= Math.floor( (offset.left - 2) / dayWidth );
+		var dayOfWeek	= Math.floor((offset.left - 2) / dayWidth);
 			// Normalize dayOfWeek to make sure its in the range
 		dayOfWeek		= dayOfWeek < 0 ? 0 : dayOfWeek > 6 ? 6 : dayOfWeek;
 

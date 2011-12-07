@@ -62,7 +62,7 @@ class TodoyuCalendarQuickinfoManager {
 		$quickInfo->addInfo('type' . ucwords($event->getTypeKey()),	$typeInfo, 20);
 		$quickInfo->addInfo('date',	$dateInfo, 30);
 
-		$amountAssignedPersons	= count( $event->getAssignedPersonsData() );
+		$amountAssignedPersons	= count($event->getAssignedPersonsData());
 		if( $amountAssignedPersons > 0 ) {
 			$quickInfo->addInfo('persons', $personInfo, 50, false);
 		}

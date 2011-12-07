@@ -222,7 +222,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$idPerson	= intval($params['person']);
 
-		TodoyuCalendarEventRights::restrictSee( $idEvent );
+		TodoyuCalendarEventRights::restrictSee($idEvent);
 
 		TodoyuCalendarEventAssignmentManager::acknowledgeEvent($idEvent, $idPerson);
 	}

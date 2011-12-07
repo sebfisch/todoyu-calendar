@@ -317,7 +317,7 @@ class TodoyuCalendarRenderer {
 
 			// Render events array
 		foreach($eventsByDay as $dateKey => $eventsOfDay) {
-			$dayTime = mktime(0, 0, 0, substr($dateKey, 4, 2), substr($dateKey, 6, 2), substr($dateKey, 0, 4) );
+			$dayTime = mktime(0, 0, 0, substr($dateKey, 4, 2), substr($dateKey, 6, 2), substr($dateKey, 0, 4));
 
 			foreach($eventsOfDay as $event) {
 					// Set with and left position based on the overlapping information
@@ -331,7 +331,7 @@ class TodoyuCalendarRenderer {
 					$event['top']	= TodoyuCalendarEventRenderer::getTimeCoordinate($event['date_start']);
 				}
 
-				$event['height']	= TodoyuCalendarEventRenderer::getEventHeight($dayTime, $event['date_start'], $event['date_end'] );
+				$event['height']	= TodoyuCalendarEventRenderer::getEventHeight($dayTime, $event['date_start'], $event['date_end']);
 
 					// Add rendered event HTML to array
 				$renderedEvents[$dateKey][] = TodoyuCalendarEventRenderer::renderEvent($event, $mode);

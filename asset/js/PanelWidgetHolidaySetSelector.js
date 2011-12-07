@@ -85,7 +85,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 
 		selectedSetIDs	= this.getSelectedHolidaySetIDs();
 
-		this.onUpdate( selectedSetIDs.join(',') );
+		this.onUpdate(selectedSetIDs.join(','));
 	},
 
 

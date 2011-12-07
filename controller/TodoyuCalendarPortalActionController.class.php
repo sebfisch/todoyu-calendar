@@ -45,7 +45,7 @@ class TodoyuCalendarPortalActionController extends TodoyuActionController {
 	public function detailAction(array $params) {
 		$idEvent	= intval($params['event']);
 
-		TodoyuCalendarEventRights::restrictSee( $idEvent );
+		TodoyuCalendarEventRights::restrictSee($idEvent);
 
 		TodoyuCalendarPreferences::savePortalEventExpandedStatus($idEvent);
 		TodoyuCalendarEventAssignmentManager::acknowledgeEvent($idEvent);
@@ -64,7 +64,7 @@ class TodoyuCalendarPortalActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$idPerson	= intval($params['person']);
 
-		TodoyuCalendarEventRights::restrictSee( $idEvent );
+		TodoyuCalendarEventRights::restrictSee($idEvent);
 
 		TodoyuCalendarEventAssignmentManager::acknowledgeEvent($idEvent, $idPerson);
 	}

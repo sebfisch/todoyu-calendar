@@ -102,8 +102,6 @@ Todoyu.Ext.calendar = {
 
 
 
-
-
 	/**
 	 * Add various JS hooks
 	 *
