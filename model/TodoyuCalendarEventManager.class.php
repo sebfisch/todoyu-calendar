@@ -43,8 +43,16 @@ class TodoyuCalendarEventManager {
 		$idEvent	= intval($idEvent);
 
 			// Create form object
-		$xmlPath	= 'ext/calendar/config/form/event.xml';
-		$form		= TodoyuFormManager::getForm($xmlPath, $idEvent);
+		$xmlPath= 'ext/calendar/config/form/event.xml';
+		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
+
+		TodoyuCalendarEventManager::createNewEventWithDefaultsInCache(NOW);
+		$event	= TodoyuCalendarEventManager::getEvent(0);
+		$data	= $event->getTemplateData(true, false, true);
+
+			// Call hooked load functions
+		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
+		$form->setFormData($data);
 
 			// Adjust form to needs of quick creation wizard
 		$form->setAttribute('action', '?ext=calendar&amp;controller=quickcreateevent');

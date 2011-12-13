@@ -100,7 +100,6 @@ class TodoyuCalendarEventEditRenderer {
 		$time	= intval($time);
 
 		$xmlPath= 'ext/calendar/config/form/event.xml';
-
 		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
 
 		$form->setUseRecordID(false);
