@@ -87,12 +87,14 @@ class TodoyuCalendarEventRenderer {
 		$assignedPersonIDs = array_keys($assignedPersons);
 
 			// Hide visible data if event is private and current user not assigned
-		if( intval($data['is_private']) === 1 && ! in_array(Todoyu::personid(), $assignedPersonIDs) ) {
+		$isPrivate	= intval($data['is_private']) === 1;
+		if( $isPrivate && ! in_array(Todoyu::personid(), $assignedPersonIDs) ) {
 			$data = self::hidePrivateData($data);
-		}
-
-		if( TodoyuCalendarEventRights::isEditAllowed($idEvent) === false) {
 			$data['class'] .= ' noAccess';
+		} else {
+			if( ! TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
+				$data['class'] .= ' noEdit';
+			}
 		}
 
 		return $data;

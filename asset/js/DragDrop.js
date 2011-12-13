@@ -124,7 +124,7 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
-	 * Get all event elements from inside given DOM element
+	 * Get all event accessible elements from inside given DOM element
 	 *
 	 * @method	getEvents
 	 * @param	{String}	parentElementID
@@ -132,7 +132,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 */
 	getEventItems: function(parentElementID) {
 		return $(parentElementID).select('div.event').findAll(function(element){
-			return element.hasClassName('noAccess') === false;
+			return element.hasClassName('noAccess') === false && element.hasClassName('noEdit') === false;
 		});
 	},
 

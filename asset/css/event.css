@@ -26,6 +26,10 @@
 	cursor:not-allowed;
 }
 
+#calendar .event.noEdit dt.head {
+	cursor:pointer;
+}
+
 #calendar .event span.desc {
 	overflow:hidden;
 }
