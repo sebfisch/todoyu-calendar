@@ -71,10 +71,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	public function saveAction(array $params) {
 		$data	= $params['event'];
 
-		$idEvent= intval($data['id']);
-		$isNewEvent		= $idEvent === 0;
-		$emailReceivers	= $data['emailreceivers'];
-		$sendAsMail		= $data['sendasemail'];
+		$idEvent			= intval($data['id']);
+		$isNewEvent			= $idEvent === 0;
+		$emailReceiverIDs	= $data['emailreceivers'];
+		$sendAsMail			= $data['sendasemail'];
 
 			// Check rights (new event creation / updating existing event)
 		if( $idEvent === 0 ) {
@@ -103,10 +103,25 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				$data	= $form->getStorageData();
 				$idEvent= TodoyuCalendarEventManager::saveEvent($data);
 
-					// Send event email
-				if( $sendAsMail && sizeof($emailReceivers) > 0 ) {
-					$sent	= TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $emailReceivers, $isNewEvent);
-					if( $sent === true ) {
+					// Send event auto-email to preset receivers: those get emails concerning all new/changed events they participate in
+					// Watch out: persons only have their ID as key when editing a pre-existing event!
+				$participantIDs		= TodoyuArray::intval( TodoyuArray::flatten($data['persons']) );
+				$autoMailPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
+
+				if( ! empty($autoMailPersonIDs) ) {
+					if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
+						TodoyuHeader::sendTodoyuHeader('sentAutoEmail', true);
+
+							// Don't double-send: remove auto-mail receivers from manual receivers list
+						if( is_array($emailReceiverIDs) ) {
+							$emailReceiverIDs	= array_diff($emailReceiverIDs, $autoMailPersonIDs);
+						}
+					}
+				}
+
+					// Send event email to selected receivers
+				if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
+					if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $emailReceiverIDs, $isNewEvent) ) {
 						TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 					}
 				}
@@ -306,6 +321,28 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
+	 * Send automatic event mail to preselected persons
+	 *
+	 * @param	Array	$params
+	 */
+	public static function sendAutoMailAction(array $params) {
+		$idEvent	= intval($params['event']);
+		$operationID= intval($params['operation']);
+
+		$participantIDs	= TodoyuCalendarEventManager::getEvent($idEvent)->getAssignedPersonIDs();
+		$personIDs		= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
+
+		if( count($personIDs) > 0 ) {
+			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $operationID);
+			if( $sent ) {
+				TodoyuHeader::sendTodoyuHeader('sentAutoEmail', 1);
+			}
+		}
+	}
+
+
+
+	/**
 	 * Send event mail to selected persons
 	 *
 	 * @param	Array	$params
@@ -321,6 +358,28 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				TodoyuHeader::sendTodoyuHeader('sentEmail', 1);
 			}
 		}
+	}
+
+
+
+	/**
+	 * Update auto-notification comment: list of auto-notified participants
+	 *
+	 * @param	Array	$params
+	 * @return	String
+	 */
+	public static function updateAutoNotificationAction(array $params) {
+		$personIDs				= TodoyuArray::intExplode(',', $params['persons']);
+		$autoNotifiedPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($personIDs);
+
+		$tmpl				= 'ext/calendar/view/infocomment-autonotification.tmpl';
+		$data	= array(
+			'personIDs'	=> $autoNotifiedPersonIDs
+		);
+
+		TodoyuHeader::sendTodoyuHeader('autonotifiedPersons', $autoNotifiedPersonIDs);
+
+		return Todoyu::render($tmpl, $data);
 	}
 }
 

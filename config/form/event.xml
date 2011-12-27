@@ -136,6 +136,17 @@
 			</elements>
 		</fieldset>
 
+		<fieldset name="autoemail">
+			<legend>calendar.form.legend.autonotification</legend>
+			<elements>
+				<field type="comment" name="autonotification_comment">
+					<comment type="function">
+						<function>TodoyuCalendarEventViewHelper::getAutoNotificationComment</function>
+					</comment>
+				</field>
+			</elements>
+		</fieldset>
+
 		<fieldset name="buttons">
 			<legend>Actions</legend>
 			<class>buttons</class>

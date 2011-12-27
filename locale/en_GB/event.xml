@@ -5,6 +5,7 @@
 	<label index="new">New Event</label>
 	<label index="edit">Edit Event</label>
 	<label index="edit.sendasemail">Send notification by email</label>
+	<label index="edit.canceloptinalmailing">Don't send optional email</label>
 	<label index="delete">Delete Event</label>
 	<label index="saved.ok">Event Saved</label>
 	<label index="saved.error">Saving of event failed</label>
@@ -88,5 +89,6 @@
 	<label index="mail.popup.subject.update">Event Changed</label>
 	<label index="mail.popup.subject.delete">Event Deleted</label>
 	<label index="mail.notification.popup.deactivated">Mailing pop-up has been deactivated. You can re-activate it in your profile.</label>
+	<label index="mail.notification.autosent">Automatic notification email has been sent.</label>
 	<label index="mail.notification.sent">Notification email has been sent.</label>
 </labels>

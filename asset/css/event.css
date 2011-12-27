@@ -549,3 +549,16 @@ div .typeBirthday div.date {
 div .typeBirthday div.name {
 	width:130px !important;
 }
+
+
+
+/* -------------------------------------------------
+	Mailing popup shown after delete / drag&drop
+   ------------------------------------------------- */
+div.mailing fieldset.autoemail {
+	padding: 10px 15px 15px;
+}
+
+div.mailing  fieldset.autoemail legend {
+	display:block;
+}

@@ -5,6 +5,7 @@
 	<label index="new">Neuer Termin</label>
 	<label index="edit">Termin bearbeiten</label>
 	<label index="edit.sendasemail">Termin per Email versenden</label>
+	<label index="edit.canceloptinalmailing">Keine optionale Email versenden</label>
 	<label index="delete">Termin löschen</label>
 	<label index="saved.ok">Termin gespeichert</label>
 	<label index="saved.error">Terminspeicherung fehlgeschlagen</label>
@@ -88,5 +89,6 @@
 	<label index="mail.popup.subject.update">Termin geändert</label>
 	<label index="mail.popup.subject.delete">Termin gelöscht</label>
 	<label index="mail.notification.popup.deactivated">Termin-Mail popup deaktiviert. (Kann im Profil erneut aktiviert werden).</label>
+	<label index="mail.notification.autosent">Automatische Termin-Email wurde verschickt.</label>
 	<label index="mail.notification.sent">Termin-Email wurde verschickt.</label>
 </labels>

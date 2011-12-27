@@ -3,6 +3,7 @@
 	<label index="legend.basics">Termin</label>
 	<label index="legend.details">Weitere Informationen</label>
 	<label index="legend.notification">Teilnehmer benachrichtigen</label>
+	<label index="legend.autonotification">Automatisch per Email benachrichtige Teilnehmer</label>
 	<label index="legend.reminders">Meine Erinnerungen für diesen Termin</label>
 	<label index="legend.profile.general">Allgemeine Einstellungen</label>
 	<label index="legend.profile.reminder.general">Persönliche Einstellungen für Erinnerungen</label>
@@ -11,4 +12,5 @@
 	<label index="legend.admin.automaticEmail">Einstellungen für Benachrichtigungen</label>
 	<label index="legend.admin.holidayset.record.general">Feiertage Set</label>
 	<label index="legend.admin.holiday.record.general">Feiertag</label>
+	<label index="comment.autonotification.noroles">Kein Termin-Teilnehmer ist in einer Rolle zur automatischen Benachrichtigung.</label>
 </labels>

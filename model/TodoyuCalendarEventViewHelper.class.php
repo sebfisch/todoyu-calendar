@@ -165,6 +165,8 @@ class TodoyuCalendarEventViewHelper {
 	public static function getEmailReceiverGroupedOptions(TodoyuFormElement $field) {
 		$options	= array();
 
+		$autoNotifiedPersonIDs	= self::getAutoNotifiedPersonIDs($field);
+
 			// Event attending persons
 		$groupLabel	= Todoyu::Label('calendar.event.group.attendees');
 		$options[$groupLabel]	= self::getEmailReceiverOptions($field);
@@ -173,7 +175,76 @@ class TodoyuCalendarEventViewHelper {
 		$groupLabel	= Todoyu::Label('comment.ext.group.employees');
 		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field, true);
 
+			// Deselect + disable options of persons receiving an automatic notification email
+		if( sizeof($autoNotifiedPersonIDs) > 0 ) {
+			$value	= $field->getValue();
+			foreach($options as $groupLabel => $groupOptions) {
+				if( is_array($groupOptions) && sizeof($groupOptions) > 0 ) {
+					foreach($options[$groupLabel] as $optionKey => $option) {
+						$idPerson	= intval($option['value']);
+						if( in_array($idPerson, $autoNotifiedPersonIDs)  ) {
+							$options[$groupLabel][$optionKey]['disabled']	= 1;
+
+							if( in_array($idPerson, $value)) {
+								$value	= TodoyuArray::removeByValue($value, array($idPerson));
+							}
+						}
+					}
+					$field->setValue($value);
+				}
+			}
+		}
+
 		return $options;
+	}
+
+
+
+	/**
+	 * Get auto-notification information comment: preset roles' persons
+	 *
+	 * @param	TodoyuFormElement 	$field
+	 * @return	String
+	 */
+	public static function getAutoNotificationComment(TodoyuFormElement $field) {
+		$tmpl				= 'ext/calendar/view/infocomment-autonotification.tmpl';
+
+		$data	= array(
+			'personIDs'	=> self::getAutoNotifiedPersonIDs($field)
+		);
+
+		return Todoyu::render($tmpl, $data);
+	}
+
+
+
+	/**
+	 * Get person IDs of participants receiving auto-notification event emails
+	 *
+	 * @param	TodoyuFormElement 	$field
+	 * @return	Array|Integer[]
+	 */
+	private static function getAutoNotifiedPersonIDs(TodoyuFormElement $field) {
+		$form	= $field->getForm();
+		$data	= $form->getFormData();
+
+		$participantIDs	= array();
+
+		if( array_key_exists('id_event', $data) ) {
+				// Event form inside mailing popup, after change per drag&drop/delete
+			$idEvent	= intval($data['id_event']);
+			$isNewEvent	= $idEvent === 0;
+			if( ! $isNewEvent ) {
+				$participantIDs	= TodoyuCalendarEventManager::getEvent($idEvent)->getAssignedPersonIDs();
+			}
+		} else {
+				// Edit event form
+//			$isNewEvent		= intval($form->getRecordID()) === 0;
+			$eventPersons	= $form->getField('persons')->getValue();
+			$participantIDs		= TodoyuArray::intval(array_keys($eventPersons));
+		}
+
+		return TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
 	}
 
 }

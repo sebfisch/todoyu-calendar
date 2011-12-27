@@ -46,18 +46,14 @@ Todoyu.Ext.calendar.Event.Mail = {
 	 */
 	onToggleSendAsEmail: function(checkbox) {
 		var parts		= checkbox.id.split('-');
+		var emailEl;
 
 		if( parts.length == 3 ) {
 				// Is a new event (no ID yet)
-			var emailEl	= $('formElement-event-field-emailreceivers');
-		} else {
-				// Editing an already existing event
-//			var idTask		= parts[1];
-//			var idComment	= parts[2];
-//			var emailEl	= $('event-field-emailreceivers');
+			emailEl	= $('formElement-event-field-emailreceivers');
 		}
 
-		if( checkbox.checked ) {
+		if( checkbox.checked && emailEl ) {
 			 emailEl.show();
 		} else {
 			emailEl.hide();
@@ -136,7 +132,47 @@ Todoyu.Ext.calendar.Event.Mail = {
 
 
 	/**
+	 * Have automatic event mails sent
+	 *
+	 * @method	sendAutoMail
+	 * @param	{Number}	idEvent
+	 * @param	{Number}	operationTypeID
+	 */
+	sendAutoMail: function(idEvent, operationTypeID) {
+		var url		= Todoyu.getUrl('calendar', 'event');
+		var options	= {
+			parameters: {
+				action:			'sendAutoMail',
+				'event':		idEvent,
+				'operation':	operationTypeID
+			},
+			onComplete: this.onAutoMailSent.bind(this, idEvent)
+		};
+
+		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 * Handler after event mail has been sent
+	 *
+	 * @method	onMailSent
+	 * @param	{Number}			idEvent
+	 * @param	{Ajax.Response}		response
+	 */
+	onAutoMailSent: function(idEvent, response) {
+		if( response.getTodoyuHeader('sentAutoEmail') ) {
+				// Notify of auto-sent mails
+			Todoyu.Notification.notifySuccess('[LLL:calendar.event.mail.notification.autosent]');
+		}
+	},
+
+
+
+	/**
 	 * Send event mail
+	 * Used (if active in profile) after changing event per drag&drop
 	 *
 	 * @method	sendMail
 	 * @param	{Number}	idEvent
@@ -144,18 +180,20 @@ Todoyu.Ext.calendar.Event.Mail = {
 	 * @param	{Object}	personIDs			Persons to send mail to
 	 */
 	sendMail: function(idEvent, operationTypeID, personIDs) {
-		var url		= Todoyu.getUrl('calendar', 'event');
-		var options	= {
-			parameters: {
-				action:			'sendMail',
-				'event':		idEvent,
-				'persons':		personIDs.toArray().join(','),
-				'operation':	operationTypeID
-			},
-			onComplete: this.onMailSent.bind(this, idEvent)
-		};
+		if( personIDs.size() > 0 ) {
+			var url		= Todoyu.getUrl('calendar', 'event');
+			var options	= {
+				parameters: {
+					action:			'sendMail',
+					'event':		idEvent,
+					'persons':		personIDs.toArray().join(','),
+					'operation':	operationTypeID
+				},
+				onComplete: this.onMailSent.bind(this, idEvent)
+			};
 
-		Todoyu.send(url, options);
+			Todoyu.send(url, options);
+		}
 	},
 
 

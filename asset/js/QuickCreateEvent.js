@@ -44,7 +44,21 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 	 * @method	onFormLoaded
 	 */
 	onPopupOpened: function() {
+		if( Todoyu.exists('quickcreate') ) {
+			this.initObservers();
+		}
+	},
+
+
+
+	/**
+	 * Init event form observers
+	 *
+	 * @method	initObservers
+	 */
+	initObservers: function() {
 		this.observeEventType();
+		this.observeParticipants();
 	},
 
 
@@ -59,6 +73,31 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 		if( Todoyu.exists('event-field-eventtype') ) {
 			$('event-field-eventtype').on('change', this.ext.Event.Edit.updateVisibleFields.bind(this.ext.Event.Edit));
 		}
+	},
+
+
+
+	/**
+	 * Event participants change observer
+	 *
+	 * @method	observeEventType
+	 */
+	observeParticipants: function() {
+		if( Todoyu.exists('formElement-event-field-persons') ) {
+			$('formElement-event-field-persons').on('change', this.onChangeParticipants.bind(this));
+			$('formElement-event-field-persons').on('click', this.onChangeParticipants.bind(this));
+		}
+	},
+
+
+
+	/**
+	 * Update manual and automatic email receiver options
+	 *
+	 * @method	onChangeParticipants
+	 */
+	onChangeParticipants: function() {
+		this.updateAutoNotifiedPersons();
 	},
 
 
@@ -93,14 +132,28 @@ Todoyu.Ext.calendar.QuickCreateEvent = {
 			Todoyu.notifyError('[LLL:calendar.event.saved.error]', notificationIdentifier);
 
 			Todoyu.Popups.setContent('quickcreate', response.responseText);
+			this.initObservers();
 		} else {
 			var idEvent	= response.getTodoyuHeader('idEvent');
 
 			Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]', notificationIdentifier);
 			Todoyu.Popups.close('quickcreate');
 
+			if( response.getTodoyuHeader('sentAutoEmail') ) {
+				Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.autosent]', 'calendar.notification.autosent');
+			}
+
 			Todoyu.Hook.exec('calendar.ext.quickevent.saved', idEvent);
 		}
+	},
+
+
+
+	/**
+	 * @method	updateAutoNotifiedPersons
+	 */
+	updateAutoNotifiedPersons: function() {
+		Todoyu.Ext.calendar.Event.Edit.updateAutoNotifiedPersons(0);
 	}
 
 };

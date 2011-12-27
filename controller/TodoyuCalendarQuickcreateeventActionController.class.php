@@ -61,17 +61,44 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 	public function saveAction(array $params) {
 		TodoyuCalendarEventRights::restrictAdd();
 
-		$formData	= $params['event'];
+		$isNewEvent	= true;
+		$data		= $params['event'];
+
+		$emailReceiverIDs	= $data['emailreceivers'];
+		$sendAsMail			= $data['sendasemail'];
 
 			// Get form object, call save hooks, set data
-		$form		= TodoyuCalendarEventManager::getQuickCreateForm();
-		$form->setFormData($formData);
+		$form	= TodoyuCalendarEventManager::getQuickCreateForm();
+		$form->setFormData($data);
 
 		if( $form->isValid() ) {
 			$storageData	= $form->getStorageData();
 
 				// Save or update event
 			$idEvent	= TodoyuCalendarEventManager::saveEvent($storageData);
+
+				// Send event auto-email to preset receivers: those get emails concerning all new/changed events they participate in
+				// Watch out: persons only have their ID as key when editing a pre-existing event!
+			$participantIDs		= TodoyuArray::intval( TodoyuArray::flatten($data['persons']) );
+			$autoMailPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
+
+			if( ! empty($autoMailPersonIDs) ) {
+				if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
+					TodoyuHeader::sendTodoyuHeader('sentAutoEmail', true);
+
+						// Don't double-send: remove auto-mail receivers from manual receivers list
+					if( is_array($emailReceiverIDs) ) {
+						$emailReceiverIDs	= array_diff($emailReceiverIDs, $autoMailPersonIDs);
+					}
+				}
+			}
+
+				// Send event email to selected receivers
+			if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
+				if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $emailReceiverIDs, $isNewEvent) ) {
+					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
+				}
+			}
 
 			$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 			$startDate	= $event->getStartDate();

@@ -29,26 +29,40 @@
 			</elements>
 		</fieldset>
 
+		<fieldset name="autoemail">
+			<legend>calendar.form.legend.autonotification</legend>
+			<elements>
+				<field type="comment" name="autonotification_comment">
+					<comment type="function">
+						<function>TodoyuCalendarEventViewHelper::getAutoNotificationComment</function>
+					</comment>
+				</field>
+			</elements>
+		</fieldset>
+
 		<fieldset name="buttons">
 			<legend>Actions</legend>
 			<class>buttons</class>
 			<elements>
 
-				<field type="cancelButton" name="cancel">
-					<onclick>Todoyu.Popups.closeLast()</onclick>
+				<field type="button" name="cancel">
+					<text>calendar.event.edit.canceloptinalmailing</text>
+					<class>buttonCancel cancel</class>
+					<hasIcon />
+					<onclick>Todoyu.Ext.calendar.Event.Mail.sendAutoMail(#id_event#, Todoyu.Ext.calendar.Event.operationTypeID.update); Todoyu.Popups.closeLast()</onclick>
 				</field>
 
 				<field type="button" name="sendAsEmail">
 					<text>calendar.event.mail.popup.button.sendAsEmail</text>
 					<class>sendemail</class>
-					<onclick>Todoyu.Ext.calendar.Event.Mail.sendMail(#id_event#, Todoyu.Ext.calendar.Event.operationTypeID.update, $F('event-0-field-emailreceivers'));Todoyu.Popups.closeLast()</onclick>
+					<onclick>Todoyu.Ext.calendar.Event.Mail.sendAutoMail(#id_event#, Todoyu.Ext.calendar.Event.operationTypeID.update); Todoyu.Ext.calendar.Event.Mail.sendMail(#id_event#, Todoyu.Ext.calendar.Event.operationTypeID.update, $F('event-0-field-emailreceivers')); Todoyu.Popups.closeLast()</onclick>
 					<hasIcon />
 				</field>
 
 				<field type="button" name="dontaskagain">
 					<text>calendar.event.mail.popup.button.dontaskagain</text>
 					<class>exclamation</class>
-					<onclick>Todoyu.Ext.calendar.Event.Mail.deactivatePopup();Todoyu.Popups.closeLast()</onclick>
+					<onclick>Todoyu.Ext.calendar.Event.Mail.sendAutoMail(#id_event#, Todoyu.Ext.calendar.Event.operationTypeID.update); Todoyu.Ext.calendar.Event.Mail.deactivatePopup();Todoyu.Popups.closeLast()</onclick>
 					<hasIcon />
 				</field>
 

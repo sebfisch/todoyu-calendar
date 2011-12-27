@@ -158,6 +158,52 @@ class TodoyuCalendarEventMailManager {
 		 return array();
 	}
 
+
+
+	/**
+	 * Get person IDs of participants who are being auto-notified about event changes/creations
+	 *
+	 * @param	Array	$participantIDs
+	 * @return	Array|Integer[]
+	 */
+	public static function getAutoNotifiedPersonIDs($participantIDs = array()) {
+		$autoMailPersonIDs	= array();
+
+		if( sizeof($participantIDs) > 0 ) {
+			$participantIDs		= TodoyuArray::intval($participantIDs);
+
+				// Get preset roles
+			$autoMailRoles	= TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'autosendeventmail');
+
+			if( ! empty($autoMailRoles) ) {
+					// Get person IDs of roles
+				$autoMailRoles	= TodoyuArray::intExplode(',', $autoMailRoles);
+				foreach($autoMailRoles as $idRole) {
+					$autoMailPersonIDs	= array_merge($autoMailPersonIDs, TodoyuRoleManager::getPersonIDs($idRole));
+				}
+				$autoMailPersonIDs	= TodoyuArray::intval($autoMailPersonIDs);
+
+					// Reduce to event participants
+				$autoMailPersonIDs	= array_intersect($autoMailPersonIDs, $participantIDs);
+
+					// Sort persons alphabetically
+				if( sizeof($autoMailPersonIDs) > 0 ) {
+					$field		= 'id';
+					$table		= TodoyuContactPersonManager::TABLE;
+					$where		= 'id IN (' . implode(',', $autoMailPersonIDs) . ')';
+					$group		= 'id';
+					$orderBy	= 'lastname,firstname';
+
+					$autoMailPersonIDs	= Todoyu::db()->getColumn($field, $table, $where, $group, $orderBy);
+				}
+			}
+		}
+
+		$autoMailPersonIDs	= TodoyuArray::removeByValue($autoMailPersonIDs, array(Todoyu::personid()));
+
+		return $autoMailPersonIDs;
+	}
+
 }
 
 ?>

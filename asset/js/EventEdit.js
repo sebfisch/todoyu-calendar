@@ -106,7 +106,10 @@ Todoyu.Ext.calendar.Event.Edit = {
 		this.setTabLabel(tabLabel);
 
 		this.updateVisibleFields();
+
 		this.observeEventType();
+		this.observeParticipants(idEvent);
+
 		this.show();
 	},
 
@@ -119,6 +122,19 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 */
 	observeEventType: function() {
 		$('event-field-eventtype').on('change', this.updateVisibleFields.bind(this));
+	},
+
+
+
+	/**
+	 * Event participants change observer
+	 *
+	 * @param	{Number}			idEvent
+	 * @method	observeEventType
+	 */
+	observeParticipants: function(idEvent) {
+		$('foreignrecords-' + idEvent + '-persons').on('change', this.onChangeParticipants.bind(this, idEvent));
+		$('foreignrecords-' + idEvent + '-persons').on('click', this.onChangeParticipants.bind(this, idEvent));
 	},
 
 
@@ -170,6 +186,61 @@ Todoyu.Ext.calendar.Event.Edit = {
 		fieldsToHide.each(function(fieldName){
 			this.hideField(fieldName, 'event');
 		}, this);
+	},
+
+
+
+	/**
+	 * Update manual and automatic email receiver options
+	 *
+	 * @method	onChangeParticipants
+	 * @param	{Number}				idEvent
+	 */
+	onChangeParticipants: function(idEvent) {
+		this.updateAutoNotifiedPersons(idEvent);
+	},
+
+
+
+
+	/**
+	 * @method	updateAutoNotifiedPersons
+	 * @param	{Number}	idEvent
+	 */
+	updateAutoNotifiedPersons: function(idEvent) {
+		var personIDs	=  $('foreignrecords-' + idEvent + '-persons').select('input[type=hidden]').pluck('value').join(',');
+
+		var url		= Todoyu.getUrl('calendar', 'event');
+		var options	= {
+			parameters: {
+				action:	'updateAutoNotification',
+				'event':	idEvent,
+				'persons':	personIDs
+			},
+			onComplete: this.onAutoNotifiedPersonsUpdated.bind(this, idEvent)
+		};
+		var target	= $('formElement-event-field-autonotification-comment-inputbox').select('.commenttext')[0];
+
+		Todoyu.Ui.update(target, url, options);
+	},
+
+
+
+	/**
+	 * Update selectable manual reminder receivers: disable auto-notified participating persons
+	 *
+	 * @method	onAutoNotifiedPersonsUpdated
+	 * @param	{Number}						idEvent
+	 * @param	{Ajax.Response}					response
+	 */
+	onAutoNotifiedPersonsUpdated: function(idEvent, response) {
+		var autoNotifiedPersonIDs	= ',' + response.getTodoyuHeader('autonotifiedPersons').join(',') + ',';
+
+		var manualReceiverOptions	= $('event-field-emailreceivers').select('option');
+		manualReceiverOptions.each(function(personOption) {
+			var idPerson	= personOption.value;
+			personOption.disabled = autoNotifiedPersonIDs.indexOf(',' + idPerson + ',') !== -1;
+		});
 	},
 
 
@@ -382,6 +453,9 @@ Todoyu.Ext.calendar.Event.Edit = {
 			} else {
 				if( response.getTodoyuHeader('sentEmail') ) {
 					Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.sent]', 'calendar.notification.sent');
+				}
+				if( response.getTodoyuHeader('sentAutoEmail') ) {
+					Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.autosent]', 'calendar.notification.autosent');
 				}
 
 					// Event saved - exec hooks, clean event record cache and notify success

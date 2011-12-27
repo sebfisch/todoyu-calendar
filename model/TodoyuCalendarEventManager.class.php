@@ -514,12 +514,12 @@ class TodoyuCalendarEventManager {
 	 * Event save hook. Send emails
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Array		$receivers
+	 * @param	Array		$receiverIDs
 	 * @param	Boolean		$isNewEvent
 	 * @return	Boolean
 	 */
-	public static function sendEventAsEmail($idEvent, $receivers, $isNewEvent = false) {
-		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intval($receivers, true, true));
+	public static function sendEventAsEmail($idEvent, $receiverIDs, $isNewEvent = false) {
+		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intval($receiverIDs, true, true));
 
 		$sent	= false;
 

@@ -113,6 +113,8 @@ Todoyu.Ext.calendar = {
 
 			// Add event edit hook for event type
 		Todoyu.Hook.add('calendar.event.editType', this.Event.Edit.checkHideField.bind(this.Event.Edit));
+
+// @todo	consolidate hook adding - this hook is called upon addition..
 		Todoyu.Hook.add('headlet.quickcreate.event.popupOpened', this.QuickCreateEvent.onPopupOpened());
 
 			// Add event save hook

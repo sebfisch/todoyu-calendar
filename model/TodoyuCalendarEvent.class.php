@@ -193,7 +193,7 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	/**
 	 * Get the IDs if assigned persons of event
 	 *
-	 * @return	Array
+	 * @return	Integer[]
 	 */
 	public function getAssignedPersonIDs() {
 		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($this->getID(), false);
@@ -256,6 +256,11 @@ class TodoyuCalendarEvent extends TodoyuBaseObject {
 	}
 
 
+
+	/**
+	 * @param	Integer							$idPerson
+	 * @return	TodoyuCalendarReminderEmail
+	 */
 	public function getReminderEmail($idPerson = 0) {
 		$idPerson	= Todoyu::personid($idPerson);
 
