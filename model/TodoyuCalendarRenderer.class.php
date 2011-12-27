@@ -57,7 +57,7 @@ class TodoyuCalendarRenderer {
 			'showCalendar'	=> in_array($activeTab, array('day', 'week', 'month'))
 		);
 
-			// If event-view is selected, set date and add it to data array
+			// If event view is selected, set date and add it to data array
 		if( $activeTab === 'view' ) {
 			$event	= TodoyuCalendarEventManager::getEvent($params['event']);
 			TodoyuCalendarPanelWidgetCalendar::saveDate($event->getStartDate());
@@ -321,8 +321,8 @@ class TodoyuCalendarRenderer {
 
 			foreach($eventsOfDay as $event) {
 					// Set with and left position based on the overlapping information
-				$event['width']	= round($eventFullWidth/$event['_numColumns'], 0);
-				$event['left']	= round($eventFullWidth/$event['_numColumns'], 0) * $event['_indexColumn'];
+				$event['width']	= round($eventFullWidth / $event['_amountColumns'], 0);
+				$event['left']	= round($eventFullWidth / $event['_amountColumns'], 0) * $event['_indexColumn'];
 
 					// If the event started before the current day, set top = 0
 				if( $event['date_start'] <= $dayTime ) {

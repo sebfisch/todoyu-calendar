@@ -203,68 +203,96 @@ class TodoyuCalendarEventManager {
 	/**
 	 * Add overlapping information to the event records
 	 * Add:
-	 *  - _indexColumn: The index of the column the event is in. The columns are filled from left to right. New columns are added if necessary
-	 *  - _numColumns:  The number of columns added. This information is redundant in all events
+	 *  - _indexColumn:		The index of the column the event is in. The columns are filled from left to right. New columns are added if necessary
+	 *  - _amountColumns:	The number of columns added. This information is redundant in all events
 	 *
-	 * @param	Array		$eventsByDay		Events grouped by day. The array index is the date key
+	 * @param	Array		$eventsByDay		Events grouped by day. Array key is the date, e.g. 20112412
 	 * @return	Array		The same array with the two extra keys
 	 */
 	public static function addOverlapInformationToEvents(array $eventsByDay) {
-			// Check positions and overlapping for each day
 		foreach($eventsByDay as $dayKey => $eventsOfDay) {
 			$columns	= array();
 
-				// 1st step: get left position of each event
+				// Get left position (column index) of each event
 			foreach($eventsOfDay as $eventIndex => $event) {
-					// Just add the first event of the day
 				if( empty($columns) ) {
+						// Add the first event into the first column
 					$columns[0][] = $eventIndex;
 					$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= 0;
 				} else {
-					$fittingColumnFound	= false;
-
-					foreach($columns as $columnIndex => $column) {
-						$overlaps	= false;
-
-						foreach($column as $columnEventIndex) {
-								// Check if the event overlaps with the current column element
-							if( self::areEventsOverlapping($eventsByDay[$dayKey][$columnEventIndex], $event) ) {
-									// Overlapping in this column, try next
-								$overlaps	= true;
-								break;
-							}
-						}
-
-							// Event does not overlap with another in this column
-						if( $overlaps === false ) {
-								// Mark as found (no overlapping)
-							$fittingColumnFound = true;
-								// Stop looping over the current column
-							break;
-						}
-					}
-
-						// No fitting column found. Increment column counter (= add to new column)
-					if( $fittingColumnFound === false ) {
-							// Next column = new column
-						$columnIndex++;
-					}
+						// Find fitting (w/o overlapping events) columns for following events
+					$columnIndex	= self::findColumnWithoutOverlappingEvent($columns, $eventsByDay[$dayKey], $event);
 
 						// Add eventIndex to current column which has no overlapping
-					$columns[$columnIndex][] = $eventIndex;
-
+					$columns[$columnIndex][] 							= $eventIndex;
 					$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= $columnIndex;
 				}
 			}
 
-				// Set number columns for each event
-			$numColumns	= sizeof($columns);
+				// Set columns amount for each event
 			foreach($eventsOfDay as $eventIndex => $event) {
-				$eventsByDay[$dayKey][$eventIndex]['_numColumns']		= $numColumns;
+				$eventsByDay[$dayKey][$eventIndex]['_amountColumns']	= sizeof($columns);
 			}
 		}
 
 		return $eventsByDay;
+	}
+
+
+
+	/**
+	 * Find column to display given event in so that it does not overlap other events
+	 *
+	 * @param	Array	$columns
+	 * @param	Array	$eventsInDay
+	 * @param	Array	$event
+	 * @return	Integer
+	 */
+	public static function findColumnWithoutOverlappingEvent($columns, $eventsInDay, $event) {
+		$columnIndex		= 0;
+		$fittingColumnFound	= false;
+
+		foreach($columns as $columnIndex => $column) {
+			$overlaps	= self::isAnyEventColumnOverlapping($column, $eventsInDay, $event);
+
+				// Event does not overlap with another one in this column
+			if( ! $overlaps ) {
+				$fittingColumnFound = true;
+				break;
+			}
+		}
+			// No fitting column found. Increment column counter (= add to new column)
+		if( $fittingColumnFound === false ) {
+				// Next column = new column
+			$columnIndex++;
+		}
+
+		return intval($columnIndex);
+	}
+
+
+
+	/**
+	 * Check whether any of the events from all columns of that day overlaps the given event to be compared
+	 *
+	 * @param	Array	$eventsColumn
+	 * @param	Array	$eventsInDay
+	 * @param	Array	$event
+	 * @return	Boolean
+	 */
+	public static function isAnyEventColumnOverlapping($eventsColumn, $eventsInDay, $event) {
+		$overlaps	= false;
+
+		foreach($eventsColumn as $columnEventIndex) {
+				// Check if the event overlaps with the current column element
+			if( self::areEventsOverlapping($eventsInDay[$columnEventIndex], $event) ) {
+					// Overlapping in this column
+				$overlaps	= true;
+				break;
+			}
+		}
+
+		return $overlaps;
 	}
 
 
@@ -755,28 +783,18 @@ class TodoyuCalendarEventManager {
 	 */
 	private static function updateAssignmentRemindersForCurrentPerson($idEvent, $advanceTimeEmail, $advanceTimePopup) {
 		$idEvent			= intval($idEvent);
-		$idPerson			= TodoyuAuth::getPersonID();
 		$advanceTimeEmail	= intval($advanceTimeEmail);
 		$advanceTimePopup	= intval($advanceTimePopup);
-		$event				= self::getEvent($idEvent);
-		$dateStart			= $event->getStartDate();
-		$data				= array(
-			'is_remindpopupdismissed'	=> 0
+
+		$dateStart			= self::getEvent($idEvent)->getStartDate();
+
+		$data	= array(
+			'is_remindpopupdismissed'	=> 0,
+			'date_remindemail'			=> $advanceTimeEmail === 0 ? 0 : ($dateStart - $advanceTimeEmail),
+			'date_remindpopup'			=> $advanceTimePopup === 0 ? 0 : ($dateStart - $advanceTimePopup)
 		);
 
-		if( $advanceTimeEmail === 0 ) {
-			$data['date_remindemail']	= 0;
-		} else {
-			$data['date_remindemail']	= $dateStart - $advanceTimeEmail;
-		}
-
-		if( $advanceTimePopup === 0 ) {
-			$data['date_remindpopup']	= 0;
-		} else {
-			$data['date_remindpopup']	= $dateStart - $advanceTimePopup;
-		}
-
-		TodoyuCalendarReminderManager::updateReminderByAssignment($idEvent, $idPerson, $data);
+		TodoyuCalendarReminderManager::updateReminderByAssignment($idEvent, TodoyuAuth::getPersonID(), $data);
 	}
 
 

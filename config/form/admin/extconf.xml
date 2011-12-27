@@ -11,8 +11,7 @@
 				<field type="checkbox" name="allowoverbooking">
 					<label>calendar.ext.extconf.allowoverbooking.label</label>
 				</field>
-
-		</elements>
+			</elements>
 		</fieldset>
 
 		<fieldset name="eventsreminder">
@@ -40,7 +39,6 @@
 				<field type="checkbox" name="is_reminderpopup_active">
 					<label>calendar.ext.extconf.reminder.reminderpopup_active.label</label>
 				</field>
-
 
 				<field type="select" name="reminderpopup_advancetime">
 					<label>calendar.ext.extconf.reminder.popup.advancetime.label</label>
