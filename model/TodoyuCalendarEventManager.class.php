@@ -180,8 +180,8 @@ class TodoyuCalendarEventManager {
 	public static function groupEventsByDay(array $events, $dateStart, $dateEnd) {
 		$dateStart		= TodoyuTime::getStartOfDay($dateStart);
 		$dateEnd		= intval($dateEnd);
-		$groupedEvents	= array();
 
+		$groupedEvents	= array();
 		for($date = $dateStart; $date <= $dateEnd; $date += TodoyuTime::SECONDS_DAY ) {
 			$dayKey		= date('Ymd', $date);
 			$dayRange	= TodoyuTime::getDayRange($date);

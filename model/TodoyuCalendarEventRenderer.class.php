@@ -27,47 +27,6 @@
 class TodoyuCalendarEventRenderer {
 
 	/**
-	 * Render create event form popup
-	 *
-	 * @param	Integer		$time
-	 * @param	Boolean		$isDayEvent
-	 * @return	String		Form
-	 */
-	public static function renderCreateQuickEvent($time = 0, $isDayEvent = false) {
-		$time	= intval($time);
-		$time	= TodoyuTime::getRoundedTime($time, 15);
-
-			// Get form object
-		$form	= TodoyuCalendarEventManager::getQuickCreateForm();
-
-			// Set event start and ending timestamps
-		if( $isDayEvent ) {
-			$dayRange	= TodoyuTime::getDayRange($time);
-
-			$timeStart	= $dayRange['start'];
-			$timeEnd	= $dayRange['end'];
-		} else {
-			$timeStart	= $time;
-			$timeEnd	= $timeStart + TodoyuTime::SECONDS_MIN * 30;
-		}
-
-			// Set form data
-		$formData	= array(
-			'date_start' 	=> $timeStart,
-			'date_end' 		=> $timeEnd,
-			'is_dayevent'	=> $isDayEvent,
-			'persons'		=> array(TodoyuAuth::getPerson()->getTemplateData())
-		);
-
-		$form->setFormData($formData);
-		$form->setUseRecordID(false);
-
-		return $form->render();
-	}
-
-
-
-	/**
 	 * Prepare event rendering data array
 	 *
 	 * @param	Integer		$mode			CALENDAR_MODE_DAY / ..WEEK / ..MONTH
@@ -96,21 +55,6 @@ class TodoyuCalendarEventRenderer {
 				$data['class'] .= ' noEdit';
 			}
 		}
-
-		return $data;
-	}
-
-
-
-	/**
-	 * Hide private data out from event attributes
-	 *
-	 * @param	Array	$data
-	 * @return	Array
-	 */
-	private static function hidePrivateData(array $data) {
-		$data['title']			= '<' . Todoyu::Label('calendar.event.privateEvent.info') . '>';
-		$data['description']	= '';
 
 		return $data;
 	}
@@ -160,13 +104,13 @@ class TodoyuCalendarEventRenderer {
 
 
 	/**
-	 * Render day event (events that span a whole day or more than that)
+	 * Render all-day event (events that span a whole day or more than that)
 	 *
 	 * @param	Integer		$mode
 	 * @param	Array		$data
 	 * @return	String
 	 */
-	public static function renderFulldayEvent($mode = CALENDAR_MODE_DAY, array $data = array()) {
+	public static function renderAllDayEvent($mode = CALENDAR_MODE_DAY, array $data = array()) {
 		$idEvent	= intval($data['id']);
 
 		$tmpl	= $mode === CALENDAR_MODE_DAY ? 'ext/calendar/view/event-dayevent-day.tmpl' : 'ext/calendar/view/event-dayevent-week.tmpl';
@@ -204,9 +148,9 @@ class TodoyuCalendarEventRenderer {
 
 
 	/**
-	 * Get height of  starting hour
+	 * Get height of starting hour
 	 *
-	 * @param	Integer	$dateStart	UNIX Timestamp of the starttime or endtime
+	 * @param	Integer	$dateStart	UNIX Timestamp of the start time or end time
 	 * @return	Integer				Top-Y of starting hour
 	 */
 	public static function getTimeCoordinate($dateStart) {
@@ -249,6 +193,62 @@ class TodoyuCalendarEventRenderer {
 		}
 
 		return $height;
+	}
+
+
+
+	/**
+	 * Render create event form popup
+	 *
+	 * @param	Integer		$time
+	 * @param	Boolean		$isDayEvent
+	 * @return	String		Form
+	 */
+	public static function renderCreateQuickEvent($time = 0, $isDayEvent = false) {
+		$time	= intval($time);
+		$time	= TodoyuTime::getRoundedTime($time, 15);
+
+			// Get form object
+		$form	= TodoyuCalendarEventManager::getQuickCreateForm();
+
+			// Set event start and ending timestamps
+		if( $isDayEvent ) {
+			$dayRange	= TodoyuTime::getDayRange($time);
+
+			$timeStart	= $dayRange['start'];
+			$timeEnd	= $dayRange['end'];
+		} else {
+			$timeStart	= $time;
+			$timeEnd	= $timeStart + TodoyuTime::SECONDS_MIN * 30;
+		}
+
+			// Set form data
+		$formData	= array(
+			'date_start' 	=> $timeStart,
+			'date_end' 		=> $timeEnd,
+			'is_dayevent'	=> $isDayEvent,
+			'persons'		=> array(TodoyuAuth::getPerson()->getTemplateData())
+		);
+
+		$form->setFormData($formData);
+		$form->setUseRecordID(false);
+
+		return $form->render();
+	}
+
+
+
+	/**
+	 * Hide private data out from event attributes
+	 *
+	 * @param	Array	$data
+	 * @return	Array
+	 */
+	private static function hidePrivateData(array $data) {
+		$data['title']			= '<' . Todoyu::Label('calendar.event.privateEvent.info') . '>';
+		$data['description']	= '';
+
+		return $data;
 	}
 
 
@@ -336,7 +336,7 @@ class TodoyuCalendarEventRenderer {
 
 			// Render popup content
 		$data	= array(
-			'subject'		=> self::getEventMailSubjectByOperationID($operationID),
+			'subject'		=> TodoyuCalendarEventMailManager::getEventMailSubjectByOperationID($operationID),
 			'event'			=> $event->getTemplateData(true, true, true),
 			'mailingForm'	=> $form->render()
 		);
@@ -344,33 +344,6 @@ class TodoyuCalendarEventRenderer {
 		$tmpl	= 'ext/calendar/view/event-mailing.tmpl';
 
 		return Todoyu::render($tmpl, $data);
-	}
-
-
-
-	/**
-	 * Get subject label of event mail by operation ID (created, updated, deleted)
-	 *
-	 * @param	Integer		$operationID
-	 * @return	String
-	 */
-	public static function getEventMailSubjectByOperationID($operationID) {
-		$operationID	= intval($operationID);
-
-		switch($operationID) {
-			case OPERATIONTYPE_RECORD_CREATE:
-				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.create');
-				break;
-			case OPERATIONTYPE_RECORD_DELETE:
-				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.delete');
-				break;
-			case OPERATIONTYPE_RECORD_UPDATE:
-			default:
-				$subject	= Todoyu::Label('calendar.event.mail.popup.subject.update');
-				break;
-		}
-
-		return $subject;
 	}
 
 }
