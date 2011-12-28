@@ -69,7 +69,7 @@ class TodoyuCalendarEventRenderer {
 	 * @return	String
 	 */
 	public static function renderEvent(array $event, $mode = CALENDAR_MODE_MONTH) {
-		$tmpl	= 'ext/calendar/view/event.tmpl';
+		$tmpl	= 'ext/calendar/view/calendar/event.tmpl';
 		$data	= self::prepareEventRenderData($mode, $event);
 
 		return Todoyu::render($tmpl, $data);
@@ -95,7 +95,8 @@ class TodoyuCalendarEventRenderer {
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(
 			'event'	=> $eventData,
-			'color'	=> self::getEventColorData($idEvent)
+			'color'	=> $eventData['color']	// @todo remove this redundancy and have dwoo get color from event data directly
+//			'color'	=> self::getEventColorData($idEvent)
 		);
 
 		return Todoyu::render($tmpl, $data);
@@ -113,10 +114,9 @@ class TodoyuCalendarEventRenderer {
 	public static function renderAllDayEvent($mode = CALENDAR_MODE_DAY, array $data = array()) {
 		$idEvent	= intval($data['id']);
 
-		$tmpl	= $mode === CALENDAR_MODE_DAY ? 'ext/calendar/view/event-dayevent-day.tmpl' : 'ext/calendar/view/event-dayevent-week.tmpl';
+		$tmpl	= 'ext/calendar/view/calendar/alldayevent-' . ($mode === CALENDAR_MODE_DAY ? 'day.tmpl' : 'week.tmpl');
 		$data	= self::prepareEventRenderData($mode, $data);
-
-		$data['color']		= self::getEventColorData($idEvent);
+//		$data['color']	= self::getEventColorData($idEvent);
 
 		return Todoyu::render($tmpl, $data);
 	}
@@ -170,7 +170,7 @@ class TodoyuCalendarEventRenderer {
 	 * @param	Integer		$dateView
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$dateEnd
-	 * @param	Boolean		$real
+	 * @param	Boolean		$real			Force "real" calculated height from duration to pixel conversion?
 	 * @return	Integer
 	 */
 	public static function getEventHeight($dateView, $dateStart, $dateEnd, $real = false) {
@@ -183,13 +183,12 @@ class TodoyuCalendarEventRenderer {
 		$dateEnd	= TodoyuNumeric::intInRange($dateEnd, $viewRange['start'], $viewRange['end']);
 
 		$timeDiffHour	= ($dateEnd - $dateStart) / TodoyuTime::SECONDS_HOUR;
-
-		$height		= ceil($timeDiffHour * CALENDAR_HEIGHT_HOUR);
+		$height			= ceil($timeDiffHour * CALENDAR_HEIGHT_HOUR);
 
 		if( $real !== true ) {
 				// Make sure an event is at least 20px height
-			$minHeight	= intval((CALENDAR_EVENT_MIN_DURATION/3600) * CALENDAR_HEIGHT_HOUR);
-			$height	= TodoyuNumeric::intInRange($height, $minHeight);
+			$minHeight	= intval((CALENDAR_EVENT_MIN_DURATION / 3600) * CALENDAR_HEIGHT_HOUR);
+			$height		= TodoyuNumeric::intInRange($height, $minHeight);
 		}
 
 		return $height;
@@ -200,25 +199,25 @@ class TodoyuCalendarEventRenderer {
 	/**
 	 * Render create event form popup
 	 *
-	 * @param	Integer		$time
+	 * @param	Integer		$timestamp
 	 * @param	Boolean		$isDayEvent
 	 * @return	String		Form
 	 */
-	public static function renderCreateQuickEvent($time = 0, $isDayEvent = false) {
-		$time	= intval($time);
-		$time	= TodoyuTime::getRoundedTime($time, 15);
+	public static function renderCreateQuickEvent($timestamp = 0, $isDayEvent = false) {
+		$timestamp	= intval($timestamp);
+		$timestamp	= TodoyuTime::getRoundedTime($timestamp, 15);
 
 			// Get form object
 		$form	= TodoyuCalendarEventManager::getQuickCreateForm();
 
 			// Set event start and ending timestamps
 		if( $isDayEvent ) {
-			$dayRange	= TodoyuTime::getDayRange($time);
+			$dayRange	= TodoyuTime::getDayRange($timestamp);
 
 			$timeStart	= $dayRange['start'];
 			$timeEnd	= $dayRange['end'];
 		} else {
-			$timeStart	= $time;
+			$timeStart	= $timestamp;
 			$timeEnd	= $timeStart + TodoyuTime::SECONDS_MIN * 30;
 		}
 

@@ -110,7 +110,7 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 
 
 	/**
-	 * 'fulldayview' action method, saves viewing mode (full / half) day
+	 * Saves viewing mode: full-day / working hours
 	 *
 	 * @param	Array	$params
 	 */
@@ -118,6 +118,19 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 		$fullDay	= intval($this->value) === 1;
 
 		TodoyuCalendarPreferences::saveFullDayView($fullDay);
+	}
+
+
+
+	/**
+	 * Toggles weekend display mode: on / off
+	 *
+	 * @param	Array	$params
+	 */
+	public function toggleDisplayWeekendAction(array $params) {
+		$isWeekendDisplayed	= TodoyuCalendarPreferences::getIsWeekendDisplayed();
+
+		TodoyuCalendarPreferences::saveWeekendDisplayed(! $isWeekendDisplayed);
 	}
 
 

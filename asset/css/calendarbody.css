@@ -15,18 +15,6 @@
 		height:auto;
 	}
 
-#toggleDayView {
-	height:20px;
-	width:40px;
-	cursor:pointer;
-	background:url(../img/icons.png) no-repeat 5px -56px;
-}
-
-	#toggleDayView.full {
-		background-position:5px -86px;
-	}
-
-
 #tgnowptr {
 	background:#f2f3ed url(../img/background-hours.png) repeat-y;
 }

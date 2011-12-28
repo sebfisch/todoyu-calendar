@@ -97,6 +97,7 @@ Todoyu.Ext.calendar = {
 		if( Todoyu.getArea() === 'calendar' ) {
 			this.addPanelWidgetObservers();
 			this.CalendarBody.init();
+			this.Navi.init();
 		}
 	},
 
@@ -137,11 +138,11 @@ Todoyu.Ext.calendar = {
 
 
 	/**
-	 * Install all calendar quickinfos
+	 * Install all calendar quick-infos
 	 *
-	 * @method	installQuickinfos
+	 * @method	installQuickInfos
 	 */
-	installQuickinfos: function() {
+	installQuickInfos: function() {
 		this.QuickInfoBirthday.install();
 		this.QuickInfoEvent.install();
 		this.QuickInfoHoliday.install();
@@ -385,6 +386,9 @@ Todoyu.Ext.calendar = {
 		if( Object.isNumber(date) ) {
 			this.setDate(date);
 		}
+
+			// Update visibility of hours-range / weekend options
+		this.Navi.toggleViewOptions(tab);
 
 		var url 	= Todoyu.getUrl('calendar', 'calendar');
 		var options	= {

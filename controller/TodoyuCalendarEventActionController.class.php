@@ -44,7 +44,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function editAction(array $params) {
 		$idEvent	= intval($params['event']);
-		$time		= strtotime($params['date']);
+		$timestamp	= strtotime($params['date']);
 		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 
 			// Check rights
@@ -57,7 +57,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		}
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel);
 
-		return TodoyuCalendarEventEditRenderer::renderEventForm($idEvent, $time);
+		return TodoyuCalendarEventEditRenderer::renderEventForm($idEvent, $timestamp);
 	}
 
 

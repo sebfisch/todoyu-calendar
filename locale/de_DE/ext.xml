@@ -13,6 +13,8 @@
 	<label index="quicknav.backward.title">Zurück</label>
 	<label index="quicknav.forward.title">Vorwärts</label>
 	<label index="quicknav.today.title">Aktuellen Tag anzeigen</label>
+	<label index="quicknav.toggleDayView.title">Darstellung umschalten: ganzer Tag / Arbeitsstunden</label>
+	<label index="quicknav.toggleWeekend.title">Anzeige von Wochenenden an/aus</label>
 	<label index="dayview.workingtime">Zeige Dienstzeit (08h-18h)</label>
 	<label index="dayview.fullday">Zeige ganzen Tag (00h-24h)</label>
 	<label index="records.holidayset">Feiertags-Set</label>

@@ -40,7 +40,7 @@
    -------------- */
 	/* border color and style */
 .mv-daynames-table th,
-.st-grid td {
+.standardGrid td {
 	border:solid #d7dcc6;
 }
 
@@ -58,26 +58,26 @@
 	overflow:hidden;
 }
 
-.st-grid {
+.standardGrid {
 	border-collapse:separate;
 	border-spacing:1px;
 }
 
-	.st-grid td {
+	.standardGrid td {
 		border-color:#d7dcc6;
 		border-style:solid;
 		border-width:1px 1px 0 0;
 	}
 
-	.st-grid td.first {
+	.standardGrid td.first {
 		border-left-width:1px;
 	}
 
-	.st-grid .last td {
+	.standardGrid .last td {
 		border-bottom-width:1px;
 	}
 
-	.st-grid td.title {
+	.standardGrid td.title {
 		height:20px;
 		line-height:16px;
 		padding:2px;
@@ -87,30 +87,30 @@
 		cursor:pointer;
 	}
 
-	.st-grid td.title:hover{
+	.standardGrid td.title:hover{
 		background-color:#d7dcc6;
 	}
 
-	.st-grid td.title.inSelMonthTitle {
+	.standardGrid td.title.inSelMonthTitle {
 		background-color:#e4eace;
 	}
 
-	.st-grid td.title.inSelMonthTitle:hover {
+	.standardGrid td.title.inSelMonthTitle:hover {
 		background-color:#d7dcc6;
 	}
 
-		.st-grid td.ttoday {
+		.standardGrid td.ttoday {
 			background-color:#f6f6c8 !important;
 			font-weight:bold;
 			color:#0a246a;
 		}
 
-	.st-grid td.content {
+	.standardGrid td.content {
 		height:100px;
 		background-color:#fff;
 		border:1px solid #fff;
 	}
-	.st-grid td.content:hover {
+	.standardGrid td.content:hover {
 		border:1px solid #bababa;
 		cursor:pointer;
 	}
@@ -120,7 +120,7 @@
 		cursor:pointer;
 	}
 
-	.st-grid td.ctoday {
+	.standardGrid td.ctoday {
 		height:100px;
 		background-color:#ffffbb;
 	}

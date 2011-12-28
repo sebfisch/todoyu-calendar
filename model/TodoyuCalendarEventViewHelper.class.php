@@ -239,12 +239,53 @@ class TodoyuCalendarEventViewHelper {
 			}
 		} else {
 				// Edit event form
-//			$isNewEvent		= intval($form->getRecordID()) === 0;
 			$eventPersons	= $form->getField('persons')->getValue();
-			$participantIDs		= TodoyuArray::intval(array_keys($eventPersons));
+			$participantIDs	= TodoyuArray::intval(array_keys($eventPersons));
 		}
 
 		return TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
+	}
+
+
+
+	/**
+	 * Get autocomplete persons for events (only staff)
+	 *
+	 * @param	String		$input
+	 * @param	Array		$formData
+	 * @param	String		$name
+	 * @return	Array
+	 */
+	public static function autocompleteEventPersons($input, array $formData, $name) {
+		$items = array();
+
+		$fieldsToSearchIn = array(
+			'p.firstname',
+			'p.lastname',
+			'p.shortname'
+		);
+		$searchWords	= TodoyuArray::trimExplode(' ', $input, true);
+
+		if( sizeof($searchWords) > 0 ) {
+			$fields	= '	p.id';
+			$table	= '	ext_contact_person p,
+						ext_contact_mm_company_person mmcp,
+						ext_contact_company c';
+			$where	= '		c.is_internal	= 1
+						AND	c.id			= mmcp.id_company
+						AND p.id			= mmcp.id_person';
+			$like	= Todoyu::db()->buildLikeQuery($searchWords, $fieldsToSearchIn);
+			$where	.= ' AND ' . $like;
+			$order	= '	p.lastname, p.firstname';
+
+			$personIDs	= Todoyu::db()->getColumn($fields, $table, $where, '', $order, '', 'id');
+
+			foreach($personIDs as $idPerson) {
+				$items[$idPerson] = TodoyuContactPersonManager::getLabel($idPerson);
+			}
+		}
+
+		return $items;
 	}
 
 }

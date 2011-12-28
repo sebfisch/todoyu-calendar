@@ -59,7 +59,7 @@ TodoyuQuickinfoManager::addFunction('birthday', 'TodoyuCalendarQuickinfoManager:
 /* ----------------------------
 	Autocompleter Callbacks
    ---------------------------- */
-TodoyuAutocompleter::addAutocompleter('eventperson', 'TodoyuCalendarManager::autocompleteEventPersons', array('calendar', 'general:use'));
+TodoyuAutocompleter::addAutocompleter('eventperson', 'TodoyuCalendarEventViewHelper::autocompleteEventPersons', array('calendar', 'general:use'));
 
 
 /* ----------------------------

@@ -8,7 +8,7 @@
 	display:none;
 }
 
-div.weekMode table .st-grid td.noEventCell {
+div.weekMode table .standardGrid td.noEventCell {
 	border:1px solid #ddd;
 }
 .tg-timedevents {

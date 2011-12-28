@@ -67,10 +67,13 @@
 	border:none;
 }
 
-div.weekMode table.st-grid td {
+div.weekMode table.standardGrid td {
 	width:86px;
 	border:none;
 }
+	div.weekMode.fiveDays table.standardGrid td {
+		width:123px;
+	}
 
 .wk-allday{
 	background-color:#f2f3ed;
@@ -88,7 +91,7 @@ div.weekMode table.st-grid td {
 	height:5px;
 }
 
-.st-grid {
+.standardGrid {
 	position:relative;
 	table-layout:fixed;
 	width:100%;

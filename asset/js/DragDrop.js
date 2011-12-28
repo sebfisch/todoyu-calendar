@@ -99,25 +99,25 @@ Todoyu.Ext.calendar.DragDrop = {
 	initOptions: function() {
 		var tab	= this.ext.getActiveTab();
 
-		/**
-		 * Clone default options (assign would make a reference)
-		 */
-		this.draggableOptions 			= Object.clone(this.defaultDraggableOptions);
+		 	// Clone default options (assign would make a reference)
+		this.draggableOptions = Object.clone(this.defaultDraggableOptions);
 
 			// Add event handlers
 		this.draggableOptions.onStart	= this.onStart.bind(this, tab);
 		this.draggableOptions.onDrag	= this.onDrag.bind(this, tab);
 		this.draggableOptions.onEnd		= this.onEnd.bind(this, tab);
 
-		if( tab === 'day' ) {
-			this.draggableOptions.snap		= 10.5;
-			this.draggableOptions.constraint= 'vertical';
-		}
-		if( tab === 'week' ) {
-			this.draggableOptions.snap	= [88.5,10.5];
-		}
-		if( tab === 'month' ) {
-			this.draggableOptions.revert	= this.monthRevert.bind(this);
+		switch(tab) {
+			case 'day':
+				this.draggableOptions.snap		= 10.5;	// Hour pixel-height
+				this.draggableOptions.constraint= 'vertical';
+				break;
+			case 'week':
+				this.draggableOptions.snap	= [88.5, 10.5];	// Day pixel-width, hour pixel-height
+				break;
+			case 'month':
+				this.draggableOptions.revert	= this.monthRevert.bind(this);
+				break;
 		}
 	},
 
@@ -203,7 +203,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	makeDayEventsDraggable: function() {
 		var options			= Object.clone(this.defaultDraggableOptions);
 		options.constraint	= 'horizontal';
-		options.snap		= 88.5;
+		options.snap		= 88.5;	// Day pixel-width
 		options.onStart		= this.onStartDragDayEvent.bind(this);
 		options.onEnd		= this.onEndDragDayEvent.bind(this);
 

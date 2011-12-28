@@ -136,13 +136,15 @@ class TodoyuCalendarManager {
 	/**
 	 * Get various data related to month of given timestamp
 	 *
-	 * @param	Integer 	$timestamp		UNIX Timestamp of the selected date
+	 * @param	Integer 	$timestamp		Selected date
 	 * @return	Array
 	 */
 	public static function getMonthData($timestamp) {
-		$month					= date('m', $timestamp);
-		$year					= date('Y', $timestamp);
-		$secondsOfMonth			= TodoyuTime::getDayRange(mktime(0, 0, 0, $month, 1, $year));
+		$timestamp	= intval($timestamp);
+
+		$month			= date('m', $timestamp);
+		$year			= date('Y', $timestamp);
+		$secondsOfMonth	= TodoyuTime::getDayRange(mktime(0, 0, 0, $month, 1, $year));
 
 		$shownDaysOfLastMonth	= date('w', mktime(0, 0, 0, $month, 1, $year)) - 1;
 		$shownDaysOfNextMonth	= 35 - (TodoyuTime::getDaysInMonth($timestamp)) - (TodoyuTime::getDaysInMonth($timestamp, -1));
@@ -168,7 +170,7 @@ class TodoyuCalendarManager {
 
 		return array(
 			'start'	=> TodoyuTime::getWeekStart($monthRange['start']),
-			'end'	=> TodoyuTime::getWeekStart($monthRange['end']) + 7 * TodoyuTime::SECONDS_DAY - 1
+			'end'	=> TodoyuTime::getWeekStart($monthRange['end']) + (7 * TodoyuTime::SECONDS_DAY) - 1
 		);
 	}
 
@@ -181,25 +183,32 @@ class TodoyuCalendarManager {
 	 * As the month view of the calendar displays 5 weeks from monday to sunday, there are always some days
 	 * out of the months before and after the selected month being displayed, this function calculates their timestamps.
 	 *
-	 * @param	Integer	$activeDate	Unix timestamp (selected date)
+	 * @param	Integer	$dateStart
+	 * @param	Integer	$dateEnd
 	 * @return	Array				Timestamps of days to be shown in month view of calendar
 	 */
-	public static function getDayTimestampsForMonth($activeDate) {
-		$activeDate	= intval($activeDate);
-		$monthRange	= TodoyuTime::getMonthRange($activeDate);
+	public static function getDayTimestampsForMonth($dateStart, $dateEnd) {
+		$dateStart	= intval($dateStart);
+		$dateEnd	= intval($dateEnd);
 
-		$weekDayStart	= date('w', $monthRange['start']);
-		$weekDayEnd		= date('w', $monthRange['end']);
+		$weekDayStart	= date('w', $dateStart);
+		$weekDayEnd		= date('w', $dateEnd);
 
 		$daysLastMonth	= ($weekDayStart + 6) % 7;
 		$daysNextMonth	= (7 - $weekDayEnd) % 7;
 
-		$viewStart		= TodoyuTime::addDays($monthRange['start'], -$daysLastMonth);
-		$viewEnd		= TodoyuTime::addDays($monthRange['end'], $daysNextMonth);
-		$currentDate	= $viewStart;
-		$timestamps		= array();
+			// Adjust day-columns to start with sunday / monday (system config)
+		$firstDayOfWeek	= TodoyuSysmanagerSystemConfigManager::getFirstDayOfWeek();
+		$adjustDaysLastMonth	= $firstDayOfWeek === 0 ? 6 : 0;
+		$adjustDaysNextMonth	= $firstDayOfWeek === 0 ? -7 : 0;
 
-		while( $currentDate <= $viewEnd ) {
+		$viewStart	= TodoyuTime::addDays($dateStart, - $daysLastMonth + $adjustDaysLastMonth);
+		$viewEnd	= TodoyuTime::addDays($dateEnd, $daysNextMonth + $adjustDaysLastMonth + $adjustDaysNextMonth);
+
+			// Fill array of timestamps of days in range
+		$timestamps		= array();
+		$currentDate	= $viewStart;
+		while($currentDate <= $viewEnd) {
 			$timestamps[]	= $currentDate;
 			$currentDate	= TodoyuTime::addDays($currentDate, 1);
 		}
@@ -265,10 +274,6 @@ class TodoyuCalendarManager {
 		 * @var	TodoyuContactPanelWidgetStaffSelector	$widget
 		 */
 		return $widget->getSelectedPersons();
-
-
-
-//		return TodoyuContactPanelWidgetStaffSelectorOLD::getSelectedPersons();
 	}
 
 
@@ -417,7 +422,7 @@ class TodoyuCalendarManager {
 
 
 	/**
-	 * Get day keys (format Ymd) for every day in a date range
+	 * Get day keys (format Ymd, e.g. 20111224) for every day in given date range
 	 *
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$dateEnd
@@ -433,48 +438,6 @@ class TodoyuCalendarManager {
 		}
 
 		return $keys;
-	}
-
-
-
-	/**
-	 * Get autocomplete persons for events (only staff)
-	 *
-	 * @param	String		$input
-	 * @param	Array		$formData
-	 * @param	String		$name
-	 * @return	Array
-	 */
-	public static function autocompleteEventPersons($input, array $formData, $name) {
-		$items = array();
-
-		$fieldsToSearchIn = array(
-			'p.firstname',
-			'p.lastname',
-			'p.shortname'
-		);
-		$searchWords	= TodoyuArray::trimExplode(' ', $input, true);
-
-		if( sizeof($searchWords) > 0 ) {
-			$fields	= '	p.id';
-			$table	= '	ext_contact_person p,
-						ext_contact_mm_company_person mmcp,
-						ext_contact_company c';
-			$where	= '		c.is_internal	= 1
-						AND	c.id			= mmcp.id_company
-						AND p.id			= mmcp.id_person';
-			$like	= Todoyu::db()->buildLikeQuery($searchWords, $fieldsToSearchIn);
-			$where	.= ' AND ' . $like;
-			$order	= '	p.lastname, p.firstname';
-
-			$personIDs	= Todoyu::db()->getColumn($fields, $table, $where, '', $order, '', 'id');
-
-			foreach($personIDs as $idPerson) {
-				$items[$idPerson] = TodoyuContactPersonManager::getLabel($idPerson);
-			}
-		}
-
-		return $items;
 	}
 
 }

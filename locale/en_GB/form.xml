@@ -7,6 +7,7 @@
 	<label index="legend.reminders">My reminders for this appointment</label>
 	<label index="legend.profile.general">General Calendar Settings</label>
 	<label index="legend.profile.reminder.general">Configure your reminders to your needs</label>
+	<label index="legend.admin.appearance">Appearance</label>
 	<label index="legend.admin.overbooking">Configure the overbooking behaviour</label>
 	<label index="legend.admin.reminders">Default settings for reminders</label>
 	<label index="legend.admin.automaticEmail">Configure the notification behaviour</label>

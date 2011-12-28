@@ -13,6 +13,8 @@
 	<label index="quicknav.backward.title">Back</label>
 	<label index="quicknav.forward.title">Forward</label>
 	<label index="quicknav.today.title">Jump to current day</label>
+	<label index="quicknav.toggleDayView.title">Toggle display: full-day / working hours</label>
+	<label index="quicknav.toggleWeekend.title">Display weekend on/off</label>
 	<label index="dayview.workingtime">Show working hours only (08h-18h)</label>
 	<label index="dayview.fullday">Show hours of full day (00h-24h)</label>
 	<label index="records.holidayset">Holiday Set</label>

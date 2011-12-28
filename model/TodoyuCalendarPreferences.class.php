@@ -102,7 +102,7 @@ class TodoyuCalendarPreferences {
 
 
 	/**
-	 * Save fullday view preference (active?)
+	 * Save full-day view preference (active?)
 	 *
 	 * @param	Boolean		$full
 	 */
@@ -110,6 +110,32 @@ class TodoyuCalendarPreferences {
 		$full	= $full ? 1 : 0;
 
 		self::savePref('fulldayview', $full, 0, true);
+	}
+
+
+
+	/**
+	 * Save display weekend preference (on/off)
+	 *
+	 * @param	Boolean	$displayed
+	 */
+	public static function saveWeekendDisplayed($displayed = true) {
+		$displayed	= $displayed ? 1 : 0;
+
+		self::savePref('displayweekend', $displayed, 0, true);
+	}
+
+
+
+	/**
+	 * Get full-day view (active?) preference
+	 *
+	 * @return	Boolean
+	 */
+	public static function getIsWeekendDisplayed() {
+		$pref	= self::getPref('displayweekend', 0);
+
+		return intval($pref) === 1;
 	}
 
 
@@ -242,10 +268,10 @@ class TodoyuCalendarPreferences {
 	/**
 	 * Save reminder email advance time
 	 *
-	 * @param	Integer		$time
+	 * @param	Integer		$timestamp
 	 */
-	public static function saveReminderEmailTime($time) {
-		self::saveReminderTime('email', $time);
+	public static function saveReminderEmailTime($timestamp) {
+		self::saveReminderTime('email', $timestamp);
 	}
 
 
@@ -253,10 +279,10 @@ class TodoyuCalendarPreferences {
 	/**
 	 * Save reminder popup advance time
 	 *
-	 * @param	Integer		$time
+	 * @param	Integer		$timestamp
 	 */
-	public static function saveReminderPopupTime($time) {
-		self::saveReminderTime('popup', $time);
+	public static function saveReminderPopupTime($timestamp) {
+		self::saveReminderTime('popup', $timestamp);
 	}
 
 
@@ -289,13 +315,13 @@ class TodoyuCalendarPreferences {
 	 * Save reminder advance time
 	 *
 	 * @param	String		$typeKey
-	 * @param	Integer		$time
+	 * @param	Integer		$timestamp
 	 */
-	private static function saveReminderTime($typeKey, $time) {
+	private static function saveReminderTime($typeKey, $timestamp) {
 		$prefName	= 'reminder' . $typeKey . '_advancetime';
-		$time		= intval($time);
+		$timestamp		= intval($timestamp);
 
-		self::savePref($prefName, $time, 0, true);
+		self::savePref($prefName, $timestamp, 0, true);
 	}
 
 

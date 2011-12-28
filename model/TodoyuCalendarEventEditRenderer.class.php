@@ -29,13 +29,13 @@ class TodoyuCalendarEventEditRenderer {
 	/**
 	 * Render event creation main content (tab head and form)
 	 *
-	 * @param	Integer	$time
+	 * @param	Integer	$timestamp
 	 * @return	String	HTML
 	 */
-	public static function renderAddView($time = 0) {
+	public static function renderAddView($timestamp = 0) {
 		$tabLabel	= Todoyu::Label('calendar.event.new');
 		$headTab	= self::renderEventEditTab($tabLabel, 'add');
-		$form		= self::renderEventForm(0, $time);
+		$form		= self::renderEventForm(0, $timestamp);
 
 		return $headTab . $form;
 	}
@@ -92,12 +92,12 @@ class TodoyuCalendarEventEditRenderer {
 	 * Render event form
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$time
+	 * @param	Integer		$timestamp
 	 * @return	TodoyuForm
 	 */
-	public static function renderEventForm($idEvent, $time = 0) {
+	public static function renderEventForm($idEvent, $timestamp = 0) {
 		$idEvent= intval($idEvent);
-		$time	= intval($time);
+		$timestamp	= intval($timestamp);
 
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
@@ -105,7 +105,7 @@ class TodoyuCalendarEventEditRenderer {
 		$form->setUseRecordID(false);
 
 		if( $idEvent === 0 ) {
-			TodoyuCalendarEventManager::createNewEventWithDefaultsInCache($time);
+			TodoyuCalendarEventManager::createNewEventWithDefaultsInCache($timestamp);
 		}
 
 		$event	= TodoyuCalendarEventManager::getEvent($idEvent);

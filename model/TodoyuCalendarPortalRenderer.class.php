@@ -85,7 +85,7 @@ class TodoyuCalendarPortalRenderer {
 			'showBirthdays'	=> $config['showBirthday'],
 			'birthdays'		=> $birthdays,
 			'color'			=> TodoyuColors::getColorIndex($idPerson),
-			'javascript'	=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();Todoyu.Ext.calendar.installQuickinfos();'
+			'javascript'	=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();Todoyu.Ext.calendar.installQuickInfos();'
 		);
 
 		TodoyuHeader::sendTodoyuHeader('items', sizeof($events));

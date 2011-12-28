@@ -125,12 +125,12 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	/**
 	 * Save calendar date for area
 	 *
-	 * @param	Integer		$time
+	 * @param	Integer		$timestamp
 	 */
-	public static function saveDate($time) {
-		$time	= intval($time);
+	public static function saveDate($timestamp) {
+		$timestamp	= intval($timestamp);
 
-		TodoyuCalendarPreferences::saveDate($time, AREA);
+		TodoyuCalendarPreferences::saveDate($timestamp, AREA);
 	}
 
 

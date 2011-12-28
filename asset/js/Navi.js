@@ -39,6 +39,18 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
+	 * Init calendar navigation
+	 *
+	 * @method	init
+	 */
+	init: function() {
+		var tab = this.ext.getActiveTab();
+		this.toggleViewOptions(tab);
+	},
+
+
+
+	/**
 	 * Set calendar title
 	 *
 	 * @method	setTitle
@@ -142,14 +154,12 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
-	 * Go to date of current today
+	 * Go to day of current "today"
 	 *
 	 * @method	goToday
 	 */
 	goToday: function() {
 		var date= this.getTodayDate();
-
-		// this.ext.PanelWidget.Calendar.Calendar.setCurrentDate('monthdown', true);
 
 		this.ext.show(null, date);
 	},
@@ -157,16 +167,25 @@ Todoyu.Ext.calendar.Navi = {
 
 
 	/**
-	 * Toggle day viewing mode (among full day / working hours)
+	 * Update visibility of hours-range + weekend options
+	 * Hours-range toggle: only available in day/week view
+	 * Weekend toggle: only available in week view
 	 *
-	 * @method	toggleFullDayView
+	 * @method	toggleViewOptions
+	 * @param	{String}	tab
 	 */
-	toggleFullDayView: function() {
-		var toggler	= $('toggleDayView');
+	toggleViewOptions: function(tab) {
+		if( tab === 'day' || tab == 'week' ) {
+			$('calendar-quicknav-toggleDayView').show();
+		} else {
+			$('calendar-quicknav-toggleDayView').hide();
+		}
 
-		toggler.toggleClassName('full');
-
-		this.ext.CalendarBody.toggleFullDayView();
+		if( tab === 'week' ) {
+			$('calendar-quicknav-toggleWeekend').show();
+		} else {
+			$('calendar-quicknav-toggleWeekend').hide();
+		}
 	}
 
 };

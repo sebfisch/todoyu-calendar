@@ -64,7 +64,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 			this.installContextMenu();
 			this.installObserversCreateEvent();
 
-			this.ext.installQuickinfos();
+			this.ext.installQuickInfos();
 			this.ext.Event.installObservers();
 
 			if( this.ext.getActiveTab() !== 'month' ) {
@@ -99,6 +99,36 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 */
 	toggleFullDayView: function() {
 		this.setFullHeight(!this.isFullHeight(), true);
+	},
+
+
+
+	/**
+	 * Save changed pref, reload calendar with toggled display of weekend (sat+sun)
+	 *
+	 * @method toggleWeekend
+	 */
+	toggleWeekend: function() {
+		var url		= Todoyu.getUrl('calendar', 'preference');
+		var options	= {
+			parameters: {
+				action:		'toggleDisplayWeekend'
+			},
+			onComplete: this.onWeekendToggled.bind(this)
+		};
+
+		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 * After display of weekend has been toggled: refresh calendar week view
+	 *
+	 * @method	onWeekendToggled
+	 */
+	onWeekendToggled: function() {
+		Todoyu.Ext.calendar.show('week', this.ext.getDate());
 	},
 
 
@@ -176,17 +206,18 @@ Todoyu.Ext.calendar.CalendarBody = {
 		var timestamp;
 
 			// Get top coordinate, if view is minimized, add invisible part to 'top'
-		var top			= y - this.calendarBody.cumulativeOffset().top + (this.isFullHeight() ? 0 : 8 * 42);
+		var top	= y - this.calendarBody.cumulativeOffset().top + (this.isFullHeight() ? 0 : 8 * 42);
 
+			// Calculate timestamp from coordinate in current mode
 		switch(calendarMode) {
 			case 'day':
 				timestamp	= this.ext.getDayStart() + this.getDayOffset(top, 1010);
 				break;
 
 			case 'week':
-				var left		= x - this.calendarBody.cumulativeOffset().left;
-				var numDays		= Math.floor((left - 40) / 89);
-				numDays			= numDays < 0 ? 0 : numDays;
+				var left	= x - this.calendarBody.cumulativeOffset().left;
+				var numDays	= Math.floor((left - 40) / 89);	// 40px: hours column width, 89px: day column incl. right border
+				numDays		= numDays < 0 ? 0 : numDays;
 				timestamp	= (this.ext.getWeekStart() + numDays * Todoyu.Time.seconds.day) + this.getDayOffset(top, 1010);
 				break;
 		}
@@ -206,9 +237,8 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 */
 	getDayOffset: function(top, height) {
 		var seconds	= (top / height) * Todoyu.Time.seconds.day;
-
 			// Round to quarter hours, get time parts (hours, minutes, seconds)
-		seconds		= Math.round(seconds / 900) * 900;
+		seconds	= Math.round(seconds / 900) * 900;
 
 		var timeInfo	= Todoyu.Time.getTimeParts(seconds);
 
@@ -241,12 +271,9 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 * @param	{Event}	event
 	 */
 	onEventCreateDayWeek: function(event) {
-		// Workaround for IE. Clicking now also possible in time column. but works correctly
-//		if( event.findElement('td.dayCol') ) {
-			var time	= this.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
+		var time	= this.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
 
-			this.ext.addEvent(time);
-//		}
+		this.ext.addEvent(time);
 	},
 
 
@@ -258,6 +285,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 *
 	 * @method	onEventCreateMonth
 	 * @param	{Event}		event
+	 * @param	{Element}	cell
 	 */
 	onEventCreateMonth: function(event, cell) {
 			// Get timestamp of the date in local timezone (will be reconverted later into the same timestamp again)
