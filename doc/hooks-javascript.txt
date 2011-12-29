@@ -11,7 +11,7 @@ Calendar Extension - JavaScript Hooks
 
 
 
-2. QuickEvent
+2. Quick-Event
 	calendar.quickevent.saved
 	@param	{Number} idEvent
 	Evoked after event saved. (DB record updated, event elements updated in DOM)

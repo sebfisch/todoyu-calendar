@@ -2,8 +2,8 @@ todoyu calendar extension changelog
 
 calender 1.2.0 - not released yet
 	* Bugfix: Event mailing popup observers were initialized premature on page load (1732.417)
-	* Bugfix: Quickevent form observers were not re-initialized after failed data validation form re-display (1732.516)
-	* Bugfix: Optional event emails after quickevent creation were not being sent (1732.517)
+	* Bugfix: Quick-event form observers were not re-initialized after failed data validation form re-display (1732.516)
+	* Bugfix: Optional event emails after quick-event creation were not being sent (1732.517)
 	* Added: Implemented 5-day week viewing mode (monday to friday)
 	* Added: Implemented month and week mode starting with sunday (system setting)
 	* Added: Implemented forgotten automatic email roles option
@@ -53,11 +53,11 @@ calendar 1.1.0 - 2011-06-17
 	* Bugfix: Event drag & drop in week & day views had wrong hour offset (-1h)
 	* Bugfix: Fixed event type toggeling handling in event quickcreation form
 	* Bugfix: Fixed EventManager to not delete events physically anymore (use "deleted" flag)
- 	* Bugfix: Added noAccess class to ALL events which can't be edited (Drag&Drop)
+	* Bugfix: Added noAccess class to ALL events which can't be edited (Drag&Drop)
 	* Bugfix: Removed empty values from event detail view (description, place)
 	* Bugfix: Fixed holidays list to be ordered by date
- 	* Bugfix: After overbooking error after drag and dropping events did not revert to original time
- 	* Bugfix: Fixed sending of notification for events
+	* Bugfix: After overbooking error after drag and dropping events did not revert to original time
+	* Bugfix: Fixed sending of notification for events
 	* Feature: Added linkage (to detail view contact) to appointment quickinfo persons
 	* Feature: new right "Send event as email"
 	* Feature: logging of sent event mails (not yet displayed in attendee's list)
@@ -91,11 +91,11 @@ calendar 1.1.0 - 2011-06-17
 	* Bugfix: event drag & drop in week & day views had wrong hour offset (-1h)
 	* Feature: Different format in single view of events by duration - multi-day / multi-hour / minutes
 	* Feature: made quickinfos deactivateable
- 	* Feature: Added placeholders for to-be spanish locale files
+	* Feature: Added placeholders for to-be spanish locale files
 
 
 calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
- 	* Bugfix: Date fix for IE
+	* Bugfix: Date fix for IE
 	* Bugfix: Added missing wrap for birthday events
 	* Bugfix: Fixed eventIsAssignableToCurrentPersonOnly validator
 	* Bugfix: getHolidays for portal tab
@@ -130,8 +130,8 @@ calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Feature: Added DateField Helper
 	* Feature: Optimized panelwidget styling
 	* Feature: Added EXTKEY constant
- 	* Feature: Added initialization permission checks to controllers, tabs
- 	* Feature: Calendar refreshes if a new event is added over quick-create while being in the calendar view
+	* Feature: Added initialization permission checks to controllers, tabs
+	* Feature: Calendar refreshes if a new event is added over quick-create while being in the calendar view
 	* Feature: Use rounded time for quick-create events (instead of exact current minute)
 	* Feature: Added date string functions to Todoyu.Time
 	* Feature: Added validator for event. Event requires now at least one internal person
@@ -140,7 +140,7 @@ calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Feature: Marked private event for day and week mode, added icon
 	* Feature: Event creation form presets: 'away official' cannot be private, birthday doesn't have place
 	* Feature: Rights checks wrapper methods added for events
-  	* Feature: Added hooks documentation
+	* Feature: Added hooks documentation
 	* Feature: Added Serbian locales
 	* Feature: Moved styles from global.css to ext.css
 	* Feature: Added japanese translation
@@ -165,7 +165,7 @@ calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Feature: Added address-holidayset attribute into contact > company form via hooking from calendar ext
 	* Changed: Incremented year in copyright notice to 2011
 	* Changed: Cleaned up quickinfo (core controller now)
- 	* Changed: Replaced time rounding function with more powerful one (TodoyuTime::getRoundedTime())
+	* Changed: Replaced time rounding function with more powerful one (TodoyuTime::getRoundedTime())
 	* Changed: Limited date_start and date_end to internal persons
 	* Changed: Changed date format in request from timestamp to string to be timezone save
 	* Changed: Color fixes

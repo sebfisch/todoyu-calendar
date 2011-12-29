@@ -19,7 +19,7 @@
 *****************************************************************************/
 
 /**
- * Quickevent action controller
+ * Quick-Event action controller
  *
  * @package		Todoyu
  * @subpackage	Calendar
@@ -53,7 +53,7 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 
 
 	/**
-	 * Save quickEvent (quickEvent popUp)
+	 * Save quick-event
 	 *
 	 * @param	Array			$params
 	 * @return	Void|String		Failure returns re-rendered form with error messages
