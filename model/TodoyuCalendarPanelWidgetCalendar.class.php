@@ -59,54 +59,19 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 
 
 	/**
-	 * Add calendar inline JS (initialization)
-	 */
-	private static function addCalendarLocalizationJS() {
-//		$code = "// Localize date object (for scal)\n"
-//				. 'Object.extend(Date.prototype, {'
-//				. 'monthnames:[\'' . Todoyu::Label('core.date.month.january') . '\',\'' . Todoyu::Label('core.date.month.february') . '\',\'' . Todoyu::Label('core.date.month.march') . '\',\'' . Todoyu::Label('core.date.month.april') . '\',\'' . Todoyu::Label('core.date.month.may') . "','" . Todoyu::Label('core.date.month.june') . "','" . Todoyu::Label('core.date.month.july') . '\',\'' . Todoyu::Label('core.date.month.august') . "','" . Todoyu::Label('core.date.month.september') . "','" . Todoyu::Label('core.date.month.october') . "','" . Todoyu::Label('core.date.month.november') . "','" . Todoyu::Label('core.date.month.december') . '\'],'
-//				. 'daynames:[\'' . Todoyu::Label('core.date.weekday.sunday') . '\',\'' . Todoyu::Label('core.date.weekday.monday') . '\', \'' . Todoyu::Label('core.date.weekday.tuesday') . '\',\'' . Todoyu::Label('core.date.weekday.wednesday') . "','" . Todoyu::Label('core.date.weekday.thursday') . "','" . Todoyu::Label('core.date.weekday.friday') . "','" . Todoyu::Label('core.date.weekday.saturday') . '\']'
-//				. '});';
-//
-//		TodoyuPage::addJsInline($code);
-	}
-
-
-
-	/**
 	 * Render content
-	 * NOTE:	the calender HTML content itself is written to the DOM via JS by the jsCalendar library
+	 * NOTE:	the calender HTML itself is added into the DOM via JS by the jscalendar library
 	 *
 	 * @return String
 	 */
 	public function renderContent() {
-		$date	= self::getDate();
-
 		$tmpl	= 'ext/calendar/view/panelwidget/calendar.tmpl';
 		$data	= array(
 			'id'			=> $this->getID(),
 			'class'			=> $this->config['class'],
-			'date'			=> $date,
-			'dateDay'		=> date('d', $date),
-			'dateMonth'		=> date('n', $date),
-			'dateYear'		=> date('Y', $date),
-			'daysInMonth'	=> date('t', $date)
 		);
 
 		return Todoyu::render($tmpl, $data);
-	}
-
-
-
-	/**
-	 * Render widget
-	 *
-	 * @return	String
-	 */
-	public function render() {
-		$this->addCalendarLocalizationJS();
-
-		return parent::render();
 	}
 
 

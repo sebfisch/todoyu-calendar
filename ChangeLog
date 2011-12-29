@@ -7,6 +7,7 @@ calender 1.2.0 - not released yet
 	* Added: Implemented 5-day week viewing mode (monday to friday)
 	* Added: Implemented month and week mode starting with sunday (system setting)
 	* Added: Implemented forgotten automatic email roles option
+	* Changed: Replaced scal mini-calendar with jscalendar in calendar panelwidget
 	* Changed: Moved toggle full-day/working hours button into calendar top navigation
 	* Changed: Prevented pointless AJAX request of optional event mailing when no receivers are selected
 	* Changed: Clarified cancel mailing button label (to "dont send email" instead of "cancel")

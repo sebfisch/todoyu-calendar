@@ -49,7 +49,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	calName:		'panelwidget-calendar-jscalendar',
 
 	/**
-	 * Scal object
+	 * jscalendar object
 	 *
 	 * @property	Calendar
 	 * @type		Object
@@ -91,29 +91,15 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 
 		var parent = $('panelwidget-calendar-jscalendar');
 			// construct a calendar giving only the "selected" handler.
-		var cal = new Calendar(0, null, null, null);
-			// hide week numbers
-		cal.weekNumbers = false;
-			// We want some dates to be disabled; see function isDisabled above
-		cal.setDisabledHandler(false);
-		cal.setDateFormat("%A, %B %e");
+		this.Calendar = new Calendar(0, null, this.onDateSelected.bind(this), null);
 
-			// this call must be the last as it might use data initialized above; if
-			// we specify a parent, as opposite to the "showCalendar" function above,
-			// then we create a flat calendar -- not popup. Hidden, though, but...
-		cal.create(parent);
-		cal.show();
+		this.Calendar.weekNumbers = true;
+		this.Calendar.setDateFormat("%A, %B %e");
 
+		this.Calendar.create(parent);
+		this.Calendar.setDate(initialDate);
 
-//		var options		= Object.extend(this.ext.calOptions, {
-//			year:			initialDate.getFullYear(),
-//			month:			initialDate.getMonth() + 1,
-//			day:			initialDate.getDate(),
-//			oncalchange:	this.onCalendarChange.bind(this)
-//		});
-//
-//			// Initialize calendar (have sCal render the calender code to the DOM)
-//		this.Calendar 	= new scal(this.calName, this.onDateSelected.bind(this), options);
+		this.Calendar.show();
 	},
 
 
@@ -125,7 +111,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 * @return	{Number}
 	 */
 	getDate: function() {
-		return this.Calendar.currentdate.getTime();
+		return this.Calendar.date.getTime();
 	},
 
 
@@ -134,98 +120,50 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 * Set current calendar date
 	 *
 	 * @method	setDate
-	 * @param	{Number}	date
+	 * @param	{Number}	timestamp
 	 * @param	{Boolean}	noExternalUpdate
 	 */
-	setDate: function(date, noExternalUpdate) {
-		this.Calendar.setCurrentDate(new Date(date), noExternalUpdate);
+	setDate: function(timestamp, noExternalUpdate) {
+		var date	= new Date();
+		date.setTime(timestamp);
+
+		this.Calendar.setDate(date);
+		this.Calendar.onUpdateTime();
 	},
 
 
 
 	/**
-	 * Get time
+	 * Get selected calendar date as UNIX stamp
 	 *
 	 * @method	getTime
-	 * @return	{Number}
+	 * @return	{Number}	UNIX timestamp
 	 */
 	getTime: function() {
-		return parseInt(this.getDate()/1000, 10);
+		return parseInt(this.getDate() / 1000, 10);
 	},
 
 
 
 	/**
-	 * Get timestamp of first shown day
-	 *
-	 * @method	getFirstShownDay
-	 * @return	{Number}
-	 */
-	getFirstShownDay: function() {
-		var timestamp	= this.getDate();
-		var date		= new Date(timestamp);
-
-			// Get first day of displayed month
-		var dayNum				= 1;
-		var date				= new Date(date.getFullYear(), date.getMonth(), dayNum);
-		var dateFirstShownDay	= date;
-
-			// Go back to first monday before the 1st day of the displayed month
-		while( dateFirstShownDay.getDay() > 1 ) {
-			dayNum--;
-			dateFirstShownDay	= new Date(date.getFullYear(), date.getMonth(), dayNum);
-		}
-
-		return dateFirstShownDay.getTime() / 1000;
-	},
-
-
-
-	/**
-	 * Set time
+	 * Set selected calendar date from given UNIX timestamp
 	 *
 	 * @method	setTime
-	 * @param	{Number}	time
+	 * @param	{Number}	timestamp
 	 * @param	{Boolean}	noExternalUpdate
 	 */
-	setTime: function(time, noExternalUpdate) {
-		this.setDate(time * 1000, noExternalUpdate);
+	setTime: function(timestamp, noExternalUpdate) {
+		this.setDate(timestamp * 1000, noExternalUpdate);
 	},
 
 
 
 	/**
-	 * When displayed dates in calendar are updated/changed
-	 *
-	 * @method	onCalendarChange
-	 * @param	{Event}	event
-	 */
-	onCalendarChange: function(event) {
-		var element = event.element();
-		var mode	= '';
-
-		if( element.hasClassName('calprevmonth') || element.hasClassName('calnextmonth') ) {
-			mode = 'month';
-		}
-		if( element.hasClassName('calprevyear') || element.hasClassName('calnextyear') ) {
-			mode = 'year';
-		}
-		if( element.hasClassName('caltitle') ) {
-			mode = 'today';
-		}
-
-		this.onUpdate(mode, true);
-	},
-
-
-
-	/**
-	 * 'Date selected' event handler
+	 * When navigating the shown time range or selecting a date
 	 *
 	 * @method	onDateSelected
-	 * @param	{Object}	currentDate
 	 */
-	onDateSelected: function(currentDate) {
+	onDateSelected: function() {
 		this.onUpdate('day', true);
 	},
 
@@ -235,7 +173,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 * General update event handler
 	 *
 	 * @method	onUpdate
-	 * @param	{String}	mode
+	 * @param	{String}	mode		'day' = A day has been selected
 	 */
 	onUpdate: function(mode, delay) {
 		if( this.updateTimeout !== null ) {
