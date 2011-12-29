@@ -4,7 +4,10 @@ calender 1.2.0 - not released yet
 	* Bugfix: Event mailing popup observers were initialized premature on page load (1732.417)
 	* Bugfix: Quickevent form observers were not re-initialized after failed data validation form re-display (1732.516)
 	* Bugfix: Optional event emails after quickevent creation were not being sent (1732.517)
-	* Added: implemented forgotten automatic email roles option
+	* Added: Implemented 5-day week viewing mode (monday to friday)
+	* Added: Implemented month and week mode starting with sunday (system setting)
+	* Added: Implemented forgotten automatic email roles option
+	* Changed: Moved toggle full-day/working hours button into calendar top navigation
 	* Changed: Prevented pointless AJAX request of optional event mailing when no receivers are selected
 	* Changed: Clarified cancel mailing button label (to "dont send email" instead of "cancel")
 

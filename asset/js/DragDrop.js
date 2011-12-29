@@ -113,7 +113,11 @@ Todoyu.Ext.calendar.DragDrop = {
 				this.draggableOptions.constraint= 'vertical';
 				break;
 			case 'week':
-				this.draggableOptions.snap	= [88.5, 10.5];	// Day pixel-width, hour pixel-height
+				if( this.ext.CalendarBody.getAmountDisplayedDays() === 7 ) {
+					this.draggableOptions.snap	= [88.5, 10.5];	// Day pixel-width, hour pixel-height
+				} else {
+					this.draggableOptions.snap	= [124, 10.5];
+				}
 				break;
 			case 'month':
 				this.draggableOptions.revert	= this.monthRevert.bind(this);
@@ -196,14 +200,21 @@ Todoyu.Ext.calendar.DragDrop = {
 
 
 	/**
-	 * Add drag functions to all full-day events
+	 * Add drag functions to all full-day events (used in week view only)
 	 *
 	 * @method	makeEventsDraggable
 	 */
 	makeDayEventsDraggable: function() {
 		var options			= Object.clone(this.defaultDraggableOptions);
+
 		options.constraint	= 'horizontal';
-		options.snap		= 88.5;	// Day pixel-width
+
+		if( this.ext.CalendarBody.getAmountDisplayedDays() === 7 ) {
+			options.snap	= 88.5;	// Day pixel-width
+		} else {
+			options.snap	= 124;
+		}
+
 		options.onStart		= this.onStartDragDayEvent.bind(this);
 		options.onEnd		= this.onEndDragDayEvent.bind(this);
 
@@ -222,8 +233,8 @@ Todoyu.Ext.calendar.DragDrop = {
 	makeDaysDroppable: function() {
 		this.getDropDaysInMonth().each(function(day){
 			Droppables.add(day, {
-				accept:		'event',
-				onDrop:		this.onMonthDrop.bind(this)
+				accept:	'event',
+				onDrop:	this.onMonthDrop.bind(this)
 			});
 		}, this);
 	},
@@ -356,7 +367,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	onEndDragDayEvent: function(dragInfo, domEvent) {
 		var idEvent	= dragInfo.element.id.split('-').last();
 
-		this.saveDayEventDrop(idEvent, dragInfo);
+		this.saveAllDayEventDrop(idEvent, dragInfo);
 	},
 
 
@@ -423,8 +434,9 @@ Todoyu.Ext.calendar.DragDrop = {
 	 */
 	saveWeekDrop: function(idEvent, dragInfo) {
 		var hourHeight	= 42;
-		var dayWidth	= 88;
 		var hourColWidth= 42;
+			// Set day-width according to current display mode (5 / 7 days) with/without weekend
+		var dayWidth	= this.ext.CalendarBody.getAmountDisplayedDays() === 7 ? 88 : 123;
 
 		var offset		= dragInfo.element.positionedOffset();
 			// Add tolerance (event is grabbed by center of header, not its top border)
@@ -450,16 +462,18 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @param	{Number}	idEvent
 	 * @param	{Object}	dragInfo
 	 */
-	saveDayEventDrop: function(idEvent, dragInfo) {
-		var dayWidth	= 88;
+	saveAllDayEventDrop: function(idEvent, dragInfo) {
+		var amountDaysInWeek= this.ext.CalendarBody.getAmountDisplayedDays();
+		var dayWidth		= amountDaysInWeek === 7 ? 88 : 123;
+		var weekStart		= this.ext.getWeekStart();
+		var offset			= dragInfo.element.positionedOffset();
+		var dayOfWeek		= Math.floor((offset.left - 2) / dayWidth);
 
-		var weekStart	= this.ext.getWeekStart();
-		var offset		= dragInfo.element.positionedOffset();
-		var dayOfWeek	= Math.floor((offset.left - 2) / dayWidth);
 			// Normalize dayOfWeek to make sure its in the range
-		dayOfWeek		= dayOfWeek < 0 ? 0 : dayOfWeek > 6 ? 6 : dayOfWeek;
+		var maxDayOfWeek= amountDaysInWeek - 1;
+		dayOfWeek		= dayOfWeek < 0 ? 0 : dayOfWeek > maxDayOfWeek ? maxDayOfWeek : dayOfWeek;
 
-		if( dayOfWeek >= 0 && dayOfWeek <= 6 ) {
+		if( dayOfWeek >= 0 && dayOfWeek <= maxDayOfWeek ) {
 				// Shift starting day date, keep starting time of day
 			var dropDate	= weekStart * 1000 + (Todoyu.Time.seconds.day * dayOfWeek * 1000);
 

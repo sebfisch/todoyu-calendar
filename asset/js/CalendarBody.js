@@ -134,6 +134,18 @@ Todoyu.Ext.calendar.CalendarBody = {
 
 
 	/**
+	 * Get amount of currently displayed days (per week: 5/7)
+	 *
+	 * @method	getAmountDisplayedDays
+	 * @return	{Number}
+	 */
+	getAmountDisplayedDays: function() {
+		return $('tgTable').select('td.dayCol').size();
+	},
+
+
+
+	/**
 	 * Check whether calendar body is set to full height
 	 *
 	 * @method	isFullHeight
