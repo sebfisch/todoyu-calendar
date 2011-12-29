@@ -208,13 +208,7 @@ Todoyu.Ext.calendar.DragDrop = {
 		var options			= Object.clone(this.defaultDraggableOptions);
 
 		options.constraint	= 'horizontal';
-
-		if( this.ext.CalendarBody.getAmountDisplayedDays() === 7 ) {
-			options.snap	= 88.5;	// Day pixel-width
-		} else {
-			options.snap	= 124;
-		}
-
+		options.snap		= this.ext.CalendarBody.getAmountDisplayedDays() === 7 ? 88.5 : 124;	// Day pixel-width
 		options.onStart		= this.onStartDragDayEvent.bind(this);
 		options.onEnd		= this.onEndDragDayEvent.bind(this);
 
@@ -294,7 +288,6 @@ Todoyu.Ext.calendar.DragDrop = {
 	 */
 	onStart: function(tab, dragInfo, event) {
 		if( tab === 'week' ) {
-				// Move event to the top element
 			this.moveEventToTopContainer(dragInfo.element);
 			this.initDraggableRevertToOrigin(dragInfo.element);
 				// Add left margin to prevent hovering the hours column
@@ -435,15 +428,23 @@ Todoyu.Ext.calendar.DragDrop = {
 	saveWeekDrop: function(idEvent, dragInfo) {
 		var hourHeight	= 42;
 		var hourColWidth= 42;
+
+		var amountDisplayedDays	= this.ext.CalendarBody.getAmountDisplayedDays();
+
 			// Set day-width according to current display mode (5 / 7 days) with/without weekend
-		var dayWidth	= this.ext.CalendarBody.getAmountDisplayedDays() === 7 ? 88 : 123;
+		var dayWidth	= amountDisplayedDays === 7 ? 88 : 123;
 
 		var offset		= dragInfo.element.positionedOffset();
 			// Add tolerance (event is grabbed by center of header, not its top border)
 		offset.top	+= 40;
 
 		var weekStart	= this.ext.getWeekStart();
+
 		var dayOfWeek	= Math.floor(Math.abs(offset.left - hourColWidth) / dayWidth);
+			// Adjust day index for monday being first day of week
+		if( amountDisplayedDays === 5 && Todoyu.Config.firstDayOfWeek === 0 ) {
+			dayOfWeek += 1;
+		}
 
 		var hours		= Math.floor(offset.top / hourHeight);
 		var minutes		= Math.round(((offset.top - (hours * hourHeight)) * (60 / hourHeight)) / 15) * 15;
