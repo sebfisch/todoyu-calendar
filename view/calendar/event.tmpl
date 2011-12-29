@@ -12,7 +12,7 @@
 			{if $calendarMode == 'day'}
 				{htmlencode $title}
 			{else}
-				{htmlencode(truncate($title, 16, '...', true))}
+				{htmlencode(truncate($title, $titleCropLength, '...', true))}
 			{/if}
 			{if $calendarMode == 'day' && count($assignedPersons) == 1}
 				({$assignedPersons.$firstAssignedPersonId.shortname})
@@ -21,15 +21,9 @@
 		</dt>
 		{if !empty($description) && !$is_private && $calendarMode != 'month'}
 			<dd>
-				{* ---------- Only show title if event is not private ---------- *}
+				{* ---------- Only show title if event is not private or current person is owner ---------- *}
 				 <span class="desc" style="color:{$color.text|default:"#000"}">
-					{if $is_private}
-						{if isPersonID($id_person)}
-							{htmlencode($description 8 cut=true)}
-						{/if}
-					{else}
-					{htmlencode($description 8 cut=true)}
-					{/if}
+					{if $is_private || isPersonID($id_person)}{htmlencode($description 8 cut=true)}{/if}
 				</span>
 			</dd>
 		{/if}

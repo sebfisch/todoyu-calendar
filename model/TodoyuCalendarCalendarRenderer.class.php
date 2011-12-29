@@ -313,13 +313,16 @@ class TodoyuCalendarCalendarRenderer {
 		$tmpl			= 'ext/calendar/view/calendar/birthday.tmpl';
 		$birthdaysByDay	= TodoyuCalendarManager::getBirthdaysByDay($dateStart, $dateEnd);
 
+		$isWeekendDisplayed	= TodoyuCalendarPreferences::getIsWeekendDisplayed();
+
 		foreach($birthdaysByDay as $dateKey => $birthdaysOfTheDay) {
 			if( is_array($birthdaysOfTheDay) ) {
-				foreach($birthdaysOfTheDay as $index => $birthday) {
-					$birthday['fullname']		= $birthday['lastname'] . ', ' . $birthday['firstname'];
-					$birthday['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
+				foreach($birthdaysOfTheDay as $index => $data) {
+					$data['fullname']		= $data['lastname'] . ', ' . $data['firstname'];
+					$data['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
+					$data['titleCropLength']= $mode != CALENDAR_MODE_WEEK || $isWeekendDisplayed ? 16 : 24;
 
-					$birthdaysByDay[$dateKey][$index] = Todoyu::render($tmpl, $birthday);
+					$birthdaysByDay[$dateKey][$index] = Todoyu::render($tmpl, $data);
 				}
 			}
 		}

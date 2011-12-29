@@ -2,7 +2,7 @@
 	<dl>
 		<dt class="head">
 			<span class="headInner">
-				{if $is_private}<span class="private"></span>{/if}{htmlencode $title|truncate:14}
+				{if $is_private}<span class="private"></span>{/if}{htmlencode $title|truncate:$titleCropLength-2}
 			</span>
 		</dt>
 	</dl>

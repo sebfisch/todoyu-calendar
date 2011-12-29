@@ -33,11 +33,12 @@ class TodoyuCalendarEventRenderer {
 	 * @param	Array		$data			event parameters
 	 * @return	Array
 	 */
-	public static function prepareEventRenderData($mode = CALENDAR_MODE_MONTH, array $data) {
+	public static function getEventRenderData($mode = CALENDAR_MODE_MONTH, array $data) {
 		$idEvent			= intval($data['id']);
 		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
 
 		$data['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
+		$data['titleCropLength']= $mode != CALENDAR_MODE_WEEK || TodoyuCalendarPreferences::getIsWeekendDisplayed() ? 16 : 24;
 		$data['assignedPersons']= $assignedPersons;
 		$data['timeStart']		= TodoyuCalendarEventManager::getEvent($idEvent)->getStartTime();
 		$data['color']			= self::getEventColorData($idEvent);
@@ -70,7 +71,7 @@ class TodoyuCalendarEventRenderer {
 	 */
 	public static function renderEvent(array $event, $mode = CALENDAR_MODE_MONTH) {
 		$tmpl	= 'ext/calendar/view/calendar/event.tmpl';
-		$data	= self::prepareEventRenderData($mode, $event);
+		$data	= self::getEventRenderData($mode, $event);
 
 		return Todoyu::render($tmpl, $data);
 	}
@@ -87,7 +88,7 @@ class TodoyuCalendarEventRenderer {
 		$idEvent	= intval($idEvent);
 		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
 		$eventData	= $event->getTemplateData(true, false, true);
-		$eventData	= self::prepareEventRenderData('list', $eventData);
+		$eventData	= self::getEventRenderData('list', $eventData);
 
 		$eventData['person_create']	= $event->getCreatePerson()->getTemplateData();
 		$eventData['persons']		= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
@@ -96,7 +97,6 @@ class TodoyuCalendarEventRenderer {
 		$data	= array(
 			'event'	=> $eventData,
 			'color'	=> $eventData['color']	// @todo remove this redundancy and have dwoo get color from event data directly
-//			'color'	=> self::getEventColorData($idEvent)
 		);
 
 		return Todoyu::render($tmpl, $data);
@@ -112,11 +112,8 @@ class TodoyuCalendarEventRenderer {
 	 * @return	String
 	 */
 	public static function renderAllDayEvent($mode = CALENDAR_MODE_DAY, array $data = array()) {
-		$idEvent	= intval($data['id']);
-
 		$tmpl	= 'ext/calendar/view/calendar/alldayevent-' . ($mode === CALENDAR_MODE_DAY ? 'day.tmpl' : 'week.tmpl');
-		$data	= self::prepareEventRenderData($mode, $data);
-//		$data['color']	= self::getEventColorData($idEvent);
+		$data	= self::getEventRenderData($mode, $data);
 
 		return Todoyu::render($tmpl, $data);
 	}
@@ -200,10 +197,10 @@ class TodoyuCalendarEventRenderer {
 	 * Render create event form popup
 	 *
 	 * @param	Integer		$timestamp
-	 * @param	Boolean		$isDayEvent
+	 * @param	Boolean		$isAllDayEvent
 	 * @return	String		Form
 	 */
-	public static function renderCreateQuickEvent($timestamp = 0, $isDayEvent = false) {
+	public static function renderCreateQuickEvent($timestamp = 0, $isAllDayEvent = false) {
 		$timestamp	= intval($timestamp);
 		$timestamp	= TodoyuTime::getRoundedTime($timestamp, 15);
 
@@ -211,7 +208,7 @@ class TodoyuCalendarEventRenderer {
 		$form	= TodoyuCalendarEventManager::getQuickCreateForm();
 
 			// Set event start and ending timestamps
-		if( $isDayEvent ) {
+		if( $isAllDayEvent ) {
 			$dayRange	= TodoyuTime::getDayRange($timestamp);
 
 			$timeStart	= $dayRange['start'];
@@ -225,7 +222,7 @@ class TodoyuCalendarEventRenderer {
 		$formData	= array(
 			'date_start' 	=> $timeStart,
 			'date_end' 		=> $timeEnd,
-			'is_dayevent'	=> $isDayEvent,
+			'is_dayevent'	=> $isAllDayEvent,
 			'persons'		=> array(TodoyuAuth::getPerson()->getTemplateData())
 		);
 

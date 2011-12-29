@@ -43,6 +43,9 @@ class TodoyuCalendarViewHelper {
 			$format= Todoyu::Label('calendar.ext.calendartitle.dateformat.day');
 			$title	.= strftime($format, $dateStart);
 		} elseif( $mode === CALENDAR_MODE_WEEK ) {
+			if( ! TodoyuCalendarPreferences::getIsWeekendDisplayed() ) {
+				$dateEnd -= 2 * TodoyuTime::SECONDS_DAY;
+			}
 			$title	.= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.week.part1'), $dateStart);
 			$title .= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.week.part2'), $dateEnd);
 		} elseif( $mode === CALENDAR_MODE_MONTH ) {
