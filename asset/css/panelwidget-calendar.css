@@ -23,3 +23,29 @@
 	font-weight:normal !important;
 	text-transform:uppercase;
 }
+
+
+/* --------------------------
+	jscalendar adaptions
+   -------------------------- */
+#panelwidget-calendar-jscalendar div.calendar {
+	box-shadow:none;
+}
+#panelwidget-calendar-jscalendar div.calendar,
+#panelwidget-calendar-jscalendar div.calendar table {
+	background-image:none;
+	background-color:#fff;
+}
+
+#panelwidget-calendar-jscalendar div.calendar tbody .day {
+	border-bottom:1px solid #ddd;
+	border-right:1px solid #ddd;
+	text-align:center;
+	padding:4px 7px;
+	cursor:pointer;
+}
+
+#panelwidget-calendar-jscalendar div.calendar tfoot .ttip {
+	border-top:none;
+	padding:2px 0 0;
+}

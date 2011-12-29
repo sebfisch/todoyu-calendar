@@ -104,10 +104,6 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 			'position' => 123
 		),
 		array(
-			'file' => 'lib/js/scal/javascripts/scal.js',
-			'position' => 30
-		),
-		array(
 			'file' => 'ext/calendar/asset/js/PanelWidgetCalendar.js',
 			'position' => 110
 		),
@@ -170,16 +166,8 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 			'poisition' => 104
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/scal.css',
-			'position'	=> 105
-		),
-		array(
 			'file'		=> 'ext/calendar/asset/css/event.css',
 			'position'	=> 106
-		),
-		array(
-			'file' => 'ext/calendar/asset/css/scal.css',
-			'position' => 30
 		),
 		array(
 			'file' => 'ext/calendar/asset/css/panelwidget-calendar.css',

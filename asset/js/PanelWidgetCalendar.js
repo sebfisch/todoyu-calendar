@@ -34,19 +34,19 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 * @property	ext
 	 * @type		Object
 	 */
-	ext:				Todoyu.Ext.calendar,
+	ext:			Todoyu.Ext.calendar,
 
 	/**
 	 * @property	key
 	 * @type		String
 	 */
-	key:				'calendar',
+	key:			'calendar',
 
 	/**
 	 * @property	calName
 	 * @type		String
 	 */
-	calName:			'panelwidget-calendar-scal',
+	calName:		'panelwidget-calendar-jscalendar',
 
 	/**
 	 * Scal object
@@ -54,7 +54,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 * @property	Calendar
 	 * @type		Object
 	 */
-	Calendar:			null,
+	Calendar:		null,
 
 	/**
 	 * @property	prefSavingEnabled
@@ -89,15 +89,31 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	init: function(date) {
 		var initialDate = new Date(date);
 
-		var options		= Object.extend(this.ext.calOptions, {
-			year:			initialDate.getFullYear(),
-			month:			initialDate.getMonth() + 1,
-			day:			initialDate.getDate(),
-			oncalchange:	this.onCalendarChange.bind(this)
-		});
+		var parent = $('panelwidget-calendar-jscalendar');
+			// construct a calendar giving only the "selected" handler.
+		var cal = new Calendar(0, null, null, null);
+			// hide week numbers
+		cal.weekNumbers = false;
+			// We want some dates to be disabled; see function isDisabled above
+		cal.setDisabledHandler(false);
+		cal.setDateFormat("%A, %B %e");
 
-			// Initialize calendar (have sCal render the calender code to the DOM)
-		this.Calendar 	= new scal(this.calName, this.onDateSelected.bind(this), options);
+			// this call must be the last as it might use data initialized above; if
+			// we specify a parent, as opposite to the "showCalendar" function above,
+			// then we create a flat calendar -- not popup. Hidden, though, but...
+		cal.create(parent);
+		cal.show();
+
+
+//		var options		= Object.extend(this.ext.calOptions, {
+//			year:			initialDate.getFullYear(),
+//			month:			initialDate.getMonth() + 1,
+//			day:			initialDate.getDate(),
+//			oncalchange:	this.onCalendarChange.bind(this)
+//		});
+//
+//			// Initialize calendar (have sCal render the calender code to the DOM)
+//		this.Calendar 	= new scal(this.calName, this.onDateSelected.bind(this), options);
 	},
 
 
