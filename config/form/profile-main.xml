@@ -7,15 +7,41 @@
 	</attributes>
 	<fieldsets>
 
+		<fieldset name="appearance">
+			<legend>calendar.form.legend.profile.appearance</legend>
+			<class>appearance</class>
+			<elements>
+				<field type="select" name="excerpttime_start">
+					<label>calendar.ext.profile.excerpt.time_start</label>
+					<source type="function">
+						<function>TodoyuCalendarViewHelper::getExcerptTimeOptions</function>
+						<lazyInit />
+					</source>
+					<noPleaseSelect />
+				</field>
+				<field type="select" name="excerpttime_end">
+					<label>calendar.ext.profile.excerpt.time_end</label>
+					<source type="function">
+						<function>TodoyuCalendarViewHelper::getExcerptTimeOptions</function>
+						<lazyInit />
+					</source>
+					<validate>
+						<greaterThan msg="calendar.ext.profile.error.excerpttime_end">
+							<field>excerpttime_start</field>
+						</greaterThan>
+					</validate>
+					<noPleaseSelect />
+				</field>
+			</elements>
+		</fieldset>
+
 		<fieldset name="general">
 			<legend>calendar.form.legend.profile.general</legend>
 			<class>main</class>
 			<elements>
-
 				<field type="checkbox" name="is_mailpopupdeactivated">
 					<label>calendar.ext.profile.disableMailingQuestionAfterDraganddrop</label>
 				</field>
-
 			</elements>
 		</fieldset>
 

@@ -5,6 +5,7 @@
 	<label index="legend.notification">Notify Participants</label>
 	<label index="legend.autonotification">Participants receiving an automatical notification email</label>
 	<label index="legend.reminders">My reminders for this appointment</label>
+	<label index="legend.profile.appearance">Appearance</label>
 	<label index="legend.profile.general">General Calendar Settings</label>
 	<label index="legend.profile.reminder.general">Configure your reminders to your needs</label>
 	<label index="legend.admin.appearance">Appearance</label>

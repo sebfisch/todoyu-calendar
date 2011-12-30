@@ -148,21 +148,25 @@ div.weekMode table.standardGrid td {
 	margin-bottom:20px
 }
 
-
-
 .dayCol {
 	border-left:3px double #ddd;
 	overflow:hidden;
 	vertical-align:top;
 }
 
-.tg-coltoday {
+.today7,
+.today5 {
 	border-left:3px double #ddd;
 	overflow:hidden;
 	vertical-align:top;
-	background:url(../img/background-week-today.png) repeat-y left 1px;
 	position:relative;
 }
+	.today5 {
+		background:url(../img/background-week5-today.png) repeat-y left 1px;
+	}
+	.today7 {
+		background:url(../img/background-week7-today.png) repeat-y left 1px;
+	}
 
 .tg-colwrapper {
 	margin-right:12px;
@@ -191,11 +195,12 @@ td.weekModeHourHotspotCell {
 td.noEventCell {
 	background:url(../img/background-noevent.png) repeat-x;
 }
+
 th.wk-dayname {
 	text-align:center;
 	cursor:pointer;
 	color:#000;
 }
-th.wk-dayname.odd {
-	background-color:#edf3d9;
-}
+	th.wk-dayname.odd {
+		background-color:#edf3d9;
+	}

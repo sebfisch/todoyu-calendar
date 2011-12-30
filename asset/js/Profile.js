@@ -64,17 +64,10 @@ Todoyu.Ext.calendar.Profile = {
 				action:	'tab',
 				'tab':		tab
 			}
-//			onComplete:	this.onTabLoaded.bind(this, tab)
 		};
 
 		Todoyu.Ui.updateContentBody(url, options);
 	},
-
-
-
-//	onTabLoaded: function(tab, response) {
-//
-//	},
 
 
 
@@ -102,7 +95,13 @@ Todoyu.Ext.calendar.Profile = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onMainSaved: function(response) {
-		Todoyu.notifySuccess('[LLL:calendar.ext.profile.main.saved]');
+		if( response.hasTodoyuError() ) {
+			Todoyu.notifyError('[LLL:calendar.ext.profile.saved.error]', 'profile.saved');
+			$('content-body').update(response.responseText);
+		} else {
+			Todoyu.notifySuccess('[LLL:calendar.ext.profile.main.saved]');
+			Todoyu.Ext.profile.removeFormErrors();
+		}
 	},
 
 

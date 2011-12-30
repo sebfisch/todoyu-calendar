@@ -209,6 +209,26 @@ class TodoyuCalendarViewHelper {
 		return Todoyu::render($tmpl, $data);
 	}
 
+
+
+	/**
+	 * Get options for time excerpt settings
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
+	public static function getExcerptTimeOptions(TodoyuFormElement $field) {
+		$options	= array();
+		for($i= 0; $i <= 23; $i++) {
+			$options[]	= array(
+				'value'	=> $i,
+				'label'	=> ($i < 10 ? '0' : '') . $i . ':00'
+			);
+		}
+
+		return $options;
+	}
+
 }
 
 ?>

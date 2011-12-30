@@ -5,6 +5,7 @@
 	<label index="legend.notification">Teilnehmer benachrichtigen</label>
 	<label index="legend.autonotification">Automatisch per Email benachrichtige Teilnehmer</label>
 	<label index="legend.reminders">Meine Erinnerungen für diesen Termin</label>
+	<label index="legend.profile.appearance">Darstellung</label>
 	<label index="legend.profile.general">Allgemeine Einstellungen</label>
 	<label index="legend.profile.reminder.general">Persönliche Einstellungen für Erinnerungen</label>
 	<label index="legend.admin.appearance">Darstellung</label>

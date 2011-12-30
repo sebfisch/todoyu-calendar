@@ -48,6 +48,9 @@
 	<label index="extconf.reminder.email.advancetime.label">Systemvorgabe Email Erinnerung</label>
 	<label index="extconf.reminder.reminderemail_active.label">Aktiviere Termin Erinnerungen per Email</label>
 	<label index="extconf.reminder.reminderpopup_active.label">Aktiviere Termin Erinnerungen per Popup</label>
+	<label index="profile.excerpt.time_start">Zeitausschnitt Anfangsuhrzeit</label>
+	<label index="profile.excerpt.time_end">Zeitausschnitt Enduhrzeit</label>
+	<label index="profile.error.excerpttime_end">Enduhrzeit muss nach der Anfangsuhrzeit liegen</label>
 	<label index="profile.module">Kalender</label>
 	<label index="profile.module.main.tab">Allgemein</label>
 	<label index="profile.module.main.header">Kalender Konfiguration</label>
@@ -59,6 +62,7 @@
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Deaktiviere Email Meldungen bei Termin-Änderungen durch Drag and Drop?</label>
 	<label index="profile.reminder.email.advancetime.label">Standard für Email Erinnerungen</label>
 	<label index="profile.reminder.popup.advancetime.label">Standard für Popup Erinnerungen</label>
+	<label index="profile.saved.error">Fehler beim Speichern der Einstellungen.</label>
 	<label index="profile.main.saved">Die Einstellungen wurden gespeichert.</label>
 	<label index="profile.reminders.saved">Einstellungen zu Erinnerungen wurden gespeichert.</label>
 </labels>
