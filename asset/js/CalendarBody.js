@@ -186,10 +186,10 @@ Todoyu.Ext.calendar.CalendarBody = {
 				// Switch to restrained hours view
 			this.calendarBody.removeClassName('full');
 
-			var	hourTimeExcerptStart= 8;
-			var amountHoursShown	= 12;
-			this.calendarBody.style.height	= (42 * amountHoursShown) + 'px';
-			this.calendarBody.scrollTop		= 42 * hourTimeExcerptStart;//42px = height of one hour
+			var	hourTimeExcerptStart= Todoyu.Config.Calendar.excerptTimeStart;
+			var amountHoursShown	= Todoyu.Config.Calendar.excerptTimeEnd - Todoyu.Config.Calendar.excerptTimeStart + 1;
+			this.calendarBody.style.height	= (42 * amountHoursShown) + 'px'; //42px = height of one hour
+			this.calendarBody.scrollTop		= 42 * hourTimeExcerptStart;
 		}
 
 		if( savePref === true ) {

@@ -59,6 +59,9 @@ define('EVENTTYPE_MILESTONE', 	12);
 define('EVENTTYPE_REMINDER', 	13);
 
 
+	// Default start+end of time excerpt
+define('CALENDAR_DEFAULT_EXCERPTTIME_START',	8);
+define('CALENDAR_DEFAULT_EXCERPTTIME_END',		18);
 
 	// Height of an hour, minute in day- and week- view of calendar
 define('CALENDAR_HEIGHT_HOUR',		42);

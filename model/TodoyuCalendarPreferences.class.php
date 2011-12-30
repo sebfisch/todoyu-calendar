@@ -154,6 +154,40 @@ class TodoyuCalendarPreferences {
 
 
 	/**
+	 * Get beginning hour of time excerpt preference
+	 *
+	 * @return	Integer
+	 */
+	public static function getExcerptTimeStart() {
+		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'excerpttime_start', 0) ) {
+			$pref	= intval(self::getPref('excerpttime_start', 0));
+		}  else {
+			return CALENDAR_DEFAULT_EXCERPTTIME_START;
+		}
+
+		return $pref;
+	}
+
+
+
+	/**
+	 * Get ending hour of time excerpt preference
+	 *
+	 * @return	Integer
+	 */
+	public static function getExcerptTimeEnd() {
+		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'excerpttime_end', 0) ) {
+			$pref	= intval(self::getPref('excerpttime_end', 0));
+		}  else {
+			return CALENDAR_DEFAULT_EXCERPTTIME_END;
+		}
+
+		return $pref;
+	}
+
+
+
+	/**
 	 * Save selected event types
 	 *
 	 * @param	Array		$types

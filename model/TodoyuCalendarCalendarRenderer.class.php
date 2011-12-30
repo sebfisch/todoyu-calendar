@@ -42,14 +42,16 @@ class TodoyuCalendarCalendarRenderer {
 
 		$tmpl		= 'ext/calendar/view/calendar/day.tmpl';
 		$data		= array(
-			'timestamp'		=> $dayRange['start'],
-			'fullDayView'	=> TodoyuCalendarPreferences::getFullDayView(),
-			'dateKey'		=> date('Ymd', $dayRange['start']),
-			'events'		=> self::preRenderEventsForDay($dayRange['start'], $eventTypes, $persons, $personColors),
-			'dayEvents'		=> self::preRenderAllDayEvents(CALENDAR_MODE_DAY, $dayRange['start'], $dayRange['end'], $eventTypes, $persons),
-			'personBirthdays'=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderPersonBirthdays($dayRange['start'], $dayRange['end'], CALENDAR_MODE_DAY) : '',
-			'holidays'		=> TodoyuCalendarManager::getHolidays($dayRange['start'], $dayRange['end']),
-			'title'			=> TodoyuCalendarViewHelper::getCalendarTitle($dayRange['start'], $dayRange['end'], CALENDAR_MODE_DAY)
+			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($dayRange['start'], $dayRange['end'], CALENDAR_MODE_DAY),
+			'timestamp'			=> $dayRange['start'],
+			'fullDayView'		=> TodoyuCalendarPreferences::getFullDayView(),
+			'excerpttime_start'	=> TodoyuCalendarPreferences::getExcerptTimeStart(),
+			'excerpttime_end'	=> TodoyuCalendarPreferences::getExcerptTimeEnd(),
+			'dateKey'			=> date('Ymd', $dayRange['start']),
+			'events'			=> self::preRenderEventsForDay($dayRange['start'], $eventTypes, $persons, $personColors),
+			'dayEvents'			=> self::preRenderAllDayEvents(CALENDAR_MODE_DAY, $dayRange['start'], $dayRange['end'], $eventTypes, $persons),
+			'personBirthdays'	=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderPersonBirthdays($dayRange['start'], $dayRange['end'], CALENDAR_MODE_DAY) : '',
+			'holidays'			=> TodoyuCalendarManager::getHolidays($dayRange['start'], $dayRange['end']),
 		);
 
 		return Todoyu::render($tmpl, $data);
@@ -77,11 +79,13 @@ class TodoyuCalendarCalendarRenderer {
 
 		$tmpl	= 'ext/calendar/view/calendar/week.tmpl';
 		$data	= array(
+			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($dateStart, $dateEnd, CALENDAR_MODE_WEEK),
 			'timestamp'			=> $timestamp,
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'timestamps'		=> TodoyuTime::getTimestampsForWeekdays($timestamp),
-			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($dateStart, $dateEnd, CALENDAR_MODE_WEEK),
 			'fullDayView'		=> TodoyuCalendarPreferences::getFullDayView(),
+			'excerpttime_start'	=> TodoyuCalendarPreferences::getExcerptTimeStart(),
+			'excerpttime_end'	=> TodoyuCalendarPreferences::getExcerptTimeEnd(),
 			'displayWeekend'	=> TodoyuCalendarPreferences::getIsWeekendDisplayed(),
 			'events'			=> self::preRenderEventsDayAndWeek(CALENDAR_MODE_WEEK, $dateStart, $dateEnd, $eventTypes, $persons, $personColors),
 			'dayEvents'			=> self::preRenderWeekDayEvents($dateStart, $dateEnd, $eventTypes, $persons),
@@ -113,6 +117,7 @@ class TodoyuCalendarCalendarRenderer {
 
 		$tmpl		= 'ext/calendar/view/calendar/month.tmpl';
 		$data		= array(
+			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($monthRange['start'], $monthRange['end'], CALENDAR_MODE_MONTH),
 			'timestamp'			=> $timestamp,
 			'timestamp_today'	=> TodoyuTime::getStartOfDay(NOW),
 			'timestamps'		=> $timestamps,
@@ -120,7 +125,6 @@ class TodoyuCalendarCalendarRenderer {
 			'selMonth'			=> date('n', $monthRange['start'] + TodoyuTime::SECONDS_WEEK),
 			'selYear'			=> date('Y', $monthRange['start'] + TodoyuTime::SECONDS_WEEK),
 			'selMonthYear'		=> date('nY', $monthRange['start'] + TodoyuTime::SECONDS_WEEK),
-			'title'				=> TodoyuCalendarViewHelper::getCalendarTitle($monthRange['start'], $monthRange['end'], CALENDAR_MODE_MONTH),
 			'events'			=> self::preRenderEventsForMonth($monthRange['start'], $monthRange['end'], $eventTypes, $persons, $personColors),
 			'dayEvents'			=> self::preRenderAllDayEvents(CALENDAR_MODE_MONTH, $monthRange['start'], $monthRange['end'], $eventTypes, $persons),
 			'birthdays'			=> in_array(EVENTTYPE_BIRTHDAY, $eventTypes) ? self::preRenderPersonBirthdays($monthRange['start'], $monthRange['end'], CALENDAR_MODE_MONTH) : array(),
