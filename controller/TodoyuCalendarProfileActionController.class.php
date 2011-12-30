@@ -67,8 +67,9 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 
 		if( $form->isValid() ) {
 				// Save
-			$isEmailPopupDisabled	= intval($data['is_mailpopupdeactivated']);
-			TodoyuCalendarPreferences::savePref('is_mailpopupdeactivated', $isEmailPopupDisabled, 0, true);
+			TodoyuCalendarPreferences::savePref('is_mailpopupdeactivated', intval($data['is_mailpopupdeactivated']), 0, true);
+			TodoyuCalendarPreferences::savePref('excerpttime_start', intval($data['excerpttime_start']), 0, true);
+			TodoyuCalendarPreferences::savePref('excerpttime_end', intval($data['excerpttime_end']), 0, true);
 		} else {
 				// Re-display with error message(s)
 			TodoyuHeader::sendTodoyuErrorHeader();

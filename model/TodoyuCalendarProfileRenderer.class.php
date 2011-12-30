@@ -82,10 +82,10 @@ class TodoyuCalendarProfileRenderer {
 		$xmlPath= 'ext/calendar/config/form/profile-main.xml';
 		$form	= TodoyuFormManager::getForm($xmlPath);
 
-		$mailPopupDeactivated	= TodoyuCalendarPreferences::getPref('is_mailpopupdeactivated', 0, 0, false, Todoyu::personid());
-
 		$formData	= array(
-			'is_mailpopupdeactivated'	=> $mailPopupDeactivated ? true : false
+			'is_mailpopupdeactivated'	=> TodoyuCalendarPreferences::getPref('is_mailpopupdeactivated', 0, 0, false, Todoyu::personid()),
+			'excerpttime_start'			=> TodoyuCalendarPreferences::getPref('excerpttime_start', 0, 0, false, Todoyu::personid()),
+			'excerpttime_end'			=> TodoyuCalendarPreferences::getPref('excerpttime_end', 0, 0, false, Todoyu::personid())
 		);
 		$form->setFormData($formData);
 
