@@ -152,7 +152,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	getEvents: function(getDayEvents) {
 		getDayEvents	= getDayEvents ? getDayEvents : false;
 
-		var events	= this.getEventItems('calendararea');
+		var events	= this.getEventItems('calendarBody');
 
 		if( getDayEvents ) {
 			events	= events.concat(this.getDayEvents());
@@ -243,7 +243,7 @@ Todoyu.Ext.calendar.DragDrop = {
 	 * @param	{Element}	element
 	 */
 	moveEventToTopContainer: function(element) {
-		$('calendararea').insert(element);
+		$('calendarBody').insert(element);
 	},
 
 

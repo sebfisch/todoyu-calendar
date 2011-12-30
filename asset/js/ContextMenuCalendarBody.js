@@ -45,7 +45,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	 */
 	attach: function() {
 		this.detach();
-		Todoyu.ContextMenu.attach('calendarbody', '.contextmenucalendararea', this.getTime.bind(this));
+		Todoyu.ContextMenu.attach('calendarbody', '.contextmenucalendarbody', this.getTime.bind(this));
 	},
 
 
@@ -56,7 +56,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody = {
 	 * @method	detach
 	 */
 	detach: function() {
-		Todoyu.ContextMenu.detach('.contextmenucalendararea');
+		Todoyu.ContextMenu.detach('.contextmenucalendarbody');
 	},
 
 

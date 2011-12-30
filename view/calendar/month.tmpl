@@ -1,4 +1,4 @@
-<div class="mainGrid month" id="calendararea">
+<div class="mainGrid month" id="calendarBody">
 	<div id="gridcontainer" class="monthMode">
 
 		{* --------------------------- Days names (Sun-Sat / Mon-Sun) ------------------------- *}
@@ -12,7 +12,7 @@
 			</tbody>
 		</table>
 
-		<div id="mvEventContainer" class="mv-event-container contextmenucalendararea">
+		<div id="mvEventContainer" class="mv-event-container contextmenucalendarbody">
 		{for week 0 $visibleWeeks-1}
 			{$dayFrom = $week*7}
 			{$dayUntil= $dayFrom+6}

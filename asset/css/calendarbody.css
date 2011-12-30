@@ -1,18 +1,16 @@
 /* ----------------------
 	Scrolling or not
    ---------------------- */
-#calendararea {
+#calendarBody {
 	overflow:hidden;
-	height:461px;
 }
 
-	#calendararea.month {
+	#calendarBody.month {
 		height:auto;
 	}
 
-	#calendararea.full {
+	#calendarBody.full {
 		overflow:visible;
-		height:auto;
 	}
 
 #tgnowptr {

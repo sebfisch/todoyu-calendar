@@ -220,8 +220,8 @@ Todoyu.Ext.calendar.Event = {
 	 */
 	calcTimestampFromMouseCoords: function(idTab, x, y) {
 		var timestamp 		= Todoyu.Ext.calendar.getDate();
-		var calLeftCoord	= Element.cumulativeOffset($('calendararea'))[0] + 43;
-		var calTopCoord		= Element.cumulativeOffset($('calendararea'))[1];
+		var calLeftCoord	= Element.cumulativeOffset($('calendarBody'))[0] + 43;
+		var calTopCoord		= Element.cumulativeOffset($('calendarBody'))[1];
 
 			// Calculate time of day in 30 minute steps from mouse-Y
 		var halfHours	= (y - calTopCoord) / 21.5 + '';

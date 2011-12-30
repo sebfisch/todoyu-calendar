@@ -72,12 +72,12 @@
 /* ------------------------
 	Event
    ------------------------ */
-div.weekMode div#calendararea div.event dt.head {
+div.weekMode div#calendarBody div.event dt.head {
 	height:15px;
 	padding:3px 0;
 	/*margin-bottom:1px;*/
 }
-div.weekMode div#calendararea div.event dd span.desc {
+div.weekMode div#calendarBody div.event dd span.desc {
 	display:inline;
 	white-space:normal;
 }

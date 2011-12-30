@@ -41,7 +41,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 * @property	idArea
 	 * @type		String
 	 */
-	idArea:			'calendararea',
+	idArea:			'calendarBody',
 
 	/**
 	 * @property	calendarBody
@@ -98,7 +98,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	 * @method toggleFullDayView
 	 */
 	toggleFullDayView: function() {
-		this.setFullHeight(!this.isFullHeight(), true);
+		this.setFullHeight(! this.isFullHeight(), true);
 	},
 
 
@@ -180,11 +180,16 @@ Todoyu.Ext.calendar.CalendarBody = {
 		if( fullHeight ) {
 				// Switch to full hours view
 			this.calendarBody.addClassName('full');
+			this.calendarBody.style.height	= 'auto';
 			Todoyu.Helper.setScrollTop(this.calendarBody, 0);
 		} else {
 				// Switch to restrained hours view
 			this.calendarBody.removeClassName('full');
-			this.calendarBody.scrollTop = 336;
+
+			var	hourTimeExcerptStart= 8;
+			var amountHoursShown	= 12;
+			this.calendarBody.style.height	= (42 * amountHoursShown) + 'px';
+			this.calendarBody.scrollTop		= 42 * hourTimeExcerptStart;//42px = height of one hour
 		}
 
 		if( savePref === true ) {
