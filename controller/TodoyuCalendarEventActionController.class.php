@@ -83,58 +83,55 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			TodoyuCalendarEventRights::restrictEdit($idEvent);
 		}
 
-			// Set form data
+			// Setup form + data
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
-
 		$form->setFormData($data);
 
-			// Send idTask header for JavaScript
 		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 
-		if( $form->isValid() ) {
-				// Check for warnings and send resp. headers
-			$warningHeaders	= self::getOverbookingWarningHeaders($idEvent, $params);
-			foreach($warningHeaders as $headerName => $headerValue) {
-				TodoyuHeader::sendTodoyuHeader($headerName, $headerValue);
-			}
-				// No warnings - save or update event (and send email if mail-option activated)
-			if( sizeof($warningHeaders) === 0 ) {
-				$data	= $form->getStorageData();
-				$idEvent= TodoyuCalendarEventManager::saveEvent($data);
-
-					// Send event auto-email to preset receivers: those get emails concerning all new/changed events they participate in
-					// Watch out: persons only have their ID as key when editing a pre-existing event!
-				$participantIDs		= TodoyuArray::intval( TodoyuArray::flatten($data['persons']) );
-				$autoMailPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
-
-				if( ! empty($autoMailPersonIDs) ) {
-					if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
-						TodoyuHeader::sendTodoyuHeader('sentAutoEmail', true);
-
-							// Don't double-send: remove auto-mail receivers from manual receivers list
-						if( is_array($emailReceiverIDs) ) {
-							$emailReceiverIDs	= array_diff($emailReceiverIDs, $autoMailPersonIDs);
-						}
-					}
-				}
-
-					// Send event email to selected receivers
-				if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
-					if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $emailReceiverIDs, $isNewEvent) ) {
-						TodoyuHeader::sendTodoyuHeader('sentEmail', true);
-					}
-				}
-
-				TodoyuHeader::sendTodoyuHeader('time', intval($data['date_start']));
-				TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
-			}
-		} else {
-				// Handle errors
+			// Invalid data detected - re-display the form
+		if( ! $form->isValid() ) {
 			TodoyuHeader::sendTodoyuErrorHeader();
 			$form->setUseRecordID(false);
 
 			return $form->render();
+		}
+			// Check for warnings and send resp. headers
+		$warningHeaders	= self::getOverbookingWarningHeaders($idEvent, $params);
+		foreach($warningHeaders as $headerName => $headerValue) {
+			TodoyuHeader::sendTodoyuHeader($headerName, $headerValue);
+		}
+
+			// Save or update event (and send email if mail-option activated)
+		if( sizeof($warningHeaders) === 0 ) {
+			$data	= $form->getStorageData();
+			$idEvent= TodoyuCalendarEventManager::saveEvent($data);
+
+				// Send event auto-email to preset receivers: those get emails concerning all new/changed events they participate in
+				// Watch out: persons only have their ID as key when editing a pre-existing event!
+			$participantIDs		= TodoyuArray::intval( TodoyuArray::flatten($data['persons']) );
+			$autoMailPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
+
+			if( ! empty($autoMailPersonIDs) ) {
+				if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
+					TodoyuHeader::sendTodoyuHeader('sentAutoEmail', true);
+
+						// Don't double-send: remove auto-mail receivers from manual receivers list
+					if( is_array($emailReceiverIDs) ) {
+						$emailReceiverIDs	= array_diff($emailReceiverIDs, $autoMailPersonIDs);
+					}
+				}
+			}
+
+				// Send event email to selected receivers
+			if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
+				if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $emailReceiverIDs, $isNewEvent) ) {
+					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
+				}
+			}
+
+			TodoyuHeader::sendTodoyuHeader('time', intval($data['date_start']));
 		}
 	}
 
@@ -180,7 +177,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		TodoyuCalendarEventRights::restrictEdit($idEvent);
 
 		$overbookings	= TodoyuCalendarEventManager::moveEvent($idEvent, $timeStart, $tab, $isConfirmed);
-
 		if( is_array($overbookings) && ! $isConfirmed ) {
 			if( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
 					// Overbooking forbidden - reset event to original time, show notification
@@ -281,8 +277,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 		$xmlPath	= 'ext/calendar/config/form/event.xml';
 		$form 		= TodoyuFormManager::getForm($xmlPath);
-
-			// Load form data
 		$formData	= $form->getFormData();
 		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idRecord);
 

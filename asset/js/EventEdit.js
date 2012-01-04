@@ -437,37 +437,26 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 */
 	onEventSaved: function(response) {
 		var idEvent	= response.getTodoyuHeader('idEvent');
-		var notificationIdentifierEventSaved = 'calendar.event.saved';
 
 		if( response.hasTodoyuError() ) {
 				// Notify of invalid data
-			Todoyu.notifyError('[LLL:calendar.event.saved.error]', notificationIdentifierEventSaved);
+			Todoyu.notifyError('[LLL:calendar.event.saved.error]', 'calendar.event.saved');
 			$('event-form').replace(response.responseText);
+		} else if( response.hasTodoyuHeader('overbookingwarning') ) {
+				// Show overbooking warning + confirmation prompt
+			this.updateInlineOverbookingWarning(response.getTodoyuHeader('overbookingwarningInline'));
+			var warning	= response.getTodoyuHeader('overbookingwarning');
+			Todoyu.Popups.openContent('Warning', warning, 'Overbooking Warning', 376);
 		} else {
-			if( response.hasTodoyuHeader('overbookingwarning') ) {
-				this.updateInlineOverbookingWarning(response.getTodoyuHeader('overbookingwarningInline'));
+				// Event saved - exec hooks, clean event record cache and notify success
+			this.notifyEventSaved(response);
 
-					// Open confirmation prompt in popup
-				var warning	= response.getTodoyuHeader('overbookingwarning');
-				Todoyu.Popups.openContent('Warning', warning, 'Overbooking Warning', 376);
-			} else {
-				if( response.getTodoyuHeader('sentEmail') ) {
-					Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.sent]', 'calendar.notification.sent');
-				}
-				if( response.getTodoyuHeader('sentAutoEmail') ) {
-					Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.autosent]', 'calendar.notification.autosent');
-				}
+			Todoyu.Hook.exec('calendar.event.saved', idEvent);
+			this.ext.QuickInfoEvent.removeFromCache(response.getTodoyuHeader('idEvent'));
 
-					// Event saved - exec hooks, clean event record cache and notify success
-				Todoyu.Hook.exec('calendar.event.saved', idEvent);
-				this.ext.QuickInfoEvent.removeFromCache(response.getTodoyuHeader('idEvent'));
-				
-				Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]', notificationIdentifierEventSaved);
-
-					// Update calendar body showing time of the saved event and close the edit form
-				this.ext.show(this.ext.Tabs.active, response.getTodoyuHeader('time') * 1000);
-				this.close();
-			}
+				// Update calendar body showing time of the saved event and close the edit form
+			this.ext.show(this.ext.Tabs.active, response.getTodoyuHeader('time') * 1000);
+			this.close();
 		}
 	},
 
@@ -491,6 +480,25 @@ Todoyu.Ext.calendar.Event.Edit = {
 		}).update(warningContent);
 
 		$('formElement-event-field-persons-inputbox').select('.clear').last().insert({after: inlineWarning});
+	},
+
+
+
+	/**
+	 * Send email notification headers after event has been saved
+	 *
+	 * @method	notifyEventSaved
+	 * @param	{Ajax.Response}	response
+	 */
+	notifyEventSaved: function(response) {
+		if( response.getTodoyuHeader('sentEmail') ) {
+			Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.sent]', 'calendar.notification.sent');
+		}
+		if( response.getTodoyuHeader('sentAutoEmail') ) {
+			Todoyu.notifySuccess('[LLL:calendar.event.mail.notification.autosent]', 'calendar.notification.autosent');
+		}
+
+		Todoyu.notifySuccess('[LLL:calendar.event.saved.ok]', 'calendar.event.saved');
 	},
 
 

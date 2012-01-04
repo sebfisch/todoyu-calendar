@@ -198,7 +198,7 @@ Todoyu.Ext.calendar.Event = {
 	/**
 	 * Automatically set the ending date to the same value as the starting date in a form
 	 *
-	 * @method	uodateEnddate
+	 * @method	updateEnddate
 	 * @param	{String}	formName	Name of the XML-form
 	*/
 	updateEnddate:function(formName) {
