@@ -196,11 +196,11 @@ class TodoyuCalendarReminderEmailManager {
 	 */
 	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$allowed	= array();
 
 				// Option: email reminder
-		if( $event->getStartDate() > NOW && self::isReminderAllowed($idEvent) ) {
+		if( $event->getDateStart() > NOW && self::isReminderAllowed($idEvent) ) {
 			$options	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderemail'];
 
 				// Set selected option CSS class

@@ -34,7 +34,7 @@ class TodoyuCalendarPortalManager {
 	public static function getAppointments() {
 		$timespan	= self::getAppointmentsTimespan();
 
-		return TodoyuCalendarEventManager::getEventsInTimespan($timespan['start'], $timespan['end'], array(Todoyu::personid()));
+		return TodoyuCalendarEventStaticManager::getEventsInTimespan($timespan['start'], $timespan['end'], array(Todoyu::personid()));
 	}
 
 
@@ -53,42 +53,6 @@ class TodoyuCalendarPortalManager {
 		);
 	}
 
-
-
-	/**
-	 * Get holidays for portal tab
-	 *
-	 * @return	Array
-	 */
-	public static function getHolidays() {
-		$weeksHoliday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksHoliday']);
-		$startTime		= TodoyuTime::getStartOfDay();
-		$endTime		= NOW + $weeksHoliday * TodoyuTime::SECONDS_WEEK;
-
-		return TodoyuCalendarHolidayManager::getPersonHolidaysInTimespan(array(Todoyu::personid()), $startTime, $endTime);
-	}
-
-
-
-	/**
-	 * Get birthdays to be displayed in appointments tab in portal, for members of staff only!
-	 *
-	 * @return	Array
-	 */
-	public static function getBirthdays() {
-		$birthdays	= array();
-		$allowed	= TodoyuCalendarEventRights::isAllowedSeeBirthdaysInPortal();
-
-		if( $allowed ) {
-			$weeksBirthday 	= intval(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']['weeksBirthday']);
-			$dateStart		= TodoyuTime::getStartOfDay();
-			$dateEnd		= TodoyuTime::addDays($dateStart, $weeksBirthday * 7);
-
-			$birthdays		= TodoyuContactPersonManager::getBirthdayPersons($dateStart, $dateEnd);
-		}
-
-		return $birthdays;
-	}
 
 }
 

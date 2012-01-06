@@ -90,7 +90,7 @@ class TodoyuCalendarEventTypeManager {
 	 * @param	Integer		$index
 	 * @return	String
 	 */
-	public static function getEventTypeKey($index) {
+	public static function getTypeKey($index) {
 		$eventType	= self::getEventType($index);
 
 		return $eventType['key'];

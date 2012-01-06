@@ -93,7 +93,7 @@ class TodoyuCalendarEventEditRenderer {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$timestamp
-	 * @return	TodoyuForm
+	 * @return	String
 	 */
 	public static function renderEventForm($idEvent, $timestamp = 0) {
 		$idEvent= intval($idEvent);
@@ -105,10 +105,10 @@ class TodoyuCalendarEventEditRenderer {
 		$form->setUseRecordID(false);
 
 		if( $idEvent === 0 ) {
-			TodoyuCalendarEventManager::createNewEventWithDefaultsInCache($timestamp);
+			TodoyuCalendarEventStaticManager::createNewEventWithDefaultsInCache($timestamp);
 		}
 
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$data	= $event->getTemplateData(true, false, true);
 
 			// Call hooked load functions

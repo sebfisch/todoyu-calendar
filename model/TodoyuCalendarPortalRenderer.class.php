@@ -36,9 +36,9 @@ class TodoyuCalendarPortalRenderer {
 		$label		= Todoyu::Label('calendar.ext.portal.tab.appointments');
 
 		if( $count ) {
-			$events	= TodoyuCalendarPortalManager::getAppointments();
-
-			$label		= $label . '(' . sizeof($events) . ')';
+			$view	= new TodoyuCalendarViewPortalList();
+			$count	= $view->getStaticEventsCount();
+			$label	= $label . ' (' . $count . ')';
 		}
 
 		return $label;
@@ -52,45 +52,12 @@ class TodoyuCalendarPortalRenderer {
 	 * @return	String
 	 */
 	public static function getAppointmentTabContent() {
-		$config		= Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'];
-		$idPerson	= TodoyuAuth::getPersonID();
+		$view	= new TodoyuCalendarViewPortalList();
+		$count	= $view->getStaticEventsCount();
 
-			// Get events
-		$events		= TodoyuCalendarPortalManager::getAppointments();
+		TodoyuHeader::sendTodoyuHeader('items', $count);
 
-		if( $config['showHoliday'] ) {
-			$holidays		= TodoyuCalendarPortalManager::getHolidays();
-		} else {
-			$holidays	= array();
-		}
-
-		if( $config['showBirthday'] ) {
-			$birthdays		= TodoyuCalendarPortalManager::getBirthdays();
-		} else {
-			$birthdays	= array();
-		}
-
-			// Add details if expanded
-		foreach($events as $idEvent => $eventData) {
-			if( TodoyuCalendarPreferences::getPortalEventExpandedStatus($eventData['id']) ) {
-				$events[$idEvent]['details'] = TodoyuCalendarEventRenderer::renderEventDetailsInList($eventData['id']);
-			}
-		}
-
-		$tmpl	= 'ext/calendar/view/tab-portal-eventslist.tmpl';
-		$data	= array(
-			'events'		=> $events,
-			'showHolidays'	=> $config['showHoliday'],
-			'holidays'		=> $holidays,
-			'showBirthdays'	=> $config['showBirthday'],
-			'birthdays'		=> $birthdays,
-			'color'			=> TodoyuColors::getColorIndex($idPerson),
-			'javascript'	=> 'Todoyu.Ext.calendar.ContextMenuEventPortal.attach();Todoyu.Ext.calendar.installQuickInfos();'
-		);
-
-		TodoyuHeader::sendTodoyuHeader('items', sizeof($events));
-
-		return Todoyu::render($tmpl, $data);
+		return $view->render();
 	}
 
 }

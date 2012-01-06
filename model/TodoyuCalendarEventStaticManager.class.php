@@ -24,7 +24,7 @@
  * @package			Todoyu
  * @subpackage		Calendar
  */
-class TodoyuCalendarEventManager {
+class TodoyuCalendarEventStaticManager {
 
 	/**
 	 * @var	String		Default table for database requests
@@ -46,8 +46,8 @@ class TodoyuCalendarEventManager {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
 
-		TodoyuCalendarEventManager::createNewEventWithDefaultsInCache(NOW);
-		$event	= TodoyuCalendarEventManager::getEvent(0);
+		TodoyuCalendarEventStaticManager::createNewEventWithDefaultsInCache(NOW);
+		$event	= TodoyuCalendarEventStaticManager::getEvent(0);
 		$data	= $event->getTemplateData(true, false, true);
 
 			// Call hooked load functions
@@ -69,12 +69,12 @@ class TodoyuCalendarEventManager {
 	 * Get event object
 	 *
 	 * @param	Integer		$idEvent
-	 * @return	TodoyuCalendarEvent
+	 * @return	TodoyuCalendarEventStatic
 	 */
 	public static function getEvent($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		return TodoyuRecordManager::getRecord('TodoyuCalendarEvent', $idEvent);
+		return TodoyuRecordManager::getRecord('TodoyuCalendarEventStatic', $idEvent);
 	}
 
 
@@ -164,159 +164,6 @@ class TodoyuCalendarEventManager {
 		}
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, $limit, $indexField);
-	}
-
-
-
-	/**
-	 * Group the events in sub array. The key for each sub array is a date-key (YYYYMMDD)
-	 * An event appears in each sub array, the event is running on
-	 *
-	 * @param	Array		$events			Array of event records
-	 * @param	Integer		$dateStart		Date of first day group
-	 * @param	Integer		$dateEnd		Date of last day group
-	 * @return	Array		Events grouped by date-key
-	 */
-	public static function groupEventsByDay(array $events, $dateStart, $dateEnd) {
-		$dateStart		= TodoyuTime::getStartOfDay($dateStart);
-		$dateEnd		= intval($dateEnd);
-
-		$groupedEvents	= array();
-		for($date = $dateStart; $date <= $dateEnd; $date += TodoyuTime::SECONDS_DAY ) {
-			$dayKey		= date('Ymd', $date);
-			$dayRange	= TodoyuTime::getDayRange($date);
-
-			$groupedEvents[$dayKey]	= array();
-
-			foreach($events as $event) {
-				if( TodoyuTime::rangeOverlaps($dayRange['start'], $dayRange['end'], $event['date_start'], $event['date_end']) ) {
-					$groupedEvents[$dayKey][] = $event;
-				}
-			}
-		}
-
-		return $groupedEvents;
-	}
-
-
-
-	/**
-	 * Add overlapping information to the event records
-	 * Add:
-	 *  - _indexColumn:		The index of the column the event is in. The columns are filled from left to right. New columns are added if necessary
-	 *  - _amountColumns:	The number of columns added. This information is redundant in all events
-	 *
-	 * @param	Array		$eventsByDay		Events grouped by day. Array key is the date, e.g. 20112412
-	 * @return	Array		The same array with the two extra keys
-	 */
-	public static function addOverlapInformationToEvents(array $eventsByDay) {
-		foreach($eventsByDay as $dayKey => $eventsOfDay) {
-			$columns	= array();
-
-				// Get left position (column index) of each event
-			foreach($eventsOfDay as $eventIndex => $event) {
-				if( empty($columns) ) {
-						// Add the first event into the first column
-					$columns[0][] = $eventIndex;
-					$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= 0;
-				} else {
-						// Find fitting (w/o overlapping events) columns for following events
-					$columnIndex	= self::findColumnWithoutOverlappingEvent($columns, $eventsByDay[$dayKey], $event);
-
-						// Add eventIndex to current column which has no overlapping
-					$columns[$columnIndex][] 							= $eventIndex;
-					$eventsByDay[$dayKey][$eventIndex]['_indexColumn']	= $columnIndex;
-				}
-			}
-
-				// Set columns amount for each event
-			foreach($eventsOfDay as $eventIndex => $event) {
-				$eventsByDay[$dayKey][$eventIndex]['_amountColumns']	= sizeof($columns);
-			}
-		}
-
-		return $eventsByDay;
-	}
-
-
-
-	/**
-	 * Find column to display given event in so that it does not overlap other events
-	 *
-	 * @param	Array	$columns
-	 * @param	Array	$eventsInDay
-	 * @param	Array	$event
-	 * @return	Integer
-	 */
-	public static function findColumnWithoutOverlappingEvent($columns, $eventsInDay, $event) {
-		$columnIndex		= 0;
-		$fittingColumnFound	= false;
-
-		foreach($columns as $columnIndex => $column) {
-			$overlaps	= self::isAnyEventColumnOverlapping($column, $eventsInDay, $event);
-
-				// Event does not overlap with another one in this column
-			if( ! $overlaps ) {
-				$fittingColumnFound = true;
-				break;
-			}
-		}
-			// No fitting column found. Increment column counter (= add to new column)
-		if( $fittingColumnFound === false ) {
-				// Next column = new column
-			$columnIndex++;
-		}
-
-		return intval($columnIndex);
-	}
-
-
-
-	/**
-	 * Check whether any of the events from all columns of that day overlaps the given event to be compared
-	 *
-	 * @param	Array	$eventsColumn
-	 * @param	Array	$eventsInDay
-	 * @param	Array	$event
-	 * @return	Boolean
-	 */
-	public static function isAnyEventColumnOverlapping($eventsColumn, $eventsInDay, $event) {
-		$overlaps	= false;
-
-		foreach($eventsColumn as $columnEventIndex) {
-				// Check if the event overlaps with the current column element
-			if( self::areEventsOverlapping($eventsInDay[$columnEventIndex], $event) ) {
-					// Overlapping in this column
-				$overlaps	= true;
-				break;
-			}
-		}
-
-		return $overlaps;
-	}
-
-
-
-	/**
-	 * Check whether two events are overlapping, compare date_start and date_end keys in both arrays
-	 * An event uses at least a window for 30 minutes. So if an event is shorter, extend it for comparison
-	 *
-	 * @param	Array		$event1
-	 * @param	Array		$event2
-	 * @return	Boolean
-	 */
-	public static function areEventsOverlapping(array $event1, array $event2) {
-			// Make sure event1 lasts at least 30 min
-		if( ($event1['date_end'] - $event1['date_start']) < CALENDAR_EVENT_MIN_DURATION ) {
-			$event1['date_end'] = $event1['date_start'] + CALENDAR_EVENT_MIN_DURATION;
-		}
-
-			// Make sure event2 lasts at least 30 min
-		if( ($event2['date_end'] - $event2['date_start']) < CALENDAR_EVENT_MIN_DURATION ) {
-			$event2['date_end'] = $event2['date_start'] + CALENDAR_EVENT_MIN_DURATION;
-		}
-
-		return TodoyuTime::rangeOverlaps($event1['date_start'], $event1['date_end'], $event2['date_start'], $event2['date_end']);
 	}
 
 
@@ -434,7 +281,7 @@ class TodoyuCalendarEventManager {
 		if( $dateEnd >= $dateStart ) {
 				// Get all (not-overbookable / conflicting) events in the duration of the event
 			$eventTypes	= TodoyuCalendarEventTypeManager::getNotOverbookableTypeIndexes();
-			$otherEvents= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
+			$otherEvents= TodoyuCalendarEventStaticManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
 				// Remove current event
 			unset($otherEvents[$idEvent]);
 
@@ -446,7 +293,7 @@ class TodoyuCalendarEventManager {
 					continue;
 				}
 
-				$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($otherEvent['id']);
+				$assignedPersons	= TodoyuCalendarEventStaticManager::getAssignedPersonsOfEvent($otherEvent['id']);
 				$assignedPersonIDs	= TodoyuArray::getColumn($assignedPersons, 'id_person');
 				$conflictedPersonIDs= array_intersect($personIDs, $assignedPersonIDs);
 
@@ -506,7 +353,7 @@ class TodoyuCalendarEventManager {
 			$dateStartOld	= 0;
 		} else {
 			$event			= self::getEvent($idEvent);
-			$dateStartOld	= $event->getStartDate();
+			$dateStartOld	= $event->getDateStart();
 		}
 
 			// Adjust date end for events of type reminder
@@ -611,14 +458,14 @@ class TodoyuCalendarEventManager {
 
 		if( $mode === 'month' ) {
 			$newStart	= TodoyuTime::getStartOfDay($newStartDate);
-			$startDay	= TodoyuTime::getStartOfDay($event->getStartDate());
+			$startDay	= TodoyuTime::getStartOfDay($event->getDateStart());
 			$offset		= $newStart - $startDay;
-			$dateStart	= $event->getStartDate() + $offset;
-			$dateEnd	= $event->getEndDate() + $offset;
+			$dateStart	= $event->getDateStart() + $offset;
+			$dateEnd	= $event->getDateEnd() + $offset;
 		} else {
-			$offset		= $newStartDate - $event->getStartDate();
+			$offset		= $newStartDate - $event->getDateStart();
 			$dateStart	= $newStartDate;
-			$dateEnd	= $event->getEndDate() + $offset;
+			$dateEnd	= $event->getDateEnd() + $offset;
 		}
 
 		if( ! $overbookingConfirmed || ! TodoyuCalendarManager::isOverbookingAllowed() ) {
@@ -658,7 +505,7 @@ class TodoyuCalendarEventManager {
 	public static function getOverbookedPersonsErrors($idEvent, $dateStart, $dateEnd) {
 		$idEvent	= intval($idEvent);
 
-		$event			= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event			= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$assignedPersons= $event->getAssignedPersonIDs();
 		$overbookedInfos= self::getOverbookingInfos($dateStart, $dateEnd, $assignedPersons, $idEvent);
 
@@ -721,7 +568,7 @@ class TodoyuCalendarEventManager {
 		$idPerson		= intval($idPerson);
 		$acknowledged	= Todoyu::personid() == $idPerson ? 1 : 0;
 
-		$dateStart			= $event->getStartDate();
+		$dateStart			= $event->getDateStart();
 		$advanceTimeEmail	= TodoyuCalendarReminderManager::getAdvanceTimeEmail($idPerson);
 		$advanceTimePopup	= TodoyuCalendarReminderManager::getAdvanceTimePopup($idPerson);
 		$dateRemindEmail	= $advanceTimeEmail === 0 ? 0 : $dateStart - $advanceTimeEmail;
@@ -755,7 +602,7 @@ class TodoyuCalendarEventManager {
 	public static function updateAssignment($idEvent, $idPerson, $oldDateStart) {
 		$event		= self::getEvent($idEvent);
 		$reminder	= $event->getReminder($idPerson);
-		$diff		= $event->getStartDate() - $oldDateStart;
+		$diff		= $event->getDateStart() - $oldDateStart;
 
 		$dateEmail	= false;
 		$datePopup	= false;
@@ -783,10 +630,11 @@ class TodoyuCalendarEventManager {
 	 */
 	private static function updateAssignmentRemindersForCurrentPerson($idEvent, $advanceTimeEmail, $advanceTimePopup) {
 		$idEvent			= intval($idEvent);
+		$idPerson			= TodoyuAuth::getPersonID();
 		$advanceTimeEmail	= intval($advanceTimeEmail);
 		$advanceTimePopup	= intval($advanceTimePopup);
-
-		$dateStart			= self::getEvent($idEvent)->getStartDate();
+		$event				= self::getEvent($idEvent);
+		$dateStart			= $event->getDateStart();
 
 		$data	= array(
 			'is_remindpopupdismissed'	=> 0,
@@ -794,7 +642,7 @@ class TodoyuCalendarEventManager {
 			'date_remindpopup'			=> $advanceTimePopup === 0 ? 0 : ($dateStart - $advanceTimePopup)
 		);
 
-		TodoyuCalendarReminderManager::updateReminderByAssignment($idEvent, TodoyuAuth::getPersonID(), $data);
+		TodoyuCalendarReminderManager::updateReminderByAssignment($idEvent, $idPerson, $data);
 	}
 
 
@@ -824,7 +672,7 @@ class TodoyuCalendarEventManager {
 	public static function removeEventFromCache($idEvent) {
 		$idEvent = intval($idEvent);
 
-		TodoyuRecordManager::removeRecordCache('TodoyuCalendarEvent', $idEvent);
+		TodoyuRecordManager::removeRecordCache('TodoyuCalendarEventStatic', $idEvent);
 		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idEvent);
 	}
 
@@ -902,7 +750,7 @@ class TodoyuCalendarEventManager {
 		$timestamp	= intval($timestamp);
 		$defaultData= self::getEventDefaultData($timestamp);
 
-		$idCache	= TodoyuRecordManager::makeClassKey('TodoyuCalendarEvent', 0);
+		$idCache	= TodoyuRecordManager::makeClassKey('TodoyuCalendarEventStatic', 0);
 		$event		= self::getEvent(0);
 		$event->injectData($defaultData);
 		TodoyuCache::set($idCache, $event);
@@ -991,8 +839,8 @@ class TodoyuCalendarEventManager {
 	 */
 	public static function getContextMenuItemsPortal($idEvent, array $items) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
-		$dateStart	= $event->getStartDate();
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+		$dateStart	= $event->getDateStart();
 
 		$ownItems			= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'];
 		$ownItems['show']	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal']['show'];
@@ -1082,21 +930,6 @@ class TodoyuCalendarEventManager {
 
 
 	/**
-	 * Get amount of days which intersect the event duration
-	 *
-	 * @param	Integer		$idEvent
-	 * @return	Integer
-	 */
-	public static function getAmountDaysIntersected($idEvent) {
-		$event	= self::getEvent($idEvent);
-		$days	= TodoyuTime::getDayTimestampsInRange($event->getStartDate(), $event->getEndDate());
-
-		return count($days);
-	}
-
-
-
-	/**
 	 * Check event for overbookings (regardless whether allowed) and render warning message content if any found
 	 *
 	 * @param	Integer		$idEvent
@@ -1113,7 +946,7 @@ class TodoyuCalendarEventManager {
 		$personIDs	= TodoyuArray::getColumn($formData['persons'], 'id');
 
 		$warning		= '';
-		$overbookedInfos= TodoyuCalendarEventManager::getOverbookingInfos($dateStart, $dateEnd, $personIDs, $idEvent);
+		$overbookedInfos= TodoyuCalendarEventStaticManager::getOverbookingInfos($dateStart, $dateEnd, $personIDs, $idEvent);
 
 		if( sizeof($overbookedInfos) > 0 ) {
 			$tmpl	= 'ext/calendar/view/overbooking-info.tmpl';
@@ -1159,7 +992,7 @@ class TodoyuCalendarEventManager {
 		$dateStart	= intval($dateStart);
 
 			// Fetch original event data
-		$event 	= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event 	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 		$eventData				= $event->getData();
 		$eventData['persons']	= $event->getAssignedPersonsData();
@@ -1191,6 +1024,32 @@ class TodoyuCalendarEventManager {
 			9						=> "#2335e0",
 			10						=> "pink"
 		);
+	}
+
+
+
+	/**
+	 * Get color data for event item via assigned person, if there are multiple/no persons assigned it's colored neutral
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	Array
+	 */
+	public static function getEventColorData($idEvent) {
+		$idEvent		= intval($idEvent);
+		$eventPersons	= TodoyuCalendarEventStaticManager::getAssignedPersonsOfEvent($idEvent, true, true);
+
+		if( count($eventPersons) === 1 ) {
+				// Single person assigned, set event color accordingly
+			$idPerson		= $eventPersons[key($eventPersons)]['id_person'];
+			$personColors	= TodoyuContactPersonManager::getSelectedPersonColor(array($idPerson));
+
+			return $personColors[$idPerson];
+		} else {
+				// None or multiple persons assigned to event, no unique coloring possible
+			return array(
+				'id' => 'multiOrNone'
+			);
+		}
 	}
 
 }

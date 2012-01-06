@@ -38,30 +38,26 @@ class TodoyuCalendarRenderer {
 	/**
 	 * Render the whole calendar (header, tabs and the actual calendar grid)
 	 *
-	 * @param	String	$activeTab		Displayed tab
-	 * @param	Array	$params			Request parameters sub functions
+	 * @param	String	$tab		Active tab
+	 * @param	Array	$params		Request parameters sub functions
 	 * @return	String	Code of the calendar
 	 */
-	public static function render($activeTab = '', array $params = array()) {
-		$timestamp	= TodoyuCalendarPanelWidgetCalendar::getDate();
-
-			// Get tab from preferences if not set
-		if( empty($activeTab) ) {
-			$activeTab	= TodoyuCalendarPreferences::getActiveTab();
-		}
+	public static function renderContent($tab, array $params = array()) {
+		$date	= TodoyuCalendarPanelWidgetCalendar::getDate();
 
 		$tmpl	= 'ext/calendar/view/main.tmpl';
 		$data	= array(
-			'active'		=> $activeTab,
-			'content'		=> self::renderContent($timestamp, $activeTab, $params),
-			'showCalendar'	=> in_array($activeTab, array('day', 'week', 'month'))
+			'tab'			=> $tab,
+			'content'		=> self::renderCalendarBody($tab, $date, $params),
+			'showCalendar'	=> in_array($tab, array('day', 'week', 'month'))
 		);
 
 			// If event view is selected, set date and add it to data array
-		if( $activeTab === 'view' ) {
-			$event	= TodoyuCalendarEventManager::getEvent($params['event']);
-			TodoyuCalendarPanelWidgetCalendar::saveDate($event->getStartDate());
-			$data['date']	= $event->getStartDate();
+		if( $tab === 'view' ) {
+			$idEvent= intval($params['event']);
+			$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+			TodoyuCalendarPanelWidgetCalendar::saveDate($event->getDateStart());
+			$data['date']	= $event->getDateStart();
 		}
 
 		return Todoyu::render($tmpl, $data);
@@ -72,39 +68,120 @@ class TodoyuCalendarRenderer {
 	/**
 	 * Render calendar area content: calendar of day/week/month, view/edit event
 	 *
-	 * @param	Integer		$timestamp
-	 * @param	String		$activeTab
+	 * @param	String		$tab
+	 * @param	Integer		$date
 	 * @param	Array		$params
 	 * @return	String
 	 */
-	public static function renderContent($timestamp, $activeTab, array $params = array()) {
-		$timestamp	= intval($timestamp);
+	public static function renderCalendarBody($tab, $date = 0, array $params = array()) {
+		$date		= TodoyuTime::time($date);
+		$idEvent	= intval($params['event']);
 
-		switch( $activeTab ) {
+		if( $idEvent === 0 ) {
+			$eventFilters	= TodoyuCalendarManager::getAllEventFilters();
+		} else {
+			$eventFilters	= array();
+		}
+
+		switch( $tab ) {
 				// Calendar views
 			case 'day':
-				return TodoyuCalendarCalendarRenderer::renderCalendarDay($timestamp);
+				return self::renderCalendarBodyDay($date, $eventFilters);
 				break;
 			case 'week':
-				return TodoyuCalendarCalendarRenderer::renderCalendarWeek($timestamp);
+				return self::renderCalendarBodyWeek($date, $eventFilters);
 				break;
 			case 'month':
-				return TodoyuCalendarCalendarRenderer::renderCalendarMonth($timestamp);
+				return self::renderCalendarBodyMonth($date, $eventFilters);
 				break;
 
 				// Event view/edit
 			case 'view':
-				$idEvent	= intval($params['event']);
-				return TodoyuCalendarEventRenderer::renderEventView($idEvent);
+				return self::renderCalendarBodyView($idEvent);
 				break;
 			case 'edit':
-				$idEvent	= intval($params['event']);
-				return TodoyuCalendarEventEditRenderer::renderEventForm($idEvent);
+				return self::renderCalendarBodyEdit($idEvent);
 				break;
 
 			default:
 				return 'Invalid type';
 		}
+	}
+
+
+
+	/**
+	 * Render calendar view for day view
+	 *
+	 * @param	Integer		$date
+	 * @param	Array		$filters
+	 * @return	String
+	 */
+	public static function renderCalendarBodyDay($date, array $filters) {
+		$date	= intval($date);
+		$view	= new TodoyuCalendarViewDay($date, $filters);
+
+		return $view->render();
+	}
+
+
+
+	/**
+	 * Render calendar view for week view
+	 *
+	 * @param	Integer		$date
+	 * @param	Array		$filters
+	 * @return	String
+	 */
+	public static function renderCalendarBodyWeek($date, array $filters) {
+		$date	= intval($date);
+		$view	= new TodoyuCalendarViewWeek($date, $filters);
+
+		return $view->render();
+	}
+
+
+
+	/**
+	 * Render calendar view for month view
+	 *
+	 * @param	Integer		$date
+	 * @param	Array		$filters
+	 * @return	String
+	 */
+	public static function renderCalendarBodyMonth($date, array $filters) {
+		$date	= intval($date);
+		$view	= new TodoyuCalendarViewMonth($date, $filters);
+
+		return $view->render();
+	}
+
+
+
+	/**
+	 * Render calendar body for event detail view
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	String
+	 */
+	public static function renderCalendarBodyView($idEvent) {
+		$idEvent	= intval($idEvent);
+
+		return TodoyuCalendarEventRenderer::renderEventView($idEvent);
+	}
+
+
+
+	/**
+	 * Render calendar body for event edit
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	String
+	 */
+	public static function renderCalendarBodyEdit($idEvent) {
+		$idEvent	= intval($idEvent);
+
+		return TodoyuCalendarEventEditRenderer::renderEventForm($idEvent);
 	}
 
 

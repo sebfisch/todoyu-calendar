@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.QuickInfoBirthday
  */
-Todoyu.Ext.calendar.QuickInfoEvent = {
+Todoyu.Ext.calendar.QuickInfo.Static = {
 
 	/**
 	 * Reference to extension
@@ -54,7 +54,7 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 	 * @method	install
 	 */
 	install: function() {
-		Todoyu.QuickInfo.install('event', this.selector, this.getID.bind(this));
+		this.ext.QuickInfo.install('static');
 	},
 
 
@@ -68,18 +68,6 @@ Todoyu.Ext.calendar.QuickInfoEvent = {
 		Todoyu.QuickInfo.uninstall(this.selector);
 	},
 
-
-
-	/**
-	 * Get ID form observed element
-	 *
-	 * @method	getID
-	 * @param	{Element}	element
-	 * @param	{Event}		event
-	 */
-	getID: function(element, event) {
-		return $(element).id.split('-').last();
-	},
 
 
 

@@ -52,11 +52,15 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 			'position' => 104
 		),
 		array(
+			'file' => 'ext/calendar/asset/js/QuickInfo.js',
+			'position' => 107
+		),
+		array(
 			'file' => 'ext/calendar/asset/js/QuickInfoBirthday.js',
 			'position' => 107
 		),
 		array(
-			'file' => 'ext/calendar/asset/js/QuickInfoEvent.js',
+			'file' => 'ext/calendar/asset/js/QuickInfoStatic.js',
 			'position' => 108
 		),
 		array(
@@ -129,6 +133,10 @@ Todoyu::$CONFIG['EXT']['calendar']['assets'] = array(
 		),
 		array(
 			'file'		=> 'lib/js/scriptaculous/sound.js',
+			'position'	=> 220
+		),
+		array(
+			'file'		=> 'ext/calendar/asset/js/Week.js',
 			'position'	=> 220
 		)
 	),

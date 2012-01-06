@@ -132,8 +132,8 @@ class TodoyuCalendarPreferences {
 	 *
 	 * @return	Boolean
 	 */
-	public static function getIsWeekendDisplayed() {
-		$pref	= self::getPref('displayweekend', 0);
+	public static function isWeekendDisplayed() {
+		$pref	= self::getPref('displayweekend');
 
 		return intval($pref) === 1;
 	}

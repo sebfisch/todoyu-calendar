@@ -10,6 +10,11 @@
 	white-space:nowrap;
 }
 
+.monthMode .event {
+	position: relative;
+	margin-bottom: 1px;
+}
+
 
 
 /* ------------

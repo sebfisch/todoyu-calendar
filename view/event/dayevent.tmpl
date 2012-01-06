@@ -1,0 +1,39 @@
+<div id="event-{$source}-{$id}" class="event source{ucfirst $source} type{ucfirst $type} contextmenuevent quickInfoEvent enumColBGFade{$color.id} {$class} {if $updateAllowed} updateAllowed{/if}">
+	<div class="head">
+		<div class="typeIcon"></div>
+
+		{if $isPrivate}
+			{if isPersonID($id_person)}
+				<div class="private"></div>
+			{else}
+				<div class="privateEvent"></div>
+			{/if}
+		{/if}
+
+		{if $view === 'day'}
+			<div class="assignedPersons">
+				{foreach $persons person}
+					{$person.shortname}
+					{if !$dwoo.foreach.default.last},{/if}
+				{/foreach}:
+			</div>
+		{/if}
+
+		<div class="title">
+			{if !$isPrivate || isPersonID($id_person)}
+				{htmlencode(truncate($title,$titleCropLength,'',true))}
+			{/if}
+		</div>
+
+		{if $view === 'day'}
+			<div class="date">
+				(
+				{dateFormat $date_start date}
+				{if date('ymd', $date_start) !== date('ymd', $date_end)}
+					- {dateFormat $date_end date}
+				{/if}
+				)
+			</div>
+		{/if}
+	</div>
+</div>

@@ -50,10 +50,10 @@ class TodoyuCalendarEventAssignment extends TodoyuBaseObject {
 	/**
 	 * Get event
 	 *
-	 * @return	TodoyuCalendarEvent
+	 * @return	TodoyuCalendarEventStatic
 	 */
 	public function getEvent() {
-		return TodoyuCalendarEventManager::getEvent($this->getEventID());
+		return TodoyuCalendarEventStaticManager::getEvent($this->getEventID());
 	}
 
 

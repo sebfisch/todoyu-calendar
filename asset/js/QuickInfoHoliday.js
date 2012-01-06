@@ -24,7 +24,7 @@
 /**
  * @namespace	Todoyu.Ext.calendar.QuickInfoHoliday
  */
-Todoyu.Ext.calendar.QuickInfoHoliday = {
+Todoyu.Ext.calendar.QuickInfo.Holiday = {
 
 	/**
 	 * Reference to extension
@@ -52,7 +52,7 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 	 * @method	install
 	 */
 	install: function() {
-		Todoyu.QuickInfo.install('holiday', this.selector, this.getID.bind(this));
+		this.ext.QuickInfo.install('holiday');
 	},
 
 
@@ -63,20 +63,7 @@ Todoyu.Ext.calendar.QuickInfoHoliday = {
 	 * @method	uninstall
 	 */
 	uninstall: function() {
-		Todoyu.QuickInfo.uninstall(this.selector);
-	},
-
-
-
-	/**
-	 * Get ID form observed element
-	 *
-	 * @method	getID
-	 * @param	{Element}	element
-	 * @param	{Event}		event
-	 */
-	getID: function(element, event) {
-		return $(element).id.split('-').last();
+		this.ext.QuickInfo.uninstall('holiday');
 	},
 
 

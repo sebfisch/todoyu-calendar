@@ -46,7 +46,7 @@ class TodoyuCalendarEventRights {
 	 */
 	public static function isSeeAllowed($idEvent) {
 		$idEvent= intval($idEvent);
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 			// Private event are only available for assigned users
 		if( $event->isPrivate() && !$event->isCurrentPersonAssigned() ) {
@@ -91,7 +91,7 @@ class TodoyuCalendarEventRights {
 			return false;
 		}
 
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 		if( $event->isPrivate() ) {
 			return $event->isCurrentPersonAssigned();
@@ -156,7 +156,7 @@ class TodoyuCalendarEventRights {
 		}
 
 		$idEvent			= intval($idEvent);
-		$event				= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event				= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 			// Creator can edit event
 		if( $event->isCurrentPersonCreator() ) {

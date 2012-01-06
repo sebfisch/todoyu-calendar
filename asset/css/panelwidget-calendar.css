@@ -58,7 +58,6 @@
 	cursor:pointer;
 }
 
-#panelwidget-calendar-jscalendar div.calendar tfoot .ttip {
-	border-top:none;
-	padding:2px 0 0;
+#panelwidget-calendar-jscalendar div.calendar tfoot {
+	display: none;
 }

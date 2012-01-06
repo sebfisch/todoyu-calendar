@@ -67,7 +67,7 @@ class TodoyuCalendarEventMailer {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 		$operationID= intval($operationID);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 		if( $event->isDeleted() ) {
 			$operationID	= OPERATIONTYPE_RECORD_DELETE;

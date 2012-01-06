@@ -68,14 +68,14 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 		$sendAsMail			= $data['sendasemail'];
 
 			// Get form object, call save hooks, set data
-		$form	= TodoyuCalendarEventManager::getQuickCreateForm();
+		$form	= TodoyuCalendarEventStaticManager::getQuickCreateForm();
 		$form->setFormData($data);
 
 		if( $form->isValid() ) {
 			$storageData	= $form->getStorageData();
 
 				// Save or update event
-			$idEvent	= TodoyuCalendarEventManager::saveEvent($storageData);
+			$idEvent	= TodoyuCalendarEventStaticManager::saveEvent($storageData);
 
 				// Send event auto-email to preset receivers: those get emails concerning all new/changed events they participate in
 				// Watch out: persons only have their ID as key when editing a pre-existing event!
@@ -83,7 +83,7 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 			$autoMailPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
 
 			if( ! empty($autoMailPersonIDs) ) {
-				if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
+				if( TodoyuCalendarEventStaticManager::sendEventAsEmail($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
 					TodoyuHeader::sendTodoyuHeader('sentAutoEmail', true);
 
 						// Don't double-send: remove auto-mail receivers from manual receivers list
@@ -95,13 +95,13 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 
 				// Send event email to selected receivers
 			if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
-				if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $emailReceiverIDs, $isNewEvent) ) {
+				if( TodoyuCalendarEventStaticManager::sendEventAsEmail($idEvent, $emailReceiverIDs, $isNewEvent) ) {
 					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 				}
 			}
 
-			$event		= TodoyuCalendarEventManager::getEvent($idEvent);
-			$startDate	= $event->getStartDate();
+			$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+			$startDate	= $event->getDateStart();
 
 			TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 

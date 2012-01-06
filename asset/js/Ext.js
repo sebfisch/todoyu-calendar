@@ -143,9 +143,9 @@ Todoyu.Ext.calendar = {
 	 * @method	installQuickInfos
 	 */
 	installQuickInfos: function() {
-		this.QuickInfoBirthday.install();
-		this.QuickInfoEvent.install();
-		this.QuickInfoHoliday.install();
+		this.QuickInfo.Birthday.install();
+		this.QuickInfo.Static.install();
+		this.QuickInfo.Holiday.install();
 	},
 
 

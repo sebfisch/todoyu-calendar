@@ -133,6 +133,10 @@ form.formEvent button.buttonSave {}
 	border-color:#d7d7cf !important;
 }
 
+.enumColBGmultiOrNone {
+	background-color: #d3dbc2 !important;
+}
+
 
 
 /* --------------------------------------------------------------------
@@ -168,23 +172,25 @@ form.formEvent button.buttonSave {}
 
 	#calendar-quicknav-toggleDayView {
 		height:22px;
-		width:36px;
+		width:28px;
 		cursor:pointer;
-		background:url(../img/icons.png) no-repeat 18px -60px;
-		-moz-border-bottom-colors: none;
-		-moz-border-image: none;
-		-moz-border-left-colors: none;
-		-moz-border-right-colors: none;
-		-moz-border-top-colors: none;
-		border-color:#bbb;
-		border-style:solid;
-		border-width:0 1px 0 1px;
+		background:url(../img/icons.png) no-repeat 8px -60px;
+		/*-moz-border-bottom-colors: none;*/
+		/*-moz-border-image: none;*/
+		/*-moz-border-left-colors: none;*/
+		/*-moz-border-right-colors: none;*/
+		/*-moz-border-top-colors: none;*/
+		/*border-color:#bbb;*/
+		/*border-style:solid;*/
+		/*border-width:0 1px 0 1px;*/
+		border-left:1px solid #BBB;
 	}
 	#calendar-quicknav-toggleWeekend {
 		height:22px;
-		width:26px;
+		width:28px;
 		cursor:pointer;
-		background:url(../img/icons.png) no-repeat 5px -91px;
+		background:url(../img/icons.png) no-repeat 8px -91px;
+		border-left:1px solid #BBB;
 	}
 
 

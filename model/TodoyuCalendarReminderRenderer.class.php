@@ -36,12 +36,12 @@ class TodoyuCalendarReminderRenderer {
 	public static function renderEventDetailsReminders($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$eventData	= $event->getTemplateData(true, false, true);
 		$eventData	= TodoyuCalendarEventRenderer::getEventRenderData('list', $eventData);
 
 		$eventData['person_create']	= $event->getCreatePerson()->getTemplateData();
-//		$eventData['persons']		= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
+//		$eventData['persons']		= TodoyuCalendarEventStaticManager::getAssignedPersonsOfEvent($idEvent, true, true);
 		$eventData['persons']		= $eventData['assignedPersons'];
 
 		$tmpl	= 'ext/calendar/view/event-view-details-reminders.tmpl';
@@ -63,7 +63,7 @@ class TodoyuCalendarReminderRenderer {
 	 */
 	public static function renderEventReminderPopup($idEvent) {
 		$idEvent= intval($idEvent);
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 			// Construct form object for inline form
 		$xmlPath= 'ext/calendar/config/form/event-reminder.xml';

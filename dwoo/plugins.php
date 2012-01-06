@@ -83,7 +83,7 @@ function Dwoo_Plugin_isAllowedEditEvent(Dwoo $dwoo, $idEvent) {
  * @return	String
  */
 function Dwoo_Plugin_EventFullLabel_compile(Dwoo_Compiler $compiler, $idEvent) {
-	return 'TodoyuCalendarEventManager::getEventFullLabel(' . $idEvent . ')';
+	return 'TodoyuCalendarEventStaticManager::getEventFullLabel(' . $idEvent . ')';
 }
 
 

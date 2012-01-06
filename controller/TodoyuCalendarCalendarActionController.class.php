@@ -45,14 +45,14 @@ class TodoyuCalendarCalendarActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public function updateAction(array $params) {
-		$tab		= trim($params['tab']);
-		$timestamp	= strtotime($params['date']);
+		$tab	= trim($params['tab']);
+		$date	= strtotime($params['date']);
 
-		TodoyuCalendarPanelWidgetCalendar::saveDate($timestamp);
+		TodoyuCalendarPanelWidgetCalendar::saveDate($date);
 
 		TodoyuCalendarPreferences::saveActiveTab($tab);
 
-		$calendar = TodoyuCalendarRenderer::renderContent($timestamp, $tab);
+		$calendar = TodoyuCalendarRenderer::renderCalendarBody($tab, $date);
 
 		return $calendar;
 	}

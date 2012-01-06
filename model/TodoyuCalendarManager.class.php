@@ -49,17 +49,39 @@ class TodoyuCalendarManager {
 
 
 	/**
+	 * Get current selected range
+	 *
+	 * @return	TodoyuDayRange
+	 */
+	public static function getCurrentRange() {
+		$tab	= TodoyuCalendarPreferences::getActiveTab();
+		$date	= TodoyuCalendarPreferences::getDate();
+		$date	= TodoyuTime::time($date);
+
+		switch($tab) {
+			case 'week':
+				return new TodoyuCalendarRangeWeek($date);
+			case 'month':
+				return new TodoyuCalendarRangeMonth($date);
+			case 'day':
+			default:
+				return new TodoyuCalendarRangeDay($date);
+		}
+	}
+
+
+
+	/**
 	 * Get holidays in a timespan for the current holiday sets
 	 *
-	 * @param	Integer		$dateStart
-	 * @param	Integer		$dateEnd
+	 * @param	TodoyuDayRange	$range
 	 * @return	Array
 	 */
-	public static function getHolidays($dateStart, $dateEnd) {
+	public static function getHolidays(TodoyuDayRange $range) {
 		$holidaySets	= self::getSelectedHolidaySets();
 
 		if( sizeof($holidaySets) > 0 ) {
-			$holidays	= TodoyuCalendarHolidayManager::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySets);
+			$holidays	= TodoyuCalendarHolidayManager::getHolidaysInRange($range, $holidaySets);
 			$grouped	= TodoyuCalendarHolidayManager::groupHolidaysByDays($holidays);
 		} else {
 			$grouped	= array();
@@ -73,14 +95,14 @@ class TodoyuCalendarManager {
 	/**
 	 * Get holidays for a day
 	 *
-	 * @param	Integer		$timestamp
+	 * @param	Integer		$date
 	 * @return	Array
 	 */
-	public static function getHolidaysForDay($timestamp) {
-		$dayRange	= TodoyuTime::getDayRange($timestamp);
-		$holidays	= self::getHolidays($dayRange['start'], $dayRange['end']);
+	public static function getHolidaysForDay($date) {
+		$range		= new TodoyuCalendarRangeDay($date);
+		$holidays	= self::getHolidays($range);
 
-		$today		= $holidays[date('Ymd', $timestamp)];
+		$today		= $holidays[date('Ymd', $date)];
 
 		return is_array($today) ? $today : array();
 	}
@@ -335,10 +357,11 @@ class TodoyuCalendarManager {
 	public static function getBirthdaysByDay($dateStart, $dateEnd) {
 		$dateStart	= intval($dateStart);
 		$dateEnd	= intval($dateEnd);
+		$range		= new TodoyuDayRange($dateStart, $dateEnd);
 
 		$birthdaysByDay	= array();
 
-		$birthdayPersons= TodoyuContactPersonManager::getBirthdayPersons($dateStart, $dateEnd);
+		$birthdayPersons= TodoyuContactPersonManager::getBirthdayPersons($range);
 
 		foreach($birthdayPersons as $birthdayPerson) {
 			$dateKey = date('Ymd', $birthdayPerson['date']);
@@ -361,7 +384,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getDayEventsWeekMapping($dateStart, $dateEnd, array $eventTypes, array $persons) {
-		$events			= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, true);
+		$events			= TodoyuCalendarEventStaticManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, true);
 		$rangeKeys		= self::getDayKeys($dateStart, $dateEnd);
 		$mapping		= array();
 		$emptyMap		= array();
@@ -438,6 +461,74 @@ class TodoyuCalendarManager {
 		}
 
 		return $keys;
+	}
+
+
+
+	/**
+	 * Get height of  starting hour
+	 *
+	 * @param	Integer	$dateTime	UNIX Timestamp of the starttime or endtime
+	 * @return	Integer				Top-Y of starting hour
+	 */
+	public static function getOffsetByDayTime($dateTime) {
+		$dateTime		= intval($dateTime);
+		$heightHour		= date('G', $dateTime) * CALENDAR_HEIGHT_HOUR;
+		$heightMinute	= date('i', $dateTime) * CALENDAR_HEIGHT_HOUR/60;
+
+		return round($heightHour + $heightMinute, 0);
+	}
+
+
+	/**
+	 * Add selected persons to filter
+	 *
+	 * @param	Array		$filters
+	 * @return	Array
+	 */
+	public static function hookEventFilterPersons(array $filters) {
+		$filters['persons'] = self::getSelectedPersons();
+
+		return $filters;
+	}
+
+
+
+	/**
+	 * Add selected event types to filter
+	 *
+	 * @param	Array		$filters
+	 * @return	Array
+	 */
+	public static function hookEventFilterEventTypes(array $filters) {
+		$filters['eventtypes'] = self::getSelectedEventTypes();
+
+		return $filters;
+	}
+
+
+
+	/**
+	 * Add selected holiday sets to filter
+	 *
+	 * @param	Array		$filters
+	 * @return	Array
+	 */
+	public static function hookEventFilterHolidaySets(array $filters) {
+		$filters['holidaysets'] = self::getSelectedHolidaySets();
+
+		return $filters;
+	}
+
+
+
+	/**
+	 * Collect event filters with hooks
+	 *
+	 * @return	Array
+	 */
+	public static function getAllEventFilters() {
+		return TodoyuHookManager::callHookDataModifier('calendar', 'event.filter', array());
 	}
 
 }

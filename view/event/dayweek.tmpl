@@ -1,0 +1,57 @@
+<div id="event-{$source}-{$id}" class="event source{ucfirst $source} type{ucfirst $type} contextmenuevent quickInfoEvent  enumColBGFade{$color.id} {$class}" style="{$positionStyles}">
+	<div class="head enumColBG{$color.id}">
+		<div class="typeIcon"></div>
+
+		{if $isPrivate}
+			{if $isAssigned}
+				<div class="private"></div>
+			{else}
+				<div class="privateEvent"></div>
+			{/if}
+		{/if}
+
+		<div class="title">
+			{htmlencode(truncate($title,$titleCropLength,'',true))}
+
+			{if $view == 'day' && count($persons) == 1}
+				<div class="assignedPersons">
+					{$person = current($persons)}
+					({$person.shortname})
+				</div>
+			{/if}
+		</div>
+	</div>
+
+	<div class="content">
+		{if $description && (!$isPrivate || isPersonID($id_person))}
+			<div class="description">
+				{htmlencode $description}
+			</div>
+		{/if}
+	</div>
+
+		{*
+		<dl>
+			<dt class="head enumColBG{$color.id}">
+				<span class="headInner">
+				{$firstAssignedPersonId = key($persons)}
+				{if $isPrivate}
+					<span class="private {if isPersonID($firstAssignedPersonId)}allowed{/if}" id="event-{$id}-private"></span>
+				{/if}
+				{htmlencode(truncate($title, $titleCropLength, '...', true))}
+				{if $view == 'day' && count($persons) == 1}
+					({$persons[$firstAssignedPersonId].shortname})
+				{/if}
+				</span>
+			</dt>
+			{if !empty($description) && !$isPrivate}
+				<dd>
+					{ ---------- Only show title if event is not private or current person is owner ---------- }
+					 <span class="desc" style="color:{$color.text|default:"#000"}">
+						{if isPersonID($id_person)}{htmlencode $description}{/if}
+					</span>
+				</dd>
+			{/if}
+		</dl>
+		*}
+</div>

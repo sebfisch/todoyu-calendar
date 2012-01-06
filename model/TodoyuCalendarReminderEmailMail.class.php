@@ -83,7 +83,7 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 	/**
 	 * Get event of the reminder
 	 *
-	 * @return	TodoyuCalendarEvent
+	 * @return	TodoyuCalendarEventStatic
 	 */
 	private function getEvent() {
 		return $this->reminder->getEvent();
@@ -113,7 +113,7 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 		$data	= TodoyuCalendarEventMailManager::getMailData($this->getEvent()->getID(), $this->getPerson()->getID(), true);
 
 		$data['hideEmails']	= false;
-		$data['colors']		= TodoyuCalendarEventManager::getEventTypeColors();
+		$data['colors']		= TodoyuCalendarEventStaticManager::getEventTypeColors();
 
 		return Todoyu::render($tmpl, $data);
 	}

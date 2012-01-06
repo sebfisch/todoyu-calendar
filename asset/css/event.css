@@ -1,25 +1,33 @@
-.dayMode .event,
-.weekMode .event {
+.dayMode .event .head,
+.weekMode .event .head {
 	-moz-user-select:none;
 	overflow:hidden;
 	position:absolute;
 }
 
-.weekMode .wk-weektop .event,
-.dayMode .wk-weektop .event {
-	position:relative;
-}
-
-#calendar .event span {
-	font-size:9px;
+/*#calendar .event span {*/
+	/*font-size:9px;*/
 	/*padding:2px 3px;*/
-	display:block;
+	/*display:block;*/
 	/*white-space:nowrap;*/
+/*}*/
 
+#calendar .event .head {
+	cursor: not-allowed;
+	width:100%;
 }
 
-#calendar .event dt.head {
+#calendar .event.hasAccess .head {
 	cursor:move;
+}
+#calendar .event.noAccess .head,
+#calendar .event.noEdit .head {
+	cursor:not-allowed;
+}
+
+.event .description {
+	margin-top: 2px;
+	font-size: 9px;
 }
 
 #calendar .event.noAccess dt.head {
@@ -30,9 +38,7 @@
 	cursor:pointer;
 }
 
-#calendar .event span.desc {
-	overflow:hidden;
-}
+
 
 .event .headInner {
 	position:relative;
@@ -96,9 +102,41 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 
 
-#topcontainerwk .dayevent {
+
+
+.gridHeader .dayevent {
 	position:relative;
 }
+
+
+#calendar .dayEvents .event {
+	margin: 1px;
+	position:relative;
+}
+
+#calendar .dayEvents .event .head {
+	cursor: default;
+}
+#calendar .dayEvents .event.hasAccess .head {
+	cursor: move;
+}
+
+
+.dayEvents .event .date {
+	color:#CCC;
+}
+
+.event > div {
+	padding:2px;
+}
+.event div div {
+	display: inline-block;
+}
+.event .head .typeIcon {
+	height:14px;
+	width:16px;
+}
+
 
 
 
@@ -121,16 +159,6 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	background:transparent url(../img/icons.png) no-repeat 0 -1140px;
 }
 
-.seriesEvent {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -330px;
-	padding:0 0 0 15px;
-}
-
-.seriesEventDark {
-	background:transparent url(../img/icons.png) no-repeat scroll 0 -360px;
-	padding:0 0 0 15px;
-}
-
 .weekNumber {
 	float:left;
 	color:#999;
@@ -145,12 +173,56 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	padding-right:16px;
 }
 
-.event.typeGeneral .headInner,
-.event.typeGeneral .type,
-.dayMode .event .typeGeneral,
-.monthMode .event .typeGeneral {
-	background:url(../img/icons.png) no-repeat scroll 0 -660px;
+.event .typeIcon {
+	background: url(../img/icons.png) no-repeat;
+	vertical-align: top;
 }
+
+.event.typeGeneral .typeIcon {
+	background-position: 0 -660px;
+}
+.event.typeAway .typeIcon {
+	background-position: 0 -690px;
+}
+.event.typeVacation .typeIcon,
+.event.typeHoliday .typeIcon {
+	background-position: 0 -390px;
+}
+.event.typeEducation .typeIcon {
+	background-position: 0 -720px;
+}
+.event.typeMeeting .typeIcon {
+	background-position: 0 -750px;
+}
+.event.typeAwayofficial .typeIcon {
+	background-position: 0 -780px;
+}
+.event.typeHomeoffice .typeIcon {
+	background-position: 0 -810px;
+}
+.event.typeCompensation .typeIcon {
+	background-position: 0 -900px;
+}
+.event.typeMilestone .typeIcon {
+	background-position: 0 -930px;
+}
+.event.typeReminder .typeIcon {
+	background-position: 0 -960px;
+}
+
+.event.typeBirthday .typeIcon {
+	background-image: url(../../../contact/asset/img/icons.png);
+	background-position: 3px -330px;
+}
+
+
+
+/*.event.typeGeneral .headInner,*/
+/*.event.typeGeneral .type,*/
+/*.dayMode .event .typeGeneral,*/
+/*.monthMode .event .typeGeneral {*/
+	/*background:url(../img/icons.png) no-repeat scroll 0 -660px;*/
+/*}*/
 
 .event.typeAway .headInner,
 .event.typeAway .type,

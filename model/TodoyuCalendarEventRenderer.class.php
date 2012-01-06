@@ -32,17 +32,19 @@ class TodoyuCalendarEventRenderer {
 	 * @param	Integer		$mode			CALENDAR_MODE_DAY / ..WEEK / ..MONTH
 	 * @param	Array		$data			event parameters
 	 * @return	Array
+	 * @deprecated
+	 * @todo	Use event model for this
 	 */
 	public static function getEventRenderData($mode = CALENDAR_MODE_MONTH, array $data) {
 		$idEvent			= intval($data['id']);
-		$assignedPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
+		$assignedPersons	= TodoyuCalendarEventStaticManager::getAssignedPersonsOfEvent($idEvent, true, true);
 
 		$data['calendarMode']	= TodoyuCalendarManager::getModeName($mode);
-		$data['titleCropLength']= $mode != CALENDAR_MODE_WEEK || TodoyuCalendarPreferences::getIsWeekendDisplayed() ? 16 : 24;
+		$data['titleCropLength']= $mode != CALENDAR_MODE_WEEK || TodoyuCalendarPreferences::isWeekendDisplayed() ? 16 : 24;
 		$data['assignedPersons']= $assignedPersons;
-		$data['timeStart']		= TodoyuCalendarEventManager::getEvent($idEvent)->getStartTime();
-		$data['color']			= self::getEventColorData($idEvent);
-		$data['eventtypeKey']	= TodoyuCalendarEventTypeManager::getEventTypeKey($data['eventtype']);
+		$data['timeStart']		= TodoyuCalendarEventStaticManager::getEvent($idEvent)->getStartTime();
+		$data['color']			= TodoyuCalendarEventStaticManager::getEventColorData($idEvent);
+		$data['eventtypeKey']	= TodoyuCalendarEventTypeManager::getTypeKey($data['eventtype']);
 
 		$assignedPersonIDs = array_keys($assignedPersons);
 
@@ -62,21 +64,6 @@ class TodoyuCalendarEventRenderer {
 
 
 
-	/**
-	 * Render event entry as calendar item
-	 *
-	 * @param	Array		$event				Event details
-	 * @param	Integer		$mode		CALENDAR_MODE_MONTH / ..WEEK / ..DAY
-	 * @return	String
-	 */
-	public static function renderEvent(array $event, $mode = CALENDAR_MODE_MONTH) {
-		$tmpl	= 'ext/calendar/view/calendar/event.tmpl';
-		$data	= self::getEventRenderData($mode, $event);
-
-		return Todoyu::render($tmpl, $data);
-	}
-
-
 
 	/**
 	 * Render event details view for display inside expanded event in list mode
@@ -86,110 +73,22 @@ class TodoyuCalendarEventRenderer {
 	 */
 	public static function renderEventDetailsInList($idEvent) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$eventData	= $event->getTemplateData(true, false, true);
 		$eventData	= self::getEventRenderData('list', $eventData);
 
 		$eventData['person_create']	= $event->getCreatePerson()->getTemplateData();
-		$eventData['persons']		= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
+		$eventData['persons']		= TodoyuCalendarEventStaticManager::getAssignedPersonsOfEvent($idEvent, true, true);
 
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(
 			'event'	=> $eventData,
-			'color'	=> $eventData['color']	// @todo remove this redundancy and have dwoo get color from event data directly
+//			'color'	=> $eventData['color']	// @todo remove this redundancy and have dwoo get color from event data directly
 		);
 
 		return Todoyu::render($tmpl, $data);
 	}
 
-
-
-	/**
-	 * Render all-day event (events that span a whole day or more than that)
-	 *
-	 * @param	Integer		$mode
-	 * @param	Array		$data
-	 * @return	String
-	 */
-	public static function renderAllDayEvent($mode = CALENDAR_MODE_DAY, array $data = array()) {
-		$tmpl	= 'ext/calendar/view/calendar/alldayevent-' . ($mode === CALENDAR_MODE_DAY ? 'day.tmpl' : 'week.tmpl');
-		$data	= self::getEventRenderData($mode, $data);
-
-		return Todoyu::render($tmpl, $data);
-	}
-
-
-
-	/**
-	 * Get color data for event item via assigned person, if there are multiple/no persons assigned it's colored neutral
-	 *
-	 * @param	Integer		$idEvent
-	 * @return	Array
-	 */
-	public static function getEventColorData($idEvent) {
-		$idEvent		= intval($idEvent);
-		$eventPersons	= TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true, true);
-
-		if( count($eventPersons) === 0 || count($eventPersons) > 1 ) {
-				// None or multiple persons assigned to event, no unique coloring possible
-			return array('id' => 'multiOrNone');
-		} else {
-				// Single person assigned, set event color accordingly
-			$idPerson		= $eventPersons[key($eventPersons)]['id_person'];
-			$personColors	= TodoyuContactPersonManager::getSelectedPersonColor(array($idPerson));
-
-			return $personColors[$idPerson];
-		}
-	}
-
-
-
-	/**
-	 * Get height of starting hour
-	 *
-	 * @param	Integer	$dateStart	UNIX Timestamp of the start time or end time
-	 * @return	Integer				Top-Y of starting hour
-	 */
-	public static function getTimeCoordinate($dateStart) {
-		$dateStart		= intval($dateStart);
-		$heightHour		= date('G', $dateStart) * CALENDAR_HEIGHT_HOUR;
-		$heightMinute	= intval(date('i', $dateStart )) * CALENDAR_HEIGHT_MINUTE;
-
-		return ceil($heightHour + $heightMinute);
-	}
-
-
-
-	/**
-	 * Get height of an event in day or week view
-	 * An event is at least 20px height (to stay visible) except you set $real true
-	 *
-	 * @param	Integer		$dateView
-	 * @param	Integer		$dateStart
-	 * @param	Integer		$dateEnd
-	 * @param	Boolean		$real			Force "real" calculated height from duration to pixel conversion?
-	 * @return	Integer
-	 */
-	public static function getEventHeight($dateView, $dateStart, $dateEnd, $real = false) {
-		$dateView	= intval($dateView);
-		$dateStart	= intval($dateStart);
-		$dateEnd	= intval($dateEnd);
-		$viewRange	= TodoyuTime::getDayRange($dateView);
-
-		$dateStart	= TodoyuNumeric::intInRange($dateStart, $viewRange['start'], $viewRange['end']);
-		$dateEnd	= TodoyuNumeric::intInRange($dateEnd, $viewRange['start'], $viewRange['end']);
-
-		$timeDiffHour	= ($dateEnd - $dateStart) / TodoyuTime::SECONDS_HOUR;
-		$height			= ceil($timeDiffHour * CALENDAR_HEIGHT_HOUR);
-
-		if( $real !== true ) {
-				// Make sure an event is at least 20px height
-			$minHeight	= intval((CALENDAR_EVENT_MIN_DURATION / 3600) * CALENDAR_HEIGHT_HOUR);
-			$height		= TodoyuNumeric::intInRange($height, $minHeight);
-		}
-
-		return $height;
-	}
 
 
 
@@ -205,7 +104,7 @@ class TodoyuCalendarEventRenderer {
 		$timestamp	= TodoyuTime::getRoundedTime($timestamp, 15);
 
 			// Get form object
-		$form	= TodoyuCalendarEventManager::getQuickCreateForm();
+		$form	= TodoyuCalendarEventStaticManager::getQuickCreateForm();
 
 			// Set event start and ending timestamps
 		if( $isAllDayEvent ) {
@@ -262,7 +161,7 @@ class TodoyuCalendarEventRenderer {
 		$jsHandler	= 'Todoyu.Ext.calendar.Tabs.onSelect.bind(Todoyu.Ext.calendar.Tabs)';
 		$tabs		= TodoyuCalendarManager::getCalendarTabsConfig();
 
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 		$detailTab	= array(
 			'id'		=> 'detail',
@@ -284,7 +183,7 @@ class TodoyuCalendarEventRenderer {
 	 */
 	public static function renderEventView($idEvent) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 		$tmpl	= 'ext/calendar/view/event-view.tmpl';
 		$data	= array(
@@ -306,7 +205,7 @@ class TodoyuCalendarEventRenderer {
 	 */
 	public static function renderEventMailPopup($idEvent, $operationID = OPERATIONTYPE_RECORD_UPDATE) {
 		$idEvent= intval($idEvent);
-		$event	= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 			// Construct form object for inline form
 		$xmlPath	= 'ext/calendar/config/form/event-mailing.xml';
@@ -316,7 +215,7 @@ class TodoyuCalendarEventRenderer {
 		$form		= TodoyuFormManager::getForm($xmlPath, 0, array(), $preParse);
 
 			// Have all email persons but user himself preselected
-		$emailPersonIDs	= array_keys(TodoyuCalendarEventManager::getEmailReceivers($idEvent, false));
+		$emailPersonIDs	= array_keys(TodoyuCalendarEventStaticManager::getEmailReceivers($idEvent, false));
 		$emailPersonIDs	= TodoyuArray::removeByValue($emailPersonIDs, array(Todoyu::personid()), false);
 
 			// Set mail form data

@@ -20,8 +20,6 @@
 
 
 #calendar .colHours {
-	opacity:0.9;
-	filter:alpha(opacity=90);
 	width:40px;
 	background:#f2f3ed url(../img/background-hours.png) repeat-y;
 }
@@ -38,7 +36,18 @@
 	background-color:#f1ffc4;
 }
 
-
+.timeSpacer {
+	width:43px;
+}
+.dayEvents{
+	background-color:#f2f3ed;
+	/*font-size:11px;*/
+	/*line-height:14px;*/
+	border:1px solid #848484;
+	/*border-right-color:#e8e5de;*/
+	/*border-bottom-color:#e8e5de;*/
+	/*padding:1px 1px 1px 0;*/
+}
 
 
 

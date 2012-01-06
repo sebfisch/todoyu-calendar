@@ -452,7 +452,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 			this.notifyEventSaved(response);
 
 			Todoyu.Hook.exec('calendar.event.saved', idEvent);
-			this.ext.QuickInfoEvent.removeFromCache(response.getTodoyuHeader('idEvent'));
+			this.ext.QuickInfo.Static.removeFromCache(response.getTodoyuHeader('idEvent'));
 
 				// Update calendar body showing time of the saved event and close the edit form
 			this.ext.show(this.ext.Tabs.active, response.getTodoyuHeader('time') * 1000);

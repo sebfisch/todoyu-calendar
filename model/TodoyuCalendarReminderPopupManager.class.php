@@ -192,7 +192,7 @@ class TodoyuCalendarReminderPopupManager {
 		$eventTypes	= Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP'];
 
 		$reminders	= array();
-		$events		= TodoyuCalendarEventManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
+		$events		= TodoyuCalendarEventStaticManager::getEventsInTimespan($dateStart, $dateEnd, $personIDs, $eventTypes);
 
 		foreach($events as $idEvent => $eventData) {
 			$reminder	= self::getReminderByAssignment($idEvent);
@@ -320,11 +320,11 @@ class TodoyuCalendarReminderPopupManager {
 	 */
 	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$allowed	= array();
 
 			// Option: popup reminder
-		if( $event->getStartDate() > NOW && self::isReminderAllowed($idEvent) ) {
+		if( $event->getDateStart() > NOW && self::isReminderAllowed($idEvent) ) {
 			$options	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderpopup'];
 
 				// Set selected option CSS class

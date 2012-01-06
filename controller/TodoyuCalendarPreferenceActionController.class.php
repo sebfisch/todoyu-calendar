@@ -128,7 +128,7 @@ class TodoyuCalendarPreferenceActionController extends TodoyuActionController {
 	 * @param	Array	$params
 	 */
 	public function toggleDisplayWeekendAction(array $params) {
-		$isWeekendDisplayed	= TodoyuCalendarPreferences::getIsWeekendDisplayed();
+		$isWeekendDisplayed	= TodoyuCalendarPreferences::isWeekendDisplayed();
 
 		TodoyuCalendarPreferences::saveWeekendDisplayed(! $isWeekendDisplayed);
 	}

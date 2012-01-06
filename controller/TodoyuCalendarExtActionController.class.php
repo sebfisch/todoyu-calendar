@@ -63,7 +63,7 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 		}
 
 			// Verify access rights. If not, change it to day
-		$activeTab	= TodoyuCalendarEventManager::checkTabAccess($activeTab, $params['event']);
+		$activeTab	= TodoyuCalendarEventStaticManager::checkTabAccess($activeTab, $params['event']);
 
 
 			// Set date in preferences when given as parameter
@@ -74,7 +74,7 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 			// Render the calendar
 		$panelWidgets	= TodoyuCalendarRenderer::renderPanelWidgets();
 		$calendarTabs	= TodoyuCalendarRenderer::renderTabs($activeTab);
-		$calendar		= TodoyuCalendarRenderer::render($activeTab, $params);
+		$calendar		= TodoyuCalendarRenderer::renderContent($activeTab, $params);
 
 			// Set calendar as active page
 		TodoyuPage::set('calendarTabs', $calendarTabs);

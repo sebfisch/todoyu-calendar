@@ -264,15 +264,12 @@ class TodoyuCalendarHolidayManager {
 	/**
 	 * Get holidays of given sets in given time span.
 	 *
-	 * @param	Integer	$dateStart		UNIX timestamp of day at beginning of timespan
-	 * @param	Integer	$dateEnd		UNIX timestamp of day at ending of timespan
-	 * @param	Array	$holidaySetIDs
-	 * @return	Array
+	 * @param	TodoyuDayRange	$range
+	 * @param	Integer[]		$holidaySetIDs
+	 * @return	Array[]
 	 */
-	public static function getHolidaysInTimespan($dateStart = 0, $dateEnd = 0, array $holidaySetIDs) {
+	public static function getHolidaysInRange(TodoyuDayRange $range, array $holidaySetIDs) {
 		$holidaySetIDs	= TodoyuArray::intval($holidaySetIDs, true, false);
-		$dateStart		= intval($dateStart);
-		$dateEnd		= intval($dateEnd);
 
 		if( sizeof($holidaySetIDs) === 0 ) {
 			return array();
@@ -285,7 +282,7 @@ class TodoyuCalendarHolidayManager {
 		$where	= '		h.id		= hhmm.id_holiday'
 				. ' AND	h.deleted	= 0'
 				. ' AND	hhmm.id_holidayset IN(' . implode(',', $holidaySetIDs) . ')'
-				. ' AND	h.date BETWEEN ' . $dateStart . ' AND ' . $dateEnd;
+				. ' AND	h.date BETWEEN ' . $range->getStart() . ' AND ' . $range->getEnd();
 		$group	= '	h.id';
 		$order	= 'h.date';
 
@@ -312,7 +309,8 @@ class TodoyuCalendarHolidayManager {
 		$holidaySetIDs	= self::getHolidaysetIDsOfAddresses($addressIDs);
 
 			// Get all holidays affected holidaySets in given timespan
-		$holidays		= self::getHolidaysInTimespan($dateStart, $dateEnd, $holidaySetIDs);
+		$range		= new TodoyuDayRange($dateStart, $dateEnd);
+		$holidays	= self::getHolidaysInRange($range, $holidaySetIDs);
 
 		return $holidays;
 	}

@@ -27,14 +27,14 @@ TodoyuScheduler::addJob('TodoyuCalendarJobReminderEmail', 5);
 // Add holiday set selector to company address form
 TodoyuFormHook::registerBuildForm('ext/contact/config/form/address.xml', 'TodoyuCalendarManager::hookAddHolidaysetToCompanyAddress');
 
-TodoyuFormHook::registerSaveData('ext/calendar/config/form/event.xml', 'TodoyuCalendarEventManager::hookSaveEvent');
+TodoyuFormHook::registerSaveData('ext/calendar/config/form/event.xml', 'TodoyuCalendarEventStaticManager::hookSaveEvent');
 
 
 /* ----------------------------
 	Context Menu Callbacks
    ---------------------------- */
-TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarEventManager::getContextMenuItems', 10);
-TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuCalendarEventManager::getContextMenuItemsPortal', 10);
+TodoyuContextMenuManager::addFunction('Event', 'TodoyuCalendarEventStaticManager::getContextMenuItems', 10);
+TodoyuContextMenuManager::addFunction('EventPortal', 'TodoyuCalendarEventStaticManager::getContextMenuItemsPortal', 10);
 TodoyuContextMenuManager::addFunction('CalendarBody', 'TodoyuCalendarManager::getContextMenuItems', 10);
 
 if( Todoyu::allowed('calendar', 'reminders:email') ) {
@@ -52,8 +52,6 @@ if( Todoyu::allowed('calendar', 'reminders:popup') ) {
 	Quickinfo Callbacks
    ---------------------------- */
 TodoyuQuickinfoManager::addFunction('event', 'TodoyuCalendarQuickinfoManager::addQuickinfoEvent');
-TodoyuQuickinfoManager::addFunction('holiday', 'TodoyuCalendarQuickinfoManager::addQuickinfoHoliday');
-TodoyuQuickinfoManager::addFunction('birthday', 'TodoyuCalendarQuickinfoManager::addQuickinfoBirthday');
 
 
 /* ----------------------------
@@ -105,13 +103,10 @@ Todoyu::$CONFIG['EXT']['calendar']['tabs'] = array(
 
 	// Additional portal tab events listing specific config
 Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
-		// Show coming-up holidays in events tab of portal?
-	'showHoliday'	=> true,
-	'showBirthday'	=> true,
 		// How many weeks to look ahead for coming-up holidays to be listed in events tab of portal?
 	'weeksHoliday'	=> 4,
 	'weeksBirthday'	=> 8,
-	'weeksEvents'	=> 52 // 1 year
+	'weeksStatic'	=> 52 // 1 year
 );
 
 
@@ -213,5 +208,16 @@ if( TodoyuExtensions::isInstalled('profile') && TodoyuAuth::isInternal() ) {
 		);
 	}
 }
+
+
+	// event data sources
+TodoyuCalendarDataSourceManager::addDataSource('static', 'TodoyuCalendarDataSourceStatic');
+TodoyuCalendarDataSourceManager::addDataSource('birthday', 'TodoyuCalendarDataSourceBirthday');
+TodoyuCalendarDataSourceManager::addDataSource('holiday', 'TodoyuCalendarDataSourceHoliday');
+
+	// event filters
+TodoyuHookManager::registerHook('calendar', 'event.filter', 'TodoyuCalendarManager::hookEventFilterPersons');
+TodoyuHookManager::registerHook('calendar', 'event.filter', 'TodoyuCalendarManager::hookEventFilterEventTypes');
+TodoyuHookManager::registerHook('calendar', 'event.filter', 'TodoyuCalendarManager::hookEventFilterHolidaySets');
 
 ?>

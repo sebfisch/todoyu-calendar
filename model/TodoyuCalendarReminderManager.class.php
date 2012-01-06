@@ -140,7 +140,7 @@ class TodoyuCalendarReminderManager {
 		$idEvent		= intval($idEvent);
 		$idPerson		= Todoyu::personid($idPerson);
 
-		return TodoyuCalendarEventManager::getEvent($idEvent)->isPersonAssigned($idPerson);
+		return TodoyuCalendarEventStaticManager::getEvent($idEvent)->isPersonAssigned($idPerson);
 	}
 
 
@@ -173,7 +173,7 @@ class TodoyuCalendarReminderManager {
 		$idEvent	= intval($idEvent);
 		$dateRemind	= intval($dateRemind);
 		$idPerson	= Todoyu::personid($idPerson);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$idReminder	= TodoyuCalendarReminderManager::getReminderIDByAssignment($idEvent, $idPerson);
 
 		if( $event->isPersonAssigned($idPerson) ) {
@@ -223,7 +223,7 @@ class TodoyuCalendarReminderManager {
 	public static function shiftReminderDates($idEvent, $offset) {
 		$idEvent	= intval($idEvent);
 		$offset		= intval($offset);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$personIDs	= $event->getAssignedPersonIDs();
 
 		foreach($personIDs as $idPerson) {
@@ -258,7 +258,7 @@ class TodoyuCalendarReminderManager {
 	 */
 	public static function disablePastTimeKeyOptions(array $subOptions, $idEvent) {
 		$idEvent		= intval($idEvent);
-		$eventDateStart	= TodoyuCalendarEventManager::getEvent($idEvent)->getStartDate();
+		$eventDateStart	= TodoyuCalendarEventStaticManager::getEvent($idEvent)->getDateStart();
 
 		foreach( $subOptions as $secondsBefore => $optionConfig ) {
 			if( $secondsBefore > 0 ) {
@@ -297,7 +297,7 @@ class TodoyuCalendarReminderManager {
 				$advanceTimeEmail	= self::getAdvanceTimeEmail();
 				$advanceTimePopup	= self::getAdvanceTimePopup();
 			} else {
-				$event				= TodoyuCalendarEventManager::getEvent($idEvent);
+				$event				= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 				$advanceTimeEmail	= $event->getReminderAdvanceTimeEmail();
 				$advanceTimePopup	= $event->getReminderAdvanceTimePopup();
 			}

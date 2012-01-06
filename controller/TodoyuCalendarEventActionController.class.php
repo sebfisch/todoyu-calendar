@@ -45,7 +45,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	public function editAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$timestamp	= strtotime($params['date']);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 			// Check rights
 		if( $idEvent === 0 ) {
@@ -106,7 +106,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Save or update event (and send email if mail-option activated)
 		if( sizeof($warningHeaders) === 0 ) {
 			$data	= $form->getStorageData();
-			$idEvent= TodoyuCalendarEventManager::saveEvent($data);
+			$idEvent= TodoyuCalendarEventStaticManager::saveEvent($data);
 
 				// Send event auto-email to preset receivers: those get emails concerning all new/changed events they participate in
 				// Watch out: persons only have their ID as key when editing a pre-existing event!
@@ -114,7 +114,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			$autoMailPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
 
 			if( ! empty($autoMailPersonIDs) ) {
-				if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
+				if( TodoyuCalendarEventStaticManager::sendEventAsEmail($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
 					TodoyuHeader::sendTodoyuHeader('sentAutoEmail', true);
 
 						// Don't double-send: remove auto-mail receivers from manual receivers list
@@ -126,7 +126,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 				// Send event email to selected receivers
 			if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
-				if( TodoyuCalendarEventManager::sendEventAsEmail($idEvent, $emailReceiverIDs, $isNewEvent) ) {
+				if( TodoyuCalendarEventStaticManager::sendEventAsEmail($idEvent, $emailReceiverIDs, $isNewEvent) ) {
 					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 				}
 			}
@@ -149,10 +149,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 		$isOverbookingConfirmed	= intval($params['isOverbookingConfirmed']);
 		if( TodoyuCalendarManager::isOverbookingAllowed() && ! $isOverbookingConfirmed ) {
-			$overbookedWarning	= TodoyuCalendarEventManager::getOverbookingWarning($idEvent, $params['event']);
+			$overbookedWarning	= TodoyuCalendarEventStaticManager::getOverbookingWarning($idEvent, $params['event']);
 			if( ! empty($overbookedWarning) ) {
 				$warnings['overbookingwarning'] 		= $overbookedWarning;
-				$warnings['overbookingwarningInline']	= TodoyuCalendarEventManager::getOverbookingWarning($idEvent, $params['event'], false);
+				$warnings['overbookingwarningInline']	= TodoyuCalendarEventStaticManager::getOverbookingWarning($idEvent, $params['event'], false);
 			}
 		}
 
@@ -176,7 +176,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Check right
 		TodoyuCalendarEventRights::restrictEdit($idEvent);
 
-		$overbookings	= TodoyuCalendarEventManager::moveEvent($idEvent, $timeStart, $tab, $isConfirmed);
+		$overbookings	= TodoyuCalendarEventStaticManager::moveEvent($idEvent, $timeStart, $tab, $isConfirmed);
 		if( is_array($overbookings) && ! $isConfirmed ) {
 			if( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
 					// Overbooking forbidden - reset event to original time, show notification
@@ -184,7 +184,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				return implode('<br />', $overbookings);
 			} else {
 					// Overbooking allowed - open popup with warning and confirmation dialog
-				$overbookedWarning	= TodoyuCalendarEventManager::getOverbookingWarningAfterDrop($idEvent, $timeStart);
+				$overbookedWarning	= TodoyuCalendarEventStaticManager::getOverbookingWarningAfterDrop($idEvent, $timeStart);
 				TodoyuHeader::sendTodoyuHeader('overbookingwarning', $overbookedWarning);
 			}
 		}
@@ -203,7 +203,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Check right
 		TodoyuCalendarEventRights::restrictDelete($idEvent);
 
-		TodoyuCalendarEventManager::deleteEvent($idEvent);
+		TodoyuCalendarEventStaticManager::deleteEvent($idEvent);
 	}
 
 
@@ -231,11 +231,10 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function acknowledgeAction(array $params) {
 		$idEvent	= intval($params['event']);
-		$idPerson	= intval($params['person']);
 
 		TodoyuCalendarEventRights::restrictSee($idEvent);
 
-		TodoyuCalendarEventAssignmentManager::acknowledgeEvent($idEvent, $idPerson);
+		TodoyuCalendarEventAssignmentManager::acknowledgeEvent($idEvent);
 	}
 
 
@@ -248,7 +247,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function showAction(array $params) {
 		$idEvent	= intval($params['event']);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 		TodoyuCalendarEventRights::restrictSee($idEvent);
 
@@ -323,7 +322,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$operationID= intval($params['operation']);
 
-		$participantIDs	= TodoyuCalendarEventManager::getEvent($idEvent)->getAssignedPersonIDs();
+		$participantIDs	= TodoyuCalendarEventStaticManager::getEvent($idEvent)->getAssignedPersonIDs();
 		$personIDs		= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
 
 		if( count($personIDs) > 0 ) {

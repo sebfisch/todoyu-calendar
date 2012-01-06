@@ -29,21 +29,20 @@ class TodoyuCalendarViewHelper {
 	/**
 	 * Render title (description of shown timespan) of given calendar view
 	 *
-	 * @param	Integer		$dateStart
-	 * @param	Integer		$dateEnd
-	 * @param	Integer		$mode			CALENDAR_MODE_DAY / ..WEEK / ..MONTH
+	 * @param	TodoyuDayRange	$range
+	 * @param	Integer			$mode			CALENDAR_MODE_DAY / ..WEEK / ..MONTH
 	 * @return	String
 	 */
-	public static function getCalendarTitle($dateStart, $dateEnd, $mode = CALENDAR_MODE_DAY) {
-		$dateStart	= intval($dateStart);
-		$dateEnd	= intval($dateEnd);
+	public static function getCalendarTitle(TodoyuDayRange $range, $mode = CALENDAR_MODE_DAY) {
+		$dateStart	= $range->getStart();
+		$dateEnd	= $range->getEnd();
 		$title		= '';
 
 		if( $mode === CALENDAR_MODE_DAY ) {
 			$format= Todoyu::Label('calendar.ext.calendartitle.dateformat.day');
 			$title	.= strftime($format, $dateStart);
 		} elseif( $mode === CALENDAR_MODE_WEEK ) {
-			if( ! TodoyuCalendarPreferences::getIsWeekendDisplayed() ) {
+			if( ! TodoyuCalendarPreferences::isWeekendDisplayed() ) {
 				$dateEnd -= 2 * TodoyuTime::SECONDS_DAY;
 			}
 			$title	.= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.week.part1'), $dateStart);
@@ -139,10 +138,10 @@ class TodoyuCalendarViewHelper {
 	public static function getRemindAgainOptions(TodoyuFormElement $field) {
 		$idEvent	= $field->getForm()->getRecordID();
 
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 			// About the two minutes extra. Prevent showing the current active reminder time
 			// when the popup came a little bit too soon
-		$timeLeft	= $event->getStartDate() - NOW - TodoyuTime::SECONDS_MIN * 2;
+		$timeLeft	= $event->getDateStart() - NOW - TodoyuTime::SECONDS_MIN * 2;
 
 		return self::getRemindingTimeOptionsArray(false, $timeLeft);
 	}

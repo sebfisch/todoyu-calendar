@@ -1,17 +1,21 @@
 todoyu calendar extension changelog
 
 calender 1.2.0 - not released yet
-	* Bugfix: Event mailing popup observers were initialized premature on page load (1732.417)
-	* Bugfix: Quick-event form observers were not re-initialized after failed data validation form re-display (1732.516)
-	* Bugfix: Optional event emails after quick-event creation were not being sent (1732.517)
 	* Feature: Options for starting + ending hour of time excerpt in user profile
 	* Feature: 5-day week viewing mode (monday to friday)
 	* Feature: Implemented month and week mode starting with sunday (system setting)
 	* Added: Implemented forgotten automatic email roles option
+	* Changed: Use data sources which can provide own event types which implement the TodoyuCalendarEvent interface
+	* Changed: Use view objects to render content for day, week and month
+	* Changed: Use event elements to separate rendering from data models
+	* Changed: Unified rendering templates for events
 	* Changed: Replaced scal mini-calendar with jscalendar in calendar panelwidget
 	* Changed: Moved toggle full-day/working hours button into calendar top navigation
 	* Changed: Prevented pointless AJAX request of optional event mailing when no receivers are selected
 	* Changed: Clarified cancel mailing button label (to "dont send email" instead of "cancel")
+	* Bugfix: Event mailing popup observers were initialized premature on page load (1732.417)
+	* Bugfix: Quick-event form observers were not re-initialized after failed data validation form re-display (1732.516)
+	* Bugfix: Optional event emails after quick-event creation were not being sent (1732.517)
 
 calendar 1.1.4 - 2011-12-13
 	* Bugfix: Set holidays and holidaysets only deleted, don't delete in database

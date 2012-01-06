@@ -40,7 +40,7 @@ class TodoyuCalendarEventMailManager {
 		}
 
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 		if( ! $event->areOtherPersonsAssigned() ) {
 			return false;
@@ -124,14 +124,14 @@ class TodoyuCalendarEventMailManager {
 		$idPersonMailTo= intval($idPersonMailTo);
 		$idPersonSender = Todoyu::personid($idPersonSender);
 
-		$event			= TodoyuCalendarEventManager::getEvent($idEvent, true);
+		$event			= TodoyuCalendarEventStaticManager::getEvent($idEvent, true);
 
 		$data	= array(
 			'event'			=> $event->getTemplateData(),
 			'personReceive'	=> TodoyuContactPersonManager::getPerson($idPersonMailTo)->getTemplateData(),
 			'personSend'	=> self::getPersonSendTemplateData($idPersonSender, $isSentBySystem),
 			'personWrite'	=> self::getPersonWriteTemplateData($event),
-			'attendees'		=> TodoyuCalendarEventManager::getAssignedPersonsOfEvent($idEvent, true)
+			'attendees'		=> TodoyuCalendarEventStaticManager::getAssignedPersonsOfEvent($idEvent, true)
 		);
 
 		$urlParams	= array(
@@ -168,10 +168,10 @@ class TodoyuCalendarEventMailManager {
 	/**
 	 * Get event email sender person template data
 	 *
-	 * @param	TodoyuCalendarEvent		$event
+	 * @param	TodoyuCalendarEventStatic		$event
 	 * @return	Array
 	 */
-	public static function getPersonWriteTemplateData(TodoyuCalendarEvent $event) {
+	public static function getPersonWriteTemplateData(TodoyuCalendarEventStatic $event) {
 		$personWrite	= $event->getCreatePerson();
 
 		if( $personWrite !== false ) {

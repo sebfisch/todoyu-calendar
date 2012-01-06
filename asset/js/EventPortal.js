@@ -125,18 +125,16 @@ Todoyu.Ext.calendar.EventPortal = {
 	 *
 	 * @method	acknowledgeEvent
 	 * @param	{Number}		idEvent
-	 * @param	{Number}		idPerson
 	 */
-	acknowledgeEvent: function(idEvent, idPerson) {
+	acknowledgeEvent: function(idEvent) {
 		var url = Todoyu.getUrl('calendar', 'event');
 
 		var options = {
 			parameters: {
 				action:	'acknowledge',
-				'event':	idEvent,
-				'person':	idPerson
+				event:	idEvent
 			},
-			onComplete: this.onAcknowledged.bind(this, idEvent, idPerson)
+			onComplete: this.onAcknowledged.bind(this, idEvent)
 		};
 
 		this.setAcknowledgeStatus(idEvent);
@@ -152,7 +150,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	 * @method	onAcknowledged
 	 * @param	{Ajax.Response}		response
 	 */
-	onAcknowledged: function(idEvent, idPerson, response) {
+	onAcknowledged: function(idEvent, response) {
 
 	},
 

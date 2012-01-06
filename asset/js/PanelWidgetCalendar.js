@@ -86,14 +86,15 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 * @method	init
 	 * @param	{String}		date	Formatted date Y-m-d
 	 */
-	init: function(date) {
+	init: function(date, firstDayOfWeek) {
 		var initialDate = new Date(date);
 
 		var parent = $('panelwidget-calendar-jscalendar');
 			// construct a calendar giving only the "selected" handler.
-		this.Calendar = new Calendar(0, null, this.onDateSelected.bind(this), null);
+		this.Calendar = new Calendar(firstDayOfWeek, null, this.onDateSelected.bind(this), null);
 
 		this.Calendar.weekNumbers = true;
+		this.Calendar.showsOtherMonths = true;
 		this.Calendar.setDateFormat("%A, %B %e");
 
 		this.Calendar.create(parent);

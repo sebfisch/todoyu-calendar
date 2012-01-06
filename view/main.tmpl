@@ -21,14 +21,17 @@
 
 </div>
 
-<div id="calendar-edit" {if $active != 'edit'}style="display:none"{/if}>
-{if $active == 'edit'}{$content}{/if}
+<div id="calendar-edit" {if $tab != 'edit'}style="display:none"{/if}>
+{if $tab == 'edit'}
+	{$content}
+{/if}
 </div>
-<div id="calendar-view" {if $active != 'view'}style="display:none"{/if}>
-{if $active == 'view'}
-{$content}
-<script>
+
+<div id="calendar-view" {if $tab != 'view'}style="display:none"{/if}>
+{if $tab == 'view'}
+	{$content}
+	<script>
 	Todoyu.Ext.calendar.setTime.bind(Todoyu.Ext.calendar).delay(1, {$date}, true);
-</script>
+	</script>
 {/if}
 </div>

@@ -1,0 +1,133 @@
+{if $displayWeekend}
+	{$amountDaysShown = 7}
+{else}
+	{$amountDaysShown = 5}
+{/if}
+{$dateKeyToday = date('Ymd')}
+
+<div class="mainGrid">
+	<div id="gridcontainer" class="weekMode {if $amountDaysShown == 5} fiveDays{/if}">
+
+		{* --------------- Day event Bar Start ----------------------- *}
+		<div class="gridHeader" id="gridHeader">
+			<table class="wk-weektop"><tbody>
+				{* --------------- Day names and dates ----------------------- *}
+				<tr class="dayLabels">
+					<td rowspan="3" class="timeSpacer"></td>
+					{* ---------- Header: dates of the rendered week ------------ *}
+					{foreach $dayColumns dayColumn}
+						<th class="dayName dayCol {if $dayColumn.today}today todaywk-dayname{/if} {cycle values="odd,even"}" title="{$dayColumn.title}{if $dayColumn.today} ({Label calendar.ext.today}){/if}" scope="col" onclick="Todoyu.Ext.calendar.showDay('{$dayColumn.date}')">
+						{$dayColumn.label}
+						{*
+							{if sizeof($holidays[$dayDateKey])>0}
+							<span id="holiday-{$timestamps[$weekday]}" class="holiday quickInfoHoliday"></span>
+							{/if}
+						*}
+						</th>
+					{/foreach}
+
+					{*
+					{for weekday 0 $amountDaysShown}{$dayDateKey = date('Ymd', $timestamps[$weekday])}
+						<th class="dayCol wk-dayname {if $timestamps[$weekday] == $timestamp_today}today todaywk-dayname{/if} {cycle values="odd,even"}" title="{dateFormat $timestamps.$weekday DlongD2MlongY4}{if $timestamps.$weekday == $timestamp_today} ({Label calendar.ext.today}){/if}" scope="col" onclick="Todoyu.Ext.calendar.showDay('{date('Y-m-d', $timestamps[$weekday])}')">
+							{dateFormat $timestamps[$weekday] DshortD2M2}
+							{if sizeof($holidays[$dayDateKey]) > 0}
+								<span id="holiday-{$timestamps[$weekday]}" class="holiday quickInfoHoliday"></span>
+							{/if}
+						</th>
+					{/for}
+					*}
+				</tr>
+
+				{if sizeof($dayEvents) > 0}
+				{* ------------ All-day events  ------------------ *}
+				<tr>
+					<td class="dayEvents" colspan="{$amountDaysShown}">
+						<table >
+							{* --------------- (TD Cell-width and) birthday items ------- *}
+
+							{foreach $dayEvents dayDayEvents}
+								<tr>
+									{foreach $dayDayEvents dayEvent}
+										{if is_array($dayEvent)}
+											<td {if $dayEvent.length > 1}colspan="{$dayEvent.length}"{/if}>
+												{$dayEvent.html}
+											</td>
+										{elseif $dayEvent == false}
+											<td>&nbsp;</td>
+										{/if}
+									{/foreach}
+								</tr>
+							{/foreach}
+
+							{* Make hidden columns to assure correct width for colspans. todo: combine tables and remove this *}
+							<tr>
+								{foreach $dayColumns dayColumn}
+									<td class="dayCol"></td>
+								{/foreach}
+							</tr>
+
+						</table>
+					</td>
+				</tr>
+				{/if}
+			</tbody></table>
+		</div>
+		{* --------------- All-day event Bar End ----------------------- *}
+
+		{* --------------- Start scrolltimedevents ----------------------- *}
+		<div id="calendarBody" class="wk-scrolltimedevents {if $showFullDay}full{/if} contextmenucalendarbody">
+			<table class="tg-timedevents" id="tgTable">
+				<tbody><tr>
+					<td class="wid40"></td>
+					<td colspan="{$amountDaysShown}">
+						<div class="tg-hourmarkerwrapper">
+							<div class="tg-hourmarkers">
+								{* --------- Hour splitting lines -------- *}
+								{for hourmarker 0 23}<div class="tg-dualmarker"></div>{/for}
+							</div>
+						</div>
+					</td>
+				</tr><tr>
+					<td class="colHours">
+						{for hour 0 23}
+							<div class="hour">
+								{if $hour < 10}0{/if}{$hour}:00
+							</div>
+						{/for}
+					</td>
+					{* -------- Week event inserters -------- *}
+					{foreach $events dayKey eventsOfDay 'weekdays'}
+						<td class="dayCol {if $dayKey == $dateKeyToday}today{$amountDaysShown}{/if}">
+							<div class="tg-colwrapper">
+								<div id="tgCol{$.foreach.weekdays.index}">
+									{foreach $eventsOfDay eventHtml}
+										{$eventHtml}
+									{/foreach}
+								</div>
+							</div>
+						</td>
+					{/foreach}
+
+					{*
+					{for daycounter 0 $amountDaysShown}
+						{assign var=dayDateKey value=date('Ymd', $timestamps.$daycounter)}
+						<td class="dayCol {if $timestamps.$daycounter == $timestamp_today}today{$amountDaysShown+1}{/if}">
+							<div class="tg-colwrapper">
+								<div id="tgCol{$daycounter}">{foreach $events.$dayDateKey event}{$event}{/foreach}</div>
+							</div>
+						</td>
+					{/for}
+					*}
+				</tr></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script language="javascript">
+	Todoyu.Ext.calendar.setTitle('{$title}');
+	Todoyu.Config.Calendar = {
+    	excerptTimeStart:	{$excerpttime_start},
+    	excerptTimeEnd:		{$excerpttime_end}
+	};
+</script>

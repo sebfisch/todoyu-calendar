@@ -38,23 +38,10 @@ div.dayMode div#calendarBody div.event dt.head {
 /* -------------------------------
 	Day view all-day 00:00 - 23:00
    ------------------------------- */
-#dayViewAllDaywk {
-	padding:0 0 2px 0;
-	background:none;
-}
+/*.dayEvents {*/
+	/*padding-bottom:2px;*/
+/*}*/
 
-.tg-time-day {
-	padding-left:2px;
-	color:#446688;
-	border-top:1px solid #ddd;
-	background-color:#f2f3ed;
-	height:41px;
-	cursor:pointer;
-}
-
-.tg-time-day:hover {
-	background-color:#f1ffc4;
-}
 
 
 
@@ -70,11 +57,11 @@ div.dayMode div#calendarBody div.event dt.head {
 /* ----------------------
 	Event
    ---------------------- */
-#dayViewAllDaywk .dayevent {
+.dayEvents .event {
 	padding-top:1px;
 }
 
-#calendar #dayViewAllDaywk .event span {
+#calendar .dayEvents .event span {
 	display:inline-block;
 }
 

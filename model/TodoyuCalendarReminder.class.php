@@ -32,7 +32,7 @@ class TodoyuCalendarReminder extends TodoyuCalendarEventAssignment {
 	 * @return	Integer
 	 */
 	public function getEventStartDate() {
-		return $this->getEvent()->getStartDate();
+		return $this->getEvent()->getDateStart();
 	}
 
 

@@ -30,7 +30,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	/**
 	 * Sent event
 	 *
-	 * @var	TodoyuCalendarEvent
+	 * @var	TodoyuCalendarEventStatic
 	 */
 	private $event;
 
@@ -52,7 +52,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	public function __construct($idEvent, $idPerson, $actionType, array $config = array()) {
 		parent::__construct($config);
 
-		$this->event		= TodoyuCalendarEventManager::getEvent($idEvent);
+		$this->event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$this->person		= TodoyuContactPersonManager::getPerson($idPerson);
 		$this->actionType	= intval($actionType);
 
@@ -140,7 +140,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 		$data	= $this->getData();
 
 		$data['hideEmails']	= true;
-		$data['colors']		= TodoyuCalendarEventManager::getEventTypeColors();
+		$data['colors']		= TodoyuCalendarEventStaticManager::getEventTypeColors();
 
 		return Todoyu::render($tmpl, $data);
 	}
