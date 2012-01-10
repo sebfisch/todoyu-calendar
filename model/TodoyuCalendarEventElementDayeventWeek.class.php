@@ -43,7 +43,7 @@ class TodoyuCalendarEventElementDayeventWeek extends TodoyuCalendarEventElementW
 	public function __construct(TodoyuCalendarEventElementWeek $eventElement) {
 		parent::__construct($eventElement->getEvent(), $eventElement->getView());
 
-		$this->eventElement = $eventElement;
+		$this->eventElement	= $eventElement;
 
 		$this->addClass('dayevent');
 	}

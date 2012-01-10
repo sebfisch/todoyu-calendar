@@ -84,7 +84,7 @@ abstract class TodoyuCalendarView {
 	 * @param	TodoyuDayRange		$range
 	 */
 	public function setRange(TodoyuDayRange $range) {
-		$this->range = $range;
+		$this->range	= $range;
 	}
 
 
@@ -119,7 +119,7 @@ abstract class TodoyuCalendarView {
 	 * @param	Mixed	$value
 	 */
 	public function addFilter($name, $value) {
-		$this->filters[$name] = $value;
+		$this->filters[$name]	= $value;
 	}
 
 
@@ -147,11 +147,11 @@ abstract class TodoyuCalendarView {
 		$filters	= $this->getFilters();
 
 		if( !is_null($dayEvents) ) {
-			$extraFilters['dayevents'] = $dayEvents;
+			$extraFilters['dayevents']	= $dayEvents;
 		}
 
 		if( sizeof($extraFilters) > 0 ) {
-			$filters = array_merge($filters, $extraFilters);
+			$filters	= array_merge($filters, $extraFilters);
 		}
 
 		return TodoyuCalendarDataSourceManager::getEvents($this->getRange(), $filters);

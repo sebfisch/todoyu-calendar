@@ -186,7 +186,7 @@ class TodoyuCalendarReminderManager {
 			self::updateReminder($idReminder, $data);
 
 				// Update dismission flag
-			$isDismissed = $dateRemind == 0;
+			$isDismissed	= $dateRemind == 0;
 			self::updateReminderDismission($reminderType, $idReminder, $isDismissed);
 		}
 	}

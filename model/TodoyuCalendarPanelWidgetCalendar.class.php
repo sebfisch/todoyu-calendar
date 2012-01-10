@@ -31,7 +31,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 *
 	 * @var string
 	 */
-	const PREF = 'panelwidget-calendar';
+	const PREF	= 'panelwidget-calendar';
 
 
 
@@ -64,7 +64,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	 * @return	String
 	 */
 	protected function getJsInitCode() {
-		$firstDayOfWeek = TodoyuSysmanagerSystemConfigManager::getFirstDayOfWeek();
+		$firstDayOfWeek	= TodoyuSysmanagerSystemConfigManager::getFirstDayOfWeek();
 		$date			= date('Y-m-d', $this->getDate());
 		$jsClass		= 'Todoyu.Ext.calendar.PanelWidget.Calendar';
 

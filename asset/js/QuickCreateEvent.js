@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.QuickCreateEvent
  */
-Todoyu.Ext.calendar.QuickCreateEvent = {
+Todoyu.Ext.calendar.QuickCreateEvent	= {
 
 	/**
 	 * Reference to extension

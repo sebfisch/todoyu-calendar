@@ -27,7 +27,7 @@
  * @namespace	Todoyu.Ext.calendar.HolidayEditor
  */
 
- Todoyu.Ext.calendar.HolidayEditor = {
+ Todoyu.Ext.calendar.HolidayEditor	= {
 
  	/**
 	 * Initialization

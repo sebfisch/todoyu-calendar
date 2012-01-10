@@ -85,7 +85,7 @@ class TodoyuCalendarViewDay extends TodoyuCalendarView {
 		$eventElements	= array();
 
 		foreach($events as $event) {
-			$eventElements[] = new TodoyuCalendarEventElementDay($event, $this);
+			$eventElements[]	= new TodoyuCalendarEventElementDay($event, $this);
 		}
 
 		return $eventElements;
@@ -103,7 +103,7 @@ class TodoyuCalendarViewDay extends TodoyuCalendarView {
 		$dayEventElements	= array();
 
 		foreach($eventElements as $eventElement) {
-			$dayEventElements[] = new TodoyuCalendarEventElementDayeventDay($eventElement);
+			$dayEventElements[]	= new TodoyuCalendarEventElementDayeventDay($eventElement);
 		}
 
 		return $dayEventElements;
@@ -121,7 +121,7 @@ class TodoyuCalendarViewDay extends TodoyuCalendarView {
 		$eventElements		= $this->getEventElementsWithOverlapping();
 
 		foreach($eventElements as $eventElement) {
-			$renderedElements[] = $eventElement->render();
+			$renderedElements[]	= $eventElement->render();
 		}
 
 		return $renderedElements;

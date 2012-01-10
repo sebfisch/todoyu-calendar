@@ -71,12 +71,12 @@ TodoyuFormHook::registerBuildForm('ext/calendar/config/form/event.xml', 'TodoyuC
 	Tabs Configurations
    ----------------------- */
 	// Setup tabs in calendar area
-Todoyu::$CONFIG['EXT']['calendar']['config'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['config']	= array(
 	'defaultTab'	=> 'week'
 );
 
 	// Tabs used in calendar
-Todoyu::$CONFIG['EXT']['calendar']['tabs'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['tabs']	= array(
 	'day'	=> array(
 		'key'		=> 'day',
 		'id'		=> 'day',
@@ -102,7 +102,7 @@ Todoyu::$CONFIG['EXT']['calendar']['tabs'] = array(
 
 
 	// Additional portal tab events listing specific config
-Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']	= array(
 		// How many weeks to look ahead for coming-up holidays to be listed in events tab of portal?
 	'weeksHoliday'	=> 4,
 	'weeksBirthday'	=> 8,
@@ -127,7 +127,7 @@ TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', '
 TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'calendar.event.type.reminder');
 
 	// Which event types have no relevance to overbooking prevention?
-Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']	= array(
 	EVENTTYPE_BIRTHDAY,
 	EVENTTYPE_MILESTONE,
 	EVENTTYPE_REMINDER
@@ -136,13 +136,13 @@ Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'] = array(
 Todoyu::$CONFIG['EXT']['calendar']['maxShownOverbookingsPerPerson']	= 5;
 
 	// Which event types define absences?
-Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE']	= array(
 	EVENTTYPE_AWAY,
 	EVENTTYPE_VACATION,
 	EVENTTYPE_COMPENSATION
 );
 	// Which event types should be reminded of via popup?
-Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP']	= array(
 	EVENTTYPE_GENERAL,
 	EVENTTYPE_MEETING,
 	EVENTTYPE_MILESTONE,
@@ -150,7 +150,7 @@ Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_REMIND_POPUP'] = array(
 );
 
 	// Default color preset for events being assigned to several persons / none
-Todoyu::$CONFIG['EXT']['calendar']['defaultEventColors'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['defaultEventColors']	= array(
 	'id'		=> -1,
 	'border'	=> '#555',
 	'text'		=> '#000',
@@ -169,11 +169,11 @@ Todoyu::$CONFIG['EXT']['calendar']['default']['eventDuration']	= 3600;		// 1 hou
 	Event Reminder Settings
    --------------------------- */
 	// How long to look ahead for events?
-Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKAHEAD'] = 57600;	// 16 hours
+Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKAHEAD']	= 57600;	// 16 hours
 	// How long to remind of events in the past?
-Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKBACK'] = 60; // 1 minute
+Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_LOOKBACK']	= 60; // 1 minute
 	// Time (in minutes) before event for event reminders to occur
-Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS'] = array(1, 5, 15, 30, 45, 60, 120, 720, 1440, 2880, 10080);
+Todoyu::$CONFIG['EXT']['calendar']['EVENT_REMINDER_MINUTESBEFOREEVENTOPTIONS']	= array(1, 5, 15, 30, 45, 60, 120, 720, 1440, 2880, 10080);
 
 
 
@@ -190,7 +190,7 @@ if( TodoyuExtensions::isInstalled('profile') && TodoyuAuth::isInternal() ) {
 	));
 
 		// Tabs for calendar section in profile
-	Todoyu::$CONFIG['EXT']['profile']['calendarTabs'] = array();
+	Todoyu::$CONFIG['EXT']['profile']['calendarTabs']	= array();
 
 	if( Todoyu::allowed('calendar', 'mailing:sendAsEmail') ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(

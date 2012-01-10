@@ -94,7 +94,7 @@ abstract class TodoyuCalendarDataSource {
 		$filter	= $this->filters[$name];
 
 		if( $asArray ) {
-			$filter = TodoyuArray::assure($filter);
+			$filter	= TodoyuArray::assure($filter);
 		}
 
 		return $filter;

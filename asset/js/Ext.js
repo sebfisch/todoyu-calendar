@@ -27,7 +27,7 @@
  * @class		Calendar
  * @namespace	Todoyu.Ext
  */
-Todoyu.Ext.calendar = {
+Todoyu.Ext.calendar	= {
 
 	/**
 	 * Instantiate panel widgets
@@ -318,7 +318,7 @@ Todoyu.Ext.calendar = {
 	 * @param	{Event}		event
 	 */
 	onEventClick: function(event) {
-		var idEvent = event.findElement('div').id.split('-').last();
+		var idEvent	= event.findElement('div').id.split('-').last();
 
 		this.Event.updateEvent(idEvent);
 	},
@@ -378,7 +378,7 @@ Todoyu.Ext.calendar = {
 
 			// Get active tab and set it
 		if( ! Object.isString(tab) ) {
-			tab = this.getActiveTab();
+			tab	= this.getActiveTab();
 		}
 		this.setActiveTab(tab);
 

@@ -53,7 +53,7 @@ class TodoyuCalendarViewHelper {
 			$title	.= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.month.part2'), $dateStart);
 			$title	.= strftime(Todoyu::Label('calendar.ext.calendartitle.dateformat.month.part3'), $dateEnd);
 		} else {
-			$title = 'Invalid mode';
+			$title	= 'Invalid mode';
 		}
 
 		return TodoyuString::getAsUtf8($title);
@@ -68,11 +68,11 @@ class TodoyuCalendarViewHelper {
 	 * @return	Array
 	 */
 	public static function getHolidayOptions(TodoyuFormElement $field) {
-		$options = array();
+		$options	= array();
 
 		$holidays	= TodoyuCalendarHolidayManager::getAllHolidays();
 		foreach($holidays as $holiday) {
-			$options[] = array(
+			$options[]	= array(
 				'value'	=> $holiday['id'],
 				'label'	=> $holiday['title'] . ' (' . TodoyuTime::format($holiday['date'], 'D2M2Y4') . ')'
 			);
@@ -90,11 +90,11 @@ class TodoyuCalendarViewHelper {
 	 * @return	Array
 	 */
 	public static function getHolidaySetOptions(TodoyuFormElement $field) {
-		$options = array();
+		$options	= array();
 
 		$holidaySets	= TodoyuCalendarHolidaySetManager::getAllHolidaySets();
 		foreach($holidaySets as $set) {
-			$options[] = array(
+			$options[]	= array(
 				'value'	=> $set['id'],
 				'label'	=> $set['title']
 			);
@@ -161,9 +161,9 @@ class TodoyuCalendarViewHelper {
 
 			// Add disabled reminder option for new event
 		if( $includePastOptions ) {
-			$options[] = array(
+			$options[]	= array(
 				'value'	=> 0,
-				'label' => Todoyu::Label('calendar.reminder.noReminder')
+				'label'	=> Todoyu::Label('calendar.reminder.noReminder')
 			);
 		}
 
@@ -179,7 +179,7 @@ class TodoyuCalendarViewHelper {
 					$label	= TodoyuTime::formatDuration($secondsUntil) . ' ' . Todoyu::Label('calendar.reminder.beforeDateStart');
 					$value	= $secondsUntil;
 				}
-				$options[] = array(
+				$options[]	= array(
 					'value'	=> $value,
 					'label'	=> $label
 				);

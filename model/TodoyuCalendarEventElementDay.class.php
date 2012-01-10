@@ -73,7 +73,7 @@ class TodoyuCalendarEventElementDay extends TodoyuCalendarEventElementDayWeek {
 	protected function getPositionStyles() {
 		$styles	= parent::getPositionStyles();
 
-		$styles['top'] = $this->getTopOffset($this->getEvent()->getDateStart())  . 'px';
+		$styles['top']	= $this->getTopOffset($this->getEvent()->getDateStart())  . 'px';
 
 		return $styles;
 	}

@@ -31,7 +31,7 @@ class TodoyuCalendarRenderer {
 	 *
 	 * @var	String
 	 */
-	const EXTKEY = 'calendar';
+	const EXTKEY	= 'calendar';
 
 
 
@@ -205,7 +205,7 @@ class TodoyuCalendarRenderer {
 	 */
 	public static function renderTabs($activeTab = '') {
 		if( empty($activeTab) ) {
-			$activeTab = TodoyuCalendarPreferences::getActiveTab();
+			$activeTab	= TodoyuCalendarPreferences::getActiveTab();
 		}
 
 		$name		= 'calendar';
@@ -213,7 +213,7 @@ class TodoyuCalendarRenderer {
 		$jsHandler	= 'Todoyu.Ext.calendar.Tabs.onSelect.bind(Todoyu.Ext.calendar.Tabs)';
 
 		if( $activeTab === 'view' ) {
-			$tabs[] = array(
+			$tabs[]	= array(
 				'id'	=> 'view',
 				'label'	=> 'Details'
 			);

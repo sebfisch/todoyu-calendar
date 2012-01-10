@@ -27,7 +27,7 @@
  * @class		CalendarBody
  * @namespace	Todoyu.Ext.calendar
  */
-Todoyu.Ext.calendar.CalendarBody = {
+Todoyu.Ext.calendar.CalendarBody	= {
 
 	/**
 	 * Reference to extension
@@ -59,7 +59,7 @@ Todoyu.Ext.calendar.CalendarBody = {
 	init: function() {
 			// Ensure the calendarBody is there (it's missing when editing an event initially)
 		if( $(this.idArea) !== null ) {
-			this.calendarBody = $(this.idArea);
+			this.calendarBody	= $(this.idArea);
 
 			this.installContextMenu();
 			this.installObserversCreateEvent();

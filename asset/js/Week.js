@@ -20,7 +20,7 @@
 /**
  * Handle week view
  */
-Todoyu.Ext.calendar.Week = {
+Todoyu.Ext.calendar.Week	= {
 
 	/**
 	 * Extension back ref

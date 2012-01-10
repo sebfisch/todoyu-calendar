@@ -698,14 +698,14 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 				$break	= "\n";
 				$format	= 'D2MshortTime';
 			}
-			$dateInfo  = TodoyuTime::format($this->getDateStart(), $format);
-			$dateInfo .= $break;
-			$dateInfo .= TodoyuTime::format($this->getDateEnd(), $format);
+			$dateInfo	= TodoyuTime::format($this->getDateStart(), $format);
+			$dateInfo  .= $break;
+			$dateInfo  .= TodoyuTime::format($this->getDateEnd(), $format);
 		} else {
 				// Normal in-day event
-			$dateInfo  = TodoyuTime::format($this->getDateStart(), 'D2MshortTime');
-			$dateInfo .= ' - ';
-			$dateInfo .= TodoyuTime::format($this->getDateEnd(), 'time');
+			$dateInfo	= TodoyuTime::format($this->getDateStart(), 'D2MshortTime');
+			$dateInfo  .= ' - ';
+			$dateInfo  .= TodoyuTime::format($this->getDateEnd(), 'time');
 		}
 
 		if( $withDuration ) {

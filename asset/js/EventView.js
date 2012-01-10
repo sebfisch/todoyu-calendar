@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.Event.View
  */
-Todoyu.Ext.calendar.Event.View = {
+Todoyu.Ext.calendar.Event.View	= {
 
 	/**
 	 * Reference to extension
@@ -83,7 +83,7 @@ Todoyu.Ext.calendar.Event.View = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onDetailsLoaded: function(idEvent, response) {
-		var tabLabel = response.getTodoyuHeader('tabLabel');
+		var tabLabel	= response.getTodoyuHeader('tabLabel');
 
 		this.setTabLabel(tabLabel);
 	},
@@ -98,7 +98,7 @@ Todoyu.Ext.calendar.Event.View = {
 	 */
 	addTab: function(label) {
 		if( ! Todoyu.exists('calendar-tab-view') ) {
-			var tab = Todoyu.Tabs.build('calendar', 'view', '', label, true);
+			var tab	= Todoyu.Tabs.build('calendar', 'view', '', label, true);
 
 			$('calendar-tab-month').insert({
 				'after': tab

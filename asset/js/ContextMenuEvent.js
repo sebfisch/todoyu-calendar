@@ -27,7 +27,7 @@
  * @namespace	Todoyu.Ext.calendar.ContextMenuEvent
  *
 */
-Todoyu.Ext.calendar.ContextMenuEvent = {
+Todoyu.Ext.calendar.ContextMenuEvent	= {
 
 	/**
 	 * Reference to extension

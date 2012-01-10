@@ -29,7 +29,7 @@ class TodoyuCalendarEventStaticManager {
 	/**
 	 * @var	String		Default table for database requests
 	 */
-	const TABLE = 'ext_calendar_event';
+	const TABLE	= 'ext_calendar_event';
 
 
 
@@ -99,7 +99,7 @@ class TodoyuCalendarEventStaticManager {
 	 * @return	Array
 	 */
 	public static function getEventRecord($idEvent) {
-		$idEvent = intval($idEvent);
+		$idEvent	= intval($idEvent);
 
 		return Todoyu::db()->getRecord(self::TABLE, $idEvent);
 	}
@@ -209,8 +209,8 @@ class TodoyuCalendarEventStaticManager {
 	 * @return	Array
 	 */
 	public static function getAssignedPersonsOfEvents(array $eventIDs) {
-		$eventIDs= array_unique(TodoyuArray::intval($eventIDs));
-		$persons = array();
+		$eventIDs	= array_unique(TodoyuArray::intval($eventIDs));
+		$persons	= array();
 
 		if( sizeof($eventIDs) > 0 ) {
 			$fields	= 'id_event, id_person';
@@ -220,7 +220,7 @@ class TodoyuCalendarEventStaticManager {
 			$epLinks= Todoyu::db()->getArray($fields, $tables, $where, '', 'id_event', '');
 
 			foreach($epLinks as $epLink) {
-				$persons[ $epLink['id_event'] ][] = $epLink['id_person'];
+				$persons[ $epLink['id_event'] ][]	= $epLink['id_person'];
 			}
 		}
 
@@ -299,11 +299,11 @@ class TodoyuCalendarEventStaticManager {
 
 				foreach($conflictedPersonIDs as $idPerson) {
 					if( ! isset($overbooked[$idPerson]['person']) ) {
-						$overbooked[$idPerson]['person'] = $idPerson;
+						$overbooked[$idPerson]['person']	= $idPerson;
 					}
 
 					if( count($overbooked[$idPerson]['events']) < Todoyu::$CONFIG['EXT']['calendar']['maxShownOverbookingsPerPerson'] ) {
-						$overbooked[$idPerson]['events'][] = $otherEvent;
+						$overbooked[$idPerson]['events'][]	= $otherEvent;
 					}
 				}
 			}
@@ -358,7 +358,7 @@ class TodoyuCalendarEventStaticManager {
 
 			// Adjust date end for events of type reminder
 		if( $data['eventtype'] == EVENTTYPE_REMINDER ) {
-			$data['date_end'] = intval($data['date_start']);
+			$data['date_end']	= intval($data['date_start']);
 		}
 
 			// Call hooked save data functions
@@ -419,7 +419,7 @@ class TodoyuCalendarEventStaticManager {
 	 * @return	Integer
 	 */
 	public static function addEvent(array $data = array()) {
-		$idEvent = TodoyuRecordManager::addRecord(self::TABLE, $data);
+		$idEvent	= TodoyuRecordManager::addRecord(self::TABLE, $data);
 
 		TodoyuHookManager::callHook('calendar', 'event.add', array($idEvent));
 
@@ -510,9 +510,9 @@ class TodoyuCalendarEventStaticManager {
 		$overbookedInfos= self::getOverbookingInfos($dateStart, $dateEnd, $assignedPersons, $idEvent);
 
 		if( sizeof($overbookedInfos) > 0 ) {
-			$errorMessages = array();
+			$errorMessages	= array();
 			foreach($overbookedInfos as $idPerson => $infos) {
-				$errorMessages[] = Todoyu::Label('calendar.event.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
+				$errorMessages[]	= Todoyu::Label('calendar.event.error.personsOverbooked') . ' ' . TodoyuContactPersonManager::getPerson($idPerson)->getFullName();
 			}
 
 			return array_unique($errorMessages);
@@ -670,7 +670,7 @@ class TodoyuCalendarEventStaticManager {
 	 * @param	Integer	$idEvent
 	 */
 	public static function removeEventFromCache($idEvent) {
-		$idEvent = intval($idEvent);
+		$idEvent	= intval($idEvent);
 
 		TodoyuRecordManager::removeRecordCache('TodoyuCalendarEventStatic', $idEvent);
 		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idEvent);
@@ -689,7 +689,7 @@ class TodoyuCalendarEventStaticManager {
 		$idEvent	= intval($idEvent);
 
 		if( array_key_exists('persons', $formData) ) {
-			$table = 'ext_calendar_mm_event_person';
+			$table	= 'ext_calendar_mm_event_person';
 
 			foreach($formData['persons'] as $person) {
 				$idPerson	= $person['id'];
@@ -773,9 +773,9 @@ class TodoyuCalendarEventStaticManager {
 			$dateStart	= $timestamp;
 		}
 
-		$dateEnd = $dateStart + intval(Todoyu::$CONFIG['EXT']['calendar']['default']['eventDuration']);
+		$dateEnd	= $dateStart + intval(Todoyu::$CONFIG['EXT']['calendar']['default']['eventDuration']);
 
-		$defaultData = array(
+		$defaultData	= array(
 			'id'			=>	0,
 			'date_start'	=>	$dateStart,
 			'date_end'		=>	$dateEnd,
@@ -805,7 +805,7 @@ class TodoyuCalendarEventStaticManager {
 
 			// Option: show event
 		if( TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent) ) {
-			$allowed['show'] = $own['show'];
+			$allowed['show']	= $own['show'];
 		}
 
 			// Options: edit event, delete event
@@ -820,10 +820,10 @@ class TodoyuCalendarEventStaticManager {
 
 			// Option: add event
 		if( TodoyuCalendarEventRights::isAddAllowed() ) {
-			$allowed['add'] = $own['add'];
+			$allowed['add']		= $own['add'];
 		}
 
-		$items = array_merge_recursive($items, $allowed);
+		$items	= array_merge_recursive($items, $allowed);
 
 		return $items;
 	}
@@ -855,10 +855,10 @@ class TodoyuCalendarEventStaticManager {
 			unset($ownItems['delete']);
 		}
 
-		$ownItems['show']['jsAction'] = str_replace('#DATE#', $dateStart, $ownItems['show']['jsAction']);
+		$ownItems['show']['jsAction']	= str_replace('#DATE#', $dateStart, $ownItems['show']['jsAction']);
 
 		foreach($ownItems['show']['submenu'] as $key => $config) {
-			$ownItems['show']['submenu'][$key]['jsAction'] = str_replace('#DATE#', $dateStart, $config['jsAction']);
+			$ownItems['show']['submenu'][$key]['jsAction']	= str_replace('#DATE#', $dateStart, $config['jsAction']);
 		}
 
 		return array_merge_recursive($items, $ownItems);
@@ -911,17 +911,13 @@ class TodoyuCalendarEventStaticManager {
 		$idEvent= intval($idEvent);
 
 			// Check for edit rights
-		if( $tab === 'edit' ) {
-			if( ! TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
-				$tab = 'day';
-			}
+		if( $tab === 'edit' && ! TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
+			$tab	= 'day';
 		}
 
 			// Check for view rights
-		if( $tab === 'view' ) {
-			if( ! TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent) ) {
-				$tab = 'day';
-			}
+		if( $tab === 'view' && ! TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent) ) {
+			$tab	= 'day';
 		}
 
 		return $tab;
@@ -1047,7 +1043,7 @@ class TodoyuCalendarEventStaticManager {
 		} else {
 				// None or multiple persons assigned to event, no unique coloring possible
 			return array(
-				'id' => 'multiOrNone'
+				'id'	=> 'multiOrNone'
 			);
 		}
 	}

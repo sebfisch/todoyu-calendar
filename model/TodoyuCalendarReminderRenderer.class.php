@@ -69,7 +69,7 @@ class TodoyuCalendarReminderRenderer {
 		$xmlPath= 'ext/calendar/config/form/event-reminder.xml';
 		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
 		$form->setFormData(array(
-			'id_event' => $idEvent
+			'id_event'	=> $idEvent
 		));
 
 		$data	= array(

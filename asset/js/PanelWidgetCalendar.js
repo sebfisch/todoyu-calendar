@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.PanelWidget.Calendar
  */
-Todoyu.Ext.calendar.PanelWidget.Calendar = {
+Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 
 	/**
 	 * Reference to extension
@@ -87,14 +87,14 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 	 * @param	{String}		date	Formatted date Y-m-d
 	 */
 	init: function(date, firstDayOfWeek) {
-		var initialDate = new Date(date);
+		var initialDate	= new Date(date);
 
-		var parent = $('panelwidget-calendar-jscalendar');
+		var parent	= $('panelwidget-calendar-jscalendar');
 			// construct a calendar giving only the "selected" handler.
-		this.Calendar = new Calendar(firstDayOfWeek, null, this.onDateSelected.bind(this), null);
+		this.Calendar	= new Calendar(firstDayOfWeek, null, this.onDateSelected.bind(this), null);
 
-		this.Calendar.weekNumbers = true;
-		this.Calendar.showsOtherMonths = true;
+		this.Calendar.weekNumbers		= true;
+		this.Calendar.showsOtherMonths	= true;
 		this.Calendar.setDateFormat("%A, %B %e");
 
 		this.Calendar.create(parent);
@@ -182,7 +182,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar = {
 		}
 
 		if( delay ) {
-			this.updateTimeout = this.onUpdate.bind(this).delay(this.updateTimeoutWait, mode, false);
+			this.updateTimeout	= this.onUpdate.bind(this).delay(this.updateTimeoutWait, mode, false);
 		} else {
 			Todoyu.PanelWidget.fire(this.key, {
 				'mode':	mode,

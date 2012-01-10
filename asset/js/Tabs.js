@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.Tabs
  */
-Todoyu.Ext.calendar.Tabs = {
+Todoyu.Ext.calendar.Tabs	= {
 
 	/**
 	 * Reference to extension
@@ -68,7 +68,7 @@ Todoyu.Ext.calendar.Tabs = {
 				// Click on view tabs changes calendar view
 			default:
 				this.closeSpecialTabs();
-				this.active = tabKey;
+				this.active	= tabKey;
 				this.ext.show(tabKey);
 				break;
 		}
@@ -104,7 +104,7 @@ Todoyu.Ext.calendar.Tabs = {
 		}
 
 		if( this.active === null ) {
-			this.active = 'week';
+			this.active	= 'week';
 		}
 
 		return this.active;
@@ -120,10 +120,10 @@ Todoyu.Ext.calendar.Tabs = {
 	 */
 	setActive: function(tab) {
 			// Make sure the given tab exists, otherwise use month tab by default
-		tab = $('calendar-tab-' + tab) ? tab : 'month';
+		tab	= $('calendar-tab-' + tab) ? tab : 'month';
 
 			// Activate the tab
-		this.active = tab;
+		this.active	= tab;
 		Todoyu.Tabs.setActive('calendar', tab);
 	},
 

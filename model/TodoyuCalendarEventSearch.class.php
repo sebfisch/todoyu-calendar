@@ -29,7 +29,7 @@ class TodoyuCalendarEventSearch implements TodoyuSearchEngineIf {
 	/**
 	 * @var	String		Default table for database requests
 	 */
-	const TABLE = 'ext_calendar_event';
+	const TABLE	= 'ext_calendar_event';
 
 
 

@@ -40,7 +40,7 @@ class TodoyuCalendarEventElementManager {
 				// Just add the first event of the day
 			if( empty($columns) ) {
 				$eventElement->setColumnIndex(0);
-				$columns[0][] = $index;
+				$columns[0][]	= $index;
 			} else {
 				$fittingColumnFound	= false;
 				$columnIndex		= 0;
@@ -60,7 +60,7 @@ class TodoyuCalendarEventElementManager {
 						// Event does not overlap with another in this column
 					if( !$eventOverlaps ) {
 							// Mark as found (no overlapping)
-						$fittingColumnFound = true;
+						$fittingColumnFound	= true;
 							// Stop looping over the current column
 						break;
 					}
@@ -73,7 +73,7 @@ class TodoyuCalendarEventElementManager {
 				}
 
 					// Add eventIndex to current column which has no overlapping
-				$columns[$columnIndex][] = $index;
+				$columns[$columnIndex][]	= $index;
 
 				$eventElement->setColumnIndex($columnIndex);
 			}

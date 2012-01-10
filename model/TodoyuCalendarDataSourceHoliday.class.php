@@ -40,7 +40,7 @@ class TodoyuCalendarDataSourceHoliday extends TodoyuCalendarDataSource {
 			$holidays		= TodoyuCalendarHolidayManager::getHolidaysInRange($range, $holidaySetIDs);
 			$holidayIDs		= TodoyuArray::getColumn($holidays, 'id');
 
-			$events = TodoyuRecordManager::getRecordList('TodoyuCalendarEventHoliday', $holidayIDs);
+			$events	= TodoyuRecordManager::getRecordList('TodoyuCalendarEventHoliday', $holidayIDs);
 		}
 		
 		return $events;

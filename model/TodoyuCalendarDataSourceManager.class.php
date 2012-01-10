@@ -31,7 +31,7 @@ class TodoyuCalendarDataSourceManager {
 	 *
 	 * @var	Array[]
 	 */
-	private static $dataSourceConfigs = array();
+	private static $dataSourceConfigs	= array();
 
 
 	/**
@@ -42,7 +42,7 @@ class TodoyuCalendarDataSourceManager {
 	 * @param	Array		$config
 	 */
 	public static function addDataSource($name, $className, array $config = array()) {
-		self::$dataSourceConfigs[$name] = array(
+		self::$dataSourceConfigs[$name]	= array(
 			'name'		=> $name,
 			'className'	=> $className,
 			'config'	=> $config

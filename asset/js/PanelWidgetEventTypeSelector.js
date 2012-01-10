@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.PanelWidget.EventTypeSelector
  */
-Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
+Todoyu.Ext.calendar.PanelWidget.EventTypeSelector	= {
 
 	/**
 	 * Reference to extension
@@ -99,7 +99,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	 * @todo	remove param 'select'?
 	 */
 	selectAllEventTypes: function(select) {
-		var selected = select === true;
+		var selected	= select === true;
 
 		this.list.select('option').invoke('writeAttribute', 'selected', selected);
 	},
@@ -148,7 +148,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector = {
 	 * @method	savePrefs
 	 */
 	savePrefs: function() {
-		var pref = this.getSelectedEventTypes().join(',');
+		var pref	= this.getSelectedEventTypes().join(',');
 
 		Todoyu.Pref.save('calendar', 'panelwidgeteventtypeselector', pref, 0, this.onPrefsSaved.bind(this));
 	},

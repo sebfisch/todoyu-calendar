@@ -29,7 +29,7 @@ class TodoyuCalendarReminderEmailManager {
 	/**
 	 * @var	String		Type of reminder
 	 */
-	const REMINDERTYPE = CALENDAR_TYPE_EVENTREMINDER_EMAIL;
+	const REMINDERTYPE	= CALENDAR_TYPE_EVENTREMINDER_EMAIL;
 
 
 	/**
@@ -213,7 +213,7 @@ class TodoyuCalendarReminderEmailManager {
 				// Set options disabled which are in the past already
 			$options['submenu']	= TodoyuCalendarReminderManager::disablePastTimeKeyOptions($options['submenu'], $idEvent);
 
-			$allowed['reminderemail'] = $options;
+			$allowed['reminderemail']	= $options;
 		}
 
 		return array_merge_recursive($items, $allowed);

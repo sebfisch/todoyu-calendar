@@ -20,7 +20,7 @@
 /**
  * Handle event quick infos
  */
-Todoyu.Ext.calendar.QuickInfo = {
+Todoyu.Ext.calendar.QuickInfo	= {
 
 	/**
 	 * Install quick info for a source type

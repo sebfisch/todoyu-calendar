@@ -90,7 +90,7 @@ class TodoyuCalendarViewMonth extends TodoyuCalendarView {
 		$eventDayMap= $this->getDayMapForMonth();
 
 		foreach($events as $event) {
-			$dayKeys = $event->getRange()->getDayTimestamps('Ymd');
+			$dayKeys	= $event->getRange()->getDayTimestamps('Ymd');
 
 				// Render event for all days it occurs
 			foreach($dayKeys as $dayKey) {
@@ -147,10 +147,10 @@ class TodoyuCalendarViewMonth extends TodoyuCalendarView {
 		$columns	= array();
 
 		for($i=0; $i<7; $i++) {
-			$date = $dayDates[$i];
-			$columns[] =  array(
-				'title'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('l', $date))),
-				'label'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('D', $date)))
+			$date	= $dayDates[$i];
+			$columns[]	=  array(
+					'title'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('l', $date))),
+					'label'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('D', $date)))
 			);
 		}
 

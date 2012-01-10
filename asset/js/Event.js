@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.Event
  */
-Todoyu.Ext.calendar.Event = {
+Todoyu.Ext.calendar.Event	= {
 
 	/**
 	 * Reference to extension
@@ -100,7 +100,7 @@ Todoyu.Ext.calendar.Event = {
 		var idItem		= parts.last();
 
 			// If event is private and not allowed for current user, do nothing
-		var isPrivate = element.down('span.private');
+		var isPrivate	= element.down('span.private');
 		if( isPrivate ) {
 			if( ! isPrivate.hasClassName('allowed') ) {
 				return false;
@@ -203,7 +203,7 @@ Todoyu.Ext.calendar.Event = {
 	*/
 	updateEnddate:function(formName) {
 		if( $(formName + '-0-field-enddate') ) {
-			$(formName + '-0-field-enddate').value = $F(formName + '-0-field-startdate');
+			$(formName + '-0-field-enddate').value	= $F(formName + '-0-field-startdate');
 		}
 	},
 
@@ -255,7 +255,7 @@ Todoyu.Ext.calendar.Event = {
 	 * @param	{String}		view
 	 */
 	goToEventInCalendar: function(idEvent, date, view) {
-		var params = {
+		var params	= {
 			'date':	date,
 			'tab':	view ? view : 'day'
 		};
@@ -292,14 +292,14 @@ Todoyu.Ext.calendar.Event = {
 
 		if( event ) {
 			if( mode === 'month' ) {
-				time = Todoyu.Time.date2Time(event.up('td').id.split('-').slice(1).join('-'));
+				time	= Todoyu.Time.date2Time(event.up('td').id.split('-').slice(1).join('-'));
 			} else {
 				var viewport= event.viewportOffset();
 				var scroll	= document.body.cumulativeScrollOffset();
 				var top		= viewport.top + scroll.top;
 				var left	= viewport.left + scroll.left;
 
-				time = this.ext.CalendarBody.getTimeOfMouseCoordinates(left, top);
+				time	= this.ext.CalendarBody.getTimeOfMouseCoordinates(left, top);
 			}
 		}
 

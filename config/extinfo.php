@@ -25,7 +25,7 @@
  * @subpackage	Calendar
  */
 
-Todoyu::$CONFIG['EXT']['calendar']['info'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['info']	= array(
 	'title'			=> 'Events and Holidays Management',
 	'description' 	=> 'Events and Holidays Management in Day-, Week- and Month-viewing Mode',
 	'author' 		=> array(
@@ -39,7 +39,7 @@ Todoyu::$CONFIG['EXT']['calendar']['info'] = array(
 		'depends' 	=> array(
 			'contact'	=> '1.1.0'
 		),
-		'conflicts' => array()
+		'conflicts'	=> array()
 	),
 	'urlDocumentation'	=> 'http://doc.todoyu.com/?calendar'
 );

@@ -29,7 +29,7 @@ class TodoyuCalendarHoliday extends TodoyuBaseObject {
 	/**
 	 * @var	String		Default table for database requests
 	 */
-	const TABLE = 'ext_calendar_holiday';
+	const TABLE	= 'ext_calendar_holiday';
 
 
 
@@ -72,7 +72,7 @@ class TodoyuCalendarHoliday extends TodoyuBaseObject {
 	 * @param	Boolean		$loadForeignRecords
 	 * @return	Array
 	 */
-	public function getTemplateData($loadForeignRecords = false) {
+	public function getTemplateData($loadForeignRecords	= false) {
 		if( $loadForeignRecords ) {
 			$this->loadForeignData();
 		}

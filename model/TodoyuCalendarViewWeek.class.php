@@ -88,7 +88,7 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 		foreach($dayDates as $dayDate) {
 			$dayKey	= date('Ymd', $dayDate);
 
-			$columns[$dayKey] =  array(
+			$columns[$dayKey]	=  array(
 				'key'	=> $dayKey,
 				'date'	=> date('Y-m-d', $dayDate),
 				'today'	=> $dayDate === $timeToday,
@@ -113,13 +113,13 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 		$eventDayMap	= $this->getDayMapForWeek();
 
 		foreach($eventElements as $eventElement) {
-			$dayKeys = $eventElement->getEvent()->getRange()->getDayTimestamps('Ymd');
+			$dayKeys	= $eventElement->getEvent()->getRange()->getDayTimestamps('Ymd');
 
 				// Render event for all days it occurs
 			foreach($dayKeys as $dayKey) {
 				if( isset($eventDayMap[$dayKey]) ) {
 					$dayDate		= strtotime($dayKey);
-					$eventDayMap[$dayKey][] = $eventElement->render($dayDate);
+					$eventDayMap[$dayKey][]	= $eventElement->render($dayDate);
 				}
 			}
 		}
@@ -164,7 +164,7 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 
 			foreach($events as $event) {
 				if( TodoyuTime::rangeOverlaps($dayRange['start'], $dayRange['end'], $event['date_start'], $event['date_end']) ) {
-					$groupedEvents[$dayKey][] = $event;
+					$groupedEvents[$dayKey][]	= $event;
 				}
 			}
 		}
@@ -217,13 +217,13 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 					// No collision, insert event and block rest of used cells
 				$found			= true;
 				$firstDayKey	= array_shift($eventDays);
-				$dayEventWeekMap[$index][$firstDayKey] = array(
+				$dayEventWeekMap[$index][$firstDayKey]	= array(
 					'html'	=> $dayEventElement->render($this->getRange()),
 					'length'=> sizeof($eventDays)+1
 				);
 
 				foreach($eventDays as $dayKey) {
-					$dayEventWeekMap[$index][$dayKey] = true;
+					$dayEventWeekMap[$index][$dayKey]	= true;
 				}
 
 				break; // Done, event positioned
@@ -234,13 +234,13 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 				$dayEventWeekMap[]	= $mapPattern;
 				$index				= sizeof($dayEventWeekMap)-1;
 				$firstDayKey		= array_shift($eventDays);
-				$dayEventWeekMap[$index][$firstDayKey] = array(
+				$dayEventWeekMap[$index][$firstDayKey]	= array(
 					'html'	=> $dayEventElement->render($this->getRange()),
 					'length'=> sizeof($eventDays)+1
 				);
 
 				foreach($eventDays as $dayKey) {
-					$dayEventWeekMap[$index][$dayKey] = true;
+					$dayEventWeekMap[$index][$dayKey]	= true;
 				}
 			}
 		}
@@ -261,7 +261,7 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 		$dayEventElements	= array();
 
 		foreach($eventElements as $eventElement) {
-			$dayEventElements[] = new TodoyuCalendarEventElementDayeventWeek($eventElement);
+			$dayEventElements[]	= new TodoyuCalendarEventElementDayeventWeek($eventElement);
 		}
 
 		return $dayEventElements;
@@ -281,7 +281,7 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 		$dayEventElements	= array();
 
 		foreach($events as $event) {
-			$dayEventElements[] = new TodoyuCalendarEventElementWeek($event, $this);
+			$dayEventElements[]	= new TodoyuCalendarEventElementWeek($event, $this);
 		}
 
 		return $dayEventElements;

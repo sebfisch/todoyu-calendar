@@ -28,7 +28,7 @@
 /**
  * Context menu for calendar area (not clicked on event)
  */
-Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area']	= array(
 	'add'	=> array(
 		'key'		=> 'add',
 		'label'		=> 'calendar.event.contextmenu.addEvent',
@@ -43,7 +43,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area'] = array(
 /**
  * General event context menu
  */
-Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event']	= array(
 	'show'	=> array(
 		'key'		=> 'show',
 //		'label'		=> 'calendar.event.contextmenu.showDetails',
@@ -79,7 +79,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'] = array(
 /**
  * Context menu for events in portal area
  */
-Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal']	= array(
 	'show'	=> array(
 		'key'		=> 'show',
 		'label'		=> 'calendar.event.contextmenu.showEventInCalendar',
@@ -116,7 +116,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal'] = array(
 
 
 	// Reminder via email
-Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderemail'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderemail']	= array(
 	'key'		=> 'reminderemail',
 	'label'		=> 'calendar.event.contextmenu.eventReminderEmail',
 	'jsAction'	=> 'void(0)',
@@ -203,7 +203,7 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderemail'] = array(
 );
 
 	// Reminders via popup
-Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderpopup'] = array(
+Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderpopup']	= array(
 	'key'		=> 'reminderpopup',
 	'label'		=> 'calendar.event.contextmenu.eventReminderPopup',
 	'jsAction'	=> 'void(0)',

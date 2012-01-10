@@ -42,7 +42,7 @@ class TodoyuCalendarProfileRenderer {
 		$active		= $params['tab'];
 
 		if( is_null($active) ) {
-			$active = $tabs[0]['id'];
+			$active	= $tabs[0]['id'];
 		}
 
 		return TodoyuTabheadRenderer::renderTabs($name, $tabs, $jsHandler, $active, $class);

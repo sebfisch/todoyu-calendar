@@ -169,9 +169,9 @@ class TodoyuCalendarEventViewHelper {
 	 * @return	Array
 	 */
 	public static function autocompleteEventPersons($input, array $formData, $name) {
-		$items = array();
+		$items	= array();
 
-		$fieldsToSearchIn = array(
+		$fieldsToSearchIn	= array(
 			'p.firstname',
 			'p.lastname',
 			'p.shortname'
@@ -193,7 +193,7 @@ class TodoyuCalendarEventViewHelper {
 			$personIDs	= Todoyu::db()->getColumn($fields, $table, $where, '', $order, '', 'id');
 
 			foreach($personIDs as $idPerson) {
-				$items[$idPerson] = TodoyuContactPersonManager::getLabel($idPerson);
+				$items[$idPerson]	= TodoyuContactPersonManager::getLabel($idPerson);
 			}
 		}
 

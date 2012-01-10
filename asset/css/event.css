@@ -628,7 +628,7 @@ div .typeBirthday div.name {
 	Mailing popup shown after delete / drag&drop
    ------------------------------------------------- */
 div.mailing fieldset.autoemail {
-	padding: 10px 15px 15px;
+	padding:10px 15px 15px;
 }
 
 div.mailing  fieldset.autoemail legend {

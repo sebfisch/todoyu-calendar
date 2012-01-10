@@ -45,7 +45,7 @@ abstract class TodoyuCalendarEventElement {
 	 *
 	 * @var	Array
 	 */
-	protected $classNames = array();
+	protected $classNames	= array();
 
 
 
@@ -127,7 +127,7 @@ abstract class TodoyuCalendarEventElement {
 	 * @param	String		$class
 	 */
 	public function addClass($class) {
-		$this->classNames[] = $class;
+		$this->classNames[]	= $class;
 	}
 
 
@@ -175,7 +175,7 @@ abstract class TodoyuCalendarEventElement {
 
 			$color		= $colorData[$idPerson];
 		} else {
-			$color = array(
+			$color	= array(
 				'id' => 'multiOrNone'
 			);
 		}
@@ -210,7 +210,7 @@ abstract class TodoyuCalendarEventElement {
 
 			// Override title if private and not assigned
 		if( $this->getEvent()->isPrivate() && !$this->getEvent()->isPersonAssigned() ) {
-			$elementData['title'] = '<' . Todoyu::Label('calendar.event.privateEvent.info') . '>';
+			$elementData['title']	= '<' . Todoyu::Label('calendar.event.privateEvent.info') . '>';
 		}
 
 		return $elementData;

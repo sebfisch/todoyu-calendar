@@ -29,7 +29,7 @@ class TodoyuCalendarEventAssignmentManager {
 	/**
 	 * Default table for database requests
 	 */
-	const TABLE = 'ext_calendar_mm_event_person';
+	const TABLE	= 'ext_calendar_mm_event_person';
 
 
 

@@ -31,7 +31,7 @@ class TodoyuCalendarHolidaySetManager {
 	 *
 	 * @var	String
 	 */
-	const TABLE = 'ext_calendar_holidayset';
+	const TABLE	= 'ext_calendar_holidayset';
 
 
 
@@ -73,7 +73,7 @@ class TodoyuCalendarHolidaySetManager {
 		$xmlPath		= 'ext/calendar/config/form/holidayset.xml';
 
 		if( $idHolidaySet === 0 ) {
-			$idHolidaySet = self::addHolidaySet();
+			$idHolidaySet	= self::addHolidaySet();
 		}
 
 		$data	= self::saveHolidaySetForeignData($data, $idHolidaySet);
@@ -211,7 +211,7 @@ class TodoyuCalendarHolidaySetManager {
 		$records	= array();
 
 		foreach($holidaySets as $holidaySet) {
-			$records[] = array(
+			$records[]	= array(
 				'id'					=> $holidaySet['id'],
 				'label'					=> $holidaySet['title'],
 				'additionalInformations'=> $holidaySet['description']
@@ -240,10 +240,10 @@ class TodoyuCalendarHolidaySetManager {
 			$order	= 'name';
 			$limit	= 30;
 
-			$holidaySets = Todoyu::db()->getArray($fields, $table, $where, '', $order, $limit);
+			$holidaySets	= Todoyu::db()->getArray($fields, $table, $where, '', $order, $limit);
 
 			foreach($holidaySets as $holidaySet) {
-				$results[$holidaySet['id']] = $holidaySet['name'];
+				$results[$holidaySet['id']]	= $holidaySet['name'];
 			}
 		}
 

@@ -44,7 +44,7 @@ class TodoyuCalendarEventElementDayeventDay extends TodoyuCalendarEventElementDa
 	public function __construct(TodoyuCalendarEventElementDay $eventElement) {
 		parent::__construct($eventElement->getEvent(), $eventElement->getView());
 
-		$this->eventElement = $eventElement;
+		$this->eventElement	= $eventElement;
 
 		$this->addClass('dayevent');
 	}
@@ -70,7 +70,7 @@ class TodoyuCalendarEventElementDayeventDay extends TodoyuCalendarEventElementDa
 	protected function getElementTemplateData() {
 		$data	= parent::getElementTemplateData();
 
-		$data['titleCropLength'] = 20;
+		$data['titleCropLength']	= 20;
 
 		return $data;
 	}

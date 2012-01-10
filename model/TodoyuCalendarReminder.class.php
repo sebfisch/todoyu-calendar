@@ -142,7 +142,7 @@ class TodoyuCalendarReminder extends TodoyuCalendarEventAssignment {
 	 * @return	Boolean
 	 */
 	protected function isDisabled($reminderType) {
-		$typePrefix = TodoyuCalendarReminderManager::getReminderTypePrefix($reminderType);
+		$typePrefix	= TodoyuCalendarReminderManager::getReminderTypePrefix($reminderType);
 
 		return $this->get('date_remind' . $typePrefix) === 0;
 	}

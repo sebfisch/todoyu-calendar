@@ -120,7 +120,7 @@ class TodoyuCalendarManager {
 	public static function getAmountOfDaysInbetweenWeekdayNums($startDay, $endDay, $insideTheSameWeek = true) {
 		if( $insideTheSameWeek ) {
 				// Both days are within the same week
-			$amount = ($endDay == 0 ? 7 : $endDay) - ($startDay == 0 ? 7 : $startDay) + 1;
+			$amount	= ($endDay == 0 ? 7 : $endDay) - ($startDay == 0 ? 7 : $startDay) + 1;
 		} else {
 				// Days are not within the same week (spanning over tow or more weeks)
 			if( $endDay != '' ) {
@@ -143,11 +143,11 @@ class TodoyuCalendarManager {
 	 */
 	public static function getVisibleWeeksAmount($amountDays = 35) {
 		if( $amountDays === 28 ) {
-			$amount = 4;
+			$amount	= 4;
 		} elseif( $amountDays === 35 ) {
-			$amount = 5;
+			$amount	= 5;
 		} else {
-			$amount = 6;
+			$amount	= 6;
 		}
 
 		return $amount;
@@ -265,7 +265,7 @@ class TodoyuCalendarManager {
 		$own	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area'];
 
 		if( Todoyu::allowed('calendar', 'event:add') ) {
-			$allowed[] = $own['add'];
+			$allowed[]	= $own['add'];
 		}
 
 		return array_merge_recursive($items, $allowed);
@@ -364,9 +364,9 @@ class TodoyuCalendarManager {
 		$birthdayPersons= TodoyuContactPersonManager::getBirthdayPersons($range);
 
 		foreach($birthdayPersons as $birthdayPerson) {
-			$dateKey = date('Ymd', $birthdayPerson['date']);
+			$dateKey	= date('Ymd', $birthdayPerson['date']);
 
-			$birthdaysByDay[$dateKey][] = $birthdayPerson;
+			$birthdaysByDay[$dateKey][]	= $birthdayPerson;
 		}
 
 		return $birthdaysByDay;
@@ -390,10 +390,10 @@ class TodoyuCalendarManager {
 		$emptyMap		= array();
 
 		foreach($rangeKeys as $rangeKey) {
-			$emptyMap[$rangeKey] = 0;
+			$emptyMap[$rangeKey]	= 0;
 		}
 
-		$mapping[] = $emptyMap;
+		$mapping[]	= $emptyMap;
 
 		foreach($events as $event) {
 			$eventDayKeys		= self::getDayKeys($event['date_start'], $event['date_end']);
@@ -412,11 +412,11 @@ class TodoyuCalendarManager {
 
 					// If a free spot was found (loop not cancelled)
 				$firstDayKey	= array_shift($eventDayKeys);
-				$mapping[$lineIndex][$firstDayKey] = $event;
+				$mapping[$lineIndex][$firstDayKey]	= $event;
 				$found	= true;
 
 				foreach($eventDayKeys as $eventDayKey) {
-					$mapping[$lineIndex][$eventDayKey] = 1;
+					$mapping[$lineIndex][$eventDayKey]	= 1;
 				}
 				ksort($mapping[$lineIndex]);
 
@@ -429,10 +429,10 @@ class TodoyuCalendarManager {
 				$newIndex	= sizeof($mapping)-1;
 
 				$firstDayKey	= array_shift($eventDayKeys);
-				$mapping[$newIndex][$firstDayKey] = $event;
+				$mapping[$newIndex][$firstDayKey]	= $event;
 
 				foreach($eventDayKeys as $eventDayKey) {
-					$mapping[$newIndex][$eventDayKey] = 1;
+					$mapping[$newIndex][$eventDayKey]	= 1;
 				}
 
 				ksort($mapping[$newIndex]);
@@ -457,7 +457,7 @@ class TodoyuCalendarManager {
 		$end	= TodoyuTime::getEndOfDay($dateEnd);
 
 		for($date = $start; $date <= $end; $date += TodoyuTime::SECONDS_DAY) {
-			$keys[] = date('Ymd', $date);
+			$keys[]	= date('Ymd', $date);
 		}
 
 		return $keys;
@@ -487,7 +487,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function hookEventFilterPersons(array $filters) {
-		$filters['persons'] = self::getSelectedPersons();
+		$filters['persons']	= self::getSelectedPersons();
 
 		return $filters;
 	}
@@ -501,7 +501,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function hookEventFilterEventTypes(array $filters) {
-		$filters['eventtypes'] = self::getSelectedEventTypes();
+		$filters['eventtypes']	= self::getSelectedEventTypes();
 
 		return $filters;
 	}
@@ -515,7 +515,7 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function hookEventFilterHolidaySets(array $filters) {
-		$filters['holidaysets'] = self::getSelectedHolidaySets();
+		$filters['holidaysets']	= self::getSelectedHolidaySets();
 
 		return $filters;
 	}

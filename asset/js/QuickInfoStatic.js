@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.QuickInfoBirthday
  */
-Todoyu.Ext.calendar.QuickInfo.Static = {
+Todoyu.Ext.calendar.QuickInfo.Static	= {
 
 	/**
 	 * Reference to extension

@@ -38,7 +38,7 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 	 *
 	 * @var	Integer
 	 */
-	protected $idPerson = 0;
+	protected $idPerson	= 0;
 
 
 
@@ -52,7 +52,7 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 		$this->idPerson	= intval($idPerson);
 
 		if( !is_null($searchRange) ) {
-			$this->birthdayRange = new TodoyuCalendarRangeDay($this->getBirthdayDateForRange($searchRange));
+			$this->birthdayRange	= new TodoyuCalendarRangeDay($this->getBirthdayDateForRange($searchRange));
 		}
 	}
 
@@ -70,9 +70,9 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 		$bornDay		= date('j', $dateBirthday);
 
 		if( $bornMonth >= date('n', $searchRange->getStart()) ) {
-			$yearRefDate = $searchRange->getStart();
+			$yearRefDate	= $searchRange->getStart();
 		} else  {
-			$yearRefDate = $searchRange->getEnd();
+			$yearRefDate	= $searchRange->getEnd();
 		}
 
 		$year	= date('Y', $yearRefDate);

@@ -46,12 +46,12 @@ class TodoyuCalendarEventRenderer {
 		$data['color']			= TodoyuCalendarEventStaticManager::getEventColorData($idEvent);
 		$data['eventtypeKey']	= TodoyuCalendarEventTypeManager::getTypeKey($data['eventtype']);
 
-		$assignedPersonIDs = array_keys($assignedPersons);
+		$assignedPersonIDs	= array_keys($assignedPersons);
 
 			// Hide visible data if event is private and current user not assigned
 		$isPrivate	= intval($data['is_private']) === 1;
 		if( $isPrivate && ! in_array(Todoyu::personid(), $assignedPersonIDs) ) {
-			$data = self::hidePrivateData($data);
+			$data	= self::hidePrivateData($data);
 			$data['class'] .= ' noAccess';
 		} else {
 			if( ! TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {

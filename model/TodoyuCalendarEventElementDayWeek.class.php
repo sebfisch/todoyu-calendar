@@ -30,13 +30,13 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	 * Index of the column the event element is rendered
 	 * @var	Integer
 	 */
-	protected $columnIndex = 0;
+	protected $columnIndex	= 0;
 
 	/**
 	 * Number of conflicting event in other columns
 	 * @var	Integer
 	 */
-	protected $columnConflicts = 0;
+	protected $columnConflicts	= 0;
 
 
 
@@ -149,7 +149,7 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	 * @param	Integer		$columnIndex
 	 */
 	public function setColumnIndex($columnIndex) {
-		$this->columnIndex = intval($columnIndex);
+		$this->columnIndex	= intval($columnIndex);
 	}
 
 
@@ -186,13 +186,13 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 			if( $element !== $this ) {
 				if( $element->getColumnIndex() !== $this->getColumnIndex() ) {
 					if( $this->isOverlapping($element) ) {
-						$conflictingColumns[] = $element->getColumnIndex();
+						$conflictingColumns[]	= $element->getColumnIndex();
 					}
 				}
 			}
 		}
 
-		$this->columnConflicts = sizeof(array_unique($conflictingColumns));
+		$this->columnConflicts	= sizeof(array_unique($conflictingColumns));
 	}
 
 

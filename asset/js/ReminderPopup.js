@@ -27,7 +27,7 @@
  * @class		Popup
  * @namespace	Todoyu.Ext.calendar.Reminder
  */
-Todoyu.Ext.calendar.Reminder.Popup = {
+Todoyu.Ext.calendar.Reminder.Popup	= {
 
 	/**
 	 * Reference to extension
@@ -97,7 +97,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 		if( upcomingEvents.size() > 0 ) {
 			this.showDueReminderPopups();
 				// Start periodical executer
-			this.pe = new PeriodicalExecuter(this.showDueReminderPopups.bind(this), this.peSeconds);
+			this.pe	= new PeriodicalExecuter(this.showDueReminderPopups.bind(this), this.peSeconds);
 		}
 
 			// Listen to event changes to update event list
@@ -146,7 +146,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onEventListRefreshed: function(response) {
-		this.events = response.responseJSON ? response.responseJSON : [];
+		this.events	= response.responseJSON ? response.responseJSON : [];
 
 		this.showDueReminderPopups();
 	},
@@ -193,7 +193,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 			};
 
 				// Open popup with content to be received from AJAX
-			this.popups[idEvent] = Todoyu.Popups.open(popupID, '[LLL:calendar.ext.reminder.popup.title]', 460, url, options);
+			this.popups[idEvent]	= Todoyu.Popups.open(popupID, '[LLL:calendar.ext.reminder.popup.title]', 460, url, options);
 		}
 	},
 
@@ -240,7 +240,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 */
 	silentAlert: function() {
 		if( this.oldPageTitle === null ) {
-			this.oldPageTitle = document.title;
+			this.oldPageTitle	= document.title;
 		}
 		var oldTitle= this.oldPageTitle;
 		var message	= '[LLL:calendar.ext.reminder.popup.title]';
@@ -251,12 +251,12 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 		clearInterval(this.slientAlertInterval);
 
 			// Create interval function which alters title
-		this.slientAlertInterval = setInterval(function() {
-			document.title = document.title == message ? oldTitle : message;
+		this.slientAlertInterval	= setInterval(function() {
+			document.title	= document.title == message ? oldTitle : message;
 		}, 800);
 
 			// Observe body for mouse moves
-		var eventHandler = document.body.on('mousemove', function(event){
+		var eventHandler	= document.body.on('mousemove', function(event){
 				// Stop observing
 			eventHandler.stop();
 				// Stop silent alert loop
@@ -279,7 +279,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 			// Reset page title
 		if( this.oldPageTitle !== null ) {
 			document.title	= this.oldPageTitle;
-			this.oldPageTitle = null;
+			this.oldPageTitle	= null;
 		}
 
 			// Reset favicon
@@ -324,7 +324,7 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 				[select.up('fieldset'), content.down('button.rescheduleReminderButton')].invoke('hide');
 			} else {
 					// Select last option
-				options.last().selected = true;
+				options.last().selected	= true;
 
 					// Set timeout to update the remind-again options at time of next option
 				if( nextSecondsBefore !== false ) {
@@ -415,12 +415,12 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onDeactivated: function(idEvent, closePopup, response) {
-		var event = this.events.detect(function(event){
+		var event	= this.events.detect(function(event){
 			return event.id == idEvent;
 		});
 
 		if( event ) {
-			event.dismissed = true;
+			event.dismissed	= true;
 		}
 
 		if( closePopup ) {
@@ -444,12 +444,12 @@ Todoyu.Ext.calendar.Reminder.Popup = {
 		var idDateRemindSelector	= form.down('select[name="reminder[date_remindpopup]"]');
 		var secondsBefore			= $F(idDateRemindSelector);
 
-		var event = this.events.detect(function(event){
+		var event	= this.events.detect(function(event){
 			return event.id == idEvent;
 		});
 
 			// Reschedule cached event popup
-		event.popup = event.start - secondsBefore*1000;
+		event.popup	= event.start - secondsBefore*1000;
 
 			// Update in DB
 		this.closePopup(idEvent);

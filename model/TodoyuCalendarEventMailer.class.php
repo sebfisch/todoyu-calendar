@@ -43,7 +43,7 @@ class TodoyuCalendarEventMailer {
 
 		$succeeded	= true;
 		foreach($personIDs as $idPerson) {
-			$result = self::sendInfoMail($idEvent, $idPerson, $operationID);
+			$result	= self::sendInfoMail($idEvent, $idPerson, $operationID);
 
 			if( $result === false ) {
 				$succeeded	= false;

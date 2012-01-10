@@ -71,7 +71,7 @@ class TodoyuCalendarHolidayManager {
 		$xmlPath	= 'ext/contact/config/form/holiday.xml';
 
 		if( $idHoliday === 0 ) {
-			$idHoliday = self::addHoliday();
+			$idHoliday	= self::addHoliday();
 		}
 
 		$data	= self::saveHolidayForeignRecords($data, $idHoliday);
@@ -208,7 +208,7 @@ class TodoyuCalendarHolidayManager {
 		$records	= array();
 
 		foreach($holidays as $holiday) {
-			$records[] = array(
+			$records[]	= array(
 				'id'					=> $holiday['id'],
 				'label'					=> self::getHolidayLabel($holiday['id'], true, true),
 				'additionalInformations'=> TodoyuTime::format($holiday['date'], 'date')
@@ -253,7 +253,7 @@ class TodoyuCalendarHolidayManager {
 			foreach($addresses as $address) {
 				$holidaySetIDs[]	= $address['id_holidayset'];
 			}
-			$holidaySetIDs = array_unique($holidaySetIDs);
+			$holidaySetIDs	= array_unique($holidaySetIDs);
 		}
 
 		return $holidaySetIDs;
@@ -324,7 +324,7 @@ class TodoyuCalendarHolidayManager {
 	 * @return	Array
 	 */
 	public static function autocompleteHolidays($sword) {
-		$swordArray = TodoyuArray::trimExplode(' ', $sword, true);
+		$swordArray	= TodoyuArray::trimExplode(' ', $sword, true);
 		$results	= array();
 
 		if( sizeof($swordArray) > 0 ) {
@@ -332,7 +332,7 @@ class TodoyuCalendarHolidayManager {
 			$holidays	= Todoyu::db()->getArray('id, title, date', self::TABLE, $where, '', 'date DESC');
 
 			foreach($holidays as $holiday) {
-				$results[$holiday['id']] = $holiday['title'] . ' - ' . TodoyuTime::format($holiday['date'], 'date');
+				$results[$holiday['id']]	= $holiday['title'] . ' - ' . TodoyuTime::format($holiday['date'], 'date');
 			}
 		}
 
@@ -377,7 +377,7 @@ class TodoyuCalendarHolidayManager {
 
 		foreach($holidays as $holiday) {
 			$dateKey	= date('Ymd', $holiday['date']);
-			$holidaysGrouped[$dateKey][] = $holiday;
+			$holidaysGrouped[$dateKey][]	= $holiday;
 		}
 
 		return $holidaysGrouped;

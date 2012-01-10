@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.Event.Edit
  */
-Todoyu.Ext.calendar.Event.Edit = {
+Todoyu.Ext.calendar.Event.Edit	= {
 
 	/**
 	 * Reference to extension
@@ -101,7 +101,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onFormLoaded: function(idEvent, response) {
-		var tabLabel = response.getTodoyuHeader('tabLabel');
+		var tabLabel	= response.getTodoyuHeader('tabLabel');
 
 		this.setTabLabel(tabLabel);
 
@@ -165,7 +165,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 		this.showFields(allFields);
 
 			// Extract field names
-		var allFieldNames = allFields.collect(function(field){
+		var allFieldNames	= allFields.collect(function(field){
 			return field.id.replace('formElement-event-field-', '');
 		});
 
@@ -239,7 +239,7 @@ Todoyu.Ext.calendar.Event.Edit = {
 		var manualReceiverOptions	= $('event-field-emailreceivers').select('option');
 		manualReceiverOptions.each(function(personOption) {
 			var idPerson	= personOption.value;
-			personOption.disabled = autoNotifiedPersonIDs.indexOf(',' + idPerson + ',') !== -1;
+			personOption.disabled	= autoNotifiedPersonIDs.indexOf(',' + idPerson + ',') !== -1;
 		});
 	},
 
@@ -259,22 +259,22 @@ Todoyu.Ext.calendar.Event.Edit = {
 		switch(eventType) {
 				// Birthday
 			case Todoyu.Ext.calendar.Event.eventTypeID.birthday:
-				fields = ['is-dayevent', 'date-end', 'person', 'place'];
+				fields	= ['is-dayevent', 'date-end', 'person', 'place'];
 				break;
 
 				// Vacation
 			case Todoyu.Ext.calendar.Event.eventTypeID.vacation:
-				fields = ['is-dayevent'];
+				fields	= ['is-dayevent'];
 				break;
 
 				// Away official
 			case Todoyu.Ext.calendar.Event.eventTypeID.awayofficial:
-				fields = ['is-private'];
+				fields	= ['is-private'];
 				break;
 
 				// Reminder
 			case Todoyu.Ext.calendar.Event.eventTypeID.reminder:
-				fields = ['is-dayevent', 'date-end'];
+				fields	= ['is-dayevent', 'date-end'];
 				break;
 		}
 

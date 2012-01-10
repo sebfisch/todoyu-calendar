@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector
  */
-Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
+Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector	= {
 
 	/**
 	 * Reference to extension
@@ -124,10 +124,10 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector = {
 	 * @param	{Boolean}				select
 	 */
 	selectAllHolidaySets: function(select) {
-		var selected = select === true;
+		var selected	= select === true;
 
 		$(this.list).select('option').each(function(option) {
-			option.selected = selected;
+			option.selected	= selected;
 		});
 	},
 

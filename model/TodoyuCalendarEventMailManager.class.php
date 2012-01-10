@@ -100,9 +100,9 @@ class TodoyuCalendarEventMailManager {
 		}
 
 		$subjectKeys	= array(
-			OPERATIONTYPE_RECORD_CREATE => 'create',
+			OPERATIONTYPE_RECORD_CREATE	=> 'create',
 			OPERATIONTYPE_RECORD_DELETE	=> 'delete',
-			OPERATIONTYPE_RECORD_UPDATE => 'update'
+			OPERATIONTYPE_RECORD_UPDATE	=> 'update'
 		);
 
 		return Todoyu::Label('calendar.event.mail.popup.subject.' . $subjectKeys[$operationID]);
@@ -121,8 +121,8 @@ class TodoyuCalendarEventMailManager {
 	 */
 	public static function getMailData($idEvent, $idPersonMailTo, $isSentBySystem = false, $idPersonSender = 0) {
 		$idEvent		= intval($idEvent);
-		$idPersonMailTo= intval($idPersonMailTo);
-		$idPersonSender = Todoyu::personid($idPersonSender);
+		$idPersonMailTo	= intval($idPersonMailTo);
+		$idPersonSender	= Todoyu::personid($idPersonSender);
 
 		$event			= TodoyuCalendarEventStaticManager::getEvent($idEvent, true);
 
@@ -139,7 +139,7 @@ class TodoyuCalendarEventMailManager {
 			'event'	=> $idEvent,
 			'tab'	=> 'view' //'week'
 		);
-		$data['eventlink'] = TodoyuString::buildUrl($urlParams, '', true);
+		$data['eventlink']	= TodoyuString::buildUrl($urlParams, '', true);
 
 		return $data;
 	}

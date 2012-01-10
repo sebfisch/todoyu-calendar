@@ -69,7 +69,7 @@ class TodoyuCalendarEventElementWeek extends TodoyuCalendarEventElementDayWeek {
 	protected function getElementTemplateData($date) {
 		$data	= parent::getElementTemplateData($date);
 
-		$data['titleCropLength'] = $this->getView()->isWeekendDisplayed() ? 10 : 16;
+		$data['titleCropLength']	= $this->getView()->isWeekendDisplayed() ? 10 : 16;
 
 		return $data;
 	}

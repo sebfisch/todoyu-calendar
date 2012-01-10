@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.Navi
  */
-Todoyu.Ext.calendar.Navi = {
+Todoyu.Ext.calendar.Navi	= {
 
 	/**
 	 * Reference to extension
@@ -44,7 +44,7 @@ Todoyu.Ext.calendar.Navi = {
 	 * @method	init
 	 */
 	init: function() {
-		var tab = this.ext.getActiveTab();
+		var tab	= this.ext.getActiveTab();
 		this.toggleViewOptions(tab);
 	},
 

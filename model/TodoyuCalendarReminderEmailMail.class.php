@@ -43,7 +43,7 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 	public function __construct($idReminder, array $config = array()) {
 		parent::__construct($config);
 
-		$this->reminder = TodoyuCalendarReminderEmailManager::getReminder($idReminder);
+		$this->reminder	= TodoyuCalendarReminderEmailManager::getReminder($idReminder);
 
 		$this->init();
 	}

@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.Event.Mail
  */
-Todoyu.Ext.calendar.Event.Mail = {
+Todoyu.Ext.calendar.Event.Mail	= {
 
 	/**
 	 * Reference to extension

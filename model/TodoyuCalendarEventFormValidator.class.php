@@ -40,7 +40,7 @@ class TodoyuCalendarEventFormValidator {
 			// If the flag is_private is set, the event is only allowed to be assigned to the current person
 		if( $formData['is_private'] == 1 ) {
 			if( count($formData['persons']) == 1 ) {
-				$person = array_shift($formData['persons']);
+				$person	= array_shift($formData['persons']);
 				if( intval($person['id']) !== Todoyu::personid() ) {
 					return false;
 				}

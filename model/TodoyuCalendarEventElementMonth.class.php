@@ -58,7 +58,7 @@ class TodoyuCalendarEventElementMonth extends TodoyuCalendarEventElement {
 	protected function getElementTemplateData($date) {
 		$data	= parent::getElementTemplateData($date);
 
-		$data['titleCropLength'] = 11;
+		$data['titleCropLength']	= 11;
 
 		return $data;
 	}

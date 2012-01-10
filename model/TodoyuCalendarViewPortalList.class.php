@@ -40,7 +40,7 @@ class TodoyuCalendarViewPortalList extends TodoyuCalendarView {
 	 * Without range and filters, because every sub part has its own config
 	 */
 	public function __construct() {
-		$this->config = TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']);
+		$this->config	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['appointmentTabConfig']);
 	}
 
 
@@ -155,7 +155,7 @@ class TodoyuCalendarViewPortalList extends TodoyuCalendarView {
 
 		foreach($events as $event) {
 			$element		= new TodoyuCalendarEventElementPortalList($event, $this);
-			$templateData[] = $element->getTemplateData();
+			$templateData[]	= $element->getTemplateData();
 		}
 
 		return $templateData;
@@ -171,7 +171,7 @@ class TodoyuCalendarViewPortalList extends TodoyuCalendarView {
 	protected function getHolidayEventsData() {
 		$weeks			= $this->getWeeks('holiday');
 		$filters		= array(
-			'holidaysets' => $this->getHolidaySetIDsOfUsersWorkAddresses()
+			'holidaysets'	=> $this->getHolidaySetIDsOfUsersWorkAddresses()
 		);
 
 		return $this->getEventsTemplateData('holiday', $weeks, $filters);
@@ -201,7 +201,7 @@ class TodoyuCalendarViewPortalList extends TodoyuCalendarView {
 	protected function getBirthdayEventsData() {
 		$weeks	= $this->getWeeks('birthday');
 		$filters= array(
-			'dayevents' => true
+			'dayevents'	=> true
 		);
 
 		return $this->getEventsTemplateData('birthday', $weeks, $filters);

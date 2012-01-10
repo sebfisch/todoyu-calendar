@@ -31,7 +31,7 @@ class TodoyuCalendarHolidaySet extends TodoyuBaseObject {
 	 *
 	 * @var	String
 	 */
-	const TABLE = 'ext_calendar_holidayset';
+	const TABLE	= 'ext_calendar_holidayset';
 
 
 

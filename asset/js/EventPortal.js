@@ -26,7 +26,7 @@
  *
  * @namespace	Todoyu.Ext.calendar.EventPortal
  */
-Todoyu.Ext.calendar.EventPortal = {
+Todoyu.Ext.calendar.EventPortal	= {
 
 	/**
 	 * Reference to extension
@@ -114,7 +114,7 @@ Todoyu.Ext.calendar.EventPortal = {
 	 * @param	{Boolean}		expanded
 	 */
 	saveEventExpandedStatus: function(idEvent, expanded) {
-		var value = expanded ? 1 : 0;
+		var value	= expanded ? 1 : 0;
 		this.ext.savePref('portalEventExpanded', value, idEvent);
 	},
 
@@ -127,9 +127,9 @@ Todoyu.Ext.calendar.EventPortal = {
 	 * @param	{Number}		idEvent
 	 */
 	acknowledgeEvent: function(idEvent) {
-		var url = Todoyu.getUrl('calendar', 'event');
+		var url	= Todoyu.getUrl('calendar', 'event');
 
-		var options = {
+		var options	= {
 			parameters: {
 				action:	'acknowledge',
 				event:	idEvent
