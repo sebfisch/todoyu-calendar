@@ -229,15 +229,13 @@ class TodoyuCalendarHolidayManager {
 	 * @return	Array
 	 */
 	public static function getHolidaysetIDsOfAddresses(array $addressIDs, $groupByHolidayset = false) {
-		$addressIDs		= TodoyuArray::intval($addressIDs, true, true);
-
 		$fields	= '	id,
 					id_holidayset';
 		$table	= '	ext_contact_address';
 		$where	= ' deleted	= 0';
 
 		if( sizeof($addressIDs) ) {
-			$where .= ' AND id IN (' . implode(',', $addressIDs) . ')';
+			$where .= ' AND ' . Todoyu::db()->buildInArrayQuery($addressIDs);
 		}
 
 		$addresses		= Todoyu::db()->getArray($fields, $table, $where);

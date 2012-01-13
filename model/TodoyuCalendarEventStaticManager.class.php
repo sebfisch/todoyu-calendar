@@ -209,13 +209,12 @@ class TodoyuCalendarEventStaticManager {
 	 * @return	Array
 	 */
 	public static function getAssignedPersonsOfEvents(array $eventIDs) {
-		$eventIDs	= array_unique(TodoyuArray::intval($eventIDs));
 		$persons	= array();
 
 		if( sizeof($eventIDs) > 0 ) {
 			$fields	= 'id_event, id_person';
 			$tables	= 'ext_calendar_mm_event_person';
-			$where	= 'id_event IN (' . TodoyuArray::intImplode($eventIDs) . ') ';
+			$where	= Todoyu::db()->buildInArrayQuery($eventIDs, 'id_event');
 
 			$epLinks= Todoyu::db()->getArray($fields, $tables, $where, '', 'id_event', '');
 
