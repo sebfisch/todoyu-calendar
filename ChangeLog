@@ -57,7 +57,7 @@ calendar 1.1.1 - 2011-07-25
 
 calendar 1.1.0 - 2011-06-17
 	* Bugfix: Event drag & drop in week & day views had wrong hour offset (-1h)
-	* Bugfix: Fixed event type toggeling handling in event quickcreation form
+	* Bugfix: Fixed event type toggling handling in event quickcreation form
 	* Bugfix: Fixed EventManager to not delete events physically anymore (use "deleted" flag)
 	* Bugfix: Added noAccess class to ALL events which can't be edited (Drag&Drop)
 	* Bugfix: Removed empty values from event detail view (description, place)
@@ -82,7 +82,7 @@ calendar 1.1.0 - 2011-06-17
 	* Changed: All classes are prefixed with extension name
 	* Changed: Made event comply with global conventions: Optional event attributes are hidden via "hidden" class instead of style="display:none"
 	* Changed: Added separate fieldset for reminder options in calendar extconf
-	* Changed: Unified form handling of event type toggeling in event inline- and quickcreation- form
+	* Changed: Unified form handling of event type toggling in event inline- and quickcreation- form
 	* Changed: Moved logging of sent event mails into TodoyuMailManager of core / table system_log_email table
 	* Changed: Added monthday abbreviation to appointment headers in list view
 	* Changed: Reduced templates of event list-view details and single view into one template
