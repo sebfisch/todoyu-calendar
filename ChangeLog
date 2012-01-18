@@ -54,7 +54,6 @@ calendar 1.1.1 - 2011-07-25
 	* Changed: CSS cleanup (removed old styles)
 	* Changed: icons.png cleanup (removed unused sprite icons)
 
-
 calendar 1.1.0 - 2011-06-17
 	* Bugfix: Event drag & drop in week & day views had wrong hour offset (-1h)
 	* Bugfix: Fixed event type toggling handling in event quickcreation form
@@ -90,7 +89,6 @@ calendar 1.1.0 - 2011-06-17
 	* Changed: Added max amount configuration of displayed conflicted appointments in overbooking info
  	* Changed: Quickinfos now always hide when starting to drag events
 
-
  calendar 1.0.6
 	* Bugfix: Removed wrong wordwrapping (inserted spaces) from event descriptions
 	* Bugfix: quickinfos now always hide when starting to drag events
@@ -98,7 +96,6 @@ calendar 1.1.0 - 2011-06-17
 	* Feature: Different format in single view of events by duration - multi-day / multi-hour / minutes
 	* Feature: made quickinfos deactivateable
 	* Feature: Added placeholders for to-be spanish locale files
-
 
 calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Bugfix: Date fix for IE
@@ -195,6 +192,5 @@ calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17
 	* Changed: Moved date locales into core/locale/date.xml
 	* Changed: Weekdaystart is now monday
 	* Changed: Fetched holidays now contain related set ID, holidayset changed from autocompleter to select
-
 
 calendar 1.0.0 - released 2010-05-10
