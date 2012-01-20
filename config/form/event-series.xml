@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<attributes>
+		<attribute name="name">event</attribute>
+	</attributes>
+	<fieldsets>
+
+		<fieldset name="series">
+			<legend>calendar.form.legend.series</legend>
+			<elements>
+
+				<field type="comment" name="serieslabel">
+					<comment type="function">
+						<function>TodoyuCalendarEventViewHelper::getSeriesLabel</function>
+					</comment>
+				</field>
+
+				<field type="select" name="seriesfrequency">
+					<label>calendar.event.series.frequency</label>
+					<source type="function">
+						<function>TodoyuCalendarEventViewHelper::getSeriesFrequencyOptions</function>
+					</source>
+					<noPleaseSelect />
+				</field>
+
+				<field type="select" name="seriesinterval">
+					<label>calendar.event.series.interval</label>
+					<source type="function">
+						<function>TodoyuCalendarEventViewHelper::getSeriesIntervalOptions</function>
+						<lazyInit />
+					</source>
+					<noPleaseSelect />
+
+				</field>
+
+				<field type="select" name="seriesweekdays">
+					<label>calendar.event.series.weekdays</label>
+					<source type="function">
+						<function>TodoyuCalendarEventViewHelper::getSeriesWeekdayOptions</function>
+					</source>
+					<size>7</size>
+					<multiple />
+					<required />
+				</field>
+
+				<field type="date" name="seriesdate_end">
+					<label>calendar.event.attr.enddate</label>
+				</field>
+
+				<field type="comment" name="seriesoverbooking">
+					<label>Conflicts</label>
+					<comment type="function">
+						<function>TodoyuCalendarEventViewHelper::getSeriesOverbookingWarnings</function>
+					</comment>
+				</field>
+
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>

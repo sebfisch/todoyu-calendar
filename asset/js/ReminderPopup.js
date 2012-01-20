@@ -112,7 +112,7 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	 *
 	 * @method	onEventChanged
 	 * @param	{Number}	idEvent
-	 * @param	{Number}	date
+	 * @param	{Date}	date
 	 */
 	onEventChanged: function(idEvent, date) {
 		this.refreshReminderList();

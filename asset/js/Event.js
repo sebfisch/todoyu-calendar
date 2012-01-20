@@ -86,6 +86,8 @@ Todoyu.Ext.calendar.Event	= {
 
 
 
+
+
 	/**
 	 * Event double click handler
 	 *
@@ -135,15 +137,27 @@ Todoyu.Ext.calendar.Event	= {
 	 * @param	{Number}		idEvent
 	 */
 	edit: function(idEvent) {
-		if( Todoyu.getArea() === 'calendar' ) {
-			this.ext.Event.Edit.open(idEvent);
+		var idSeries	= this.Series.getSeriesID(idEvent);
+
+		if( idSeries ) {
+			this.Series.askSeriesEdit(idSeries, idEvent);
 		} else {
-			Todoyu.goTo('calendar', 'ext', {
-				'tab':	'edit',
-				'event':idEvent
-			});
+			this.Edit.open(idEvent);
 		}
 	},
+
+
+
+
+
+	jumpToEventEditView: function(idEvent, options) {
+		Todoyu.goTo('calendar', 'ext', {
+			tab:		'edit',
+			event:		idEvent,
+			options:	options
+		});
+	},
+
 
 
 
@@ -154,25 +168,38 @@ Todoyu.Ext.calendar.Event	= {
 	 * @param	{Number}		idEvent
 	 */
 	remove: function(idEvent) {
-		if( confirm('[LLL:calendar.event.delete.confirm]') ) {
-				// Show mailing popup
-			this.Mail.showPopup(idEvent, this.operationTypeID.remove);
+		var idSeries	= this.Series.getSeriesID(idEvent);
 
-				// Remove the event
-			$('event-' + idEvent).fade();
-
-			var url		= Todoyu.getUrl('calendar', 'event');
-			var options	= {
-				parameters: {
-					action:	'delete',
-					'event':	idEvent
-				},
-				onComplete: this.onRemoved.bind(this, idEvent)
-			};
-
-			Todoyu.send(url, options);
+		if( idSeries ) {
+			this.Series.askSeriesDelete(idSeries, idEvent);
+		} else {
+			if( confirm('[LLL:calendar.event.delete.confirm]') ) {
+				this.removeEvent(idEvent);
+			}
 		}
 	},
+
+	removeEvent: function(idEvent) {
+			// Show mailing popup
+		this.Mail.showPopup(idEvent, this.operationTypeID.remove);
+
+			// Remove the event
+		this.fadeOut(idEvent);
+
+		var url		= Todoyu.getUrl('calendar', 'event');
+		var options	= {
+			parameters: {
+				action:	'delete',
+				event:	idEvent
+			},
+			onComplete: this.onEventRemoved.bind(this, idEvent)
+		};
+
+		Todoyu.send(url, options);
+	},
+
+
+
 
 
 
@@ -183,14 +210,19 @@ Todoyu.Ext.calendar.Event	= {
 	 * @param	{Number}			idEvent
 	 * @param	{Ajax.Response}		response
 	 */
-	onRemoved: function(idEvent, response) {
+	onEventRemoved: function(idEvent, response) {
 			// Refresh view
-		if( Todoyu.getArea() === 'calendar' ) {
+		if( this.ext.isInCalendarArea() ) {
 			this.ext.refresh();
 		}
 		if( Todoyu.getArea() === 'portal' ) {
 			this.ext.EventPortal.reduceAppointmentCounter();
 		}
+	},
+
+
+	fadeOut: function(idEvent) {
+		$('event-static-' + idEvent).fade();
 	},
 
 
@@ -205,43 +237,6 @@ Todoyu.Ext.calendar.Event	= {
 		if( $(formName + '-0-field-enddate') ) {
 			$(formName + '-0-field-enddate').value	= $F(formName + '-0-field-startdate');
 		}
-	},
-
-
-
-	/**
-	 * Calculate timestamp from given given mouse coordinates
-	 *
-	 * @method	calcTimestampFromMouseCoords
-	 * @param	{String}		idTab	'day' / 'week' / 'month'
-	 * @param	{Number}		x		event pointer x coordinate
-	 * @param	{Number}		y		event pointer y coordinate
-	 * @return	{Number}		UNIX timestamp
-	 */
-	calcTimestampFromMouseCoords: function(idTab, x, y) {
-		var timestamp 		= Todoyu.Ext.calendar.getDate();
-		var calLeftCoord	= Element.cumulativeOffset($('calendarBody'))[0] + 43;
-		var calTopCoord		= Element.cumulativeOffset($('calendarBody'))[1];
-
-			// Calculate time of day in 30 minute steps from mouse-Y
-		var halfHours	= (y - calTopCoord) / 21.5 + '';
-		halfHours		= parseInt(halfHours.split('.')[0], 10);
-
-		timestamp	+= halfHours * Todoyu.Time.seconds.hour / 2;
-
-			// Calculate day of week from mouse-X
-		if( idTab == 'week' ) {
-			var day	= (x - calLeftCoord) / 88 + '';
-			day		= parseInt(day.split('.')[0], 10);
-			timestamp	+= day * Todoyu.Time.seconds.day;
-		}
-
-			// Compensate for workingDay-display mode (top hour is 08:00 and not 00:00)
-		if( ! $('toggleDayView').hasClassName('full') ) {
-			timestamp += Todoyu.Time.seconds.hour * 3;
-		}
-
-		return timestamp;
 	},
 
 
@@ -299,7 +294,7 @@ Todoyu.Ext.calendar.Event	= {
 				var top		= viewport.top + scroll.top;
 				var left	= viewport.left + scroll.left;
 
-				time	= this.ext.CalendarBody.getTimeOfMouseCoordinates(left, top);
+				time	= this.ext.CalendarBody.getTimeForPosition(left, top);
 			}
 		}
 

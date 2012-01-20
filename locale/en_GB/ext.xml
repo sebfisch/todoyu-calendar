@@ -57,9 +57,9 @@
  	<label index="extconf.reminder.email_roles.label">Roles to get event reminder email</label>
 	<label index="extconf.autosendeventmail.label">Roles to automatically send email of new / changed / deleted events to internal participants of event (removes mailing option)?</label>
 	<label index="extconf.reminder.audio.active.label">Play audio with reminder pop-up?</label>
-	<label index="profile.excerpt.time_start">Start-time of day in time excerpt</label>
-	<label index="profile.excerpt.time_end">End-time of day in time excerpt</label>
-	<label index="profile.error.excerpttime_end">End-time must be after Start-time</label>
+	<label index="profile.range.start">Start time for compact view</label>
+	<label index="profile.range.end">End time for compact view</label>
+	<label index="profile.range.error">End time of range must be after start time</label>
 	<label index="profile.module.reminders.header">Configuration for your event reminders</label>
 	<label index="profile.module.main.header">Main Calendar Configuration</label>
 	<label index="profile.disableMailingQuestionAfterDraganddrop">Disable asking whether to send email after modification of events via drag and drop?</label>

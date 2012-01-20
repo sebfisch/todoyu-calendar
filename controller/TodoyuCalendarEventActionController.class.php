@@ -44,7 +44,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 */
 	public function editAction(array $params) {
 		$idEvent	= intval($params['event']);
-		$timestamp	= strtotime($params['date']);
+		$options	= TodoyuArray::assureFromJSON($params['options']);
+		$date		= strtotime($params['date']);
 		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 			// Check rights
@@ -57,7 +58,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		}
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel);
 
-		return TodoyuCalendarEventEditRenderer::renderEventForm($idEvent, $timestamp);
+		return TodoyuCalendarEventEditRenderer::renderEventForm($idEvent, $date, $options);
 	}
 
 
@@ -69,12 +70,11 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * @return	Void|String			Failure returns re-rendered form with error messages
 	 */
 	public function saveAction(array $params) {
-		$data	= $params['event'];
-
-		$idEvent			= intval($data['id']);
+		$formData			= $params['event'];
+		$idEvent			= intval($formData['id']);
 		$isNewEvent			= $idEvent === 0;
-		$emailReceiverIDs	= $data['emailreceivers'];
-		$sendAsMail			= $data['sendasemail'];
+		$emailReceiverIDs	= $formData['emailreceivers'];
+		$sendAsMail			= $formData['sendasemail'];
 
 			// Check rights (new event creation / updating existing event)
 		if( $idEvent === 0 ) {
@@ -83,10 +83,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			TodoyuCalendarEventRights::restrictEdit($idEvent);
 		}
 
-			// Setup form + data
-		$xmlPath= 'ext/calendar/config/form/event.xml';
-		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
-		$form->setFormData($data);
+		$form	= TodoyuCalendarEventStaticManager::getEventForm($idEvent, $formData);
 
 		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
 
@@ -98,19 +95,19 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			return $form->render();
 		}
 			// Check for warnings and send resp. headers
-		$warningHeaders	= self::getOverbookingWarningHeaders($idEvent, $params);
+		$warningHeaders	= TodoyuCalendarEventStaticManager::getOverbookingWarningHeaders($idEvent, $params);
 		foreach($warningHeaders as $headerName => $headerValue) {
 			TodoyuHeader::sendTodoyuHeader($headerName, $headerValue);
 		}
 
 			// Save or update event (and send email if mail-option activated)
 		if( sizeof($warningHeaders) === 0 ) {
-			$data	= $form->getStorageData();
-			$idEvent= TodoyuCalendarEventStaticManager::saveEvent($data);
+			$formData	= $form->getStorageData();
+			$idEvent= TodoyuCalendarEventStaticManager::saveEvent($formData);
 
 				// Send event auto-email to preset receivers: those get emails concerning all new/changed events they participate in
 				// Watch out: persons only have their ID as key when editing a pre-existing event!
-			$participantIDs		= TodoyuArray::intval( TodoyuArray::flatten($data['persons']) );
+			$participantIDs		= TodoyuArray::intval( TodoyuArray::flatten($formData['persons']) );
 			$autoMailPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
 
 			if( ! empty($autoMailPersonIDs) ) {
@@ -131,32 +128,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				}
 			}
 
-			TodoyuHeader::sendTodoyuHeader('time', intval($data['date_start']));
+			TodoyuHeader::sendTodoyuHeader('time', intval($formData['date_start']));
 		}
-	}
-
-
-
-	/**
-	 * Check for warnings (overbookings) to be shown prior to saving
-	 *
-	 * @param	Integer		$idEvent
-	 * @param	Array		$params
-	 * @return	Array
-	 */
-	private static function getOverbookingWarningHeaders($idEvent, array $params) {
-		$warnings	= array();
-
-		$isOverbookingConfirmed	= intval($params['isOverbookingConfirmed']);
-		if( TodoyuCalendarManager::isOverbookingAllowed() && ! $isOverbookingConfirmed ) {
-			$overbookedWarning	= TodoyuCalendarEventStaticManager::getOverbookingWarning($idEvent, $params['event']);
-			if( ! empty($overbookedWarning) ) {
-				$warnings['overbookingwarning'] 		= $overbookedWarning;
-				$warnings['overbookingwarningInline']	= TodoyuCalendarEventStaticManager::getOverbookingWarning($idEvent, $params['event'], false);
-			}
-		}
-
-		return $warnings;
 	}
 
 
@@ -294,7 +267,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$operationID= intval($params['operation']);
 
-		if( $operationID != OPERATIONTYPE_RECORD_DELETE ) {
+		if( $operationID != CALENDAR_OPERATION_DELETE ) {
 				// Is mailing popup deactivated or no other users with email assigned?
 			$showPopup	= TodoyuCalendarEventMailManager::isMailPopupToBeShown($idEvent);
 		} else {
@@ -318,7 +291,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 *
 	 * @param	Array	$params
 	 */
-	public static function sendAutoMailAction(array $params) {
+	public function sendAutoMailAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$operationID= intval($params['operation']);
 
@@ -340,7 +313,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 *
 	 * @param	Array	$params
 	 */
-	public static function sendMailAction(array $params) {
+	public function sendMailAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$personIDs	= TodoyuArray::intExplode(',', $params['persons'], true, true);
 		$operationID= intval($params['operation']);
@@ -361,7 +334,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	 * @param	Array	$params
 	 * @return	String
 	 */
-	public static function updateAutoNotificationAction(array $params) {
+	public function updateAutoNotificationAction(array $params) {
 		$personIDs				= TodoyuArray::intExplode(',', $params['persons']);
 		$autoNotifiedPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($personIDs);
 
@@ -374,6 +347,11 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 		return Todoyu::render($tmpl, $data);
 	}
+
+
+
+
+
 }
 
 ?>

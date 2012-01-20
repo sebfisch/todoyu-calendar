@@ -88,13 +88,13 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 		$headline	= '';
 
 		switch($this->actionType) {
-			case OPERATIONTYPE_RECORD_CREATE:
+			case CALENDAR_OPERATION_CREATE:
 				$headline	= 'calendar.event.mail.title.create';
 				break;
-			case OPERATIONTYPE_RECORD_DELETE:
+			case CALENDAR_OPERATION_DELETE:
 				$headline	= 'calendar.event.mail.title.deleted';
 				break;
-			case OPERATIONTYPE_RECORD_UPDATE:
+			case CALENDAR_OPERATION_UPDATE:
 				$headline	= 'calendar.event.mail.title.update';
 				break;
 		}
@@ -109,13 +109,13 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 */
 	private function setTypeSubject() {
 		switch( $this->actionType ) {
-			case OPERATIONTYPE_RECORD_CREATE:
+			case CALENDAR_OPERATION_CREATE:
 				$prefix	= Todoyu::Label('calendar.event.mail.title.create');
 				break;
-			case OPERATIONTYPE_RECORD_UPDATE:
+			case CALENDAR_OPERATION_UPDATE:
 				$prefix	= Todoyu::Label('calendar.event.mail.title.update');
 				break;
-			case OPERATIONTYPE_RECORD_DELETE: default:
+			case CALENDAR_OPERATION_DELETE: default:
 				$prefix	= Todoyu::Label('calendar.event.mail.title.deleted');
 				break;
 			default:
@@ -158,13 +158,13 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 		$postFix	= $asHtml ? 'html' : 'text';
 
 		switch($this->actionType) {
-			case OPERATIONTYPE_RECORD_CREATE:
+			case CALENDAR_OPERATION_CREATE:
 				$fileType	= 'event-new';
 				break;
-			case OPERATIONTYPE_RECORD_DELETE:
+			case CALENDAR_OPERATION_DELETE:
 				$fileType	= 'event-deleted';
 				break;
-			case OPERATIONTYPE_RECORD_UPDATE:
+			case CALENDAR_OPERATION_UPDATE:
 				$fileType	= 'event-update';
 				break;
 			default:

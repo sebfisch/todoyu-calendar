@@ -48,9 +48,9 @@
 	<label index="extconf.reminder.email.advancetime.label">Systemvorgabe Email Erinnerung</label>
 	<label index="extconf.reminder.reminderemail_active.label">Aktiviere Termin Erinnerungen per Email</label>
 	<label index="extconf.reminder.reminderpopup_active.label">Aktiviere Termin Erinnerungen per Popup</label>
-	<label index="profile.excerpt.time_start">Zeitausschnitt Anfangsuhrzeit</label>
-	<label index="profile.excerpt.time_end">Zeitausschnitt Enduhrzeit</label>
-	<label index="profile.error.excerpttime_end">Enduhrzeit muss nach der Anfangsuhrzeit liegen</label>
+	<label index="profile.range.start">Startzeit Tag/Woche</label>
+	<label index="profile.range.end">Endzeit Tag/Woche</label>
+	<label index="profile.range.error">Enduhrzeit muss nach der Anfangsuhrzeit liegen</label>
 	<label index="profile.module">Kalender</label>
 	<label index="profile.module.main.tab">Allgemein</label>
 	<label index="profile.module.main.header">Kalender Konfiguration</label>

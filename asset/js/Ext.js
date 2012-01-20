@@ -102,6 +102,16 @@ Todoyu.Ext.calendar	= {
 	},
 
 
+	isInCalendarArea: function() {
+		return Todoyu.getArea() === 'calendar';
+	},
+
+
+	getEvent: function(idEvent) {
+		return $('event-static-' + idEvent);
+	},
+
+
 
 	/**
 	 * Add various JS hooks
@@ -151,10 +161,10 @@ Todoyu.Ext.calendar	= {
 
 
 	/**
-	 * Get selected date timestamp
+	 * Get selected date
 	 *
 	 * @method	getDate
-	 * @return	{Number}	JavaScript timestamp
+	 * @return	{Date}	JavaScript date
 	 */
 	getDate: function() {
 		return this.PanelWidget.Calendar.getDate();
@@ -166,7 +176,7 @@ Todoyu.Ext.calendar	= {
 	 * Set selected date timestamp
 	 *
 	 * @method	setDate
-	 * @param	{Number}	date	JavaScript timestamp
+	 * @param	{Date}	date	JavaScript timestamp
 	 */
 	setDate: function(date) {
 		this.PanelWidget.Calendar.setDate(date, true);
@@ -181,7 +191,7 @@ Todoyu.Ext.calendar	= {
 	 * @return	{Number}
 	 */
 	getTime: function() {
-		return this.PanelWidget.Calendar.getTime();
+		return this.getDate().getTime()/1000;
 	},
 
 
@@ -205,7 +215,7 @@ Todoyu.Ext.calendar	= {
 	 * @return	{String}
 	 */
 	getDateString: function() {
-		return Todoyu.Time.getDateString(this.getTime())
+		return Todoyu.Time.getDateString(this.getDate())
 	},
 
 
@@ -217,7 +227,12 @@ Todoyu.Ext.calendar	= {
 	 * @return	{Number}
 	 */
 	getDayStart: function() {
-		return Todoyu.Time.getDayStart(this.getTime());
+		return Todoyu.Time.getDayStart(this.getDate());
+	},
+
+
+	getDayStartTime: function() {
+		return this.getDayStart().getTime()/1000;
 	},
 
 
@@ -229,8 +244,13 @@ Todoyu.Ext.calendar	= {
 	 * @return	{Number}
 	 */
 	getWeekStart: function() {
-		return Todoyu.Time.getWeekStart(this.getTime());
+		return Todoyu.Time.getWeekStart(this.getDate());
 	},
+
+	getWeekStartTime: function() {
+		return this.getWeekStart().getTime()/1000;
+	},
+
 
 
 
@@ -266,7 +286,9 @@ Todoyu.Ext.calendar	= {
 	 * @param	{Object}	update
 	 */
 	onDateChanged: function(widgetName, update) {
-		this.show(null, update.date);
+		var time	= update.date.getTime()/1000;
+
+		this.show(null, time);
 	},
 
 
@@ -366,9 +388,9 @@ Todoyu.Ext.calendar	= {
 	 *
 	 * @method	show
 	 * @param	{String}		tab
-	 * @param	{Number}		date
+	 * @param	{Number}		time
 	 */
-	show: function(tab, date) {
+	show: function(tab, time) {
 			// Close special tabs (edit,view)
 		this.Tabs.closeSpecialTabs();
 			// Make sure calendar is visible
@@ -376,26 +398,27 @@ Todoyu.Ext.calendar	= {
 			// Hide quickinfo
 		Todoyu.QuickInfo.hide();
 
-			// Get active tab and set it
-		if( ! Object.isString(tab) ) {
-			tab	= this.getActiveTab();
-		}
-		this.setActiveTab(tab);
 
-			// Set new date if given as parameter
-		if( Object.isNumber(date) ) {
-			this.setDate(date);
+
+			// Get active tab and set it
+		if( !tab ) {
+			tab = this.getActiveTab();
+		}
+			// Set new time if given as parameter
+		if( time ) {
+			this.setTime(time);
 		}
 
 			// Update visibility of hours-range / weekend options
 		this.Navi.toggleViewOptions(tab);
+		this.setActiveTab(tab);
 
 		var url 	= Todoyu.getUrl('calendar', 'calendar');
 		var options	= {
 			parameters: {
 				action:	'update',
-				tab:		this.getActiveTab(),
-				date:		this.getDateString()
+				tab:	this.getActiveTab(),
+				date:	this.getDateString()
 			},
 			onComplete: this.onCalendarBodyUpdated.bind(this)
 		};
@@ -406,28 +429,32 @@ Todoyu.Ext.calendar	= {
 
 
 	/**
-	 * Show day by date
+	 * Show day by dateString
 	 *
 	 * @method	showDay
-	 * @param	{String}	date		Format: Y-m-d (2010-08-15)
+	 * @param	{String}	dateString		Format: Y-m-d (2010-08-15)
 	 */
-	showDay: function(date) {
-		var parts	= date.split('-');
-		var time 	= (new Date(parts[0], parts[1]-1, parts[2], 0, 0, 0)).getTime();
+	showDay: function(dateString) {
+		var parts	= dateString.split('-');
+		var date	= new Date(parts[0], parts[1]-1, parts[2], 0, 0, 0);
+		var time 	= date.getTime()/1000;
+
 		this.show('day', time);
 	},
 
 
 
 	/**
-	 * Show week by date
+	 * Show week by dateString
 	 *
 	 * @method	showWeek
-	 * @param	{String}	date		Format: Y-m-d (2010-08-15)
+	 * @param	{String}	dateString		Format: Y-m-d (2010-08-15)
 	 */
-	showWeek: function(date) {
-		var parts	= date.split('-');
-		var time 	= (new Date(parts[0], parts[1]-1, parts[2], 0, 0, 0)).getTime();
+	showWeek: function(dateString) {
+		var parts	= dateString.split('-');
+		var date	= new Date(parts[0], parts[1]-1, parts[2], 0, 0, 0);
+		var time 	= date.getTime()/1000;
+
 		this.show('week', time);
 	},
 
@@ -503,6 +530,16 @@ Todoyu.Ext.calendar	= {
 		if( Todoyu.getArea() === 'calendar' ) {
 			this.refresh();
 		}
-	}
+	},
 
+	isFutureTime: function(time) {
+		return this.isFutureDate(new Date(time*1000));
+	},
+
+
+	isFutureDate: function(date) {
+		var dateNow		= new Date();
+
+		return dateNow < date;
+	}
 };

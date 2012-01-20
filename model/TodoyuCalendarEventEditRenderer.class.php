@@ -92,27 +92,25 @@ class TodoyuCalendarEventEditRenderer {
 	 * Render event form
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$timestamp
+	 * @param	Integer		$date
+	 * @param	Array		$options
 	 * @return	String
 	 */
-	public static function renderEventForm($idEvent, $timestamp = 0) {
+	public static function renderEventForm($idEvent, $date = 0, array $options = array()) {
 		$idEvent= intval($idEvent);
-		$timestamp	= intval($timestamp);
-
-		$xmlPath= 'ext/calendar/config/form/event.xml';
-		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
-
-		$form->setUseRecordID(false);
+		$date	= intval($date);
 
 		if( $idEvent === 0 ) {
-			TodoyuCalendarEventStaticManager::createNewEventWithDefaultsInCache($timestamp);
+			TodoyuCalendarEventStaticManager::createNewEventWithDefaultsInCache($date);
 		}
 
 		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$data	= $event->getTemplateData(true, false, true);
+		$form	= TodoyuCalendarEventStaticManager::getEventForm($idEvent, $data, array('options'=>$options));
 
 			// Call hooked load functions
-		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
+		$xmlPath= 'ext/calendar/config/form/event.xml';
+		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent, array('options'=>$options));
 
 		$form->setFormData($data);
 

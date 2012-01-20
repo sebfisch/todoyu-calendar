@@ -84,8 +84,8 @@ class TodoyuCalendarProfileRenderer {
 
 		$formData	= array(
 			'is_mailpopupdeactivated'	=> TodoyuCalendarPreferences::getPref('is_mailpopupdeactivated', 0, 0, false, Todoyu::personid()),
-			'excerpttime_start'			=> TodoyuCalendarPreferences::getPref('excerpttime_start', 0, 0, false, Todoyu::personid()),
-			'excerpttime_end'			=> TodoyuCalendarPreferences::getPref('excerpttime_end', 0, 0, false, Todoyu::personid())
+			'range_start'				=> TodoyuCalendarPreferences::getCompactViewRangeStart(),
+			'range_end'					=> TodoyuCalendarPreferences::getCompactViewRangeEnd()
 		);
 		$form->setFormData($formData);
 

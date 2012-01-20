@@ -44,14 +44,15 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @method	open
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		time
+	 * @param	{Object}		options
 	 */
-	open: function(idEvent, time) {
+	open: function(idEvent, time, options) {
 		Todoyu.QuickInfo.hide();
 		Todoyu.Ui.scrollToTop();
 
 		this.addTab('');
 		this.ext.hideCalendar();
-		this.loadForm(idEvent, time);
+		this.loadForm(idEvent, time, options);
 	},
 
 
@@ -76,17 +77,22 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		time
 	 */
-	loadForm: function(idEvent, time) {
+	loadForm: function(idEvent, time, extraOptions) {
+		extraOptions= extraOptions || {};
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
 			parameters: {
-				action:	'edit',
-				'event':	idEvent,
-				'date':		Todoyu.Time.getDateTimeString(time)
+				action:		'edit',
+				event:		idEvent,
+				options:	Object.toJSON(extraOptions)
 			},
-			onComplete: this.onFormLoaded.bind(this, idEvent)
+			onComplete: this.onFormLoaded.bind(this, idEvent, extraOptions)
 		};
 		var target	= 'calendar-edit';
+
+		if( time ) {
+			options.parameters.date = Todoyu.Time.getDateTimeString(time);
+		}
 
 		Todoyu.Ui.update(target, url, options);
 	},
@@ -98,9 +104,10 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 *
 	 * @method	onFormLoaded
 	 * @param	{Number}			idEvent
+	 * @param	{Object}			extraOptions
 	 * @param	{Ajax.Response}		response
 	 */
-	onFormLoaded: function(idEvent, response) {
+	onFormLoaded: function(idEvent, extraOptions, response) {
 		var tabLabel	= response.getTodoyuHeader('tabLabel');
 
 		this.setTabLabel(tabLabel);
@@ -109,6 +116,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 		this.observeEventType();
 		this.observeParticipants(idEvent);
+		this.ext.Event.Series.initEditView(idEvent, extraOptions.seriesEdit);
 
 		this.show();
 	},
@@ -416,12 +424,12 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Boolean}	isOverbookingConfirmed
 	 */
 	saveEvent: function(isOverbookingConfirmed) {
-		isOverbookingConfirmed	= isOverbookingConfirmed ? isOverbookingConfirmed : false;
+		isOverbookingConfirmed	= isOverbookingConfirmed || false;
 
 		$('event-form').request({
 			parameters: {
-				action:						'save',
-				'isOverbookingConfirmed':	(isOverbookingConfirmed ? '1' : '0')
+				action:					'save',
+				isOverbookingConfirmed:	isOverbookingConfirmed ? 1 : 0
 			},
 			onComplete: this.onEventSaved.bind(this)
 		});
@@ -442,6 +450,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 				// Notify of invalid data
 			Todoyu.notifyError('[LLL:calendar.event.saved.error]', 'calendar.event.saved');
 			$('event-form').replace(response.responseText);
+			this.ext.Event.Series.initEditView(idEvent);
 		} else if( response.hasTodoyuHeader('overbookingwarning') ) {
 				// Show overbooking warning + confirmation prompt
 			this.updateInlineOverbookingWarning(response.getTodoyuHeader('overbookingwarningInline'));
@@ -455,7 +464,11 @@ Todoyu.Ext.calendar.Event.Edit	= {
 			this.ext.QuickInfo.Static.removeFromCache(response.getTodoyuHeader('idEvent'));
 
 				// Update calendar body showing time of the saved event and close the edit form
-			this.ext.show(this.ext.Tabs.active, response.getTodoyuHeader('time') * 1000);
+			var time	= response.getTodoyuHeader('time');
+
+				// Show last active tab for selected time
+			this.ext.setTime(time);
+			this.ext.refresh();
 			this.close();
 		}
 	},

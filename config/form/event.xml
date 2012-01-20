@@ -6,6 +6,7 @@
 	</attributes>
 	<hiddenFields>
 		<field name="id" />
+		<field name="id_series" />
 	</hiddenFields>
 
 	<fieldsets>

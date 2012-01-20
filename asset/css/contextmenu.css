@@ -5,6 +5,9 @@ a.eventContextMenu {
 a.eventContextMenu.eventEdit {
 	background-position:5px 4px;
 }
+a.eventContextMenu.eventEditSeries {
+	background-position:5px 4px;
+}
 
 a.eventContextMenu.eventShow {
 	background-position:5px -120px;
@@ -14,6 +17,10 @@ a.eventContextMenu.eventShowInCalendar {
 }
 
 a.eventContextMenu.eventRemove {
+	background-position:5px -57px;
+}
+
+a.eventContextMenu.eventRemoveSeries {
 	background-position:5px -57px;
 }
 

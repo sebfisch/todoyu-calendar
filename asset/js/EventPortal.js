@@ -177,6 +177,17 @@ Todoyu.Ext.calendar.EventPortal	= {
 		var numResults	= Todoyu.Ext.portal.Tab.getNumResults('appointment');
 
 		Todoyu.Ext.portal.Tab.updateNumResults('appointment', numResults-1);
+	},
+
+
+
+	/**
+	 * Jump to calendar event edit view
+	 *
+	 * @param	{Number}	idEvent
+	 */
+	edit: function(idEvent) {
+		this.ext.Event.jumpToEventEditView(idEvent);
 	}
 
 };

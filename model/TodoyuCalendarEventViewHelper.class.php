@@ -200,6 +200,145 @@ class TodoyuCalendarEventViewHelper {
 		return $items;
 	}
 
+
+
+	/**
+	 * Get options for series frequencies
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
+	public static function getSeriesFrequencyOptions(TodoyuFormElement $field) {
+		return array(
+			array(
+				'value'	=> 0,
+				'label'	=> 'Nicht wiederholen'
+			),
+			array(
+				'value'	=> CALENDAR_SERIES_FREQUENCY_DAY,
+				'label'	=> 'Täglich',
+			),
+			array(
+				'value'	=> CALENDAR_SERIES_FREQUENCY_WEEKDAY,
+				'label'	=> 'Wochentag (Mo-Fr)',
+			),
+			array(
+				'value'	=> CALENDAR_SERIES_FREQUENCY_WEEK,
+				'label'	=> 'Wöchentlich',
+			),
+			array(
+				'value'	=> CALENDAR_SERIES_FREQUENCY_MONTH,
+				'label'	=> 'Monatlich',
+			),
+			array(
+				'value'	=> CALENDAR_SERIES_FREQUENCY_YEAR,
+				'label'	=> 'Jährlich',
+			)
+		);
+	}
+
+
+
+	/**
+	 * Get options for series intervals
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
+	public static function getSeriesIntervalOptions(TodoyuFormElement $field) {
+		$idFrequency= $field->getForm()->getField('seriesfrequency')->getStorageData();
+		$options	= array();
+
+		switch( $idFrequency ) {
+			case CALENDAR_SERIES_FREQUENCY_WEEK:
+				$stepLabel	= 'Wochen';
+				break;
+			case CALENDAR_SERIES_FREQUENCY_MONTH:
+				$stepLabel	= 'Monate';
+				break;
+			case CALENDAR_SERIES_FREQUENCY_YEAR:
+				$stepLabel	= 'Jahre';
+				break;
+			default:
+				$stepLabel	= 'Tage';
+		}
+
+		for($i=1; $i<=30; $i++) {
+			$options[] = array(
+				'value'	=> $i,
+				'label'	=> $i . ' ' . $stepLabel
+			);
+		}
+
+		return $options;
+	}
+
+
+
+	/**
+	 * Get options for series day of week
+	 *
+	 * @param	TodoyuFormElement		$field
+	 * @return	Array
+	 */
+	public static function getSeriesWeekdayOptions(TodoyuFormElement $field) {
+		$items	= Todoyu::$CONFIG['EXT']['calendar']['weekDays']['long'];
+		$options= array();
+
+		foreach($items as $dayKey => $labelKey) {
+			$options[] = array(
+				'value'	=> $dayKey,
+				'label'	=> TodoyuCalendarManager::getWeekDayLabel($dayKey)
+			);
+		}
+
+		return $options;
+	}
+
+
+
+	/**
+	 * Get label for series (comment field)
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	String
+	 */
+	public static function getSeriesLabel(TodoyuFormElement $field) {
+		$formData	= $field->getForm()->getStorageData();
+		$idSeries	= intval($formData['id_series']);
+		$series		= TodoyuCalendarEventSeriesManager::getSeries($idSeries);
+		$series->setFormData($formData);
+
+		return $series->getLabel();
+	}
+
+
+
+	/**
+	 * Get series overbooking warnings
+	 *
+	 * @param	TodoyuFormElement		$field
+	 * @return	String
+	 */
+	public static function getSeriesOverbookingWarnings(TodoyuFormElement $field) {
+		$seriesData	= $field->getForm()->getStorageData();
+		$frequency	= intval($seriesData['seriesfrequency']);
+
+		if( $frequency !== 0 ) {
+			$eventData	= TodoyuArray::assure($field->getForm()->getVar('eventData'));
+			$idSeries	= intval($eventData['id_series']);
+			$series		= TodoyuCalendarEventSeriesManager::getSeries($idSeries);
+			$series->setFormData($eventData);
+
+			$warningMessages	= $series->getOverbookingConflictsWarningMessages();
+
+			if( sizeof($warningMessages) > 0 ) {
+				return implode('<br>', $warningMessages);
+			}
+		}
+
+		return 'No Conflicts detected';
+	}
 }
 
 ?>

@@ -51,15 +51,32 @@
 			{Label calendar.event.attr.attendees}
 		</td>
 		<td class="">
-		{foreach $event.persons person personData}
-			{if $personData.is_acknowledged}{$class='eventperson-acknowledged'}{else}{$class='eventperson-unacknowledged'}{/if}
-			{if in_array($personData.id, array_keys($event.persons_email))}{$class.='-email'}{/if}
-			{personLabel idPrefix="event-personattend" idRecord=$personData.id idPerson=$personData.id class=$class}
-			<br />
-		{/foreach}
+			{foreach $event.persons person personData}
+				{if $personData.is_acknowledged}
+					{$class='eventperson-acknowledged'}
+				{else}
+					{$class='eventperson-unacknowledged'}
+				{/if}
+				{if in_array($personData.id, array_keys($event.persons_email))}
+					{$class.='-email'}
+				{/if}
+				{personLabel idPrefix="event-personattend" idRecord=$personData.id idPerson=$personData.id class=$class}
+				<br />
+			{/foreach}
 			<br />
 		</td>
 	</tr>
+
+{* ------------------------ Series *}
+{if $event.id_series}
+	<tr class="even">
+		<td class="label">Series</td>
+		<td id="event-{$event.id}-series">
+			{$event.series.label}
+		</td>
+	</tr>
+{/if}
+
 {* ------------------------ Scheduled Reminders *}
 {if isAllowedEventReminderPopup($event.id) || isAllowedEventReminderEmail($event.id)}
 	{$personID = personid()}

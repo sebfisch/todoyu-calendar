@@ -77,8 +77,8 @@ Todoyu.Ext.calendar.Navi	= {
 	 * Get up-/ down-shifted date
 	 *
 	 * @method	getDirectionDate
-	 * @param	{String}		direction		'up' / 'down'
-	 * @return	{Number}
+	 * @param	{Boolean}		up
+	 * @return	{Date}
 	 */
 	getDirectionDate: function(up) {
 		var tab		= this.getActiveTab();
@@ -86,7 +86,7 @@ Todoyu.Ext.calendar.Navi	= {
 
 		var newTime	= Todoyu.Time.getShiftedTime(time, tab, up);
 
-		return newTime * 1000;
+		return new Date(newTime * 1000);
 	},
 
 
@@ -109,9 +109,10 @@ Todoyu.Ext.calendar.Navi	= {
 	 * @method	goBackward
 	 */
 	goBackward: function() {
-		var date= this.getBackwardDate();
+		var date	= this.getBackwardDate();
+		var time	= date.getTime()/1000;
 
-		this.ext.show(null, date);
+		this.ext.show(null, time);
 	},
 
 
@@ -134,9 +135,10 @@ Todoyu.Ext.calendar.Navi	= {
 	 * @method	goForward
 	 */
 	goForward: function() {
-		var date= this.getForwardDate();
+		var date	= this.getForwardDate();
+		var time	= date.getTime()/1000;
 
-		this.ext.show(null, date);
+		this.ext.show(null, time);
 	},
 
 
@@ -145,7 +147,7 @@ Todoyu.Ext.calendar.Navi	= {
 	 * Get today date
 	 *
 	 * @method	getTodayDate
-	 * @return	{Number}
+	 * @return	{Date}
 	 */
 	getTodayDate: function() {
 		return Todoyu.Time.getTodayDate();
@@ -159,9 +161,10 @@ Todoyu.Ext.calendar.Navi	= {
 	 * @method	goToday
 	 */
 	goToday: function() {
-		var date= this.getTodayDate();
+		var date	= this.getTodayDate();
+		var time	= date.getTime()/1000;
 
-		this.ext.show(null, date);
+		this.ext.show(null, time);
 	},
 
 
@@ -175,6 +178,10 @@ Todoyu.Ext.calendar.Navi	= {
 	 * @param	{String}	tab
 	 */
 	toggleViewOptions: function(tab) {
+		if( !tab ) {
+			tab = this.getActiveTab();
+		}
+
 		if( tab === 'day' || tab == 'week' ) {
 			$('calendar-quicknav-toggleDayView').show();
 		} else {

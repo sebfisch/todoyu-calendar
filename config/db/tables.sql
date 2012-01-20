@@ -1,7 +1,6 @@
 --
 -- Table structure for table `ext_calendar_event`
 --
-
 CREATE TABLE `ext_calendar_event` (
 	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 	`date_create` int(10) unsigned NOT NULL DEFAULT '0',
@@ -18,6 +17,7 @@ CREATE TABLE `ext_calendar_event` (
 	`date_end` int(10) unsigned NOT NULL DEFAULT '0',
 	`is_private` tinyint(3) unsigned NOT NULL DEFAULT '0',
 	`is_dayevent` tinyint(3) unsigned NOT NULL DEFAULT '0',
+	`id_series` int(10) unsigned NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
@@ -26,7 +26,6 @@ CREATE TABLE `ext_calendar_event` (
 --
 -- Table structure for table `ext_calendar_mm_event_person`
 --
-
 CREATE TABLE `ext_calendar_mm_event_person` (
 	`id` int(10) NOT NULL AUTO_INCREMENT,
 	`id_event` int(10) unsigned NOT NULL DEFAULT '0',
@@ -47,7 +46,6 @@ CREATE TABLE `ext_calendar_mm_event_person` (
 --
 -- Table structure for table `ext_calendar_holiday`
 --
-
 CREATE TABLE `ext_calendar_holiday` (
 	`id` int(10) NOT NULL AUTO_INCREMENT,
 	`date_create` int(10) unsigned NOT NULL DEFAULT '0',
@@ -66,7 +64,6 @@ CREATE TABLE `ext_calendar_holiday` (
 --
 -- Table structure for table `ext_calendar_holidayset`
 --
-
 CREATE TABLE `ext_calendar_holidayset` (
 	`id` int(10) NOT NULL AUTO_INCREMENT,
 	`date_create` int(10) unsigned NOT NULL DEFAULT '0',
@@ -83,7 +80,6 @@ CREATE TABLE `ext_calendar_holidayset` (
 --
 -- Table structure for table `ext_calendar_mm_holiday_holidayset`
 --
-
 CREATE TABLE `ext_calendar_mm_holiday_holidayset` (
 	`id` int(10) NOT NULL AUTO_INCREMENT,
 	`id_holiday` int(10) unsigned NOT NULL DEFAULT '0',
@@ -93,3 +89,20 @@ CREATE TABLE `ext_calendar_mm_holiday_holidayset` (
 	KEY `holidayset` (`id_holidayset`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
+
+--
+-- Table structure for table `ext_calendar_mm_holiday_holidayset`
+--
+CREATE TABLE `ext_calendar_series` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `date_create` int(10) unsigned NOT NULL DEFAULT '0',
+  `date_update` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_person_create` int(10) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `frequency` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `interval` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `config` varchar(100) NOT NULL,
+  `date_start` int(10) unsigned NOT NULL DEFAULT '0',
+  `date_end` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

@@ -34,7 +34,18 @@ Todoyu.Ext.calendar.Week	= {
 	 * @return	{Boolean}
 	 */
 	isWeekendDisplayed: function() {
-		return this.ext.CalendarBody.getAmountDisplayedDays() === 7;
+		return this.getNumDays() === 7;
+	},
+
+
+
+	/**
+	 * Get number of displayed days
+	 *
+	 * @return	{Number}
+	 */
+	getNumDays: function() {
+		return this.ext.CalendarBody.getAmountDisplayedDays();
 	},
 
 
@@ -78,14 +89,49 @@ Todoyu.Ext.calendar.Week	= {
 			// Offset fix (offset seems to be shifted one hour)
 		offset.top	+= hourHeight;
 
-		var weekStart	= this.ext.getWeekStart();
+		var weekStart	= this.ext.getWeekStartTime();
 		var dayIndex	= Math.round(Math.abs(offset.left - timeColWidth) / dayWidth);
 
 		var dayHours	= Math.round((offset.top / hourHeight)*4)/4;
 		var timestamp	= weekStart + Todoyu.Time.seconds.day * dayIndex + dayHours * Todoyu.Time.seconds.hour;
 
 		return new Date(timestamp*1000);
-	}
+	},
 
+
+
+	/**
+	 * Get date for event position
+	 *
+	 * @param	{Number}	x
+	 * @param	{Number}	y
+	 * @return	{Number}
+	 */
+	getDateForPosition: function(x, y) {
+		var weekStart	= this.ext.getWeekStartTime();
+		var dayIndex	= this.getDayIndex(x);
+		var offsetTop	= this.ext.CalendarBody.getFixedTopOffset(y);
+		var dayTime		= this.ext.CalendarBody.getDayOffset(offsetTop);
+		var dayShift	= dayIndex * Todoyu.Time.seconds.day;
+
+		return weekStart + dayShift + dayTime;
+	},
+
+
+
+	/**
+	 * Get day index for week
+	 *
+	 * @param	{Number}	leftOffset
+	 */
+	getDayIndex: function(leftOffset) {
+		var boxOffsetLeft	= $('calendarBody').cumulativeOffset().left + 43;
+		var dayColWidth		= this.getDayColWidth();
+		var offsetLeft		= leftOffset - boxOffsetLeft;
+		var dayIndex		= Math.floor(offsetLeft / dayColWidth);
+		dayIndex			= dayIndex < 0 ? 0 : dayIndex < this.getNumDays() ? dayIndex : this.getNumDays()-1;
+
+		return dayIndex;
+	}
 
 };

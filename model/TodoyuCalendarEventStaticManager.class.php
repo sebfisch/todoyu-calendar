@@ -32,6 +32,31 @@ class TodoyuCalendarEventStaticManager {
 	const TABLE	= 'ext_calendar_event';
 
 
+	/**
+	 * Get event form
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$formData
+	 * @param	Array		$params
+	 * @return	TodoyuForm
+	 */
+	public static function getEventForm($idEvent, array $formData = array(), array $params = array()) {
+		$xmlPath	= 'ext/calendar/config/form/event.xml';
+		$params['data'] = $formData;
+		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent, $params);
+		$form->setUseRecordID(false);
+//		$form->setVars(array(
+//			'eventData'	=> $formData
+//		));
+
+		if( sizeof($formData) ) {
+			$form->setFormData($formData);
+		}
+
+		return $form;
+	}
+
+
 
 	/**
 	 * Get form object form quick create
@@ -42,13 +67,15 @@ class TodoyuCalendarEventStaticManager {
 	public static function getQuickCreateForm($idEvent = 0) {
 		$idEvent	= intval($idEvent);
 
-			// Create form object
-		$xmlPath= 'ext/calendar/config/form/event.xml';
-		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
-
 		TodoyuCalendarEventStaticManager::createNewEventWithDefaultsInCache(NOW);
 		$event	= TodoyuCalendarEventStaticManager::getEvent(0);
 		$data	= $event->getTemplateData(true, false, true);
+
+		// Create form object
+		$xmlPath= 'ext/calendar/config/form/event.xml';
+//		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent)
+
+		$form	= self::getEventForm($idEvent, $data);
 
 			// Call hooked load functions
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idEvent);
@@ -363,6 +390,9 @@ class TodoyuCalendarEventStaticManager {
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent, array('newEvent'	=> $isNewEvent));
 
+			// Extract data for series
+		$seriesData	= self::extractSeriesData($data);
+
 			// Remove not needed fields
 		unset($data['persons']);
 		unset($data['reminder_email']);
@@ -379,7 +409,58 @@ class TodoyuCalendarEventStaticManager {
 			// Set reminder for all users
 		self::updateAssignmentRemindersForCurrentPerson($idEvent, $advanceTimeEmail, $advanceTimePopup);
 
+		if( $seriesData !== false ) {
+			TodoyuCalendarEventSeriesManager::saveSeries($seriesData, $idEvent);
+		}
+
+		self::removeEventFromCache($idEvent);
+
 		return $idEvent;
+	}
+
+
+
+	/**
+	 * Extract series data
+	 * Return series data and remove it from event data
+	 *
+	 * @param	Array	$eventData
+	 * @return	Array
+	 */
+	private static function extractSeriesData(array &$eventData) {
+		$idFrequency= intval($eventData['seriesfrequency']);
+		$seriesData	= false;
+
+		unset($eventData['seriesfrequency']);
+
+			// Is a series selected?
+		if( $idFrequency !== 0 ) {
+			$seriesData = array(
+				'id'		=> intval($eventData['id_series']),
+				'frequency'	=> $idFrequency,
+				'interval'	=> intval($eventData['seriesinterval']),
+				'date_end'	=> intval($eventData['seriesdate_end']),
+				'editfuture'=> intval($eventData['serieseditfuture']) === 1,
+				'config'	=> ''
+			);
+
+			unset($eventData['seriesinterval']);
+			unset($eventData['seriesdate_end']);
+
+			if( isset($eventData['seriesweekdays']) ) {
+				$seriesData['weekdays'] = TodoyuArray::trimExplode(',', $eventData['seriesweekdays']);
+				unset($eventData['seriesweekdays']);
+			}
+
+			if( $idFrequency === CALENDAR_SERIES_FREQUENCY_WEEK ) {
+				$seriesData['config'] = json_encode($seriesData['weekdays']);
+				unset($seriesData['weekdays']);
+			}
+		}
+
+		unset($eventData['serieseditfuture']);
+
+		return $seriesData;
 	}
 
 
@@ -398,7 +479,7 @@ class TodoyuCalendarEventStaticManager {
 		$sent	= false;
 
 		if( sizeof($mailReceiverPersonIDs) > 0 ) {
-			$operationID	= $isNewEvent ? OPERATIONTYPE_RECORD_CREATE : OPERATIONTYPE_RECORD_UPDATE;
+			$operationID	= $isNewEvent ? CALENDAR_OPERATION_CREATE : CALENDAR_OPERATION_UPDATE;
 
 			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $mailReceiverPersonIDs, $operationID);
 			if( $sent ) {
@@ -481,9 +562,12 @@ class TodoyuCalendarEventStaticManager {
 			'date_end'	=> $dateEnd
 		);
 
-		TodoyuHookManager::callHook('calendar', 'event.move', array($idEvent, $dateStart, $dateEnd));
+
+		$data	= TodoyuHookManager::callHookDataModifier('calendar', 'event.move.data', $data, array($idEvent, $dateStart, $dateEnd));
 
 		self::updateEvent($idEvent, $data);
+
+		TodoyuHookManager::callHook('calendar', 'event.move', array($idEvent, $dateStart, $dateEnd));
 
 			// Update scheduled reminders relative to shifted time of event
 		TodoyuCalendarReminderManager::shiftReminderDates($idEvent, $offset);
@@ -529,7 +613,7 @@ class TodoyuCalendarEventStaticManager {
 	 * @param	Array		$personIDs
 	 * @param	Integer		$dateStartOld
 	 */
-	public static function saveAssignments($idEvent, array $personIDs, $dateStartOld) {
+	public static function saveAssignments($idEvent, array $personIDs, $dateStartOld = 0) {
 		$idEvent			= intval($idEvent);
 		$personIDs			= TodoyuArray::intval($personIDs, true, true);
 		$assignedPersonIDs	= TodoyuCalendarEventAssignmentManager::getAssignedPersonIDs($idEvent);
@@ -701,7 +785,7 @@ class TodoyuCalendarEventStaticManager {
 				Todoyu::db()->doInsert($table, $fields);
 
 				if( $formData['send_notification'] === 1 ) {
-					$operationID	= OPERATIONTYPE_RECORD_CREATE;
+					$operationID	= CALENDAR_OPERATION_CREATE;
 					TodoyuCalendarEventMailer::sendEmails($idEvent, array($idPerson), $operationID);
 				}
 			}
@@ -798,23 +882,24 @@ class TodoyuCalendarEventStaticManager {
 	 */
 	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent= intval($idEvent);
+		$event	= self::getEvent($idEvent);
 
 		$allowed= array();
 		$own	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'];
 
+		if(  $event->isInFuture() ) {
 			// Option: show event
-		if( TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent) ) {
-			$allowed['show']	= $own['show'];
-		}
-
-			// Options: edit event, delete event
-			// Edit event: right:editAll OR is assigned and right editAssigned OR is creator
-		if( TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
-			$allowed['edit']	= $own['edit'];
-		}
-
-		if( TodoyuCalendarEventRights::isDeleteAllowed($idEvent) ) {
-			$allowed['delete']	= $own['remove'];
+			if( TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent) ) {
+				$allowed['show']	= $own['show'];
+			}
+				// Options: edit event, delete event
+				// Edit event: right:editAll OR is assigned and right editAssigned OR is creator
+			if( TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
+				$allowed['edit']	= $own['edit'];
+			}
+			if( TodoyuCalendarEventRights::isDeleteAllowed($idEvent) ) {
+				$allowed['delete']	= $own['remove'];
+			}
 		}
 
 			// Option: add event
@@ -843,6 +928,7 @@ class TodoyuCalendarEventStaticManager {
 
 		$ownItems			= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'];
 		$ownItems['show']	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['EventPortal']['show'];
+		$ownItems['edit']['jsAction']	= 'Todoyu.Ext.calendar.EventPortal.edit(#ID#)';
 
 		unset($ownItems['add']);
 
@@ -1045,6 +1131,30 @@ class TodoyuCalendarEventStaticManager {
 				'id'	=> 'multiOrNone'
 			);
 		}
+	}
+
+
+
+	/**
+	 * Check for warnings (overbookings) to be shown prior to saving
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$params
+	 * @return	Array
+	 */
+	public static function getOverbookingWarningHeaders($idEvent, array $params) {
+		$warnings	= array();
+
+		$isOverbookingConfirmed	= intval($params['isOverbookingConfirmed']);
+		if( TodoyuCalendarManager::isOverbookingAllowed() && ! $isOverbookingConfirmed ) {
+			$overbookedWarning	= self::getOverbookingWarning($idEvent, $params['event']);
+			if( ! empty($overbookedWarning) ) {
+				$warnings['overbookingwarning'] 		= $overbookedWarning;
+				$warnings['overbookingwarningInline']	= self::getOverbookingWarning($idEvent, $params['event'], false);
+			}
+		}
+
+		return $warnings;
 	}
 
 }

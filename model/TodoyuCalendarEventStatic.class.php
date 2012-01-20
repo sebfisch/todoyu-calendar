@@ -278,6 +278,24 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 
 
 	/**
+	 * Get all assignments
+	 *
+	 * @return	TodoyuCalendarEventAssignment[]
+	 */
+	public function getAssignments() {
+		$assignedPersonIDs	= $this->getAssignedPersonIDs();
+		$assignments		= array();
+
+		foreach($assignedPersonIDs as $idPerson) {
+			$assignments[] = TodoyuCalendarEventAssignmentManager::getAssignmentByEventPerson($this->getID(), $idPerson);
+		}
+
+		return $assignments;
+	}
+
+
+
+	/**
 	 * Get reminder for person
 	 *
 	 * @param	Integer		$idPerson
@@ -529,6 +547,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 		$this->data['isAcknowledged']	= $this->isAcknowledged();
 		$this->data['isUpdated']		= $this->isUpdated();
 		$this->data['isAssigned']		= $this->isCurrentPersonAssigned();
+		$this->data['series']			= $this->getSeries()->getTemplateData();
 
 		return parent::getTemplateData();
 	}
@@ -763,6 +782,67 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 		}
 
 		return $typeInfo;
+	}
+
+
+
+	/**
+	 * Check whether event is based on a series
+	 *
+	 * @return	Boolean
+	 */
+	public function hasSeries() {
+		return $this->getSeriesID() !== 0;
+	}
+
+
+
+	/**
+	 * Get ID of the series
+	 *
+	 * @return	Integer
+	 */
+	public function getSeriesID() {
+		return intval($this->get('id_series'));
+	}
+
+
+
+	/**
+	 *
+	 *
+	 * @return	TodoyuCalendarEventSeries
+	 */
+	public function getSeries() {
+		return TodoyuRecordManager::getRecord('TodoyuCalendarEventSeries', $this->getSeriesID());
+	}
+
+
+
+	/**
+	 * Get class names
+	 *
+	 * @return	String[]
+	 */
+	public function getClassNames() {
+		$classNames	= array();
+
+		if( $this->hasSeries() ) {
+			$classNames[] = 'series' . $this->getSeriesID();
+		}
+
+		return $classNames;
+	}
+
+
+
+	/**
+	 * Is the event in the future
+	 *
+	 * @return	Boolean
+	 */
+	public function isInFuture() {
+		return $this->getDateStart() > NOW;
 	}
 
 }

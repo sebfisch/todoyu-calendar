@@ -50,7 +50,7 @@ class TodoyuCalendarPreferences {
 	 * @param	Integer		$idArea
 	 * @param	Boolean		$unserialize
 	 * @param	Integer		$idPerson
-	 * @return	String
+	 * @return	String|Boolean
 	 */
 	public static function getPref($preference, $idItem = 0, $idArea = 0, $unserialize = false, $idPerson = 0) {
 		return TodoyuPreferenceManager::getPreference(EXTID_CALENDAR, $preference, $idItem, $idArea, $unserialize, $idPerson);
@@ -158,14 +158,16 @@ class TodoyuCalendarPreferences {
 	 *
 	 * @return	Integer
 	 */
-	public static function getExcerptTimeStart() {
-		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'excerpttime_start', 0) ) {
-			$pref	= intval(self::getPref('excerpttime_start', 0));
-		}  else {
-			return CALENDAR_DEFAULT_EXCERPTTIME_START;
+	public static function getCompactViewRangeStart() {
+		$rangeStart	= self::getPref('range_start');
+
+		if( $rangeStart === false ) {
+			$rangeStart = CALENDAR_RANGE_START;
+		} else {
+			$rangeStart	= intval($rangeStart);;
 		}
 
-		return $pref;
+		return $rangeStart;
 	}
 
 
@@ -175,14 +177,16 @@ class TodoyuCalendarPreferences {
 	 *
 	 * @return	Integer
 	 */
-	public static function getExcerptTimeEnd() {
-		if( TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, 'excerpttime_end', 0) ) {
-			$pref	= intval(self::getPref('excerpttime_end', 0));
-		}  else {
-			return CALENDAR_DEFAULT_EXCERPTTIME_END;
+	public static function getCompactViewRangeEnd() {
+		$rangeEnd	= self::getPref('range_end');
+
+		if( $rangeEnd === false ) {
+			$rangeEnd 	= CALENDAR_RANGE_END;
+		} else {
+			$rangeEnd	= intval($rangeEnd);
 		}
 
-		return $pref;
+		return $rangeEnd;
 	}
 
 

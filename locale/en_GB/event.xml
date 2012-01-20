@@ -61,7 +61,10 @@
 	<label index="contextmenu.manageEvents">Manage Events</label>
 	<label index="contextmenu.showEvent">Show Event</label>
 	<label index="contextmenu.editEvent">Edit Event</label>
+	<label index="contextmenu.editEventSeries">Edit Series</label>
+	<label index="contextmenu.editEventSeriesFuture">Edit Series (Future only)</label>
 	<label index="contextmenu.deleteEvent">Delete Event</label>
+	<label index="contextmenu.deleteEventSeries">Delete Event Series</label>
 	<label index="contextmenu.addEvent">Add Event</label>
 	<label index="contextmenu.showEventInCalendar">Show In Calendar</label>
 	<label index="contextmenu.showEventInCalendar.day">Day</label>
@@ -91,4 +94,12 @@
 	<label index="mail.notification.popup.deactivated">Mailing pop-up has been deactivated. You can re-activate it in your profile.</label>
 	<label index="mail.notification.autosent">Automatic notification email has been sent.</label>
 	<label index="mail.notification.sent">Notification email has been sent.</label>
+	<label index="series.repeat">Repeat</label>
+	<label index="series.frequency">Frequency</label>
+	<label index="series.interval">Repeat every</label>
+	<label index="series.interval.days">Days</label>
+	<label index="series.interval.weeks">Weeks</label>
+	<label index="series.interval.months">Months</label>
+	<label index="series.interval.years">Years</label>
+	<label index="series.weekdays">Repeat on</label>
 </labels>

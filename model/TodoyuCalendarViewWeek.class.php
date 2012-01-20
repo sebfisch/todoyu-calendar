@@ -49,14 +49,14 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 	public function render() {
 		$tmpl	= 'ext/calendar/view/views/week.tmpl';
 		$data	= array(
-			'title'				=> $this->getTitle(),
-			'dayColumns'		=> $this->getDayColumns(),
-			'events'			=> $this->renderEventsPerDay(),
-			'dayEvents'			=> $this->getMappedDayEvents(),
-			'showFullDay'		=> $this->isFullDayView(),
-			'excerpttime_start'	=> TodoyuCalendarPreferences::getExcerptTimeStart(),
-			'excerpttime_end'	=> TodoyuCalendarPreferences::getExcerptTimeEnd(),
-			'displayWeekend'	=> $this->isWeekendDisplayed()
+			'title'			=> $this->getTitle(),
+			'dayColumns'	=> $this->getDayColumns(),
+			'events'		=> $this->renderEventsPerDay(),
+			'dayEvents'		=> $this->getMappedDayEvents(),
+			'showFullDay'	=> $this->isFullDayView(),
+			'rangeStart'	=> TodoyuCalendarPreferences::getCompactViewRangeStart(),
+			'rangeEnd'		=> TodoyuCalendarPreferences::getCompactViewRangeEnd(),
+			'displayWeekend'=> $this->isWeekendDisplayed()
 		);
 
 		return Todoyu::render($tmpl, $data);

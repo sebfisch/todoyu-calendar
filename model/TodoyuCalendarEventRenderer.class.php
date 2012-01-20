@@ -203,7 +203,7 @@ class TodoyuCalendarEventRenderer {
 	 * @param	Integer		$operationID
 	 * @return	String
 	 */
-	public static function renderEventMailPopup($idEvent, $operationID = OPERATIONTYPE_RECORD_UPDATE) {
+	public static function renderEventMailPopup($idEvent, $operationID = CALENDAR_OPERATION_UPDATE) {
 		$idEvent= intval($idEvent);
 		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
@@ -225,7 +225,7 @@ class TodoyuCalendarEventRenderer {
 		));
 
 			// Remove "don't ask again" button in form of deleted events
-		if( $operationID == OPERATIONTYPE_RECORD_DELETE ) {
+		if( $operationID == CALENDAR_OPERATION_DELETE ) {
 			$form->getFieldset('buttons')->removeField('dontaskagain');
 		}
 
@@ -240,7 +240,6 @@ class TodoyuCalendarEventRenderer {
 
 		return Todoyu::render($tmpl, $data);
 	}
-
 }
 
 ?>

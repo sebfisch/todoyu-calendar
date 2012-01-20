@@ -84,10 +84,11 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 * Initialize calendar widget
 	 *
 	 * @method	init
-	 * @param	{String}		date	Formatted date Y-m-d
+	 * @param	{String}		dateString	Formatted dateString Y-m-d
 	 */
-	init: function(date, firstDayOfWeek) {
-		var initialDate	= new Date(date);
+	init: function(dateString, firstDayOfWeek) {
+		var date	= new Date(dateString);
+		date.setHours(0, 0, 0, 0);
 
 		var parent	= $('panelwidget-calendar-jscalendar');
 			// construct a calendar giving only the "selected" handler.
@@ -98,7 +99,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 		this.Calendar.setDateFormat("%A, %B %e");
 
 		this.Calendar.create(parent);
-		this.Calendar.setDate(initialDate);
+		this.Calendar.setDate(date);
 
 		this.Calendar.show();
 	},
@@ -109,10 +110,10 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 * Get current calendar date
 	 *
 	 * @method	getDate
-	 * @return	{Number}
+	 * @return	{Date}
 	 */
 	getDate: function() {
-		return this.Calendar.date.getTime();
+		return this.Calendar.date;
 	},
 
 
@@ -124,10 +125,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 * @param	{Number}	timestamp
 	 * @param	{Boolean}	noExternalUpdate
 	 */
-	setDate: function(timestamp, noExternalUpdate) {
-		var date	= new Date();
-		date.setTime(timestamp);
-
+	setDate: function(date, noExternalUpdate) {
 		this.Calendar.setDate(date);
 		this.Calendar.onUpdateTime();
 	},
@@ -141,7 +139,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 * @return	{Number}	UNIX timestamp
 	 */
 	getTime: function() {
-		return parseInt(this.getDate() / 1000, 10);
+		return this.getDate().getTime() / 1000;
 	},
 
 
@@ -154,7 +152,9 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 * @param	{Boolean}	noExternalUpdate
 	 */
 	setTime: function(timestamp, noExternalUpdate) {
-		this.setDate(timestamp * 1000, noExternalUpdate);
+		var date = new Date(timestamp * 1000);
+
+		this.setDate(date, noExternalUpdate);
 	},
 
 
@@ -185,8 +185,8 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 			this.updateTimeout	= this.onUpdate.bind(this).delay(this.updateTimeoutWait, mode, false);
 		} else {
 			Todoyu.PanelWidget.fire(this.key, {
-				'mode':	mode,
-				'date':	this.getDate()
+				mode:	mode,
+				date:	this.getDate()
 			});
 		}
 	},
@@ -202,7 +202,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 */
 	shiftDate: function(duration, saveDatePreference) {
 		this.prefSavingEnabled	= saveDatePreference;
-		this.setDate(this.getDate() + duration);
+		this.setTime(this.getTime() + duration);
 		this.prefSavingEnabled	= true;
 	},
 

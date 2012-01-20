@@ -95,14 +95,14 @@ class TodoyuCalendarEventMailManager {
 	 */
 	public static function getEventMailSubjectByOperationID($operationID) {
 		$operationID	= intval($operationID);
-		if( ! in_array($operationID, array(OPERATIONTYPE_RECORD_CREATE, OPERATIONTYPE_RECORD_DELETE, OPERATIONTYPE_RECORD_UPDATE)) ) {
-			$operationID	= OPERATIONTYPE_RECORD_UPDATE;
+		if( ! in_array($operationID, array(CALENDAR_OPERATION_CREATE, CALENDAR_OPERATION_DELETE, CALENDAR_OPERATION_UPDATE)) ) {
+			$operationID	= CALENDAR_OPERATION_UPDATE;
 		}
 
 		$subjectKeys	= array(
-			OPERATIONTYPE_RECORD_CREATE	=> 'create',
-			OPERATIONTYPE_RECORD_DELETE	=> 'delete',
-			OPERATIONTYPE_RECORD_UPDATE	=> 'update'
+			CALENDAR_OPERATION_CREATE => 'create',
+			CALENDAR_OPERATION_DELETE	=> 'delete',
+			CALENDAR_OPERATION_UPDATE => 'update'
 		);
 
 		return Todoyu::Label('calendar.event.mail.popup.subject.' . $subjectKeys[$operationID]);

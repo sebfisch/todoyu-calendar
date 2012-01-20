@@ -158,6 +158,17 @@ Todoyu.Ext.calendar.Event.View	= {
 
 
 	/**
+	 * Edit event, close detail view
+	 *
+	 * @param	{Number}	idEvent
+	 */
+	edit: function(idEvent) {
+		this.close(false);
+		this.ext.Event.edit(idEvent);
+	},
+
+
+	/**
 	 * Check whether event viewing tab exists in DOM
 	 *
 	 * @method	isActive
@@ -172,13 +183,17 @@ Todoyu.Ext.calendar.Event.View	= {
 	/**
 	 * Close event viewing tab and update calendar view
 	 *
+	 * @param	{Boolean}	showCalendar
 	 * @method	close
 	 */
-	close: function() {
+	close: function(showCalendar) {
 		this.removeTab();
 		this.hide();
-		this.ext.showCalendar();
-		$('calendar-view').update('');
+
+		if( showCalendar !== false ) {
+			this.ext.showCalendar();
+			$('calendar-view').update('');
+		}
 	}
 
 };

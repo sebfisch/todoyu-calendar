@@ -38,16 +38,15 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	ext:			Todoyu.Ext.calendar,
 
 	/**
-	 * @property	idArea
-	 * @type		String
-	 */
-	idArea:			'calendarBody',
-
-	/**
 	 * @property	calendarBody
 	 * @type		Element
 	 */
 	calendarBody:	null,
+
+	range: {
+		start: 8,
+		end: 18
+	},
 
 
 
@@ -58,25 +57,43 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 */
 	init: function() {
 			// Ensure the calendarBody is there (it's missing when editing an event initially)
-		if( $(this.idArea) !== null ) {
-			this.calendarBody	= $(this.idArea);
+		this.calendarBody	= $('calendarBody');
 
-			this.installContextMenu();
-			this.installObserversCreateEvent();
+		this.installContextMenu();
+		this.installObserversCreateEvent();
 
-			this.ext.installQuickInfos();
-			this.ext.Event.installObservers();
+		this.ext.installQuickInfos();
+		this.ext.Event.installObservers();
 
-			if( this.ext.getActiveTab() !== 'month' ) {
-				this.setFullHeight(this.isFullHeight(), false);
-			}
-
-				// Init drag and drop
-			this.ext.DragDrop.init();
+		if( this.ext.getActiveTab() !== 'month' ) {
+			this.applyCompactView();
 		}
+
+			// Init drag and drop
+		this.ext.DragDrop.init();
 
 			// Call hooked callbacks
 		Todoyu.Hook.exec('calendarBody.init');
+	},
+
+
+
+	/**
+	 * Set compact view range limits
+	 *
+	 * @param	{Number}	start
+	 * @param	{Number}	end
+	 * @param	{Boolean}	apply
+	 */
+	setViewRange: function(start, end, apply) {
+		this.range = {
+			start: start,
+			end: end
+		};
+
+		if( apply !== false ) {
+			this.applyCompactView();
+		}
 	},
 
 
@@ -128,7 +145,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * @method	onWeekendToggled
 	 */
 	onWeekendToggled: function() {
-		Todoyu.Ext.calendar.show('week', this.ext.getDate());
+		this.ext.show('week');
 	},
 
 
@@ -173,29 +190,36 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * Set calendar body display mode to full day height
 	 *
 	 * @method	setFullHeight
-	 * @param	{Boolean}		fullHeight
+	 * @param	{Boolean}		showFullHeight
 	 * @param	{Boolean}		savePref
 	 */
-	setFullHeight: function(fullHeight, savePref) {
-		if( fullHeight ) {
+	setFullHeight: function(showFullHeight, savePref) {
+		if( showFullHeight ) { // Show all hours
 				// Switch to full hours view
 			this.calendarBody.addClassName('full');
 			this.calendarBody.style.height	= 'auto';
 			Todoyu.Helper.setScrollTop(this.calendarBody, 0);
-		} else {
+		} else { // Show compact range
 				// Switch to restrained hours view
 			this.calendarBody.removeClassName('full');
 
-			var	hourTimeExcerptStart= Todoyu.Config.Calendar.excerptTimeStart;
-			var amountHoursShown	= Todoyu.Config.Calendar.excerptTimeEnd - Todoyu.Config.Calendar.excerptTimeStart + 1;
-			this.calendarBody.style.height	= (42 * amountHoursShown) + 'px'; //42px = height of one hour
-			this.calendarBody.scrollTop		= 42 * hourTimeExcerptStart;
+			var numVisibleHours		= this.range.end - this.range.start + 1;
+			this.calendarBody.style.height	= (42 * numVisibleHours) + 'px'; //42px = height of one hour
+			this.calendarBody.scrollTop		= 42 * this.range.start;
 		}
 
-		if( savePref === true ) {
+		if( savePref ) {
 			this.saveFullDayViewPref();
 		}
 	},
+
+
+	applyCompactView: function() {
+		this.setFullHeight(this.isFullHeight(), false);
+	},
+
+
+
 
 
 
@@ -218,24 +242,19 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * @param	{Number}		y
 	 * @return	{Number}
 	 */
-	getTimeOfMouseCoordinates: function(x, y) {
+	getTimeForPosition: function(x, y) {
 		var calendarMode= this.ext.getActiveTab();
 		var timestamp;
 
-			// Get top coordinate, if view is minimized, add invisible part to 'top'
-		var top	= y - this.calendarBody.cumulativeOffset().top + (this.isFullHeight() ? 0 : 8 * 42);
 
 			// Calculate timestamp from coordinate in current mode
 		switch(calendarMode) {
 			case 'day':
-				timestamp	= this.ext.getDayStart() + this.getDayOffset(top, 1010);
+				timestamp	= this.ext.Day.getDateForPosition(x, y);
 				break;
 
 			case 'week':
-				var left	= x - this.calendarBody.cumulativeOffset().left;
-				var numDays	= Math.floor((left - 40) / 89);	// 40px: hours column width, 89px: day column incl. right border
-				numDays		= numDays < 0 ? 0 : numDays;
-				timestamp	= (this.ext.getWeekStart() + numDays * Todoyu.Time.seconds.day) + this.getDayOffset(top, 1010);
+				timestamp	= this.ext.Week.getDateForPosition(x, y);
 				break;
 		}
 
@@ -248,12 +267,11 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * Get pixel-offset of day display, used to comprehend visual margins of hours in day / week mode
 	 *
 	 * @method	getDayOffset
-	 * @param	{Number}		top
-	 * @param	{Number}		height
+	 * @param	{Number}		offsetTop
 	 * @return	{Number}
 	 */
-	getDayOffset: function(top, height) {
-		var seconds	= (top / height) * Todoyu.Time.seconds.day;
+	getDayOffset: function(offsetTop) {
+		var seconds	= (offsetTop / 1009) * Todoyu.Time.seconds.day;
 			// Round to quarter hours, get time parts (hours, minutes, seconds)
 		seconds	= Math.round(seconds / 900) * 900;
 
@@ -288,9 +306,9 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * @param	{Event}	event
 	 */
 	onEventCreateDayWeek: function(event) {
-		var time	= this.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
+		var time	= this.getTimeForPosition(event.pointerX(), event.pointerY());
 
-		this.ext.addEvent(time);
+		this.addEventOnTime(time);
 	},
 
 
@@ -308,7 +326,62 @@ Todoyu.Ext.calendar.CalendarBody	= {
 			// Get timestamp of the date in local timezone (will be reconverted later into the same timestamp again)
 		var time	= Todoyu.Time.date2Time(cell.id.split('-').slice(1).join('-'));
 
-		this.ext.addEvent(time);
+		this.addEventOnTime(time);
+	},
+
+
+
+	/**
+	 * Add an event on a given time
+	 *
+	 * @param	{Number}	time
+	 */
+	addEventOnTime: function(time) {
+		if( this.ext.isFutureTime(time) ) {
+			this.ext.addEvent(time);
+		} else {
+			Todoyu.notifyError('Sie können keine Termine in der Vergangenheit erstellen!', 'calendar.event.pastCreate');
+		}
+	},
+
+
+
+	/**
+	 * Get current view range (start to end hour)
+	 *
+	 * @return	{Object}
+	 */
+	getViewRange: function() {
+		return this.range;
+	},
+
+
+	/**
+	 * Check whether full day view is enabled
+	 *
+	 * @return	{Boolean}
+	 */
+	isFullDayView: function() {
+		return this.isFullHeight();
+	},
+
+
+
+	/**
+	 * Get top offset depending on current view range and full day view
+	 *
+	 * @param	{Number}	topOffset		In pixels
+	 * @return	{Number}	Correct offset inside the calendar body area
+	 */
+	getFixedTopOffset: function(topOffset) {
+		var boxOffsetTop= $('calendarBody').cumulativeOffset().top;
+		var offsetTop	= topOffset - boxOffsetTop;
+
+		if( !this.isFullDayView() ) {
+			offsetTop += this.getViewRange().start * 42;
+		}
+
+		return offsetTop;
 	}
 
 };

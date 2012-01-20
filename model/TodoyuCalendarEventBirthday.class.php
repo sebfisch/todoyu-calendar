@@ -344,6 +344,17 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 		$quickInfo->addInfo('birthday',	$age . ' ' . Todoyu::Label('calendar.ext.yearsold'));
 	}
 
+
+
+	/**
+	 * Get class names
+	 *
+	 * @return	String[]
+	 */
+	public function getClassNames() {
+		return array();
+	}
+
 }
 
 ?>

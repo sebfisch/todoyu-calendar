@@ -138,6 +138,26 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 		array(
 			'file'		=> 'ext/calendar/asset/js/Week.js',
 			'position'	=> 220
+		),
+		array(
+			'file'		=> 'ext/calendar/asset/js/Day.js',
+			'position'	=> 220
+		),
+		array(
+			'file'		=> 'ext/calendar/asset/js/EventSeries.js',
+			'position'	=> 220
+		),
+		array(
+			'file'		=> 'ext/calendar/asset/js/DialogChoiceSeriesEdit.js',
+			'position'	=> 251
+		),
+		array(
+			'file'		=> 'ext/calendar/asset/js/DialogChoiceSeriesDelete.js',
+			'position'	=> 251
+		),
+		array(
+			'file'		=> 'ext/calendar/asset/js/DialogChoiceSeriesSave.js',
+			'position'	=> 251
 		)
 	),
 	'css' => array(
@@ -187,6 +207,10 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 		),
 		array(
 			'file'		=> 'ext/calendar/asset/css/panelwidget-holidaysetselector.css',
+			'position'	=> 150
+		),
+		array(
+			'file'		=> 'ext/calendar/asset/css/series.css',
 			'position'	=> 150
 		),
 		array(

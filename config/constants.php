@@ -60,8 +60,8 @@ define('EVENTTYPE_REMINDER', 	13);
 
 
 	// Default start+end of time excerpt
-define('CALENDAR_DEFAULT_EXCERPTTIME_START',	8);
-define('CALENDAR_DEFAULT_EXCERPTTIME_END',		18);
+define('CALENDAR_RANGE_START',	8);
+define('CALENDAR_RANGE_END',		18);
 
 	// Height of an hour, minute in day- and week- view of calendar
 define('CALENDAR_HEIGHT_HOUR',		42);
@@ -81,8 +81,16 @@ define('CALENDAR_EVENT_MIN_DURATION', 1800);
 
 
 	// Possible types of actions on event records
-define('OPERATIONTYPE_RECORD_CREATE',	1);
-define('OPERATIONTYPE_RECORD_UPDATE',	2);
-define('OPERATIONTYPE_RECORD_DELETE',	3);
+define('CALENDAR_OPERATION_CREATE',	1);
+define('CALENDAR_OPERATION_UPDATE',	2);
+define('CALENDAR_OPERATION_DELETE',	3);
+
+
+	// Series frequencies
+define('CALENDAR_SERIES_FREQUENCY_DAY', 1);
+define('CALENDAR_SERIES_FREQUENCY_WEEKDAY', 2);
+define('CALENDAR_SERIES_FREQUENCY_WEEK', 3);
+define('CALENDAR_SERIES_FREQUENCY_MONTH', 4);
+define('CALENDAR_SERIES_FREQUENCY_YEAR', 5);
 
 ?>

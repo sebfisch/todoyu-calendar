@@ -63,14 +63,14 @@ class TodoyuCalendarEventMailer {
 	 * @param	Integer		$operationID
 	 * @return	Boolean		Success
 	 */
-	public static function sendInfoMail($idEvent, $idPerson, $operationID = OPERATIONTYPE_RECORD_CREATE) {
+	public static function sendInfoMail($idEvent, $idPerson, $operationID = CALENDAR_OPERATION_CREATE) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 		$operationID= intval($operationID);
 		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 		if( $event->isDeleted() ) {
-			$operationID	= OPERATIONTYPE_RECORD_DELETE;
+			$operationID	= CALENDAR_OPERATION_DELETE;
 		}
 
 		$mail	= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $operationID);
@@ -90,13 +90,13 @@ class TodoyuCalendarEventMailer {
 	 */
 	public static function getSubjectLabelByOperation($operationID) {
 		switch( $operationID ) {
-			case OPERATIONTYPE_RECORD_CREATE:
+			case CALENDAR_OPERATION_CREATE:
 				$subject	= Todoyu::Label('calendar.event.mail.title.create');
 				break;
-			case OPERATIONTYPE_RECORD_UPDATE:
+			case CALENDAR_OPERATION_UPDATE:
 				$subject	= Todoyu::Label('calendar.event.mail.title.update');
 				break;
-			case OPERATIONTYPE_RECORD_DELETE: default:
+			case CALENDAR_OPERATION_DELETE: default:
 				$subject	= Todoyu::Label('calendar.event.mail.title.deleted');
 				break;
 		}
@@ -130,13 +130,13 @@ class TodoyuCalendarEventMailer {
 		$path	= 'ext/calendar/view/emails/';
 
 		switch($operationID) {
-			case OPERATIONTYPE_RECORD_CREATE:
+			case CALENDAR_OPERATION_CREATE:
 				$tmpl	= $path . 'event-new';
 				break;
-			case OPERATIONTYPE_RECORD_DELETE:
+			case CALENDAR_OPERATION_DELETE:
 				$tmpl	= $path . 'event-deleted';
 				break;
-			case OPERATIONTYPE_RECORD_UPDATE:
+			case CALENDAR_OPERATION_UPDATE:
 				$tmpl	= $path . 'event-update';
 				break;
 			default:

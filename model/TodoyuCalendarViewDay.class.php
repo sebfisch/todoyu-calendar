@@ -48,13 +48,13 @@ class TodoyuCalendarViewDay extends TodoyuCalendarView {
 	public function render() {
 		$tmpl		= 'ext/calendar/view/views/day.tmpl';
 		$data		= array(
-			'timestamp'			=> $this->getRange()->getStart(),
-			'showFullDay'		=> $this->isFullDayView(),
-			'events'			=> $this->renderEvents(), // self::preRenderEventsForDay($dateStart, $eventTypeIDs, $personIDs, $personColors),
-			'dayEvents'			=> $this->renderDayEvents(),
-			'title'				=> $this->getTitle(),
-			'excerpttime_start'	=> TodoyuCalendarPreferences::getExcerptTimeStart(),
-			'excerpttime_end'	=> TodoyuCalendarPreferences::getExcerptTimeEnd(),
+			'timestamp'		=> $this->getRange()->getStart(),
+			'showFullDay'	=> $this->isFullDayView(),
+			'events'		=> $this->renderEvents(), // self::preRenderEventsForDay($dateStart, $eventTypeIDs, $personIDs, $personColors),
+			'dayEvents'		=> $this->renderDayEvents(),
+			'title'			=> $this->getTitle(),
+			'rangeStart'	=> TodoyuCalendarPreferences::getCompactViewRangeStart(),
+			'rangeEnd'		=> TodoyuCalendarPreferences::getCompactViewRangeEnd(),
 		);
 
 		return Todoyu::render($tmpl, $data);

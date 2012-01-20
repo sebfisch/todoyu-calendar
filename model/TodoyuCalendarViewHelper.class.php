@@ -216,7 +216,7 @@ class TodoyuCalendarViewHelper {
 	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
-	public static function getExcerptTimeOptions(TodoyuFormElement $field) {
+	public static function getRangeTimeOptions(TodoyuFormElement $field) {
 		$options	= array();
 		for($i= 0; $i <= 23; $i++) {
 			$options[]	= array(

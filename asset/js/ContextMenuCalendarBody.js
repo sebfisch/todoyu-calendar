@@ -89,7 +89,7 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody	= {
 		if( tab === 'month' ) {
 			time	= Todoyu.Time.date2Time(event.findElement('td').id.replace('createEventAt-', ''));
 		} else {
-			time	= this.ext.CalendarBody.getTimeOfMouseCoordinates(event.pointerX(), event.pointerY());
+			time	= this.ext.CalendarBody.getTimeForPosition(event.pointerX(), event.pointerY());
 		}
 
 		return time;

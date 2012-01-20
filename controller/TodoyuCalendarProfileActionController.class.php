@@ -54,6 +54,7 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 	 * Save calendar general preference from main tab of profile
 	 *
 	 * @param	Array		$params
+	 * @return	String
 	 */
 	public function saveMainAction(array $params) {
 		Todoyu::restrict('calendar', 'mailing:sendAsEmail');
@@ -68,8 +69,8 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 		if( $form->isValid() ) {
 				// Save
 			TodoyuCalendarPreferences::savePref('is_mailpopupdeactivated', intval($data['is_mailpopupdeactivated']), 0, true);
-			TodoyuCalendarPreferences::savePref('excerpttime_start', intval($data['excerpttime_start']), 0, true);
-			TodoyuCalendarPreferences::savePref('excerpttime_end', intval($data['excerpttime_end']), 0, true);
+			TodoyuCalendarPreferences::savePref('range_start', intval($data['range_start']), 0, true);
+			TodoyuCalendarPreferences::savePref('range_end', intval($data['range_end']), 0, true);
 		} else {
 				// Re-display with error message(s)
 			TodoyuHeader::sendTodoyuErrorHeader();

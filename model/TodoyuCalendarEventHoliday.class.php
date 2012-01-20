@@ -241,6 +241,17 @@ class TodoyuCalendarEventHoliday extends TodoyuBaseObject implements TodoyuCalen
 		$quickInfo->addInfo('work', round($this->getWorkingTime() / 3600, 1) . ' ' . Todoyu::Label('core.date.time.hours'));
 	}
 
+
+
+	/**
+	 * Get class names
+	 *
+	 * @return	String[]
+	 */
+	public function getClassNames() {
+		return array();
+	}
+
 }
 
 ?>

@@ -124,10 +124,21 @@ abstract class TodoyuCalendarEventElement {
 	/**
 	 * Add an event element class
 	 *
-	 * @param	String		$class
+	 * @param	String		$className
 	 */
-	public function addClass($class) {
-		$this->classNames[]	= $class;
+	public function addClass($className) {
+		$this->classNames[]	= $className;
+	}
+
+
+
+	/**
+	 * Add multiple event element classes
+	 *
+	 * @param	String[]	$classNames
+	 */
+	public function addClasses(array $classNames) {
+		$this->classNames = array_merge($this->classNames, $classNames);
 	}
 
 
@@ -201,6 +212,9 @@ abstract class TodoyuCalendarEventElement {
 		if( $this->getEvent()->canEdit() ) {
 			$this->addClass('canEdit');
 		}
+
+
+		$this->addClasses($this->getEvent()->getClassNames());
 
 		$elementData['class'] 	= implode(' ', $this->getClasses());
 		$elementData['color']	= $this->getColor();

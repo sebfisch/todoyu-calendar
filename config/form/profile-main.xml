@@ -11,23 +11,23 @@
 			<legend>calendar.form.legend.profile.appearance</legend>
 			<class>appearance</class>
 			<elements>
-				<field type="select" name="excerpttime_start">
+				<field type="select" name="range_start">
 					<label>calendar.ext.profile.excerpt.time_start</label>
 					<source type="function">
-						<function>TodoyuCalendarViewHelper::getExcerptTimeOptions</function>
+						<function>TodoyuCalendarViewHelper::getRangeTimeOptions</function>
 						<lazyInit />
 					</source>
 					<noPleaseSelect />
 				</field>
-				<field type="select" name="excerpttime_end">
+				<field type="select" name="range_end">
 					<label>calendar.ext.profile.excerpt.time_end</label>
 					<source type="function">
-						<function>TodoyuCalendarViewHelper::getExcerptTimeOptions</function>
+						<function>TodoyuCalendarViewHelper::getRangeTimeOptions</function>
 						<lazyInit />
 					</source>
 					<validate>
-						<greaterThan msg="calendar.ext.profile.error.excerpttime_end">
-							<field>excerpttime_start</field>
+						<greaterThan msg="calendar.ext.profile.range.error">
+							<field>range_start</field>
 						</greaterThan>
 					</validate>
 					<noPleaseSelect />

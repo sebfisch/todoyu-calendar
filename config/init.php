@@ -64,7 +64,11 @@ TodoyuAutocompleter::addAutocompleter('eventperson', 'TodoyuCalendarEventViewHel
 	Form Hooks
    ---------------------------- */
 TodoyuFormHook::registerBuildForm('ext/calendar/config/form/event.xml', 'TodoyuCalendarReminderManager::hookAddReminderFieldsToEvent');
+TodoyuFormHook::registerBuildForm('ext/calendar/config/form/event.xml', 'TodoyuCalendarEventSeriesManager::hookSetSeriesFields');
+TodoyuFormHook::registerLoadData('ext/calendar/config/form/event.xml', 'TodoyuCalendarEventSeriesManager::hookLoadSeriesData');
 
+
+TodoyuHookManager::registerHook('calendar', 'event.move.data', 'TodoyuCalendarEventSeriesManager::hookEventMovedDataUpdate');
 
 
 /* -----------------------
@@ -209,6 +213,39 @@ if( TodoyuExtensions::isInstalled('profile') && TodoyuAuth::isInternal() ) {
 	}
 }
 
+Todoyu::$CONFIG['EXT']['calendar']['weekDays'] = array(
+	'long'	=> array(
+		'mo'	=> 'monday',
+		'tu'	=> 'tuesday',
+		'we'	=> 'wednesday',
+		'th'	=> 'thursday',
+		'fr'	=> 'friday',
+		'sa'	=> 'saturday',
+		'so'	=> 'sunday'
+	),
+	'short'	=> array(
+		'mo'	=> 'mon',
+		'tu'	=> 'tue',
+		'we'	=> 'wed',
+		'th'	=> 'thu',
+		'fr'	=> 'fri',
+		'sa'	=> 'sat',
+		'so'	=> 'sun'
+	),
+	'index' => array(
+		'mo'	=> 1,
+		'tu'	=> 2,
+		'we'	=> 3,
+		'th'	=> 4,
+		'fr'	=> 5,
+		'sa'	=> 6,
+		'so'	=> 0
+	)
+);
+
+Todoyu::$CONFIG['EXT']['calendar']['series'] = array(
+	'maxCreate'	=> 100
+);
 
 	// event data sources
 TodoyuCalendarDataSourceManager::addDataSource('static', 'TodoyuCalendarDataSourceStatic');

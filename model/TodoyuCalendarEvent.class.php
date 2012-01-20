@@ -133,6 +133,13 @@ interface TodoyuCalendarEvent {
 	public function canEdit();
 
 	/**
+	 * Get class names for event element
+	 *
+	 * @return	String[]
+	 */
+	public function getClassNames();
+
+	/**
 	 * Check whether the event is overlapping another event
 	 *
 	 * @param 	TodoyuCalendarEvent		$event

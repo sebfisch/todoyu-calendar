@@ -16,6 +16,9 @@
 	<div id="calendar-body">
 		{if $showCalendar}
 			{$content}
+			<script type="text/javascript">
+				Todoyu.Ext.calendar.CalendarBody.setViewRange({$rangeStart}, {$rangeEnd}, false);
+			</script>
 		{/if}
 	</div>
 

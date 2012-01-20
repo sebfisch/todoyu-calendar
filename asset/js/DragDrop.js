@@ -283,15 +283,26 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @param	{Event}			event
 	 */
 	onStart: function(tab, dragInfo, event) {
-		if( tab === 'week' ) {
-			this.moveEventToTopContainer(dragInfo.element);
-			this.initDraggableRevertToOrigin(dragInfo.element);
-				// Add left margin to prevent hovering the hours column
-			dragInfo.element.style.marginLeft	= '42px';
-		} else if( tab === 'month' ) {
-			this.moveEventToTopContainer(dragInfo.element);
-			dragInfo.element.style.width	= '90px';
-			dragInfo.element.style.position	= 'absolute';
+		switch( tab ) {
+			case 'day':
+				break;
+
+			case 'week':
+				this.moveEventToTopContainer(dragInfo.element);
+				this.initDraggableRevertToOrigin(dragInfo.element);
+					// Add left margin to prevent hovering the hours column
+				dragInfo.element.setStyle({
+					marginLeft:	'42px'
+				});
+				break;
+
+			case 'month':
+				this.moveEventToTopContainer(dragInfo.element);
+				dragInfo.element.setStyle({
+					position:	'absolute',
+					width: 		'90px'
+				});
+				break;
 		}
 	},
 
@@ -336,10 +347,20 @@ Todoyu.Ext.calendar.DragDrop	= {
 	onEnd: function(tab, dragInfo, event) {
 		var idEvent	= dragInfo.element.id.split('-').last();
 
-		if( tab === 'day' ) {
-			this.saveDayDrop(idEvent, dragInfo);
-		} else if( tab === 'week' ) {
-			this.saveWeekDrop(idEvent, dragInfo);
+		switch( tab ) {
+			case 'day':
+				this.saveDayDrop(idEvent, dragInfo);
+				break;
+
+			case 'week':
+				this.saveWeekDrop(idEvent, dragInfo);
+				break;
+
+			case 'month':
+				dragInfo.element.setStyle({
+					position: 'relative'
+				});
+				break;
 		}
 
 		Todoyu.QuickInfo.activate();
@@ -408,7 +429,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	saveDayDrop: function(idEvent, dragInfo) {
 		var offset	= dragInfo.element.positionedOffset().top;
 		var seconds	= (offset / 42) * Todoyu.Time.seconds.hour;
-		var newDate	= new Date(this.ext.getDate() + seconds * 1000);
+		var newDate	= new Date((this.ext.getTime() + seconds) * 1000);
 
 		this.saveDropping('day', idEvent, newDate);
 	},
@@ -440,7 +461,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	saveAllDayEventDrop: function(idEvent, dragInfo) {
 		var amountDaysInWeek= this.ext.CalendarBody.getAmountDisplayedDays();
 		var dayWidth		= amountDaysInWeek === 7 ? 88 : 123;
-		var weekStart		= this.ext.getWeekStart();
+		var weekStart		= this.ext.getWeekStartTime();
 		var offset			= dragInfo.element.positionedOffset();
 		var dayOfWeek		= Math.floor((offset.left - 2) / dayWidth);
 
@@ -466,13 +487,13 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @method	saveDropping
 	 * @param	{String}	tab				'week' or 'month'
 	 * @param	{Number}	idEvent
-	 * @param	{Date}	date
+	 * @param	{Date}		date
 	 * @param	{Boolean}	isConfirmed
 	 */
 	saveDropping: function(tab, idEvent, date, isConfirmed) {
-		isConfirmed	= isConfirmed ? '1' : '0';
+		isConfirmed	= isConfirmed ? 1 : 0;
 
-		var dateStr	= Todoyu.Time.getDateTimeString(date.getTime() / 1000);
+		var dateStr	= Todoyu.Time.getDateTimeString(date);
 
 		var url		= Todoyu.getUrl('calendar', 'event');
 		var options	= {
@@ -523,7 +544,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 				// Overbooking detected and is allowed - warn and ask for confirmation
 			this.droppedEventData	= {
 				id:		idEvent,
-				date:	date.getTime()/1000
+				date:	date
 			};
 
 			var warning	= response.getTodoyuHeader('overbookingwarning');
@@ -537,7 +558,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 				this.ext.Event.Mail.showPopup(idEvent, this.ext.Event.operationTypeID.update);
 			}
 
-			Todoyu.Hook.exec('calendar.event.moved', idEvent, date.getTime()/1000);
+			Todoyu.Hook.exec('calendar.event.moved', idEvent, date);
 
 				// Refresh to have event pop into place or revert
 			this.ext.refresh();

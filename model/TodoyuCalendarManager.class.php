@@ -531,6 +531,29 @@ class TodoyuCalendarManager {
 		return TodoyuHookManager::callHookDataModifier('calendar', 'event.filter', array());
 	}
 
+
+
+	/**
+	 * Get label for weekday by daykey (mo,tu,...)
+	 *
+	 * @param	String		$dayKey
+	 * @param	Boolean		$short
+	 * @return	String
+	 */
+	public static function getWeekDayLabel($dayKey, $short = false) {
+		$dateKey	= Todoyu::$CONFIG['EXT']['calendar']['weekDays'][$short?'short':'long'][strtolower($dayKey)];
+
+		return Todoyu::Label('core.date.weekday.' . $dateKey);
+	}
+
+
+	public static function getWeekDayKey($date) {
+		$map 	= array_flip(Todoyu::$CONFIG['EXT']['calendar']['weekDays']['short']);
+		$day	= strtolower(date('D', $date));
+
+		return $map[$day];
+	}
+
 }
 
 ?>
