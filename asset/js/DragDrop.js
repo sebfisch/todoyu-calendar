@@ -493,6 +493,12 @@ Todoyu.Ext.calendar.DragDrop	= {
 	saveDropping: function(tab, idEvent, date, isConfirmed) {
 		isConfirmed	= isConfirmed ? 1 : 0;
 
+		if( !Todoyu.Time.isDateInFuture(date) ) {
+			this.ext.showPastDateWarning();
+			this.ext.refresh();
+			return;
+		}
+
 		var dateStr	= Todoyu.Time.getDateTimeString(date);
 
 		var url		= Todoyu.getUrl('calendar', 'event');

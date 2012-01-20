@@ -337,10 +337,10 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * @param	{Number}	time
 	 */
 	addEventOnTime: function(time) {
-		if( this.ext.isFutureTime(time) ) {
+		if( Todoyu.Time.isTimeInFuture(time) ) {
 			this.ext.addEvent(time);
 		} else {
-			Todoyu.notifyError('Sie können keine Termine in der Vergangenheit erstellen!', 'calendar.event.pastCreate');
+			this.ext.showPastDateWarning();
 		}
 	},
 

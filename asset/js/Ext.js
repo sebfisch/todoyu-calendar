@@ -544,14 +544,8 @@ Todoyu.Ext.calendar	= {
 		}
 	},
 
-	isFutureTime: function(time) {
-		return this.isFutureDate(new Date(time*1000));
-	},
-
-
-	isFutureDate: function(date) {
-		var dateNow		= new Date();
-
-		return dateNow < date;
+	showPastDateWarning: function() {
+		Todoyu.notifyError('Sie können keine Termine in der Vergangenheit erstellen!', 'calendar.event.pastCreate');
 	}
+
 };
