@@ -33,7 +33,7 @@ Todoyu.Ext.calendar.Day = {
 	getDateForPosition: function(x, y) {
 		var offsetTop	= this.ext.CalendarBody.getFixedTopOffset(y);
 
-		return this.ext.getDayStart() + this.ext.CalendarBody.getDayOffset(offsetTop);
+		return this.ext.getDayStartTime() + this.ext.CalendarBody.getDayOffset(offsetTop);
 	}
 
 };

@@ -224,13 +224,19 @@ Todoyu.Ext.calendar	= {
 	 * Get day start timestamp of (selected day in) calendar
 	 *
 	 * @method	getDayStart
-	 * @return	{Number}
+	 * @return	{Date}
 	 */
 	getDayStart: function() {
 		return Todoyu.Time.getDayStart(this.getDate());
 	},
 
 
+
+	/**
+	 * Get time of day start
+	 *
+	 * @return	{Number}
+	 */
 	getDayStartTime: function() {
 		return this.getDayStart().getTime()/1000;
 	},
@@ -241,16 +247,22 @@ Todoyu.Ext.calendar	= {
 	 * Get starting day of week in calendar that contains the currently selected day
 	 *
 	 * @method	getWeekStart
-	 * @return	{Number}
+	 * @return	{Date}
 	 */
 	getWeekStart: function() {
 		return Todoyu.Time.getWeekStart(this.getDate());
 	},
 
+
+
+	/**
+	 * Get time of week start
+	 *
+	 * @return	{Number}
+	 */
 	getWeekStartTime: function() {
 		return this.getWeekStart().getTime()/1000;
 	},
-
 
 
 
