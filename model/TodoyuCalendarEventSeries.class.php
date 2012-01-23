@@ -356,7 +356,15 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 * @return	Integer
 	 */
 	public function getEventDate() {
-		return intval($this->eventData['date_start']);
+		$dateStart	= $this->eventData['date_start'];
+
+		if( is_numeric($dateStart) ) {
+			$eventDate	= intval($dateStart);
+		} else {
+			$eventDate	= TodoyuTime::parseDateTime($dateStart);
+		}
+		
+		return $eventDate;
 	}
 
 
@@ -557,7 +565,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		}
 
 
-		if( isset($formData['date_end']) ) {
+		if( isset($formData['date_start']) ) {
 			$this->eventData	= $formData;
 		}
 	}

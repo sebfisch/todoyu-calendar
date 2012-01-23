@@ -64,7 +64,7 @@ class TodoyuCalendarSeriesActionController extends TodoyuActionController {
 			// Extract storage data
 		$idEvent	= intval($formData['id']);
 		$eventForm	= TodoyuCalendarEventStaticManager::getEventForm($idEvent, $formData, array('options'=>array('seriesEdit'=>true)));
-		$storageData= $eventForm->getStorageData($formData);
+		$storageData= $eventForm->getStorageData();
 
 			// Render the fields with the series object
 		$idSeries	= intval($formData['id_series']);
