@@ -325,12 +325,13 @@ class TodoyuCalendarEventSeriesManager {
 				$series		= $event->getSeries();
 				$seriesData	= $series->getFormData();
 
+					// Inject series data for event
+				$data	= array_merge($data, $seriesData);
+
 					// Remove series ID if editing event as standalone
 				if( !$editSeries ) {
 					$data['id_series'] = 0;
 				}
-
-				$data	= array_merge($data, $seriesData);
 			}
 		}
 

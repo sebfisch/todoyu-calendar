@@ -882,24 +882,21 @@ class TodoyuCalendarEventStaticManager {
 	 */
 	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent= intval($idEvent);
-		$event	= self::getEvent($idEvent);
 
 		$allowed= array();
 		$own	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event'];
 
-		if(  $event->isInFuture() ) {
 			// Option: show event
-			if( TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent) ) {
-				$allowed['show']	= $own['show'];
-			}
-				// Options: edit event, delete event
-				// Edit event: right:editAll OR is assigned and right editAssigned OR is creator
-			if( TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
-				$allowed['edit']	= $own['edit'];
-			}
-			if( TodoyuCalendarEventRights::isDeleteAllowed($idEvent) ) {
-				$allowed['delete']	= $own['remove'];
-			}
+		if( TodoyuCalendarEventRights::isSeeDetailsAllowed($idEvent) ) {
+			$allowed['show']	= $own['show'];
+		}
+			// Options: edit event, delete event
+			// Edit event: right:editAll OR is assigned and right editAssigned OR is creator
+		if( TodoyuCalendarEventRights::isEditAllowed($idEvent) ) {
+			$allowed['edit']	= $own['edit'];
+		}
+		if( TodoyuCalendarEventRights::isDeleteAllowed($idEvent) ) {
+			$allowed['delete']	= $own['remove'];
 		}
 
 			// Option: add event

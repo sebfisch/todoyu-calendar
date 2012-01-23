@@ -182,16 +182,13 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 
 	/**
 	 * Get date end for range calculation
-	 * If none set, use max date. If set, change to end of day to allow a last event on that day
 	 *
 	 * @return	Integer
 	 */
 	protected function getDateEndForRanges() {
 		$dateEnd	= $this->getDateEnd();
 
-		if( $dateEnd === 0 ) {
-			$dateEnd = CALENDAR_MAXDATE;
-		} else {
+		if( $dateEnd !== 0 ) {
 			$dateEnd = TodoyuTime::getEndOfDay($dateEnd);
 		}
 
@@ -703,15 +700,14 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$interval	= $this->getInterval();
 		$dates		= array();
 
-		while( $counter <= $limit && ($dateEnd === 0 || $date < $dateEnd) ) {
-			$tempDateStart	= TodoyuTime::addDays($date, $interval);
+		while( ($dateEnd === 0 && $counter <= $limit) || ($date < $dateEnd) ) {
+			$date	= TodoyuTime::addDays($date, $interval);
 
-			if( $tempDateStart > $dateEnd ) {
+			if( $dateEnd > 0 && $date > $dateEnd ) {
 				break;
 			}
 
-			$dates[]= $tempDateStart;
-			$date	= $tempDateStart;
+			$dates[]= $date;
 			$counter++;
 		}
 
@@ -731,21 +727,18 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$counter	= 1;
 		$dateEnd	= $this->getDateEnd();
 		$date		= $dateStart;
-		$interval	= $this->getInterval();
 		$dates		= array();
 		$weekendDays= TodoyuTime::isMondayFirstDayOfWeek() ? array(6,0) : array(5,6);
 
-		while( $counter <= $limit && ($dateEnd === 0 || $date < $dateEnd) ) {
-			$tempDateStart	= TodoyuTime::addDays($date, $interval);
+		while( ($dateEnd === 0 && $counter <= $limit) || ($date < $dateEnd) ) {
+			$date	= TodoyuTime::addDays($date, 1);
+			$weekDay= date('w', $date);
 
-			$weekDay		= date('w', $tempDateStart);
-
+				// Ignore weekends
 			if( !in_array($weekDay, $weekendDays) ) {
-				$dates[]	= $tempDateStart;
+				$dates[]= $date;
 				$counter++;
 			}
-
-			$date = $tempDateStart;
 		}
 
 		return $dates;
@@ -761,24 +754,103 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 * @return	Integer[]
 	 */
 	private function getStartDatesWeek($dateStart, $limit) {
+		$counter 		= 1;
 		$dateEnd		= $this->getDateEnd();
 		$interval		= $this->getInterval();
 		$dates			= array();
 		$weekDayIndexes	= $this->getWeekDayIndexes();
 		$date			= $this->getStartDateForWeekDay($dateStart);
 
-		$counter = 1;
-		while( $counter <= $limit && ($dateEnd === 0 || $date < $dateEnd) ) {
-			$tempDateStart	= TodoyuTime::addDays($date, $interval);
+		while( ($dateEnd === 0 && $counter <= $limit) || ($date < $dateEnd) ) {
+			$date	= TodoyuTime::addDays($date, $interval);
 
-			$weekDay		= date('w', $tempDateStart);
-
-			if( in_array($weekDay, $weekDayIndexes) ) {
-				$dates[]	= $tempDateStart;
-				$counter++;
+			if( $dateEnd > 0 && $date > $dateEnd ) {
+				break;
 			}
 
-			$date	= $tempDateStart;
+			$weekDay= date('w', $date);
+
+			if( in_array($weekDay, $weekDayIndexes) ) {
+				$dates[] = $date;
+				$counter++;
+			}
+		}
+
+		return $dates;
+	}
+
+
+
+	/**
+	 * Get event ranges for monthly series
+	 *
+	 * @param	Integer			$dateStart
+	 * @param	Integer			$limit
+	 * @return	Integer[]
+	 */
+	private function getStartDatesMonth($dateStart, $limit) {
+		$year		= date('Y', $dateStart);
+		$month		= date('n', $dateStart);
+		$day		= date('j', $dateStart);
+		$hour		= date('H', $dateStart);
+		$minutes	= date('i', $dateStart);
+		$counter	= 1;
+		$dateEnd	= $this->getDateEnd();
+		$date		= $dateStart;
+		$interval	= $this->getInterval();
+		$dates		= array();
+
+		while( ($dateEnd === 0 && $counter <= $limit) || ($date < $dateEnd) ) {
+			$date	= mktime($hour, $minutes, 0, $month+$counter*$interval, $day, $year);
+
+			if( $dateEnd > 0 && $date > $dateEnd ) {
+				break;
+			}
+
+			$dates[]= $date;
+			$counter++;
+		}
+
+		return $dates;
+	}
+
+
+
+	/**
+	 * Get event ranges for yearly series
+	 *
+	 * @param	Integer			$dateStart
+	 * @param	Integer			$limit
+	 * @return	Integer[]
+	 */
+	private function getStartDatesYear($dateStart, $limit) {
+		$year		= date('Y', $dateStart);
+		$month		= date('n', $dateStart);
+		$day		= date('j', $dateStart);
+		$hour		= date('H', $dateStart);
+		$minutes	= date('i', $dateStart);
+		$counter	= 1;
+		$dateEnd	= $this->getDateEnd();
+		$date		= $dateStart;
+		$interval	= $this->getInterval();
+		$dates		= array();
+
+		while( $counter <= $limit && ($dateEnd === 0 || $date < $dateEnd) ) {
+			$nextYear		= $year+$counter*$interval;
+
+				// Later dates are not supported by php (int 32bit)
+			if( $nextYear >= 2038 ) {
+				break;
+			}
+
+			$date	= mktime($hour, $minutes, 0, $month, $day, $nextYear);
+
+			if( $dateEnd > 0 && $date > $dateEnd ) {
+				break;
+			}
+
+			$dates[] = $date;
+			$counter++;
 		}
 
 		return $dates;
@@ -811,80 +883,6 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		}
 
 		return $dateStart;
-	}
-
-
-
-	/**
-	 * Get event ranges for monthly series
-	 *
-	 * @param	Integer			$dateStart
-	 * @param	Integer			$limit
-	 * @return	Integer[]
-	 */
-	private function getStartDatesMonth($dateStart, $limit) {
-		$year		= date('Y', $dateStart);
-		$month		= date('n', $dateStart);
-		$day		= date('j', $dateStart);
-		$hour		= date('H', $dateStart);
-		$minutes	= date('i', $dateStart);
-		$counter	= 1;
-		$dateEnd	= $this->getDateEnd();
-		$date		= $dateStart;
-		$interval	= $this->getInterval();
-		$dates		= array();
-
-		while( $counter <= $limit && ($dateEnd === 0 || $date < $dateEnd) ) {
-			$tempDateStart	= mktime($hour, $minutes, 0, $month+$counter*$interval, $day, $year);
-
-			$dates[]	= $tempDateStart;
-			$date		= $tempDateStart;
-
-			$counter++;
-		}
-
-		return $dates;
-	}
-
-
-
-	/**
-	 * Get event ranges for yearly series
-	 *
-	 * @param	Integer			$dateStart
-	 * @param	Integer			$limit
-	 * @return	Integer[]
-	 */
-	private function getStartDatesYear($dateStart, $limit) {
-		$year		= date('Y', $dateStart);
-		$month		= date('n', $dateStart);
-		$day		= date('j', $dateStart);
-		$hour		= date('H', $dateStart);
-		$minutes	= date('i', $dateStart);
-		$counter	= 1;
-		$dateEnd	= $this->getDateEnd();
-		$date		= $dateStart;
-		$interval	= $this->getInterval();
-
-		$dates		= array();
-
-		while( $counter <= $limit && ($dateEnd === 0 || $date < $dateEnd) ) {
-			$nextYear		= $year+$counter*$interval;
-
-				// Later dates are not supported by php (int 32bit)
-			if( $nextYear >= 2038 ) {
-				break;
-			}
-
-			$tempDateStart	= mktime($hour, $minutes, 0, $month, $day, $nextYear);
-
-			$dates[]	= $tempDateStart;
-			$date		= $tempDateStart;
-
-			$counter++;
-		}
-
-		return $dates;
 	}
 
 

@@ -501,7 +501,7 @@ Todoyu.Ext.calendar	= {
 	 *
 	 * @method	savePref
 	 * @param	{String}	action
-	 * @param	{Mixed}		value
+	 * @param	{String}	value
 	 * @param	{Number}	idItem
 	 * @param	{String}	onComplete
 	 */
@@ -544,8 +544,14 @@ Todoyu.Ext.calendar	= {
 		}
 	},
 
+
+
+	/**
+	 * Show info about creating an event in the past
+	 *
+	 */
 	showPastDateWarning: function() {
-		Todoyu.notifyError('Sie können keine Termine in der Vergangenheit erstellen!', 'calendar.event.pastCreate');
+		Todoyu.notifyInfo('Achtung, Sie erstellen einen Termin in der Vergangenheit!', 0, 'calendar.event.pastCreate');
 	}
 
 };
