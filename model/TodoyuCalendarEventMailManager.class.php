@@ -27,26 +27,95 @@
 class TodoyuCalendarEventMailManager {
 
 	/**
-	 * Check whether mail popup is to be shown (not disabled, at least one other attendee person has email)
+	 * Get IDs of users which are also assigned to the event (all except current user)
 	 *
 	 * @param	Integer		$idEvent
-	 * @return	Boolean
+	 * @return	Integer[]
 	 */
-	public static function isMailPopupToBeShown($idEvent) {
-		$isPopupDisabled	= TodoyuCalendarPreferences::isMailPopupDisabled();
-
-		if( $isPopupDisabled ) {
-			return false;
-		}
-
+	public static function getOtherAssignedUserIDs($idEvent) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
-		if( ! $event->areOtherPersonsAssigned() ) {
-			return false;
+			// Get all assigned users
+		$assignedPersonsWithEmail	= TodoyuCalendarEventStaticManager::getEmailReceivers($idEvent, false);
+			// Remove current user
+		unset($assignedPersonsWithEmail[Todoyu::personid()]);
+			// Get user IDs
+		return TodoyuArray::getColumn($assignedPersonsWithEmail, 'id_person');
+	}
+
+
+
+	/**
+	 * Remove auto mail fieldset, if no users are receiving auto mail info
+	 *
+	 * @param	TodoyuForm		$form
+	 * @param	Integer			$idEvent
+	 * @param	Array			$params
+	 * @return	TodoyuForm
+	 */
+	public static function hookCheckAutoMailFields(TodoyuForm $form, $idEvent, array $params) {
+		$autoEmailPersons	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($idEvent);
+
+		if( sizeof($autoEmailPersons) === 0 ) {
+			$form->removeFieldset('autoemail');
 		}
 
-		return $event->hasAnyAssignedPersonAnEmailAddress();
+		return $form;
+	}
+
+
+
+
+
+	/**
+	 * Get person IDs of participants receiving auto-notification event emails
+	 *
+	 * @param	Integer 	$idEvent
+	 * @param	Boolean		$ignoreCurrentUser
+	 * @return	Integer[]
+	 */
+	public static function getAutoNotifiedPersonIDs($idEvent, $ignoreCurrentUser = true) {
+		$idEvent			= intval($idEvent);
+		$event				= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+		$autoMailRoleIDs	= TodoyuCalendarManager::getAutoMailRoleIDs();
+		$notifiedPersonIDs	= array();
+
+		if( sizeof($autoMailRoleIDs) > 0 ) {
+			$assignedPersons= $event->getAssignedPersons();
+
+			foreach($assignedPersons as $assignedPerson) {
+				if( $assignedPerson->hasAnyRole($autoMailRoleIDs) ) {
+					$notifiedPersonIDs[] = $assignedPerson->getID();
+				}
+			}
+		}
+
+		if( $ignoreCurrentUser ) {
+			$notifiedPersonIDs = TodoyuArray::removeByValue($notifiedPersonIDs, array(Todoyu::personid()));
+		}
+
+		return $notifiedPersonIDs;
+	}
+
+
+	public static function extractAutoNotifiedPersonIDs(array $personIDs, $ignoreCurrentUser = true) {
+		$personIDs			= TodoyuArray::intval($personIDs, true, true);
+		$notifiedPersonIDs	= array();
+		$autoMailRoleIDs	= TodoyuCalendarManager::getAutoMailRoleIDs();
+
+		foreach($personIDs as $idPerson) {
+			$person	= TodoyuContactPersonManager::getPerson($idPerson);
+
+			if( $person->hasAnyRole($autoMailRoleIDs) ) {
+				$notifiedPersonIDs[] = $idPerson;
+			}
+		}
+
+		if( $ignoreCurrentUser ) {
+			$notifiedPersonIDs = TodoyuArray::removeByValue($notifiedPersonIDs, array(Todoyu::personid()));
+		}
+
+		return $notifiedPersonIDs;
 	}
 
 
@@ -90,22 +159,14 @@ class TodoyuCalendarEventMailManager {
 	/**
 	 * Get event mail subject label by operation ID (create, update, delete)
 	 *
-	 * @param	Integer		$operationID
+	 * @param	String		$operation
+	 * @param	Boolean		$isSeriesAction
 	 * @return	String
 	 */
-	public static function getEventMailSubjectByOperationID($operationID) {
-		$operationID	= intval($operationID);
-		if( ! in_array($operationID, array(CALENDAR_OPERATION_CREATE, CALENDAR_OPERATION_DELETE, CALENDAR_OPERATION_UPDATE)) ) {
-			$operationID	= CALENDAR_OPERATION_UPDATE;
-		}
+	public static function getEventMailSubject($operation, $isSeriesAction) {
+		$operation	= trim($operation);
 
-		$subjectKeys	= array(
-			CALENDAR_OPERATION_CREATE => 'create',
-			CALENDAR_OPERATION_DELETE	=> 'delete',
-			CALENDAR_OPERATION_UPDATE => 'update'
-		);
-
-		return Todoyu::Label('calendar.event.mail.popup.subject.' . $subjectKeys[$operationID]);
+		return Todoyu::Label('calendar.event.mail.popup.subject.' . $operation);
 	}
 
 
@@ -189,7 +250,7 @@ class TodoyuCalendarEventMailManager {
 	 * @param	Array	$participantIDs
 	 * @return	Array|Integer[]
 	 */
-	public static function getAutoNotifiedPersonIDs($participantIDs = array()) {
+	public static function getAutoNotifiedPersonIDsOLD($participantIDs = array()) {
 		$autoMailPersonIDs	= array();
 
 		if( sizeof($participantIDs) > 0 ) {
@@ -225,6 +286,78 @@ class TodoyuCalendarEventMailManager {
 		$autoMailPersonIDs	= TodoyuArray::removeByValue($autoMailPersonIDs, array(Todoyu::personid()));
 
 		return $autoMailPersonIDs;
+	}
+
+
+
+	/**
+	 * Hook for event moving
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$dateStart
+	 * @param	Integer		$dateEnd
+	 */
+	public static function hookEventMoved($idEvent, $dateStart, $dateEnd) {
+		self::sendAutoInfoMails($idEvent, false);
+	}
+
+
+
+	/**
+	 * Hook for event saving. Send auto info mails to special group users
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Boolean		$isNewEvent
+	 */
+	public static function hookEventSaved($idEvent, $isNewEvent) {
+		self::sendAutoInfoMails($idEvent, $isNewEvent);
+	}
+
+
+
+	/**
+	 * Send info mails to all assigned users of the event which are in the specified groups
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Boolean		$isNewEvent
+	 * @return	Integer[]
+	 */
+	public static function sendAutoInfoMails($idEvent, $isNewEvent) {
+		$autoMailUserIDs = TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($idEvent, true);
+
+		if( sizeof($autoMailUserIDs) > 0 ) {
+			self::sendEvent($idEvent, $autoMailUserIDs, $isNewEvent);
+		}
+
+		return $autoMailUserIDs;
+	}
+
+
+
+	/**
+	 * Event save hook. Send emails
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$personIDs
+	 * @param	Boolean		$isNewEvent
+	 * @return	Boolean
+	 */
+	public static function sendEvent($idEvent, $personIDs, $isNewEvent = false) {
+		$personIDs	= array_unique(TodoyuArray::intval($personIDs, true, true));
+
+		$sent	= false;
+
+		if( sizeof($personIDs) > 0 ) {
+			$operation	= $isNewEvent ? 'create' : 'update';
+
+			TodoyuDebug::printInFirebug($personIDs, 'send mails to');
+			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $operation);
+			if( $sent ) {
+				self::saveMailsSent($idEvent, $personIDs);
+			}
+		}
+
+		return $sent;
 	}
 
 }

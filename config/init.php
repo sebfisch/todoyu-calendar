@@ -66,9 +66,12 @@ TodoyuAutocompleter::addAutocompleter('eventperson', 'TodoyuCalendarEventViewHel
 TodoyuFormHook::registerBuildForm('ext/calendar/config/form/event.xml', 'TodoyuCalendarReminderManager::hookAddReminderFieldsToEvent');
 TodoyuFormHook::registerBuildForm('ext/calendar/config/form/event.xml', 'TodoyuCalendarEventSeriesManager::hookSetSeriesFields');
 TodoyuFormHook::registerLoadData('ext/calendar/config/form/event.xml', 'TodoyuCalendarEventSeriesManager::hookLoadSeriesData');
+TodoyuFormHook::registerBuildForm('ext/calendar/config/form/event-mailing.xml', 'TodoyuCalendarEventMailManager::hookCheckAutoMailFields');
 
 
 TodoyuHookManager::registerHook('calendar', 'event.move.data', 'TodoyuCalendarEventSeriesManager::hookEventMovedDataUpdate');
+TodoyuHookManager::registerHook('calendar', 'event.move', 'TodoyuCalendarEventMailManager::hookEventMoved');
+TodoyuHookManager::registerHook('calendar', 'event.saved', 'TodoyuCalendarEventMailManager::hookEventSaved');
 
 
 /* -----------------------

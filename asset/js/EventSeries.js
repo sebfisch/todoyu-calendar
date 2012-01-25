@@ -122,11 +122,12 @@ Todoyu.Ext.calendar.Event.Series = {
 	},
 
 
-
-
-
-
-
+	/**
+	 * Show dialog for editing event or series
+	 *
+	 * @param	{Number}	idSeries
+	 * @param	{Number}	idEvent
+	 */
 	askSeriesEdit: function(idSeries, idEvent) {
 		this.popup = new this.ext.DialogChoiceSeriesEdit(this.onSeriesEventEditSelection.bind(this, idSeries, idEvent), {
 			series: idSeries,
@@ -145,6 +146,13 @@ Todoyu.Ext.calendar.Event.Series = {
 	},
 
 
+
+	/**
+	 * Show dialog to delete event or series
+	 *
+	 * @param	{Number}	idSeries
+	 * @param	{Number}	idEvent
+	 */
 	askSeriesDelete: function(idSeries, idEvent) {
 		this.popup = new this.ext.DialogChoiceSeriesDelete(this.onSeriesEventDeleteSelection.bind(this, idSeries, idEvent), {
 			series: idSeries,
@@ -152,12 +160,20 @@ Todoyu.Ext.calendar.Event.Series = {
 		});
 	},
 
+
+	/**
+	 * Handle selection of event delete dialog
+	 *
+	 * @param	{Number}	idSeries
+	 * @param	{Number}	idEvent
+	 * @param	{String}	selection
+	 * @param	{Object}	data
+	 */
 	onSeriesEventDeleteSelection: function(idSeries, idEvent, selection, data) {
 		switch(selection) {
 			case 'series':
-				this.removeSeries(idSeries);
+				this.removeSeries(idSeries, data.event);
 				break;
-
 			case 'event':
 				this.ext.Event.removeEvent(idEvent);
 				break;
@@ -267,7 +283,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	},
 
 
-	removeSeries: function(idSeries) {
+	removeSeries: function(idSeries, idEvent) {
 		this.fadeAllSeriesEvents(idSeries);
 
 		var url		= this.getUrl();
@@ -280,6 +296,11 @@ Todoyu.Ext.calendar.Event.Series = {
 		};
 
 		Todoyu.send(url, options);
+
+			// Show mail popup
+		this.ext.Event.Mail.showPopup(idEvent, 'delete', {
+			series: true
+		});
 	},
 
 

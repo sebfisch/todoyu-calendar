@@ -547,11 +547,25 @@ class TodoyuCalendarManager {
 	}
 
 
+
+	/**
+	 * Get key for weekday of a date
+	 *
+	 * @param	Integer		$date
+	 * @return	String		mo,tu,we,etc
+	 */
 	public static function getWeekDayKey($date) {
 		$map 	= array_flip(Todoyu::$CONFIG['EXT']['calendar']['weekDays']['short']);
 		$day	= strtolower(date('D', $date));
 
 		return $map[$day];
+	}
+
+
+	public static function getAutoMailRoleIDs() {
+		$roleConfig	= TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'autosendeventmail');
+
+		return TodoyuArray::intExplode(',', $roleConfig, true, true);
 	}
 
 }

@@ -27,3 +27,8 @@
 #formElement-event-field-seriesinfo .fField span {
 	font-size: 12px;
 }
+
+#formElement-event-field-seriesoverbooking-inputbox {
+	width:470px;
+	line-height: 150%;
+}

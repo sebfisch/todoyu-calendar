@@ -195,51 +195,15 @@ class TodoyuCalendarEventRenderer {
 	}
 
 
-
-	/**
-	 * Render content of event mailing popup
-	 *
-	 * @param	Integer		$idEvent
-	 * @param	Integer		$operationID
-	 * @return	String
-	 */
-	public static function renderEventMailPopup($idEvent, $operationID = CALENDAR_OPERATION_UPDATE) {
-		$idEvent= intval($idEvent);
-		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
-
-			// Construct form object for inline form
-		$xmlPath	= 'ext/calendar/config/form/event-mailing.xml';
-		$preParse	= array(
-			'#id_event#'=> $idEvent
-		);
-		$form		= TodoyuFormManager::getForm($xmlPath, 0, array(), $preParse);
-
-			// Have all email persons but user himself preselected
-		$emailPersonIDs	= array_keys(TodoyuCalendarEventStaticManager::getEmailReceivers($idEvent, false));
-		$emailPersonIDs	= TodoyuArray::removeByValue($emailPersonIDs, array(Todoyu::personid()), false);
-
-			// Set mail form data
-		$form->setFormData(array(
-			'id_event' 			=> $idEvent,
-			'emailreceivers'	=> $emailPersonIDs,
-		));
-
-			// Remove "don't ask again" button in form of deleted events
-		if( $operationID == CALENDAR_OPERATION_DELETE ) {
-			$form->getFieldset('buttons')->removeField('dontaskagain');
-		}
-
-			// Render popup content
+	public static function renderAutoMailComment(array $personIDs) {
+		$tmpl	= 'ext/calendar/view/infocomment-autonotification.tmpl';
 		$data	= array(
-			'subject'		=> TodoyuCalendarEventMailManager::getEventMailSubjectByOperationID($operationID),
-			'event'			=> $event->getTemplateData(true, true, true),
-			'mailingForm'	=> $form->render()
+			'personIDs'	=> $personIDs
 		);
-
-		$tmpl	= 'ext/calendar/view/event-mailing.tmpl';
 
 		return Todoyu::render($tmpl, $data);
 	}
+
 }
 
 ?>

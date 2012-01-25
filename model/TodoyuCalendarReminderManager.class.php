@@ -26,6 +26,8 @@
  */
 class TodoyuCalendarReminderManager {
 
+	const TABLE = 'ext_calendar_mm_event_person';
+
 	/**
 	 * Get reminder object to given event/person
 	 *
@@ -362,6 +364,21 @@ class TodoyuCalendarReminderManager {
 	 */
 	public static function getAdvanceTimePopup($idPerson = 0) {
 		return self::getAdvanceTime(CALENDAR_TYPE_EVENTREMINDER_POPUP, $idPerson);
+	}
+
+
+	public static function removeReminderFromCache($idReminder) {
+		TodoyuRecordManager::removeRecordCache('TodoyuCalendarReminder', $idReminder);
+		TodoyuRecordManager::removeRecordCache('TodoyuCalendarReminderEmail', $idReminder);
+		TodoyuRecordManager::removeRecordCache('TodoyuCalendarReminderPopup', $idReminder);
+		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idReminder);
+	}
+
+
+	public static function removeReminderFromCacheByAssignment($idEvent, $idPerson) {
+		$idReminder	= self::getReminderIDByAssignment($idEvent, $idPerson);
+
+		self::removeReminderFromCache($idReminder);
 	}
 
 }

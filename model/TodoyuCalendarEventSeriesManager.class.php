@@ -111,6 +111,8 @@ class TodoyuCalendarEventSeriesManager {
 			} else { // Replace all not passed events
 				self::modifySeriesComplete($idSavedEvent, $idSeries, $idSeriesNew);
 			}
+
+			$idSeries = $idSeriesNew;
 		}
 
 		return $idSeries;
@@ -366,6 +368,32 @@ class TodoyuCalendarEventSeriesManager {
 		$data['id_series'] = 0;
 
 		return $data;
+	}
+
+
+
+	/**
+	 * Assign the users to the event and update the event reminders for the current user with the settings of the already saved base event
+	 *
+	 * @param	Integer		$idBaseEvent			Base event which was saved with the correct reminder settings
+	 * @param	Integer		$idEvent				New created event which needs to be assigned for all users
+	 * @param	Integer[]	$assignedPersonIDs		Assigned users
+	 */
+	public static function assignEvent($idBaseEvent, $idEvent, array $assignedPersonIDs) {
+		$idEvent			= intval($idEvent);
+		$idCurrentPerson	= Todoyu::personid();
+
+			// Save assignment for all persons (with their defaults)
+		TodoyuCalendarEventStaticManager::saveAssignments($idEvent, $assignedPersonIDs);
+
+		if( in_array($idCurrentPerson, $assignedPersonIDs) ) {
+				// Get reminder for current person. So we get the reminder advanced time
+			$baseReminder		= TodoyuCalendarReminderManager::getReminderByAssignment($idBaseEvent, $idCurrentPerson);
+			$advanceTimeEmail	= $baseReminder->getAdvanceTimeEmail();
+			$advanceTimePopup	= $baseReminder->getAdvanceTimePopup();
+
+			TodoyuCalendarEventStaticManager::updateAssignmentRemindersForPerson($idEvent, $advanceTimeEmail, $advanceTimePopup, $idCurrentPerson);
+		}
 	}
 
 }

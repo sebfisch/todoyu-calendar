@@ -78,14 +78,6 @@ define('CALENDAR_MAXDATE', 1924988399);
 	// Minimal duration of an event for rendering
 define('CALENDAR_EVENT_MIN_DURATION', 1800);
 
-
-
-	// Possible types of actions on event records
-define('CALENDAR_OPERATION_CREATE',	1);
-define('CALENDAR_OPERATION_UPDATE',	2);
-define('CALENDAR_OPERATION_DELETE',	3);
-
-
 	// Series frequencies
 define('CALENDAR_SERIES_FREQUENCY_DAY', 1);
 define('CALENDAR_SERIES_FREQUENCY_WEEKDAY', 2);

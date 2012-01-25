@@ -100,10 +100,18 @@ class TodoyuCalendarOverbookingConflict {
 	/**
 	 * Get warning message for conflict
 	 *
+	 * @param	Boolean		$fullRangeDate
 	 * @return	String
 	 */
-	public function getWarningMessage() {
-		$date	= TodoyuTime::format($this->getEvent()->getRange()->getStart(), 'DshortD2MshortY2');
+	public function getWarningMessage($fullRangeDate = false) {
+		$range	= $this->getEvent()->getRange();
+
+		if( $fullRangeDate ) {
+			$date	= $range->getLabelWithTime();
+		} else {
+			$date	= TodoyuTime::format($range->getStart(), 'DshortD2MshortY2');
+		}
+
 		$name	= $this->getPerson()->getFullName();
 		$title	= $this->getEvent()->getTitle();
 

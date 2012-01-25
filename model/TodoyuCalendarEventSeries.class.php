@@ -957,14 +957,15 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	/**
 	 * Get warning messages for overbooking conflicts
 	 *
+	 * @param	Boolean		$fullRangeDate
 	 * @return	String[]
 	 */
-	public function getOverbookingConflictsWarningMessages() {
+	public function getOverbookingConflictsWarningMessages($fullRangeDate = false) {
 		$overbookingConflicts	= $this->getOverbookingConflicts();
 		$warningMessages		= array();
 
 		foreach($overbookingConflicts as $overbookingConflict) {
-			$warningMessages[] = $overbookingConflict->getWarningMessage();
+			$warningMessages[] = $overbookingConflict->getWarningMessage($fullRangeDate);
 		}
 
 		return $warningMessages;
@@ -1009,9 +1010,9 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 			foreach($ranges as $range) {
 				$subWheres[] = '		mmep.id_person = ' . $idPerson
 							. ' AND ('
-							. '		e.date_start BETWEEN ' . $range->getStart() . ' AND ' . $range->getEnd()
-							. ' OR	e.date_end BETWEEN ' . $range->getStart() . ' AND ' . $range->getEnd()
-							. ' OR	(e.date_start < ' . $range->getStart() . ' AND e.date_end > ' . $range->getEnd() . ')'
+							. '		e.date_start BETWEEN ' . ($range->getStart()+1) . ' AND ' . ($range->getEnd()-1)
+							. ' OR	e.date_end BETWEEN ' . ($range->getStart()+1) . ' AND ' . ($range->getEnd()-1)
+							. ' OR	(e.date_start <= ' . $range->getStart() . ' AND e.date_end >= ' . $range->getEnd() . ')'
 							. '	)';
 			}
 		}
@@ -1126,7 +1127,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$duration			= $baseEvent->getDuration();
 		$assignedPersonIDs	= $baseEvent->getAssignedPersonIDs();
 		$dateStart			= $this->getFixedStartDate($dateStart);
-
+		
 			// Get next start dates
 		$nextStartDates	= $this->getNextStartDates($dateStart);
 		$eventIDs	= array();
@@ -1145,7 +1146,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 
 			$idEvent	= TodoyuCalendarEventStaticManager::addEvent($newEventData);
 
-			TodoyuCalendarEventStaticManager::saveAssignments($idEvent, $assignedPersonIDs);
+			TodoyuCalendarEventSeriesManager::assignEvent($idBaseEvent, $idEvent, $assignedPersonIDs);
 
 			$eventIDs[] = $idEvent;
 		}

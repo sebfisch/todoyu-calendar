@@ -321,26 +321,29 @@ class TodoyuCalendarReminderPopupManager {
 	public static function getContextMenuItems($idEvent, array $items) {
 		$idEvent	= intval($idEvent);
 		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
-		$allowed	= array();
+
 
 			// Option: popup reminder
 		if( $event->getDateStart() > NOW && self::isReminderAllowed($idEvent) ) {
 			$options	= Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderpopup'];
+			$allowed	= array();
 
 				// Set selected option CSS class
 			$selectedTimeOptionKey	= self::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
 			if( $selectedTimeOptionKey === false ) {
 				$options['submenu'][0]['class'] .= ' selected';
-			} elseif( key_exists($selectedTimeOptionKey, $options['submenu']) ) {
+			} elseif( isset($options['submenu'][$selectedTimeOptionKey]) ) {
 				$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';
 			}
 				// Set options disabled which are in the past already
 			$options['submenu']	= TodoyuCalendarReminderManager::disablePastTimeKeyOptions($options['submenu'], $idEvent);
 
 			$allowed['reminderpopup']	= $options;
+
+			$items = array_merge_recursive($items, $allowed);
 		}
 
-		return array_merge_recursive($items, $allowed);
+		return $items;
 	}
 
 }

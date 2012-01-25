@@ -12,7 +12,7 @@
 			<class>appearance</class>
 			<elements>
 				<field type="select" name="range_start">
-					<label>calendar.ext.profile.excerpt.time_start</label>
+					<label>calendar.ext.profile.range.start</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getRangeTimeOptions</function>
 						<lazyInit />
@@ -20,7 +20,7 @@
 					<noPleaseSelect />
 				</field>
 				<field type="select" name="range_end">
-					<label>calendar.ext.profile.excerpt.time_end</label>
+					<label>calendar.ext.profile.range.end</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getRangeTimeOptions</function>
 						<lazyInit />

@@ -559,7 +559,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 				Todoyu.Notification.notifyError(response.responseText, 'calendar.dragndrop');
 			} else {
 					// Have mailing popup shown
-				this.ext.Event.Mail.showPopup(idEvent, this.ext.Event.operationTypeID.update);
+				this.ext.Event.Mail.showPopup(idEvent, 'update');
 			}
 
 			Todoyu.Hook.exec('calendar.event.moved', idEvent, date);

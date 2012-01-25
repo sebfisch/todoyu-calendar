@@ -58,7 +58,7 @@ Todoyu.Ext.calendar.QuickCreateEvent	= {
 	 */
 	initObservers: function() {
 		this.observeEventType();
-		this.observeParticipants();
+		this.observeAssignedUsers();
 	},
 
 
@@ -82,7 +82,7 @@ Todoyu.Ext.calendar.QuickCreateEvent	= {
 	 *
 	 * @method	observeEventType
 	 */
-	observeParticipants: function() {
+	observeAssignedUsers: function() {
 		if( Todoyu.exists('formElement-event-field-persons') ) {
 			$('formElement-event-field-persons').on('change', this.onChangeParticipants.bind(this));
 			$('formElement-event-field-persons').on('click', this.onChangeParticipants.bind(this));
@@ -96,7 +96,7 @@ Todoyu.Ext.calendar.QuickCreateEvent	= {
 	 *
 	 * @method	onChangeParticipants
 	 */
-	onChangeParticipants: function() {
+	onAssignedUsersChanged: function() {
 		this.updateAutoNotifiedPersons();
 	},
 

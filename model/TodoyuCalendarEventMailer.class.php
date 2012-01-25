@@ -34,16 +34,16 @@ class TodoyuCalendarEventMailer {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$personIDs
-	 * @param	Integer		$operationID	was has been done- create, update, delete?
+	 * @param	String		$operation	was has been done- create, update, delete?
 	 * @return	Boolean
 	 */
-	public static function sendEmails($idEvent, array $personIDs, $operationID) {
+	public static function sendEmails($idEvent, array $personIDs, $operation) {
 		$idEvent	= intval($idEvent);
 		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
 		$succeeded	= true;
 		foreach($personIDs as $idPerson) {
-			$result	= self::sendInfoMail($idEvent, $idPerson, $operationID);
+			$result	= self::sendInfoMail($idEvent, $idPerson, $operation);
 
 			if( $result === false ) {
 				$succeeded	= false;
@@ -60,22 +60,22 @@ class TodoyuCalendarEventMailer {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @param	Integer		$operationID
+	 * @param	String		$operation
 	 * @return	Boolean		Success
 	 */
-	public static function sendInfoMail($idEvent, $idPerson, $operationID = CALENDAR_OPERATION_CREATE) {
+	public static function sendInfoMail($idEvent, $idPerson, $operation) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
-		$operationID= intval($operationID);
+		$operation	= trim($operation);
 		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
-		if( $event->isDeleted() ) {
-			$operationID	= CALENDAR_OPERATION_DELETE;
-		}
+//		if( $event->isDeleted() ) {
+//			$operation	= 'delete';
+//		}
 
-		$mail	= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $operationID);
+		$mail	= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $operation);
 
-		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $idPerson, $operationID));
+		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $idPerson, $operation));
 
 		return $mail->send();
 	}
@@ -85,18 +85,19 @@ class TodoyuCalendarEventMailer {
 	/**
 	 * Get email subject label of given operation on event (create, update, delete)
 	 *
-	 * @param	Integer		$operationID
+	 * @param	Integer		$operation
 	 * @return	String
 	 */
-	public static function getSubjectLabelByOperation($operationID) {
-		switch( $operationID ) {
-			case CALENDAR_OPERATION_CREATE:
+	public static function getSubjectLabelByOperation($operation) {
+		switch( $operation ) {
+			case 'create':
 				$subject	= Todoyu::Label('calendar.event.mail.title.create');
 				break;
-			case CALENDAR_OPERATION_UPDATE:
+			case 'update':
 				$subject	= Todoyu::Label('calendar.event.mail.title.update');
 				break;
-			case CALENDAR_OPERATION_DELETE: default:
+			case 'delete':
+			default:
 				$subject	= Todoyu::Label('calendar.event.mail.title.deleted');
 				break;
 		}
@@ -130,13 +131,13 @@ class TodoyuCalendarEventMailer {
 		$path	= 'ext/calendar/view/emails/';
 
 		switch($operationID) {
-			case CALENDAR_OPERATION_CREATE:
+			case 'create':
 				$tmpl	= $path . 'event-new';
 				break;
-			case CALENDAR_OPERATION_DELETE:
+			case 'delete':
 				$tmpl	= $path . 'event-deleted';
 				break;
-			case CALENDAR_OPERATION_UPDATE:
+			case 'update':
 				$tmpl	= $path . 'event-update';
 				break;
 			default:

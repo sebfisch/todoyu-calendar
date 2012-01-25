@@ -36,6 +36,8 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 */
 	ext:	Todoyu.Ext.calendar,
 
+	lastAssignedUserIDs: [],
+
 
 
 	/**
@@ -115,7 +117,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		this.updateVisibleFields();
 
 		this.observeEventType();
-		this.observeParticipants(idEvent);
+		this.observeAssignedUsers(idEvent);
 		this.ext.Event.Series.initEditView(idEvent, extraOptions.seriesEdit);
 
 		this.show();
@@ -140,9 +142,32 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Number}			idEvent
 	 * @method	observeEventType
 	 */
-	observeParticipants: function(idEvent) {
-		$('foreignrecords-' + idEvent + '-persons').on('change', this.onChangeParticipants.bind(this, idEvent));
-		$('foreignrecords-' + idEvent + '-persons').on('click', this.onChangeParticipants.bind(this, idEvent));
+	observeAssignedUsers: function(idEvent) {
+		var personElement = $('formElement-event-field-persons');
+
+			// Remember start selection
+		this.lastAssignedUserIDs = this.getAssignedUserIDs();
+
+		personElement.on('change', this.onAssignedUsersEvent.bind(this, idEvent));
+		personElement.on('click', this.onAssignedUsersEvent.bind(this, idEvent));
+	},
+
+
+
+	/**
+	 * Handle events on assigned users.
+	 * Check if really something changed
+	 *
+	 * @param	{Event}		event
+	 * @param	{Number}	idEvent
+	 */
+	onAssignedUsersEvent: function(event, idEvent) {
+		var assignedUsers	= this.getAssignedUserIDs();
+
+		if( assignedUsers.join(',') !== this.lastAssignedUserIDs.join(',') ) {
+			this.lastAssignedUserIDs = assignedUsers;
+			this.onAssignedUsersChanged(idEvent);
+		}
 	},
 
 
@@ -204,30 +229,30 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @method	onChangeParticipants
 	 * @param	{Number}				idEvent
 	 */
-	onChangeParticipants: function(idEvent) {
-		this.updateAutoNotifiedPersons(idEvent);
+	onAssignedUsersChanged: function(idEvent) {
+		this.updateAutoMailComment(idEvent);
 	},
 
 
 
 
 	/**
-	 * @method	updateAutoNotifiedPersons
+	 * @method	updateAutoMailComment
 	 * @param	{Number}	idEvent
 	 */
-	updateAutoNotifiedPersons: function(idEvent) {
-		var personIDs	=  $('foreignrecords-' + idEvent + '-persons').select('input[type=hidden]').pluck('value').join(',');
+	updateAutoMailComment: function(idEvent) {
+		var personIDs	= this.getAssignedUserIDs();
 
-		var url		= Todoyu.getUrl('calendar', 'event');
+		var url		= Todoyu.getUrl('calendar', 'mail');
 		var options	= {
 			parameters: {
-				action:	'updateAutoNotification',
-				'event':	idEvent,
-				'persons':	personIDs
+				action:		'autoMailComment',
+				event:		idEvent,
+				persons:	personIDs.join(',')
 			},
-			onComplete: this.onAutoNotifiedPersonsUpdated.bind(this, idEvent)
+			onComplete: this.onAutoMailCommentUpdated.bind(this, idEvent)
 		};
-		var target	= $('formElement-event-field-autonotification-comment-inputbox').select('.commenttext')[0];
+		var target	= $('formElement-event-field-autonotification-comment-inputbox').down('.commenttext');
 
 		Todoyu.Ui.update(target, url, options);
 	},
@@ -241,15 +266,41 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Number}						idEvent
 	 * @param	{Ajax.Response}					response
 	 */
-	onAutoNotifiedPersonsUpdated: function(idEvent, response) {
-		var autoNotifiedPersonIDs	= ',' + response.getTodoyuHeader('autonotifiedPersons').join(',') + ',';
+	onAutoMailCommentUpdated: function(idEvent, response) {
+		var autoMailPersonIDs	= response.getTodoyuHeader('autoMailPersons');
 
-		var manualReceiverOptions	= $('event-field-emailreceivers').select('option');
-		manualReceiverOptions.each(function(personOption) {
-			var idPerson	= personOption.value;
-			personOption.disabled	= autoNotifiedPersonIDs.indexOf(',' + idPerson + ',') !== -1;
+		this.disableEmailPersons(autoMailPersonIDs);
+	},
+
+
+
+	/**
+	 * Disable options of persons in email field
+	 *
+	 * @param	{Array}		personIDs
+	 */
+	disableEmailPersons: function(personIDs) {
+		$('event-field-emailreceivers').select('option').each(function(option){
+			option.disabled = personIDs.include(option.value);
+			if( option.disabled ) {
+				option.selected = false;
+			}
 		});
 	},
+
+
+
+	/**
+	 * Get IDs of assigned users
+	 *
+	 * @return	{Array}
+	 */
+	getAssignedUserIDs: function() {
+		return $('formElement-event-field-persons').select('input[type=hidden]').pluck('value').filter(function(value){
+			return value != 0;
+		});
+	},
+
 
 
 

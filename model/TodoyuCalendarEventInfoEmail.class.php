@@ -44,19 +44,59 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	/**
 	 * Type of action while email was sent
 	 *
-	 * @var	Integer
+	 * @var	String
 	 */
-	private $actionType;
+	private $operation;
 
 
-	public function __construct($idEvent, $idPerson, $actionType, array $config = array()) {
+	/**
+	 * Initialize
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @param	String		$operation
+	 * @param	Array		$config
+	 */
+	public function __construct($idEvent, $idPerson, $operation, array $config = array()) {
 		parent::__construct($config);
 
 		$this->event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 		$this->person		= TodoyuContactPersonManager::getPerson($idPerson);
-		$this->actionType	= intval($actionType);
+		$this->operation	= trim($operation);
 
 		$this->init();
+	}
+
+
+	/**
+	 * Get person
+	 *
+	 * @return	TodoyuContactPerson
+	 */
+	public function getPerson() {
+		return $this->person;
+	}
+
+
+
+	/**
+	 * Get event
+	 *
+	 * @return	TodoyuCalendarEventStatic
+	 */
+	public function getEvent() {
+		return $this->event;
+	}
+
+
+
+	/**
+	 * Get operation key
+	 *
+	 * @return	String
+	 */
+	public function getOperation() {
+		return $this->operation;
 	}
 
 
@@ -87,14 +127,14 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	private function setHeadlineByType() {
 		$headline	= '';
 
-		switch($this->actionType) {
-			case CALENDAR_OPERATION_CREATE:
+		switch( $this->getOperation() ) {
+			case 'create':
 				$headline	= 'calendar.event.mail.title.create';
 				break;
-			case CALENDAR_OPERATION_DELETE:
+			case 'delete':
 				$headline	= 'calendar.event.mail.title.deleted';
 				break;
-			case CALENDAR_OPERATION_UPDATE:
+			case 'update':
 				$headline	= 'calendar.event.mail.title.update';
 				break;
 		}
@@ -108,14 +148,14 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * Set mail subject according to the action type
 	 */
 	private function setTypeSubject() {
-		switch( $this->actionType ) {
-			case CALENDAR_OPERATION_CREATE:
+		switch( $this->getOperation() ) {
+			case 'create':
 				$prefix	= Todoyu::Label('calendar.event.mail.title.create');
 				break;
-			case CALENDAR_OPERATION_UPDATE:
+			case 'update':
 				$prefix	= Todoyu::Label('calendar.event.mail.title.update');
 				break;
-			case CALENDAR_OPERATION_DELETE: default:
+			case 'delete':
 				$prefix	= Todoyu::Label('calendar.event.mail.title.deleted');
 				break;
 			default:
@@ -157,18 +197,18 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 		$basePath	= 'ext/calendar/view/emails/';
 		$postFix	= $asHtml ? 'html' : 'text';
 
-		switch($this->actionType) {
-			case CALENDAR_OPERATION_CREATE:
+		switch( $this->getOperation() ) {
+			case 'create':
 				$fileType	= 'event-new';
 				break;
-			case CALENDAR_OPERATION_DELETE:
+			case 'delete':
 				$fileType	= 'event-deleted';
 				break;
-			case CALENDAR_OPERATION_UPDATE:
+			case 'update':
 				$fileType	= 'event-update';
 				break;
 			default:
-				TodoyuLogger::logError('Mail template missing because of wrong operation ID: ' . $this->actionType);
+				TodoyuLogger::logError('Mail template missing because of wrong operation ID: ' . $this->getOperation());
 				$fileType	= false;
 				break;
 		}

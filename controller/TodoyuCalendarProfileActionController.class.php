@@ -81,20 +81,6 @@ class TodoyuCalendarProfileActionController extends TodoyuActionController {
 
 
 	/**
-	 * Deactivate showing of mailing popup after drag and drop change of events
-	 *
-	 * @param	Array	$params
-	 */
-	public static function deactivatePopupPreferenceAction(array $params) {
-		$prefName				= 'is_mailpopupdeactivated';
-		$isRequestDeactivated	= '1';
-
-		TodoyuCalendarPreferences::savePref($prefName, $isRequestDeactivated, 0, true, 0, Todoyu::personid());
-	}
-
-
-
-	/**
 	 * Save calendar preference from reminders tab of profile
 	 *
 	 * @param	Array		$params

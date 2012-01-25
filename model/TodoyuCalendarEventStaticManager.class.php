@@ -407,13 +407,21 @@ class TodoyuCalendarEventStaticManager {
 			// Save person assignments
 		self::saveAssignments($idEvent, $personIDs, $dateStartOld);
 			// Set reminder for all users
-		self::updateAssignmentRemindersForCurrentPerson($idEvent, $advanceTimeEmail, $advanceTimePopup);
+		self::updateAssignmentRemindersForPerson($idEvent, $advanceTimeEmail, $advanceTimePopup);
+		TodoyuDebug::printInFirebug($idEvent, 'save event');
+		TodoyuDebug::printInFirebug($advanceTimeEmail, '$advanceTimeEmailddddd');
+		TodoyuDebug::printInFirebug($advanceTimePopup, '$advanceTimePopupdddd');
 
 		if( $seriesData !== false ) {
-			TodoyuCalendarEventSeriesManager::saveSeries($seriesData, $idEvent);
+			$idSeries = TodoyuCalendarEventSeriesManager::saveSeries($seriesData, $idEvent);
 		}
 
 		self::removeEventFromCache($idEvent);
+
+		TodoyuHookManager::callHook('calendar', 'event.saved', array(
+			$idEvent,
+			$isNewEvent
+		));
 
 		return $idEvent;
 	}
@@ -465,30 +473,7 @@ class TodoyuCalendarEventStaticManager {
 
 
 
-	/**
-	 * Event save hook. Send emails
-	 *
-	 * @param	Integer		$idEvent
-	 * @param	Array		$receiverIDs
-	 * @param	Boolean		$isNewEvent
-	 * @return	Boolean
-	 */
-	public static function sendEventAsEmail($idEvent, $receiverIDs, $isNewEvent = false) {
-		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intval($receiverIDs, true, true));
 
-		$sent	= false;
-
-		if( sizeof($mailReceiverPersonIDs) > 0 ) {
-			$operationID	= $isNewEvent ? CALENDAR_OPERATION_CREATE : CALENDAR_OPERATION_UPDATE;
-
-			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $mailReceiverPersonIDs, $operationID);
-			if( $sent ) {
-				TodoyuCalendarEventMailManager::saveMailsSent($idEvent, $mailReceiverPersonIDs);
-			}
-		}
-
-		return $sent;
-	}
 
 
 
@@ -548,7 +533,7 @@ class TodoyuCalendarEventStaticManager {
 			$dateEnd	= $event->getDateEnd() + $offset;
 		}
 
-		if( ! $overbookingConfirmed || ! TodoyuCalendarManager::isOverbookingAllowed() ) {
+		if( ! $overbookingConfirmed || !TodoyuCalendarManager::isOverbookingAllowed() ) {
 				// Collect overbookings of assigned persons (to request confirmation or resetting event)
 			$overbookingPersonsErrors	= self::getOverbookedPersonsErrors($idEvent, $dateStart, $dateEnd);
 			if( $overbookingPersonsErrors !== false ) {
@@ -567,10 +552,10 @@ class TodoyuCalendarEventStaticManager {
 
 		self::updateEvent($idEvent, $data);
 
-		TodoyuHookManager::callHook('calendar', 'event.move', array($idEvent, $dateStart, $dateEnd));
-
 			// Update scheduled reminders relative to shifted time of event
 		TodoyuCalendarReminderManager::shiftReminderDates($idEvent, $offset);
+
+		TodoyuHookManager::callHook('calendar', 'event.move', array($idEvent, $dateStart, $dateEnd));
 
 		return true;
 	}
@@ -700,6 +685,7 @@ class TodoyuCalendarEventStaticManager {
 		}
 
 		TodoyuCalendarEventAssignmentManager::updateReminderDates($idEvent, $idPerson, $dateEmail, $datePopup);
+		TodoyuCalendarReminderManager::removeReminderFromCache($reminder->getID());
 	}
 
 
@@ -710,10 +696,11 @@ class TodoyuCalendarEventStaticManager {
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$advanceTimeEmail		Reminder time before event start for email
 	 * @param	Integer		$advanceTimePopup		Reminder time before event start for popup
+	 * @param	Integer		$idPerson
 	 */
-	private static function updateAssignmentRemindersForCurrentPerson($idEvent, $advanceTimeEmail, $advanceTimePopup) {
+	public static function updateAssignmentRemindersForPerson($idEvent, $advanceTimeEmail, $advanceTimePopup, $idPerson = 0) {
 		$idEvent			= intval($idEvent);
-		$idPerson			= TodoyuAuth::getPersonID();
+		$idPerson			= Todoyu::personid($idPerson);
 		$advanceTimeEmail	= intval($advanceTimeEmail);
 		$advanceTimePopup	= intval($advanceTimePopup);
 		$event				= self::getEvent($idEvent);
@@ -785,8 +772,8 @@ class TodoyuCalendarEventStaticManager {
 				Todoyu::db()->doInsert($table, $fields);
 
 				if( $formData['send_notification'] === 1 ) {
-					$operationID	= CALENDAR_OPERATION_CREATE;
-					TodoyuCalendarEventMailer::sendEmails($idEvent, array($idPerson), $operationID);
+					$operation	= 'create';
+					TodoyuCalendarEventMailer::sendEmails($idEvent, array($idPerson), $operation);
 				}
 			}
 

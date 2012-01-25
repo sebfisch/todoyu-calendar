@@ -76,8 +76,10 @@ class TodoyuCalendarEventViewHelper {
 	 */
 	public static function getEmailReceiverGroupedOptions(TodoyuFormElement $field) {
 		$options	= array();
+		$idEvent	= $field->getForm()->getRecordID();
 
-		$autoNotifiedPersonIDs	= self::getAutoNotifiedPersonIDs($field);
+			// Disable auto notified persons in normal email list
+		$autoNotifiedPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($idEvent);
 
 			// Event attending persons
 		$groupLabel	= Todoyu::Label('calendar.event.group.attendees');
@@ -89,20 +91,13 @@ class TodoyuCalendarEventViewHelper {
 
 			// Deselect + disable options of persons receiving an automatic notification email
 		if( sizeof($autoNotifiedPersonIDs) > 0 ) {
-			$value	= $field->getValue();
 			foreach($options as $groupLabel => $groupOptions) {
-				if( is_array($groupOptions) && sizeof($groupOptions) > 0 ) {
+				if( sizeof($groupOptions) > 0 ) {
 					foreach($options[$groupLabel] as $optionKey => $option) {
-						$idPerson	= intval($option['value']);
-						if( in_array($idPerson, $autoNotifiedPersonIDs)  ) {
+						if( in_array($option['value'], $autoNotifiedPersonIDs)  ) {
 							$options[$groupLabel][$optionKey]['disabled']	= 1;
-
-							if( in_array($idPerson, $value)) {
-								$value	= TodoyuArray::removeByValue($value, array($idPerson));
-							}
 						}
 					}
-					$field->setValue($value);
 				}
 			}
 		}
@@ -119,13 +114,10 @@ class TodoyuCalendarEventViewHelper {
 	 * @return	String
 	 */
 	public static function getAutoNotificationComment(TodoyuFormElement $field) {
-		$tmpl				= 'ext/calendar/view/infocomment-autonotification.tmpl';
+		$idEvent				= $field->getForm()->getRecordID();
+		$autoNotifiedPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($idEvent, true);
 
-		$data	= array(
-			'personIDs'	=> self::getAutoNotifiedPersonIDs($field)
-		);
-
-		return Todoyu::render($tmpl, $data);
+		return TodoyuCalendarEventRenderer::renderAutoMailComment($autoNotifiedPersonIDs);
 	}
 
 
@@ -330,7 +322,7 @@ class TodoyuCalendarEventViewHelper {
 			$series		= TodoyuCalendarEventSeriesManager::getSeries($idSeries);
 			$series->setFormData($eventData);
 
-			$warningMessages	= $series->getOverbookingConflictsWarningMessages();
+			$warningMessages	= $series->getOverbookingConflictsWarningMessages(true);
 
 			if( sizeof($warningMessages) > 0 ) {
 				return implode('<br>', $warningMessages);

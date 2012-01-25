@@ -148,8 +148,13 @@ Todoyu.Ext.calendar.Event	= {
 
 
 
-
-
+	/**
+	 * Redirect the browser to the calendar and open edit view
+	 * Use this to start edit view from another area
+	 *
+	 * @param	{Number}	idEvent
+	 * @param	{Object}	options
+	 */
 	jumpToEventEditView: function(idEvent, options) {
 		Todoyu.goTo('calendar', 'ext', {
 			tab:		'edit',
@@ -179,9 +184,16 @@ Todoyu.Ext.calendar.Event	= {
 		}
 	},
 
+
+
+	/**
+	 * Remove the (single) event
+	 *
+	 * @param	{Number}	idEvent
+	 */
 	removeEvent: function(idEvent) {
 			// Show mailing popup
-		this.Mail.showPopup(idEvent, this.operationTypeID.remove);
+		this.Mail.showPopup(idEvent, 'delete');
 
 			// Remove the event
 		this.fadeOut(idEvent);
@@ -197,9 +209,6 @@ Todoyu.Ext.calendar.Event	= {
 
 		Todoyu.send(url, options);
 	},
-
-
-
 
 
 
