@@ -206,8 +206,8 @@ class TodoyuCalendarEventStaticManager {
 	public static function getAssignedPersonsOfEvent($idEvent, $getPersonData = false, $getRemindersData = false) {
 		$idEvent	= intval($idEvent);
 
-		$fields	= '	 mm.id_person
-					,mm.is_acknowledged';
+		$fields		= '	mm.id_person,
+						mm.is_acknowledged';
 		$tables		= '	ext_calendar_mm_event_person mm';
 		$where		= '	mm.id_event = ' . $idEvent;
 		$group		= ' mm.id_person';
@@ -350,7 +350,7 @@ class TodoyuCalendarEventStaticManager {
 
 		TodoyuRecordManager::deleteRecord(self::TABLE, $idEvent);
 
-		TodoyuHookManager::callHook('calendar', 'event.delete', array($idEvent));
+		TodoyuHookManager::callHook('calendar', 'event.deleted', array($idEvent, array('series'=>false)));
 	}
 
 
@@ -370,7 +370,8 @@ class TodoyuCalendarEventStaticManager {
 		$advanceTimePopup	= intval($data['reminder_popup']);
 
 			// Extract person IDs from foreign data array (easier to handle)
-		$personIDs 	= TodoyuArray::getColumn(TodoyuArray::assure($data['persons']), 'id');
+		$personsData= TodoyuArray::assure($data['persons']);
+		$personIDs 	= TodoyuArray::getColumn($personsData, 'id');
 		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
 			// Add empty event
@@ -408,19 +409,18 @@ class TodoyuCalendarEventStaticManager {
 		self::saveAssignments($idEvent, $personIDs, $dateStartOld);
 			// Set reminder for all users
 		self::updateAssignmentRemindersForPerson($idEvent, $advanceTimeEmail, $advanceTimePopup);
-		TodoyuDebug::printInFirebug($idEvent, 'save event');
-		TodoyuDebug::printInFirebug($advanceTimeEmail, '$advanceTimeEmailddddd');
-		TodoyuDebug::printInFirebug($advanceTimePopup, '$advanceTimePopupdddd');
 
 		if( $seriesData !== false ) {
-			$idSeries = TodoyuCalendarEventSeriesManager::saveSeries($seriesData, $idEvent);
+			$idEvent = TodoyuCalendarEventSeriesManager::saveSeries($seriesData, $idEvent);
 		}
 
 		self::removeEventFromCache($idEvent);
 
 		TodoyuHookManager::callHook('calendar', 'event.saved', array(
 			$idEvent,
-			$isNewEvent
+			array(
+				'new' => $isNewEvent
+			)
 		));
 
 		return $idEvent;
@@ -748,41 +748,43 @@ class TodoyuCalendarEventStaticManager {
 
 
 
-	/**
-	 * Assign persons to an event
-	 *
-	 * @param	Integer		$idEvent
-	 * @param	Array		$formData
-	 * @return	Array
-	 */
-	public static function addAssignedEventPersonsAndSendMail($idEvent, array $formData) {
-		$idEvent	= intval($idEvent);
-
-		if( array_key_exists('persons', $formData) ) {
-			$table	= 'ext_calendar_mm_event_person';
-
-			foreach($formData['persons'] as $person) {
-				$idPerson	= $person['id'];
-				$fields	= array(
-					'id_event'			=> $idEvent,
-					'id_person'			=> $idPerson,
-					'is_acknowledged'	=> $idPerson == Todoyu::personid() ? 1 : 0,
-				);
-
-				Todoyu::db()->doInsert($table, $fields);
-
-				if( $formData['send_notification'] === 1 ) {
-					$operation	= 'create';
-					TodoyuCalendarEventMailer::sendEmails($idEvent, array($idPerson), $operation);
-				}
-			}
-
-			unset($formData['persons']);
-			unset($formData['send_notification']);
-		}
-
-		return $formData;
-	}
+//	/**
+//	 * Assign persons to an event
+//	 *
+//	 * @param	Integer		$idEvent
+//	 * @param	Array		$formData
+//	 * @return	Array
+//	 */
+//	public static function addAssignedEventPersonsAndSendMail($idEvent, array $formData) {
+//		$idEvent	= intval($idEvent);
+//
+//		if( array_key_exists('persons', $formData) ) {
+//			$table	= 'ext_calendar_mm_event_person';
+//
+//			foreach($formData['persons'] as $person) {
+//				$idPerson	= $person['id'];
+//				$fields	= array(
+//					'id_event'			=> $idEvent,
+//					'id_person'			=> $idPerson,
+//					'is_acknowledged'	=> $idPerson == Todoyu::personid() ? 1 : 0,
+//				);
+//
+//				Todoyu::db()->doInsert($table, $fields);
+//
+//				if( $formData['send_notification'] === 1 ) {
+//					$options = array(
+//						'operation' => 'create'
+//					);
+//					TodoyuCalendarEventMailer::sendEmails($idEvent, array($idPerson), $options);
+//				}
+//			}
+//
+//			unset($formData['persons']);
+//			unset($formData['send_notification']);
+//		}
+//
+//		return $formData;
+//	}
 
 
 

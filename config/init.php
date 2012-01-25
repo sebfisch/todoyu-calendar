@@ -72,6 +72,7 @@ TodoyuFormHook::registerBuildForm('ext/calendar/config/form/event-mailing.xml', 
 TodoyuHookManager::registerHook('calendar', 'event.move.data', 'TodoyuCalendarEventSeriesManager::hookEventMovedDataUpdate');
 TodoyuHookManager::registerHook('calendar', 'event.move', 'TodoyuCalendarEventMailManager::hookEventMoved');
 TodoyuHookManager::registerHook('calendar', 'event.saved', 'TodoyuCalendarEventMailManager::hookEventSaved');
+TodoyuHookManager::registerHook('calendar', 'event.deleted', 'TodoyuCalendarEventMailManager::hookEventDeleted');
 
 
 /* -----------------------

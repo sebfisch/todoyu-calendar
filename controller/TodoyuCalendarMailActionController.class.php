@@ -75,10 +75,12 @@ class TodoyuCalendarMailActionController extends TodoyuActionController {
 	public function sendAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$personIDs	= TodoyuArray::intExplode(',', $params['persons'], true, true);
-		$operation	= trim($params['operation']);
+		$options	= array(
+			'operation' => trim($params['operation'])
+		);
 
 		if( sizeof($personIDs) > 0 ) {
-			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $operation);
+			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $options);
 			if( $sent ) {
 				TodoyuHeader::sendTodoyuHeader('sentEmail', 1);
 			}

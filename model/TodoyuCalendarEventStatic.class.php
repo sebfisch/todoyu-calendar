@@ -547,7 +547,10 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 		$this->data['isAcknowledged']	= $this->isAcknowledged();
 		$this->data['isUpdated']		= $this->isUpdated();
 		$this->data['isAssigned']		= $this->isCurrentPersonAssigned();
-		$this->data['series']			= $this->getSeries()->getTemplateData();
+
+		if( $this->hasSeries() ) {
+			$this->data['series'] = $this->getSeries()->getTemplateData();
+		}
 
 		return parent::getTemplateData();
 	}

@@ -28,6 +28,9 @@ class TodoyuCalendarEventSeriesManager {
 
 	const TABLE = 'ext_calendar_series';
 
+
+	protected $createdSeriesID = 0;
+
 	/**
 	 * Get a series
 	 *
@@ -72,16 +75,23 @@ class TodoyuCalendarEventSeriesManager {
 	 * Delete a series (and all assigned events)
 	 *
 	 * @param	Integer		$idSeries
-	 * @param	Boolean		$deleteEvents
+	 * @return	Integer[]	Deleted event IDs
 	 */
-	public static function deleteSeries($idSeries, $deleteEvents = true) {
+	public static function deleteSeries($idSeries) {
 		$idSeries	= intval($idSeries);
 
+			// Delete series record
 		TodoyuRecordManager::deleteRecord(self::TABLE, $idSeries);
+			// Delete events
+		$deletedEventIDs = self::deleteSeriesEventsAfter($idSeries);
 
-		if( $deleteEvents ) {
-			self::deleteSeriesEventsAfter($idSeries);
-		}
+		$idFirstDeletedEvent	= reset($deletedEventIDs);
+
+		TodoyuHookManager::callHook('calendar', 'series.deleted', array($idSeries));
+		TodoyuHookManager::callHook('calendar', 'series.events.deleted', array($idSeries, $deletedEventIDs));
+		TodoyuHookManager::callHook('calendar', 'event.deleted', array($idFirstDeletedEvent, array('series'=>true,'batch'=>false,'events'=>$deletedEventIDs)));
+
+		return $deletedEventIDs;
 	}
 
 
@@ -91,32 +101,37 @@ class TodoyuCalendarEventSeriesManager {
 	 *
 	 * @param	Array		$seriesData
 	 * @param	Integer		$idSavedEvent
-	 * @return	Integer		Series ID
+	 * @return	Integer		The new event ID, just in case it changed because of
 	 */
 	public static function saveSeries(array $seriesData, $idSavedEvent) {
 		$idSeries	= intval($seriesData['id']);
 		$editFuture	= (boolean)$seriesData['editfuture'];
 		unset($seriesData['editfuture']);
 
+		TodoyuCalendarEventStaticManager::removeEventFromCache($idSavedEvent);
+
 		if( $idSeries === 0 ) { // New series
 			$idSeries	= self::addSeries($seriesData);
 			self::setSeriesID($idSavedEvent, $idSeries);
-			self::createNewSeriesEvents($idSavedEvent, $idSeries);
+			$result = self::createNewSeriesEvents($idSavedEvent, $idSeries);
 		} else { // Update series
 				// Create a new series
 			$idSeriesNew	= self::addSeries($seriesData);
 
 			if( $editFuture ) { // Replace events after saved one
-				self::modifySeriesAfterEvent($idSavedEvent, $idSeries, $idSeriesNew);
+				$result = self::modifySeriesAfterEvent($idSavedEvent, $idSeries, $idSeriesNew);
 			} else { // Replace all not passed events
-				self::modifySeriesComplete($idSavedEvent, $idSeries, $idSeriesNew);
+				$result = self::modifySeriesComplete($idSavedEvent, $idSeries, $idSeriesNew);
 			}
-
-			$idSeries = $idSeriesNew;
 		}
 
-		return $idSeries;
+		$idBaseEvent	= $result->getNewBaseEventID();
+
+		TodoyuCalendarEventStaticManager::removeEventFromCache($idBaseEvent);
+
+		return $idBaseEvent;
 	}
+
 
 
 	/**
@@ -124,6 +139,7 @@ class TodoyuCalendarEventSeriesManager {
 	 *
 	 * @param	Integer		$idBaseEvent
 	 * @param	Integer		$idSeries
+	 * @return	TodoyuCalendarEventSeriesCreateResult
 	 */
 	private static function createNewSeriesEvents($idBaseEvent, $idSeries) {
 		$baseEvent		= TodoyuCalendarEventStaticManager::getEvent($idBaseEvent);
@@ -131,14 +147,20 @@ class TodoyuCalendarEventSeriesManager {
 		$dateStartEvent	= $baseEvent->getDateStart();
 		$dateStart		= $series->getFixedStartDate($dateStartEvent);
 		$reCreateBase	= false;
+		$result			= new TodoyuCalendarEventSeriesCreateResult($idBaseEvent, $idSeries);
 
 			// Series doesn't match the event date
 		if( $dateStartEvent !== $dateStart ) {
 			TodoyuCalendarEventStaticManager::deleteEvent($idBaseEvent);
 			$reCreateBase = true;
+			$result->setBaseEventDeleted();
+			$result->setDeletedEvents(array($idBaseEvent));
 		}
 
-		$series->createEvents($idBaseEvent, $dateStart, $reCreateBase);
+		$createdEventIDs	= $series->createEvents($idBaseEvent, $dateStart, $reCreateBase);
+		$result->setCreatedEvents($createdEventIDs);
+
+		return $result;
 	}
 
 
@@ -150,20 +172,26 @@ class TodoyuCalendarEventSeriesManager {
 	 * @param	Integer		$idBaseEvent
 	 * @param	Integer		$idSeriesOld		ID of the old series
 	 * @param	Integer		$idSeriesNew		ID of the new series
+	 * @return	TodoyuCalendarEventSeriesCreateResult
 	 */
 	private static function modifySeriesAfterEvent($idBaseEvent, $idSeriesOld, $idSeriesNew) {
 		$baseEvent		= TodoyuCalendarEventStaticManager::getEvent($idBaseEvent);
 		$seriesNew		= self::getSeries($idSeriesNew);
 		$dateStartEvent	= $baseEvent->getDateStart();
+		$result			= new TodoyuCalendarEventSeriesCreateResult($idBaseEvent, $idSeriesNew, $idSeriesOld);
 
 			// Fix start date
 //		$dateStart	= $seriesNew->getFixedStartDate($dateStartEvent);
 
 			// Delete all events of the old series which are not in the past
-		self::deleteSeriesEventsAfter($idSeriesOld, $dateStartEvent-1);
+		$deletedEventIDs = self::deleteSeriesEventsAfter($idSeriesOld, $dateStartEvent-1);
+		$result->setDeletedEvents($deletedEventIDs);
 
 			// Create events for new series
-		$seriesNew->createEvents($idBaseEvent, $dateStartEvent, true);
+		$createdEventIDs	= $seriesNew->createEvents($idBaseEvent, $dateStartEvent, true);
+		$result->setCreatedEvents($createdEventIDs);
+
+		return $result;
 	}
 
 
@@ -174,11 +202,15 @@ class TodoyuCalendarEventSeriesManager {
 	 * @param	Integer		$idBaseEvent
 	 * @param	Integer		$idSeriesOld
 	 * @param	Integer		$idSeriesNew
+	 * @return	TodoyuCalendarEventSeriesCreateResult
 	 */
 	private static function modifySeriesComplete($idBaseEvent, $idSeriesOld, $idSeriesNew) {
 			// Get series
 		$seriesOld	= self::getSeries($idSeriesOld);
 		$seriesNew	= self::getSeries($idSeriesNew);
+
+			// Result
+		$result		= new TodoyuCalendarEventSeriesCreateResult($idBaseEvent, $idSeriesNew, $idSeriesOld);
 
 			// Get oldest event of the old series to find the start date
 		$oldestEvent= $seriesOld->getFirstEvent();
@@ -195,10 +227,14 @@ class TodoyuCalendarEventSeriesManager {
 		$dateStart	= $seriesNew->getFixedStartDate($dateStart);
 
 			// Delete all events of the old series which are not in the past
-		self::deleteSeriesEventsAfter($idSeriesOld, NOW);
+		$deletedEventIDs = self::deleteSeriesEventsAfter($idSeriesOld, NOW);
+		$result->setDeletedEvents($deletedEventIDs);
 
 			// Create events for new series
-		$seriesNew->createEvents($idBaseEvent, $dateStart, true);
+		$createdEventIDs = $seriesNew->createEvents($idBaseEvent, $dateStart, true);
+		$result->setCreatedEvents($createdEventIDs);
+
+		return $result;
 	}
 
 
@@ -247,7 +283,7 @@ class TodoyuCalendarEventSeriesManager {
 	 * @param	Integer		$idSeries
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$idEventIgnore			Ignore this event
-	 * @return	Integer		Number of deleted events
+	 * @return	Integer[]	IDs of deleted events
 	 */
 	public static function deleteSeriesEventsAfter($idSeries, $dateStart = 0, $idEventIgnore = 0) {
 		$idSeries		= intval($idSeries);
@@ -258,13 +294,24 @@ class TodoyuCalendarEventSeriesManager {
 			$dateStart = NOW;
 		}
 
+		$field	= 'id';
 		$table	= 'ext_calendar_event';
 		$where	= '		id_series	 = ' . $idSeries
 				. '	AND date_start	 > ' . $dateStart
 				. ' AND id			!= ' . $idEventIgnore
 				. ' AND id_series 	!= 0';  // Dummy security check to prevent deletion of non series events (just in case of a missing ID)
 
-		return TodoyuRecordManager::deleteRecords($table, $where);
+			// Get IDs of delete event
+		$removeIDs	= Todoyu::db()->getColumn($field, $table, $where);
+			// Delete the events
+		TodoyuRecordManager::deleteRecords($table, $where);
+
+			// Call event delete hook with special series option param
+		foreach($removeIDs as $idEvent) {
+			TodoyuHookManager::callHook('calendar', 'event.deleted', array($idEvent, array('series'=>true, 'batch'=>true)));
+		}
+
+		return $removeIDs;
 	}
 
 

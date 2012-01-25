@@ -34,16 +34,16 @@ class TodoyuCalendarEventMailer {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$personIDs
-	 * @param	String		$operation	was has been done- create, update, delete?
+	 * @param	Array		$options
 	 * @return	Boolean
 	 */
-	public static function sendEmails($idEvent, array $personIDs, $operation) {
+	public static function sendEmails($idEvent, array $personIDs, array $options = array()) {
 		$idEvent	= intval($idEvent);
 		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
 		$succeeded	= true;
 		foreach($personIDs as $idPerson) {
-			$result	= self::sendInfoMail($idEvent, $idPerson, $operation);
+			$result	= self::sendInfoMail($idEvent, $idPerson, $options);
 
 			if( $result === false ) {
 				$succeeded	= false;
@@ -60,24 +60,18 @@ class TodoyuCalendarEventMailer {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @param	String		$operation
+	 * @param	Array		$options
 	 * @return	Boolean		Success
 	 */
-	public static function sendInfoMail($idEvent, $idPerson, $operation) {
+	public static function sendInfoMail($idEvent, $idPerson, array $options = array()) {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
-		$operation	= trim($operation);
-		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+		$mail		= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $options);
+		$status		= $mail->send();
 
-//		if( $event->isDeleted() ) {
-//			$operation	= 'delete';
-//		}
+		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $idPerson, $options, $status));
 
-		$mail	= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $operation);
-
-		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $idPerson, $operation));
-
-		return $mail->send();
+		return $status;
 	}
 
 

@@ -546,7 +546,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 			$data	= array(
 				'frequency'	=> $frequency,
 				'interval'	=> intval($formData['seriesinterval']),
-				'date_end'	=> intval($formData['seriesdate_end'])
+				'date_end'	=> $this->parseDate($formData['seriesdate_end'])
 			);
 
 			if( $frequency === CALENDAR_SERIES_FREQUENCY_WEEK ) {
@@ -561,9 +561,26 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 			$this->data			= array_merge($this->data, $data);
 		}
 
-
 		if( isset($formData['date_start']) ) {
 			$this->eventData	= $formData;
+		}
+	}
+
+
+
+	/**
+	 * Parse a date
+	 * Possible formats: timestamp, date, datetime
+	 *
+	 * @param	String|Integer	$date
+	 * @param	Boolean		$withTime
+	 * @return	Integer
+	 */
+	private function parseDate($date, $withTime = false) {
+		if( is_numeric($date) ) {
+			return intval($date);
+		} else {
+			return $withTime ? TodoyuTime::parseDateTime($date) : TodoyuTime::parseDate($date);
 		}
 	}
 
@@ -1125,7 +1142,9 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$baseEvent			= TodoyuCalendarEventStaticManager::getEvent($idBaseEvent);
 		$baseEventData		= $baseEvent->getObjectData();
 		$duration			= $baseEvent->getDuration();
+		TodoyuCache::disable();
 		$assignedPersonIDs	= $baseEvent->getAssignedPersonIDs();
+		TodoyuCache::enable();
 		$dateStart			= $this->getFixedStartDate($dateStart);
 		
 			// Get next start dates
@@ -1145,8 +1164,18 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 			$newEventData['date_end']	= $nextStartDate + $duration;
 
 			$idEvent	= TodoyuCalendarEventStaticManager::addEvent($newEventData);
+//			TodoyuDebug::printInFirebug($idEvent, 'created event');
 
 			TodoyuCalendarEventSeriesManager::assignEvent($idBaseEvent, $idEvent, $assignedPersonIDs);
+
+			TodoyuHookManager::callHook('calendar', 'event.saved', array(
+				$idEvent,
+				array(
+					'new'	=> true,
+					'batch'	=> true,
+					'series'=> true
+				)
+			));
 
 			$eventIDs[] = $idEvent;
 		}

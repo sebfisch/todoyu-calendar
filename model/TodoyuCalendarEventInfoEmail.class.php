@@ -44,9 +44,9 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	/**
 	 * Type of action while email was sent
 	 *
-	 * @var	String
+	 * @var	Array
 	 */
-	private $operation;
+	private $options;
 
 
 	/**
@@ -54,15 +54,20 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @param	String		$operation
+	 * @param	Array		$options
 	 * @param	Array		$config
 	 */
-	public function __construct($idEvent, $idPerson, $operation, array $config = array()) {
+	public function __construct($idEvent, $idPerson, array $options, array $config = array()) {
 		parent::__construct($config);
 
-		$this->event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
-		$this->person		= TodoyuContactPersonManager::getPerson($idPerson);
-		$this->operation	= trim($operation);
+		$this->event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+		$this->person	= TodoyuContactPersonManager::getPerson($idPerson);
+		$this->options	= $options;
+		
+			// Assure operation is set
+		if( !$this->options['operation'] ) {
+			$this->options['operation'] = $this->options['new'] ? 'create' : 'update';
+		}
 
 		$this->init();
 	}
@@ -96,7 +101,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * @return	String
 	 */
 	public function getOperation() {
-		return $this->operation;
+		return $this->options['operation'];
 	}
 
 
@@ -105,13 +110,13 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * Initialize info email with correct data
 	 */
 	private function init() {
-		$this->addReceiver($this->person->getID());
+		$this->addReceiver($this->getPerson()->getID());
 		$this->setSender(TodoyuAuth::getPersonID());
 		$this->setTypeSubject();
 
 		$this->setHeadlineByType();
 
-		Todoyu::setEnvironmentForPerson($this->person->getID());
+		Todoyu::setEnvironmentForPerson($this->getPerson()->getID());
 
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
@@ -162,7 +167,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 				$prefix	= 'Unknown Action';
 		}
 
-		$subject	= $prefix . ': ' . $this->event->getTitle() . ' - ' . $this->event->getDurationString();
+		$subject	= $prefix . ': ' . $this->getEvent()->getTitle() . ' - ' . $this->getEvent()->getDurationString();
 
 		$this->setSubject($subject);
 	}
@@ -180,7 +185,8 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 		$data	= $this->getData();
 
 		$data['hideEmails']	= true;
-		$data['colors']		= TodoyuCalendarEventStaticManager::getEventTypeColors();
+		$data['options']	= $this->options;
+//		$data['colors']		= TodoyuCalendarEventStaticManager::getEventTypeColors();
 
 		return Todoyu::render($tmpl, $data);
 	}
@@ -228,7 +234,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * @return	Array
 	 */
 	private function getData() {
-		return TodoyuCalendarEventMailManager::getMailData($this->event->getID(), $this->person->getID(), true);
+		return TodoyuCalendarEventMailManager::getMailData($this->getEvent()->getID(), $this->getPerson()->getID(), true);
 	}
 
 }

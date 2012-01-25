@@ -43,7 +43,8 @@ class TodoyuCalendarSeriesActionController extends TodoyuActionController {
 	 */
 	public function deleteAction(array $params) {
 		$idSeries			= intval($params['series']);
-		$numDeletedEvents	= TodoyuCalendarEventSeriesManager::deleteSeries($idSeries);
+		$deletedEventIDs	= TodoyuCalendarEventSeriesManager::deleteSeries($idSeries);
+		$numDeletedEvents	= sizeof($deletedEventIDs);
 
 		TodoyuHeader::sendTodoyuHeader('deleted', $numDeletedEvents);
 	}

@@ -307,10 +307,31 @@ class TodoyuCalendarEventMailManager {
 	 * Hook for event saving. Send auto info mails to special group users
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Boolean		$isNewEvent
+	 * @param	Array		$options
 	 */
-	public static function hookEventSaved($idEvent, $isNewEvent) {
-		self::sendAutoInfoMails($idEvent, array('new'=>$isNewEvent));
+	public static function hookEventSaved($idEvent, array $options = array()) {
+		$options['operation'] = $options['new'] ? 'create' : 'update';
+
+		if( !$options['batch'] ) {
+			self::sendAutoInfoMails($idEvent, $options);
+		}
+	}
+
+
+
+	/**
+	 * Hook for event delete
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$options
+	 */
+	public static function hookEventDeleted($idEvent, array $options = array()) {
+		$options['operation'] = 'delete';
+
+			// Don't send mails on batch delete
+		if( !$options['batch'] ) {
+			self::sendAutoInfoMails($idEvent, $options);
+		}
 	}
 
 
@@ -344,14 +365,10 @@ class TodoyuCalendarEventMailManager {
 	 */
 	public static function sendEvent($idEvent, $personIDs, array $options = array()) {
 		$personIDs	= array_unique(TodoyuArray::intval($personIDs, true, true));
-
-		$sent	= false;
+		$sent		= false;
 
 		if( sizeof($personIDs) > 0 ) {
-			$operation	= $options['new'] ? 'create' : 'update';
-
-			TodoyuDebug::printInFirebug($personIDs, 'send mails to');
-			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $operation);
+			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $options);
 			if( $sent ) {
 				self::saveMailsSent($idEvent, $personIDs);
 			}

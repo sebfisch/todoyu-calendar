@@ -255,28 +255,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		return TodoyuFormManager::renderSubFormRecord($xmlPath, $fieldName, $formName, $index, $idRecord, $formData);
 	}
 
-
-
-	/**
-	 * Send automatic event mail to preselected persons
-	 *
-	 * @param	Array	$params
-	 */
-	public function sendAutoMailAction(array $params) {
-		$idEvent	= intval($params['event']);
-		$operationID= intval($params['operation']);
-
-		$participantIDs	= TodoyuCalendarEventStaticManager::getEvent($idEvent)->getAssignedPersonIDs();
-		$personIDs		= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
-
-		if( count($personIDs) > 0 ) {
-			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $operationID);
-			if( $sent ) {
-				TodoyuHeader::sendTodoyuHeader('sentAutoEmail', 1);
-			}
-		}
-	}
-
 }
 
 ?>
