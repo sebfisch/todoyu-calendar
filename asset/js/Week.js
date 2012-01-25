@@ -57,7 +57,14 @@ Todoyu.Ext.calendar.Week	= {
 	 */
 	getDragDropSnap: function() {
 		var vertical	= this.ext.DragDrop.verticalSnap;
-		var horizontal	= this.getDayColWidth();
+		var horizontal;
+
+			// Snap fix (I don't know why this correction is required, but it helps! =)
+		if( this.isWeekendDisplayed() ) {
+			horizontal = 88.8;
+		} else {
+			horizontal = 124.1;
+		}
 
 		return [horizontal, vertical];
 	},
