@@ -298,7 +298,7 @@ class TodoyuCalendarEventMailManager {
 	 * @param	Integer		$dateEnd
 	 */
 	public static function hookEventMoved($idEvent, $dateStart, $dateEnd) {
-		self::sendAutoInfoMails($idEvent, false);
+		self::sendAutoInfoMails($idEvent, array('new'=>false));
 	}
 
 
@@ -310,7 +310,7 @@ class TodoyuCalendarEventMailManager {
 	 * @param	Boolean		$isNewEvent
 	 */
 	public static function hookEventSaved($idEvent, $isNewEvent) {
-		self::sendAutoInfoMails($idEvent, $isNewEvent);
+		self::sendAutoInfoMails($idEvent, array('new'=>$isNewEvent));
 	}
 
 
@@ -319,14 +319,14 @@ class TodoyuCalendarEventMailManager {
 	 * Send info mails to all assigned users of the event which are in the specified groups
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Boolean		$isNewEvent
+	 * @param	Array		$options
 	 * @return	Integer[]
 	 */
-	public static function sendAutoInfoMails($idEvent, $isNewEvent) {
+	public static function sendAutoInfoMails($idEvent, array $options = array()) {
 		$autoMailUserIDs = TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($idEvent, true);
 
 		if( sizeof($autoMailUserIDs) > 0 ) {
-			self::sendEvent($idEvent, $autoMailUserIDs, $isNewEvent);
+			self::sendEvent($idEvent, $autoMailUserIDs, $options);
 		}
 
 		return $autoMailUserIDs;
@@ -339,16 +339,16 @@ class TodoyuCalendarEventMailManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Array		$personIDs
-	 * @param	Boolean		$isNewEvent
+	 * @param	Array		$options
 	 * @return	Boolean
 	 */
-	public static function sendEvent($idEvent, $personIDs, $isNewEvent = false) {
+	public static function sendEvent($idEvent, $personIDs, array $options = array()) {
 		$personIDs	= array_unique(TodoyuArray::intval($personIDs, true, true));
 
 		$sent	= false;
 
 		if( sizeof($personIDs) > 0 ) {
-			$operation	= $isNewEvent ? 'create' : 'update';
+			$operation	= $options['new'] ? 'create' : 'update';
 
 			TodoyuDebug::printInFirebug($personIDs, 'send mails to');
 			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $operation);

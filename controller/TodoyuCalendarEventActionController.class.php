@@ -123,7 +123,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 				// Send event email to selected receivers
 			if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
-				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $emailReceiverIDs, $isNewEvent) ) {
+				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $emailReceiverIDs, array('new' => $isNewEvent)) ) {
 					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 				}
 			}

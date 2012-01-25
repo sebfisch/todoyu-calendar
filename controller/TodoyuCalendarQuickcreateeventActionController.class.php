@@ -83,7 +83,7 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 			$autoMailPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
 
 			if( ! empty($autoMailPersonIDs) ) {
-				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
+				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $autoMailPersonIDs, array('new'=>$isNewEvent)) ) {
 					TodoyuHeader::sendTodoyuHeader('sentAutoEmail', true);
 
 						// Don't double-send: remove auto-mail receivers from manual receivers list
@@ -95,7 +95,7 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 
 				// Send event email to selected receivers
 			if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
-				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $emailReceiverIDs, $isNewEvent) ) {
+				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $emailReceiverIDs, array('new'=>$isNewEvent)) ) {
 					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 				}
 			}
