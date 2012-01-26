@@ -36,7 +36,6 @@
 	<label index="attr.starttime">は</label>
 	<label index="attr.enddate">終了日</label>
 	<label index="attr.endtime">は</label>
-	<label index="attr.repeats">反復</label>
 	<label index="attr.place">場所</label>
 	<label index="attr.me">自分のイベント</label>
 	<label index="attr.assigned_to">アサイン先</label>

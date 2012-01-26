@@ -31,20 +31,20 @@ Todoyu.Ext.calendar.DialogChoiceSeriesSave = Class.create(Todoyu.DialogChoice, {
 	 */
 	initialize: function($super, onSelect, data) {
 		var options		= {
-			title: 'Update of series'
+			title: '[LLL:calendar.series.dialog.save.title]'
 		};
 		var config = {
-			description: 'Do you want to update all events of the series or just this and the following events?',
+			description: '[LLL:calendar.series.dialog.save.desc]',
 			options: [
 				{
 					id: 	'all',
-					button: 'All events',
-					label: 	'Update all events of this series'
+					button: '[LLL:calendar.series.dialog.save.all.button]',
+					label: 	'[LLL:calendar.series.dialog.save.all.label]'
 				},
 				{
 					id: 	'future',
-					button: 'Following events',
-					label: 	'Update this and all following events'
+					button: '[LLL:calendar.series.dialog.save.future.button]',
+					label: 	'[LLL:calendar.series.dialog.save.future.label]'
 				}
 			],
 			onSelect: onSelect,

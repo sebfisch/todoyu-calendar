@@ -98,6 +98,14 @@ class TodoyuCalendarEventMailManager {
 	}
 
 
+
+	/**
+	 * Extract person IDs from list which are auto notified by mail
+	 *
+	 * @param	Array	$personIDs
+	 * @param	Boolean	$ignoreCurrentUser
+	 * @return	Integer[]
+	 */
 	public static function extractAutoNotifiedPersonIDs(array $personIDs, $ignoreCurrentUser = true) {
 		$personIDs			= TodoyuArray::intval($personIDs, true, true);
 		$notifiedPersonIDs	= array();
@@ -368,13 +376,62 @@ class TodoyuCalendarEventMailManager {
 		$sent		= false;
 
 		if( sizeof($personIDs) > 0 ) {
-			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $options);
+			$sent	= self::sendEmails($idEvent, $personIDs, $options);
 			if( $sent ) {
 				self::saveMailsSent($idEvent, $personIDs);
 			}
 		}
 
 		return $sent;
+	}
+
+
+
+	/**
+	 * Send event information email to the persons
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Array		$personIDs
+	 * @param	Array		$options
+	 * @return	Boolean
+	 */
+	public static function sendEmails($idEvent, array $personIDs, array $options = array()) {
+		$idEvent	= intval($idEvent);
+		$personIDs	= TodoyuArray::intval($personIDs, true, true);
+
+		$succeeded	= true;
+		foreach($personIDs as $idPerson) {
+			$result	= self::sendInfoMail($idEvent, $idPerson, $options);
+
+			if( $result === false ) {
+				$succeeded	= false;
+			}
+		}
+
+		return $succeeded;
+	}
+
+
+
+	/**
+	 * Send an event email to a person
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Integer		$idPerson
+	 * @param	Array		$options
+	 * @return	Boolean		Success
+	 */
+	public static function sendInfoMail($idEvent, $idPerson, array $options = array()) {
+		$idEvent	= intval($idEvent);
+		$idPerson	= intval($idPerson);
+		$mail		= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $options);
+		$status		= $mail->send();
+
+		//TodoyuDebug::printInFirebug($idPerson, 'send mail for ' . $idEvent . ' to');
+
+		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $idPerson, $options, $status));
+
+		return $status;
 	}
 
 }

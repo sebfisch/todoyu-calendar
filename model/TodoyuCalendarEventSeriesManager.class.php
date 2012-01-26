@@ -346,7 +346,7 @@ class TodoyuCalendarEventSeriesManager {
 
 		if( $editSeries ) {
 			$form->getFieldset('main')->addFieldElement('seriesinfo', 'comment', array(
-				'comment' => 'You\'re editing this event in series mode'
+				'comment' => 'calendar.series.editMode'
 			), 'before:title');
 		}
 

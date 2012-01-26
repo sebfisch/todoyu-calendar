@@ -67,7 +67,7 @@
 	{if $event.series}
 		<tr>
 			<td class="label">
-				Series:
+				{Label calendar.series.series}:
 			</td>
 			<td>
 				{$event.series.label}
@@ -78,10 +78,10 @@
 	{if $options.series && $options.operation === 'delete'}
 		<tr>
 			<td class="label">
-				Hinweis:
+				{Label calendar.series.note}:
 			</td>
 			<td>
-				Die ganze Serie wurde gelöscht
+				{Label calendar.series.note.seriesDelete}
 			</td>
 		</tr>
 	{/if}

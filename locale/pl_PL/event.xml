@@ -36,7 +36,6 @@
 	<label index="attr.starttime">w</label>
 	<label index="attr.enddate">Data Zakończenia</label>
 	<label index="attr.endtime">w</label>
-	<label index="attr.repeats">Rekurencje</label>
 	<label index="attr.place">Miejsce</label>
 	<label index="attr.me">Moje Wydarzenia</label>
 	<label index="attr.assigned_to">Uczestnicy</label>

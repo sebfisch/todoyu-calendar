@@ -34,7 +34,6 @@
 	<label index="attr.starttime">Alle</label>
 	<label index="attr.enddate">Data fine</label>
 	<label index="attr.endtime">Alle</label>
-	<label index="attr.repeats">Ricorrenze</label>
 	<label index="attr.place">Luovo</label>
 	<label index="attr.me">Evento personale</label>
 	<label index="attr.assigned_to">Assegnato a</label>

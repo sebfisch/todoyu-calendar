@@ -37,7 +37,6 @@
 	<label index="attr.starttime">At</label>
 	<label index="attr.enddate">End Date</label>
 	<label index="attr.endtime">At</label>
-	<label index="attr.repeats">Recurrences</label>
 	<label index="attr.place">Place</label>
 	<label index="attr.me">My Event</label>
 	<label index="attr.assigned_to">Attendees</label>
@@ -94,12 +93,4 @@
 	<label index="mail.notification.popup.deactivated">Mailing pop-up has been deactivated. You can re-activate it in your profile.</label>
 	<label index="mail.notification.autosent">Automatic notification email has been sent.</label>
 	<label index="mail.notification.sent">Notification email has been sent.</label>
-	<label index="series.repeat">Repeat</label>
-	<label index="series.frequency">Frequency</label>
-	<label index="series.interval">Repeat every</label>
-	<label index="series.interval.days">Days</label>
-	<label index="series.interval.weeks">Weeks</label>
-	<label index="series.interval.months">Months</label>
-	<label index="series.interval.years">Years</label>
-	<label index="series.weekdays">Repeat on</label>
 </labels>

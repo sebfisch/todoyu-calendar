@@ -31,20 +31,20 @@ Todoyu.Ext.calendar.DialogChoiceSeriesEdit = Class.create(Todoyu.DialogChoice, {
 	 */
 	initialize: function($super, onSelect, data) {
 		var options		= {
-			title: 'Edit series or single event?'
+			title: '[LLL:calendar.series.dialog.edit.title]'
 		};
 		var config = {
-			description: 'This is a series event. Do you want to edit the whole series or just this single event?',
+			description: '[LLL:calendar.series.dialog.edit.desc]',
 			options: [
 				{
-					id: 'event',
-					button: 'Only this event',
-					label: 'The other events of the series will not change'
+					id: 	'series',
+					button:	'[LLL:calendar.series.dialog.edit.series.button]',
+					label: 	'[LLL:calendar.series.dialog.edit.series.label]'
 				},
 				{
-					id: 'series',
-					button: 'Whole series',
-					label: 'Modify all events of this series'
+					id: 	'event',
+					button:	'[LLL:calendar.series.dialog.edit.event.button]',
+					label: 	'[LLL:calendar.series.dialog.edit.event.label]'
 				}
 			],
 			onSelect: onSelect,

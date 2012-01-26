@@ -30,6 +30,22 @@ Todoyu.Ext.calendar.Event.Series = {
 	 */
 	popup: null,
 
+	/**
+	 * Init on page load
+	 */
+	init: function() {
+		this.initHooks();
+	},
+
+
+
+	/**
+	 * Register hooks
+	 */
+	initHooks: function() {
+		Todoyu.Hook.add('calendar.event.drop', this.onEventDropped.bind(this));
+	},
+
 
 
 	/**
@@ -44,6 +60,28 @@ Todoyu.Ext.calendar.Event.Series = {
 	},
 
 
+
+	/**
+	 * Handle event drop
+	 *
+	 * @param	{Number}	idEvent
+	 * @param	{Object}	dragInfo
+	 * @param	{Event}		event
+	 */
+	onEventDropped: function(idEvent, dragInfo, event) {
+		if( this.isSeriesEvent(idEvent) ) {
+			Todoyu.notifyInfo('[LLL:calendar.series.eventTakeOutNotification]', 5);
+		}
+	},
+
+
+
+	/**
+	 * Check whether edit view is in series mode
+	 * Check whether the frequency field is preset
+	 *
+	 * @return	{Boolean}
+	 */
 	isSeriesEdit: function() {
 		return Todoyu.exists('event-field-seriesfrequency');
 	},
@@ -52,6 +90,8 @@ Todoyu.Ext.calendar.Event.Series = {
 
 	/**
 	 * Get container (fieldset)
+	 *
+	 * @return	{Element}
 	 */
 	getContainer: function() {
 		return $('event-fieldset-series');
@@ -161,6 +201,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	},
 
 
+
 	/**
 	 * Handle selection of event delete dialog
 	 *
@@ -181,10 +222,22 @@ Todoyu.Ext.calendar.Event.Series = {
 	},
 
 
+	/**
+	 * Show dialog to save all or just following event
+	 *
+	 */
 	askSeriesSave: function() {
 		this.popup = new this.ext.DialogChoiceSeriesSave(this.onSeriesEventSaveSelection.bind(this));
 	},
 
+
+
+	/**
+	 * Handle selection of event save dialog
+	 *
+	 * @param	{String}	selection
+	 * @param	{Object}	data
+	 */
 	onSeriesEventSaveSelection: function(selection, data) {
 		switch(selection) {
 			case 'all':
@@ -201,8 +254,24 @@ Todoyu.Ext.calendar.Event.Series = {
 
 
 
+	/**
+	 * Set flag in hidden form field to enable future save mode
+	 * Only following events will be updated
+	 *
+	 * @param	{Boolean}	flag
+	 */
+	setFutureFlag: function(flag) {
+		$('event-field-serieseditfuture').value = flag ? 1 : 0;
+	},
 
 
+
+	/**
+	 * Handle save button click
+	 * Inject dialog if required
+	 *
+	 * @param	{Event}		event
+	 */
 	onSaveButtonClick: function(event) {
 		if( this.isSeriesSaveQuestionRequired() ) {
 			this.askSeriesSave();
@@ -211,59 +280,39 @@ Todoyu.Ext.calendar.Event.Series = {
 		}
 	},
 
+
+
+	/**
+	 * Check whether series frequency is selected/enabled
+	 *
+	 * @return	{Boolean}
+	 */
 	hasFrequency: function() {
 		return $F('event-field-seriesfrequency') > 0;
 	},
 
+
+
+	/**
+	 * Check whether edit form is for a new event (create)
+	 *
+	 * @return	{Boolean}
+	 */
 	isNewEvent: function() {
 		return $F('event-field-id') == 0;
 	},
 
+
+
+	/**
+	 * Check whether dialog for series save is required
+	 * The dialog is required if: series is enabled and we are updating an existing event
+	 *
+	 * @return	{Boolean}
+	 */
 	isSeriesSaveQuestionRequired: function() {
 		return this.hasFrequency() && !this.isNewEvent();
 	},
-
-
-//	loadSavePopup: function() {
-//		var url		= Todoyu.getUrl('calendar', 'event');
-//		var options	= {
-//			parameters: {
-//				action: 'seriespopup'
-//			}
-//		};
-//
-//		this.popup = Todoyu.Popups.open('seriessave', 'Save series', 400, url, options);
-//	},
-//
-//	closePopup: function() {
-//		if( this.popup  ) {
-//			this.popup.close();
-//			this.popup = null;
-//		}
-//	},
-
-
-	saveAll: function() {
-		this.setFutureFlag(false);
-
-		this.closePopup();
-	},
-
-
-	saveFuture: function() {
-		this.setFutureFlag(true);
-		this.ext.Event.Edit.saveEvent(true);
-		this.closePopup();
-	},
-
-	setFutureFlag: function(flag) {
-		$('event-field-serieseditfuture').value = flag ? 1 : 0;
-	},
-
-
-
-
-
 
 
 
@@ -278,11 +327,12 @@ Todoyu.Ext.calendar.Event.Series = {
 
 
 
-	getEventDate: function() {
-		return $F('event-field-date-start');
-	},
-
-
+	/**
+	 * Remove a series
+	 *
+	 * @param	{Number}	idSeries		Series to remove
+	 * @param	{Number}	idEvent			Event on which the delete request was made
+	 */
 	removeSeries: function(idSeries, idEvent) {
 		this.fadeAllSeriesEvents(idSeries);
 
@@ -292,7 +342,7 @@ Todoyu.Ext.calendar.Event.Series = {
 				action:	'delete',
 				series:	idSeries
 			},
-			onComplete: this.onSeriesRemoved.bind(this, idSeries)
+			onComplete: this.onSeriesRemoved.bind(this, idSeries, idEvent)
 		};
 
 		Todoyu.send(url, options);
@@ -304,21 +354,47 @@ Todoyu.Ext.calendar.Event.Series = {
 	},
 
 
-	onSeriesRemoved: function(idSeries, response) {
+
+	/**
+	 * Handle series remove response
+	 *
+	 * @param	{Number}		idSeries
+	 * @param	{Number}		idEvent
+	 * @param	{Ajax.Response}	response
+	 */
+	onSeriesRemoved: function(idSeries, idEvent, response) {
 
 	},
 
 
 
 	/**
+	 * Get series ID of an event. Extract from class
 	 *
-	 * @param idEvent
+	 * @param	{Number}	idEvent
+	 * @return	{Number|Boolean}
 	 */
 	getSeriesID: function(idEvent) {
-		var event	= this.ext.getEvent(idEvent);
+		var eventElement	= this.ext.getEvent(idEvent);
 
-		if( event ) {
-			var seriesClassName = event.getClassNames().find(function(className){
+		return this.getSeriesIDFromElement(eventElement);
+	},
+
+
+
+	/**
+	 * Get series ID from event element
+	 * Extracts series ID from special series class name
+	 * Format: seriesXXX
+	 *
+	 * @param	{Element}	eventElement
+	 * @return	{Number|Boolean}
+	 */
+	getSeriesIDFromElement: function(eventElement) {
+		eventElement = $(eventElement);
+
+		if( eventElement ) {
+			var seriesClassName = $(eventElement).getClassNames().find(function(className){
 				return className.startsWith('series');
 			});
 
@@ -330,14 +406,38 @@ Todoyu.Ext.calendar.Event.Series = {
 		return false;
 	},
 
+
+
+	/**
+	 * Check whether event with ID idEvent is a series event
+	 *
+	 * @param	{Number}	idEvent
+	 * @return	{Boolean}
+	 */
 	isSeriesEvent: function(idEvent) {
 		return this.getSeriesID(idEvent) !== false;
 	},
 
 
 
+	/**
+	 * Check whether eventElement is a series event
+	 *
+	 * @param	{Element}	eventElement
+	 * @return	{Boolean}
+	 */
+	isSeriesEventElement: function(eventElement) {
+		return this.getSeriesIDFromElement(eventElement) !== false;
+	},
 
 
+
+	/**
+	 * Fade out all events of a series
+	 * Remove elements after fade out
+	 *
+	 * @param	{Number}	idSeries
+	 */
 	fadeAllSeriesEvents: function(idSeries) {
 		this.getSeriesEventElements(idSeries).each(function(eventElement){
 			eventElement.fade({
@@ -347,6 +447,7 @@ Todoyu.Ext.calendar.Event.Series = {
 			});
 		});
 	},
+
 
 
 	/**

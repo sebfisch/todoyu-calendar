@@ -46,7 +46,6 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Area']	= array(
 Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event']	= array(
 	'show'	=> array(
 		'key'		=> 'show',
-//		'label'		=> 'calendar.event.contextmenu.showDetails',
 		'label'		=> 'core.global.showDetails',
 		'jsAction'	=> 'Todoyu.Ext.calendar.Event.show(#ID#)',
 		'class'		=> 'eventContextMenu eventShow',
@@ -66,27 +65,6 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['Event']	= array(
 		'class'		=> 'eventContextMenu eventRemove',
 		'position'	=> 30
 	),
-//	'editSeries'	=> array(
-//		'key'		=> 'editSeries',
-//		'label'		=> 'calendar.event.contextmenu.editEventSeries',
-//		'jsAction'	=> 'Todoyu.Ext.calendar.Event.Series.edit(#ID#)',
-//		'class'		=> 'eventContextMenu eventEditSeries',
-//		'position'	=> 33
-//	),
-//	'editSeriesFuture' => array(
-//		'key'		=> 'editSeriesFuture',
-//		'label'		=> 'calendar.event.contextmenu.editEventSeriesFuture',
-//		'jsAction'	=> 'Todoyu.Ext.calendar.Event.Series.editFuture(#ID#)',
-//		'class'		=> 'eventContextMenu eventEditSeriesFuture',
-//		'position'	=> 35
-//	),
-//	'removeSeries'	=> array(
-//		'key'		=> 'deleteSeries',
-//		'label'		=> 'calendar.event.contextmenu.deleteEventSeries',
-//		'jsAction'	=> 'Todoyu.Ext.calendar.Event.Series.remove(#ID#)',
-//		'class'		=> 'eventContextMenu eventRemoveSeries',
-//		'position'	=> 37
-//	),
 	'add'	=> array(
 		'key'		=> 'add',
 		'label'		=> 'calendar.event.contextmenu.addEvent',

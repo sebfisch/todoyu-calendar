@@ -84,7 +84,7 @@ class TodoyuCalendarMailActionController extends TodoyuActionController {
 		$options	= TodoyuArray::assureFromJSON($params['options']);
 
 		if( sizeof($personIDs) > 0 ) {
-			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $options);
+			$sent	= TodoyuCalendarEventMailManager::sendEmails($idEvent, $personIDs, $options);
 			if( $sent ) {
 				TodoyuHeader::sendTodoyuHeader('sentEmail', 1);
 			}

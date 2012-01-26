@@ -31,20 +31,20 @@ Todoyu.Ext.calendar.DialogChoiceSeriesDelete = Class.create(Todoyu.DialogChoice,
 	 */
 	initialize: function($super, onSelect, data) {
 		var options		= {
-			title: 'Delete series or only this event?'
+			title: '[LLL:calendar.series.dialog.delete.title]'
 		};
 		var config = {
-			description: 'Do you want to delete all events of this series, or just this single event?',
+			description: '[LLL:calendar.series.dialog.delete.desc]',
 			options: [
 				{
 					id: 	'series',
-					button: 'All events',
-					label: 	'Delete all events of this series'
+					button: '[LLL:calendar.series.dialog.delete.series.button]',
+					label: 	'[LLL:calendar.series.dialog.delete.series.label]'
 				},
 				{
 					id: 	'event',
-					button: 'This event',
-					label: 	'Delete only this event. The other events of the series are not touched'
+					button: '[LLL:calendar.series.dialog.delete.event.button]',
+					label: 	'[LLL:calendar.series.dialog.delete.event.label]'
 				}
 			],
 			onSelect: onSelect,

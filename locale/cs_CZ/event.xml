@@ -34,7 +34,6 @@
 	<label index="attr.starttime">v</label>
 	<label index="attr.enddate">Konec</label>
 	<label index="attr.endtime">v</label>
-	<label index="attr.repeats">Opakování</label>
 	<label index="attr.place">Místo</label>
 	<label index="attr.me">Moje událost</label>
 	<label index="attr.assigned_to">Přiděleno</label>

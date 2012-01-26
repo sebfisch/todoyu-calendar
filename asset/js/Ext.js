@@ -98,15 +98,28 @@ Todoyu.Ext.calendar	= {
 			this.addPanelWidgetObservers();
 			this.CalendarBody.init();
 			this.Navi.init();
+			this.Event.Series.init();
 		}
 	},
 
 
+
+	/**
+	 * Check whether current area is calendar
+	 *
+	 * @return	{Boolean}
+	 */
 	isInCalendarArea: function() {
 		return Todoyu.getArea() === 'calendar';
 	},
 
 
+
+	/**
+	 * Get event element
+	 *
+	 * @param	{Element}	idEvent
+	 */
 	getEvent: function(idEvent) {
 		return $('event-static-' + idEvent);
 	},
@@ -409,8 +422,6 @@ Todoyu.Ext.calendar	= {
 		this.showCalendar();
 			// Hide quickinfo
 		Todoyu.QuickInfo.hide();
-
-
 
 			// Get active tab and set it
 		if( !tab ) {

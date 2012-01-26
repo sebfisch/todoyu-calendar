@@ -11,32 +11,31 @@
 
 				<field type="comment" name="serieslabel">
 					<comment type="function">
-						<function>TodoyuCalendarEventViewHelper::getSeriesLabel</function>
+						<function>TodoyuCalendarEventSeriesViewHelper::getSeriesLabel</function>
 					</comment>
 				</field>
 
 				<field type="select" name="seriesfrequency">
-					<label>calendar.event.series.frequency</label>
+					<label>calendar.series.frequency</label>
 					<source type="function">
-						<function>TodoyuCalendarEventViewHelper::getSeriesFrequencyOptions</function>
+						<function>TodoyuCalendarEventSeriesViewHelper::getFrequencyOptions</function>
 					</source>
 					<noPleaseSelect />
 				</field>
 
 				<field type="select" name="seriesinterval">
-					<label>calendar.event.series.interval</label>
+					<label>calendar.series.interval</label>
 					<source type="function">
-						<function>TodoyuCalendarEventViewHelper::getSeriesIntervalOptions</function>
+						<function>TodoyuCalendarEventSeriesViewHelper::getIntervalOptions</function>
 						<lazyInit />
 					</source>
 					<noPleaseSelect />
-
 				</field>
 
 				<field type="select" name="seriesweekdays">
-					<label>calendar.event.series.weekdays</label>
+					<label>calendar.series.weekdays</label>
 					<source type="function">
-						<function>TodoyuCalendarEventViewHelper::getSeriesWeekdayOptions</function>
+						<function>TodoyuCalendarEventSeriesViewHelper::getWeekdayOptions</function>
 					</source>
 					<size>7</size>
 					<multiple />
@@ -44,13 +43,13 @@
 				</field>
 
 				<field type="date" name="seriesdate_end">
-					<label>calendar.event.attr.enddate</label>
+					<label>calendar.series.enddate</label>
 				</field>
 
 				<field type="comment" name="seriesoverbooking">
-					<label>Conflicts</label>
+					<label>calendar.series.conflicts</label>
 					<comment type="function">
-						<function>TodoyuCalendarEventViewHelper::getSeriesOverbookingWarnings</function>
+						<function>TodoyuCalendarEventSeriesViewHelper::getOverbookingWarnings</function>
 					</comment>
 				</field>
 

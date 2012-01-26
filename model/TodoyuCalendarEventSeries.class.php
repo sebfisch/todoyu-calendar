@@ -405,9 +405,9 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 */
 	protected function getLabelDay() {
 		if( $this->isOneStepInterval() ) {
-			$label = 'Täglich';
+			$label = Todoyu::Label('calendar.series.label.day');
 		} else {
-			$label = 'Alle ' . $this->getInterval() . ' Tage';
+			$label = TodoyuLabelManager::getFormatLabel('calendar.series.label.days', array($this->getInterval()));
 		}
 
 		return $this->appendDateEndLabel($label);
@@ -421,7 +421,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 * @return	String
 	 */
 	protected function getLabelWeekday() {
-		$label	= 'Täglich an Werktagen';
+		$label	= Todoyu::Label('calendar.series.label.weekday');
 
 		return $this->appendDateEndLabel($label);
 	}
@@ -437,15 +437,15 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$weekDays	= $this->getWeekDayLabels();
 
 		if( $this->isOneStepInterval() ) {
-			$label	= 'Wöchentlich';
+			$label	= Todoyu::Label('calendar.series.label.week');
 		} else {
-			$label	= 'Alle ' . $this->getInterval() . ' Wochen';
+			$label	= TodoyuLabelManager::getFormatLabel('calendar.series.label.weeks', array($this->getInterval()));
 		}
 
 		if( sizeof($weekDays) === 7 ) {
-			$label .= ' an allen Tagen';
+			$label .= ' ' . Todoyu::Label('calendar.series.label.week.allDays');
 		} else {
-			$label .= ' am ' . implode(', ', $weekDays);
+			$label .= ' ' . TodoyuLabelManager::getFormatLabel('calendar.series.label.week.days', array(implode(', ', $weekDays)));
 		}
 
 		return $this->appendDateEndLabel($label);
@@ -460,9 +460,9 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 */
 	protected function getLabelMonth() {
 		if( $this->isOneStepInterval() ) {
-			$label = 'Monatlich';
+			$label = Todoyu::Label('calendar.series.label.month');
 		} else {
-			$label = 'Jeden ' . $this->getInterval() . '. Monat';
+			$label = TodoyuLabelManager::getFormatLabel('calendar.series.label.months', array($this->getInterval()));
 		}
 
 		$monthDay	= $this->getMonthDay();
@@ -471,7 +471,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 			$monthDay = $this->getMonthDayFromDate();
 		}
 
-		$label .= ' am ' . $monthDay . '. des Monats';
+		$label .= ' ' . TodoyuLabelManager::getFormatLabel('calendar.series.label.months', array($monthDay));
 
 		return $this->appendDateEndLabel($label);
 	}
@@ -487,14 +487,15 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$yearParts	= $this->getYearParts();
 
 		if( $this->isOneStepInterval() ) {
-			$label	= 'Jährlich';
+			$label	= Todoyu::Label('calendar.series.label.year');
 		} else {
-			$label	= 'Alle ' . $this->getInterval() . ' Jahre';
+			$label	= TodoyuLabelManager::getFormatLabel('calendar.series.label.years', array($this->getInterval()));
 		}
 
 		$dummyDate	= mktime(0, 0, 0, $yearParts['month'], $yearParts['day']);
+		$date		= TodoyuTime::format($dummyDate, 'MlongD2');
 
-		$label .= ' am ' . TodoyuTime::format($dummyDate, 'MlongD2');
+		$label .= ' ' . TodoyuLabelManager::getFormatLabel('calendar.series.label.year.atDate', array($date));
 
 		return $this->appendDateEndLabel($label);
 	}
@@ -509,7 +510,8 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 */
 	protected function appendDateEndLabel($label) {
 		if( $this->getDateEnd() ) {
-			$label .= ', bis am ' . TodoyuTime::format($this->getDateEnd(), 'DlongD2MlongY4');
+			$date	= TodoyuTime::format($this->getDateEnd(), 'DlongD2MlongY4');
+			$label .= ', ' . TodoyuLabelManager::getFormatLabel('calendar.series.label.until', array($date));
 		}
 
 		return $label;

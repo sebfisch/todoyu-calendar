@@ -748,46 +748,6 @@ class TodoyuCalendarEventStaticManager {
 
 
 
-//	/**
-//	 * Assign persons to an event
-//	 *
-//	 * @param	Integer		$idEvent
-//	 * @param	Array		$formData
-//	 * @return	Array
-//	 */
-//	public static function addAssignedEventPersonsAndSendMail($idEvent, array $formData) {
-//		$idEvent	= intval($idEvent);
-//
-//		if( array_key_exists('persons', $formData) ) {
-//			$table	= 'ext_calendar_mm_event_person';
-//
-//			foreach($formData['persons'] as $person) {
-//				$idPerson	= $person['id'];
-//				$fields	= array(
-//					'id_event'			=> $idEvent,
-//					'id_person'			=> $idPerson,
-//					'is_acknowledged'	=> $idPerson == Todoyu::personid() ? 1 : 0,
-//				);
-//
-//				Todoyu::db()->doInsert($table, $fields);
-//
-//				if( $formData['send_notification'] === 1 ) {
-//					$options = array(
-//						'operation' => 'create'
-//					);
-//					TodoyuCalendarEventMailer::sendEmails($idEvent, array($idPerson), $options);
-//				}
-//			}
-//
-//			unset($formData['persons']);
-//			unset($formData['send_notification']);
-//		}
-//
-//		return $formData;
-//	}
-
-
-
 	/**
 	 * Set given event acknowledged by given person
 	 *

@@ -347,6 +347,8 @@ Todoyu.Ext.calendar.DragDrop	= {
 	onEnd: function(tab, dragInfo, event) {
 		var idEvent	= dragInfo.element.id.split('-').last();
 
+		Todoyu.Hook.exec('calendar.event.drop', idEvent, dragInfo, event);
+
 		switch( tab ) {
 			case 'day':
 				this.saveDayDrop(idEvent, dragInfo);

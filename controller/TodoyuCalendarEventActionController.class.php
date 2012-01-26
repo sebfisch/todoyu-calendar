@@ -105,22 +105,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			$formData	= $form->getStorageData();
 			$idEvent= TodoyuCalendarEventStaticManager::saveEvent($formData);
 
-//				// Send event auto-email to preset receivers: those get emails concerning all new/changed events they participate in
-//				// Watch out: persons only have their ID as key when editing a pre-existing event!
-//			$participantIDs		= TodoyuArray::intval( TodoyuArray::flatten($formData['persons']) );
-//			$autoMailPersonIDs	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
-//
-//			if( ! empty($autoMailPersonIDs) ) {
-//				if( TodoyuCalendarEventStaticManager::sendEventAsEmail($idEvent, $autoMailPersonIDs, $isNewEvent) ) {
-//					TodoyuHeader::sendTodoyuHeader('sentAutoEmail', true);
-//
-//						// Don't double-send: remove auto-mail receivers from manual receivers list
-//					if( is_array($emailReceiverIDs) ) {
-//						$emailReceiverIDs	= array_diff($emailReceiverIDs, $autoMailPersonIDs);
-//					}
-//				}
-//			}
-
 				// Send event email to selected receivers
 			if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
 				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $emailReceiverIDs, array('new' => $isNewEvent)) ) {

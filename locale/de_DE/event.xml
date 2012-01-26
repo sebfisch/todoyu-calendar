@@ -37,7 +37,6 @@
 	<label index="attr.starttime">am</label>
 	<label index="attr.enddate">End-Datum</label>
 	<label index="attr.endtime">am</label>
-	<label index="attr.repeats">Wiederholungen</label>
 	<label index="attr.place">Ort</label>
 	<label index="attr.me">Mein Termin</label>
 	<label index="attr.assigned_to">Zugewiesen</label>

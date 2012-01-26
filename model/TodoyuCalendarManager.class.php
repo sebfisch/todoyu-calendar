@@ -562,6 +562,12 @@ class TodoyuCalendarManager {
 	}
 
 
+
+	/**
+	 * Get role IDs which are configured for auto mail notification
+	 *
+	 * @return	Integer[]
+	 */
 	public static function getAutoMailRoleIDs() {
 		$roleConfig	= TodoyuSysmanagerExtConfManager::getExtConfValue('calendar', 'autosendeventmail');
 
