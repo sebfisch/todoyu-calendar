@@ -74,7 +74,7 @@
 		var url		= Todoyu.getUrl('calendar', 'calendar');
 		var options	= {
 			parameters: {
-				'holiday':	idHoliday,
+				holiday:idHoliday,
 				action:	'edit'
 			}
 		};

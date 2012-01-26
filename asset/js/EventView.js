@@ -101,7 +101,7 @@ Todoyu.Ext.calendar.Event.View	= {
 			var tab	= Todoyu.Tabs.build('calendar', 'view', '', label, true);
 
 			$('calendar-tab-month').insert({
-				'after': tab
+				after: tab
 			});
 		}
 

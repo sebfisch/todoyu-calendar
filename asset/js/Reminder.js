@@ -49,8 +49,8 @@ Todoyu.Ext.calendar.Reminder	= {
 			var url		= Todoyu.getUrl('calendar', 'reminder');
 			var options	= {
 				parameters: {
-					action:		'details',
-					'event':	idEvent
+					action:	'details',
+					event:	idEvent
 				},
 				onComplete: this.onRefreshed.bind(this, idEvent)
 			};

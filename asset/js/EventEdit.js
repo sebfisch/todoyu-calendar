@@ -539,7 +539,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		}
 			// Render and insert current warning
 		var inlineWarning	= new Element('div', {
-			'id':		'overbooking-warning-inline',
+			id:			'overbooking-warning-inline',
 			'class':	'errorMessage'
 		}).update(warningContent);
 

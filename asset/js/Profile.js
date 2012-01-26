@@ -62,7 +62,7 @@ Todoyu.Ext.calendar.Profile	= {
 		var options	= {
 			parameters: {
 				action:	'tab',
-				'tab':		tab
+				tab:	tab
 			}
 		};
 

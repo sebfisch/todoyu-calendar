@@ -47,12 +47,12 @@ Todoyu.Ext.calendar.Reminder.Email	= {
 	deactivate: function(idEvent) {
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
-			'parameters': {
-				'action':			'deactivate',
-				'remindertype':		'email',
-				'event':			idEvent
+			parameters: {
+				action:			'deactivate',
+				remindertype:	'email',
+				event:			idEvent
 			},
-			'onComplete': this.onDeactivated.bind(this, idEvent)
+			onComplete: this.onDeactivated.bind(this, idEvent)
 		};
 
 		Todoyu.send(url, options);
@@ -83,13 +83,13 @@ Todoyu.Ext.calendar.Reminder.Email	= {
 	updateReminderTime: function(idEvent, secondsBefore) {
 		var url		= Todoyu.getUrl('calendar', 'reminder');
 		var options	= {
-			'parameters': {
-				'action':			'updateremindertime',
-				'remindertype':		'email',
-				'event':			idEvent,
-				'secondsbefore':	secondsBefore
+			parameters: {
+				action:			'updateremindertime',
+				remindertype:	'email',
+				event:			idEvent,
+				secondsbefore:	secondsBefore
 			},
-			'onComplete': this.onReminderTimeUpdated.bind(this, idEvent)
+			onComplete: this.onReminderTimeUpdated.bind(this, idEvent)
 		};
 
 		Todoyu.send(url, options);

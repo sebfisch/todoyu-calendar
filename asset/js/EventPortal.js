@@ -68,8 +68,8 @@ Todoyu.Ext.calendar.EventPortal	= {
 		var url		= Todoyu.getUrl('calendar', 'portal');
 		var options	= {
 			parameters: {
-				action: 	'detail',
-				'event': 	idEvent
+				action: 'detail',
+				event: 	idEvent
 			},
 			onComplete: this.onDetailsLoaded.bind(idEvent)
 		};
