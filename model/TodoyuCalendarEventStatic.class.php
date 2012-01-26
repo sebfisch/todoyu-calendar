@@ -552,7 +552,66 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 			$this->data['series'] = $this->getSeries()->getTemplateData();
 		}
 
+		if( $loadRemindersData ) {
+			$this->prepareReminderTemplateData();
+		}
+
 		return parent::getTemplateData();
+	}
+
+
+
+	/**
+	 * Add reminder labels to template data
+	 */
+	protected function prepareReminderTemplateData() {
+		$idCurrentUser	= TodoyuAuth::getPersonID();
+		$dateStartEvent	= $this->getDateStart();
+
+			// Prepare labels with disabled status
+		$reminders = array(
+			'mail'	=> Todoyu::Label('calendar.reminder.deactivated'),
+			'popup'	=> Todoyu::Label('calendar.reminder.deactivated')
+		);
+
+			// Get reminder dates
+		$dateRemindMail	= intval($this->data['persons'][$idCurrentUser]['date_remindemail']);
+		$dateRemindPopup= intval($this->data['persons'][$idCurrentUser]['date_remindpopup']);
+
+			// Add mail reminder
+		if( $dateRemindMail > 0 ) {
+			$diffMail	= $dateStartEvent - $dateRemindMail;
+			if( $diffMail === 1 ) {
+				$reminders['mail'] = Todoyu::Label('calendar.reminder.atDateStart');
+			} else {
+				$reminders['mail'] = $this->getReminderLabel($diffMail, $dateRemindMail);
+			}
+		}
+
+			// Add popup reminder
+		if( $dateRemindPopup > 0 ) {
+			$diffPopup	= $dateStartEvent - $dateRemindPopup;
+			if( $diffPopup === 1 ) {
+				$reminders['popup'] = Todoyu::Label('calendar.reminder.atDateStart');
+			} else {
+				$reminders['popup'] = $this->getReminderLabel($diffPopup, $dateRemindPopup);
+			}
+		}
+
+		$this->data['reminders'] = $reminders;
+	}
+
+
+
+	/**
+	 * Build reminder label
+	 *
+	 * @param	Integer		$duration		Advanced time before event
+	 * @param	Integer		$dateRemind		Date of the reminder
+	 * @return	String
+	 */
+	protected function getReminderLabel($duration, $dateRemind) {
+		return TodoyuTime::formatDuration($duration) . ' ' . Todoyu::Label('calendar.reminder.beforeDateStart') . ' - ' . TodoyuTime::format($dateRemind, 'datetime');
 	}
 
 

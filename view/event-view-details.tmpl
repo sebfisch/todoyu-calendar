@@ -78,13 +78,15 @@
 {/if}
 
 {* ------------------------ Scheduled Reminders *}
-{if isAllowedEventReminderPopup($event.id) || isAllowedEventReminderEmail($event.id)}
-	{$personID = personid()}
-	<tr class="even">
-		<td class="label">{Label calendar.reminder.myreminders}</td>
-		<td id="event-{$event.id}-reminders">
-			{include file="event-view-details-reminders.tmpl"}
-		</td>
-	</tr>
+{if $event.date_start > NOW || true}
+	{if isAllowedEventReminderPopup($event.id) || isAllowedEventReminderEmail($event.id)}
+		{$personID = personid()}
+		<tr class="even">
+			<td class="label">{Label calendar.reminder.myreminders}</td>
+			<td id="event-{$event.id}-reminders">
+				{include file="event-view-details-reminders.tmpl"}
+			</td>
+		</tr>
+	{/if}
 {/if}
 </table>
