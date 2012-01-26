@@ -42,12 +42,9 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	popup: null,
 
 	/**
-	 * Data for current popup
+	 * Options for current popup
 	 */
-	current: {
-		event: 0,
-		operation: ''
-	},
+	options: {},
 
 
 
@@ -84,18 +81,18 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	 * @param	{Object}	extraOptions
 	 */
 	showPopup: function(idEvent, operation, extraOptions) {
-		this.current = {
+		extraOptions= extraOptions || {};
+
+		this.options = $H(extraOptions).merge({
 			event: 		idEvent,
 			operation: 	operation
-		};
+		}).toObject();
 
-		extraOptions= extraOptions || {};
 		var url		= Todoyu.getUrl('calendar', 'mail');
 		var options	= {
 			parameters: {
 				action:		'popup',
 				event:		idEvent,
-				operation:	operation,
 				options:	Object.toJSON(extraOptions)
 			},
 			onComplete: this.onPopupShow.bind(this, idEvent, operation)
@@ -130,7 +127,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 		if( this.popup ) {
 			this.popup.close();
 		}
-		this.current = {};
+		this.options = {};
 	},
 
 
@@ -178,7 +175,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	 * @return	{Array}
 	 */
 	getSelectedUsers: function() {
-		return $F('event-' + this.current.event + '-field-emailreceivers');
+		return $F('event-' + this.options.event + '-field-emailreceivers');
 	},
 
 
@@ -264,11 +261,12 @@ Todoyu.Ext.calendar.Event.Mail	= {
 		var options	= {
 			parameters: {
 				action:		'send',
-				event:		this.current.event,
+				event:		this.options.event,
 				persons:	personIDs.join(','),
-				operation:	this.current.operation
+				operation:	this.options.operation,
+				options:	Object.toJSON(this.options)
 			},
-			onComplete: this.onMailSent.bind(this, this.current.event, this.current.operation)
+			onComplete: this.onMailSent.bind(this, this.options.event, this.options.operation)
 		};
 
 		Todoyu.send(url, options);

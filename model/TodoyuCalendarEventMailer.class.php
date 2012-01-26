@@ -69,6 +69,8 @@ class TodoyuCalendarEventMailer {
 		$mail		= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $options);
 		$status		= $mail->send();
 
+		//TodoyuDebug::printInFirebug($idPerson, 'send mail for ' . $idEvent . ' to');
+
 		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $idPerson, $options, $status));
 
 		return $status;

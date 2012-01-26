@@ -35,6 +35,12 @@ class TodoyuCalendarMailActionController extends TodoyuActionController {
 	}
 
 
+	/**
+	 * Show mail popup
+	 *
+	 * @param	Array		$params
+	 * @return	String
+	 */
 	public function popupAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$operation	= trim($params['operation']);
@@ -75,9 +81,7 @@ class TodoyuCalendarMailActionController extends TodoyuActionController {
 	public function sendAction(array $params) {
 		$idEvent	= intval($params['event']);
 		$personIDs	= TodoyuArray::intExplode(',', $params['persons'], true, true);
-		$options	= array(
-			'operation' => trim($params['operation'])
-		);
+		$options	= TodoyuArray::assureFromJSON($params['options']);
 
 		if( sizeof($personIDs) > 0 ) {
 			$sent	= TodoyuCalendarEventMailer::sendEmails($idEvent, $personIDs, $options);
