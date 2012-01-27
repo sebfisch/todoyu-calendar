@@ -78,7 +78,7 @@ Todoyu.Ext.calendar.QuickInfo.Static	= {
 	 * @param	{Number}	idEvent
 	 */
 	removeFromCache: function(idEvent) {
-		Todoyu.QuickInfo.removeFromCache('event' + idEvent);
+		Todoyu.QuickInfo.removeFromCache('eventstatic-' + idEvent);
 	}
 
 };

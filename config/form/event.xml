@@ -82,20 +82,8 @@
 					<label>core.global.description</label>
 				</field>
 
-				<field type="databaseRelation" name="persons">
-					<addLabel>contact.ext.person.new</addLabel>
+				<field type="recordsStaff" name="persons">
 					<label>calendar.event.attr.assigned_to</label>
-					<record>
-						<form>ext/calendar/config/form/event-person.xml</form>
-						<url>
-							<ext>calendar</ext>
-							<controller>event</controller>
-						</url>
-						<label type="function">
-							<function>TodoyuContactViewHelper::getPersonLabel</function>
-							<noLabel>calendar.event.attr.assigned_to.noLabel</noLabel>
-						</label>
-					</record>
 					<validate>
 						<user msg="LLL:calendar.event.error.overbooked">
 							<function>TodoyuCalendarEventFormValidator::personsAreBookable</function>
@@ -104,7 +92,6 @@
 							<function>TodoyuCalendarEventFormValidator::hasInternalPerson</function>
 						</user>
 					</validate>
-					<required />
 				</field>
 
 			</elements>

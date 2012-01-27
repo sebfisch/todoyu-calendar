@@ -39,7 +39,7 @@
 	<label index="attr.endtime">am</label>
 	<label index="attr.place">Ort</label>
 	<label index="attr.me">Mein Termin</label>
-	<label index="attr.assigned_to">Zugewiesen</label>
+	<label index="attr.assigned_to">Teilnehmer</label>
 	<label index="attr.assigned_to.noLabel">[Kein Benutzer ausgewählt]</label>
 	<label index="attr.id_project">Projekt</label>
 	<label index="attr.id_task">Aufgabe</label>

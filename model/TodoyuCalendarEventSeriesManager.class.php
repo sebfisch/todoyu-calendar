@@ -344,7 +344,7 @@ class TodoyuCalendarEventSeriesManager {
 			$form = $series->addSeriesFields($form, $newEvent);
 		}
 
-		if( $editSeries ) {
+		if( $editSeries && $idEvent !== 0 ) {
 			$form->getFieldset('main')->addFieldElement('seriesinfo', 'comment', array(
 				'comment' => 'calendar.series.editMode'
 			), 'before:title');

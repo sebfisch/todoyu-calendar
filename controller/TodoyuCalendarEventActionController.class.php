@@ -85,7 +85,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 		$form	= TodoyuCalendarEventStaticManager::getEventForm($idEvent, $formData);
 
-		TodoyuHeader::sendTodoyuHeader('idEvent', $idEvent);
+
 
 			// Invalid data detected - re-display the form
 		if( ! $form->isValid() ) {
@@ -102,8 +102,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 			// Save or update event (and send email if mail-option activated)
 		if( sizeof($warningHeaders) === 0 ) {
-			$formData	= $form->getStorageData();
-			$idEvent= TodoyuCalendarEventStaticManager::saveEvent($formData);
+			$storageData= $form->getStorageData();
+			$idEvent	= TodoyuCalendarEventStaticManager::saveEvent($storageData);
 
 				// Send event email to selected receivers
 			if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
@@ -112,7 +112,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 				}
 			}
 
-			TodoyuHeader::sendTodoyuHeader('time', intval($formData['date_start']));
+			TodoyuHeader::sendTodoyuHeader('time', intval($storageData['date_start']));
+			TodoyuHeader::sendTodoyuHeader('event', $idEvent);
 		}
 	}
 

@@ -143,13 +143,10 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @method	observeEventType
 	 */
 	observeAssignedUsers: function(idEvent) {
-		var personElement = $('formElement-event-field-persons');
-
 			// Remember start selection
 		this.lastAssignedUserIDs = this.getAssignedUserIDs();
 
-		personElement.on('change', this.onAssignedUsersEvent.bind(this, idEvent));
-		personElement.on('click', this.onAssignedUsersEvent.bind(this, idEvent));
+		$('event-field-persons-storage').on('change', this.onAssignedUsersEvent.bind(this, idEvent));
 	},
 
 
@@ -296,9 +293,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @return	{Array}
 	 */
 	getAssignedUserIDs: function() {
-		return $('formElement-event-field-persons').select('input[type=hidden]').pluck('value').filter(function(value){
-			return value != 0;
-		});
+		return $F('event-field-persons-storage') || [];
 	},
 
 
@@ -495,7 +490,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Ajax.Response}	response
 	 */
 	onEventSaved: function(response) {
-		var idEvent	= response.getTodoyuHeader('idEvent');
+		var idEvent	= response.getTodoyuHeader('event');
 
 		if( response.hasTodoyuError() ) {
 				// Notify of invalid data
@@ -512,7 +507,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 			this.notifyEventSaved(response);
 
 			Todoyu.Hook.exec('calendar.event.saved', idEvent);
-			this.ext.QuickInfo.Static.removeFromCache(response.getTodoyuHeader('idEvent'));
+			this.ext.QuickInfo.Static.removeFromCache(idEvent);
 
 				// Update calendar body showing time of the saved event and close the edit form
 			var time	= response.getTodoyuHeader('time');
@@ -543,7 +538,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 			'class':	'errorMessage'
 		}).update(warningContent);
 
-		$('formElement-event-field-persons-inputbox').select('.clear').last().insert({after: inlineWarning});
+		$('formElement-event-field-persons-inputbox').insert(inlineWarning);
 	},
 
 

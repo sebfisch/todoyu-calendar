@@ -364,15 +364,13 @@ class TodoyuCalendarEventStaticManager {
 	public static function saveEvent(array $data) {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 
+		TodoyuDebug::printInFirebug($data, 'data');
+
 		$idEvent			= intval($data['id']);
 		$isNewEvent			= $idEvent === 0;
 		$advanceTimeEmail	= intval($data['reminder_email']);
 		$advanceTimePopup	= intval($data['reminder_popup']);
-
-			// Extract person IDs from foreign data array (easier to handle)
-		$personsData= TodoyuArray::assure($data['persons']);
-		$personIDs 	= TodoyuArray::getColumn($personsData, 'id');
-		$personIDs	= TodoyuArray::intval($personIDs, true, true);
+		$personIDs			= TodoyuArray::intval($data['persons'], true, true);
 
 			// Add empty event
 		if( $idEvent === 0 ) {
@@ -970,7 +968,7 @@ class TodoyuCalendarEventStaticManager {
 		$idEvent	= intval($idEvent);
 		$dateStart	= ( $convertDates ) ? TodoyuTime::parseDate($formData['date_start']) : $formData['date_start'];
 		$dateEnd	= ( $convertDates ) ? TodoyuTime::parseDate($formData['date_end']) : $formData['date_end'];
-		$personIDs	= TodoyuArray::getColumn($formData['persons'], 'id');
+		$personIDs	= TodoyuArray::intval($formData['persons'], true, true);
 
 		$warning		= '';
 		$overbookedInfos= TodoyuCalendarEventStaticManager::getOverbookingInfos($dateStart, $dateEnd, $personIDs, $idEvent);
