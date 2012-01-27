@@ -364,8 +364,6 @@ class TodoyuCalendarEventStaticManager {
 	public static function saveEvent(array $data) {
 		$xmlPath= 'ext/calendar/config/form/event.xml';
 
-		TodoyuDebug::printInFirebug($data, 'data');
-
 		$idEvent			= intval($data['id']);
 		$isNewEvent			= $idEvent === 0;
 		$advanceTimeEmail	= intval($data['reminder_email']);
