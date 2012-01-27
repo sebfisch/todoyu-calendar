@@ -73,8 +73,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$formData			= $params['event'];
 		$idEvent			= intval($formData['id']);
 		$isNewEvent			= $idEvent === 0;
-		$emailReceiverIDs	= $formData['emailreceivers'];
-		$sendAsMail			= $formData['sendasemail'];
+		$emailReceiverIDs	= TodoyuArray::intval($formData['emailreceivers']);
 
 			// Check rights (new event creation / updating existing event)
 		if( $idEvent === 0 ) {
@@ -106,7 +105,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			$idEvent	= TodoyuCalendarEventStaticManager::saveEvent($storageData);
 
 				// Send event email to selected receivers
-			if( $sendAsMail && sizeof($emailReceiverIDs) > 0 ) {
+			if( sizeof($emailReceiverIDs) > 0 ) {
 				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $emailReceiverIDs, array('new' => $isNewEvent)) ) {
 					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 				}

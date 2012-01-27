@@ -88,9 +88,6 @@
 						<user msg="LLL:calendar.event.error.overbooked">
 							<function>TodoyuCalendarEventFormValidator::personsAreBookable</function>
 						</user>
-						<user msg="LLL:calendar.event.error.hasInternalPerson">
-							<function>TodoyuCalendarEventFormValidator::hasInternalPerson</function>
-						</user>
 					</validate>
 				</field>
 
@@ -100,27 +97,14 @@
 		<fieldset name="email">
 			<legend>calendar.form.legend.notification</legend>
 			<elements>
-				<field type="checkbox" name="sendasemail">
+				
+				<field type="recordsStaff" name="emailreceivers">
 					<label>calendar.event.edit.sendasemail</label>
-					<onclick>Todoyu.Ext.calendar.Event.Mail.onToggleSendAsEmail(this)</onclick>
 					<restrict>
-						<allow ext="comment" right="comment:sendAsEmail" />
+						<allow ext="calendar" right="mailiing:sendAsEmail" />
 					</restrict>
 				</field>
 
-				<field type="selectgrouped" name="emailreceivers">
-					<label>comment.ext.edit.sentEmailTo</label>
-					<source type="function">
-						<function>TodoyuCalendarEventViewHelper::getEmailReceiverGroupedOptions</function>
-						<lazyInit />
-					</source>
-					<size>5</size>
-					<multiple />
-					<style>display:none</style>
-					<restrict>
-						<allow ext="comment" right="comment:sendAsEmail" />
-					</restrict>
-				</field>
 			</elements>
 		</fieldset>
 

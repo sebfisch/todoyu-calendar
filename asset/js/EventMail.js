@@ -64,7 +64,8 @@ Todoyu.Ext.calendar.Event.Mail	= {
 		}
 
 		if( checkbox.checked && emailEl ) {
-			 emailEl.show();
+			emailEl.show();
+			$('event-field-emailreceivers-search').focus();
 		} else {
 			emailEl.hide();
 		}
