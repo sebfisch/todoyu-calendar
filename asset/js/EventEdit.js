@@ -264,25 +264,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Ajax.Response}					response
 	 */
 	onAutoMailCommentUpdated: function(idEvent, response) {
-		var autoMailPersonIDs	= response.getTodoyuHeader('autoMailPersons');
 
-		this.disableEmailPersons(autoMailPersonIDs);
-	},
-
-
-
-	/**
-	 * Disable options of persons in email field
-	 *
-	 * @param	{Array}		personIDs
-	 */
-	disableEmailPersons: function(personIDs) {
-		$('event-field-emailreceivers').select('option').each(function(option){
-			option.disabled = personIDs.include(option.value);
-			if( option.disabled ) {
-				option.selected = false;
-			}
-		});
 	},
 
 
