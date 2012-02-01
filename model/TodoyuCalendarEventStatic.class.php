@@ -445,7 +445,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	 * @return	Boolean
 	 */
 	public function isMultiDay() {
-		return $this->isSingleDay() === false;
+		return !$this->isSingleDay();
 	}
 
 

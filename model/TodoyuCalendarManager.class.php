@@ -424,7 +424,7 @@ class TodoyuCalendarManager {
 				break;
 			}
 
-			if( $found === false ) {
+			if( !$found ) {
 				$mapping[]	= $emptyMap;
 				$newIndex	= sizeof($mapping)-1;
 

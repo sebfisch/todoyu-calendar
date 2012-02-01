@@ -205,7 +205,7 @@ class TodoyuCalendarReminderEmailManager {
 
 				// Set selected option CSS class
 			$selectedTimeOptionKey	= self::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
-			if( $selectedTimeOptionKey === false ) {
+			if( !$selectedTimeOptionKey ) {
 				$options['submenu'][0]['class'] .= ' selected';
 			} elseif( key_exists($selectedTimeOptionKey, $options['submenu']) ) {
 				$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';

@@ -333,10 +333,10 @@ class TodoyuCalendarReminderManager {
 		$typeKey= self::getReminderTypePrefix($type);
 		$pref	= TodoyuCalendarPreferences::getReminderAdvanceTime($typeKey, $idPerson);
 
-		if( $pref === false ) {
-			$pref	= TodoyuCalendarReminderDefaultManager::getDefaultAdvanceTime($type);
-		} else {
+		if( $pref ) {
 			$pref	= intval($pref);
+		} else {
+			$pref	= TodoyuCalendarReminderDefaultManager::getDefaultAdvanceTime($type);
 		}
 
 		return $pref;

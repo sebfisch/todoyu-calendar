@@ -100,7 +100,7 @@ class TodoyuCalendarPanelWidgetEventTypeSelector extends TodoyuPanelWidget {
 	public static function getSelectedEventTypes() {
 		$eventTypes	= TodoyuCalendarPreferences::getPref('panelwidget-eventtypeselector', 0, AREA);
 
-		if( $eventTypes === false || $eventTypes === '' ) {
+		if( !$eventTypes ) {
 			$eventTypes	= TodoyuCalendarEventTypeManager::getEventTypeIndexes();
 		} else {
 			$eventTypes	= TodoyuArray::intExplode(',', $eventTypes, true, true);

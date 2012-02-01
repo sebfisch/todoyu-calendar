@@ -330,7 +330,7 @@ class TodoyuCalendarReminderPopupManager {
 
 				// Set selected option CSS class
 			$selectedTimeOptionKey	= self::getSelectedAdvanceTimeContextMenuOptionKey($idEvent);
-			if( $selectedTimeOptionKey === false ) {
+			if( !$selectedTimeOptionKey ) {
 				$options['submenu'][0]['class'] .= ' selected';
 			} elseif( isset($options['submenu'][$selectedTimeOptionKey]) ) {
 				$options['submenu'][$selectedTimeOptionKey]['class'] .= ' selected';

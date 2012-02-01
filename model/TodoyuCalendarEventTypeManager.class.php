@@ -55,7 +55,7 @@ class TodoyuCalendarEventTypeManager {
 	public static function getEventType($index, $parseLabel = false) {
 		$eventType	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['eventtypes'][$index]);
 
-		if( $parseLabel === true ) {
+		if( $parseLabel ) {
 			$eventType['label']	= Todoyu::Label($eventType['label']);
 		}
 

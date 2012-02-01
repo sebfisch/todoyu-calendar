@@ -403,7 +403,7 @@ class TodoyuCalendarEventMailManager {
 		foreach($personIDs as $idPerson) {
 			$result	= self::sendInfoMail($idEvent, $idPerson, $options);
 
-			if( $result === false ) {
+			if( !$result ) {
 				$succeeded	= false;
 			}
 		}

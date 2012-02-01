@@ -174,7 +174,7 @@ class TodoyuCalendarEventStaticManager {
 
 			// DayEvents: null = both, true = only, false = without
 		if( ! is_null($dayEvents) ) {
-			$where .= ' AND e.is_dayevent = ' . ( $dayEvents === true ? '1' : '0' );
+			$where .= ' AND e.is_dayevent = ' . ($dayEvents ? 1 : 0);
 		}
 
 			// Limit to given event types
@@ -978,7 +978,7 @@ class TodoyuCalendarEventStaticManager {
 				'overbooked'	=> $overbookedInfos
 			);
 
-			if( $forPopup === true ) {
+			if( $forPopup ) {
 					// Render for display in popup
 				if( ! $isDragAndDrop ) {
 						// Regular edit of event

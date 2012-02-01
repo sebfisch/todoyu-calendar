@@ -219,7 +219,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 				break;
 		}
 
-		if( $fileType === false ) {
+		if( !$fileType ) {
 			return false;
 		}
 

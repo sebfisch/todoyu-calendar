@@ -82,7 +82,7 @@ class TodoyuCalendarPreferences {
 	public static function getDate($idArea = 0) {
 		$date	= self::getPref('date', 0, $idArea);
 
-		return $date === false ? NOW : $date;
+		return TodoyuTime::time($date);
 	}
 
 
@@ -161,7 +161,7 @@ class TodoyuCalendarPreferences {
 	public static function getCompactViewRangeStart() {
 		$rangeStart	= self::getPref('range_start');
 
-		if( $rangeStart === false ) {
+		if( !$rangeStart ) {
 			$rangeStart = CALENDAR_RANGE_START;
 		} else {
 			$rangeStart	= intval($rangeStart);;
@@ -180,7 +180,7 @@ class TodoyuCalendarPreferences {
 	public static function getCompactViewRangeEnd() {
 		$rangeEnd	= self::getPref('range_end');
 
-		if( $rangeEnd === false ) {
+		if( $rangeEnd ) {
 			$rangeEnd 	= CALENDAR_RANGE_END;
 		} else {
 			$rangeEnd	= intval($rangeEnd);
@@ -228,9 +228,9 @@ class TodoyuCalendarPreferences {
 	 * @return	String	tab name
 	 */
 	public static function getActiveTab() {
-		$tab	= TodoyuPreferenceManager::getPreference(EXTID_CALENDAR, 'tab');
+		$tab = self::getPref('tab');
 
-		return $tab === false ? Todoyu::$CONFIG['EXT']['calendar']['config']['defaultTab'] : $tab;
+		return $tab ? $tab : Todoyu::$CONFIG['EXT']['calendar']['config']['defaultTab'];
 	}
 
 
@@ -249,13 +249,12 @@ class TodoyuCalendarPreferences {
 	/**
 	 * Get the saved calendar date pref. If not set, return timestamp of now
 	 *
-	 * @param	Integer		$idArea
-	 * @return	Integer					Timestamp
+	 * @return	Integer		Timestamp
 	 */
-	public static function getCalendarDate($idArea = 0) {
-		$timestamp	= TodoyuPreferenceManager::getPreference(EXTID_CALENDAR, 'date', 0, $idArea);
+	public static function getCalendarDate() {
+		$time	= self::getPref('date');
 
-		return $timestamp === false ? NOW : $timestamp;
+		return TodoyuTime::time($time);
 	}
 
 
