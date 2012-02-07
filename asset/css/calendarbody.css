@@ -88,20 +88,6 @@
 	background-color:#fff;
 }
 
-#calendar-quicknav {
-	position:absolute;
-	top:2px;
-	right:10px;
-	height:15px;
-	padding:2px 15px;
-	border:1px solid #bbb;
-	background:#fff;
-
-	-moz-border-radius:13px;
-	-webkit-border-radius:13px;
-	border-radius:13px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
-}
-
 #calendar-body {
 	float:left;
 	clear:both;

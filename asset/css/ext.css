@@ -142,56 +142,47 @@ form.formEvent button.buttonSave {}
 /* --------------------------------------------------------------------
 	Date navigational buttons (center on today, go forward / backward)
    -------------------------------------------------------------------- */
-#calendar-quicknav span.icon {
+.dateNavi {
+	position:absolute;
+	top:2px;
+	right:10px;
 	height:15px;
-	margin:0;
+	padding:2px 15px;
+	border:1px solid #bbb;
+	background:#fff;
+	-moz-border-radius:13px;
+	-webkit-border-radius:13px;
+	border-radius:13px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
 }
 
-	#calendar-quicknav .today,
-	#calendar-quicknav .goback,
-	#calendar-quicknav .goforward {
-		min-width:28px;
-		width:28px;
-		cursor:pointer;
-		background:transparent url(../img/icons.png) no-repeat scroll 0 0;
-	}
+.dateNavi .icon {
+	height:15px;
+	margin:0;
+	min-width:28px;
+	width:28px;
+	cursor:pointer;
+	background:url(../img/icons.png) no-repeat 0 0;
+}
 
-	#calendar-quicknav .today {
-		border:1px solid #bbb;
-		border-width:0 1px;
-		background-position:7px -150px;
-	}
-
-	#calendar-quicknav .goback {
-		background-position:4px -120px;
-	}
-
-	#calendar-quicknav .goforward {
-		background-position:7px -180px;
-	}
-
-	#calendar-quicknav-toggleDayView {
-		height:22px;
-		width:28px;
-		cursor:pointer;
-		background:url(../img/icons.png) no-repeat 8px -60px;
-		/*-moz-border-bottom-colors: none;*/
-		/*-moz-border-image: none;*/
-		/*-moz-border-left-colors: none;*/
-		/*-moz-border-right-colors: none;*/
-		/*-moz-border-top-colors: none;*/
-		/*border-color:#bbb;*/
-		/*border-style:solid;*/
-		/*border-width:0 1px 0 1px;*/
-		border-left:1px solid #BBB;
-	}
-	#calendar-quicknav-toggleWeekend {
-		height:22px;
-		width:28px;
-		cursor:pointer;
-		background:url(../img/icons.png) no-repeat 8px -91px;
-		border-left:1px solid #BBB;
-	}
+.dateNavi .goToday {
+	border:1px solid #bbb;
+	border-width:0 1px;
+	background-position:7px -150px;
+}
+.dateNavi .goBackward {
+	background-position:4px -120px;
+}
+.dateNavi .goForward {
+	background-position:7px -180px;
+}
+.dateNavi .toggleDayView {
+	border-left:1px solid #BBB;
+	background-position:8px -60px;
+}
+.dateNavi .toggleWeekend {
+	border-left:1px solid #BBB;
+	background-position:8px -91px;
+}
 
 
 
