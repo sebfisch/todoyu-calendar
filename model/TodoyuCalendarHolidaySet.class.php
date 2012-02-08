@@ -41,18 +41,66 @@ class TodoyuCalendarHolidaySet extends TodoyuBaseObject {
 	 * @param	Integer	$idHolidaySet
 	 */
 	function __construct($idHolidaySet) {
-		$idHolidaySet	= intval($idHolidaySet);
-
 		parent::__construct($idHolidaySet, self::TABLE);
 	}
 
 
 
 	/**
+	 * Get title
+	 *
+	 * @return	String
+	 */
+	public function getTitle() {
+		return $this->get('title');
+	}
+
+
+
+
+	/**
+	 * Get description
+	 *
+	 * @return	String
+	 */
+	public function getDescription() {
+		return $this->get('description');
+	}
+
+
+
+	/**
+	 * Get holidays in range
+	 *
+	 * @param	TodoyuDayRange		$range
+	 * @return	TodoyuCalendarHoliday
+	 */
+	public function getHolidays(TodoyuDayRange $range = null) {
+		$fields	= '	h.id';
+		$table	= '	ext_calendar_holiday h,
+					ext_calendar_mm_holiday_holidayset mm';
+		$where	= '		mm.id_holidayset= ' . $this->getID()
+				. ' AND	mm.id_holiday	= h.id'
+				. '	AND	h.deleted		= 0';
+		$order	= ' h.date';
+
+		if( !is_null($range) ) {
+			$where .= ' AND h.date BETWEEN ' . $range->getStart() . ' AND ' . $range->getEnd();
+		}
+
+		$holidayIDs	= Todoyu::db()->getColumn($fields, $table, $where, '', $order, '', 'id');
+
+		return TodoyuRecordManager::getRecordList('TodoyuCalendarHoliday', $holidayIDs);
+	}
+
+
+
+	/**
 	 * Load foreign data (holidays)
+	 *
 	 */
 	public function loadForeignData() {
-		$this->data['holiday']	= TodoyuCalendarHolidaySetManager::getHolidays($this->id);
+		$this->data['holidays']	= TodoyuCalendarHolidaySetManager::getHolidaysData($this->getID());
 	}
 
 

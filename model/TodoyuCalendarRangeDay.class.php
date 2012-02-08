@@ -31,7 +31,9 @@ class TodoyuCalendarRangeDay extends TodoyuDayRange {
 	 *
 	 * @param	Integer		$date
 	 */
-	public function __construct($date) {
+	public function __construct($date = 0) {
+		$date	= TodoyuTime::time($date);
+
 		parent::__construct($date, $date);
 	}
 

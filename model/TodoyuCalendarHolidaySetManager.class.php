@@ -185,7 +185,7 @@ class TodoyuCalendarHolidaySetManager {
 	 * @param	Integer		$idHolidaySet
 	 * @return	Array
 	 */
-	public static function getHolidays($idHolidaySet) {
+	public static function getHolidaysData($idHolidaySet) {
 		$idHolidaySet	= intval($idHolidaySet);
 
 		$fields	= '	h.*';
