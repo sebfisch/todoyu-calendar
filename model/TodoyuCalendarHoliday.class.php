@@ -47,12 +47,56 @@ class TodoyuCalendarHoliday extends TodoyuBaseObject {
 
 
 	/**
+	 * Get title
+	 *
+	 * @return	String
+	 */
+	public function getTitle() {
+		return $this->get('title');
+	}
+
+
+
+	/**
 	 * Get holiday label
 	 *
 	 * @return	String
 	 */
 	public function getLabel() {
-		return $this->get('title');
+		return $this->getTitle();
+	}
+
+
+
+	/**
+	 * Get date
+	 *
+	 * @return	Integer
+	 */
+	public function getDate() {
+		return $this->getInt('date');
+	}
+
+
+
+	/**
+	 * Get description
+	 *
+	 * @return	String
+	 */
+	public function getDescripion() {
+		return $this->get('description');
+	}
+
+
+
+	/**
+	 * Get working time
+	 *
+	 * @return	Integer
+	 */
+	public function getWorkingTime() {
+		return $this->getInt('workingtime');
 	}
 
 
@@ -61,7 +105,7 @@ class TodoyuCalendarHoliday extends TodoyuBaseObject {
 	 * Load foreign data
 	 */
 	public function loadForeignData() {
-		$this->data['holidayset']	= TodoyuCalendarHolidayManager::getHolidaySets($this->id);
+		$this->data['holidayset']	= TodoyuCalendarHolidayManager::getHolidaySets($this->getID());
 	}
 
 

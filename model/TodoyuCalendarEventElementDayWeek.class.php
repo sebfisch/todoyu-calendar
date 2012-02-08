@@ -49,9 +49,6 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	protected function getElementTemplateData($date = 0) {
 		$elementData	= parent::getElementTemplateData();
 
-		$elementData['height']			= $this->getHeight(true);
-		$elementData['width']			= $this->getWidth();
-		$elementData['left']			= $this->getLeftOffset();
 		$elementData['positionStyles']	= $this->getPositionStyleString($date);
 
 		return $elementData;
@@ -76,13 +73,14 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	/**
 	 * Get position styles
 	 *
+	 * @param	Integer		$date
 	 * @return	Array
 	 */
-	protected function getPositionStyles() {
+	protected function getPositionStyles($date) {
 		$styles	= array(
 			'left'	=> $this->getLeftOffset() . 'px',
 			'width'	=> $this->getWidth() . 'px',
-			'height'=> $this->getHeight(true) . 'px'
+			'height'=> $this->getHeight($date, true) . 'px'
 		);
 
 		return $styles;
@@ -104,11 +102,13 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	/**
 	 * Get element height
 	 *
+	 * @param	Integer		$date
 	 * @param	Boolean		$assertMinimalDuration		Assert minimal height of element (force duration to 30min)
 	 * @return	Integer
 	 */
-	public function getHeight($assertMinimalDuration = true) {
-		$duration	= $this->event->getDuration();
+	public function getHeight($date, $assertMinimalDuration = true) {
+		$todayRange	= new TodoyuCalendarRangeDay($date);
+		$duration	= $this->getEvent()->getRange()->getOverlappingRange($todayRange)->getDuration();
 
 		if( $assertMinimalDuration ) {
 			$duration	= TodoyuNumeric::intInRange($duration, CALENDAR_EVENT_MIN_DURATION);
