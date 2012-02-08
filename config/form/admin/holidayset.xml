@@ -18,7 +18,7 @@
 					<label>core.global.description</label>
 				</field>
 
-				<field type="databaseRelation" name="holiday">
+				<field type="databaseRelation" name="holidays">
 					<label>calendar.ext.holidayset.attr.holiday</label>
 					<addLabel>calendar.ext.holidayset.attr.holiday.new</addLabel>
 					<record>

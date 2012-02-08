@@ -107,8 +107,14 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	 * @return	Integer
 	 */
 	public function getHeight($date, $assertMinimalDuration = true) {
-		$todayRange	= new TodoyuCalendarRangeDay($date);
-		$duration	= $this->getEvent()->getRange()->getOverlappingRange($todayRange)->getDuration();
+		$renderDayRange	= new TodoyuCalendarRangeDay($date);
+		$overlapping	= $this->getEvent()->getRange()->getOverlappingRange($renderDayRange);
+
+		if( $overlapping ) {
+			$duration = $overlapping->getDuration();
+		} else {
+			$duration = 0;
+		}
 
 		if( $assertMinimalDuration ) {
 			$duration	= TodoyuNumeric::intInRange($duration, CALENDAR_EVENT_MIN_DURATION);

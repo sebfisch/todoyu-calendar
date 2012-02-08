@@ -99,13 +99,13 @@ class TodoyuCalendarHolidaySetManager {
 
 		self::removeHolidays($idHolidaySet);
 
-		if( is_array($data['holiday']) ) {
-			$holidayIDs	= TodoyuArray::getColumn($data['holiday'], 'id');
+		if( is_array($data['holidays']) ) {
+			$holidayIDs	= TodoyuArray::getColumn($data['holidays'], 'id');
 			foreach($holidayIDs as $idHoliday) {
 				self::addHoliday($idHolidaySet, $idHoliday);
 			}
 		}
-		unset($data['holiday']);
+		unset($data['holidays']);
 
 		return $data;
 	}

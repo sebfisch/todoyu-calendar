@@ -52,7 +52,7 @@ class TodoyuCalendarRecordsActionController extends TodoyuActionController {
 		$idRecord	= intval($params['record']);
 
 		switch($fieldName) {
-			case 'holiday':
+			case 'holidays':
 				$xmlPath	= $xmlBase . '/holidayset.xml';
 				break;
 
