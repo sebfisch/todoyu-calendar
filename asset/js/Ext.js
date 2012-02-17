@@ -94,7 +94,7 @@ Todoyu.Ext.calendar	= {
 		this.addHooks();
 
 			// Only initialize panelwidgets and body in calendar view
-		if( Todoyu.getArea() === 'calendar' ) {
+		if( this.isInCalendarArea() ) {
 			this.addPanelWidgetObservers();
 			this.CalendarBody.init();
 			this.Navi.init();
@@ -110,7 +110,7 @@ Todoyu.Ext.calendar	= {
 	 * @return	{Boolean}
 	 */
 	isInCalendarArea: function() {
-		return Todoyu.getArea() === 'calendar';
+		return Todoyu.isInArea('calendar');
 	},
 
 
@@ -351,7 +351,7 @@ Todoyu.Ext.calendar	= {
 	 * @param	{Number}		idEvent
 	 */
 	onEventSaved: function(idEvent) {
-		if( Todoyu.getArea() === 'calendar' ) {
+		if( this.isInCalendarArea() ) {
 			this.refresh();
 		}
 	},
@@ -550,7 +550,7 @@ Todoyu.Ext.calendar	= {
 	 * @method	onQuickEventSaved
 	 */
 	onQuickEventSaved: function() {
-		if( Todoyu.getArea() === 'calendar' ) {
+		if( this.isInCalendarArea() ) {
 			this.refresh();
 		}
 	},

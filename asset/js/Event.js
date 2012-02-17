@@ -224,7 +224,7 @@ Todoyu.Ext.calendar.Event	= {
 		if( this.ext.isInCalendarArea() ) {
 			this.ext.refresh();
 		}
-		if( Todoyu.getArea() === 'portal' ) {
+		if( Todoyu.Ext.portal.isInPortalArea() ) {
 			this.ext.EventPortal.reduceAppointmentCounter();
 		}
 	},
