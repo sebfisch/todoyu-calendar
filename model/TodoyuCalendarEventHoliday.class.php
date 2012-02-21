@@ -87,7 +87,7 @@ class TodoyuCalendarEventHoliday extends TodoyuBaseObject implements TodoyuCalen
 	 * @return	Integer
 	 */
 	public function getDateEnd() {
-		return TodoyuTime::getEndOfDay($this->get('date'));
+		return TodoyuTime::getDayEnd($this->get('date'));
 	}
 
 

@@ -453,8 +453,8 @@ class TodoyuCalendarManager {
 	 */
 	public static function getDayKeys($dateStart, $dateEnd) {
 		$keys	= array();
-		$start	= TodoyuTime::getStartOfDay($dateStart);
-		$end	= TodoyuTime::getEndOfDay($dateEnd);
+		$start	= TodoyuTime::getDayStart($dateStart);
+		$end	= TodoyuTime::getDayEnd($dateEnd);
 
 		for($date = $start; $date <= $end; $date += TodoyuTime::SECONDS_DAY) {
 			$keys[]	= date('Ymd', $date);

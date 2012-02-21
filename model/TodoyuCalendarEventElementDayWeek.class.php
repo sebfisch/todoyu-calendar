@@ -210,7 +210,7 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	 * @return	Integer
 	 */
 	public function getTopOffset($date) {
-		$dateDayStart	= TodoyuTime::getStartOfDay($date);
+		$dateDayStart	= TodoyuTime::getDayStart($date);
 
 		if( $this->event->getDateStart() <= $dateDayStart ) {
 			return 0;

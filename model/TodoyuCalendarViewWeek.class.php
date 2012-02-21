@@ -81,7 +81,7 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 	 * @return	Array[]
 	 */
 	private function getDayColumns() {
-		$timeToday	= TodoyuTime::getStartOfDay();
+		$timeToday	= TodoyuTime::getDayStart();
 		$dayDates	= $this->getRange()->getDayTimestamps();
 		$columns	= array();
 
@@ -152,7 +152,7 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 	 * @return	Array		Events grouped by date-key
 	 */
 	public static function groupEventsByDay(array $events, $dateStart, $dateEnd) {
-		$dateStart		= TodoyuTime::getStartOfDay($dateStart);
+		$dateStart		= TodoyuTime::getDayStart($dateStart);
 		$dateEnd		= intval($dateEnd);
 		$groupedEvents	= array();
 

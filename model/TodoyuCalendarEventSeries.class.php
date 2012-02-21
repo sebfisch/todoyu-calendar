@@ -189,7 +189,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$dateEnd	= $this->getDateEnd();
 
 		if( $dateEnd !== 0 ) {
-			$dateEnd = TodoyuTime::getEndOfDay($dateEnd);
+			$dateEnd = TodoyuTime::getDayEnd($dateEnd);
 		}
 
 		return $dateEnd;
