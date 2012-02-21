@@ -564,7 +564,7 @@ class TodoyuCalendarEventStaticManager {
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$dateEnd
-	 * @return	Array|Boolean
+	 * @return	String[]|Boolean
 	 */
 	public static function getOverbookedPersonsErrors($idEvent, $dateStart, $dateEnd) {
 		$idEvent	= intval($idEvent);

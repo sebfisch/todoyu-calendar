@@ -146,7 +146,7 @@ abstract class TodoyuCalendarEventElement {
 	/**
 	 * Get class names
 	 *
-	 * @return	Array
+	 * @return	String[]
 	 */
 	public function getClasses() {
 		return array_unique($this->classNames);

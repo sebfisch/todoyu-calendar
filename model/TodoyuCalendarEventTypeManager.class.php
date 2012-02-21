@@ -138,7 +138,7 @@ class TodoyuCalendarEventTypeManager {
 	/**
 	 * Get event types which are allowed to be overbooked
 	 *
-	 * @return	Array
+	 * @return	Integer[]
 	 */
 	public static function getOverbookableTypeIndexes() {
 		return Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'];

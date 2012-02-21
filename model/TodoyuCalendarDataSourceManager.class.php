@@ -54,7 +54,7 @@ class TodoyuCalendarDataSourceManager {
 	/**
 	 * Get names of all data sources
 	 *
-	 * @return	Array
+	 * @return	String[]
 	 */
 	public static function getDataSourceNames() {
 		return array_keys(self::$dataSourceConfigs);
