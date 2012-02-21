@@ -29,7 +29,7 @@
 	<label index="attr.eventtype">Typ Wydarzenia</label>
 	<label index="attr.is_dayevent">Cały dzień</label>
 	<label index="attr.is_public">Jest publiczne?</label>
-	<label index="attr.is_private">Prywatne wydarzenie?</label>
+	<label index="attr.is_private">Prywatne wydarzenie</label>
 	<label index="attr.attendees">Uczestnicy</label>
 	<label index="attr.timespan">Interwał czasu</label>
 	<label index="attr.startdate">Data Rozpoczęcia</label>

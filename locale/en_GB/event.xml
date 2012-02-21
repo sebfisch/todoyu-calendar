@@ -30,7 +30,7 @@
 	<label index="attr.eventtype">Event Type</label>
 	<label index="attr.is_dayevent">All Day</label>
 	<label index="attr.is_public">Is Public?</label>
-	<label index="attr.is_private">Private Event?</label>
+	<label index="attr.is_private">Private Event</label>
 	<label index="attr.attendees">Attendees</label>
 	<label index="attr.timespan">Time Span</label>
 	<label index="attr.startdate">Start Date</label>
