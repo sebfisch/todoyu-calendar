@@ -1,6 +1,7 @@
 todoyu calendar extension changelog
 
 calender 1.2.0 - not released yet
+	* Feature: Current time of today is hilighted in calendar day and week mode
 	* Feature: Options for starting + ending hour of time excerpt in user profile
 	* Feature: 5-day week viewing mode (monday to friday)
 	* Feature: Implemented month and week mode starting with sunday (system setting)

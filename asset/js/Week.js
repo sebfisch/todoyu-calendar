@@ -31,6 +31,7 @@ Todoyu.Ext.calendar.Week	= {
 	/**
 	 * Check whether weekend is displayed
 	 *
+	 * @method	isWeekendDisplayed
 	 * @return	{Boolean}
 	 */
 	isWeekendDisplayed: function() {
@@ -40,8 +41,21 @@ Todoyu.Ext.calendar.Week	= {
 
 
 	/**
+	 * Check whether today is displayed
+	 *
+	 * @method	isTodayDisplayed
+	 * @return	{Boolean}
+	 */
+	isTodayDisplayed: function() {
+		return typeof $('gridHeader').down('.today') === 'object';
+	},
+
+
+
+	/**
 	 * Get number of displayed days
 	 *
+	 * @method	getNumDays
 	 * @return	{Number}
 	 */
 	getNumDays: function() {
@@ -53,6 +67,7 @@ Todoyu.Ext.calendar.Week	= {
 	/**
 	 * Get snap config for drag and drop in week view
 	 *
+	 * @method	getDragDropSnap
 	 * @return	{Array}
 	 */
 	getDragDropSnap: function() {
@@ -74,6 +89,7 @@ Todoyu.Ext.calendar.Week	= {
 	/**
 	 * Get width of day column
 	 *
+	 * @method	getDayColWidth
 	 * @return	{Number}
 	 */
 	getDayColWidth: function() {
@@ -85,6 +101,7 @@ Todoyu.Ext.calendar.Week	= {
 	/**
 	 * Calculate date for drop position
 	 *
+	 * @method	getDropDate
 	 * @param	{Object}	dragInfo
 	 * @return	{Date}
 	 */
@@ -102,7 +119,7 @@ Todoyu.Ext.calendar.Week	= {
 		var dayHours	= Math.round((offset.top / hourHeight)*4)/4;
 		var timestamp	= weekStart + Todoyu.Time.seconds.day * dayIndex + dayHours * Todoyu.Time.seconds.hour;
 
-		return new Date(timestamp*1000);
+		return new Date(timestamp * 1000);
 	},
 
 
@@ -110,6 +127,7 @@ Todoyu.Ext.calendar.Week	= {
 	/**
 	 * Get date for event position
 	 *
+	 * @method	getDateForPosition
 	 * @param	{Number}	x
 	 * @param	{Number}	y
 	 * @return	{Number}
@@ -129,6 +147,7 @@ Todoyu.Ext.calendar.Week	= {
 	/**
 	 * Get day index for week
 	 *
+	 * @method	getDayIndex
 	 * @param	{Number}	leftOffset
 	 */
 	getDayIndex: function(leftOffset) {
@@ -136,7 +155,7 @@ Todoyu.Ext.calendar.Week	= {
 		var dayColWidth		= this.getDayColWidth();
 		var offsetLeft		= leftOffset - boxOffsetLeft;
 		var dayIndex		= Math.floor(offsetLeft / dayColWidth);
-		dayIndex			= dayIndex < 0 ? 0 : dayIndex < this.getNumDays() ? dayIndex : this.getNumDays()-1;
+		dayIndex			= dayIndex < 0 ? 0 : dayIndex < this.getNumDays() ? dayIndex : this.getNumDays() - 1;
 
 		return dayIndex;
 	}

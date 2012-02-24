@@ -10,13 +10,6 @@
 	position:absolute;
 }
 
-/*#calendar .event span {*/
-	/*font-size:9px;*/
-	/*padding:2px 3px;*/
-	/*display:block;*/
-	/*white-space:nowrap;*/
-/*}*/
-
 #calendar .event .head {
 	cursor: not-allowed;
 	width:100%;
@@ -62,16 +55,7 @@
 .weekMode .event dd {
 	font-family:Verdana,Helvetica,sans-serif;
 	font-size:9px;
-	/*color:#fff;*/
 	padding:2px;
-}
-
-.dayMode .event dt{
-	/*white-space:normal;*/
-}
-
-.monthMode .event dt {
-	/*display:none;*/
 }
 
 .monthMode .event dl {
@@ -79,6 +63,9 @@
 }
 
 
+.dayCol .event {
+	z-index:20;
+}
 
 /* ------------------------
 	Event
@@ -86,7 +73,6 @@
 div.weekMode div#calendarBody div.event dt.head {
 	height:15px;
 	padding:3px 0;
-	/*margin-bottom:1px;*/
 }
 div.weekMode div#calendarBody div.event dd span.desc {
 	display:inline;
@@ -108,11 +94,9 @@ div.weekMode div#calendarBody div.event dd span.desc {
 
 
 
-
 .gridHeader .dayevent {
 	position:relative;
 }
-
 
 #calendar .dayEvents .event {
 	margin: 1px;
@@ -125,7 +109,6 @@ div.weekMode div#calendarBody div.event dd span.desc {
 #calendar .dayEvents .event.hasAccess .head {
 	cursor: move;
 }
-
 
 .dayEvents .event .date {
 	color:#CCC;
@@ -144,7 +127,6 @@ div.weekMode div#calendarBody div.event dd span.desc {
 
 
 
-
 /* --------------------------------------------
 	Events in all views (day, week, month)
    -------------------------------------------- */
@@ -152,7 +134,6 @@ div.weekMode div#calendarBody div.event dd span.desc {
 .weekMode div.tg-colwrapper div.event dl {
 /*	border:1px dotted #fff;*/
 }
-
 
 .private {
 	display:block;
@@ -219,15 +200,6 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	background-image: url(../../../contact/asset/img/icons.png);
 	background-position: 3px -330px;
 }
-
-
-
-/*.event.typeGeneral .headInner,*/
-/*.event.typeGeneral .type,*/
-/*.dayMode .event .typeGeneral,*/
-/*.monthMode .event .typeGeneral {*/
-	/*background:url(../img/icons.png) no-repeat scroll 0 -660px;*/
-/*}*/
 
 .event.typeAway .headInner,
 .event.typeAway .type,

@@ -43,9 +43,14 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 */
 	calendarBody:	null,
 
+	/**
+	 * Default hours range
+	 *
+	 * @type	Array
+	 */
 	range: {
-		start: 8,
-		end: 18
+		start:	8,
+		end:	18
 	},
 
 
@@ -67,6 +72,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 
 		if( this.ext.getActiveTab() !== 'month' ) {
 			this.applyCompactView();
+			this.HourMarker.init();
 		}
 
 			// Init drag and drop
@@ -87,8 +93,8 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 */
 	setViewRange: function(start, end, apply) {
 		this.range = {
-			start: start,
-			end: end
+			start:	start,
+			end:	end
 		};
 
 		if( apply !== false ) {
@@ -116,6 +122,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 */
 	toggleFullDayView: function() {
 		this.setFullHeight(! this.isFullHeight(), true);
+		this.HourMarker.update();
 	},
 
 
@@ -163,7 +170,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 
 
 	/**
-	 * Check whether calendar body is set to full height
+	 * Check whether calendar body (hours range) is set to full height
 	 *
 	 * @method	isFullHeight
 	 * @return	{Boolean}
@@ -214,12 +221,13 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	},
 
 
+
+	/**
+	 * @method	applyCompactView
+	 */
 	applyCompactView: function() {
 		this.setFullHeight(this.isFullHeight(), false);
 	},
-
-
-
 
 
 
@@ -240,12 +248,11 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * @method	getTimeOfMouseCoordinates
 	 * @param	{Number}		x
 	 * @param	{Number}		y
-	 * @return	{Number}
+	 * @return	{Number}            timestamp
 	 */
 	getTimeForPosition: function(x, y) {
 		var calendarMode= this.ext.getActiveTab();
 		var timestamp;
-
 
 			// Calculate timestamp from coordinate in current mode
 		switch(calendarMode) {
@@ -278,6 +285,30 @@ Todoyu.Ext.calendar.CalendarBody	= {
 		var timeInfo	= Todoyu.Time.getTimeParts(seconds);
 
 		return timeInfo.hours * Todoyu.Time.seconds.hour + timeInfo.minutes * Todoyu.Time.seconds.minute;
+	},
+
+
+
+	/**
+	 * Check whether today is currently displayed in calendar
+	 *
+	 * @method	isTodayDisplay
+	 * @return  {Boolean}
+	 */
+	isTodayDisplayed: function() {
+		switch( this.ext.getActiveTab() ) {
+			case 'day':
+				return  this.ext.Day.isTodayDisplayed();
+				break;
+			case 'week':
+				return this.ext.Week.isTodayDisplayed();
+				break;
+			case 'month':
+				return typeof $('gridContainer').down('.ttoday') === 'object'
+				break;
+			default:
+				return false;
+		}
 	},
 
 
@@ -354,6 +385,19 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	getViewRange: function() {
 		return this.range;
 	},
+
+
+
+	/**
+	 * Get first shown hour
+	 *
+	 * @method	getRangeStart
+	 * @return  {Number}
+	 */
+	getRangeStart: function() {
+		return this.range.start;
+	},
+
 
 
 	/**

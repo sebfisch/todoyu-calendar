@@ -1,5 +1,5 @@
 <div class="mainGrid">
-	<div id="gridcontainer" class="dayMode">
+	<div id="gridContainer" class="dayMode">
 		{if $dayEvents}
 			<div class="gridHeader" id="gridHeader">
 				{* ------------------------------------ Top container ------------------------------- *}
@@ -40,7 +40,7 @@
 							{$hourTimestamp += 3600}
 						{/for}
 					</td>
-					<td class="dayCol dayview{if date('d.m.y', $tstamp) == date('d.m.y', time())}today{/if}">
+					<td class="dayCol dayview{if date('d.m.y', $timestamp) == date('d.m.y', time())}Today{/if}">
 						{* ------------ Hour contents (events and related info-tooltips) -------- *}
 						<div id="tgCol0" class="tg-colwrapper">
 						{foreach $events event}

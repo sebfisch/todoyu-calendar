@@ -92,6 +92,10 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'position'	=> 120
 		),
 		array(
+			'file'		=> 'ext/calendar/asset/js/CalendarBodyHourMarker.js',
+			'position'	=> 121
+		),
+		array(
 			'file'		=> 'ext/calendar/asset/js/DragDrop.js',
 			'position'	=> 121
 		),

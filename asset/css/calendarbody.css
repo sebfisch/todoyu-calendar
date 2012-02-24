@@ -26,27 +26,47 @@
 
 #calendar .colHours .hour {
 	padding-left:2px;
-	color:#446688;
+	color:#494949;
 	height:41px;
 	margin-top:1px;
 	cursor:pointer;
 }
 
 #calendar .colHours .hour:hover {
-	background-color:#f1ffc4;
+	background-color:#ffffe0;
 }
+
+	/* Highlight digit of current hour in hours column */
+#calendar .colHours .hour.currentHour {
+	font-weight:bold;
+}
+	/* Marker layer of current hour */
+#currentHourMarker {
+	position:absolute;
+	z-index:10;
+	height:10px;
+	pointer-events:none;
+	border-bottom:1px solid #ff1f1f;
+}
+#currentHourMarker.dayMode {
+	background-color:#ccc;
+	opacity:0.4;
+}
+#currentHourMarker.weekMode {
+	background-color:#fff;
+	opacity:0.6;
+	border-left:1px solid #ffa3a3;
+	border-right:1px solid #ffa3a3;
+}
+
+
 
 .timeSpacer {
 	width:43px;
 }
 .dayEvents{
 	background-color:#f2f3ed;
-	/*font-size:11px;*/
-	/*line-height:14px;*/
 	border:1px solid #848484;
-	/*border-right-color:#e8e5de;*/
-	/*border-bottom-color:#e8e5de;*/
-	/*padding:1px 1px 1px 0;*/
 }
 
 

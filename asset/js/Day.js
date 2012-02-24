@@ -22,11 +22,20 @@
  */
 Todoyu.Ext.calendar.Day = {
 
+	/**
+	 * Reference to extension
+	 *
+	 * @property	ext
+	 * @type		Object
+	 */
 	ext: Todoyu.Ext.calendar,
+
+
 
 	/**
 	 * Get time for position
 	 *
+	 * @method	getDateForPosition
 	 * @param	{Number}	x
 	 * @param	{Number}	y
 	 */
@@ -34,6 +43,18 @@ Todoyu.Ext.calendar.Day = {
 		var offsetTop	= this.ext.CalendarBody.getFixedTopOffset(y);
 
 		return this.ext.getDayStartTime() + this.ext.CalendarBody.getDayOffset(offsetTop);
+	},
+
+
+
+	/**
+	 * Check whether today is displayed
+	 *
+	 * @method	isTodayDisplayed
+	 * @return	{Boolean}
+	 */
+	isTodayDisplayed: function() {
+		return typeof $('calendarBody').down('.dayviewToday') === 'object';
 	}
 
 };
