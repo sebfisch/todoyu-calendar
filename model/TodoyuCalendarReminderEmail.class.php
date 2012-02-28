@@ -32,7 +32,7 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 	 * @return	Integer
 	 */
 	public function getDateRemindEmail() {
-		return intval($this->get('date_remindemail'));
+		return $this->getInt('date_remindemail');
 	}
 
 

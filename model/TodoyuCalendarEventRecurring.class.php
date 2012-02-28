@@ -32,7 +32,7 @@ class TodoyuCalendarEventRecurring extends TodoyuCalendarEventStatic implements 
 	 * @return	Integer
 	 */
 	public function getSeriesID() {
-		return intval($this->get('id_series'));
+		return $this->getInt('id_series');
 	}
 
 

@@ -43,7 +43,7 @@ class TodoyuCalendarEventAssignment extends TodoyuBaseObject {
 	 * @return	Integer
 	 */
 	public function getEventID() {
-		return intval($this->get('id_event'));
+		return $this->getInt('id_event');
 	}
 
 
@@ -64,7 +64,7 @@ class TodoyuCalendarEventAssignment extends TodoyuBaseObject {
 	 * @return	Integer
 	 */
 	public function getPersonID() {
-		return intval($this->get('id_person'));
+		return $this->getInt('id_person');
 	}
 
 

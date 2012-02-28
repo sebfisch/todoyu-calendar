@@ -76,7 +76,7 @@ class TodoyuCalendarEventHoliday extends TodoyuBaseObject implements TodoyuCalen
 	 * @return	Integer
 	 */
 	public function getDateStart() {
-		return intval($this->get('date'));
+		return $this->getInt('date');
 	}
 
 
@@ -155,7 +155,7 @@ class TodoyuCalendarEventHoliday extends TodoyuBaseObject implements TodoyuCalen
 	 * @return	Integer
 	 */
 	public function getWorkingTime() {
-		return intval($this->get('workingtime'));
+		return $this->getInt('workingtime');
 	}
 
 

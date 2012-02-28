@@ -66,7 +66,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	 * @return	Integer
 	 */
 	public function getDateEnd() {
-		return intval($this->get('date_end'));
+		return $this->getInt('date_end');
 	}
 
 
@@ -186,7 +186,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	 * @return	Integer
 	 */
 	public function getTypeIndex() {
-		return intval($this->get('eventtype'));
+		return $this->getInt('eventtype');
 	}
 
 
@@ -752,7 +752,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 			$quickInfo->addInfo('title', '<' . Todoyu::Label('calendar.event.privateEvent.info') . '>', 10);
 		}
 
-		$quickInfo->addInfo('type' . ucwords($this->getTypeKey()),	$typeInfo, 20);
+		$quickInfo->addInfo('type' . ucfirst($this->getTypeKey()),	$typeInfo, 20);
 		$quickInfo->addInfo('date',	$dateInfo, 30);
 
 		$amountAssignedPersons	= count($this->getAssignedPersonsData());
@@ -865,7 +865,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	 * @return	Integer
 	 */
 	public function getSeriesID() {
-		return intval($this->get('id_series'));
+		return $this->getInt('id_series');
 	}
 
 

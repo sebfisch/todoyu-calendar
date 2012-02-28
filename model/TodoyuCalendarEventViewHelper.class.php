@@ -134,7 +134,7 @@ class TodoyuCalendarEventViewHelper {
 
 		$participantIDs	= array();
 
-		if( array_key_exists('id_event', $data) ) {
+		if( isset($data['id_event']) ) {
 				// Event form inside mailing popup, after change per drag&drop/delete
 			$idEvent	= intval($data['id_event']);
 			$isNewEvent	= $idEvent === 0;
