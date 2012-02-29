@@ -211,14 +211,39 @@ class TodoyuCalendarViewHelper {
 
 
 	/**
+	 * Get options from 0:00 to 23:00
+	 *
+	 * @param   TodoyuFormElement $field
+	 * @return  Array
+	 */
+	public static function getHourRangeStartOptions(TodoyuFormElement $field) {
+		return self::getRangeTimeOptions($field);
+	}
+
+
+
+	/**
+	 * Get options from 1:00 to 24:00
+	 *
+	 * @param   TodoyuFormElement $field
+	 * @return  Array
+	 */
+	public static function getHourRangeEndOptions(TodoyuFormElement $field) {
+		return self::getRangeTimeOptions($field, 1);
+	}
+
+
+
+	/**
 	 * Get options for time excerpt settings
 	 *
 	 * @param	TodoyuFormElement	$field
+	 * @param   Integer             $offset
 	 * @return	Array
 	 */
-	public static function getRangeTimeOptions(TodoyuFormElement $field) {
+	public static function getRangeTimeOptions(TodoyuFormElement $field, $offset = 0) {
 		$options	= array();
-		for($i= 0; $i <= 23; $i++) {
+		for($i= 0 + $offset; $i <= 23 + $offset; $i++) {
 			$options[]	= array(
 				'value'	=> $i,
 				'label'	=> ($i < 10 ? '0' : '') . $i . ':00'
