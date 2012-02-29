@@ -910,7 +910,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 * Get prepared fieldset for event
 	 *
 	 * @param	Boolean		$newEvent
-	 * @return	TodoyuFieldset
+	 * @return	TodoyuFormFieldset
 	 */
 	protected function getFieldset($newEvent = false) {
 		$seriesForm	= $this->getForm();
