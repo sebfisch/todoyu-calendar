@@ -40,7 +40,7 @@ class TodoyuCalendarReminderRenderer {
 		$eventData	= $event->getTemplateData(true, false, true);
 		$eventData	= TodoyuCalendarEventRenderer::getEventRenderData('list', $eventData);
 
-		$eventData['person_create']	= $event->getCreatePerson()->getTemplateData();
+		$eventData['person_create']	= $event->getPersonCreate()->getTemplateData();
 //		$eventData['persons']		= TodoyuCalendarEventStaticManager::getAssignedPersonsOfEvent($idEvent, true, true);
 		$eventData['persons']		= $eventData['assignedPersons'];
 

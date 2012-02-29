@@ -539,7 +539,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 		}
 
 		if( $loadCreatorPersonData ) {
-			$this->data['person_create']	= $this->getCreatePerson()->getTemplateData(false);
+			$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
 		}
 
 		$this->data['durationString']	= $this->getDurationString();

@@ -241,7 +241,7 @@ class TodoyuCalendarEventMailManager {
 	 * @return	Array
 	 */
 	public static function getPersonWriteTemplateData(TodoyuCalendarEventStatic $event) {
-		$personWrite	= $event->getCreatePerson();
+		$personWrite	= $event->getPersonCreate();
 
 		if( $personWrite !== false ) {
 			return $personWrite->getTemplateData();

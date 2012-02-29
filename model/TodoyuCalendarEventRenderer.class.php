@@ -77,7 +77,7 @@ class TodoyuCalendarEventRenderer {
 		$eventData	= $event->getTemplateData(true, false, true);
 		$eventData	= self::getEventRenderData('list', $eventData);
 
-		$eventData['person_create']	= $event->getCreatePerson()->getTemplateData();
+		$eventData['person_create']	= $event->getPersonCreate()->getTemplateData();
 		$eventData['persons']		= TodoyuCalendarEventStaticManager::getAssignedPersonsOfEvent($idEvent, true, true);
 
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
