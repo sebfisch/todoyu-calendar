@@ -167,7 +167,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 			// Week: Get left offset via today's column
 		if( this.ext.getActiveTab() === 'week') {
 			var todayHeaderCell = $('gridHeader').down('th.today');
-			offsetLeft  = todayHeaderCell.offsetLeft - 3;
+			offsetLeft  = todayHeaderCell.offsetLeft - 2;
 		}
 
 		return offsetLeft;
@@ -212,7 +212,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 			pastHoursShown  = currentHour;
 		} else {
 				// Limited view range of hours
-			var firstHour       = Todoyu.Ext.calendar.CalendarBody.getRangeStart();
+			var firstHour   = Todoyu.Ext.calendar.CalendarBody.getRangeStart();
 			pastHoursShown  = currentHour - firstHour;
 		}
 

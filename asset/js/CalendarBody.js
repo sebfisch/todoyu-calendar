@@ -211,6 +211,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 			this.calendarBody.removeClassName('full');
 
 			var numVisibleHours		= this.range.end - this.range.start + 1;
+
 			this.calendarBody.style.height	= (42 * numVisibleHours) + 'px'; //42px = height of one hour
 			this.calendarBody.scrollTop		= 42 * this.range.start;
 		}

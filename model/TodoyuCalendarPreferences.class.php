@@ -43,6 +43,24 @@ class TodoyuCalendarPreferences {
 
 
 	/**
+	 * Check if preference is set
+	 * Without $value, it checks if a preference is stored, else it checks if
+	 * a preference with exactly this value is stored
+	 *
+	 * @param	String		$preference		Preference name
+	 * @param	Integer		$idItem			ID of the item
+	 * @param	String		$value			Stored value
+	 * @param	Integer		$idArea			ID of the area
+	 * @param	Integer		$idPerson		User ID
+	 * @return	Boolean
+	 */
+	public static function isPreferenceSet($preference, $idItem = 0, $value = null, $idArea = 0, $idPerson = 0) {
+		return TodoyuPreferenceManager::isPreferenceSet(EXTID_CALENDAR, $preference, $idItem, $value, $idArea, $idPerson);
+	}
+
+
+
+	/**
 	 * Get given calendar extension preference
 	 *
 	 * @param	String		$preference
@@ -159,12 +177,10 @@ class TodoyuCalendarPreferences {
 	 * @return	Integer
 	 */
 	public static function getCompactViewRangeStart() {
-		$rangeStart	= self::getPref('range_start');
-
-		if( !$rangeStart ) {
-			$rangeStart = CALENDAR_RANGE_START;
+		if( self::isPreferenceSet('range_start') ) {
+			$rangeStart	= self::getPref('range_start');
 		} else {
-			$rangeStart	= intval($rangeStart);;
+			$rangeStart = CALENDAR_RANGE_START;
 		}
 
 		return $rangeStart;
@@ -178,15 +194,13 @@ class TodoyuCalendarPreferences {
 	 * @return	Integer
 	 */
 	public static function getCompactViewRangeEnd() {
-		$rangeEnd	= self::getPref('range_end');
-
-		if( $rangeEnd ) {
-			$rangeEnd 	= CALENDAR_RANGE_END;
+		if( self::isPreferenceSet('range_end') ) {
+			$rangeStart	= self::getPref('range_end');
 		} else {
-			$rangeEnd	= intval($rangeEnd);
+			$rangeStart = CALENDAR_RANGE_END;
 		}
 
-		return $rangeEnd;
+		return $rangeStart;
 	}
 
 

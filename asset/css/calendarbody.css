@@ -48,13 +48,12 @@
 	pointer-events:none;
 	border-bottom:1px solid #ff1f1f;
 }
-#currentHourMarker.dayMode {
+#currentHourMarker.dayMode,
+#currentHourMarker.weekMode {
 	background-color:#ccc;
 	opacity:0.4;
 }
 #currentHourMarker.weekMode {
-	background-color:#fff;
-	opacity:0.6;
 	border-left:1px solid #ffa3a3;
 	border-right:1px solid #ffa3a3;
 }
