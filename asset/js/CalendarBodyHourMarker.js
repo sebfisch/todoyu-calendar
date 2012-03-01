@@ -156,26 +156,6 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 
 	/**
-	 * Get horizontal offset for current hour marker layer from day offset
-	 *
-	 * @method	getOffsetLeft
-	 * @return  {Number}
-	 */
-	getTodayOffsetLeft: function() {
-		var offsetLeft  = 0;
-
-			// Week: Get left offset via today's column
-		if( this.ext.getActiveTab() === 'week') {
-			var todayHeaderCell = $('gridHeader').down('th.today');
-			offsetLeft  = todayHeaderCell.offsetLeft - 2;
-		}
-
-		return offsetLeft;
-	},
-
-
-
-	/**
 	 * Get hour marker vertical offset by current hour + minutes of day
 	 *
 	 * @method	getOffsetTop
@@ -222,13 +202,59 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 
 	/**
+	 * Get horizontal offset for current hour marker layer from day offset
+	 *
+	 * @method	getOffsetLeft
+	 * @return  {Number}
+	 */
+	getTodayOffsetLeft: function() {
+		var activeTab   = this.ext.getActiveTab();
+		var offsetLeft  = 0;
+
+			// Week: Get left offset via today's column
+		if( activeTab === 'week') {
+			var todayHeaderCell = $('gridHeader').down('th.today');
+			offsetLeft  = todayHeaderCell.offsetLeft;
+
+			if( Prototype.Browser.WebKit ) {
+					// e.g. Chrome
+				offsetLeft -= this.ext.Week.getNumDays() === 7 ? 3 : 1;
+			} else {
+					// e.g. FF
+				offsetLeft -= this.ext.Week.getNumDays() === 7 ? 3 : 2;
+			}
+		}
+
+		return offsetLeft;
+	},
+
+
+
+	/**
 	 * Get useable width of marker from day column
 	 *
 	 * @method	getMarkerWidth
 	 * @return  {Number}
 	 */
 	getWidth: function() {
-		return this.ext.getActiveTab() === 'day' ? 660 : (this.ext.Week.getDayColWidth() - 3);
+		var activeTab   = this.ext.getActiveTab();
+		var width;
+
+		if( activeTab === 'day' ) {
+			width   = 660;
+		} else {
+			width   = this.ext.Week.getDayColWidth();
+
+			if( Prototype.Browser.WebKit ) {
+					// e.g. Chrome
+				width   -= this.ext.Week.getNumDays() === 7 ? 2 : 3;
+			} else {
+					// e.g. FF
+				width   -= this.ext.Week.getNumDays() === 7 ? 3 : 3;
+			}
+		}
+
+		return width;
 	}
 
 };
