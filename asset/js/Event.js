@@ -156,11 +156,17 @@ Todoyu.Ext.calendar.Event	= {
 	 * @param	{Object}	options
 	 */
 	jumpToEventEditView: function(idEvent, options) {
-		Todoyu.goTo('calendar', 'ext', {
+		options		= options || {};
+		var params	= {
 			tab:		'edit',
-			event:		idEvent,
-			options:	options
-		});
+			event:		idEvent
+		};
+
+		if( Object.keys(options).size() > 0 ) {
+			params.options = options;
+		}
+
+		Todoyu.goTo('calendar', 'ext', params);
 	},
 
 

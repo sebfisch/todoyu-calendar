@@ -85,13 +85,15 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		var options	= {
 			parameters: {
 				action:		'edit',
-				event:		idEvent,
-				options:	Object.toJSON(extraOptions)
+				event:		idEvent
 			},
 			onComplete: this.onFormLoaded.bind(this, idEvent, extraOptions)
 		};
 		var target	= 'calendar-edit';
 
+		if( Object.keys(extraOptions).size() > 0 ) {
+			options.parameters.options = Object.toJSON(extraOptions)
+		}
 		if( time ) {
 			options.parameters.date = Todoyu.Time.getDateTimeString(time);
 		}
