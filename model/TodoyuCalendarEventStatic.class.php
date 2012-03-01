@@ -111,8 +111,8 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	 *
 	 * @return String
 	 */
-	public function getDurationString() {
-		return TodoyuString::getRangeString($this->getDateStart(), $this->getDateEnd(), true);
+	public function getDurationString($withDuration = true, $withDates = true) {
+		return TodoyuString::getRangeString($this->getDateStart(), $this->getDateEnd(), $withDuration, $withDates);
 	}
 
 
@@ -723,7 +723,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 
 
 	/**
-	 * Add data to quick info
+	 * Add data to static event quick info
 	 *
 	 * @param	TodoyuQuickinfo			$quickInfo
 	 * @param	TodoyuDayRange|null		$currentRange
@@ -764,40 +764,63 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 
 	
 	/**
-	 * Build pre-formatted date info for event quickinfo tooltip
+	 * Build formatted date info for event quickinfo tooltip
 	 *
 	 * @param	Boolean					$withDuration
 	 * @return	String
 	 */
 	protected function getQuickinfoDateInfo($withDuration = false) {
-		if( $this->isMultiDay() ) {
-				// Define format for all-day events and multi-day events
-			if( $this->isDayevent() ) {
-				$break	= ' - ';
-				$format	= 'MlongD2';
-			} else {
-				$break	= "\n";
-				$format	= 'D2MshortTime';
-			}
-			$dateInfo	= TodoyuTime::format($this->getDateStart(), $format);
-			$dateInfo  .= $break;
-			$dateInfo  .= TodoyuTime::format($this->getDateEnd(), $format);
-		} else {
-				// Normal in-day event
-			$dateInfo	= TodoyuTime::format($this->getDateStart(), 'D2MshortTime');
-			$dateInfo  .= ' - ';
-			$dateInfo  .= TodoyuTime::format($this->getDateEnd(), 'time');
-		}
+		$dateInfo	= $this->isMultiDay() ? $this->formatQuickinfoDateForMultiDayEvent() : $this->formatQuickinfoDateForInDayEvent();
 
+			// Append event duration info
 		if( $withDuration ) {
-			$dateInfo .= ' (' . TodoyuTime::formatDuration($this->getDuration()) . ')';
+			$dateInfo .= ' ' . $this->getDurationString(true, false);
 		}
 
 		return $dateInfo;
 	}
-	
-	
-	
+
+
+
+	/**
+	 * Render date info for tooltip of normal in-day event
+	 *
+	 * @return	String
+	 */
+	protected function formatQuickinfoDateForInDayEvent() {
+		$dateInfo	= TodoyuTime::format($this->getDateStart(), 'D2MshortTime');
+		$dateInfo  .= ' - ';
+		$dateInfo  .= TodoyuTime::format($this->getDateEnd(), 'time');
+
+		return $dateInfo;
+	}
+
+
+
+	/**
+	 * Render date info for toolip of multiday event
+	 *
+	 * @return	String
+	 */
+	protected function formatQuickinfoDateForMultiDayEvent() {
+			// Define format for all-day events and multi-day events
+		if( $this->isDayevent() ) {
+			$break	= ' - ';
+			$format	= 'MlongD2';
+		} else {
+			$break	= "\n";
+			$format	= 'D2MshortTime';
+		}
+
+		$info	= TodoyuTime::format($this->getDateStart(), $format);
+		$info  .= $break;
+		$info  .= TodoyuTime::format($this->getDateEnd(), $format);
+
+		return $info;
+	}
+
+
+
 	/**
 	 * Build pre-formatted person(s) info for event quickinfo tooltip
 	 *

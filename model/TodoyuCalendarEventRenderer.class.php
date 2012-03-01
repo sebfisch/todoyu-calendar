@@ -83,7 +83,6 @@ class TodoyuCalendarEventRenderer {
 		$tmpl	= 'ext/calendar/view/event-listmode.tmpl';
 		$data	= array(
 			'event'	=> $eventData,
-//			'color'	=> $eventData['color']	// @todo remove this redundancy and have dwoo get color from event data directly
 		);
 
 		return Todoyu::render($tmpl, $data);
@@ -195,6 +194,11 @@ class TodoyuCalendarEventRenderer {
 	}
 
 
+
+	/**
+	 * @param	Array	$personIDs
+	 * @return	String
+	 */
 	public static function renderAutoMailComment(array $personIDs) {
 		$tmpl	= 'ext/calendar/view/infocomment-autonotification.tmpl';
 		$data	= array(
