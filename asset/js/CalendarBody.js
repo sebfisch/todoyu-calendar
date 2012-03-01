@@ -61,6 +61,10 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * @method	init
 	 */
 	init: function() {
+		if( !this.isLoaded() ) {
+			return;
+		}
+
 			// Ensure the calendarBody is there (it's missing when editing an event initially)
 		this.calendarBody	= $('calendarBody');
 
@@ -80,6 +84,15 @@ Todoyu.Ext.calendar.CalendarBody	= {
 
 			// Call hooked callbacks
 		Todoyu.Hook.exec('calendarBody.init');
+	},
+
+
+
+	/**
+	 * Check whether calendar body is loaded
+	 */
+	isLoaded: function() {
+		return Todoyu.exists('calendarBody');
 	},
 
 

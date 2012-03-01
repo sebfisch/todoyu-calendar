@@ -64,7 +64,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 			this.pe = new PeriodicalExecuter(this.update.bind(this), 60);
 
 		} else {
-			this.marker.hide()
+			this.hideMarker();
 		}
 	},
 
@@ -76,18 +76,27 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @method	insertMarkerLayer
 	 */
 	addMarker: function() {
-		this.marker = new Element(
-			'div', {
+		this.marker = new Element('div', {
 			id:			'currentHourMarker',
-			'class':	this.ext.getActiveTab() + 'Mode'
+			className:	this.ext.getActiveTab() + 'Mode'
 		});
 
 		$('gridContainer').insert({
-			before:
-				this.marker
+			before:	this.marker
 		});
 
 		this.update();
+	},
+
+
+
+	/**
+	 * Hide the marker
+	 */
+	hideMarker: function() {
+		if( this.marker ) {
+			this.marker.hide()
+		}
 	},
 
 
@@ -148,8 +157,8 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 		this.marker.clonePosition(hourCells[0], cloneOptions);
 
 		this.marker.setStyle({
-			'width':    this.getWidth() + 'px',
-			'height':	this.getHeight() + 'px'
+			width:	this.getWidth() + 'px',
+			height:	this.getHeight() + 'px'
 		});
 	},
 
@@ -187,7 +196,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 		var currentMinutes	= new Date().getMinutes();
 
 		var pastHoursShown;
-		if( Todoyu.Ext.calendar.CalendarBody.isFullHeight() ) {
+		if( this.ext.CalendarBody.isFullHeight() ) {
 				// Full hours range 00:00 to 23:00
 			pastHoursShown  = currentHour;
 		} else {
