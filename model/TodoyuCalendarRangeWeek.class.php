@@ -31,13 +31,13 @@ class TodoyuCalendarRangeWeek extends TodoyuDayRange {
 	 * Initialize
 	 *
 	 * @param	Integer		$date		Date of a day in this week
-	 * @param	Boolean		$weekend	Include weekend in the range
+	 * @param	Boolean		$displayWeekend	Include weekend in the range
 	 */
-	public function __construct($date, $weekend = true) {
+	public function __construct($date, $displayWeekend = true) {
 		$date	= TodoyuTime::time($date);
 
-		$this->setStart($date);
-		$this->setEnd($date, $weekend);
+		$this->setStart($date, $displayWeekend);
+		$this->setEnd($date, $displayWeekend);
 	}
 
 
@@ -47,9 +47,16 @@ class TodoyuCalendarRangeWeek extends TodoyuDayRange {
 	 * Will get adjusted to the week start
 	 *
 	 * @param	Integer		$date
+	 * @param	Boolean		$includeWeekend
 	 */
-	public function setStart($date) {
-		$date	= TodoyuTime::getWeekStart($date);
+	public function setStart($date, $includeWeekend = true) {
+		if( $includeWeekend ) {
+				// Get 1st day  of week (sunday or monday depending on system config of 1st day of week)
+			$date	= TodoyuTime::getWeekStart($date);
+		} else {
+				// Displayed range is MON-FRI
+			$date   = TodoyuTime::getWeekStart($date, true);
+		}
 
 		parent::setStart($date);
 	}
@@ -61,13 +68,16 @@ class TodoyuCalendarRangeWeek extends TodoyuDayRange {
 	 * Will get adjusted to the week end or the end of the working week (without weekend)
 	 *
 	 * @param	Integer		$date
-	 * @param	Boolean		$weekend
+	 * @param	Boolean		$includeWeekend
 	 */
-	public function setEnd($date, $weekend = true) {
-		$date	= TodoyuTime::getWeekEnd($date);
-
-		if( !$weekend ) {
-			$date	= TodoyuTime::addDays($date, -2);
+	public function setEnd($date, $includeWeekend = true) {
+		if( $includeWeekend ) {
+				// Get end of of week (saturday or sunday depending on system config of 1st day of week)
+			$date	= TodoyuTime::getWeekEnd($date);
+		} else {
+				// Get friay of week
+			$date	= TodoyuTime::getWeekEnd($date, true);
+			$date   = TodoyuTime::addDays($date, -2);
 		}
 
 		parent::setEnd($date);
