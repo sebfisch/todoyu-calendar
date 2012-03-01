@@ -54,7 +54,7 @@
 	<label index="eventslist.holidaysWithinTheNextweeks">Holidays within the next weeks</label>
 	<label index="error.noAppointmentsFound">No upcoming events</label>
 	<label index="error.starttimeAfterEndtime">The event ends before or at the same time as it starts!</label>
-	<label index="error.privateEvent">You are not allowed to assign a event marked as private to somebody else!</label>
+	<label index="error.privateEvent">You are not allowed to assign an event marked as private to somebody else!</label>
 	<label index="error.personsOverbooked">This person is already busy at the given time:</label>
 	<label index="error.hasInternalPerson">You need to assign at least one internal person to the event</label>
 	<label index="contextmenu.manageEvents">Manage Events</label>
