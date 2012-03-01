@@ -661,23 +661,21 @@ class TodoyuCalendarEventStaticManager {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
-	 * @param	Integer		$oldDateStart
+	 * @param	Integer		$dateStartOld
 	 */
-	public static function updateAssignment($idEvent, $idPerson, $oldDateStart) {
+	public static function updateAssignment($idEvent, $idPerson, $dateStartOld) {
 		$event		= self::getEvent($idEvent);
 		$reminder	= $event->getReminder($idPerson);
-		$diff		= $event->getDateStart() - $oldDateStart;
+		$diff		= $event->getDateStart() - $dateStartOld;
 
 		$dateEmail	= false;
 		$datePopup	= false;
 
-		if( $diff > 0 ) {
-			if( $reminder->hasEmailReminder() ) {
-				$dateEmail	= $reminder->getDateRemindEmail() + $diff;
-			}
-			if( $reminder->hasPopupReminder() ) {
-				$datePopup	= $reminder->getDateRemindPopup() + $diff;
-			}
+		if( $reminder->hasEmailReminder() ) {
+			$dateEmail	= $reminder->getDateRemindEmail() + $diff;
+		}
+		if( $reminder->hasPopupReminder() ) {
+			$datePopup	= $reminder->getDateRemindPopup() + $diff;
 		}
 
 		TodoyuCalendarEventAssignmentManager::updateReminderDates($idEvent, $idPerson, $dateEmail, $datePopup);
