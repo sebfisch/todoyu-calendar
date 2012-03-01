@@ -51,7 +51,8 @@ class TodoyuCalendarRenderer {
 			'content'		=> self::renderCalendarBody($tab, $date, $params),
 			'showCalendar'	=> in_array($tab, array('day', 'week', 'month')),
 			'rangeStart'	=> TodoyuCalendarPreferences::getCompactViewRangeStart(),
-			'rangeEnd'		=> TodoyuCalendarPreferences::getCompactViewRangeEnd()
+			'rangeEnd'		=> TodoyuCalendarPreferences::getCompactViewRangeEnd(),
+			'idEvent'		=> intval($params['event'])
 		);
 
 			// If event view is selected, set date and add it to data array

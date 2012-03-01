@@ -89,6 +89,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Invalid data detected - re-display the form
 		if( ! $form->isValid() ) {
 			TodoyuHeader::sendTodoyuErrorHeader();
+			TodoyuHeader::sendTodoyuHeader('event', $idEvent);
+
 			$form->setUseRecordID(false);
 
 			return $form->render();
@@ -114,6 +116,8 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			TodoyuHeader::sendTodoyuHeader('time', intval($storageData['date_start']));
 			TodoyuHeader::sendTodoyuHeader('event', $idEvent);
 		}
+
+		return '';
 	}
 
 

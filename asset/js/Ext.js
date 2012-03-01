@@ -143,6 +143,9 @@ Todoyu.Ext.calendar	= {
 
 			// Add event save hook
 		Todoyu.Hook.add('calendar.event.saved', this.onEventSaved.bind(this));
+			
+			// Add init handler for edit form init
+		Todoyu.Hook.add('form.display', this.Event.Edit.onFormDisplay.bind(this.Event.Edit));
 	},
 
 

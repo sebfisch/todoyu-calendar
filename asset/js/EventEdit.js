@@ -38,6 +38,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 	lastAssignedUserIDs: [],
 
+	initialized: false,
 
 
 	/**
@@ -115,14 +116,43 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		var tabLabel	= response.getTodoyuHeader('tabLabel');
 
 		this.setTabLabel(tabLabel);
+		this.initForm(idEvent, extraOptions);
+
+		this.show();
+	},
+
+
+
+	/**
+	 * Initialize form on display if not already initialized by response handler
+	 *
+	 * @param	{String}	idForm
+	 * @param	{String}	formName
+	 * @param	{Number}	idRecord
+	 */
+	onFormDisplay: function(idForm, formName, idRecord) {
+		if( idForm === 'event-form' && !this.initialized ) {
+			this.initForm(idRecord);
+		}
+	},
+
+
+
+	/**
+	 * Initialize form
+	 *
+	 * @param	{Number}	idEvent
+	 * @param	{Object}	extraOptions
+	 */
+	initForm: function(idEvent, extraOptions) {
+		extraOptions = extraOptions || {};
 
 		this.updateVisibleFields();
-
 		this.observeEventType();
 		this.observeAssignedUsers(idEvent);
 		this.ext.Event.Series.initEditView(idEvent, extraOptions.seriesEdit);
 
-		this.show();
+		this.initialized = true;
 	},
 
 
@@ -207,10 +237,9 @@ Todoyu.Ext.calendar.Event.Edit	= {
 			// Check all fields, if a hooks wants to hide it
 		allFieldNames.each(function(fieldName){
 				// Check all hooks if they want to hide the field
-			checkHooks.each(function(hook){
-				if( hook(fieldName, eventType) ) {
+			checkHooks.each(function(hookCallback){
+				if( hookCallback(fieldName, eventType) ) {
 					fieldsToHide.push(fieldName);
-					return;
 				}
 			}, this);
 		}, this);
@@ -480,7 +509,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 				// Notify of invalid data
 			Todoyu.notifyError('[LLL:calendar.event.saved.error]', 'calendar.event.saved');
 			$('event-form').replace(response.responseText);
-			this.ext.Event.Series.initEditView(idEvent);
+			this.initForm(idEvent);
 		} else if( response.hasTodoyuHeader('overbookingwarning') ) {
 				// Show overbooking warning + confirmation prompt
 			this.updateInlineOverbookingWarning(response.getTodoyuHeader('overbookingwarningInline'));
