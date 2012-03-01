@@ -1,4 +1,4 @@
-@import "../../../core/config/theme.scss";
+@import "../../../../core/config/theme.scss";
 
 #calendar-body .event {
 	position: absolute;
@@ -37,7 +37,6 @@
 #calendar .event.noEdit dt.head {
 	cursor:pointer;
 }
-
 
 
 .event .headInner {
