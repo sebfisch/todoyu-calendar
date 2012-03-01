@@ -44,7 +44,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	 * @return	Integer
 	 */
 	public function getDateStart() {
-		return $this->get('date_start');
+		return $this->getInt('date_start');
 	}
 
 
