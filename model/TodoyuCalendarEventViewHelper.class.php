@@ -192,6 +192,33 @@ class TodoyuCalendarEventViewHelper {
 		return $items;
 	}
 
+
+
+	/**
+	 * Get edit tab label
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	String
+	 */
+	public static function getEventEditTabLabel($idEvent) {
+		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+
+		return Todoyu::Label('calendar.event.edit') . ': ' . TodoyuString::crop($event->getTitle(), 20, '...', false);
+	}
+
+
+
+	/**
+	 * Get detail view tab label
+	 *
+	 * @param	Integer		$idEvent
+	 * @return	String
+	 */
+	public static function getEventViewTabLabel($idEvent) {
+		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+
+		return TodoyuString::crop($event->getTitle(), 20, '...', false);
+	}
 }
 
 ?>

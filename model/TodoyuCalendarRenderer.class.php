@@ -202,22 +202,30 @@ class TodoyuCalendarRenderer {
 	/**
 	 * Renders the calendar tabs (day, week, month)
 	 *
-	 * @param	String	$activeTab
-	 * @return	String	HTML
+	 * @param	String		$activeTab
+	 * @param	Integer		$idEvent
+	 * @return	String
 	 */
-	public static function renderTabs($activeTab = '') {
+	public static function renderTabs($activeTab = '', $idEvent = 0) {
 		if( empty($activeTab) ) {
 			$activeTab	= TodoyuCalendarPreferences::getActiveTab();
 		}
+		$idEvent	= intval($idEvent);
 
 		$name		= 'calendar';
 		$tabs		= TodoyuCalendarManager::getCalendarTabsConfig();
 		$jsHandler	= 'Todoyu.Ext.calendar.Tabs.onSelect.bind(Todoyu.Ext.calendar.Tabs)';
 
-		if( $activeTab === 'view' ) {
+		if( $activeTab === 'view' && $idEvent > 0 ) {
 			$tabs[]	= array(
 				'id'	=> 'view',
-				'label'	=> 'Details'
+				'label'	=> TodoyuCalendarEventViewHelper::getEventViewTabLabel($idEvent)
+			);
+		}
+		if( $activeTab === 'edit' && $idEvent > 0 ) {
+			$tabs[]	= array(
+				'id'	=> 'edit',
+				'label'	=> TodoyuCalendarEventViewHelper::getEventEditTabLabel($idEvent)
 			);
 		}
 

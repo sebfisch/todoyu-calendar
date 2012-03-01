@@ -54,7 +54,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			$tabLabel	= Todoyu::Label('calendar.event.new');
 		} else {
 			TodoyuCalendarEventRights::restrictEdit($idEvent);
-			$tabLabel	= Todoyu::Label('calendar.event.edit') . ': ' . TodoyuString::crop($event->getTitle(), 20, '...', false);
+			$tabLabel	= TodoyuCalendarEventViewHelper::getEventEditTabLabel($idEvent);
 		}
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel);
 
@@ -209,7 +209,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		TodoyuCalendarEventRights::restrictSee($idEvent);
 
 			// Send tab label
-		$tabLabel	= TodoyuString::crop($event->getTitle(), 20, '...', false);
+		$tabLabel	= TodoyuCalendarEventViewHelper::getEventViewTabLabel($idEvent);
 		TodoyuHeader::sendTodoyuHeader('tabLabel', $tabLabel, true);
 
 		return TodoyuCalendarEventRenderer::renderEventView($idEvent);
