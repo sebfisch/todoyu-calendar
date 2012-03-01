@@ -1,3 +1,5 @@
+@import "../../../core/config/theme.scss";
+
 #calendar-body .event {
 	position: absolute;
 	overflow: hidden;
@@ -111,7 +113,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 
 .dayEvents .event .date {
-	color:#CCC;
+	color:$colorTextGeneral;
 }
 
 .event > div {
