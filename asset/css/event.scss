@@ -323,45 +323,53 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	background-color:#fff;
 }
 
-#birthdays div.event {
-	/*background-color:#FFF !important;*/
-	border-bottom:1px solid #fefefe;
-}
-#birthdays div.event div {
-	display:inline-block;
-	padding:5px 0;
-}
-#birthdays div.event div.type {
-	background-position:0 -325px;
-	height:16px;
-	width:30px;
-	margin-left:10px;
-}
-#birthdays div.event div.date {
-	width:80px;
-}
-#birthdays div.event div.name {
-	width:180px;
-}
-#birthdays div.event div.age {
-	width:100px;
-}
-
-#birthdays h3 {
-	background:#fff url(../../../contact/asset/img/icons.png) no-repeat scroll 4px -325px;
-	padding-left:35px;
-}
-
-#birthdays h3.even {
-	background-color:#f3f3f3;
-}
-
-#birthdays h3 span.date {
-	padding-right:10px;
-}
 
 /* @todo clean up:merge sections "portal events list" and "list mode in portal" */
+/* ----------------------
+	Holidays in portal list
+   ---------------------- */
+.holidays {
+	background:#9b9b9b url(../img/icons.png) no-repeat scroll 0 -390px;
+	padding:0 0 0 15px;
+	margin:0 0 2px 1px;
+	color:#fff;
+	overflow:hidden;
+	min-height:17px;
+}
 
+
+
+/* ----------------------
+	Birthdays in portal list
+   ---------------------- */
+#portalListBirthdays {
+	.event {
+		div {
+    		display:inline-block;
+            padding:5px 0;
+    	}
+    	&.odd {
+     		background-color:#f3f3f3;
+     	}
+		.type {
+			margin-right:15px;
+			background-position:0 -325px;
+			height:16px;
+			width:30px;
+			margin-left:10px;
+		}
+		.date {
+			width:200px;
+		}
+		.name {
+			width:200px;
+		}
+		.age {
+			width:70px;
+		}
+	}
+
+}
 
 
 /*-------------------------
@@ -576,39 +584,6 @@ button.editEvent .icon {
 #formElement-event-field-date-start {
 	clear: both;
 }
-
-
-
-/* ----------------------
-	Holidays
-   ---------------------- */
-.holidays {
-	background:#9b9b9b url(../img/icons.png) no-repeat scroll 0 -390px;
-	padding:0 0 0 15px;
-	margin:0 0 2px 1px;
-	color:#fff;
-	overflow:hidden;
-	min-height:17px;
-}
-
-
-
-/* ----------------------
-	Birthdays
-   ---------------------- */
-.event.odd {
-  background-color:#f3f3f3 !important;
-}
-div .typeBirthday div.type {
-	margin-right:15px;
-}
-div .typeBirthday div.date {
-	width:245px !important;
-}
-div .typeBirthday div.name {
-	width:130px !important;
-}
-
 
 
 /* -------------------------------------------------

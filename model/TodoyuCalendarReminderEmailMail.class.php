@@ -58,7 +58,7 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 
 			// Render and set email subject
 		$prefix	= Todoyu::Label('calendar.reminder.email.subject');
-		$subject= $prefix . ': ' . $event->getTitle() . ' - ' . $event->getDurationString();
+		$subject= $prefix . ': ' . $event->getTitle() . ' - ' . $event->getRangeLabel(true);
 
 		$this->setSubject($subject);
 

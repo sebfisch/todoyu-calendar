@@ -25,14 +25,9 @@
 			{/if}
 		</div>
 
-		{if $view === 'day'}
+		{if date('ymd', $date_start) !== date('ymd', $date_end)}
 			<div class="date">
-				(
-				{dateFormat $date_start date}
-				{if date('ymd', $date_start) !== date('ymd', $date_end)}
-					- {dateFormat $date_end date}
-				{/if}
-				)
+				({dateFormat $date_start D2Mshort} - {dateFormat $date_end D2Mshort})
 			</div>
 		{/if}
 	</div>

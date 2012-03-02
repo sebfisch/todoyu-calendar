@@ -197,7 +197,7 @@ function Dwoo_Plugin_isAllowedEventReminderEmail(Dwoo $dwoo, $idEvent) {
  * @param	Integer			$seconds
  * @return	String
  */
-function Dwoo_Plugin_durationFormat_compile(Dwoo_Compiler $compiler, $seconds) {
+function Dwoo_Plugin_formatDuration_compile(Dwoo_Compiler $compiler, $seconds) {
 	return 'TodoyuTime::formatDuration(' . $seconds . ')';
 }
 
@@ -210,11 +210,10 @@ function Dwoo_Plugin_durationFormat_compile(Dwoo_Compiler $compiler, $seconds) {
  * @param	Dwoo_Compiler 	$compiler
  * @param	Integer			$dateStart
  * @param	Integer			$dateEnd
- * @param	Boolean			$withDuration
  * @return	String
  */
-function Dwoo_Plugin_timespanFormat_compile(Dwoo_Compiler $compiler, $dateStart, $dateEnd, $withDuration = false) {
-	return 'TodoyuTime::formatTimespan(' . $dateStart . ', ' . $dateEnd . ', ' . $withDuration . ')';
+function Dwoo_Plugin_formatRange_compile(Dwoo_Compiler $compiler, $dateStart, $dateEnd) {
+	return 'TodoyuTime::formatRange(' . $dateStart . ', ' . $dateEnd . ')';
 }
 
 ?>

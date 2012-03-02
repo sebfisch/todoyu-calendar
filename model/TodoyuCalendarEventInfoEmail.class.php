@@ -167,7 +167,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 				$prefix	= 'Unknown Action';
 		}
 
-		$subject	= $prefix . ': ' . $this->getEvent()->getTitle() . ' - ' . $this->getEvent()->getDurationString();
+		$subject	= $prefix . ': ' . $this->getEvent()->getTitle() . ' - ' . $this->getEvent()->getRangeLabel(true);
 
 		$this->setSubject($subject);
 	}

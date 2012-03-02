@@ -109,10 +109,17 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	/**
 	 * Get duration as string
 	 *
-	 * @return String
+	 * @param	Boolean	$withDuration
+	 * @return	String
 	 */
-	public function getDurationString($withDuration = true, $withDates = true) {
-		return TodoyuString::getRangeString($this->getDateStart(), $this->getDateEnd(), $withDuration, $withDates);
+	public function getRangeLabel($withDuration = false) {
+		$rangeLabel	= TodoyuTime::formatRange($this->getDateStart(), $this->getDateEnd());
+
+		if( $withDuration && $this->getDuration() > 0 ) {
+			$rangeLabel .= ' (' . TodoyuTime::formatDuration($this->getDuration()) . ')';
+		}
+
+		return $rangeLabel;
 	}
 
 
@@ -542,7 +549,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 			$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
 		}
 
-		$this->data['durationString']	= $this->getDurationString();
+		$this->data['rangeLabel']		= $this->getRangeLabel(true);
 		$this->data['isPrivate']		= $this->isPrivate();
 		$this->data['isAcknowledged']	= $this->isAcknowledged();
 		$this->data['isUpdated']		= $this->isUpdated();
@@ -731,11 +738,6 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	public function addQuickInfos(TodoyuQuickinfo $quickInfo, TodoyuDayRange $currentRange = null) {
 		$canSeeDetails	= TodoyuCalendarEventRights::isSeeDetailsAllowed($this->getID());
 
-			// Build event infos: title, type, date, place, assigned persons
-		$dateInfo	= $this->getQuickinfoDateInfo(true);
-		$personInfo	= $this->getQuickinfoPersonInfo();
-		$typeInfo	= $this->getQuickinfoTypeInfo();
-
 			// Private event or no access?
 		if( $canSeeDetails ) {
 			$quickInfo->addInfo('title', $this->getTitle(), 10);
@@ -752,71 +754,26 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 			$quickInfo->addInfo('title', '<' . Todoyu::Label('calendar.event.privateEvent.info') . '>', 10);
 		}
 
+			// Type
+		$typeInfo	= $this->getQuickinfoTypeInfo();
 		$quickInfo->addInfo('type' . ucfirst($this->getTypeKey()),	$typeInfo, 20);
+
+			// Date
+		$dateInfo	= TodoyuTime::formatRange($this->getDateStart(), $this->getDateEnd());
 		$quickInfo->addInfo('date',	$dateInfo, 30);
 
-		$amountAssignedPersons	= count($this->getAssignedPersonsData());
+			// Duration
+		if( $this->getDuration() > 0 ) {
+			$durationInfo	= TodoyuTime::formatDuration($this->getDuration());
+			$quickInfo->addInfo('duration',	$durationInfo, 35);
+		}
+
+			// Persons
+		$amountAssignedPersons	= sizeof($this->getAssignedPersonIDs());
 		if( $amountAssignedPersons > 0 ) {
+			$personInfo	= $this->getQuickinfoPersonInfo();
 			$quickInfo->addInfo('persons', $personInfo, 50, false);
 		}
-	}
-
-
-	
-	/**
-	 * Build formatted date info for event quickinfo tooltip
-	 *
-	 * @param	Boolean					$withDuration
-	 * @return	String
-	 */
-	protected function getQuickinfoDateInfo($withDuration = false) {
-		$dateInfo	= $this->isMultiDay() ? $this->formatQuickinfoDateForMultiDayEvent() : $this->formatQuickinfoDateForInDayEvent();
-
-			// Append event duration info
-		if( $withDuration ) {
-			$dateInfo .= ' ' . $this->getDurationString(true, false);
-		}
-
-		return $dateInfo;
-	}
-
-
-
-	/**
-	 * Render date info for tooltip of normal in-day event
-	 *
-	 * @return	String
-	 */
-	protected function formatQuickinfoDateForInDayEvent() {
-		$dateInfo	= TodoyuTime::format($this->getDateStart(), 'D2MshortTime');
-		$dateInfo  .= ' - ';
-		$dateInfo  .= TodoyuTime::format($this->getDateEnd(), 'time');
-
-		return $dateInfo;
-	}
-
-
-
-	/**
-	 * Render date info for toolip of multiday event
-	 *
-	 * @return	String
-	 */
-	protected function formatQuickinfoDateForMultiDayEvent() {
-			// Define format for all-day events and multi-day events
-		if( $this->isDayevent() ) {
-			$break	= ' - ';
-			$format	= 'MlongD2';
-		} else {
-			$break	= "\n";
-			$format	= 'D2MshortTime';
-		}
-
-		$info	= TodoyuTime::format($this->getDateStart(), $format);
-		$info  .= $break;
-		$info  .= TodoyuTime::format($this->getDateEnd(), $format);
-
-		return $info;
 	}
 
 
