@@ -27,26 +27,26 @@
 
 // Add holiday sets to records area of sysadmin
 TodoyuSysmanagerExtManager::addRecordConfig('calendar', 'holidayset', array(
-	'label'		=> 'calendar.ext.records.holidayset',
-	'desc'		=> 'calendar.ext.records.holidayset.desc',
-	'list'		=> 'TodoyuCalendarHolidaySetManager::getRecords',
-	'form'		=> 'ext/calendar/config/form/admin/holidayset.xml',
-	'object'	=> 'TodoyuCalendarHolidaySet',
-	'delete'	=> 'TodoyuCalendarHolidaySetManager::deleteHolidaySet',
-	'save'		=> 'TodoyuCalendarHolidaySetManager::saveHolidaySet',
-	'table'		=> 'ext_calendar_holidayset'
+	'label'			=> 'calendar.ext.records.holidayset',
+	'description'	=> 'calendar.ext.records.holidayset.desc',
+	'list'			=> 'TodoyuCalendarHolidaySetManager::getRecords',
+	'form'			=> 'ext/calendar/config/form/admin/holidayset.xml',
+	'object'		=> 'TodoyuCalendarHolidaySet',
+	'delete'		=> 'TodoyuCalendarHolidaySetManager::deleteHolidaySet',
+	'save'			=> 'TodoyuCalendarHolidaySetManager::saveHolidaySet',
+	'table'			=> 'ext_calendar_holidayset'
 ));
 
 // Add holidays to records area of sysadmin
 TodoyuSysmanagerExtManager::addRecordConfig('calendar', 'holiday', array(
-	'label'		=> 'calendar.ext.holiday',
-	'desc'		=> 'calendar.ext.records.holiday.desc',
-	'list'		=> 'TodoyuCalendarHolidayManager::getRecords',
-	'form'		=> 'ext/calendar/config/form/admin/holiday.xml',
-	'object'	=> 'TodoyuCalendarHoliday',
-	'delete'	=> 'TodoyuCalendarHolidayManager::deleteHoliday',
-	'save'		=> 'TodoyuCalendarHolidayManager::saveHoliday',
-	'table'		=> 'ext_calendar_holiday'
+	'label'			=> 'calendar.ext.holiday',
+	'description'	=> 'calendar.ext.records.holiday.desc',
+	'list'			=> 'TodoyuCalendarHolidayManager::getRecords',
+	'form'			=> 'ext/calendar/config/form/admin/holiday.xml',
+	'object'		=> 'TodoyuCalendarHoliday',
+	'delete'		=> 'TodoyuCalendarHolidayManager::deleteHoliday',
+	'save'			=> 'TodoyuCalendarHolidayManager::saveHoliday',
+	'table'			=> 'ext_calendar_holiday'
 ));
 
 ?>
