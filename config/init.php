@@ -204,7 +204,6 @@ if( TodoyuExtensions::isInstalled('profile') && TodoyuAuth::isInternal() ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'main',
 			'label'			=> 'calendar.ext.profile.module.main.tab',
-//			'require'		=> 'calendar.settings:editbookmarks'
 		);
 	}
 
@@ -212,7 +211,6 @@ if( TodoyuExtensions::isInstalled('profile') && TodoyuAuth::isInternal() ) {
 		Todoyu::$CONFIG['EXT']['profile']['calendarTabs'][]= array(
 			'id'			=> 'reminders',
 			'label'			=> 'calendar.ext.profile.module.reminders.tab',
-//			'require'		=> 'calendar.settings:editbookmarks'
 		);
 	}
 }
@@ -251,12 +249,12 @@ Todoyu::$CONFIG['EXT']['calendar']['series'] = array(
 	'maxCreate'	=> 100
 );
 
-	// event data sources
+	// Event data sources
 TodoyuCalendarDataSourceManager::addDataSource('static', 'TodoyuCalendarDataSourceStatic');
 TodoyuCalendarDataSourceManager::addDataSource('birthday', 'TodoyuCalendarDataSourceBirthday');
 TodoyuCalendarDataSourceManager::addDataSource('holiday', 'TodoyuCalendarDataSourceHoliday');
 
-	// event filters
+	// Event filters
 TodoyuHookManager::registerHook('calendar', 'event.filter', 'TodoyuCalendarManager::hookEventFilterPersons');
 TodoyuHookManager::registerHook('calendar', 'event.filter', 'TodoyuCalendarManager::hookEventFilterEventTypes');
 TodoyuHookManager::registerHook('calendar', 'event.filter', 'TodoyuCalendarManager::hookEventFilterHolidaySets');
