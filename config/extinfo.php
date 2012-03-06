@@ -36,10 +36,10 @@ Todoyu::$CONFIG['EXT']['calendar']['info']	= array(
 	'state' 		=> 'stable',
 	'version' 		=> '1.2.0',
 	'constraints' 	=> array(
+		'core'		=> '2.2.0dev',
 		'depends' 	=> array(
 			'contact'	=> '1.1.0'
-		),
-		'conflicts'	=> array()
+		)
 	),
 	'urlDocumentation'	=> 'http://doc.todoyu.com/?calendar'
 );

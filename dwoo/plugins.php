@@ -185,35 +185,4 @@ function Dwoo_Plugin_isAllowedEventReminderEmail(Dwoo $dwoo, $idEvent) {
 	return TodoyuCalendarEventReminderRights::isEmailSchedulingAllowed($idEvent);
 }
 
-
-
-/**
- * Render duration in suiting format
- *
- * @package		Todoyu
- * @subpackage	Calendar
- *
- * @param	Dwoo_Compiler 		$compiler
- * @param	Integer			$seconds
- * @return	String
- */
-function Dwoo_Plugin_formatDuration_compile(Dwoo_Compiler $compiler, $seconds) {
-	return 'TodoyuTime::formatDuration(' . $seconds . ')';
-}
-
-/**
- * Render timespan in suiting format
- *
- * @package		Todoyu
- * @subpackage	Calendar
- *
- * @param	Dwoo_Compiler 	$compiler
- * @param	Integer			$dateStart
- * @param	Integer			$dateEnd
- * @return	String
- */
-function Dwoo_Plugin_formatRange_compile(Dwoo_Compiler $compiler, $dateStart, $dateEnd) {
-	return 'TodoyuTime::formatRange(' . $dateStart . ', ' . $dateEnd . ')';
-}
-
 ?>

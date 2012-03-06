@@ -14,6 +14,7 @@ calender 1.2.0 - not released yet
 	* Changed: Moved toggle full-day/working hours button into calendar top navigation
 	* Changed: Prevented pointless AJAX request of optional event mailing when no receivers are selected
 	* Changed: Clarified cancel mailing button label (to "dont send email" instead of "cancel")
+	* Changed: Moved dwoo plugins from calendar extension to core: {formatDuration}, {formatRange}
 	* Bugfix: Event mailing popup observers were initialized premature on page load (1732.417)
 	* Bugfix: Quick-event form observers were not re-initialized after failed data validation form re-display (1732.516)
 	* Bugfix: Optional event emails after quick-event creation were not being sent (1732.517)
