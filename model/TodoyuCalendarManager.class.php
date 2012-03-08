@@ -295,7 +295,7 @@ class TodoyuCalendarManager {
 		/**
 		 * @var	TodoyuContactPanelWidgetStaffSelector	$widget
 		 */
-		return $widget->getSelectedPersons();
+		return $widget->getPersonIDsOfSelection();
 	}
 
 
