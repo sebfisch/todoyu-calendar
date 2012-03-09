@@ -238,7 +238,7 @@ class TodoyuCalendarViewHelper {
 	 * Get options for time excerpt settings
 	 *
 	 * @param	TodoyuFormElement	$field
-	 * @param   Integer             $offset
+	 * @param	Integer				$offset
 	 * @return	Array
 	 */
 	public static function getRangeTimeOptions(TodoyuFormElement $field, $offset = 0) {

@@ -68,7 +68,7 @@ Todoyu.Ext.calendar.Week	= {
 	 * Get snap config for drag and drop in week view
 	 *
 	 * @method	getDragDropSnap
-	 * @return	{Array}
+	 * @return	{Number[]}
 	 */
 	getDragDropSnap: function() {
 		var vertical	= this.ext.DragDrop.verticalSnap;

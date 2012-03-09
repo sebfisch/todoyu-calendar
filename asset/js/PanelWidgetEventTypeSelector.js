@@ -110,7 +110,7 @@ Todoyu.Ext.calendar.PanelWidget.EventTypeSelector	= {
 	 * Get IDs of selected event types
 	 *
 	 * @method	getSelectedEventTypes
-	 * @return	Array
+	 * @return	{String[]}
 	 */
 	getSelectedEventTypes: function() {
 		return $F(this.list);

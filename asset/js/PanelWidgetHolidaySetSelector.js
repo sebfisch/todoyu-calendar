@@ -161,7 +161,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector	= {
 	 * Get IDs of selected holidaySets
 	 *
 	 * @method	getSelectedHolidaySetIDs
-	 * @return	{Array}
+	 * @return	{String[]}
 	 */
 	getSelectedHolidaySetIDs: function() {
 		return $(this.list).select('option:selected').collect(function(option) {

@@ -451,9 +451,8 @@ Todoyu.Ext.calendar.Event.Series = {
 
 
 	/**
-	 *
 	 * @param	{Number}	idSeries
-	 * @return	{Array}
+	 * @return	{Element[]}
 	 */
 	getSeriesEventElements: function(idSeries) {
 		return $$('.event.series' + idSeries);

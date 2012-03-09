@@ -105,7 +105,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * Get hour cells
 	 *
 	 * @method	getHourCells
-	 * @return  {Array}
+	 * @return  {Element[]}
 	 */
 	getHourCells: function() {
 		return this.ext.CalendarBody.calendarBody.down('.colHours').select('div');
