@@ -33,7 +33,7 @@
 	<label index="owner">Eigner</label>
 	<label index="today">Heute</label>
 	<label index="calendartitle.dateformat.day">%A, %d. %B %Y (KW %W)</label>
-	<label index="calendartitle.dateformat.week.part1">%d. %B %Y (KW %W) - </label>
+	<label index="calendartitle.dateformat.week.part1">%d. %B - </label>
 	<label index="calendartitle.dateformat.week.part2">%d. %B %Y (KW %W)</label>
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label>
 	<label index="calendartitle.dateformat.month.part2">(KW %W - </label>

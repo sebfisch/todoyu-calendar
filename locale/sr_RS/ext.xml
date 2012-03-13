@@ -31,7 +31,7 @@
 	<label index="owner">Власник</label>
 	<label index="today">Данас</label>
 	<label index="calendartitle.dateformat.day">%A, %B %d %Y (CW %W)</label>
-	<label index="calendartitle.dateformat.week.part1">%B %d %Y (CW %W) - </label>
+	<label index="calendartitle.dateformat.week.part1">%B %d - </label>
 	<label index="calendartitle.dateformat.week.part2">%B %d %Y (CW %W)</label>
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label>
 	<label index="calendartitle.dateformat.month.part2">(CW %W - </label>

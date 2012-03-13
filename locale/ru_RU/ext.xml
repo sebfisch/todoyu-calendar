@@ -29,7 +29,7 @@
 	<label index="owner">Владелец</label>
 	<label index="today">Сегодня</label>
 	<label index="calendartitle.dateformat.day">%A, %d %B %Y (неделя %W)</label>
-	<label index="calendartitle.dateformat.week.part1">%d %B %Y (неделя %W) - </label>
+	<label index="calendartitle.dateformat.week.part1">%d %B - </label>
 	<label index="calendartitle.dateformat.week.part2">%d %B %Y (неделя %W)</label>
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label>
 	<label index="calendartitle.dateformat.month.part2">(неделя %W - </label>
