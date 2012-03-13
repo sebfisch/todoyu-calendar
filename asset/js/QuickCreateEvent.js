@@ -45,7 +45,7 @@ Todoyu.Ext.calendar.QuickCreateEvent	= {
 	 */
 	onPopupOpened: function() {
 		if( Todoyu.exists('quickcreate') ) {
-			this.initObservers();
+			this.addPanelWidgetObservers();
 		}
 	},
 
@@ -56,7 +56,7 @@ Todoyu.Ext.calendar.QuickCreateEvent	= {
 	 *
 	 * @method	initObservers
 	 */
-	initObservers: function() {
+	addPanelWidgetObservers: function() {
 		this.observeEventType();
 		this.observeAssignedUsers();
 	},
@@ -131,7 +131,7 @@ Todoyu.Ext.calendar.QuickCreateEvent	= {
 			Todoyu.notifyError('[LLL:calendar.event.saved.error]', notificationIdentifier);
 
 			Todoyu.Popups.setContent('quickcreate', response.responseText);
-			this.initObservers();
+			this.addPanelWidgetObservers();
 		} else {
 			var idEvent	= response.getTodoyuHeader('idEvent');
 
