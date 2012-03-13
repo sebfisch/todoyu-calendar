@@ -197,18 +197,20 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 		$dayEventElements	= $this->getDayEventsElements();
 
 		if( sizeof($dayEventElements) > 0 ) {
-			$mapPattern			= $this->getRange()->getDayTimestampsMap('Ymd', false);
+			$mapPattern			= $this->getRange()->getDayMap('Ymd', false);
 			$dayEventWeekMap[]	= $mapPattern;
 		}
 
 			// Find a position for all events
 		foreach($dayEventElements as $dayEventElement) {
-			$found		= false;
-			$eventDays	= $dayEventElement->getEvent()->getRange()->getOverlappingRange($this->getRange())->getDayTimestamps('Ymd');
+			$found				= false;
+			$overlappingRange	= $dayEventElement->getEvent()->getRange()->getOverlappingRange($this->getRange(), true);
+			$eventDayKeys		= $overlappingRange->getDayTimestamps('Ymd');
+
 
 				// Check every row for available space
 			foreach($dayEventWeekMap as $index => $displayRow) {
-				foreach($eventDays as $dayKey) {
+				foreach($eventDayKeys as $dayKey) {
 					if( $displayRow[$dayKey] !== false ) {
 						continue 2; // Not the whole space is available, check next row
 					}
@@ -216,13 +218,13 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 
 					// No collision, insert event and block rest of used cells
 				$found			= true;
-				$firstDayKey	= array_shift($eventDays);
+				$firstDayKey	= array_shift($eventDayKeys);
 				$dayEventWeekMap[$index][$firstDayKey]	= array(
 					'html'	=> $dayEventElement->render($this->getRange()),
-					'length'=> sizeof($eventDays)+1
+					'length'=> sizeof($eventDayKeys)+1
 				);
 
-				foreach($eventDays as $dayKey) {
+				foreach($eventDayKeys as $dayKey) {
 					$dayEventWeekMap[$index][$dayKey]	= true;
 				}
 
@@ -233,13 +235,13 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 			if( !$found ) {
 				$dayEventWeekMap[]	= $mapPattern;
 				$index				= sizeof($dayEventWeekMap)-1;
-				$firstDayKey		= array_shift($eventDays);
+				$firstDayKey		= array_shift($eventDayKeys);
 				$dayEventWeekMap[$index][$firstDayKey]	= array(
 					'html'	=> $dayEventElement->render($this->getRange()),
-					'length'=> sizeof($eventDays)+1
+					'length'=> sizeof($eventDayKeys)+1
 				);
 
-				foreach($eventDays as $dayKey) {
+				foreach($eventDayKeys as $dayKey) {
 					$dayEventWeekMap[$index][$dayKey]	= true;
 				}
 			}
