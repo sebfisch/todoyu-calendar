@@ -58,14 +58,24 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	init: function() {
 		this.markCurrentHourDigit();
 
-		if( this.ext.CalendarBody.isTodayDisplayed() ) {
+		if( this.isTodayDisplayed() ) {
 				// Add marker layer underneath current hour into DOM
 			this.addMarker();
-			this.pe = new PeriodicalExecuter(this.update.bind(this), 60);
-
+			this.pe = new PeriodicalExecuter(this.updatePosition.bind(this), 60);
 		} else {
 			this.hideMarker();
 		}
+	},
+
+
+
+	/**
+	 * Check whether current day is displayed
+	 *
+	 * @return	{Boolean}
+	 */
+	isTodayDisplayed: function() {
+		return this.ext.CalendarBody.isTodayDisplayed();
 	},
 
 
@@ -85,7 +95,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 			before:	this.marker
 		});
 
-		this.update();
+		this.updatePosition();
 	},
 
 
@@ -120,10 +130,20 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @return  {Element}
 	 */
 	getCurrentHourCell: function() {
-		var hourCells	= this.getHourCells();
-		var currentHour	= new Date().getHours();
+		var currentHour	= (new Date()).getHours();
 
-		return hourCells[currentHour];
+		return $('calendarBody').down('.colHours div', currentHour);
+	},
+
+
+
+	/**
+	 * Get first hour cell (0:00)
+	 *
+	 * @return	{Element}
+	 */
+	getFirstHourCell: function() {
+		return $('calendarBody').down('.colHours div');
 	},
 
 
@@ -142,24 +162,25 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	/**
 	 * Update marker layer to indicate current hour + minutes
 	 *
-	 * @method	updateMarkerLayerPosition
+	 * @method	updatePosition
 	 */
-	update: function() {
-		var hourCells	= this.getHourCells();
-		var cloneOptions= {
-			setLeft:    true,
-			setTop:     true,
-			setWidth:   false,
-			setHeight:	false,
-			offsetTop:	this.getOffsetTop(),
-			offsetLeft: this.getTodayOffsetLeft()
-		};
-		this.marker.clonePosition(hourCells[0], cloneOptions);
+	updatePosition: function() {
+		if( this.isTodayDisplayed() ) {
+			var cloneOptions= {
+				setLeft:    true,
+				setTop:     true,
+				setWidth:   false,
+				setHeight:	false,
+				offsetTop:	this.getOffsetTop(),
+				offsetLeft: this.getTodayOffsetLeft()
+			};
+			this.marker.clonePosition(this.getFirstHourCell(), cloneOptions);
 
-		this.marker.setStyle({
-			width:	this.getWidth() + 'px',
-			height:	this.getHeight() + 'px'
-		});
+			this.marker.setStyle({
+				width:	this.getWidth() + 'px',
+				height:	this.getHeight() + 'px'
+			});
+		}
 	},
 
 
@@ -256,10 +277,10 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 			if( Prototype.Browser.WebKit ) {
 					// e.g. Chrome
-				width   -= this.ext.Week.getNumDays() === 7 ? 2 : 3;
+				width   -= this.ext.Week.isWeekendDisplayed() ? 2 : 3;
 			} else {
 					// e.g. FF
-				width   -= this.ext.Week.getNumDays() === 7 ? 3 : 3;
+				width   -= this.ext.Week.isWeekendDisplayed() ? 3 : 3;
 			}
 		}
 

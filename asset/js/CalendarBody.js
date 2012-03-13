@@ -135,7 +135,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 */
 	toggleFullDayView: function() {
 		this.setFullHeight(! this.isFullHeight(), true);
-		this.HourMarker.update();
+		this.HourMarker.updatePosition();
 	},
 
 

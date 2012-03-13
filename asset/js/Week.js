@@ -41,6 +41,17 @@ Todoyu.Ext.calendar.Week	= {
 
 
 	/**
+	 * Check whether compact view is active
+	 *
+	 * @return	{Boolean}
+	 */
+	isCompactView: function() {
+		return this.getNumDays() === 5;
+	},
+
+
+
+	/**
 	 * Check whether today is displayed
 	 *
 	 * @method	isTodayDisplayed
