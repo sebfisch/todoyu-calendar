@@ -70,7 +70,7 @@ class TodoyuCalendarEventMailManager {
 	/**
 	 * Get person IDs of participants receiving auto-notification event emails
 	 *
-	 * @param	Integer 	$idEvent
+	 * @param	Integer		$idEvent
 	 * @param	Boolean		$ignoreCurrentUser
 	 * @return	Integer[]
 	 */

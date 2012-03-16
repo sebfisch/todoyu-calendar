@@ -122,7 +122,7 @@ class TodoyuCalendarHolidayManager {
 					ext_calendar_mm_holiday_holidayset mm';
 		$where	= '		mm.id_holiday	= ' . $idHoliday .
 				  ' AND	mm.id_holidayset= s.id
-					AND	s.deleted 		= 0';
+					AND	s.deleted		= 0';
 		$order	= '	s.title';
 
 		return Todoyu::db()->getArray($fields, $table, $where, '', $order);
@@ -275,7 +275,7 @@ class TodoyuCalendarHolidayManager {
 
 		$fields	= '	h.*,
 					hhmm.id_holidayset';
-		$table	= 	self::TABLE . ' h,
+		$table	=	self::TABLE . ' h,
 					ext_calendar_mm_holiday_holidayset hhmm';
 		$where	= '		h.id		= hhmm.id_holiday'
 				. ' AND	h.deleted	= 0'
@@ -326,7 +326,7 @@ class TodoyuCalendarHolidayManager {
 		$results	= array();
 
 		if( sizeof($swordArray) > 0 ) {
-			$where 		= Todoyu::db()->buildLikeQuery($swordArray, array('title', 'description'));
+			$where		= Todoyu::db()->buildLikeQuery($swordArray, array('title', 'description'));
 			$holidays	= Todoyu::db()->getArray('id, title, date', self::TABLE, $where, '', 'date DESC');
 
 			foreach($holidays as $holiday) {

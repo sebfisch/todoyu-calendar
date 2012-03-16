@@ -29,7 +29,7 @@
 
  Todoyu.Ext.calendar.HolidayEditor	= {
 
- 	/**
+	/**
 	 * Initialization
 	 *
 	 * @method	init

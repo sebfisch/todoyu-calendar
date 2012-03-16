@@ -85,8 +85,8 @@ class TodoyuCalendarDataSourceStatic extends TodoyuCalendarDataSource {
 
 		$where	= '		 e.deleted	= 0
 					AND (
-							e.date_start 	BETWEEN ' . $dateStart . ' AND ' . $dateEnd . '
-						OR	e.date_end 		BETWEEN ' . $dateStart . ' AND ' . $dateEnd . '
+							e.date_start	BETWEEN ' . $dateStart . ' AND ' . $dateEnd . '
+						OR	e.date_end		BETWEEN ' . $dateStart . ' AND ' . $dateEnd . '
 						OR (e.date_start <= ' . $dateStart . ' AND e.date_end >= ' . $dateEnd . ')
 					)';
 		$group	= '	e.id';

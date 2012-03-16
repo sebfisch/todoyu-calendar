@@ -37,14 +37,14 @@ Todoyu.Ext.calendar.DialogChoiceSeriesEdit = Class.create(Todoyu.DialogChoice, {
 			description: '[LLL:calendar.series.dialog.edit.desc]',
 			options: [
 				{
-					id: 	'series',
+					id:		'series',
 					button:	'[LLL:calendar.series.dialog.edit.series.button]',
-					label: 	'[LLL:calendar.series.dialog.edit.series.label]'
+					label:	'[LLL:calendar.series.dialog.edit.series.label]'
 				},
 				{
-					id: 	'event',
+					id:		'event',
 					button:	'[LLL:calendar.series.dialog.edit.event.button]',
-					label: 	'[LLL:calendar.series.dialog.edit.event.label]'
+					label:	'[LLL:calendar.series.dialog.edit.event.label]'
 				}
 			],
 			onSelect: onSelect,

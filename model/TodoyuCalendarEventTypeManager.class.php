@@ -108,7 +108,7 @@ class TodoyuCalendarEventTypeManager {
 		$eventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['eventtypes']);
 
 		foreach($eventTypes as $index => $eventType) {
-			$eventTypes[$index]['value'] 	= $index;
+			$eventTypes[$index]['value']	= $index;
 
 			if( $parseLabels ) {
 				$eventTypes[$index]['label']= Todoyu::Label($eventType['label']);

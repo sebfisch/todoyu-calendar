@@ -203,7 +203,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 	/**
 	 * Show event details
 	 *
-	 * @param	Array 		$params
+	 * @param	Array		$params
 	 * @return	String
 	 */
 	public function showAction(array $params) {
@@ -236,7 +236,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idRecord	= intval($params['record']);
 
 		$xmlPath	= 'ext/calendar/config/form/event.xml';
-		$form 		= TodoyuFormManager::getForm($xmlPath);
+		$form		= TodoyuFormManager::getForm($xmlPath);
 		$formData	= $form->getFormData();
 		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idRecord);
 

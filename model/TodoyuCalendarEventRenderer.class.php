@@ -118,8 +118,8 @@ class TodoyuCalendarEventRenderer {
 
 			// Set form data
 		$formData	= array(
-			'date_start' 	=> $timeStart,
-			'date_end' 		=> $timeEnd,
+			'date_start'	=> $timeStart,
+			'date_end'		=> $timeEnd,
 			'is_dayevent'	=> $isAllDayEvent,
 			'persons'		=> array(TodoyuAuth::getPerson()->getTemplateData())
 		);

@@ -107,7 +107,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	initOptions: function() {
 		var tab	= this.ext.getActiveTab();
 
-		 	// Clone default options (assign would make a reference)
+			// Clone default options (assign would make a reference)
 		this.draggableOptions	= Object.clone(this.defaultDraggableOptions);
 
 			// Add event handlers
@@ -300,7 +300,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 				this.moveEventToTopContainer(dragInfo.element);
 				dragInfo.element.setStyle({
 					position:	'absolute',
-					width: 		'90px'
+					width:		'90px'
 				});
 				break;
 		}

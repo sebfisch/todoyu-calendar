@@ -187,7 +187,7 @@ class TodoyuCalendarEventMailPopup {
 
 		$receivers	= TodoyuCalendarEventMailManager::getOtherAssignedUserIDs($this->getEventID());
 		$formData	= array(
-			'id_event' 		=> $this->getEventID(),
+			'id_event'		=> $this->getEventID(),
 			'emailreceivers'=> $receivers,
 		);
 		$formParams	= array(

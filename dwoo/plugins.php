@@ -31,7 +31,7 @@
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param	Dwoo 		$dwoo
+ * @param	Dwoo		$dwoo
  * @param	Integer		$idEvent
  * @return	Boolean
  */
@@ -47,7 +47,7 @@ function Dwoo_Plugin_isAllowedSeeEvent(Dwoo $dwoo, $idEvent) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param	Dwoo 		$dwoo
+ * @param	Dwoo		$dwoo
  * @return	Boolean
  */
 function Dwoo_Plugin_isAllowedAddEvent(Dwoo $dwoo) {
@@ -62,7 +62,7 @@ function Dwoo_Plugin_isAllowedAddEvent(Dwoo $dwoo) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param	Dwoo 		$dwoo
+ * @param	Dwoo		$dwoo
  * @param	Integer		$idEvent
  * @return	Boolean
  */
@@ -94,7 +94,7 @@ function Dwoo_Plugin_EventFullLabel_compile(Dwoo_Compiler $compiler, $idEvent) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param	Dwoo_Compiler 	$compiler
+ * @param	Dwoo_Compiler	$compiler
  * @param	Integer			$idEventIndex
  * @return	String
  */
@@ -110,7 +110,7 @@ function Dwoo_Plugin_EventTypeLabel_compile(Dwoo_Compiler $compiler, $idEventInd
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param		Dwoo_Compiler 	$compiler
+ * @param		Dwoo_Compiler	$compiler
  * @param		Integer			$idEventIndex
  * @return		String
  */
@@ -126,7 +126,7 @@ function Dwoo_Plugin_EventTypeKey_compile(Dwoo_Compiler $compiler, $idEventIndex
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param		Dwoo 		$dwoo
+ * @param		Dwoo		$dwoo
  * @param		Integer		$timestamp
  * @return		String
  */
@@ -143,7 +143,7 @@ function Dwoo_Plugin_weekdayName(Dwoo $dwoo, $timestamp) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param	Dwoo 		$dwoo
+ * @param	Dwoo		$dwoo
  * @param	Integer		$timestamp
  * @return	String
  */
@@ -161,7 +161,7 @@ function Dwoo_Plugin_weekdayNameShort(Dwoo $dwoo, $timestamp) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param	Dwoo 		$dwoo
+ * @param	Dwoo		$dwoo
  * @param	Integer		$idEvent
  * @return	Boolean
  */
@@ -177,7 +177,7 @@ function Dwoo_Plugin_isAllowedEventReminderPopup(Dwoo $dwoo, $idEvent) {
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param	Dwoo 		$dwoo
+ * @param	Dwoo		$dwoo
  * @param	Integer		$idEvent
  * @return	Boolean
  */

@@ -50,7 +50,7 @@
 	<label index="profile.module.reminders.tab">Przypominacz o wydarzeniach</label>
 	<label index="extconf.reminder.popup_roles.label">Roles którym ma zostać przypomnine wydarzenie przez pop-up</label>
 	<label index="extconf.reminder.popup.advancetime.label">Okres czasu przed wydarzeniem</label>
- 	<label index="extconf.reminder.email_roles.label">Role, którym ma zostać przypomnine wydarzenie przez email</label>
+	<label index="extconf.reminder.email_roles.label">Role, którym ma zostać przypomnine wydarzenie przez email</label>
 	<label index="extconf.autosendeventmail.label">Role, do których ma automatycznie zostać wysłana informacja o dodaniu / modyfikacji / usunięciu wydarzenia wewnętrznego wydarzenia (usuwa opcje mailingowe)?</label>
 	<label index="extconf.reminder.audio.active.label">Dźwięk podczas przypomnienia pop-up?</label>
 	<label index="profile.module.reminders.header">Konfiguracja dla przypomnienia?</label>

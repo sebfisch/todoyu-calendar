@@ -318,7 +318,7 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 			'id'				=> $this->getID(),
 			'isPrivate'			=> $this->isPrivate(),
 			'assignedPersons'	=> array(),
-			'isAssigned' 		=> $this->isCurrentPersonAssigned(),
+			'isAssigned'		=> $this->isCurrentPersonAssigned(),
 			'dateStart'			=> $this->getRange()->getStart(),
 			'dateEnd'			=> $this->getRange()->getEnd(),
 			'title'				=> $this->getTitle(),

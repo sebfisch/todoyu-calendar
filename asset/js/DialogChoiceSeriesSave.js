@@ -37,14 +37,14 @@ Todoyu.Ext.calendar.DialogChoiceSeriesSave = Class.create(Todoyu.DialogChoice, {
 			description: '[LLL:calendar.series.dialog.save.desc]',
 			options: [
 				{
-					id: 	'all',
-					button: '[LLL:calendar.series.dialog.save.all.button]',
-					label: 	'[LLL:calendar.series.dialog.save.all.label]'
+					id:		'all',
+					button:	'[LLL:calendar.series.dialog.save.all.button]',
+					label:	'[LLL:calendar.series.dialog.save.all.label]'
 				},
 				{
-					id: 	'future',
-					button: '[LLL:calendar.series.dialog.save.future.button]',
-					label: 	'[LLL:calendar.series.dialog.save.future.label]'
+					id:		'future',
+					button:	'[LLL:calendar.series.dialog.save.future.button]',
+					label:	'[LLL:calendar.series.dialog.save.future.label]'
 				}
 			],
 			onSelect: onSelect,

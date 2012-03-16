@@ -230,7 +230,7 @@ class TodoyuCalendarHolidaySetManager {
 	 * @return	Array
 	 */
 	public static function autocompleteHolidaySet($sword) {
-		$swords 	= TodoyuArray::trimExplode(' ', $sword, true);
+		$swords		= TodoyuArray::trimExplode(' ', $sword, true);
 		$results	= array();
 
 		if( sizeof($swords) > 0 ) {

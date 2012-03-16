@@ -202,7 +202,7 @@ class TodoyuCalendarEventAssignmentManager {
 		$data	= array(
 			'is_acknowledged'	=> 1
 		);
-		$where 	= '		id_event	= ' . $idEvent .
+		$where	= '		id_event	= ' . $idEvent .
 				  ' AND	id_person	= ' . $idPerson;
 
 		Todoyu::db()->doUpdate(self::TABLE, $where, $data);
@@ -237,7 +237,7 @@ class TodoyuCalendarEventAssignmentManager {
 		$idEvent	= intval($idEvent);
 		$idPerson	= intval($idPerson);
 
-		$where 	= '		id_event	= ' . $idEvent .
+		$where	= '		id_event	= ' . $idEvent .
 				  ' AND	id_person	= ' . $idPerson;
 
 		return Todoyu::db()->doUpdate(self::TABLE, $where, $data) == 1;

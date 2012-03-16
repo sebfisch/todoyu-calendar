@@ -216,7 +216,7 @@ abstract class TodoyuCalendarEventElement {
 
 		$this->addClasses($this->getEvent()->getClassNames());
 
-		$elementData['class'] 	= implode(' ', $this->getClasses());
+		$elementData['class']	= implode(' ', $this->getClasses());
 		$elementData['color']	= $this->getColor();
 		$elementData['source']	= $this->getEvent()->getSource();
 		$elementData['type']	= $this->getEvent()->getType();

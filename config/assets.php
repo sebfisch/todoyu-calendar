@@ -57,7 +57,7 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 		),
 		array(
 			'file'		=> 'ext/calendar/asset/js/QuickInfoBirthday.js',
-			'position' 	=> 107
+			'position'	=> 107
 		),
 		array(
 			'file'		=> 'ext/calendar/asset/js/QuickInfoStatic.js',

@@ -85,8 +85,8 @@ Todoyu.Ext.calendar.Event.Mail	= {
 		extraOptions= extraOptions || {};
 
 		this.options = $H(extraOptions).merge({
-			event: 		idEvent,
-			operation: 	operation
+			event:		idEvent,
+			operation:	operation
 		}).toObject();
 
 		var url		= Todoyu.getUrl('calendar', 'mail');

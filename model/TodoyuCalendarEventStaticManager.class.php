@@ -149,7 +149,7 @@ class TodoyuCalendarEventStaticManager {
 		$dateEnd	= intval($dateEnd);
 		$persons	= TodoyuArray::intval($persons, true, true);
 
-		$tables	= 	self::TABLE  . ' e,
+		$tables	=	self::TABLE  . ' e,
 					ext_calendar_mm_event_person mmep';
 
 		$fields	= '	e.*,
@@ -163,8 +163,8 @@ class TodoyuCalendarEventStaticManager {
 		$where	= '		e.id		= mmep.id_event
 					AND e.deleted	= 0
 					AND (
-							e.date_start 	BETWEEN ' . ($dateStart + 1) . ' AND ' . ($dateEnd - 1) . '
-						OR	e.date_end 		BETWEEN ' . ($dateStart + 1) . ' AND ' . ($dateEnd - 1) . '
+							e.date_start	BETWEEN ' . ($dateStart + 1) . ' AND ' . ($dateEnd - 1) . '
+						OR	e.date_end		BETWEEN ' . ($dateStart + 1) . ' AND ' . ($dateEnd - 1) . '
 						OR (e.date_start < ' . ($dateStart + 1) . ' AND e.date_end > ' . ($dateEnd - 1) . ')
 					)';
 
@@ -198,9 +198,9 @@ class TodoyuCalendarEventStaticManager {
 	/**
 	 * Get all persons assigned to an event
 	 *
-	 * @param	Integer 	$idEvent
-	 * @param	Boolean 	$getPersonData		Get also person data?
-	 * @param	Boolean 	$getRemindersData	Get also persons reminders data?
+	 * @param	Integer		$idEvent
+	 * @param	Boolean		$getPersonData		Get also person data?
+	 * @param	Boolean		$getRemindersData	Get also persons reminders data?
 	 * @return	Array
 	 */
 	public static function getAssignedPersonsOfEvent($idEvent, $getPersonData = false, $getRemindersData = false) {
@@ -372,7 +372,7 @@ class TodoyuCalendarEventStaticManager {
 
 			// Add empty event
 		if( $idEvent === 0 ) {
-			$idEvent 		= self::addEvent();
+			$idEvent		= self::addEvent();
 			$dateStartOld	= 0;
 		} else {
 			$event			= self::getEvent($idEvent);
@@ -752,7 +752,7 @@ class TodoyuCalendarEventStaticManager {
 		$idEvent	= intval($idEvent);
 		$idPerson	= Todoyu::personid($idPerson);
 
-		$where 	= '		id_event	= ' . $idEvent .
+		$where	= '		id_event	= ' . $idEvent .
 				  ' AND	id_person	= ' . $idPerson;
 
 			// Store also timestamp to be able to detect unacknowledged modifications of events
@@ -806,7 +806,7 @@ class TodoyuCalendarEventStaticManager {
 			'date_start'	=>	$dateStart,
 			'date_end'		=>	$dateEnd,
 			'eventtype'		=> EVENTTYPE_GENERAL,
-			'persons' 		=> array(
+			'persons'		=> array(
 				TodoyuAuth::getPerson()->getTemplateData()
 			)
 		);
@@ -1013,7 +1013,7 @@ class TodoyuCalendarEventStaticManager {
 		$dateStart	= intval($dateStart);
 
 			// Fetch original event data
-		$event 	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 		$eventData				= $event->getData();
 		$eventData['persons']	= $event->getAssignedPersonsData();
@@ -1089,7 +1089,7 @@ class TodoyuCalendarEventStaticManager {
 		if( TodoyuCalendarManager::isOverbookingAllowed() && ! $isOverbookingConfirmed ) {
 			$overbookedWarning	= self::getOverbookingWarning($idEvent, $params['event']);
 			if( ! empty($overbookedWarning) ) {
-				$warnings['overbookingwarning'] 		= $overbookedWarning;
+				$warnings['overbookingwarning']			= $overbookedWarning;
 				$warnings['overbookingwarningInline']	= self::getOverbookingWarning($idEvent, $params['event'], false);
 			}
 		}

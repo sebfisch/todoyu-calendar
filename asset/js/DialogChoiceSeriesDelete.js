@@ -37,14 +37,14 @@ Todoyu.Ext.calendar.DialogChoiceSeriesDelete = Class.create(Todoyu.DialogChoice,
 			description: '[LLL:calendar.series.dialog.delete.desc]',
 			options: [
 				{
-					id: 	'series',
-					button: '[LLL:calendar.series.dialog.delete.series.button]',
-					label: 	'[LLL:calendar.series.dialog.delete.series.label]'
+					id:		'series',
+					button:	'[LLL:calendar.series.dialog.delete.series.button]',
+					label:	'[LLL:calendar.series.dialog.delete.series.label]'
 				},
 				{
-					id: 	'event',
-					button: '[LLL:calendar.series.dialog.delete.event.button]',
-					label: 	'[LLL:calendar.series.dialog.delete.event.label]'
+					id:		'event',
+					button:	'[LLL:calendar.series.dialog.delete.event.button]',
+					label:	'[LLL:calendar.series.dialog.delete.event.label]'
 				}
 			],
 			onSelect: onSelect,

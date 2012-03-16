@@ -35,28 +35,28 @@ define('CALENDAR_TYPE_EVENTREMINDER_POPUP',	3);
 
 
 	// Calendar viewing modes
-define('CALENDAR_MODE_DAY', 		1);
-define('CALENDAR_MODE_WEEK', 		2);
-define('CALENDAR_MODE_MONTH', 		3);
-define('CALENDAR_MODE_EVENTVIEW', 	4);
+define('CALENDAR_MODE_DAY',			1);
+define('CALENDAR_MODE_WEEK',		2);
+define('CALENDAR_MODE_MONTH',		3);
+define('CALENDAR_MODE_EVENTVIEW',	4);
 
 
 
 	// Event types
 	// @see	referring keys are defined in extension.php
-define('EVENTTYPE_GENERAL', 	1);
-define('EVENTTYPE_AWAY', 		2);
-define('EVENTTYPE_BIRTHDAY', 	3);
-define('EVENTTYPE_VACATION', 	4);
-define('EVENTTYPE_EDUCATION', 	5);
-define('EVENTTYPE_MEETING', 	6);
+define('EVENTTYPE_GENERAL',		1);
+define('EVENTTYPE_AWAY',		2);
+define('EVENTTYPE_BIRTHDAY',	3);
+define('EVENTTYPE_VACATION',	4);
+define('EVENTTYPE_EDUCATION',	5);
+define('EVENTTYPE_MEETING',		6);
 define('EVENTTYPE_AWAYOFFICIAL',7);
-define('EVENTTYPE_HOMEOFFICE', 	8);
+define('EVENTTYPE_HOMEOFFICE',	8);
 //define('EVENTTYPE_PAPER', 		9);
 //define('EVENTTYPE_CARTON', 		10);
 define('EVENTTYPE_COMPENSATION',11);
-define('EVENTTYPE_MILESTONE', 	12);
-define('EVENTTYPE_REMINDER', 	13);
+define('EVENTTYPE_MILESTONE',	12);
+define('EVENTTYPE_REMINDER',	13);
 
 
 	// Default start+end of time excerpt

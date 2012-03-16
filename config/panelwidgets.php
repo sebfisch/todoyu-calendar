@@ -26,7 +26,7 @@
  */
 
 	// Add default (for all persons) panel widgets
-TodoyuPanelWidgetManager::addPanelWidget('calendar', 'calendar', 'Calendar', 			10, array('class' => 'todoyuskin'));
+TodoyuPanelWidgetManager::addPanelWidget('calendar', 'calendar', 'Calendar',			10, array('class' => 'todoyuskin'));
 TodoyuPanelWidgetManager::addPanelWidget('calendar', 'contact', 'StaffSelector',		20, array('group' => true));
 TodoyuPanelWidgetManager::addPanelWidget('calendar', 'calendar', 'EventTypeSelector',	40,	array('selectAllOnFirstRun'	=> true));
 TodoyuPanelWidgetManager::addPanelWidget('calendar', 'calendar', 'HolidaySetSelector',	50);

@@ -83,7 +83,7 @@ class TodoyuCalendarEventSeriesManager {
 			// Delete series record
 		TodoyuRecordManager::deleteRecord(self::TABLE, $idSeries);
 			// Delete events
-		$deletedEventIDs 	= self::deleteSeriesEventsAfter($idSeries);
+		$deletedEventIDs	= self::deleteSeriesEventsAfter($idSeries);
 		$idFirstDeletedEvent= reset($deletedEventIDs);
 
 		TodoyuHookManager::callHook('calendar', 'series.deleted', array($idSeries));
@@ -299,7 +299,7 @@ class TodoyuCalendarEventSeriesManager {
 				. '	AND date_start	 > ' . $dateStart
 				. ' AND id			!= ' . $idEventIgnore
 				. ' AND deleted		 = 0'
-				. ' AND id_series 	!= 0';  // Dummy security check to prevent deletion of non series events (just in case of a missing ID)
+				. ' AND id_series	!= 0';  // Dummy security check to prevent deletion of non series events (just in case of a missing ID)
 
 			// Get IDs of delete event
 		$removeIDs	= Todoyu::db()->getColumn($field, $table, $where);

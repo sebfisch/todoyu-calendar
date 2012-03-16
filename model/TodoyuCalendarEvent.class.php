@@ -142,7 +142,7 @@ interface TodoyuCalendarEvent {
 	/**
 	 * Check whether the event is overlapping another event
 	 *
-	 * @param 	TodoyuCalendarEvent		$event
+	 * @param	TodoyuCalendarEvent		$event
 	 * @return	Boolean
 	 */
 	public function isOverlapping(TodoyuCalendarEvent $event);

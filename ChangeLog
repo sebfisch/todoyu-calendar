@@ -89,7 +89,7 @@ calendar 1.1.0 - 2011-06-17
 	* Changed: Reduced templates of event list-view details and single view into one template
 	* Changed: No more overbooking check for invalid event timespans
 	* Changed: Added max amount configuration of displayed conflicted appointments in overbooking info
- 	* Changed: Quickinfos now always hide when starting to drag events
+	* Changed: Quickinfos now always hide when starting to drag events
 
  calendar 1.0.6
 	* Bugfix: Removed wrong wordwrapping (inserted spaces) from event descriptions

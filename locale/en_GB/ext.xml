@@ -54,7 +54,7 @@
 	<label index="profile.module.reminders.tab">Event Reminders</label>
 	<label index="extconf.reminder.popup_roles.label">Roles to get event reminder pop-up</label>
 	<label index="extconf.reminder.popup.advancetime.label">Time before event to show reminder</label>
- 	<label index="extconf.reminder.email_roles.label">Roles to get event reminder email</label>
+	<label index="extconf.reminder.email_roles.label">Roles to get event reminder email</label>
 	<label index="extconf.autosendeventmail.label">Roles to automatically send email of new / changed / deleted events to internal participants of event (removes mailing option)?</label>
 	<label index="extconf.reminder.audio.active.label">Play audio with reminder pop-up?</label>
 	<label index="profile.range.start">Start time for compact view</label>

@@ -29,7 +29,7 @@ class TodoyuCalendarEventViewHelper {
 	/**
 	 * Get event types (sorted by label) in a form-readable format
 	 *
-	 * @param	TodoyuFormElement 	$field
+	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
@@ -57,7 +57,7 @@ class TodoyuCalendarEventViewHelper {
 		$persons	= TodoyuCalendarEventStaticManager::getEmailReceivers($idEvent, true);
 
 		foreach($persons as $person) {
-			$options[] 	= array(
+			$options[]	= array(
 				'value'		=> $person['id'],
 				'label'		=> TodoyuContactPersonManager::getLabel($person['id'], true, true),
 			);
@@ -110,7 +110,7 @@ class TodoyuCalendarEventViewHelper {
 	/**
 	 * Get auto-notification information comment: preset roles' persons
 	 *
-	 * @param	TodoyuFormElement 	$field
+	 * @param	TodoyuFormElement	$field
 	 * @return	String
 	 */
 	public static function getAutoNotificationComment(TodoyuFormElement $field) {
@@ -125,7 +125,7 @@ class TodoyuCalendarEventViewHelper {
 	/**
 	 * Get person IDs of participants receiving auto-notification event emails
 	 *
-	 * @param	TodoyuFormElement 	$field
+	 * @param	TodoyuFormElement	$field
 	 * @return	Array|Integer[]
 	 */
 	private static function getAutoNotifiedPersonIDs(TodoyuFormElement $field) {

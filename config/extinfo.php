@@ -27,17 +27,17 @@
 
 Todoyu::$CONFIG['EXT']['calendar']['info']	= array(
 	'title'			=> 'Events and Holidays Management',
-	'description' 	=> 'Events and Holidays Management in Day-, Week- and Month-viewing Mode',
-	'author' 		=> array(
+	'description'	=> 'Events and Holidays Management in Day-, Week- and Month-viewing Mode',
+	'author'		=> array(
 		'name'		=> 'todoyu Core Developer Team',
 		'email'		=> 'team@todoyu.com',
 		'company'	=> 'snowflake productions GmbH, Zurich'
 	),
-	'state' 		=> 'stable',
-	'version' 		=> '1.2.0',
-	'constraints' 	=> array(
+	'state'			=> 'stable',
+	'version'		=> '1.2.0',
+	'constraints'	=> array(
 		'core'		=> '2.2.0dev',
-		'depends' 	=> array(
+		'depends'	=> array(
 			'contact'	=> '1.1.0'
 		)
 	),

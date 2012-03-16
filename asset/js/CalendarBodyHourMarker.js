@@ -213,17 +213,17 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @return  {Number}
 	 */
 	getHeight: function() {
-		var currentHour 	= new Date().getHours();
+		var currentHour		= new Date().getHours();
 		var currentMinutes	= new Date().getMinutes();
 
 		var pastHoursShown;
 		if( this.ext.CalendarBody.isFullHeight() ) {
 				// Full hours range 00:00 to 23:00
-			pastHoursShown  = currentHour;
+			pastHoursShown	= currentHour;
 		} else {
 				// Limited view range of hours
-			var firstHour   = Todoyu.Ext.calendar.CalendarBody.getRangeStart();
-			pastHoursShown  = currentHour - firstHour;
+			var firstHour	= Todoyu.Ext.calendar.CalendarBody.getRangeStart();
+			pastHoursShown	= currentHour - firstHour;
 		}
 
 		return (pastHoursShown * 42) + parseInt(currentMinutes / 1.5, 10) - 1;

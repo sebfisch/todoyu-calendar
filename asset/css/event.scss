@@ -345,12 +345,12 @@ div.weekMode div#calendarBody div.event dd span.desc {
 #portalListBirthdays {
 	.event {
 		div {
-    		display:inline-block;
-            padding:5px 0;
-    	}
-    	&.odd {
-     		background-color:#f3f3f3;
-     	}
+			display:inline-block;
+			padding:5px 0;
+		}
+		&.odd {
+			background-color:#f3f3f3;
+		}
 		.type {
 			margin-right:15px;
 			background-position:0 -325px;

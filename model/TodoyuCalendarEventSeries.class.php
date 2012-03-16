@@ -773,7 +773,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 * @return	Integer[]
 	 */
 	private function getStartDatesWeek($dateStart, $limit) {
-		$counter 		= 1;
+		$counter		= 1;
 		$dateEnd		= $this->getDateEnd();
 		$interval		= $this->getInterval();
 		$dates			= array();
@@ -1013,7 +1013,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 						mmep.id_event';
 		$tables		= ' ext_calendar_mm_event_person mmep
 							LEFT JOIN ext_calendar_event e
-								ON 	mmep.id_event	= e.id
+								ON	mmep.id_event	= e.id
 								AND	e.deleted		= 0';
 		$where		= '		e.is_dayevent	= 0';
 		$subWheres	= array();
