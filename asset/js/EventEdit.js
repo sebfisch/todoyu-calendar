@@ -18,12 +18,9 @@
 *****************************************************************************/
 
 /**
- * @module	Calendar
- */
-
-/**
  * Functions for event edit
  *
+ * @module		Calendar
  * @namespace	Todoyu.Ext.calendar.Event.Edit
  */
 Todoyu.Ext.calendar.Event.Edit	= {
@@ -36,9 +33,18 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 */
 	ext:	Todoyu.Ext.calendar,
 
+	/**
+	 * @property	lastAssignedUserIDs
+	 * @type		Array
+	 */
 	lastAssignedUserIDs: [],
 
+	/**
+	 * @property	initialized
+	 * @type		Boolean
+	 */
 	initialized: false,
+
 
 
 	/**
@@ -126,6 +132,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	/**
 	 * Initialize form on display if not already initialized by response handler
 	 *
+	 * @method	onFormDisplay
 	 * @param	{String}	idForm
 	 * @param	{String}	formName
 	 * @param	{Number}	idRecord
@@ -141,6 +148,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	/**
 	 * Initialize form
 	 *
+	 * @method	initForm
 	 * @param	{Number}	idEvent
 	 * @param	{Object}	extraOptions
 	 */
@@ -149,6 +157,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 		this.updateVisibleFields();
 		this.observeEventType();
+		this.observeDateFields();
 		this.observeAssignedUsers(idEvent);
 		this.ext.Event.Series.initEditView(idEvent, extraOptions.seriesEdit);
 
@@ -169,10 +178,38 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 
 	/**
+	 * Install observer on event form date fields
+	 *
+	 * @method	observeDates
+	 * @param	{Number}		idEvent
+	 */
+	observeDateFields: function(idEvent) {
+		if( this.Series.isSeriesEvent(idEvent) === false ) {
+				// Install non-series event date field observers
+			$('event-field-date-start').on(	'change', ':input',	this.onDateChanged.bind(this));
+			$('event-field-date-end').on(	'change', ':input',	this.onDateChanged.bind(this));
+		} else {
+				// Install series event date field observers
+			this.ext.Event.Series.observeDateFields(idEvent);
+		}
+	},
+
+
+
+	/**
+	 * @method	onDateChanged
+	 */
+	onDateChanged: function() {
+		//@todo implement refresh with overbooking-check/warning (series has it already)
+	},
+
+
+
+	/**
 	 * Event participants change observer
 	 *
-	 * @param	{Number}			idEvent
 	 * @method	observeEventType
+	 * @param	{Number}			idEvent
 	 */
 	observeAssignedUsers: function(idEvent) {
 			// Remember start selection
@@ -185,8 +222,9 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 	/**
 	 * Handle events on assigned users.
-	 * Check if really something changed
+	 * Check whether anything changed for real
 	 *
+	 * @method	onAssignedUsersEvent
 	 * @param	{Event}		event
 	 * @param	{Number}	idEvent
 	 */
@@ -258,9 +296,10 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Number}				idEvent
 	 */
 	onAssignedUsersChanged: function(idEvent) {
+		//@todo add overbooking check
+
 		this.updateAutoMailComment(idEvent);
 	},
-
 
 
 
@@ -303,6 +342,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	/**
 	 * Get IDs of assigned users
 	 *
+	 * @method	getAssignedUserIDs
 	 * @return	{Array}
 	 */
 	getAssignedUserIDs: function() {
@@ -388,7 +428,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * Add the edit tab
 	 *
 	 * @method	addTab
-	 * @param	{String}		label
+	 * @param	{String}	label
 	 */
 	addTab: function(label) {
 		if( ! Todoyu.Tabs.hasTab('calendar', 'edit') ) {

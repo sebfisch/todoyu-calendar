@@ -1,17 +1,17 @@
 #formElement-event-field-seriesinfo {
-	background-color: #FF0;
-	margin-bottom: 20px;
-	box-shadow: 2px 2px 7px #999;
+	background-color:#ffffb1;
+	margin-bottom:20px;
+	box-shadow:2px 2px 7px #999;
 	padding:10px;
 }
 
 #formElement-event-field-seriesinfo .fField span {
-	font-size: 12px;
+	font-size:12px;
 }
 
 #formElement-event-field-seriesoverbooking-inputbox {
 	width:470px;
-	line-height: 150%;
+	line-height:150%;
 }
 
 #formElement-event-field-serieslabel-inputbox {

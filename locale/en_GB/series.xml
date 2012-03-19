@@ -3,7 +3,7 @@
 	<label index="series">Series</label>
 	<label index="note">Note</label>
 	<label index="note.seriesDelete">The whole series was deleted</label>
-	<label index="editMode">You're editing this event in series mode</label>
+	<label index="editMode">You are editing this event in series mode</label>
 	<label index="frequency">Repeat event</label>
 	<label index="frequency.no">No</label>
 	<label index="frequency.day">Daily</label>

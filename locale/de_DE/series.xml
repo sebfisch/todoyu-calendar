@@ -3,7 +3,7 @@
 	<label index="series">Serientermin</label>
 	<label index="note">Hinweis</label>
 	<label index="note.seriesDelete">Die ganze Serie wurde gelöscht</label>
-	<label index="editMode">Sie bearbeiten diesen Termin als Serienmodus</label>
+	<label index="editMode">Sie bearbeiten diesen Termin im Serienmodus</label>
 	<label index="frequency">Termin wiederholen</label>
 	<label index="frequency.no">Nein</label>
 	<label index="frequency.day">Täglich</label>

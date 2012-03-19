@@ -1,8 +1,8 @@
 @import "../../../../core/config/theme.scss";
 
 #calendar-body .event {
-	position: absolute;
-	overflow: hidden;
+	position:absolute;
+	overflow:hidden;
 }
 
 .dayMode .event .head,
@@ -13,7 +13,7 @@
 }
 
 #calendar .event .head {
-	cursor: not-allowed;
+	cursor:not-allowed;
 	width:100%;
 }
 
@@ -26,8 +26,8 @@
 }
 
 .event .description {
-	margin-top: 2px;
-	font-size: 9px;
+	margin-top:2px;
+	font-size:9px;
 }
 
 #calendar .event.noAccess dt.head {
@@ -100,15 +100,15 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 
 #calendar .dayEvents .event {
-	margin: 1px;
+	margin:1px;
 	position:relative;
 }
 
 #calendar .dayEvents .event .head {
-	cursor: default;
+	cursor:default;
 }
 #calendar .dayEvents .event.hasAccess .head {
-	cursor: move;
+	cursor:move;
 }
 
 .dayEvents .event .date {
@@ -119,7 +119,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	padding:2px;
 }
 .event div div {
-	display: inline-block;
+	display:inline-block;
 }
 .event .head .typeIcon {
 	height:14px;
@@ -161,45 +161,45 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 
 .event .typeIcon {
-	background: url(../img/icons.png) no-repeat;
-	vertical-align: top;
+	background:url(../img/icons.png) no-repeat;
+	vertical-align:top;
 }
 
 .event.typeGeneral .typeIcon {
-	background-position: 0 -660px;
+	background-position:0 -660px;
 }
 .event.typeAway .typeIcon {
-	background-position: 0 -690px;
+	background-position:0 -690px;
 }
 .event.typeVacation .typeIcon,
 .event.typeHoliday .typeIcon {
-	background-position: 0 -390px;
+	background-position:0 -390px;
 }
 .event.typeEducation .typeIcon {
-	background-position: 0 -720px;
+	background-position:0 -720px;
 }
 .event.typeMeeting .typeIcon {
-	background-position: 0 -750px;
+	background-position:0 -750px;
 }
 .event.typeAwayofficial .typeIcon {
-	background-position: 0 -780px;
+	background-position:0 -780px;
 }
 .event.typeHomeoffice .typeIcon {
-	background-position: 0 -810px;
+	background-position:0 -810px;
 }
 .event.typeCompensation .typeIcon {
-	background-position: 0 -900px;
+	background-position:0 -900px;
 }
 .event.typeMilestone .typeIcon {
-	background-position: 0 -930px;
+	background-position:0 -930px;
 }
 .event.typeReminder .typeIcon {
-	background-position: 0 -960px;
+	background-position:0 -960px;
 }
 
 .event.typeBirthday .typeIcon {
-	background-image: url(../../../contact/asset/img/icons.png);
-	background-position: 3px -330px;
+	background-image:url(../../../contact/asset/img/icons.png);
+	background-position:3px -330px;
 }
 
 .event.typeAway .headInner,
@@ -600,7 +600,7 @@ button.editEvent .icon {
 	Edit view
    ---------------------- */
 #formElement-event-field-date-start {
-	clear: both;
+	clear:both;
 }
 
 

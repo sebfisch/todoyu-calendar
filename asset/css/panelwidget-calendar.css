@@ -60,9 +60,9 @@
 	cursor:pointer;
 }
 #panelwidget-calendar-jscalendar .calendar .wn {
-	cursor: default;
+	cursor:default;
 }
 
 #panelwidget-calendar-jscalendar div.calendar tfoot {
-	display: none;
+	display:none;
 }
