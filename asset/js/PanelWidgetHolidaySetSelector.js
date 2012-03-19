@@ -67,7 +67,7 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector	= {
 	 * @method	installObservers
 	 */
 	installObservers: function() {
-		$(this.list).on('change', this.onHolidaySetSelect.bind(this));
+		$(this.list).on('change', this.onSelectionChange.bind(this));
 	},
 
 
@@ -75,31 +75,11 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector	= {
 	/**
 	 * HolidaySet select event handler
 	 *
-	 * @method	onHolidaySetSelect
+	 * @method	onSelectionChange
 	 * @param	{Event}		event
 	 */
-	onHolidaySetSelect: function(event) {
-		var selectedSetIDs	= this.getSelectedHolidaySetIDs();
-
-		this.verifySelectedSets(selectedSetIDs);
-
-		selectedSetIDs	= this.getSelectedHolidaySetIDs();
-
-		this.onUpdate(selectedSetIDs.join(','));
-	},
-
-
-
-	/**
-	 * Check and verify current selection (e.g. 'none' override any selected sets)
-	 *
-	 * @method	verifySelectedSets
-	 * @param	{Array}		selectedSetIDs
-	 */
-	verifySelectedSets: function(selectedSetIDs) {
-		if( selectedSetIDs.include(0) ) {
-			this.selectNoSetOption();
-		}
+	onSelectionChange: function(event) {
+		this.onUpdate($F(this.list).join(','));
 	},
 
 
@@ -112,47 +92,10 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector	= {
 	 */
 	onUpdate: function(value) {
 		this.savePrefs();
-		Todoyu.PanelWidget.fire(this.key, value);
-	},
 
+		var holidaySetIDs = $F(this.list);
 
-
-	/**
-	 * Select all holidaySets
-	 *
-	 * @method	selectAllHolidaySets
-	 * @param	{Boolean}				select
-	 */
-	selectAllHolidaySets: function(select) {
-		var selected	= select === true;
-
-		$(this.list).select('option').each(function(option) {
-			option.selected	= selected;
-		});
-	},
-
-
-
-	/**
-	 * Deselect all holidaySets
-	 *
-	 * @method	deselectAllHolidaySets
-	 */
-	deselectAllHolidaySets: function() {
-		this.selectAllHolidaySets(false);
-	},
-
-
-
-	/**
-	 * Select 'no set'-option only
-	 *
-	 * @method	selectNoSetOption
-	 */
-	selectNoSetOption: function() {
-		this.deselectAllHolidaySets();
-
-		$(this.list).options[0].selected= true;
+		Todoyu.PanelWidget.fire(this.key, holidaySetIDs);
 	},
 
 
@@ -161,36 +104,10 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector	= {
 	 * Get IDs of selected holidaySets
 	 *
 	 * @method	getSelectedHolidaySetIDs
-	 * @return	{String[]}
+	 * @return	{Number[]}
 	 */
 	getSelectedHolidaySetIDs: function() {
-		return $(this.list).select('option:selected').collect(function(option) {
-			return option.value;
-		});
-	},
-
-
-
-	/**
-	 * Get amount of selected holidaySets
-	 *
-	 * @method	getAmountOfSelectedSets
-	 * @return	{Number}
-	 */
-	getAmountOfSelectedSets: function() {
-		return $(this.list).select('option:selected').length;
-	},
-
-
-
-	/**
-	 * Check if any type is currently selected
-	 *
-	 * @method	isAnyHolidaySetSelected
-	 * @return	{Boolean}
-	 */
-	isAnyHolidaySetSelected: function() {
-		return this.getAmountOfSelectedSets() > 0;
+		return $F(this.list);
 	},
 
 
@@ -201,19 +118,16 @@ Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector	= {
 	 * @method	savePrefs
 	 */
 	savePrefs: function() {
-		var typeIDs	= this.getSelectedHolidaySetIDs().join(',');
+		var holidaySetIDs	= $F(this.list).join(',');
 
 		var url		= Todoyu.getUrl('calendar', 'preference');
 		var options	= {
 			parameters: {
 				action:		'panelwidgetholidaysetselector',
 				preference:	this.key,
-				area:		Todoyu.getArea(),
-				value:		typeIDs
+				value:		holidaySetIDs
 			},
-			onComplete: function(response) {
-				this.onPrefsSaved(response);
-			}.bind(this)
+			onComplete: this.onPrefsSaved.bind(this)
 		};
 
 		Todoyu.send(url, options);

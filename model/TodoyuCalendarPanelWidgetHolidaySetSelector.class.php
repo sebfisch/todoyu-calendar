@@ -96,26 +96,16 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 	 * @return	Array
 	 */
 	public static function getHolidaySetsOptions() {
-		$sets		= TodoyuCalendarHolidaySetManager::getAllHolidaySets();
+		$holidaySets= TodoyuCalendarHolidaySetManager::getAllHolidaySets();
 		$selected	= self::getSelectedHolidaySetIDs();
+		$options	= array();
 
-		$options	= array(
-			'0'	=> array(
-				'index'		=> 0,
-				'value'		=> 0,
-				'label'		=> Todoyu::Label('calendar.panelwidget-holidaysetselector.showNoHolidays'),
-				'class'		=> 'holidayset_none',
-				'selected'	=> count($selected) === 0 ? true : false
-			)
-		);
-
-		foreach( $sets as $index => $option ) {
-			$index	= $index + 1;
-			$options[$index]				= $option;
-			$options[$index]['value']		= $option['id'];
-			$options[$index]['label']		= $option['title'];
-			$options[$index]['class']		= 'holidayset_' . $option['id'];
-			$options[$index]['selecetd']	= ( in_array($index, $selected) ) ? true : false;
+		foreach($holidaySets as $holidaySet) {
+			$options[] = array(
+				'value'		=> $holidaySet['id'],
+				'label'		=> $holidaySet['title'],
+				'selected'	=> in_array($holidaySet['id'], $selected)
+			);
 		}
 
 		return $options;
@@ -127,13 +117,12 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 	 * Get IDs of selected holidaySets
 	 *
 	 * @param	String	$area
-	 * @return	Array
+	 * @return	Integer[]
 	 */
 	public static function getSelectedHolidaySetIDs($area = AREA) {
 		$selectorPref	= TodoyuCalendarPreferences::getPref('panelwidget-holidaysetselector', 0, $area);
-		$selectedSetIDs	= TodoyuArray::intExplode(',', $selectorPref);
 
-		return $selectedSetIDs;
+		return TodoyuArray::intExplode(',', $selectorPref);
 	}
 
 
@@ -145,13 +134,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 	 * @param	String	$prefVals
 	 */
 	public function savePreference($idArea = 0, $prefVals = '') {
-		TodoyuPreferenceManager::savePreference(
-			EXTID_CALENDAR,						// ext ID
-			'panelwidget-holidaysetselector', 	// preference
-			$prefVals, 							// value
-			0,									// item ID
-			true								// unique?
-		);
+		TodoyuCalendarPreferences::savePref('panelwidget-holidaysetselector', $prefVals, 0, true);
 	}
 
 
