@@ -53,7 +53,7 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 		$this->addHasIconClass();
 
 			// Init widget JS (observers)
-		TodoyuPage::addJsOnloadedFunction($this->getJsInitCode(), 100);
+		TodoyuPage::addJsInit($this->getJsInitCode(), 100);
 	}
 
 
@@ -66,9 +66,8 @@ class TodoyuCalendarPanelWidgetCalendar extends TodoyuPanelWidget {
 	protected function getJsInitCode() {
 		$firstDayOfWeek	= TodoyuSysmanagerSystemConfigManager::getFirstDayOfWeek();
 		$date			= date('Y-m-d', $this->getDate());
-		$jsClass		= 'Todoyu.Ext.calendar.PanelWidget.Calendar';
 
-		return $jsClass . '.init.bind(' . $jsClass . ', \'' . $date . '\', ' . $firstDayOfWeek . ')';
+		return 'Todoyu.Ext.calendar.PanelWidget.Calendar.init(\'' . $date . '\', ' . $firstDayOfWeek . ')';
 	}
 
 

@@ -172,9 +172,9 @@ class TodoyuCalendarReminderPopupManager {
 	public static function addReminderJsInitToPage() {
 		$upcomingEvents	= self::getUpcomingReminderEvents();
 		$json			= json_encode($upcomingEvents);
-		$jsInitCode		= 'Todoyu.Ext.calendar.Reminder.Popup.init.bind(Todoyu.Ext.calendar.Reminder.Popup, ' . $json . ')';
+		$jsInitCode		= 'Todoyu.Ext.calendar.Reminder.Popup.init(' . $json . ')';
 
-		TodoyuPage::addJsOnloadedFunction($jsInitCode, 200);
+		TodoyuPage::addJsInit($jsInitCode, 200);
 	}
 
 

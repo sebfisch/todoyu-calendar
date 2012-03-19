@@ -52,7 +52,7 @@ class TodoyuCalendarPanelWidgetHolidaySetSelector extends TodoyuPanelWidget {
 		$this->addHasIconClass();
 
 			// Init widget JS (observers)
-		TodoyuPage::addJsOnloadedFunction('Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector.init', 100, true);
+		TodoyuPage::addJsInit('Todoyu.Ext.calendar.PanelWidget.HolidaySetSelector.init()', 100);
 	}
 
 
