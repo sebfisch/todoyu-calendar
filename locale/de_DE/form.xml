@@ -15,4 +15,5 @@
 	<label index="legend.admin.holidayset.record.general">Feiertage Set</label>
 	<label index="legend.admin.holiday.record.general">Feiertag</label>
 	<label index="comment.autonotification.noroles">Kein Termin-Teilnehmer ist in einer Rolle zur automatischen Benachrichtigung.</label>
+	<label index="legend.series">Serientermin</label>
 </labels>

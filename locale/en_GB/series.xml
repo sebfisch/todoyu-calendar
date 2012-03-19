@@ -4,8 +4,8 @@
 	<label index="note">Note</label>
 	<label index="note.seriesDelete">The whole series was deleted</label>
 	<label index="editMode">You're editing this event in series mode</label>
-	<label index="frequency">Frequency</label>
-	<label index="frequency.no">Do not repeat</label>
+	<label index="frequency">Repeat event</label>
+	<label index="frequency.no">No</label>
 	<label index="frequency.day">Daily</label>
 	<label index="frequency.weekday">Every working day</label>
 	<label index="frequency.week">Weekly</label>

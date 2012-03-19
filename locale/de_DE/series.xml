@@ -4,14 +4,14 @@
 	<label index="note">Hinweis</label>
 	<label index="note.seriesDelete">Die ganze Serie wurde gelöscht</label>
 	<label index="editMode">Sie bearbeiten diesen Termin als Serienmodus</label>
-	<label index="frequency">Wiederholen</label>
-	<label index="frequency.no">Nicht wiederholen</label>
+	<label index="frequency">Termin wiederholen</label>
+	<label index="frequency.no">Nein</label>
 	<label index="frequency.day">Täglich</label>
 	<label index="frequency.weekday">Jeden Arbeitstag</label>
 	<label index="frequency.week">Wöchentlich</label>
 	<label index="frequency.month">Monatlich</label>
 	<label index="frequency.year">Jährlich</label>
-	<label index="interval">Wiederhole jeden</label>
+	<label index="interval">Wiederhole alle</label>
 	<label index="interval.day">Tage</label>
 	<label index="interval.week">Wochen</label>
 	<label index="interval.month">Monate</label>
