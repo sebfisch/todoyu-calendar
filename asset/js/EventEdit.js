@@ -184,7 +184,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Number}		idEvent
 	 */
 	observeDateFields: function(idEvent) {
-		if( this.Series.isSeriesEvent(idEvent) === false ) {
+		if( this.isSeriesEvent(idEvent) === false ) {
 				// Install non-series event date field observers
 			$('event-field-date-start').on(	'change', ':input',	this.onDateChanged.bind(this));
 			$('event-field-date-end').on(	'change', ':input',	this.onDateChanged.bind(this));
@@ -192,6 +192,18 @@ Todoyu.Ext.calendar.Event.Edit	= {
 				// Install series event date field observers
 			this.ext.Event.Series.observeDateFields(idEvent);
 		}
+	},
+
+
+
+	/**
+	 * Check whether event with ID idEvent is a series event
+	 *
+	 * @method	isSeriesEvent
+	 * @param	{Number}	idEvent
+	 */
+	isSeriesEvent: function(idEvent) {
+		this.ext.Event.Series.isSeriesEvent(idEvent)
 	},
 
 
