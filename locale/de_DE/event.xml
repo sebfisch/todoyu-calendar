@@ -60,7 +60,10 @@
 	<label index="contextmenu.manageEvents">Termine verwalten</label>
 	<label index="contextmenu.showEvent">Termin anzeigen</label>
 	<label index="contextmenu.editEvent">Termin bearbeiten</label>
+	<label index="contextmenu.editEventSeries">Termin-Serie bearbeiten</label>
+	<label index="contextmenu.editEventSeriesFuture">Termin-Serie bearbeiten (nur Zukunft)</label>
 	<label index="contextmenu.deleteEvent">Termin löschen</label>
+	<label index="contextmenu.deleteEventSeries">Termin-Serie löschen</label>
 	<label index="contextmenu.addEvent">Termin hinzufügen</label>
 	<label index="contextmenu.showEventInCalendar">Im Kalender anzeigen</label>
 	<label index="contextmenu.showEventInCalendar.day">Tag</label>
