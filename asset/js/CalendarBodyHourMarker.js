@@ -35,10 +35,10 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 
 	/**
-	 * @property    marker
-	 * @type	    Element
+	 * @property	marker
+	 * @type		Element
 	 */
-	marker:    null,
+	marker:		null,
 
 	/**
 	 * Periodical executor
@@ -167,12 +167,12 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	updatePosition: function() {
 		if( this.isTodayDisplayed() ) {
 			var cloneOptions= {
-				setLeft:    true,
-				setTop:     true,
-				setWidth:   false,
+				setLeft:	true,
+				setTop:		true,
+				setWidth:	false,
 				setHeight:	false,
 				offsetTop:	this.getOffsetTop(),
-				offsetLeft: this.getTodayOffsetLeft()
+				offsetLeft:	this.getTodayOffsetLeft()
 			};
 			this.marker.clonePosition(this.getFirstHourCell(), cloneOptions);
 

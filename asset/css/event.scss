@@ -312,13 +312,26 @@ div.weekMode div#calendarBody div.event dd span.desc {
 /* ------------------------
 	Portal events list
    ------------------------ */
-.portalEventsList #events .event {
-	border-bottom:1px solid #ddd;
+.portalEventsList h1.headerLine span.taskDate {
+	width:260px;
 }
+.portalEventsList h1.headerLine span.eventType {
+	width:110px;
+}
+
+
 
 .portalEventsList #events .event h3	{
 	border-left:0;
 }
+.portalEventsList #events .event.expanded h3	{
+	background-color:#e2e2e2;
+}
+
+.portalEventsList #events .event.expanded {
+	border-bottom:1px solid #ddd;
+}
+
 .portalEventsList #events div.eventDetails	{
 	background-color:#fff;
 }
@@ -377,7 +390,6 @@ div.weekMode div#calendarBody div.event dd span.desc {
   ------------------------- */
 #holidays h3 {
 	background-color:#fff;
-	border-bottom:1px solid #ddd;
 }
 
 #holidays h3 {
@@ -395,13 +407,13 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	padding:0 5px 0 0;
 }
 
-#holidays h3.odd,
-#events .odd h3{
+#holidays h3.odd {
 	background-color:#f3f3f3;
 }
 
-#events .even h3 {
+#events h3 {
 	background-color:#fff;
+	border-bottom:1px solid #ddd;
 }
 
 #events .details {
@@ -474,12 +486,19 @@ div.eventDetails dd {
 }
 
 #events .event h3 .label .date {
-	width:265px;
+	width:220px;
 	display:inline-block;
 }
 
+#events .event h3 .label .eventtype {
+    display:inline-block;
+	width:100px;
+}
+
+#events .event h3 .label .eventtype,
 #events .event h3 .label .title {
-	padding-left:20px;
+    border-left:1px solid #ddd;
+    padding:0 5px 1px;
 }
 
 
@@ -493,7 +512,7 @@ div.eventDetails dd {
 }
 
 #holidays .holidayDate {
-	width:227px;
+	width:183px;
 	padding-left:48px;
 }
 	#holidays .holidayDate.hasIcon {
@@ -503,7 +522,7 @@ div.eventDetails dd {
 #holidays .holidayTitle {
 	padding-left:20px;
 	float:left;
-	width:250px;
+	width:202px;
 }
 #holidays .holidayWorkinghours {
 	position:relative;
@@ -542,9 +561,7 @@ div.eventDetails dd {
 	Detail view
    --------------------------- */
 table.eventDetailView {
-	/*margin:12px 0 12px 0;*/
 	width:100%;
-	line-height:20px;
 }
 
 table.eventDetailView td {

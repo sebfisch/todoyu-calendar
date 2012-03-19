@@ -49,6 +49,7 @@
 	<label index="attr.popup_advancetime">Time before event to show reminder pop-up</label>
 	<label index="attr.reminder_email">Remind me by email</label>
 	<label index="attr.reminder_popup">Remind me by popup</label>
+	<label index="tree.header.eventtype">Event Type</label>
 	<label index="tree.header.title">Event Title</label>
 	<label index="eventslist.birthdaysWithinTheNextweeks">Birthdays within the next weeks</label>
 	<label index="eventslist.holidaysWithinTheNextweeks">Holidays within the next weeks</label>

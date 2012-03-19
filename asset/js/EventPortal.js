@@ -45,9 +45,12 @@ Todoyu.Ext.calendar.EventPortal	= {
 	 * @param	{Number}		idEvent
 	 */
 	toggleDetails: function(idEvent) {
+		$('event-static-' + idEvent).toggleClassName('expanded');
+
 			// If detail is not loaded yet, send request
 		if( this.isDetailsLoaded(idEvent)) {
 			$('event-' + idEvent + '-details').toggle();
+
 			this.saveEventExpandedStatus(idEvent, $('event-' + idEvent + '-details').visible());
 		} else {
 			this.loadDetails(idEvent);
@@ -59,7 +62,7 @@ Todoyu.Ext.calendar.EventPortal	= {
 
 
 	/**
-	 * Load event details
+	 * Load event details ("expands" the item with loaded details)
 	 *
 	 * @method	loadDetails
 	 * @param	{Number}		idEvent

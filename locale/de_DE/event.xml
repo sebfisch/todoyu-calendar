@@ -49,7 +49,8 @@
 	<label index="attr.popup_advancetime">Zeit vor Termin zur Anzeige des Erinnerungs-Popups</label>
 	<label index="attr.reminder_email">Persönliche Email-Erinnerung aktivieren</label>
 	<label index="attr.reminder_popup">Persönliche Popup-Erinnerung aktivieren</label>
-	<label index="tree.header.title">Termin-Titel</label>
+	<label index="tree.header.eventtype">Termintyp</label>
+	<label index="tree.header.title">Termintitel</label>
 	<label index="eventslist.birthdaysWithinTheNextweeks">Geburtstage in den nächsten Wochen</label>
 	<label index="eventslist.holidaysWithinTheNextweeks">Feiertage in den nächsten Wochen</label>
 	<label index="error.noAppointmentsFound">Zur Zeit haben Sie keine Termine</label>

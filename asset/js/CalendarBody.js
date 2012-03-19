@@ -262,7 +262,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * @method	getTimeOfMouseCoordinates
 	 * @param	{Number}		x
 	 * @param	{Number}		y
-	 * @return	{Number}            timestamp
+	 * @return	{Number}		timestamp
 	 */
 	getTimeForPosition: function(x, y) {
 		var calendarMode= this.ext.getActiveTab();

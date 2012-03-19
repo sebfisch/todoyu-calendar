@@ -129,7 +129,6 @@ Todoyu.Ext.calendar.Event	= {
 
 
 
-
 	/**
 	 * Edit event
 	 *
