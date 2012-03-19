@@ -26,6 +26,7 @@
 	<label index="privateEvent.info">Privat</label>
 	<label index="delete.confirm">Wollen Sie diesen Termin wirklich löschen?</label>
 	<label index="group.attendees">Teilnehmer des Termins</label>
+	<label index="isseriesevent.info">Teil einer Termin-Serie</label>
 	<label index="attr.creator">Ersteller</label>
 	<label index="attr.eventtype">Terminart</label>
 	<label index="attr.is_dayevent">Ganztagestermin</label>

@@ -758,6 +758,11 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 		$typeInfo	= $this->getQuickinfoTypeInfo();
 		$quickInfo->addInfo('type' . ucfirst($this->getTypeKey()),	$typeInfo, 20);
 
+			// Part of a series? (only displayed if yes)
+		if( $this->getSeriesID() ) {
+			$quickInfo->addInfo('isSeriesEvent', Todoyu::Label('calendar.event.isseriesevent.info'), 25);
+		}
+
 			// Date
 		$dateInfo	= TodoyuTime::formatRange($this->getDateStart(), $this->getDateEnd());
 		$quickInfo->addInfo('date',	$dateInfo, 30);

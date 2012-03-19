@@ -26,6 +26,7 @@
 	<label index="privateEvent.info">Personal</label>
 	<label index="delete.confirm">Do you really want to delete this event?</label>
 	<label index="group.attendees">Event Attendees</label>
+	<label index="isseriesevent.info">Part of an event series</label>
 	<label index="attr.creator">Creator</label>
 	<label index="attr.eventtype">Event Type</label>
 	<label index="attr.is_dayevent">All Day</label>
