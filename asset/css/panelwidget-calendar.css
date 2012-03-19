@@ -3,7 +3,7 @@
    ----------------- */
 #panelwidget-calendar {
 	border:none;
-	z-index:1;
+	z-index:100;
 }
 
 #panelwidget-calendar h1 .title {
@@ -50,12 +50,15 @@
 		cursor:pointer;
 	}
 
-#panelwidget-calendar-jscalendar div.calendar tbody .day {
+#panelwidget-calendar-jscalendar .calendar .day {
 	border-bottom:1px solid #ddd;
 	border-right:1px solid #ddd;
 	text-align:center;
 	padding:4px 7px;
 	cursor:pointer;
+}
+#panelwidget-calendar-jscalendar .calendar .wn {
+	cursor: default;
 }
 
 #panelwidget-calendar-jscalendar div.calendar tfoot {
