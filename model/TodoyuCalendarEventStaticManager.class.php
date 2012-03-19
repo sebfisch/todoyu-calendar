@@ -82,7 +82,7 @@ class TodoyuCalendarEventStaticManager {
 		$form->setFormData($data);
 
 			// Adjust form to needs of quick creation wizard
-		$form->setAttribute('action', '?ext=calendar&amp;controller=quickcreateevent');
+		$form->setAttribute('action', 'index.php?ext=calendar&amp;controller=quickcreateevent');
 		$form->setAttribute('onsubmit', 'return false');
 		$form->getFieldset('buttons')->getField('save')->setAttribute('onclick', 'Todoyu.Ext.calendar.QuickCreateEvent.save(this.form)');
 		$form->getFieldset('buttons')->getField('cancel')->setAttribute('onclick', 'Todoyu.Popups.close(\'quickcreate\')');

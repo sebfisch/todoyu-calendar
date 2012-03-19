@@ -3,7 +3,7 @@
 <form>
 	<attributes>
 		<attribute name="name">holiday</attribute>
-		<attribute name="action">?ext=sysmanager&amp;controller=records</attribute>
+		<attribute name="action">index.php?ext=sysmanager&amp;controller=records</attribute>
 		<attribute name="onsubmit">Todoyu.Ext.sysmanager.Extensions.Records.saveRecord(this); return false;</attribute>
 	</attributes>
 	<fieldsets>

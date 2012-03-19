@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
 	<attributes>
-		<attribute name="action">?ext=calendar&amp;controller=profile</attribute>
+		<attribute name="action">index.php?ext=calendar&amp;controller=profile</attribute>
 		<attribute name="name">reminders</attribute>
 		<attribute name="onsubmit">return false</attribute>
 	</attributes>

@@ -85,7 +85,7 @@ class TodoyuCalendarEventSearch implements TodoyuSearchEngineIf {
 						'labelTitle'=> $labelTitle,
 						'labelInfo'	=> TodoyuString::getSubstring($event['description'], $find[0], 20, 30, false),
 						'title'		=> strip_tags($labelTitle),
-						'onclick'	=> 'location.href=\'?ext=calendar&amp;tab=view&amp;event=' . $event['id'] . '\''
+						'onclick'	=> 'location.href=\'index.php?ext=calendar&amp;tab=view&amp;event=' . $event['id'] . '\''
 					);
 				}
 			}
