@@ -11,7 +11,6 @@
 
 	<fieldsets>
 		<fieldset name="main">
-			<legend>Main</legend>
 			<class>reminderschedule</class>
 			<elements>
 				<field type="select" name="date_remindpopup">
@@ -25,7 +24,6 @@
 		</fieldset>
 
 		<fieldset name="buttons">
-			<legend>Actions</legend>
 			<class>buttons</class>
 			<elements>
 				<field type="cancelButton" name="dismiss">

@@ -197,3 +197,8 @@ button.rescheduleReminderButton span.icon {
 	background:url('../img/icons.png') no-repeat 2px -1200px;
 	padding-left:6px;
 }
+
+
+.dialog .notification.reminder .eventDetailView td {
+	padding:2px;
+}

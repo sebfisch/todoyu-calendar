@@ -440,9 +440,9 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	 * @param	{Element}	form
 	 */
 	rescheduleReminderTime: function(form) {
-		var idEvent					= this.getEventIDfromForm(form);
-		var idDateRemindSelector	= form.down('select[name="reminder[date_remindpopup]"]');
-		var secondsBefore			= $F(idDateRemindSelector);
+		var idEvent			= this.getEventIDfromForm(form);
+		var delayInput		= form.down('select[name="reminder[date_remindpopup]"]');
+		var secondsBefore	= $F(delayInput);
 
 		var event	= this.events.detect(function(event){
 			return event.id == idEvent;

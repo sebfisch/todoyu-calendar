@@ -1,20 +1,12 @@
 <div class="notification reminder">
-	<form>
-		<div class="left">
-			<span class="iconLarge"></span>
-		</div>
-		<div class="right">
-			<div class="inner">
-				<h2 style="text-align:left;">
-					<span style="padding-left:20px; line-height:30px;">
-						{Label calendar.ext.reminder.upcomingevent}
-					</span>
-				</h2>
-				<div style="background-color:#F6F6E5; padding:0 0 8px 8px; margin:16px 0 0 0">
-					{include file="event-view-details.tmpl"}
-				</div>
-			</div>
-			{$buttonsFieldset}
-		</div>
-	</form>
+	<h1>
+		<span class="iconLarge iconNotifyLarge reminder"></span>
+		<span class="label">{$datetime} - {$event.title}</span>
+	</h1>
+
+	<div style="background-color:#F6F6E5; padding:0 0 8px 8px; margin:16px 0 0 0">
+		{include file="event-view-details.tmpl"}
+	</div>
+
+	{$reminderFormHtml}
 </div>

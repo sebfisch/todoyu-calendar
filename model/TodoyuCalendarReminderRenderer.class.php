@@ -66,18 +66,21 @@ class TodoyuCalendarReminderRenderer {
 		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 			// Construct form object for inline form
-		$xmlPath= 'ext/calendar/config/form/event-reminder.xml';
-		$form	= TodoyuFormManager::getForm($xmlPath, $idEvent);
-		$form->setFormData(array(
+		$xmlPath		= 'ext/calendar/config/form/event-reminder.xml';
+		$reminderForm	= TodoyuFormManager::getForm($xmlPath, $idEvent);
+		$reminderForm->setFormData(array(
 			'id_event'	=> $idEvent
 		));
 
-		$data	= array(
-			'event'				=> $event->getTemplateData(true, true, true),
-			'buttonsFieldset'	=> $form->render()
-		);
+			// Reminder label
+		$startDateFormat = date('ymd', $event->getDateStart()) === date('ymd') ? 'time' : 'D2MshortTime';
 
 		$tmpl	= 'ext/calendar/view/event-reminder.tmpl';
+		$data	= array(
+			'event'				=> $event->getTemplateData(true, true, true),
+			'datetime'			=> TodoyuTime::format($event->getDateStart(), $startDateFormat),
+			'reminderFormHtml'	=> $reminderForm->render()
+		);
 
 		return Todoyu::render($tmpl, $data);
 	}
