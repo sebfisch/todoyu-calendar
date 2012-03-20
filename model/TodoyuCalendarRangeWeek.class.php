@@ -55,7 +55,7 @@ class TodoyuCalendarRangeWeek extends TodoyuDayRange {
 			$date	= TodoyuTime::getWeekStart($date);
 		} else {
 				// Displayed range is MON-FRI
-			$date   = TodoyuTime::getWeekStart($date, true);
+			$date	= TodoyuTime::getWeekStart($date, true);
 		}
 
 		parent::setStart($date);
@@ -77,7 +77,7 @@ class TodoyuCalendarRangeWeek extends TodoyuDayRange {
 		} else {
 				// Get friay of week
 			$date	= TodoyuTime::getWeekEnd($date, true);
-			$date   = TodoyuTime::addDays($date, -2);
+			$date	= TodoyuTime::addDays($date, -2);
 		}
 
 		parent::setEnd($date);

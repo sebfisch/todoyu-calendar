@@ -198,8 +198,8 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 		}
 
 			// Get top coordinate of first shown hour
-		var firstHour   = Todoyu.Ext.calendar.CalendarBody.getRangeStart();
-		var hourCells   = this.getHourCells();
+		var firstHour	= Todoyu.Ext.calendar.CalendarBody.getRangeStart();
+		var hourCells	= this.getHourCells();
 
 		return hourCells[firstHour].offsetTop;
 	},
@@ -238,8 +238,8 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @return  {Number}
 	 */
 	getTodayOffsetLeft: function() {
-		var activeTab   = this.ext.getActiveTab();
-		var offsetLeft  = 0;
+		var activeTab	= this.ext.getActiveTab();
+		var offsetLeft	= 0;
 
 			// Week: Get left offset via today's column
 		if( activeTab === 'week') {
@@ -267,20 +267,20 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @return  {Number}
 	 */
 	getWidth: function() {
-		var activeTab   = this.ext.getActiveTab();
+		var activeTab	= this.ext.getActiveTab();
 		var width;
 
 		if( activeTab === 'day' ) {
-			width   = 660;
+			width	= 660;
 		} else {
-			width   = this.ext.Week.getDayColWidth();
+			width	= this.ext.Week.getDayColWidth();
 
 			if( Prototype.Browser.WebKit ) {
 					// e.g. Chrome
-				width   -= this.ext.Week.isWeekendDisplayed() ? 2 : 3;
+				width	-= this.ext.Week.isWeekendDisplayed() ? 2 : 3;
 			} else {
 					// e.g. FF
-				width   -= this.ext.Week.isWeekendDisplayed() ? 3 : 3;
+				width	-= this.ext.Week.isWeekendDisplayed() ? 3 : 3;
 			}
 		}
 

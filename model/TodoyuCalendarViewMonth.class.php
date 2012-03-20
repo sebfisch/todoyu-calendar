@@ -121,13 +121,21 @@ class TodoyuCalendarViewMonth extends TodoyuCalendarView {
 		foreach($timestamps as $index => $dayTime) {
 			$dayKey	= date('Ymd', $dayTime);
 
+			if( date('j', $dayTime) == 1 || $index === 0 ) {
+					// Label of 1st day shown / of month are stating also the month
+				$label = TodoyuTime::format($dayTime, 'dateMshort');
+			} else {
+				$label  = date('j', $dayTime);
+			}
+
 			$map[$dayKey]	= array(
 				'events'		=> array(),
 				'date'			=> $dayTime,
 				'inCurrentMonth'=> date('n', $dayTime) === $monthKey,
 				'today'			=> date('Ymd', $dayTime) === $todayKey,
 				'title'			=> TodoyuTime::format($dayTime, 'DlongD2MlongY4'),
-				'label'			=> date('j', $dayTime) == 1 || $index === 0 ?  TodoyuTime::format($dayTime, 'D2Mshort') : date('j', $dayTime),
+//				'label'			=> date('j', $dayTime) == 1 || $index === 0 ?  TodoyuTime::format($dayTime, 'D2Mshort') : date('j', $dayTime),
+				'label'			=> $label,
 				'week'			=> TodoyuTime::format($dayTime, 'calendarweek')
 			);
 		}
@@ -149,8 +157,8 @@ class TodoyuCalendarViewMonth extends TodoyuCalendarView {
 		for($i=0; $i<7; $i++) {
 			$date	= $dayDates[$i];
 			$columns[]	=  array(
-					'title'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('l', $date))),
-					'label'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('D', $date)))
+				'title'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('l', $date))),
+				'label'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('D', $date)))
 			);
 		}
 

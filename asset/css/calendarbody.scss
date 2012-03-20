@@ -1,45 +1,38 @@
-/* ----------------------
-	Scrolling or not
-   ---------------------- */
+/* Scrolling or not */
 #calendarBody {
 	overflow:hidden;
+
+	&.month {
+		height:auto; }
+
+	&.full {
+		overflow:visible; }
 }
-
-	#calendarBody.month {
-		height:auto;
-	}
-
-	#calendarBody.full {
-		overflow:visible;
-	}
 
 #tgnowptr {
 	background:#f2f3ed url(../img/background-hours.png) repeat-y;
 }
 
-
-
 #calendar .colHours {
 	width:40px;
 	background:#f2f3ed url(../img/background-hours.png) repeat-y;
+
+	& .hour {
+		padding-left:2px;
+		color:#494949;
+		height:41px;
+		margin-top:1px;
+		cursor:pointer;
+
+		&:hover {
+			background-color:#ffffe0; }
+
+		/* Highlight digit of current hour in hours column */
+		&.currentHour {
+			font-weight:bold; }
+	}
 }
 
-#calendar .colHours .hour {
-	padding-left:2px;
-	color:#494949;
-	height:41px;
-	margin-top:1px;
-	cursor:pointer;
-}
-
-#calendar .colHours .hour:hover {
-	background-color:#ffffe0;
-}
-
-	/* Highlight digit of current hour in hours column */
-#calendar .colHours .hour.currentHour {
-	font-weight:bold;
-}
 	/* Marker layer of current hour */
 #currentHourMarker {
 	position:absolute;
@@ -47,26 +40,26 @@
 	height:10px;
 	pointer-events:none;
 	border-bottom:1px solid #ff1f1f;
-}
-#currentHourMarker.dayMode,
-#currentHourMarker.weekMode {
-	background-color:#ccc;
-	opacity:0.4;
-}
-#currentHourMarker.weekMode {
-	border-left:1px solid #ffa3a3;
-	border-right:1px solid #ffa3a3;
-}
 
+	&.dayMode,
+	&.weekMode {
+		background-color:#ccc;
+		opacity:0.4; }
 
+	&.weekMode {
+		border: {
+			left:1px solid #ffa3a3;
+			right:1px solid #ffa3a3;
+		}
+	}
+}
 
 .timeSpacer {
 	width:43px;
 }
-.dayEvents{
+.dayEvents {
 	background-color:#fff;
 }
-
 
 
 
@@ -76,6 +69,7 @@
 #calendar-tabs span.icon {
 	background-image:url(../img/icons.png);
 }
+
 #calendar-tab-day span.icon {
 	background-position:2px -204px;
 }
@@ -123,31 +117,31 @@ li.editeventtab p.label span.icon {
 	margin-right:2px;
 }
 
-#createevent .label {
-	float:left;
-	font-weight:bold;
-	width:125px;
-}
+#createevent {
+	& .label {
+		float:left;
+		font-weight:bold;
+		width:125px; }
 
-#createevent .saveButton {
-	background-color:green;
-	color:white;
-}
+	& .saveButton {
+		background-color:green;
+		color:white;
+	}
 
-#createevent #repeatsChoices {
-	margin-left:130px;
-	margin-top:5px;
-	margin-bottom:5px;
-	padding:4px;
-	background-color:#f2f3ed;
-}
+	& #repeatsChoices {
+		margin: {
+			left:130px;
+			top:5px;
+			bottom:5px;
+		}
+		padding:4px;
+		background-color:#f2f3ed; }
 
-#createevent #repeatsChoices_when {
-	margin-top:10px;
-	font-weight:bold;
-}
+	& #repeatsChoices_when {
+		margin-top:10px;
+		font-weight:bold; }
 
-#createevent #repeatsChoices_area {
-	margin-top:10px;
-	font-weight:bold;
+	& #repeatsChoices_area {
+		margin-top:10px;
+		font-weight:bold; }
 }

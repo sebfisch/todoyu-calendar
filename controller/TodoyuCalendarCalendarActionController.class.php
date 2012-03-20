@@ -52,7 +52,7 @@ class TodoyuCalendarCalendarActionController extends TodoyuActionController {
 
 		TodoyuCalendarPreferences::saveActiveTab($tab);
 
-		return TodoyuCalendarRenderer::renderCalendarBody($tab, $date);
+		return TodoyuCalendarCalendarRenderer::renderBody($tab, $date);
 	}
 
 }

@@ -182,7 +182,7 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'position'	=> 101
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/calendarbody.css',
+			'file'		=> 'ext/calendar/asset/css/calendarbody.scss',
 			'poisition'	=> 101
 		),
 		array(
