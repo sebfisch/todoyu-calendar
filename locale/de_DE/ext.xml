@@ -36,8 +36,8 @@
 	<label index="calendartitle.dateformat.week.part1">%d. %B - </label>
 	<label index="calendartitle.dateformat.week.part2">%d. %B %Y (KW %W)</label>
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label>
-	<label index="calendartitle.dateformat.month.part2">(KW %W - </label>
-	<label index="calendartitle.dateformat.month.part3">KW %W)</label>
+	<label index="calendartitle.dateformat.month.part2">(KW %W-</label>
+	<label index="calendartitle.dateformat.month.part3">%W)</label>
 	<label index="reminder.popup.title">Termin-Erinnerung</label>
 	<label index="reminder.upcomingevent">Nicht Vergessen: Sie haben bald den folgenden Termin.</label>
 	<label index="reminder.remindagain">Erneut erinnern...</label>

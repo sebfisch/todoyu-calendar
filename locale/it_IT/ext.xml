@@ -33,8 +33,8 @@
 	<label index="calendartitle.dateformat.week.part1">%B %d - </label><!-- timestamp: first displayed day -->
 	<label index="calendartitle.dateformat.week.part2">%B %d %Y (CW %W)</label><!-- timestamp: last displayed day -->
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label><!-- timestamp: beginning of shown month -->
-	<label index="calendartitle.dateformat.month.part2">(CW %W - </label><!-- timestamp: first displayed day -->
-	<label index="calendartitle.dateformat.month.part3">CW %W)</label><!-- timestamp: last displayed day -->
+	<label index="calendartitle.dateformat.month.part2">(CW %W-</label><!-- timestamp: first displayed day -->
+	<label index="calendartitle.dateformat.month.part3">%W)</label><!-- timestamp: last displayed day -->
 	<label index="profile.module">Calendario</label>
 	<label index="profile.module.main.tab">Principale</label>
 </labels>
