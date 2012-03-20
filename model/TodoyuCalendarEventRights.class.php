@@ -164,11 +164,14 @@ class TodoyuCalendarEventRights {
 		}
 
 			// Person is assigned to event and has right to edit/delete events it's assigned to
-		if( Todoyu::allowed('calendar', 'event:' . $action . 'Assigned')  && $event->isCurrentPersonAssigned() ) {
-			return true;
+		if( $event->isCurrentPersonAssigned() ) {
+			if( Todoyu::allowed('calendar', 'event:' . $action . 'Assigned') ) {
+				return true;
+			}
 		}
+
 			// Person can edit/delete all events and event is not private,
-		if( Todoyu::allowed('calendar', 'event:' . $action . 'All') && ! $event->isPrivate() ) {
+		if( Todoyu::allowed('calendar', 'event:' . $action . 'All') && !$event->isPrivate() ) {
 			return true;
 		}
 

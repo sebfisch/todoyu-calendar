@@ -208,6 +208,8 @@ abstract class TodoyuCalendarEventElement {
 		if( $this->getEvent()->hasAccess() ) {
 			$this->addClass('hasAccess');
 			$this->addClass('contextmenuevent');
+		} else {
+			$this->addClass('noAccess');
 		}
 		if( $this->getEvent()->canEdit() ) {
 			$this->addClass('canEdit');

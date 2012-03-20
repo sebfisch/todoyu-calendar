@@ -19,7 +19,6 @@
 }
 
 #calendar .event .head {
-	cursor:not-allowed;
 	width:100%;
 }
 
@@ -28,19 +27,11 @@
 }
 #calendar .event.noAccess .head,
 #calendar .event.noEdit .head {
-	cursor:not-allowed;
+	cursor:no-drop !important;
 }
 
 .event .description {
 	font-size:9px;
-}
-
-#calendar .event.noAccess dt.head {
-	cursor:not-allowed;
-}
-
-#calendar .event.noEdit dt.head {
-	cursor:pointer;
 }
 
 

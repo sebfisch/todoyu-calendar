@@ -77,8 +77,8 @@ Todoyu.Ext.calendar.Event	= {
 	 */
 	installObservers: function() {
 			// Observe all events in the calendar
-		$('calendar-body').select('div.event').each(function(eventElement) {
-			eventElement.on('dblclick', 'div.event', this.onEventDblClick.bind(this));
+		$('calendar-body').select('.event').each(function(eventElement) {
+			eventElement.on('dblclick', '.event', this.onEventDblClick.bind(this));
 		}, this);
 
 		this.ext.ContextMenuEvent.attach();
@@ -98,20 +98,12 @@ Todoyu.Ext.calendar.Event	= {
 	onEventDblClick: function(event, element) {
 		event.stop();
 
-		var parts		= element.id.split('-');
-		var idItem		= parts.last();
+		var idEvent		= element.id.split('-').last();
 
-			// If event is private and not allowed for current user, do nothing
-		var isPrivate	= element.down('span.private');
-		if( isPrivate ) {
-			if( ! isPrivate.hasClassName('allowed') ) {
-				return false;
-			}
-		}
-
-			// Birthdays have no details
-		if( parts.first() !== 'birthday' ) {
-			this.show(idItem);
+		if( element.hasClassName('hasAccess') ) {
+			this.show(idEvent);
+		} else{
+			Todoyu.notifyError('[LLL:calendar.event.noAccess]');
 		}
 	},
 

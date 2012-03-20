@@ -95,4 +95,5 @@
 	<label index="mail.notification.popup.deactivated">Termin-Mail popup deaktiviert. (Kann im Profil erneut aktiviert werden).</label>
 	<label index="mail.notification.autosent">Automatische Termin-Email wurde verschickt.</label>
 	<label index="mail.notification.sent">Termin-Email wurde verschickt.</label>
+	<label index="noAccess">Sie haben keinen Zugriff auf diesen Termin</label>
 </labels>
