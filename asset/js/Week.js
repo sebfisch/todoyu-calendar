@@ -79,10 +79,13 @@ Todoyu.Ext.calendar.Week	= {
 	 * Get snap config for drag and drop in week view
 	 *
 	 * @method	getDragDropSnap
+	 * @param	{Number}		x
+	 * @param	{Number}		y
+	 * @param	{Draggable}		draggable
 	 * @return	{Number[]}
 	 */
-	getDragDropSnap: function() {
-		var vertical	= this.ext.DragDrop.verticalSnap;
+	getDragDropSnap: function(x, y, draggable) {
+		var vertical	= this.ext.DragDrop.verticalHourSnap;
 		var horizontal;
 
 			// Snap fix (I don't know why this correction is required, but it helps! =)
@@ -93,6 +96,19 @@ Todoyu.Ext.calendar.Week	= {
 		}
 
 		return [horizontal, vertical];
+	},
+
+
+
+	/**
+	 * Get options for drag'n'drop
+	 *
+	 * @return	{Object}
+	 */
+	getDragDropOptions: function() {
+		return {
+			snap: this.getDragDropSnap.bind(this)
+		};
 	},
 
 

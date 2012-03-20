@@ -134,6 +134,11 @@
 }
 
 
+#mvEventContainer table td.content.dndHover {
+	background-color: #fffdbd;
+}
+
+
 
 /* --------------
 	Event

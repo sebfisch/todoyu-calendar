@@ -139,12 +139,17 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'file'		=> 'lib/js/scriptaculous/sound.js',
 			'position'	=> 220
 		),
+
+		array(
+			'file'		=> 'ext/calendar/asset/js/Day.js',
+			'position'	=> 220
+		),
 		array(
 			'file'		=> 'ext/calendar/asset/js/Week.js',
 			'position'	=> 220
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/js/Day.js',
+			'file'		=> 'ext/calendar/asset/js/Month.js',
 			'position'	=> 220
 		),
 		array(

@@ -65,10 +65,10 @@ Todoyu.Ext.calendar.DragDrop	= {
 	/**
 	 * Vertical pixel snapping
 	 * 42/4
-	 * @property	verticalSnap
+	 * @property	verticalHourSnap
 	 * @type		Number
 	 */
-	verticalSnap: 10.5,
+	verticalHourSnap: 10.5,
 
 
 
@@ -93,7 +93,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 			// Add drop functions to day containers in month view
 		if( tab === 'month' ) {
-			this.createDayDropZones();
+			this.ext.Month.createDayDropZones();
 		}
 	},
 
@@ -106,6 +106,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 */
 	initOptions: function() {
 		var tab	= this.ext.getActiveTab();
+		var tabOptions = {};
 
 			// Clone default options (assign would make a reference)
 		this.draggableOptions	= Object.clone(this.defaultDraggableOptions);
@@ -117,16 +118,53 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 		switch(tab) {
 			case 'day':
-				this.draggableOptions.snap		= this.verticalSnap;
-				this.draggableOptions.constraint= 'vertical';
+				tabOptions	= this.getOptionsDay();
 				break;
 			case 'week':
-				this.draggableOptions.snap		= this.ext.Week.getDragDropSnap();
+				tabOptions	= this.getOptionsWeek();
 				break;
 			case 'month':
-				this.draggableOptions.revert	= this.monthRevert.bind(this);
+				tabOptions	= this.getOptionsMonth();
 				break;
 		}
+
+		Object.extend(this.draggableOptions, tabOptions);
+	},
+
+
+
+	/**
+	 * Get options for day
+	 *
+	 * @return	{Object}
+	 */
+	getOptionsDay: function() {
+		return {
+			snap: 		this.verticalHourSnap,
+			constraint: 'vertical'
+		};
+	},
+
+
+
+	/**
+	 * Get options for week
+	 *
+	 * @return	{Object}
+	 */
+	getOptionsWeek: function() {
+		return this.ext.Week.getDragDropOptions();
+	},
+
+
+
+	/**
+	 * Get options for month
+	 *
+	 * @return	{Object}
+	 */
+	getOptionsMonth: function() {
+		return this.ext.Month.getDragOptions();
 	},
 
 
@@ -171,18 +209,6 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 
 	/**
-	 * Get all day containers in month view
-	 *
-	 * @method	getDropDaysInMonth
-	 * @return	{Array}
-	 */
-	getDropDaysInMonth: function() {
-		return $('mvEventContainer').select('td.content');
-	},
-
-
-
-	/**
 	 * Add drag functions to all events
 	 *
 	 * @method	makeEventsDraggable
@@ -210,22 +236,6 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 		this.getDayEvents().each(function(eventElement){
 			new Draggable(eventElement, options);
-		}, this);
-	},
-
-
-
-	/**
-	 * Add drop functions to all days
-	 *
-	 * @method	makeDaysDroppable
-	 */
-	createDayDropZones: function() {
-		this.getDropDaysInMonth().each(function(dayElement){
-			Droppables.add(dayElement, {
-				accept:	'event',
-				onDrop:	this.onMonthDrop.bind(this)
-			});
 		}, this);
 	},
 
@@ -381,42 +391,6 @@ Todoyu.Ext.calendar.DragDrop	= {
 		var idEvent	= dragInfo.element.id.split('-').last();
 
 		this.saveAllDayEventDrop(idEvent, dragInfo);
-	},
-
-
-
-	/**
-	 * Month view - Handler when event was dropped on a day (successful)
-	 *
-	 * @method	onMonthDrop
-	 * @param	{Element}	dragged
-	 * @param	{Element}	dropped
-	 * @param	{Event}		event
-	 */
-	onMonthDrop: function(dragged, dropped, event) {
-		dragged.dropped	= true;
-
-		var idEvent		= dragged.id.split('-').last();
-		var dateParts	= dropped.id.split('-').slice(1);
-		var newDate		= new Date(dateParts[0], dateParts[1]-1, dateParts[2]);
-
-		this.saveDropping('month', idEvent, newDate, false);
-	},
-
-
-
-	/**
-	 * If event dragged in month view and dropping on a day failed, move it back to its day container
-	 *
-	 * @method	monthRevert
-	 * @param	{Element}	element
-	 */
-	monthRevert: function(element) {
-		if( element.dropped !== true ) {
-			element.revertToOrigin();
-		}
-
-		element.dropped	= false;
 	},
 
 
