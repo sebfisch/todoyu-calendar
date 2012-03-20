@@ -10,7 +10,12 @@
 .weekMode .event .head {
 	-moz-user-select:none;
 	overflow:hidden;
-	position:absolute;
+	/*position:absolute;*/
+}
+
+.dayMode .event .content,
+.weekMode .event .content {
+	padding: 2px;
 }
 
 #calendar .event .head {
@@ -27,7 +32,6 @@
 }
 
 .event .description {
-	margin-top:2px;
 	font-size:9px;
 }
 
