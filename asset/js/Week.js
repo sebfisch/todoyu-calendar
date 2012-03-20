@@ -85,17 +85,28 @@ Todoyu.Ext.calendar.Week	= {
 	 * @return	{Number[]}
 	 */
 	getDragDropSnap: function(x, y, draggable) {
-		var vertical	= this.ext.DragDrop.verticalHourSnap;
-		var horizontal;
+		var verSnap	= this.ext.DragDrop.verticalHourSnap;
+		var horSnap, horMax;
 
-			// Snap fix (I don't know why this correction is required, but it helps! =)
 		if( this.isWeekendDisplayed() ) {
-			horizontal = 88.8;
+			horSnap	= 88.8;
+			horMax	= 533;
 		} else {
-			horizontal = 124.1;
+			horSnap	= 124.1;
+			horMax	= 497;
 		}
 
-		return [horizontal, vertical];
+		x = Math.round(x/horSnap)*horSnap;
+		y = Math.round(y/verSnap)*verSnap;
+
+			// Kepp in horizontal range
+		x = x < 0 ? 0 : x;
+		x = x > horMax ? horMax : x;
+
+			// Keep in vertical range
+		y = y < 0 ? 0 : y;
+
+		return [x,y];
 	},
 
 
