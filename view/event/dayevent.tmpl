@@ -21,7 +21,7 @@
 
 		<div class="title">
 			{if !$isPrivate || isPersonID($id_person)}
-				{htmlencode(truncate($title,$titleCropLength,'',true))}
+				{htmlencode(truncate($title,$titleCropLength,'...',true))}
 			{/if}
 		</div>
 
