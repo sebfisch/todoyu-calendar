@@ -22,7 +22,6 @@
 		color:#494949;
 		height:41px;
 		margin-top:1px;
-		cursor:pointer;
 
 		&:hover {
 			background-color:#ffffe0; }
@@ -31,6 +30,10 @@
 		&.currentHour {
 			font-weight:bold; }
 	}
+}
+
+#calendar .dayMode .colHours .hour {
+	cursor:pointer;
 }
 
 	/* Marker layer of current hour */

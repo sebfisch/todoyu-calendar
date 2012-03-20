@@ -338,7 +338,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 		if( tab === 'month' ) {
 			this.calendarBody.on('dblclick', 'td', this.onEventCreateMonth.bind(this));
 		} else {
-			this.calendarBody.on('dblclick', this.onEventCreateDayWeek.bind(this));
+			this.calendarBody.on('dblclick', 'td.dayCol', this.onEventCreateDayWeek.bind(this));
 		}
 	},
 
