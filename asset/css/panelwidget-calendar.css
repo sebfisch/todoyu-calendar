@@ -37,17 +37,15 @@
 	background-color:#fff;
 }
 
-.dialog .reminder
-
 #panelwidget-calendar-jscalendar div.calendar tr.headrow td.button.hilite {
 	cursor:pointer;
-	background:#316ac5;
+	/*background:#316ac5;*/
 }
 	#panelwidget-calendar-jscalendar td.hillite,
 	#panelwidget-calendar-jscalendar div.calendar tr td.day.hilite,
 	#panelwidget-calendar-jscalendar div.calendar tr td.button.hilite div {
-		background:#316ac5;
-		color:#fff;
+		/*background:#316ac5;*/
+		/*color:#fff;*/
 		text-shadow:none;
 		cursor:pointer;
 	}
@@ -56,7 +54,7 @@
 	border-bottom:1px solid #ddd;
 	border-right:1px solid #ddd;
 	text-align:center;
-	padding:3px 5px;
+	padding:4px 7px;
 	cursor:pointer;
 }
 
