@@ -70,7 +70,7 @@ class TodoyuCalendarEventElementDayeventDay extends TodoyuCalendarEventElementDa
 	protected function getElementTemplateData() {
 		$data	= parent::getElementTemplateData();
 
-		$data['titleCropLength']	= 20;
+		$data['titleCropLength']	= 80;
 
 		return $data;
 	}
