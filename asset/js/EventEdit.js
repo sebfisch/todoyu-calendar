@@ -156,9 +156,11 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		extraOptions = extraOptions || {};
 
 		this.updateVisibleFields();
+
 		this.observeEventType();
 		this.observeDateFields();
 		this.observeAssignedUsers(idEvent);
+
 		this.ext.Event.Series.initEditView(idEvent, extraOptions.seriesEdit);
 
 		this.initialized = true;
@@ -201,9 +203,10 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 *
 	 * @method	isSeriesEvent
 	 * @param	{Number}	idEvent
+	 * @return  {Boolean}
 	 */
 	isSeriesEvent: function(idEvent) {
-		this.ext.Event.Series.isSeriesEvent(idEvent)
+		return this.ext.Event.Series.isSeriesEvent(idEvent);
 	},
 
 
@@ -237,10 +240,10 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * Check whether anything changed for real
 	 *
 	 * @method	onAssignedUsersEvent
-	 * @param	{Event}		event
 	 * @param	{Number}	idEvent
+	 * @param	{Event}		event
 	 */
-	onAssignedUsersEvent: function(event, idEvent) {
+	onAssignedUsersEvent: function(idEvent, event) {
 		var assignedUsers	= this.getAssignedUserIDs();
 
 		if( assignedUsers.join(',') !== this.lastAssignedUserIDs.join(',') ) {
@@ -308,7 +311,9 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Number}				idEvent
 	 */
 	onAssignedUsersChanged: function(idEvent) {
-		//@todo add overbooking check
+		if( this.isSeriesEvent(idEvent) ) {
+			this.ext.Event.Series.onAssignedUsersChanged(idEvent);
+		}
 
 		this.updateAutoMailComment(idEvent);
 	},

@@ -42,7 +42,7 @@
 	<label index="dialog.delete.event.button">Diesen Termin</label>
 	<label index="dialog.delete.event.label">Nur diesen Termin löschen. Alle anderen Termine der Serie bleiben unverändert</label>
 	<label index="dialog.edit.title">Diesen Termin oder ganze Serie bearbeiten?</label>
-	<label index="dialog.edit.desc">Das ist ein Serientermin. Wollen Sie nur diesen Termin bearbeiten oder die ganze Serie?</label>
+	<label index="dialog.edit.desc">Dies ist ein Serientermin. Wollen Sie diesen Einzeltermin bearbeiten oder die ganze Serie?</label>
 	<label index="dialog.edit.series.button">Die ganze Serie</label>
 	<label index="dialog.edit.series.label">Serie und alle dazugehörigen Termine bearbeiten</label>
 	<label index="dialog.edit.event.button">Nur diesen Termin</label>

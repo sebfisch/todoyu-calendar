@@ -203,6 +203,18 @@ Todoyu.Ext.calendar.Event.Series = {
 
 
 	/**
+	 * Assigned users of series event changed: update series config to show possible overbookings
+	 *
+	 * @method	onAssignedUsersChanged
+	 * @param	{Number}					idEvent
+	 */
+	onAssignedUsersChanged: function(idEvent) {
+		this.updateConfigFields();
+	},
+
+
+
+	/**
 	 * Show dialog for editing event or series
 	 *
 	 * @method	askSeriesEdit
@@ -222,7 +234,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	 * @method	onSeriesEventEditSelection
 	 * @param	{Number}	idSeries
 	 * @param	{Number}	idEvent
-	 * @param	{String}	selection       'series' or 'event'
+	 * @param	{String}	selection		'series' or 'event'
 	 * @param	{Unknown}	data
 	 */
 	onSeriesEventEditSelection: function(idSeries, idEvent, selection, data) {
@@ -289,7 +301,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	 * Handle selection of event save dialog
 	 *
 	 * @method	onSeriesEventSaveSelection
-	 * @param	{String}	selection       'all' / 'future'
+	 * @param	{String}	selection			'all' / 'future'
 	 * @param	{Object}	data
 	 */
 	onSeriesEventSaveSelection: function(selection, data) {
