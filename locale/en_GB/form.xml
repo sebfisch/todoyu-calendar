@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <labels>
 	<label index="legend.basics">Basic information about your event</label>
+	<label index="legend.participants">Participants</label>
 	<label index="legend.details">Further Information</label>
 	<label index="legend.notification">Notify Participants</label>
 	<label index="legend.autonotification">Participants receiving an automatical notification email</label>

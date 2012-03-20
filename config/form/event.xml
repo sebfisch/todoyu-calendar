@@ -69,6 +69,20 @@
 			</elements>
 		</fieldset>
 
+		<fieldset name="participants">
+			<legend>calendar.form.legend.participants</legend>
+			<elements>
+				<field type="recordsStaff" name="persons">
+					<label>calendar.event.attr.assigned_to</label>
+					<validate>
+						<user msg="LLL:calendar.event.error.overbooked">
+							<function>TodoyuCalendarEventFormValidator::personsAreBookable</function>
+						</user>
+					</validate>
+				</field>
+			</elements>
+		</fieldset>
+
 		<fieldset name="details">
 			<legend>calendar.form.legend.details</legend>
 			<elements>
@@ -80,15 +94,6 @@
 				<field type="textarea" name="description">
 					<rows>5</rows>
 					<label>core.global.description</label>
-				</field>
-
-				<field type="recordsStaff" name="persons">
-					<label>calendar.event.attr.assigned_to</label>
-					<validate>
-						<user msg="LLL:calendar.event.error.overbooked">
-							<function>TodoyuCalendarEventFormValidator::personsAreBookable</function>
-						</user>
-					</validate>
 				</field>
 
 			</elements>

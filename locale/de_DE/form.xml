@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <labels>
 	<label index="legend.basics">Termin</label>
+	<label index="legend.participants">Teilnehmer</label>
 	<label index="legend.details">Weitere Informationen</label>
 	<label index="legend.notification">Teilnehmer benachrichtigen</label>
 	<label index="legend.autonotification">Automatisch per Email benachrichtige Teilnehmer</label>
