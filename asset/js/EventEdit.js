@@ -550,7 +550,8 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		$('event-form').request({
 			parameters: {
 				action:					'save',
-				isOverbookingConfirmed:	isOverbookingConfirmed ? 1 : 0
+				isOverbookingConfirmed:	isOverbookingConfirmed ? 1 : 0,
+				area:					Todoyu.getArea()
 			},
 			onComplete: this.onEventSaved.bind(this)
 		});
