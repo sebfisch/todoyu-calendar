@@ -59,8 +59,13 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		Todoyu.QuickInfo.hide();
 		Todoyu.Ui.scrollToTop();
 
+			// Add edit tab and cleanup previous view (close open view tab / hide calendar)
 		this.addTab('');
+		if( Todoyu.Tabs.hasTab('calendar', 'view') ) {
+			this.ext.Event.View.close(false);
+		}
 		this.ext.hideCalendar();
+
 		this.loadForm(idEvent, time, options);
 	},
 

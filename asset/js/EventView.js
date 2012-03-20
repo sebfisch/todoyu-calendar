@@ -163,7 +163,6 @@ Todoyu.Ext.calendar.Event.View	= {
 	 * @param	{Number}	idEvent
 	 */
 	edit: function(idEvent) {
-		this.close(false);
 		this.ext.Event.edit(idEvent);
 	},
 

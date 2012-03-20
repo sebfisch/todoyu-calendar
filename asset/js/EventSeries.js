@@ -223,8 +223,8 @@ Todoyu.Ext.calendar.Event.Series = {
 	 */
 	askSeriesEdit: function(idSeries, idEvent) {
 		this.popup = new this.ext.DialogChoiceSeriesEdit(this.onSeriesEventEditSelection.bind(this, idSeries, idEvent), {
-			series: idSeries,
-			event: idEvent
+			series:	idSeries,
+			event:	idEvent
 		});
 	},
 
