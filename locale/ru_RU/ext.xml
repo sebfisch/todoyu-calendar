@@ -29,10 +29,10 @@
 	<label index="owner">Владелец</label>
 	<label index="today">Сегодня</label>
 	<label index="calendartitle.dateformat.day">%A, %d %B %Y (неделя %W)</label>
-	<label index="calendartitle.dateformat.week.spanstwomonths.part1">%d %B - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
-	<label index="calendartitle.dateformat.week.spanstwomonths.part2">%d %B %Y (неделя %W)</label><!-- timestamp: last displayed day, start and end of week are in different months -->
-	<label index="calendartitle.dateformat.week.samemonth.part1">%d-</label><!-- timestamp: first displayed day, start and end of week are in same month -->
-	<label index="calendartitle.dateformat.week.samemonth.part2">%d %B %Y (неделя %W)</label><!-- timestamp: last displayed day, start and end of week are in same month -->
+	<label index="calendartitle.dateformat.week.spanstwomonths.part1">%e %B - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
+	<label index="calendartitle.dateformat.week.spanstwomonths.part2">%e %B %Y (неделя %W)</label><!-- timestamp: last displayed day, start and end of week are in different months -->
+	<label index="calendartitle.dateformat.week.samemonth.part1">%e-</label><!-- timestamp: first displayed day, start and end of week are in same month -->
+	<label index="calendartitle.dateformat.week.samemonth.part2">%e %B %Y (неделя %W)</label><!-- timestamp: last displayed day, start and end of week are in same month -->
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label>
 	<label index="calendartitle.dateformat.month.part2">(неделя %W-</label>
 	<label index="calendartitle.dateformat.month.part3">%W)</label>
