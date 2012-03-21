@@ -19,7 +19,7 @@
 	<label index="dayview.fullday">Zeige ganzen Tag (00h-24h)</label>
 	<label index="records.holidayset">Feiertags-Set</label>
 	<label index="records.holidayset.desc">Gruppierte Feiertage</label>
-	<label index="records.holiday.desc">Feiertrage</label>
+	<label index="records.holiday.desc">Feiertage</label>
 	<label index="holidayset">Feiertags-Set</label>
 	<label index="holidayset.attr.name">Name</label>
 	<label index="holidayset.attr.holiday">Feiertag</label>
