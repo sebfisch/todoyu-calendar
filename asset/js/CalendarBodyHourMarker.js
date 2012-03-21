@@ -119,6 +119,17 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	},
 
 
+	/**
+	 * Check whether the current hour marker exists in DOM
+	 *
+	 * @method	isMarkerInDOM
+	 * @return	{Boolean}
+	 */
+	isMarkerInDOM: function() {
+		return Todoyu.exists('currentHourMarker');
+	},
+
+
 
 	/**
 	 * Hide the marker
@@ -134,10 +145,25 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 
 	/**
+	 * Show the marker, if not available: add to DOM
+	 *
+	 * @method	showMarker
+	 */
+	showMarker: function() {
+		if( !this.isMarkerInDOM() ) {
+			this.addMarker();
+		}
+
+		this.marker.show();
+	},
+
+
+
+	/**
 	 * Get hour cells
 	 *
 	 * @method	getHourCells
-	 * @return  {Element[]}
+	 * @return	{Element[]}
 	 */
 	getHourCells: function() {
 		return this.ext.CalendarBody.calendarBody.down('.colHours').select('div');
@@ -149,7 +175,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * Get cell containing the digit (to the left of the actual calendar content) of the current hour
 	 *
 	 * @method	getCurrentHourCell
-	 * @return  {Element}
+	 * @return	{Element}
 	 */
 	getCurrentHourCell: function() {
 		var currentHour	= Todoyu.Time.getCurrentHourOfDay();
@@ -188,7 +214,11 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @method	updatePosition
 	 */
 	updatePosition: function() {
-		if( this.isTodayDisplayed() ) {
+		if( this.isTodayDisplayed() && this.isCurrentHourDisplayed() ) {
+			if( !this.isMarkerInDOM() ) {
+				this.addMarker();
+			}
+
 			var cloneOptions= {
 				setLeft:	true,
 				setTop:		true,
@@ -203,6 +233,10 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 				width:	this.getWidth() + 'px',
 				height:	this.getHeight() + 'px'
 			});
+
+			this.showMarker();
+		} else {
+			this.hideMarker();
 		}
 	},
 
@@ -212,7 +246,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * Get hour marker vertical offset by current hour + minutes of day
 	 *
 	 * @method	getOffsetTop
-	 * @return  {Number}
+	 * @return	{Number}
 	 */
 	getOffsetTop: function() {
 			// Full view from 00:00 to 23:00
@@ -233,7 +267,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * Get height of marker resp. to current hours view range and time of day
 	 *
 	 * @method	getHeight
-	 * @return  {Number}
+	 * @return	{Number}
 	 */
 	getHeight: function() {
 		var currentHour		= Todoyu.Time.getCurrentHourOfDay();
@@ -258,7 +292,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * Get horizontal offset for current hour marker layer from day offset
 	 *
 	 * @method	getOffsetLeft
-	 * @return  {Number}
+	 * @return	{Number}
 	 */
 	getTodayOffsetLeft: function() {
 		var activeTab	= this.ext.getActiveTab();
@@ -287,7 +321,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * Get useable width of marker from day column
 	 *
 	 * @method	getMarkerWidth
-	 * @return  {Number}
+	 * @return	{Number}
 	 */
 	getWidth: function() {
 		var activeTab	= this.ext.getActiveTab();

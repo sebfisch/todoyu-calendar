@@ -295,7 +295,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * Check whether today is currently displayed in calendar
 	 *
 	 * @method	isTodayDisplay
-	 * @return  {Boolean}
+	 * @return	{Boolean}
 	 */
 	isTodayDisplayed: function() {
 		switch( this.ext.getActiveTab() ) {
