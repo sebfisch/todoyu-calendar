@@ -134,7 +134,6 @@ class TodoyuCalendarViewMonth extends TodoyuCalendarView {
 				'inCurrentMonth'=> date('n', $dayTime) === $monthKey,
 				'today'			=> date('Ymd', $dayTime) === $todayKey,
 				'title'			=> TodoyuTime::format($dayTime, 'DlongD2MlongY4'),
-//				'label'			=> date('j', $dayTime) == 1 || $index === 0 ?  TodoyuTime::format($dayTime, 'D2Mshort') : date('j', $dayTime),
 				'label'			=> $label,
 				'week'			=> TodoyuTime::format($dayTime, 'calendarweek')
 			);
