@@ -133,7 +133,7 @@ class TodoyuCalendarViewMonth extends TodoyuCalendarView {
 				'date'			=> $dayTime,
 				'inCurrentMonth'=> date('n', $dayTime) === $monthKey,
 				'today'			=> date('Ymd', $dayTime) === $todayKey,
-				'title'			=> TodoyuTime::format($dayTime, 'DlongD2MlongY4'),
+				'title'			=> TodoyuTime::format($dayTime, 'DlongDMlongY4'),
 				'label'			=> $label,
 				'week'			=> TodoyuTime::format($dayTime, 'calendarweek')
 			);
@@ -156,8 +156,8 @@ class TodoyuCalendarViewMonth extends TodoyuCalendarView {
 		for($i=0; $i<7; $i++) {
 			$date	= $dayDates[$i];
 			$columns[]	=  array(
-				'title'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('l', $date))),
-				'label'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('D', $date)))
+				'title'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('l', $date))), // D
+				'label'	=> Todoyu::Label('core.date.weekday.' . strtolower(date('l', $date)))
 			);
 		}
 

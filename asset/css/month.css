@@ -34,6 +34,7 @@
 	line-height:16px;
 	color:#000;
 	text-transform:uppercase;
+	text-align:center;
 }
 
 
@@ -46,7 +47,6 @@
 .standardGrid td {
 	border:solid #d7dcc6;
 }
-
 	.mv-event-container {
 		position:relative;
 		top:0;
@@ -167,5 +167,6 @@ div.quickinfoHoliday_content span.holiday {
 }
 
 th.mv-dayname.odd{
-  background-color:#edf3d9 !important;
+	background-color:#edf3d9 !important;
+	border-color:#edf3d9;
 }
