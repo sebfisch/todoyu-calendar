@@ -29,8 +29,10 @@
 	<label index="owner">Włąściciel</label>
 	<label index="today">Dzisiaj</label>
 	<label index="calendartitle.dateformat.day">%A, %B %d %Y (CW %W)</label>
-	<label index="calendartitle.dateformat.week.part1">%B %d - </label><!-- timestamp: first displayed day -->
-	<label index="calendartitle.dateformat.week.part2">%B %d %Y (CW %W)</label><!-- timestamp: last displayed day -->
+	<label index="calendartitle.dateformat.week.spanstwomonths.part1">%B %d - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
+	<label index="calendartitle.dateformat.week.spanstwomonths.part2">%B %d %Y (CW %W)</label><!-- timestamp: last displayed day, start and end of week are in different months -->
+	<label index="calendartitle.dateformat.week.samemonth.part1">%B %d-</label><!-- timestamp: first displayed day, start and end of week are in same months -->
+	<label index="calendartitle.dateformat.week.samemonth.part2">%d %Y (CW %W)</label><!-- timestamp: last displayed day, start and end of week are in same months -->
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label><!-- timestamp: beginning of shown month -->
 	<label index="calendartitle.dateformat.month.part2">(CW %W-</label><!-- timestamp: first displayed day -->
 	<label index="calendartitle.dateformat.month.part3">%W)</label><!-- timestamp: last displayed day -->
