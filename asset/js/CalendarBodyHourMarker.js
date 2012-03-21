@@ -18,7 +18,8 @@
 *****************************************************************************/
 
 /**
- * Control of marker layer of current hour in day and week viewing mode
+ * Control of marker layer of current hour in day and week viewing mode.
+ * Only displayed if today is within the shown range.
  *
  * @module		Calendar
  * @namespace	Todoyu.Ext.calendar.CalendarBody
@@ -32,7 +33,6 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @type		Object
 	 */
 	ext:	Todoyu.Ext.calendar,
-
 
 	/**
 	 * @property	marker
@@ -58,7 +58,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	init: function() {
 		this.markCurrentHourDigit();
 
-		if( this.isTodayDisplayed() ) {
+		if( this.isTodayDisplayed() && this.isCurrentHourDisplayed() ) {
 				// Add marker layer underneath current hour into DOM
 			this.addMarker();
 			this.pe = new PeriodicalExecuter(this.updatePosition.bind(this), 60);
@@ -72,10 +72,30 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	/**
 	 * Check whether current day is displayed
 	 *
+	 * @method	isTodayDisplayed
 	 * @return	{Boolean}
 	 */
 	isTodayDisplayed: function() {
 		return this.ext.CalendarBody.isTodayDisplayed();
+	},
+
+
+
+	/**
+	 * Check whether current hour is displayed
+	 *
+	 * @method  isCurrentHourDisplayed
+	 * @return	{Boolean}
+	 */
+	isCurrentHourDisplayed: function() {
+		if( this.ext.CalendarBody.isFullHeight() ) {
+			return true;
+		}
+
+		var currentHour = Todoyu.Time.getCurrentHourOfDay();
+		var range		= Todoyu.Ext.calendar.CalendarBody.getCompactViewRange();
+
+		return currentHour >= range.start && currentHour <= range.end;
 	},
 
 
@@ -102,6 +122,8 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 	/**
 	 * Hide the marker
+	 *
+	 * @method	hideMarker
 	 */
 	hideMarker: function() {
 		if( this.marker ) {
@@ -130,7 +152,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @return  {Element}
 	 */
 	getCurrentHourCell: function() {
-		var currentHour	= (new Date()).getHours();
+		var currentHour	= Todoyu.Time.getCurrentHourOfDay();
 
 		return $('calendarBody').down('.colHours div', currentHour);
 	},
@@ -140,6 +162,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	/**
 	 * Get first hour cell (0:00)
 	 *
+	 * @method	getFirstHourCell
 	 * @return	{Element}
 	 */
 	getFirstHourCell: function() {
@@ -198,7 +221,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 		}
 
 			// Get top coordinate of first shown hour
-		var firstHour	= Todoyu.Ext.calendar.CalendarBody.getRangeStart();
+		var firstHour	= Todoyu.Ext.calendar.CalendarBody.getCompactRangeStart();
 		var hourCells	= this.getHourCells();
 
 		return hourCells[firstHour].offsetTop;
@@ -213,8 +236,8 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @return  {Number}
 	 */
 	getHeight: function() {
-		var currentHour		= new Date().getHours();
-		var currentMinutes	= new Date().getMinutes();
+		var currentHour		= Todoyu.Time.getCurrentHourOfDay();
+		var currentMinutes	= Todoyu.Time.getCurrentMinutesOfHour();
 
 		var pastHoursShown;
 		if( this.ext.CalendarBody.isFullHeight() ) {
@@ -222,7 +245,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 			pastHoursShown	= currentHour;
 		} else {
 				// Limited view range of hours
-			var firstHour	= Todoyu.Ext.calendar.CalendarBody.getRangeStart();
+			var firstHour	= Todoyu.Ext.calendar.CalendarBody.getCompactRangeStart();
 			pastHoursShown	= currentHour - firstHour;
 		}
 

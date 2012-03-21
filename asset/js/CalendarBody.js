@@ -44,11 +44,11 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	calendarBody:	null,
 
 	/**
-	 * Default hours range
+	 * Compact hours range preset
 	 *
 	 * @type	Array
 	 */
-	range: {
+	compactRange: {
 		start:	8,
 		end:	18
 	},
@@ -104,8 +104,8 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * @param	{Number}	end
 	 * @param	{Boolean}	apply
 	 */
-	setViewRange: function(start, end, apply) {
-		this.range = {
+	setCompactViewRange: function(start, end, apply) {
+		this.compactRange = {
 			start:	start,
 			end:	end
 		};
@@ -183,18 +183,6 @@ Todoyu.Ext.calendar.CalendarBody	= {
 
 
 	/**
-	 * Check whether calendar body (hours range) is set to full height
-	 *
-	 * @method	isFullHeight
-	 * @return	{Boolean}
-	 */
-	isFullHeight: function() {
-		return this.calendarBody.hasClassName('full');
-	},
-
-
-
-	/**
 	 * Get calendar body height
 	 *
 	 * @method	getHeight
@@ -223,10 +211,10 @@ Todoyu.Ext.calendar.CalendarBody	= {
 				// Switch to restrained hours view
 			this.calendarBody.removeClassName('full');
 
-			var numVisibleHours		= this.range.end - this.range.start + 1;
+			var numVisibleHours		= this.compactRange.end - this.compactRange.start + 1;
 
 			this.calendarBody.style.height	= (42 * numVisibleHours) + 'px'; //42px = height of one hour
-			this.calendarBody.scrollTop		= 42 * this.range.start;
+			this.calendarBody.scrollTop		= 42 * this.compactRange.start;
 		}
 
 		if( savePref ) {
@@ -379,6 +367,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	/**
 	 * Add an event on a given time
 	 *
+	 * @method  addEventOnTime
 	 * @param	{Number}	time
 	 */
 	addEventOnTime: function(time) {
@@ -394,10 +383,11 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	/**
 	 * Get current view range (start to end hour)
 	 *
+	 * @method	getCompactViewRange
 	 * @return	{Object}
 	 */
-	getViewRange: function() {
-		return this.range;
+	getCompactViewRange: function() {
+		return this.compactRange;
 	},
 
 
@@ -405,22 +395,35 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	/**
 	 * Get first shown hour
 	 *
-	 * @method	getRangeStart
+	 * @method	getCompactRangeStart
 	 * @return  {Number}
 	 */
-	getRangeStart: function() {
-		return this.range.start;
+	getCompactRangeStart: function() {
+		return this.compactRange.start;
 	},
 
 
 
 	/**
-	 * Check whether full day view is enabled
+	 * Get last shown hour
 	 *
+	 * @method	getCompactRangeEnd
+	 * @return  {Number}
+	 */
+	getCompactRangeEnd: function() {
+		return this.compactRange.end;
+	},
+
+
+
+	/**
+	 * Check whether calendar body (hours range) is set to full height
+	 *
+	 * @method	isFullHeight
 	 * @return	{Boolean}
 	 */
-	isFullDayView: function() {
-		return this.isFullHeight();
+	isFullHeight: function() {
+		return this.calendarBody.hasClassName('full');
 	},
 
 
@@ -435,8 +438,8 @@ Todoyu.Ext.calendar.CalendarBody	= {
 		var boxOffsetTop= $('calendarBody').cumulativeOffset().top;
 		var offsetTop	= topOffset - boxOffsetTop;
 
-		if( !this.isFullDayView() ) {
-			offsetTop += this.getViewRange().start * 42;
+		if( !this.isFullHeight() ) {
+			offsetTop += this.getCompactViewRange().start * 42;
 		}
 
 		return offsetTop;
