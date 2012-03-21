@@ -42,7 +42,7 @@
 	<label index="calendartitle.dateformat.month.part3">%W)</label><!-- timestamp: last displayed day -->
 	<label index="reminder.popup.title">Event Reminder</label>
 	<label index="reminder.upcomingevent">Remember: You have the following event soon.</label>
-	<label index="reminder.remindagain">Remind me again...</label>
+	<label index="reminder.remindagain">Remind me again ...</label>
 	<label index="reminder.button.remindlater">Remind Me Later</label>
 	<label index="extconf.allowoverbooking.label">Allow multiple simultaneous events for 1 person?</label>
 	<label index="extconf.reminder.popup.advancetime.label">System default pop-up reminder</label>

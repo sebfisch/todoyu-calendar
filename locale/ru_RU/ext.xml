@@ -38,7 +38,7 @@
 	<label index="calendartitle.dateformat.month.part3">%W)</label>
 	<label index="reminder.popup.title">Напоминание о событии</label>
 	<label index="reminder.upcomingevent">Внимание: приближается событие.</label>
-	<label index="reminder.remindagain">Напомнить мне снова...</label>
+	<label index="reminder.remindagain">Напомнить мне снова ...</label>
 	<label index="reminder.button.remindlater">Напомнить позже</label>
 	<label index="extconf.allowoverbooking.label">Разрешить перекрывающиеся события?</label>
 	<label index="extconf.reminder.popup.advancetime.label">За сколько времени перед событием показывать напоминание</label>
