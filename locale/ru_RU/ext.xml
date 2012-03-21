@@ -28,7 +28,7 @@
 	<label index="workingtime">Horas trabalhadas</label>
 	<label index="owner">Владелец</label>
 	<label index="today">Сегодня</label>
-	<label index="calendartitle.dateformat.day">%A, %d %B %Y (неделя %W)</label>
+	<label index="calendartitle.dateformat.day">%A, %e %B %Y (неделя %W)</label>
 	<label index="calendartitle.dateformat.week.spanstwomonths.part1">%e %B - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.spanstwomonths.part2">%e %B %Y (неделя %W)</label><!-- timestamp: last displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.samemonth.part1">%e-</label><!-- timestamp: first displayed day, start and end of week are in same month -->

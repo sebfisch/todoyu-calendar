@@ -30,7 +30,7 @@
 	<label index="workingtime">Радно време</label>
 	<label index="owner">Власник</label>
 	<label index="today">Данас</label>
-	<label index="calendartitle.dateformat.day">%A, %B %d %Y (CW %W)</label>
+	<label index="calendartitle.dateformat.day">%A, %B %e %Y (CW %W)</label>
 	<label index="calendartitle.dateformat.week.spanstwomonths.part1">%B %e - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.spanstwomonths.part2">%B %e %Y (CW %W)</label><!-- timestamp: last displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.samemonth.part1">%B %e-</label><!-- timestamp: first displayed day, start and end of week are in same month -->

@@ -32,7 +32,7 @@
 	<label index="workingtime">Arbeitsstunden</label>
 	<label index="owner">Eigner</label>
 	<label index="today">Heute</label>
-	<label index="calendartitle.dateformat.day">%A, %d. %B %Y (KW %W)</label>
+	<label index="calendartitle.dateformat.day">%A, %e. %B %Y (KW %W)</label>
 	<label index="calendartitle.dateformat.week.spanstwomonths.part1">%e. %B - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.spanstwomonths.part2">%e. %B %Y (KW %W)</label><!-- timestamp: last displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.samemonth.part1">%e.-</label><!-- timestamp: first displayed day, start and end of week are in same month -->

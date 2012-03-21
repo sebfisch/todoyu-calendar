@@ -28,7 +28,7 @@
 	<label index="workingtime">勤務時間</label>
 	<label index="owner">所有者</label>
 	<label index="today">今日</label>
-	<label index="calendartitle.dateformat.day">%Y年%m月%d日 (%A) (%W 週目)</label>
+	<label index="calendartitle.dateformat.day">%Y年%m月%e日 (%A) (%W 週目)</label>
 	<label index="calendartitle.dateformat.week.spanstwomonths.part1">%Y年%m月%e日 - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.spanstwomonths.part2">%m月%e日 (%U 週目)</label><!-- timestamp: last displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.samemonth.part1">%Y年%m月%e日 - </label><!-- timestamp: first displayed day, start and end of week are in same month -->
