@@ -178,7 +178,7 @@ class TodoyuCalendarEventViewHelper {
 			$where	= '		c.is_internal	= 1
 						AND	c.id			= mmcp.id_company
 						AND p.id			= mmcp.id_person';
-			$like	= Todoyu::db()->buildLikeQuery($searchWords, $fieldsToSearchIn);
+			$like	= TodoyuSql::buildLikeQuery($searchWords, $fieldsToSearchIn);
 			$where	.= ' AND ' . $like;
 			$order	= '	p.lastname, p.firstname';
 

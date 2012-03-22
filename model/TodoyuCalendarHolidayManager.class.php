@@ -235,7 +235,7 @@ class TodoyuCalendarHolidayManager {
 		$where	= ' deleted	= 0';
 
 		if( sizeof($addressIDs) ) {
-			$where .= ' AND ' . Todoyu::db()->buildInArrayQuery($addressIDs);
+			$where .= ' AND ' . TodoyuSql::buildInArrayQuery($addressIDs);
 		}
 
 		$addresses		= Todoyu::db()->getArray($fields, $table, $where);
@@ -326,7 +326,7 @@ class TodoyuCalendarHolidayManager {
 		$results	= array();
 
 		if( sizeof($swordArray) > 0 ) {
-			$where		= Todoyu::db()->buildLikeQuery($swordArray, array('title', 'description'));
+			$where		= TodoyuSql::buildLikeQuery($swordArray, array('title', 'description'));
 			$holidays	= Todoyu::db()->getArray('id, title, date', self::TABLE, $where, '', 'date DESC');
 
 			foreach($holidays as $holiday) {

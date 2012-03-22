@@ -282,7 +282,7 @@ class TodoyuCalendarEventMailManager {
 				if( sizeof($autoMailPersonIDs) > 0 ) {
 					$field		= 'id';
 					$table		= TodoyuContactPersonManager::TABLE;
-					$where		= Todoyu::db()->buildInArrayQuery($autoMailPersonIDs);
+					$where		= TodoyuSql::buildInArrayQuery($autoMailPersonIDs);
 					$group		= 'id';
 					$orderBy	= 'lastname,firstname';
 
