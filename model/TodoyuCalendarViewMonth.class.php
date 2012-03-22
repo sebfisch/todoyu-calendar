@@ -125,7 +125,7 @@ class TodoyuCalendarViewMonth extends TodoyuCalendarView {
 					// Label of 1st day shown / of month are stating also the month
 				$label = TodoyuTime::format($dayTime, 'dateMshort');
 			} else {
-				$label  = date('j', $dayTime);
+				$label	= date('j', $dayTime);
 			}
 
 			$map[$dayKey]	= array(

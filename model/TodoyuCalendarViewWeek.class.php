@@ -85,15 +85,15 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 		$dayDates	= $this->getRange()->getDayTimestamps();
 		$columns	= array();
 
-		$monthPrevDate  = '';
+		$monthPrevDate	= '';
 		foreach($dayDates as $dayDate) {
-			$formatLabel    = 'DshortD';
+			$formatLabel	= 'DshortD';
 				// Only labels of 1st shown day and days after change of month include the month
-			$monthCurrentDate   = date('n', $dayDate);
+			$monthCurrentDate	= date('n', $dayDate);
 			if( $monthCurrentDate !== $monthPrevDate ) {
-				$formatLabel    = 'DshortDMlong';
+				$formatLabel	= 'DshortDMlong';
 			}
-			$monthPrevDate  = $monthCurrentDate;
+			$monthPrevDate	= $monthCurrentDate;
 
 			$dayKey	= date('Ymd', $dayDate);
 			$columns[$dayKey]	=  array(
@@ -322,7 +322,7 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 			// Vary title depending on start and end of week being within same/different months
 		$monthStart	= date('n', $dateStart);
 		$monthEnd	= date('n', $dateEnd);
-		$rangeType  = $monthStart !== $monthEnd ? 'spanstwomonths' : 'samemonth';
+		$rangeType	= $monthStart !== $monthEnd ? 'spanstwomonths' : 'samemonth';
 
 		$labelStart	= Todoyu::Label('calendar.ext.calendartitle.dateformat.week.' . $rangeType . '.part1');
 		$labelEnd	= Todoyu::Label('calendar.ext.calendartitle.dateformat.week.' . $rangeType . '.part2');

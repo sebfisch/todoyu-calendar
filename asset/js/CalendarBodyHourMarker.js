@@ -56,9 +56,9 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @method	initCurrentHourMarker
 	 */
 	init: function() {
-		this.markCurrentHourDigit();
-
 		if( this.isTodayDisplayed() && this.isCurrentHourDisplayed() ) {
+			this.markCurrentHourDigit();
+
 				// Add marker layer underneath current hour into DOM
 			this.addMarker();
 			this.pe = new PeriodicalExecuter(this.updatePosition.bind(this), 60);
@@ -301,7 +301,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 			// Week: Get left offset via today's column
 		if( activeTab === 'week') {
 			var todayHeaderCell = $('gridHeader').down('th.today');
-			offsetLeft  = todayHeaderCell.offsetLeft;
+			offsetLeft	= todayHeaderCell.offsetLeft;
 
 			if( Prototype.Browser.WebKit ) {
 					// e.g. Chrome
