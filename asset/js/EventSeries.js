@@ -66,9 +66,43 @@ Todoyu.Ext.calendar.Event.Series = {
 	 * @method	initEditView
 	 * @param	{Number}	idEvent
 	 */
-	initEditView: function(idEvent) {
-		if( idEvent == 0 || this.isSeriesEdit() ) {
-			this.observeSeriesFields();
+	initForm: function(idEvent) {
+			// Observe normal event fields
+		this.observeStandardFields(idEvent);
+
+			// Observe series fieldset for onChange
+		this.getContainer().on('change', ':input',	this.onSeriesFieldChange.bind(this));
+
+			// Add special handling for save button
+		$('event-field-save').removeAttribute('onclick');
+		$('event-field-save').on('click', this.onSaveButtonClick.bind(this));
+	},
+
+
+
+	/**
+	 * Observe normal event fields for change which affect the series
+	 *
+	 * @param	{Number}	idEvent
+	 */
+	observeStandardFields: function(idEvent) {
+		$('event-field-persons-storage').on('change', this.onStandardFieldChanged.bind(this, idEvent));
+		$('event-field-date-start').on('change', ':input',	this.onStandardFieldChanged.bind(this, idEvent));
+		$('event-field-date-end').on('change', ':input',	this.onStandardFieldChanged.bind(this, idEvent));
+	},
+
+
+
+	/**
+	 * Handle standard field change
+	 *
+	 * @param	{Number}	idEvent
+	 * @param	{Event}		event
+	 * @param	{Element}	element
+	 */
+	onStandardFieldChanged: function(idEvent, event, element) {
+		if( this.isSeriesActivated() ) {
+			this.updateConfigFields();
 		}
 	},
 
@@ -123,35 +157,6 @@ Todoyu.Ext.calendar.Event.Series = {
 	 */
 	getUrl: function() {
 		return Todoyu.getUrl('calendar', 'series');
-	},
-
-
-
-	/**
-	 * Add observers to the series field to refresh them on change
-	 *
-	 * @method		observeSeriesFields
-	 */
-	observeSeriesFields: function() {
-			// Observe for onChange
-		this.getContainer().on('change', ':input',	this.onSeriesFieldChange.bind(this));
-
-			// Add special handling for save button
-		$('event-field-save').removeAttribute('onclick');
-		$('event-field-save').on('click', this.onSaveButtonClick.bind(this));
-	},
-
-
-
-	/**
-	 * Add observers to the series event date fields to refresh them on change
-	 *
-	 * @method	observeDateFields
-	 * @param	{Number}			idEvent
-	 */
-	observeDateFields: function(idEvent) {
-		$('event-field-date-start').on(	'change', ':input',	this.onSeriesFieldChange.bind(this));
-		$('event-field-date-end').on(	'change', ':input',	this.onSeriesFieldChange.bind(this));
 	},
 
 
@@ -358,6 +363,17 @@ Todoyu.Ext.calendar.Event.Series = {
 	 */
 	hasFrequency: function() {
 		return $F('event-field-seriesfrequency') > 0;
+	},
+
+
+
+	/**
+	 * Check whether series is activated (frequency selected)
+	 *
+	 * @return	{Boolean}
+	 */
+	isSeriesActivated: function() {
+		return this.hasFrequency();
 	},
 
 

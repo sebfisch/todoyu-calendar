@@ -166,7 +166,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		this.observeDateFields();
 		this.observeAssignedUsers(idEvent);
 
-		this.ext.Event.Series.initEditView(idEvent, extraOptions.seriesEdit);
+		this.ext.Event.Series.initForm(idEvent, extraOptions.seriesEdit);
 
 		this.initialized = true;
 	},
@@ -191,27 +191,9 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Number}		idEvent
 	 */
 	observeDateFields: function(idEvent) {
-		if( this.isSeriesEvent(idEvent) === false ) {
-				// Install non-series event date field observers
-			$('event-field-date-start').on(	'change', ':input',	this.onDateChanged.bind(this));
-			$('event-field-date-end').on(	'change', ':input',	this.onDateChanged.bind(this));
-		} else {
-				// Install series event date field observers
-			this.ext.Event.Series.observeDateFields(idEvent);
-		}
-	},
-
-
-
-	/**
-	 * Check whether event with ID idEvent is a series event
-	 *
-	 * @method	isSeriesEvent
-	 * @param	{Number}	idEvent
-	 * @return  {Boolean}
-	 */
-	isSeriesEvent: function(idEvent) {
-		return this.ext.Event.Series.isSeriesEvent(idEvent);
+			// Install date field observers
+		$('event-field-date-start').on(	'change', ':input',	this.onDateChanged.bind(this));
+		$('event-field-date-end').on(	'change', ':input',	this.onDateChanged.bind(this));
 	},
 
 
@@ -316,10 +298,6 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Number}				idEvent
 	 */
 	onAssignedUsersChanged: function(idEvent) {
-		if( this.isSeriesEvent(idEvent) ) {
-			this.ext.Event.Series.onAssignedUsersChanged(idEvent);
-		}
-
 		this.updateAutoMailComment(idEvent);
 	},
 
