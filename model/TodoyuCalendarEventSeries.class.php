@@ -966,7 +966,13 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$event->injectData($this->eventData);
 		$ranges	= $this->getNextRanges($event->getDateStart(), $event->getDuration());
 		$users	= TodoyuArray::assure($this->eventData['persons']);
-		$userIDs= TodoyuArray::getColumn($users, 'id');
+
+			// Check if users are data arrays or just a list of IDs
+		if( is_array($users[0]) ) {
+			$userIDs= TodoyuArray::getColumn($users, 'id');
+		} else {
+			$userIDs= TodoyuArray::intval($users, true, true);
+		}
 
 		return $this->getOverbookingConflictsForPersonsInRanges($ranges, $userIDs);
 	}

@@ -62,6 +62,11 @@ class TodoyuCalendarSeriesActionController extends TodoyuActionController {
 		parse_str($params['data'], $urlData);
 		$formData	= TodoyuArray::assure($urlData['event']);
 
+			// Wordaround: Prototype will serialize the persons as comma separated list...
+		if( $formData['persons'] && $formData['persons'][0] ) {
+			$formData['persons'] = TodoyuArray::intExplode(',', $formData['persons'][0]);
+		}
+
 			// Extract storage data
 		$idEvent	= intval($formData['id']);
 		$eventForm	= TodoyuCalendarEventStaticManager::getEventForm($idEvent, $formData, array('options'=>array('seriesEdit'=>true)));
