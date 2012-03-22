@@ -324,10 +324,17 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 		$monthEnd	= date('n', $dateEnd);
 		$rangeType	= $monthStart !== $monthEnd ? 'spanstwomonths' : 'samemonth';
 
-		$labelStart	= Todoyu::Label('calendar.ext.calendartitle.dateformat.week.' . $rangeType . '.part1');
-		$labelEnd	= Todoyu::Label('calendar.ext.calendartitle.dateformat.week.' . $rangeType . '.part2');
+		$formatStart= Todoyu::Label('calendar.ext.calendartitle.dateformat.week.' . $rangeType . '.part1');
+		$formatEnd	= Todoyu::Label('calendar.ext.calendartitle.dateformat.week.' . $rangeType . '.part2');
 
-		$title	= strftime($labelStart, $dateStart) . strftime($labelEnd, $dateEnd);
+//		$title	= strftime($formatStart, $dateStart) . strftime($formatEnd, $dateEnd);
+		
+		TodoyuDebug::printInFirebug($formatStart, '$formatStart');
+
+		$labelStart	= TodoyuTime::format($dateStart, null, $formatStart);
+		$labelEnd	= TodoyuTime::format($dateEnd, null, $formatEnd);
+
+		return $labelStart . $labelEnd;
 
 		return TodoyuString::getAsUtf8($title);
 	}
