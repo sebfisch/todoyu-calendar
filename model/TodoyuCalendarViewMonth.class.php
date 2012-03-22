@@ -49,15 +49,11 @@ class TodoyuCalendarViewMonth extends TodoyuCalendarView {
 		$range			= $this->getRange();
 		$fixedMonthDate	= $range->getStart() + TodoyuTime::SECONDS_WEEK;
 
-		$label1	= Todoyu::Label('calendar.ext.calendartitle.dateformat.month.part1');
-		$label2	= Todoyu::Label('calendar.ext.calendartitle.dateformat.month.part2');
-		$label3	= Todoyu::Label('calendar.ext.calendartitle.dateformat.month.part3');
+		$labelMonth		= TodoyuCalendarTime::format($fixedMonthDate, 'calendar.ext.calendartitle.dateformat.month.part1');
+		$labelWeekStart	= TodoyuCalendarTime::format($range->getStart(), 'calendar.ext.calendartitle.dateformat.month.part2');
+		$labelWeekEnd	= TodoyuCalendarTime::format($range->getEnd(), 'calendar.ext.calendartitle.dateformat.month.part3');
 
-		$title	= strftime($label1, $fixedMonthDate);
-		$title	.= strftime($label2, $range->getStart());
-		$title	.= strftime($label3, $range->getEnd());
-
-		return TodoyuString::getAsUtf8($title);
+		return $labelMonth . $labelWeekStart . $labelWeekEnd;
 	}
 
 

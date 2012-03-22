@@ -31,7 +31,7 @@
 	<label index="calendartitle.dateformat.day">%A, %e %B %Y (неделя %W)</label>
 	<label index="calendartitle.dateformat.week.spanstwomonths.part1">неделя %W: %e %B - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.spanstwomonths.part2">%e %B %Y</label><!-- timestamp: last displayed day, start and end of week are in different months -->
-	<label index="calendartitle.dateformat.week.samemonth.part1">неделя %W: %e-</label><!-- timestamp: first displayed day, start and end of week are in same month -->
+	<label index="calendartitle.dateformat.week.samemonth.part1">неделя %W: %e - </label><!-- timestamp: first displayed day, start and end of week are in same month -->
 	<label index="calendartitle.dateformat.week.samemonth.part2">%e %B %Y</label><!-- timestamp: last displayed day, start and end of week are in same month -->
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label>
 	<label index="calendartitle.dateformat.month.part2">(неделя %W-</label>

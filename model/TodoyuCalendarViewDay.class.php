@@ -166,10 +166,7 @@ class TodoyuCalendarViewDay extends TodoyuCalendarView {
 	 * @return	String
 	 */
 	protected function getTitle() {
-		$format	= Todoyu::Label('calendar.ext.calendartitle.dateformat.day');
-		$title	= strftime($format, $this->getRange()->getStart());
-
-		return TodoyuString::getAsUtf8($title);
+		return TodoyuCalendarTime::format($this->getRange()->getStart(), 'calendar.ext.calendartitle.dateformat.day');
 	}
 
 }
