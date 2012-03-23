@@ -471,7 +471,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 			$monthDay = $this->getMonthDayFromDate();
 		}
 
-		$label .= ' ' . TodoyuLabelManager::getFormatLabel('calendar.series.label.months', array($monthDay));
+		$label .= ' ' . TodoyuLabelManager::getFormatLabel('calendar.series.label.month.atDay', array($monthDay));
 
 		return $this->appendDateEndLabel($label);
 	}
