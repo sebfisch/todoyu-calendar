@@ -99,7 +99,7 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 	 * @return	String
 	 */
 	public function getTitle() {
-		return $this->getPerson()->getFullName() . ' (' . $this->getAge() . 'yrs)';
+		return $this->getPerson()->getFullName() . ' (' . $this->getAge() . ' ' . Todoyu::Label('calendar.ext.yearsold') . ')';
 	}
 
 
@@ -110,7 +110,7 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 	 * @return	String
 	 */
 	public function getDescription() {
-		return 'Getting ' . $this->getAge() . ' years old';
+		return $this->getTitle();
 	}
 
 

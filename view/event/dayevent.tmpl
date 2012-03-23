@@ -10,7 +10,7 @@
 			{/if}
 		{/if}
 
-		{if $view === 'day'}
+		{if $view === 'day' && $persons}
 			<div class="assignedPersons">
 				{foreach $persons person}
 					{$person.shortname}
