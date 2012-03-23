@@ -322,7 +322,25 @@ Todoyu.Ext.calendar.Event.Series = {
 				break;
 		}
 
-		this.ext.Event.Edit.saveEvent(true);
+		this.callOriginalSaveMethod();
+	},
+
+
+
+	/**
+	 * Call original save method, depending on current context
+	 * Call normal or quickcreate save method
+	 *
+	 */
+	callOriginalSaveMethod: function() {
+		var quickCreatePopup	= $('quickcreate');
+
+		if( quickCreatePopup && quickCreatePopup.visible() ) {
+			var form = quickCreatePopup.down('form');
+			this.ext.QuickCreateEvent.save(form)
+		} else {
+			this.ext.Event.Edit.saveEvent(true);
+		}
 	},
 
 
@@ -351,7 +369,7 @@ Todoyu.Ext.calendar.Event.Series = {
 		if( this.isSeriesSaveQuestionRequired() ) {
 			this.askSeriesSave();
 		} else {
-			this.ext.Event.Edit.saveEvent();
+			this.callOriginalSaveMethod();
 		}
 	},
 
