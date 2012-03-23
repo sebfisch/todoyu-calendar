@@ -495,7 +495,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$dummyDate	= mktime(0, 0, 0, $yearParts['month'], $yearParts['day']);
 		$date		= TodoyuTime::format($dummyDate, 'MlongD2');
 
-		$label .= ' ' . TodoyuLabelManager::getFormatLabel('calendar.series.label.year.atDate', array($date));
+		$label .= ' ' . Todoyu::Label('calendar.series.label.year.atDate') . ' ' . $date;
 
 		return $this->appendDateEndLabel($label);
 	}
