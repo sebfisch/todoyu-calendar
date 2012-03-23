@@ -9,11 +9,21 @@
 	font-size:12px;
 }
 
-#formElement-event-field-seriesoverbooking-inputbox {
+#formElement-event-field-seriesoverbooking-inputbox,
+#formElement-event-field-serieslabel-inputbox {
 	width:470px;
+}
+
+#formElement-event-field-seriesoverbooking-inputbox {
 	line-height:150%;
 }
 
-#formElement-event-field-serieslabel-inputbox {
-	width:470px;
+
+/* ---------------
+	Quick create
+   --------------- */
+
+#quickcreate #formElement-event-field-seriesoverbooking-inputbox,
+#quickcreate  #formElement-event-field-serieslabel-inputbox {
+	width:410px;
 }
