@@ -67,15 +67,17 @@ Todoyu.Ext.calendar.Event.Series = {
 	 * @param	{Number}	idEvent
 	 */
 	initForm: function(idEvent) {
-			// Observe normal event fields
-		this.observeStandardFields(idEvent);
+		if( this.isSeriesEdit() ) {
+				// Observe normal event fields
+			this.observeStandardFields(idEvent);
 
-			// Observe series fieldset for onChange
-		this.getContainer().on('change', ':input',	this.onSeriesFieldChange.bind(this));
+				// Observe series fieldset for onChange
+			this.getContainer().on('change', ':input',	this.onSeriesFieldChange.bind(this));
 
-			// Add special handling for save button
-		$('event-field-save').removeAttribute('onclick');
-		$('event-field-save').on('click', this.onSaveButtonClick.bind(this));
+				// Add special handling for save button
+			$('event-field-save').removeAttribute('onclick');
+			$('event-field-save').on('click', this.onSaveButtonClick.bind(this));
+		}
 	},
 
 
