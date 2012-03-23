@@ -588,7 +588,7 @@ Todoyu.Ext.calendar.Event.Series = {
 		return date < dateStart;
 	},
 
-	
+
 
 	/**
 	 * Get start date of event
