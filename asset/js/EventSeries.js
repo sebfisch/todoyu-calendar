@@ -572,6 +572,31 @@ Todoyu.Ext.calendar.Event.Series = {
 	 */
 	getSeriesEventElements: function(idSeries) {
 		return $$('.event.series' + idSeries);
+	},
+
+
+
+	/**
+	 * Check which dates should be disabled in the end of series date field calendar
+	 *
+	 * @param	{Date}	date
+	 * @return	{Boolean}
+	 */
+	seriesEndCalendarDisableCheck: function(date) {
+		var dateStart = this.getEventDateStart();
+
+		return date < dateStart;
+	},
+
+	
+
+	/**
+	 * Get start date of event
+	 *
+	 * @return	{Date}
+	 */
+	getEventDateStart: function() {
+		return Todoyu.DateField.getDate('event-field-date-start');
 	}
 
 };

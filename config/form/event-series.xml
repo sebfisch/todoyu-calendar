@@ -44,6 +44,9 @@
 
 				<field type="date" name="seriesdate_end">
 					<label>calendar.series.enddate</label>
+					<calendar>
+						<disableFunc>Todoyu.Ext.calendar.Event.Series.seriesEndCalendarDisableCheck</disableFunc>
+					</calendar>
 				</field>
 
 				<field type="comment" name="seriesoverbooking">
