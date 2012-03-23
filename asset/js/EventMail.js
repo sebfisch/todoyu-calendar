@@ -94,6 +94,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 			parameters: {
 				action:		'popup',
 				event:		idEvent,
+				operation:	operation,
 				options:	Object.toJSON(extraOptions)
 			},
 			onComplete: this.onPopupShow.bind(this, idEvent, operation)

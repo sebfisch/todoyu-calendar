@@ -120,7 +120,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	 */
 	onEventDropped: function(idEvent, dragInfo, event) {
 		if( this.isSeriesEvent(idEvent) ) {
-			Todoyu.notifyInfo('[LLL:calendar.series.eventTakeOutNotification]', 5);
+			Todoyu.notifyInfo('[LLL:calendar.series.eventTakeOutNotification]', 7);
 		}
 	},
 
