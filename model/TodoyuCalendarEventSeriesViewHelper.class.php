@@ -33,10 +33,15 @@ class TodoyuCalendarEventSeriesViewHelper {
 	 * @return	String
 	 */
 	public static function getSeriesLabel(TodoyuFormElement $field) {
-		$formData	= $field->getForm()->getStorageData();
-		$idSeries	= intval($formData['id_series']);
+		$eventData	= $field->getForm()->getVar('eventData');
+
+		if( !is_array($eventData) ) {
+			$eventData	= $field->getForm()->getStorageData();
+		}
+
+		$idSeries	= intval($eventData['id_series']);
 		$series		= TodoyuCalendarEventSeriesManager::getSeries($idSeries);
-		$series->setFormData($formData);
+		$series->setFormData($eventData);
 
 		return $series->getLabel();
 	}
