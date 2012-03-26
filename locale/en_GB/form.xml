@@ -15,6 +15,7 @@
 	<label index="legend.admin.automaticEmail">Configure the notification behaviour</label>
 	<label index="legend.admin.holidayset.record.general">Holiday Set</label>
 	<label index="legend.admin.holiday.record.general">Holiday</label>
+	<label index="comment.autonotification.label">Send Emails To:</label>
 	<label index="comment.autonotification.noroles">No participant is in a role preset for auto-notification.</label>
 	<label index="legend.series">Event series</label>
 </labels>

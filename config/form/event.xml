@@ -116,6 +116,7 @@
 			<legend>calendar.form.legend.autonotification</legend>
 			<elements>
 				<field type="comment" name="autonotification_comment">
+					<label>calendar.form.comment.autonotification.label</label>
 					<comment type="function">
 						<function>TodoyuCalendarEventViewHelper::getAutoNotificationComment</function>
 					</comment>
