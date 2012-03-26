@@ -156,6 +156,12 @@ class TodoyuCalendarEventSeriesViewHelper {
 
 		if( $frequency !== 0 ) {
 			$eventData	= TodoyuArray::assure($field->getForm()->getVar('eventData'));
+
+				// No event data set, use form data (fallback in case of invalid save request)
+			if( !sizeof($eventData) ) {
+				$eventData = $field->getForm()->getFormData();
+			}
+
 			$idSeries	= intval($eventData['id_series']);
 			$series		= TodoyuCalendarEventSeriesManager::getSeries($idSeries);
 			$series->setFormData($eventData);
