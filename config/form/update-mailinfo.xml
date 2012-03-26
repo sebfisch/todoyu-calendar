@@ -19,7 +19,7 @@
 						<function>TodoyuCalendarEventViewHelper::getEmailReceiverGroupedOptions</function>
 						<lazyInit />
 					</source>
-					<size>5</size>
+					<size>8</size>
 					<multiple />
 					<restrict>
 						<allow ext="comment" right="comment:sendAsEmail" />

@@ -154,7 +154,7 @@ class TodoyuCalendarEventMailPopup {
 	 * @return	String
 	 */
 	public function render() {
-		$tmpl	= 'ext/calendar/view/event-mailing.tmpl';
+		$tmpl	= 'ext/calendar/view/popup/email.tmpl';
 		$data	= array(
 			'subject'		=> $this->getSubject(),
 			'event'			=> $this->getEvent()->getTemplateData(true, true, true),
@@ -183,7 +183,7 @@ class TodoyuCalendarEventMailPopup {
 	 * @return	TodoyuForm
 	 */
 	protected function getForm() {
-		$xmlPath	= 'ext/calendar/config/form/event-mailing.xml';
+		$xmlPath	= 'ext/calendar/config/form/update-mailinfo.xml';
 
 		$receivers	= TodoyuCalendarEventMailManager::getOtherAssignedUserIDs($this->getEventID());
 		$formData	= array(
