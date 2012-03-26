@@ -62,8 +62,10 @@
 }
 .dayEvents {
 	background-color:#fff;
-	border-right: 1px solid #CCCCCC;
-	border-left: 1px solid #D7DCC6;
+	border: {
+		right:1px solid #cccccc;
+		left:1px solid #d7dcc6;
+	}
 }
 
 
