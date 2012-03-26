@@ -350,7 +350,7 @@ class TodoyuCalendarEventStaticManager {
 
 		TodoyuRecordManager::deleteRecord(self::TABLE, $idEvent);
 
-		TodoyuHookManager::callHook('calendar', 'event.deleted', array($idEvent, array('series'=>false)));
+		TodoyuHookManager::callHook('calendar', 'event.delete', array($idEvent, array('series'=>false)));
 	}
 
 
@@ -412,7 +412,7 @@ class TodoyuCalendarEventStaticManager {
 
 		self::removeEventFromCache($idEvent);
 
-		TodoyuHookManager::callHook('calendar', 'event.saved', array(
+		TodoyuHookManager::callHook('calendar', 'event.save', array(
 			$idEvent,
 			array(
 				'new' => $isNewEvent
@@ -482,7 +482,7 @@ class TodoyuCalendarEventStaticManager {
 	public static function addEvent(array $data = array()) {
 		$idEvent	= TodoyuRecordManager::addRecord(self::TABLE, $data);
 
-		TodoyuHookManager::callHook('calendar', 'event.add', array($idEvent));
+		TodoyuHookManager::callHook('calendar', 'event.add', array($idEvent, $data));
 
 		return $idEvent;
 	}

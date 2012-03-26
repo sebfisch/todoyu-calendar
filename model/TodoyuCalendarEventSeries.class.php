@@ -1176,7 +1176,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 
 			TodoyuCalendarEventSeriesManager::assignEvent($idBaseEvent, $idEvent, $assignedPersonIDs);
 
-			TodoyuHookManager::callHook('calendar', 'event.saved', array(
+			TodoyuHookManager::callHook('calendar', 'event.save', array(
 				$idEvent,
 				array(
 					'new'	=> true,

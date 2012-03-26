@@ -86,9 +86,9 @@ class TodoyuCalendarEventSeriesManager {
 		$deletedEventIDs	= self::deleteSeriesEventsAfter($idSeries);
 		$idFirstDeletedEvent= reset($deletedEventIDs);
 
-		TodoyuHookManager::callHook('calendar', 'series.deleted', array($idSeries));
-		TodoyuHookManager::callHook('calendar', 'series.events.deleted', array($idSeries, $deletedEventIDs));
-		TodoyuHookManager::callHook('calendar', 'event.deleted', array($idFirstDeletedEvent, array('series'=>true,'batch'=>false,'events'=>$deletedEventIDs)));
+		TodoyuHookManager::callHook('calendar', 'series.delete', array($idSeries));
+		TodoyuHookManager::callHook('calendar', 'series.events.delete', array($idSeries, $deletedEventIDs));
+		TodoyuHookManager::callHook('calendar', 'event.delete', array($idFirstDeletedEvent, array('series'=>true,'batch'=>false,'events'=>$deletedEventIDs)));
 
 		return $deletedEventIDs;
 	}
@@ -308,7 +308,7 @@ class TodoyuCalendarEventSeriesManager {
 
 			// Call event delete hook with special series option param
 		foreach($removeIDs as $idEvent) {
-			TodoyuHookManager::callHook('calendar', 'event.deleted', array($idEvent, array('series'=>true, 'batch'=>true)));
+			TodoyuHookManager::callHook('calendar', 'event.delete', array($idEvent, array('series'=>true, 'batch'=>true)));
 		}
 
 		return $removeIDs;
