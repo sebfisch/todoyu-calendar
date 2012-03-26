@@ -88,6 +88,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	 * @param	{Number}	idEvent
 	 */
 	observeStandardFields: function(idEvent) {
+		$('event-field-eventtype').on('change', this.onStandardFieldChanged.bind(this, idEvent));
 		$('event-field-persons-storage').on('change', this.onStandardFieldChanged.bind(this, idEvent));
 		$('event-field-date-start').on('change', ':input',	this.onStandardFieldChanged.bind(this, idEvent));
 		$('event-field-date-end').on('change', ':input',	this.onStandardFieldChanged.bind(this, idEvent));
@@ -177,7 +178,7 @@ Todoyu.Ext.calendar.Event.Series = {
 
 
 	/**
-	 * Update series configuration fields
+	 * Update series configuration fields (including possibly shown overbooking warnings)
 	 *
 	 * @method	updateConfigFields
 	 */

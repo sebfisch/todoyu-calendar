@@ -52,7 +52,7 @@ class TodoyuCalendarSeriesActionController extends TodoyuActionController {
 
 
 	/**
-	 * Get series config sub form
+	 * Get series config sub form (includes possible overbooking warnings)
 	 *
 	 * @param	Array	$params
 	 * @return	String
@@ -62,14 +62,19 @@ class TodoyuCalendarSeriesActionController extends TodoyuActionController {
 		parse_str($params['data'], $urlData);
 		$formData	= TodoyuArray::assure($urlData['event']);
 
-			// Wordaround: Prototype will serialize the persons as comma separated list...
+			// Workaround: Prototype will serialize the persons as comma separated list...
 		if( $formData['persons'] && $formData['persons'][0] ) {
 			$formData['persons'] = TodoyuArray::intExplode(',', $formData['persons'][0]);
 		}
 
 			// Extract storage data
 		$idEvent	= intval($formData['id']);
-		$eventForm	= TodoyuCalendarEventStaticManager::getEventForm($idEvent, $formData, array('options'=>array('seriesEdit'=>true)));
+		$params	= array(
+			'options'	=> array(
+				'seriesEdit'	=> true
+			)
+		);
+		$eventForm	= TodoyuCalendarEventStaticManager::getEventForm($idEvent, $formData, $params);
 		$storageData= $eventForm->getStorageData();
 
 			// Render the fields with the series object
