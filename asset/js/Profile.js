@@ -99,7 +99,7 @@ Todoyu.Ext.calendar.Profile	= {
 			Todoyu.notifyError('[LLL:calendar.ext.profile.saved.error]', 'profile.saved');
 			$('content-body').update(response.responseText);
 		} else {
-			Todoyu.notifySuccess('[LLL:calendar.ext.profile.main.saved]');
+			Todoyu.notifySuccess('[LLL:calendar.ext.profile.main.saved]', 'profile.saved');
 			Todoyu.Ext.profile.removeFormErrors();
 		}
 	},
