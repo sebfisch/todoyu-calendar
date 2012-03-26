@@ -1,5 +1,6 @@
 #calendar-title {
 	margin-left:8px;
+	-moz-user-select: none;
 }
 
 /* ----------------------------------------------
