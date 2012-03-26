@@ -90,6 +90,8 @@ Todoyu.Ext.calendar.CalendarBody	= {
 
 	/**
 	 * Check whether calendar body is loaded
+	 *
+	 * @method	isLoaded
 	 */
 	isLoaded: function() {
 		return Todoyu.exists('calendarBody');
@@ -100,6 +102,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	/**
 	 * Set compact view range limits
 	 *
+	 * @method	setCompactViewRange
 	 * @param	{Number}	start
 	 * @param	{Number}	end
 	 * @param	{Boolean}	apply
@@ -431,6 +434,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	/**
 	 * Get top offset depending on current view range and full day view
 	 *
+	 * @method	getFixedTopOffset
 	 * @param	{Number}	topOffset		In pixels
 	 * @return	{Number}	Correct offset inside the calendar body area
 	 */

@@ -23,7 +23,10 @@
 Todoyu.Ext.calendar.Week	= {
 
 	/**
-	 * Extension back ref
+	 * Reference to extension
+	 *
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext: Todoyu.Ext.calendar,
 
@@ -43,6 +46,7 @@ Todoyu.Ext.calendar.Week	= {
 	/**
 	 * Check whether compact view is active
 	 *
+	 * @method	isCompactView
 	 * @return	{Boolean}
 	 */
 	isCompactView: function() {
@@ -114,6 +118,7 @@ Todoyu.Ext.calendar.Week	= {
 	/**
 	 * Get options for drag'n'drop
 	 *
+	 * @method	getDragDropOptions
 	 * @return	{Object}
 	 */
 	getDragDropOptions: function() {

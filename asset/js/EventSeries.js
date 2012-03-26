@@ -183,6 +183,8 @@ Todoyu.Ext.calendar.Event.Series = {
 	 * @method	updateConfigFields
 	 */
 	updateConfigFields: function() {
+		this.showSeriesLoaderMessage();
+
 		var url		= this.getUrl();
 		var options	= {
 			parameters: {
@@ -198,6 +200,31 @@ Todoyu.Ext.calendar.Event.Series = {
 
 
 	/**
+	 * Display series config form AJAX loader message
+	 *
+	 * @method	showOverbookingLoaderMessage
+	 */
+	showSeriesLoaderMessage: function() {
+		var seriesLegend	= $('event-fieldset-series-legend');
+		var loaderContent	= new Element('a', { className:	'ajaxloader' }).update('[LLL:calendar.series.ajaxloader.overbooking]');
+
+		seriesLegend.update(loaderContent);
+	},
+
+
+	/**
+	 * Hide series config form AJAX loader message
+	 *
+	 * @method	hideSeriesLoaderMessage
+	 */
+	hideSeriesLoaderMessage: function() {
+		var seriesLegend	= $('event-fieldset-series-legend');
+		seriesLegend.update('[LLL:calendar.form.legend.series]');
+	},
+
+
+
+	/**
 	 * @method	onConfigUpdate
 	 * @param	{Ajax.Response}		response
 	 */
@@ -206,6 +233,8 @@ Todoyu.Ext.calendar.Event.Series = {
 		this.getContainer().select('.fElement').invoke('remove');
 			// Paste in new fields
 		this.getContainer().insert(response.responseText);
+
+		this.hideSeriesLoaderMessage();
 	},
 
 
@@ -332,6 +361,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	 * Call original save method, depending on current context
 	 * Call normal or quickcreate save method
 	 *
+	 * @method	callOriginalSaveMethod
 	 */
 	callOriginalSaveMethod: function() {
 		var quickCreatePopup	= $('quickcreate');
@@ -391,6 +421,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	/**
 	 * Check whether series is activated (frequency selected)
 	 *
+	 * @method	isSeriesActivated
 	 * @return	{Boolean}
 	 */
 	isSeriesActivated: function() {
@@ -580,6 +611,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	/**
 	 * Check which dates should be disabled in the end of series date field calendar
 	 *
+	 * @method	seriesEndCalendarDisableCheck
 	 * @param	{Date}	date
 	 * @return	{Boolean}
 	 */
@@ -594,6 +626,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	/**
 	 * Get start date of event
 	 *
+	 * @method	getEventDateStart
 	 * @return	{Date}
 	 */
 	getEventDateStart: function() {

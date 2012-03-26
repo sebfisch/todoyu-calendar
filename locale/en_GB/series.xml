@@ -19,6 +19,7 @@
 	<label index="weekdays">Repeat on</label>
 	<label index="enddate">End of series</label>
 	<label index="eventTakeOutNotification">You have just moved an event of a series and thus released it from this series</label>
+	<label index="ajaxloader.overbooking">Please wait: checking for overbookings.</label>
 	<label index="label.day">Daily</label>
 	<label index="label.days">Every %d days</label>
 	<label index="label.weekday">Every working day</label>

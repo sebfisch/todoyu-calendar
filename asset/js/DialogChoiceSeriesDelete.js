@@ -25,6 +25,7 @@ Todoyu.Ext.calendar.DialogChoiceSeriesDelete = Class.create(Todoyu.DialogChoice,
 	/**
 	 * Initialize popup
 	 *
+	 * @method	initialize
 	 * @param	{Function}	$super
 	 * @param	{Function}	onSelect		Callback for selection. Args: selection and data
 	 * @param	{Object}	data			Additional data to give to the callback function as second parameter

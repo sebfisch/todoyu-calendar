@@ -187,6 +187,7 @@ Todoyu.Ext.calendar.EventPortal	= {
 	/**
 	 * Jump to calendar event edit view
 	 *
+	 * @method	edit
 	 * @param	{Number}	idEvent
 	 */
 	edit: function(idEvent) {

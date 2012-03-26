@@ -19,11 +19,15 @@
 
 /**
  * Calendar month view functions
- *
- *
  */
 Todoyu.Ext.calendar.Month = {
 
+	/**
+	 * Reference to extension
+	 *
+	 * @property	ext
+	 * @type		Object
+	 */
 	ext: Todoyu.Ext.calendar,
 
 	/**
@@ -36,6 +40,7 @@ Todoyu.Ext.calendar.Month = {
 	/**
 	 * Get options for drag'n' drop
 	 *
+	 * @method	getDragOptions
 	 * @return	{Object}
 	 */
 	getDragOptions: function() {
@@ -66,6 +71,7 @@ Todoyu.Ext.calendar.Month = {
 	/**
 	 * Get drag and drop snap positions callback
 	 *
+	 * @method	getDragDropSnap
   	 * @param	{Number}		x
 	 * @param	{Number}		y
 	 * @param	{Draggable}		draggable

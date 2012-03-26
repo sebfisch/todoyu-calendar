@@ -107,6 +107,7 @@ Todoyu.Ext.calendar	= {
 	/**
 	 * Check whether current area is calendar
 	 *
+	 * @method	isInCalendarArea
 	 * @return	{Boolean}
 	 */
 	isInCalendarArea: function() {
@@ -118,6 +119,7 @@ Todoyu.Ext.calendar	= {
 	/**
 	 * Get event element
 	 *
+	 * @method	getEvent
 	 * @param	{Element}	idEvent
 	 */
 	getEvent: function(idEvent) {
@@ -251,6 +253,7 @@ Todoyu.Ext.calendar	= {
 	/**
 	 * Get time of day start
 	 *
+	 * @method	getDayStartTime
 	 * @return	{Number}
 	 */
 	getDayStartTime: function() {
@@ -274,6 +277,7 @@ Todoyu.Ext.calendar	= {
 	/**
 	 * Get time of week start
 	 *
+	 * @method	getWeekStartTime
 	 * @return	{Number}
 	 */
 	getWeekStartTime: function() {
@@ -563,6 +567,7 @@ Todoyu.Ext.calendar	= {
 	/**
 	 * Show info about creating an event in the past
 	 *
+	 * @method	showPastDateWarning
 	 */
 	showPastDateWarning: function() {
 		Todoyu.notifyInfo('Achtung, Sie erstellen einen Termin in der Vergangenheit!', 0, 'calendar.event.pastCreate');

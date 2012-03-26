@@ -160,6 +160,7 @@ Todoyu.Ext.calendar.Event.View	= {
 	/**
 	 * Edit event, close detail view
 	 *
+	 * @method	edit
 	 * @param	{Number}	idEvent
 	 */
 	edit: function(idEvent) {

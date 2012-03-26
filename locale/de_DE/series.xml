@@ -19,6 +19,7 @@
 	<label index="weekdays">Wiederhole an</label>
 	<label index="enddate">Wiederholen bis</label>
 	<label index="eventTakeOutNotification">Sie haben gerade einen Termin einer Serie verschoben, wodurch der aus der Serien Termin gelöst wurde.</label>
+	<label index="ajaxloader.overbooking">Bitte warten: Prüfe auf mögliche Überbuchungen.</label>
 	<label index="label.day">Täglich</label>
 	<label index="label.days">Jeden %d. Tag</label>
 	<label index="label.weekday">Jeden Arbeitstag</label>

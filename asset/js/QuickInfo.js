@@ -25,6 +25,7 @@ Todoyu.Ext.calendar.QuickInfo	= {
 	/**
 	 * Install quick info for a source type
 	 *
+	 * @method	install
 	 * @param	{String}	sourceName
 	 */
 	install: function(sourceName) {
@@ -36,6 +37,7 @@ Todoyu.Ext.calendar.QuickInfo	= {
 	/**
 	 * Uninstall quick info for a source type
 	 *
+	 * @method	uninstall
 	 * @param	{String}	sourceName
 	 */
 	uninstall: function(sourceName) {
@@ -47,6 +49,7 @@ Todoyu.Ext.calendar.QuickInfo	= {
 	/**
 	 * Get selector for source type
 	 *
+	 * @method	getSelector
 	 * @param	{String}	sourceName
 	 */
 	getSelector: function(sourceName) {
@@ -58,6 +61,7 @@ Todoyu.Ext.calendar.QuickInfo	= {
 	/**
 	 * Extract element ID from element
 	 *
+	 * @method	getElementID
 	 * @param	{Element}	observedElement
 	 * @param	{Event}	event
 	 */

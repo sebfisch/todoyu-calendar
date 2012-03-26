@@ -124,6 +124,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	/**
 	 * Close popup
 	 *
+	 * @method	closePopup
 	 */
 	closePopup: function() {
 		if( this.popup ) {
@@ -137,6 +138,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	/**
 	 * Button: Don't send mail
 	 *
+	 * @method	popupNoMail
 	 */
 	popupNoMail: function() {
 		this.closePopup();
@@ -147,6 +149,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	/**
 	 * Button: Send mail
 	 *
+	 * @method	popupMail
 	 */
 	popupMail: function() {
 		var selectedUsers	= this.getSelectedUsers();
@@ -163,6 +166,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	/**
 	 * Button: Disable popup
 	 *
+	 * @method	popupDisable
 	 */
 	popupDisable: function() {
 		this.disablePopup();
@@ -174,6 +178,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	/**
 	 * Get selected user IDs
 	 *
+	 * @method	getSelectedUsers
 	 * @return	{Array}
 	 */
 	getSelectedUsers: function() {

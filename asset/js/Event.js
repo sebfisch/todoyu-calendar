@@ -186,6 +186,7 @@ Todoyu.Ext.calendar.Event	= {
 	/**
 	 * Remove the (single) event
 	 *
+	 * @method	removeEvent
 	 * @param	{Number}	idEvent
 	 */
 	removeEvent: function(idEvent) {
@@ -227,6 +228,10 @@ Todoyu.Ext.calendar.Event	= {
 	},
 
 
+	/**
+	 * @method	fadeOut
+	 * @param	{Number}	idEvent
+	 */
 	fadeOut: function(idEvent) {
 		$('event-static-' + idEvent).fade();
 	},

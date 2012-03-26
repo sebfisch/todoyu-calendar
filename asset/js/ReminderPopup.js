@@ -156,7 +156,7 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	/**
 	 * Check events popup times (executed periodically), show ones that are due
 	 *
-	 * @method	onReminderTimeout
+	 * @method	showDueReminderPopups
 	 */
 	showDueReminderPopups: function() {
 		var now	= Date.now();
@@ -306,7 +306,7 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	 * Remove invalid options / hide "remind me again..." if no options available,
 	 * schedule next update when next remind-again option timing reached
 	 *
-	 * @method	initRemindAgainInPopup
+	 * @method	updateRemindAgainInPopup
 	 * @param	{Number}	idEvent
 	 * @param	{Number}	dateStart		Event dateStart as UNIX timestamp
 	 */
@@ -485,7 +485,7 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	/**
 	 * Handler called after rescheduling reminder: notify success, refresh list
 	 *
-	 * @method	onDeactivated
+	 * @method	onReminderTimeUpdated
 	 * @param	{Number}			idEvent
 	 * @param	{Ajax.Response}		response
 	 */

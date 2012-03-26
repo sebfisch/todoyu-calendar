@@ -136,6 +136,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	/**
 	 * Get options for day
 	 *
+	 * @method	getOptionsDay
 	 * @return	{Object}
 	 */
 	getOptionsDay: function() {
@@ -150,6 +151,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	/**
 	 * Get options for week
 	 *
+	 * @method	getOptionsWeek
 	 * @return	{Object}
 	 */
 	getOptionsWeek: function() {
@@ -161,6 +163,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	/**
 	 * Get options for month
 	 *
+	 * @method	getOptionsMonth
 	 * @return	{Object}
 	 */
 	getOptionsMonth: function() {
