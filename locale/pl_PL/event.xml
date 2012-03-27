@@ -55,7 +55,7 @@
 	<label index="error.starttimeAfterEndtime">Wydarzenie kończy się przed lub w tym samym czasie, w którym się rozpoczyna!</label>
 	<label index="error.privateEvent">Nie ma możliwości przypisania wydarzenie oznaczonego jako prywatne, komuś innemu!</label>
 	<label index="error.personsOverbooked">Ta osoba jest zajęta w danej chwili:</label>
-	<label index="error.hasInternalPerson">Musisz przypisać przynajmniej jedną osobą do  wydarzenia</label>
+	<label index="error.hasInternalPerson">Musisz przypisać przynajmniej jedną osobą do wydarzenia</label>
 	<label index="contextmenu.manageEvents">Zarządzaj wydarzeniami</label>
 	<label index="contextmenu.showEvent">Pokaż Wydarzenie</label>
 	<label index="contextmenu.editEvent">Edytuj Wydarzenie</label>
