@@ -163,12 +163,72 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		this.updateVisibleFields();
 
 		this.observeEventType();
+		this.observeDayEvent();
 		this.observeDateFields();
 		this.observeAssignedUsers(idEvent);
 
 		this.ext.Event.Series.initForm(idEvent, extraOptions.seriesEdit);
 
+			// Toggle fields, change format if day event is active (wait for init if calendar)
+		this.toggleDateFields.bind(this).defer();
+
 		this.initialized = true;
+	},
+
+
+
+	/**
+	 * Observe day event field for changes
+	 *
+	 */
+	observeDayEvent: function() {
+		$('event-field-is-dayevent').on('click', this.onDayEventChanged.bind(this));
+	},
+
+
+
+	/**
+	 * Handle day event option change
+	 *
+	 * @param event
+	 * @param element
+	 */
+	onDayEventChanged: function(event, element) {
+		this.toggleDateFields();
+	},
+
+
+
+	/**
+	 * Toggle date fields depending on day event flag
+	 *
+	 */
+	toggleDateFields: function() {
+		var	isDayEvent	= $('event-field-is-dayevent').checked,
+			newConfig,
+			classMethod,
+			dateStart	= $('event-field-date-start'),
+			dateEnd		= $('event-field-date-end');
+
+		if( isDayEvent ) {
+			newConfig	= {
+				ifFormat: 	Todoyu.Config.dateFormat.date,
+				showsTime:	false
+			};
+			classMethod	= 'addClassName';
+		} else {
+			newConfig	= {
+				ifFormat: 	Todoyu.Config.dateFormat.datetime,
+				showsTime:	true
+			};
+			classMethod	= 'removeClassName';
+		}
+
+		Todoyu.DateField.changeCalendarConfig(dateStart, newConfig);
+		Todoyu.DateField.changeCalendarConfig(dateEnd, newConfig);
+
+		dateStart[classMethod]('dayEvent');
+		dateEnd[classMethod]('dayEvent');
 	},
 
 
@@ -404,21 +464,6 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 		if( Todoyu.exists(field) ) {
 			$(field).addClassName('hidden');
-		}
-	},
-
-
-
-	/**
-	 * Set default timespan for full-day event: 00:00 to 23:59
-	 *
-	 * @method	setFulldayTime
-	 * @param	{Element}		fullDayCheckbox
-	 */
-	setFulldayTime: function(fullDayCheckbox) {
-		if( fullDayCheckbox.checked ) {
-			Todoyu.DateField.setTime('event-field-date-start', 0, 0);
-			Todoyu.DateField.setTime('event-field-date-end', 23, 59);
 		}
 	},
 

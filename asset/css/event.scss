@@ -597,6 +597,10 @@ button.editEvent .icon {
 #formElement-event-field-date-start {
 	clear:both;
 }
+#event-field-date-start.dayEvent,
+#event-field-date-end.dayEvent {
+	width: 65px;
+}
 
 
 /* -------------------------------------------------

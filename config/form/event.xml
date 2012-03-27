@@ -31,7 +31,6 @@
 
 				<field type="checkbox" name="is_dayevent">
 					<label>calendar.event.attr.is_dayevent</label>
-					<onchange>Todoyu.Ext.calendar.Event.Edit.setFulldayTime(this)</onchange>
 				</field>
 
 				<field type="checkbox" name="is_private">
