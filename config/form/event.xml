@@ -20,7 +20,7 @@
 					<required />
 				</field>
 
-				<field type="select" name="eventtype">
+				<field type="selectgrouped" name="eventtype">
 					<label>calendar.event.attr.eventtype</label>
 					<source type="function">
 						<function>TodoyuCalendarViewHelper::getEventTypeOptions</function>

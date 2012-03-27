@@ -134,11 +134,14 @@ TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensati
 TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'calendar.event.type.milestone');
 TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'calendar.event.type.reminder');
 
-	// Which event types have no relevance to overbooking prevention?
+	// Which event types can be overbooked?
 Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']	= array(
-	EVENTTYPE_BIRTHDAY,
+	EVENTTYPE_AWAYOFFICIAL,
+	EVENTTYPE_HOMEOFFICE,
+	EVENTTYPE_REMINDER,
 	EVENTTYPE_MILESTONE,
-	EVENTTYPE_REMINDER
+	EVENTTYPE_BIRTHDAY
+
 );
 	// How many conflicting appointments per person to be shown in overbooking warning?
 Todoyu::$CONFIG['EXT']['calendar']['maxShownOverbookingsPerPerson']	= 5;

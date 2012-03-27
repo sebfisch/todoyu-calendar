@@ -27,20 +27,41 @@
 class TodoyuCalendarEventViewHelper {
 
 	/**
-	 * Get event types (sorted by label) in a form-readable format
+	 * Get event types (grouped by non-/blocking) in a form-readable format
 	 *
 	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
-		$eventTypes		= TodoyuCalendarEventTypeManager::getEventTypes(true);
+		$groupLabelOverbookable	= Todoyu::Label('calendar.event.eventtype.optgroup.overbookable');
+		$groupLabelBlocking		= Todoyu::Label('calendar.event.eventtype.optgroup.blocking');
+
+			// Add ordered optgroups, group for "blocking" only if overbooking protection is activated
+		$options	= array();
+		if( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
+			$options[$groupLabelBlocking]	= array();
+		}
+		$options[$groupLabelOverbookable]	= array();
+
+			// Add event types to resp. optgroup
+		$eventTypes	= TodoyuCalendarEventTypeManager::getEventTypes(true);
+		foreach($eventTypes as $eventType) {
+			if( TodoyuCalendarEventTypeManager::isOverbookable($eventType['value']) ) {
+				$options[$groupLabelOverbookable][]	= $eventType;
+			} else {
+				$options[$groupLabelBlocking][]	= $eventType;
+			}
+		}
+
+			// Reform and sort options alphabetically
 		$reformConfig	= array(
 			'index'	=> 'value',
 			'label'	=> 'label'
 		);
-		$eventTypes	= TodoyuArray::reform($eventTypes, $reformConfig, false);
+		$options[$groupLabelOverbookable]	= TodoyuArray::sortByLabel(TodoyuArray::reform($options[$groupLabelOverbookable], $reformConfig, false), 'label');
+		$options[$groupLabelBlocking]		= TodoyuArray::sortByLabel(TodoyuArray::reform($options[$groupLabelBlocking], $reformConfig, false), 'label');
 
-		return TodoyuArray::sortByLabel($eventTypes, 'label');
+		return $options;
 	}
 
 

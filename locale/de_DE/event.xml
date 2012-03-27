@@ -27,8 +27,10 @@
 	<label index="delete.confirm">Wollen Sie diesen Termin wirklich löschen?</label>
 	<label index="group.attendees">Teilnehmer des Termins</label>
 	<label index="isseriesevent.info">Teil einer Termin-Serie</label>
+	<label index="eventtype.optgroup.overbookable">Überbuchbare Termintypen</label>
+	<label index="eventtype.optgroup.blocking">Blockierende Termintypen</label>
 	<label index="attr.creator">Ersteller</label>
-	<label index="attr.eventtype">Terminart</label>
+	<label index="attr.eventtype">Termintyp</label>
 	<label index="attr.is_dayevent">Ganztagestermin</label>
 	<label index="attr.is_public">Ist öffentlich?</label>
 	<label index="attr.is_private">Privater Termin</label>

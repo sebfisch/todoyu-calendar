@@ -917,7 +917,6 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		$seriesForm->setUseRecordID(false);
 		$fieldset	= $seriesForm->getFieldset('series');
 
-
 		if( $newEvent || $this->hasNoFrequency() ) { // New event
 			$fieldset->removeField('serieslabel');
 			$fieldset->removeField('seriesinterval');
@@ -963,6 +962,13 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 */
 	public function getOverbookingConflicts() {
 		$event	= TodoyuCalendarEventStaticManager::getEvent(0);
+
+			// Overbookable event types cannot conflict
+		if( TodoyuCalendarEventTypeManager::isOverbookable($event->getTypeIndex()) ) {
+			return array();
+		}
+
+			// Blocking event type: get conflicts
 		$event->injectData($this->eventData);
 		$ranges	= $this->getNextRanges($event->getDateStart(), $event->getDuration());
 		$users	= TodoyuArray::assure($this->eventData['persons']);

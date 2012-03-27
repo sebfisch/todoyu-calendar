@@ -128,9 +128,9 @@ class TodoyuCalendarEventTypeManager {
 	 * @return	Array
 	 */
 	public static function getEventTypeOptions() {
-		$jobTypes	= self::getEventTypes(true);
+		$eventTypes	= self::getEventTypes(true);
 
-		return TodoyuArray::sortByLabel($jobTypes, 'label');
+		return TodoyuArray::sortByLabel($eventTypes, 'label');
 	}
 
 
@@ -141,7 +141,30 @@ class TodoyuCalendarEventTypeManager {
 	 * @return	Integer[]
 	 */
 	public static function getOverbookableTypeIndexes() {
+			// Is overbooking allowed for ALL event types?
+		if( TodoyuCalendarManager::isOverbookingAllowed() ) {
+			return self::getEventTypeIndexes();
+		}
+			// Get event types explicitly allowed for overbooking
 		return Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE'];
+	}
+
+
+
+	/**
+	 * Check whether (all or) the given event type is overbookable
+	 *
+	 * @param	Integer		$eventType
+	 * @return	Boolean
+	 */
+	public static function isOverbookable($eventType) {
+			// Overbooking is generally allowed?
+		if( TodoyuCalendarManager::isOverbookingAllowed() ) {
+			return true;
+		}
+
+			// Check given type
+		return in_array($eventType, Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']);
 	}
 
 
@@ -152,11 +175,15 @@ class TodoyuCalendarEventTypeManager {
 	 * @return	Array
 	 */
 	public static function getNotOverbookableTypeIndexes() {
-		$overbookableTypes	= self::getOverbookableTypeIndexes();
-		$allEventTypes		= self::getEventTypeKeys();
+			// Are all types allowed to be overbooked?
+		if(  TodoyuCalendarManager::isOverbookingAllowed() ) {
+			return array();
+		}
 
+		$overbookableTypes			= self::getOverbookableTypeIndexes();
 		$nonOverbookableTypeIndexes	= array();
 
+		$allEventTypes		= self::getEventTypeKeys();
 		foreach( $allEventTypes as $typeKey ) {
 			$idType	= constant('EVENTTYPE_' . strtoupper($typeKey));
 			if( ! in_array($idType, $overbookableTypes)  ) {
@@ -170,9 +197,9 @@ class TodoyuCalendarEventTypeManager {
 
 
 	/**
-	 * Get all event type indexed (numerical)
+	 * Get all event type indexes (numerical)
 	 *
-	 * @return	Array
+	 * @return	Integer[]
 	 */
 	public static function getEventTypeIndexes() {
 		$eventTypes	= self::getEventTypes(false);
@@ -185,7 +212,7 @@ class TodoyuCalendarEventTypeManager {
 	/**
 	 * Get event type keys (textual)
 	 *
-	 * @return	Array
+	 * @return	String[]
 	 */
 	public static function getEventTypeKeys() {
 		$eventTypes	= self::getEventTypes(false);

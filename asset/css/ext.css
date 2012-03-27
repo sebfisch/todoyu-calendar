@@ -1,6 +1,6 @@
 #calendar-title {
 	margin-left:8px;
-	-moz-user-select: none;
+	-moz-user-select:none;
 }
 
 /* ----------------------------------------------
@@ -168,7 +168,7 @@ form.createevent label, form.createeventMidcol label{
 	width:110px;
 }
 .dialog .notification .fField {
-	width: 280px;
+	width:280px;
 }
 .dialog .notification fieldset {
 	padding:8px 15px 15px;

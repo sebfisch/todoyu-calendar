@@ -529,11 +529,13 @@ class TodoyuCalendarEventStaticManager {
 			$dateEnd	= $event->getDateEnd() + $offset;
 		}
 
-		if( ! $overbookingConfirmed || !TodoyuCalendarManager::isOverbookingAllowed() ) {
-				// Collect overbookings of assigned persons (to request confirmation or resetting event)
-			$overbookingPersonsErrors	= self::getOverbookedPersonsErrors($idEvent, $dateStart, $dateEnd);
-			if( $overbookingPersonsErrors !== false ) {
-				return $overbookingPersonsErrors;
+		if( !TodoyuCalendarEventTypeManager::isOverbookable($event->getTypeIndex()) ) {
+			if( !$overbookingConfirmed || !TodoyuCalendarManager::isOverbookingAllowed() ) {
+					// Collect overbookings of assigned persons (to request confirmation or resetting event)
+				$overbookingPersonsErrors	= self::getOverbookedPersonsErrors($idEvent, $dateStart, $dateEnd);
+				if( $overbookingPersonsErrors !== false ) {
+					return $overbookingPersonsErrors;
+				}
 			}
 		}
 

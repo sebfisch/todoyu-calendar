@@ -151,25 +151,31 @@ class TodoyuCalendarEventSeriesViewHelper {
 	 * @return	String
 	 */
 	public static function getOverbookingWarnings(TodoyuFormElement $field) {
-		$seriesData	= $field->getForm()->getStorageData();
-		$frequency	= intval($seriesData['seriesfrequency']);
+			// Dont check if all overbooking is allowed
+		if( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
+			$seriesData	= $field->getForm()->getStorageData();
+			$frequency	= intval($seriesData['seriesfrequency']);
 
-		if( $frequency !== 0 ) {
-			$eventData	= TodoyuArray::assure($field->getForm()->getVar('eventData'));
+			if( $frequency !== 0 ) {
+				$eventData	= TodoyuArray::assure($field->getForm()->getVar('eventData'));
 
-				// No event data set, use form data (fallback in case of invalid save request)
-			if( !sizeof($eventData) ) {
-				$eventData = $field->getForm()->getFormData();
-			}
+					// No event data set, use form data (fallback in case of invalid save request)
+				if( !sizeof($eventData) ) {
+					$eventData = $field->getForm()->getFormData();
+				}
 
-			$idSeries	= intval($eventData['id_series']);
-			$series		= TodoyuCalendarEventSeriesManager::getSeries($idSeries);
-			$series->setFormData($eventData);
+					// Only check for blocking event types
+				if( !TodoyuCalendarEventTypeManager::isOverbookable($eventData['eventtype']) ) {
+					$idSeries	= intval($eventData['id_series']);
+					$series		= TodoyuCalendarEventSeriesManager::getSeries($idSeries);
+					$series->setFormData($eventData);
 
-			$warningMessages	= $series->getOverbookingConflictsWarningMessages(true);
+					$warningMessages	= $series->getOverbookingConflictsWarningMessages(true);
 
-			if( sizeof($warningMessages) > 0 ) {
-				return implode('<br>', $warningMessages);
+					if( sizeof($warningMessages) > 0 ) {
+						return implode('<br>', $warningMessages);
+					}
+				}
 			}
 		}
 

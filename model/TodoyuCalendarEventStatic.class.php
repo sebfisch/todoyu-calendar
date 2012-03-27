@@ -507,9 +507,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	 * @return Boolean
 	 */
 	public function isOverbookable() {
-		$overbookableTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']);
-
-		return !$this->isDayevent() && !in_array($this->getTypeIndex(), $overbookableTypes);
+		return TodoyuCalendarEventTypeManager::isOverbookable($this->getTypeIndex());
 	}
 
 
