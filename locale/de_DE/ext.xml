@@ -67,4 +67,5 @@
 	<label index="profile.saved.error">Fehler beim Speichern der Einstellungen.</label>
 	<label index="profile.main.saved">Die Einstellungen wurden gespeichert.</label>
 	<label index="profile.reminders.saved">Einstellungen zu Erinnerungen wurden gespeichert.</label>
+	<label index="pastDateWarning">Achtung, Sie erstellen einen Termin in der Vergangenheit!</label>
 </labels>

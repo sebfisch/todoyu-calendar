@@ -570,7 +570,7 @@ Todoyu.Ext.calendar	= {
 	 * @method	showPastDateWarning
 	 */
 	showPastDateWarning: function() {
-		Todoyu.notifyInfo('Achtung, Sie erstellen einen Termin in der Vergangenheit!', 0, 'calendar.event.pastCreate');
+		Todoyu.notifyInfo('[LLL:calendar.ext.pastDateWarning]', 0, 'calendar.event.pastCreate');
 	}
 
 };
