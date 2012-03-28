@@ -54,7 +54,7 @@ class TodoyuCalendarEventMailManager {
 	 * @return	TodoyuForm
 	 */
 	public static function hookCheckAutoMailFields(TodoyuForm $form, $idEvent, array $params) {
-		$autoEmailPersons	= TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($idEvent);
+		$autoEmailPersons	= self::getAutoNotifiedPersonIDs($idEvent);
 
 		if( sizeof($autoEmailPersons) === 0 ) {
 			$form->removeFieldset('autoemail');
@@ -84,7 +84,7 @@ class TodoyuCalendarEventMailManager {
 			$assignedPersons= $event->getAssignedPersons();
 
 			foreach($assignedPersons as $assignedPerson) {
-				if( $assignedPerson->hasAnyRole($autoMailRoleIDs) ) {
+				if( $assignedPerson->hasAnyRole($autoMailRoleIDs) && $assignedPerson->hasAccountEmail() ) {
 					$notifiedPersonIDs[] = $assignedPerson->getID();
 				}
 			}
@@ -352,7 +352,7 @@ class TodoyuCalendarEventMailManager {
 	 * @return	Integer[]
 	 */
 	public static function sendAutoInfoMails($idEvent, array $options = array()) {
-		$autoMailUserIDs = TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($idEvent, true);
+		$autoMailUserIDs = self::getAutoNotifiedPersonIDs($idEvent, true);
 
 		if( sizeof($autoMailUserIDs) > 0 ) {
 			self::sendEvent($idEvent, $autoMailUserIDs, $options);
