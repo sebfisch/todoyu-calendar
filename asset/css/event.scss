@@ -115,6 +115,9 @@ div.weekMode div#calendarBody div.event dd span.desc {
 #calendar .dayEvents .event.hasAccess .head {
 	cursor:move;
 }
+#calendar .dayMode .dayEvents .event .head {
+	cursor:default;
+}
 
 .dayEvents .event .date {
 	color:$colorTextGeneral;
