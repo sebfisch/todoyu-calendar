@@ -3,7 +3,10 @@
 #calendar-body .event {
 	position:absolute;
 	overflow:hidden;
-	border-radius:3px;
+}
+
+#calendarBody .event {
+	border-radius:5px;
 }
 
 .dayMode .event .head,
