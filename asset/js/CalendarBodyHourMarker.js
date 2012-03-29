@@ -35,10 +35,21 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	ext:	Todoyu.Ext.calendar,
 
 	/**
-	 * @property	marker
+	 * Dark area of past time for current day
+	 *
+	 * @property	currentTimePastArea
 	 * @type		Element
 	 */
-	marker:		null,
+	currentTimePastArea: null,
+
+	/**
+	 * Red line for current time on current day
+	 *
+	 * @property	currentTimeMarker
+	 * @type		Element
+	 */
+	currentTimeMarker: null,
+	
 
 	/**
 	 * Periodical executor
@@ -53,14 +64,14 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	/**
 	 * Initialize current hour marker
 	 *
-	 * @method	initCurrentHourMarker
+	 * @method	init
 	 */
 	init: function() {
 		if( this.isTodayDisplayed() && this.isCurrentHourDisplayed() ) {
 			this.markCurrentHourDigit();
 
 				// Add marker layer underneath current hour into DOM
-			this.addMarker();
+			this.createMarkerElements();
 			this.pe = new PeriodicalExecuter(this.updatePosition.bind(this), 60);
 		} else {
 			this.hideMarker();
@@ -105,15 +116,18 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 *
 	 * @method	insertMarkerLayer
 	 */
-	addMarker: function() {
-		this.marker = new Element('div', {
-			id:			'currentHourMarker',
+	createMarkerElements: function() {
+		this.currentTimePastArea = new Element('div', {
+			id:			'currentTimePastArea',
+			className:	this.ext.getActiveTab() + 'Mode'
+		});
+		this.currentTimeMarker	= new Element('div', {
+			id:			'currentTimeMarker',
 			className:	this.ext.getActiveTab() + 'Mode'
 		});
 
-		$('gridContainer').insert({
-			before:	this.marker
-		});
+		$('gridContainer').insert(this.currentTimePastArea);
+		$('gridContainer').insert(this.currentTimeMarker);
 
 		this.updatePosition();
 	},
@@ -122,11 +136,11 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	/**
 	 * Check whether the current hour marker exists in DOM
 	 *
-	 * @method	isMarkerInDOM
+	 * @method	areMarkersCreated
 	 * @return	{Boolean}
 	 */
-	isMarkerInDOM: function() {
-		return Todoyu.exists('currentHourMarker');
+	areMarkersCreated: function() {
+		return Todoyu.exists('currentTimePastArea');
 	},
 
 
@@ -137,8 +151,8 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @method	hideMarker
 	 */
 	hideMarker: function() {
-		if( this.marker ) {
-			this.marker.hide()
+		if( this.currentTimePastArea ) {
+			this.currentTimePastArea.hide()
 		}
 	},
 
@@ -150,11 +164,11 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @method	showMarker
 	 */
 	showMarker: function() {
-		if( !this.isMarkerInDOM() ) {
-			this.addMarker();
+		if( !this.areMarkersCreated() ) {
+			this.createMarkerElements();
 		}
 
-		this.marker.show();
+		this.currentTimePastArea.show();
 	},
 
 
@@ -215,23 +229,24 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 */
 	updatePosition: function() {
 		if( this.isTodayDisplayed() && this.isCurrentHourDisplayed() ) {
-			if( !this.isMarkerInDOM() ) {
-				this.addMarker();
+			if( !this.areMarkersCreated() ) {
+				this.createMarkerElements();
 			}
 
-			var cloneOptions= {
-				setLeft:	true,
-				setTop:		true,
-				setWidth:	false,
-				setHeight:	false,
-				offsetTop:	this.getOffsetTop(),
-				offsetLeft:	this.getTodayOffsetLeft()
-			};
-			this.marker.clonePosition(this.getFirstHourCell(), cloneOptions);
+			var height	= this.getHeight();
+			var width	= this.getWidth();
+			var left	= this.getTodayOffsetLeft();
 
-			this.marker.setStyle({
-				width:	this.getWidth() + 'px',
-				height:	this.getHeight() + 'px'
+			this.currentTimePastArea.setStyle({
+				width:	width,
+				height:	height,
+				left:	left
+			});
+
+			this.currentTimeMarker.setStyle({
+				width:	width,
+				top:	height,
+				left:	left
 			});
 
 			this.showMarker();
@@ -243,31 +258,10 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 
 	/**
-	 * Get hour marker vertical offset by current hour + minutes of day
-	 *
-	 * @method	getOffsetTop
-	 * @return	{Number}
-	 */
-	getOffsetTop: function() {
-			// Full view from 00:00 to 23:00
-		if( Todoyu.Ext.calendar.CalendarBody.isFullHeight() ) {
-			return 0;
-		}
-
-			// Get top coordinate of first shown hour
-		var firstHour	= Todoyu.Ext.calendar.CalendarBody.getCompactRangeStart();
-		var hourCells	= this.getHourCells();
-
-		return hourCells[firstHour].offsetTop;
-	},
-
-
-
-	/**
 	 * Get height of marker resp. to current hours view range and time of day
 	 *
 	 * @method	getHeight
-	 * @return	{Number}
+	 * @return	{String}
 	 */
 	getHeight: function() {
 		var currentHour		= Todoyu.Time.getCurrentHourOfDay();
@@ -279,11 +273,16 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 			pastHoursShown	= currentHour;
 		} else {
 				// Limited view range of hours
-			var firstHour	= Todoyu.Ext.calendar.CalendarBody.getCompactRangeStart();
+			var firstHour	= this.ext.CalendarBody.getCompactRangeStart();
 			pastHoursShown	= currentHour - firstHour;
 		}
 
-		return (pastHoursShown * 42) + parseInt(currentMinutes / 1.5, 10) - 1;
+		var gridHeader		= $('gridHeader');
+		var headerheight	= gridHeader ? gridHeader.getHeight() : 0;
+		var heightHours		= pastHoursShown * 42;
+		var heightMinutes	= currentMinutes / 1.5;
+
+		return heightHours + heightMinutes + headerheight + 'px';
 	},
 
 
@@ -292,7 +291,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * Get horizontal offset for current hour marker layer from day offset
 	 *
 	 * @method	getOffsetLeft
-	 * @return	{Number}
+	 * @return	{String}
 	 */
 	getTodayOffsetLeft: function() {
 		var activeTab	= this.ext.getActiveTab();
@@ -303,16 +302,12 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 			var todayHeaderCell = $('gridHeader').down('th.today');
 			offsetLeft	= todayHeaderCell.offsetLeft;
 
-			if( Prototype.Browser.WebKit ) {
-					// e.g. Chrome
-				offsetLeft -= this.ext.Week.getNumDays() === 7 ? 3 : 1;
-			} else {
-					// e.g. FF
-				offsetLeft -= this.ext.Week.getNumDays() === 7 ? 3 : 2;
+			if( this.ext.Week.isWeekendDisplayed() ) {
+				offsetLeft -= 1;
 			}
 		}
 
-		return offsetLeft;
+		return offsetLeft + 'px';
 	},
 
 
@@ -321,24 +316,16 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * Get useable width of marker from day column
 	 *
 	 * @method	getMarkerWidth
-	 * @return	{Number}
+	 * @return	{String}
 	 */
 	getWidth: function() {
 		var activeTab	= this.ext.getActiveTab();
-		var width;
+		var width, widthFix = 2;
 
 		if( activeTab === 'day' ) {
-			width	= 660;
+			width	= '100%';
 		} else {
-			width	= this.ext.Week.getDayColWidth();
-
-			if( Prototype.Browser.WebKit ) {
-					// e.g. Chrome
-				width	-= this.ext.Week.isWeekendDisplayed() ? 2 : 3;
-			} else {
-					// e.g. FF
-				width	-= this.ext.Week.isWeekendDisplayed() ? 3 : 3;
-			}
+			width	= (this.ext.Week.getDayColWidth() - 2) + 'px';
 		}
 
 		return width;

@@ -17,6 +17,8 @@
 	Header
    --------------- */
 .gridHeader {
+	position: relative;
+	z-index:110;
 }
 
 .gridHeader .wk-weektop {
