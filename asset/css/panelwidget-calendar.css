@@ -21,7 +21,7 @@
 #panelwidget-calendar-content .calheader,
 #panelwidget-calendar-content .calcontrol {
 	font-weight:normal !important;
-	/*text-transform:uppercase;*/
+	text-transform:uppercase;
 }
 
 
