@@ -175,6 +175,7 @@ form.createevent label, form.createeventMidcol label{
 }
 
 
+
 /* -------------------
 	Reminder
    ------------------- */
@@ -184,4 +185,8 @@ button.rescheduleReminderButton span.icon {
 }
 .dialog .notification.reminder .eventDetailView td {
 	padding:4px;
+}
+
+.dialog .notification.reminder .eventDetails {
+	margin:16px 0 0 0;
 }
