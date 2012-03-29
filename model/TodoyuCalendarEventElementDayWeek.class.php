@@ -128,18 +128,12 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	/**
 	 * Get element width
 	 *
-	 * @param	Boolean		$withSpacing
 	 * @return	Integer
 	 */
-	public function getWidth($withSpacing = true) {
+	public function getWidth() {
 		$totalConflictingElements	= $this->getColumnConflicts()+1;
-		$width						= intval(round($this->getViewWidth()/$totalConflictingElements, 0));
 
-		if( $withSpacing ) {
-			$width -= CALENDAR_EVENT_SPACING;
-		}
-
-		return $width;
+		return intval(round($this->getViewWidth()/$totalConflictingElements, 0));
 	}
 
 
@@ -150,7 +144,7 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	 * @return	Integer
 	 */
 	public function getLeftOffset() {
-		return intval($this->getWidth(false) * $this->getColumnIndex());
+		return intval($this->getWidth() * $this->getColumnIndex());
 	}
 
 
