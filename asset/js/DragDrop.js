@@ -463,6 +463,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	/**
 	 * Save new date of an event
 	 *
+	 * @todo	add check whether date changed or dropped into old position, if unchanged: do not save,notify,mail...
 	 * @method	saveDropping
 	 * @param	{String}	tab				'week' or 'month'
 	 * @param	{Number}	idEvent

@@ -9,8 +9,7 @@
 	<div class="events" id="events">{* ----- The actual list of events ----- *}
 		{foreach $staticEvents event}
 			{* ------- Event entry ------- *}
-			<div id="event-{$event.source}-{$event.id}" class="event {cycle values="odd,even"} source{ucfirst $event.source} type{ucfirst $event.type} contextmenuEventPortal">
-
+			<div id="event-{$event.source}-{$event.id}" class="event {cycle values="odd,even"} source{ucfirst $event.source} type{ucfirst $event.type} contextmenuEventPortal {if $event.id_series > 0}series{$event.id_series}{/if}">
 				<h3 id="event-{$event.id}-header" name="event-{$event.id}">
 					<span class="icon typeIcon" title="{Label calendar.event.attr.eventtype}: {EventTypeLabel $event.type}"> </span>
 					<span id="acknowledge-{$event.id}" class="icon acknowledge {if !$event.isAcknowledged}not{/if}{if $event.isUpdated} updated{/if}" {if !$event.isAcknowledged}onclick="Todoyu.Ext.calendar.EventPortal.acknowledgeEvent({$event.id})"{/if}> </span>
