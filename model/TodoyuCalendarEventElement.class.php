@@ -205,6 +205,11 @@ abstract class TodoyuCalendarEventElement {
 	protected function getElementTemplateData($date = 0) {
 		$elementData	= array();
 
+		$this->addClass('event');
+		$this->addClass('source' . ucfirst($this->getEvent()->getSource()));
+		$this->addClass('type' . ucfirst($this->getEvent()->getType()));
+		$this->addClass('quickInfoEvent');
+
 		if( $this->getEvent()->hasAccess() ) {
 			$this->addClass('hasAccess');
 			$this->addClass('contextmenuevent');
@@ -218,11 +223,15 @@ abstract class TodoyuCalendarEventElement {
 
 		$this->addClasses($this->getEvent()->getClassNames());
 
-		$elementData['class']	= implode(' ', $this->getClasses());
-		$elementData['color']	= $this->getColor();
-		$elementData['source']	= $this->getEvent()->getSource();
-		$elementData['type']	= $this->getEvent()->getType();
-		$elementData['view']	= $this->getViewName();
+		$color	= $this->getColor();
+
+		$this->addClass('enumColBGFade' . $color['id']);
+
+		$elementData['classNames']	= implode(' ', $this->getClasses());
+		$elementData['color']		= $color;
+		$elementData['source']		= $this->getEvent()->getSource();
+		$elementData['type']		= $this->getEvent()->getType();
+		$elementData['view']		= $this->getViewName();
 
 			// Override title if private and not assigned
 		if( $this->getEvent()->isPrivate() && !$this->getEvent()->isPersonAssigned() ) {

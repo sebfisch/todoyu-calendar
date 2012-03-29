@@ -1,3 +1,19 @@
+/* ---------------
+	Grid
+   --------------- */
+.mainGrid {
+	border-bottom:1px solid #ddd;
+	background:#d7dcc6;
+}
+
+#gridContainer {
+	background:#F2F3ED;
+	position:relative;
+	overflow: hidden;
+}
+
+
+
 /* Scrolling or not */
 #calendarBody {
 	overflow:hidden;
