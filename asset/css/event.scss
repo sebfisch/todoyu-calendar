@@ -35,7 +35,7 @@
 	float: left;
 }
 
-#calendar .event.hasAccess .head {
+#calendar .event.canEdit .head {
 	cursor:move;
 }
 #calendar .event.noAccess .head,

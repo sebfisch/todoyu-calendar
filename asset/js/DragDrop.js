@@ -181,7 +181,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 */
 	getDraggableEventItems: function(parentElementID) {
 		return $(parentElementID).select('.event').filter(function(element){
-			return element.hasClassName('hasAccess') || element.hasClassName('canEdit');
+			return element.hasClassName('canEdit');
 		});
 	},
 

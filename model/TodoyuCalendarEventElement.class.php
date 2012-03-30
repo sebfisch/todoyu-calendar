@@ -127,7 +127,18 @@ abstract class TodoyuCalendarEventElement {
 	 * @param	String		$className
 	 */
 	public function addClass($className) {
-		$this->classNames[]	= $className;
+		$this->classNames[$className]	= $className;
+	}
+
+
+
+	/**
+	 * Remove an event element class
+	 *
+	 * @param	String		$className
+	 */
+	public function removeClass($className) {
+		unset($this->classNames[$className]);
 	}
 
 
@@ -205,11 +216,13 @@ abstract class TodoyuCalendarEventElement {
 	protected function getElementTemplateData($date = 0) {
 		$elementData	= array();
 
+			// Add base classes
 		$this->addClass('event');
 		$this->addClass('source' . ucfirst($this->getEvent()->getSource()));
 		$this->addClass('type' . ucfirst($this->getEvent()->getType()));
 		$this->addClass('quickInfoEvent');
 
+			// Add access classes
 		if( $this->getEvent()->hasAccess() ) {
 			$this->addClass('hasAccess');
 			$this->addClass('contextmenuevent');
@@ -220,11 +233,11 @@ abstract class TodoyuCalendarEventElement {
 			$this->addClass('canEdit');
 		}
 
-
+			// Add event classes
 		$this->addClasses($this->getEvent()->getClassNames());
 
+			// Add color info
 		$color	= $this->getColor();
-
 		$this->addClass('enumColBGFade' . $color['id']);
 
 		$elementData['classNames']	= implode(' ', $this->getClasses());
