@@ -143,33 +143,33 @@ class TodoyuCalendarEventViewHelper {
 
 
 
-	/**
-	 * Get person IDs of participants receiving auto-notification event emails
-	 *
-	 * @param	TodoyuFormElement	$field
-	 * @return	Array|Integer[]
-	 */
-	private static function getAutoNotifiedPersonIDs(TodoyuFormElement $field) {
-		$form	= $field->getForm();
-		$data	= $form->getFormData();
-
-		$participantIDs	= array();
-
-		if( isset($data['id_event']) ) {
-				// Event form inside mailing popup, after change per drag&drop/delete
-			$idEvent	= intval($data['id_event']);
-			$isNewEvent	= $idEvent === 0;
-			if( ! $isNewEvent ) {
-				$participantIDs	= TodoyuCalendarEventStaticManager::getEvent($idEvent)->getAssignedPersonIDs();
-			}
-		} else {
-				// Edit event form
-			$eventPersons	= $form->getField('persons')->getValue();
-			$participantIDs	= TodoyuArray::intval(array_keys($eventPersons));
-		}
-
-		return TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
-	}
+//	/**
+//	 * Get person IDs of participants receiving auto-notification event emails
+//	 *
+//	 * @param	TodoyuFormElement	$field
+//	 * @return	Array|Integer[]
+//	 */
+//	private static function getAutoNotifiedPersonIDs(TodoyuFormElement $field) {
+//		$form	= $field->getForm();
+//		$data	= $form->getFormData();
+//
+//		$participantIDs	= array();
+//
+//		if( isset($data['id_event']) ) {
+//				// Event form inside mailing popup, after change per drag&drop/delete
+//			$idEvent	= intval($data['id_event']);
+//			$isNewEvent	= $idEvent === 0;
+//			if( ! $isNewEvent ) {
+//				$participantIDs	= TodoyuCalendarEventStaticManager::getEvent($idEvent)->getAssignedPersonIDs();
+//			}
+//		} else {
+//				// Edit event form
+//			$eventPersons	= $form->getField('persons')->getValue();
+//			$participantIDs	= TodoyuArray::intval(array_keys($eventPersons));
+//		}
+//
+//		return TodoyuCalendarEventMailManager::getAutoNotifiedPersonIDs($participantIDs);
+//	}
 
 
 

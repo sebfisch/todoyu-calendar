@@ -53,7 +53,7 @@ class TodoyuCalendarEventMailManager {
 	 * @param	Array			$params
 	 * @return	TodoyuForm
 	 */
-	public static function hookCheckAutoMailFields(TodoyuForm $form, $idEvent, array $params) {
+	public static function hookToggleAutoMailField(TodoyuForm $form, $idEvent, array $params) {
 		$autoEmailPersons	= self::getAutoNotifiedPersonIDs($idEvent);
 
 		if( sizeof($autoEmailPersons) === 0 ) {
