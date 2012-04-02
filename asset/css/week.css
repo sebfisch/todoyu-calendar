@@ -2,7 +2,7 @@
 	Header
    --------------- */
 .gridHeader {
-	position: relative;
+	position:relative;
 	z-index:110;
 }
 

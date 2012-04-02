@@ -59,8 +59,8 @@
 }
 
 #panelwidget-calendar-jscalendar .calendar thead .day.name {
-	padding: 2px;
-	cursor: default;
+	padding:2px;
+	cursor:default;
 }
 
 #panelwidget-calendar-jscalendar .calendar .wn {

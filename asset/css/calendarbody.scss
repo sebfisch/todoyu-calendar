@@ -9,7 +9,7 @@
 #gridContainer {
 	background:#F2F3ED;
 	position:relative;
-	overflow: hidden;
+	overflow:hidden;
 }
 
 
@@ -55,21 +55,21 @@
 	/* Marker layer of current hour */
 #currentTimePastArea {
 	position:absolute;
-	top: 0px;
+	top:0px;
 	z-index:10;
-	width: 100%;
+	width:100%;
 	pointer-events:none;
 	background-color:#ccc;
 	/*background-color:#f00;*/
  	opacity:0.4;
-	overflow: hidden;
+	overflow:hidden;
 }
 
 #currentTimeMarker {
     position:absolute;
 	z-index:200;
 	height:2px;
-	width: 100%;
+	width:100%;
 	pointer-events:none;
 	background-color:#F00;
 }
