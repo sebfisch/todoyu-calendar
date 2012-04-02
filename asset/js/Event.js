@@ -261,12 +261,13 @@ Todoyu.Ext.calendar.Event	= {
 	 * @param	{String}		view
 	 */
 	goToEventInCalendar: function(idEvent, date, view) {
+		view 		= view || 'day';
 		var params	= {
-			date:	date,
-			tab:	view ? view : 'day'
+			tab:	view,
+			date:	date
 		};
 
-		Todoyu.goTo('calendar', 'ext', params, 'event-' + idEvent);
+		Todoyu.goTo('calendar', '', params);
 	},
 
 
