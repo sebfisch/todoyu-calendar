@@ -122,7 +122,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 * Set current calendar date
 	 *
 	 * @method	setDate
-	 * @param	{Number}	timestamp
+	 * @param	{Number}	date
 	 * @param	{Boolean}	noExternalUpdate
 	 */
 	setDate: function(date, noExternalUpdate) {
