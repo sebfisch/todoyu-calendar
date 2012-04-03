@@ -46,7 +46,7 @@
 					<label>calendar.event.attr.startdate</label>
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event')"</extraAttributes>
 					<class>datetime</class>
-					<required label="calendar.event.error.date_start" />
+					<required />
 				</field>
 
 				<field type="datetime" name="date_end">
