@@ -183,8 +183,8 @@ Todoyu.Ext.calendar.Event.View	= {
 	/**
 	 * Close event viewing tab and update calendar view
 	 *
-	 * @param	{Boolean}	showCalendar
 	 * @method	close
+	 * @param	{Boolean}	showCalendar
 	 */
 	close: function(showCalendar) {
 		this.removeTab();

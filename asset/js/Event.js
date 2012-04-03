@@ -143,6 +143,7 @@ Todoyu.Ext.calendar.Event	= {
 	 * Redirect the browser to the calendar and open edit view
 	 * Use this to start edit view from another area
 	 *
+	 * @method	jumpToEventEditView
 	 * @param	{Number}	idEvent
 	 * @param	{Object}	options
 	 */

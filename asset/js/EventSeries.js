@@ -85,6 +85,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	/**
 	 * Observe normal event fields for change which affect the series
 	 *
+	 * @method	observeStandardFields
 	 * @param	{Number}	idEvent
 	 */
 	observeStandardFields: function(idEvent) {
@@ -99,6 +100,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	/**
 	 * Handle standard field change
 	 *
+	 * @method	onStandardFieldChanged
 	 * @param	{Number}	idEvent
 	 * @param	{Event}		event
 	 * @param	{Element}	element

@@ -190,8 +190,9 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	/**
 	 * Handle day event option change
 	 *
-	 * @param event
-	 * @param element
+	 * @method	onDayEventChanged
+	 * @param	event
+	 * @param	element
 	 */
 	onDayEventChanged: function(event, element) {
 		this.toggleDateFields();
