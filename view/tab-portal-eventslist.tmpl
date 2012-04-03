@@ -16,7 +16,7 @@
 					<span class="label" onclick="Todoyu.Ext.calendar.EventPortal.toggleDetails({$event.id})">
 						<span class="date">{formatRange $event.date_start $event.date_end} {if $event.date_end-$event.date_start}({formatDuration $event.date_end-$event.date_start}){/if}</span>
 						<span class="eventtype">{EventTypeLabel $event.eventtype}</span>
-						<span class="title">{htmlencode(truncate($event.title 50 break=true))}</span>
+						<span class="title">{htmlencode(truncate($event.title 43 break=true))}</span>
 					</span>
 					<div class="clear"><!-- --></div>
 				</h3>
