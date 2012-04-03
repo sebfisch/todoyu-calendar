@@ -21,7 +21,7 @@ div.weekMode table .standardGrid td.noEventCell {
 .event dl {
 	border:1px solid;
 }
-.event  .head .headInner {
+.event .head .headInner {
 	font-weight:bold;
 	padding-left:2px;
 }
