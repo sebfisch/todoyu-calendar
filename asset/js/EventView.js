@@ -168,6 +168,7 @@ Todoyu.Ext.calendar.Event.View	= {
 	},
 
 
+
 	/**
 	 * Check whether event viewing tab exists in DOM
 	 *

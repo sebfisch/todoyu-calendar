@@ -331,8 +331,9 @@ div.weekMode div#calendarBody div.event dd span.desc {
 .portalEventsList h1.headerLine span.eventType {
 	width:110px;
 }
-
-
+.portalEventsList .event .eventDetailView td.label {
+  background:none;
+}
 
 .portalEventsList #events .event h3	{
 	border-left:0;
@@ -379,7 +380,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 			background-color:#f3f3f3;
 		}
 		.type {
-			margin-right:15px;
+			margin-right:5px;
 			background-position:0 -325px;
 			height:16px;
 			width:30px;
@@ -467,7 +468,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 
 /*#events .headLabel span.acknowledge {*/
 #events h3 span.icon.acknowledge {
-	margin-right:10px;
+	/*margin-right:10px;*/
 }
 
 /*#events .headLabel span.acknowledge.not {*/
@@ -482,10 +483,10 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 
 div.eventDetails dt {
+	clear:both;
 	float:left;
 	line-height:18px;
 	text-align:left;
-	clear:both;
 }
 
 div.eventDetails dd {
@@ -500,8 +501,8 @@ div.eventDetails dd {
 }
 
 #events .event h3 .label .date {
-	width:220px;
 	display:inline-block;
+	width:238px;
 }
 
 #events .event h3 .label .eventtype {
@@ -526,8 +527,8 @@ div.eventDetails dd {
 }
 
 #holidays .holidayDate {
+	padding-left:38px;
 	width:183px;
-	padding-left:48px;
 }
 	#holidays .holidayDate.hasIcon {
 		background:url(../img/icons.png) no-repeat scroll 0 -390px;

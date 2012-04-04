@@ -214,6 +214,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	},
 
 
+
 	/**
 	 * Hide series config form AJAX loader message
 	 *
@@ -323,6 +324,7 @@ Todoyu.Ext.calendar.Event.Series = {
 				break;
 		}
 	},
+
 
 
 	/**

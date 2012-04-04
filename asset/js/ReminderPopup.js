@@ -338,6 +338,7 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	},
 
 
+
 	/**
 	 * Find and remove rescheduling options pointing to past times from given event reminder popup options.
 	 *

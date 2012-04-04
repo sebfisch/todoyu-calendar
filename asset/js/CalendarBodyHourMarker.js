@@ -134,6 +134,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	},
 
 
+
 	/**
 	 * Check whether the current hour marker exists in DOM
 	 *

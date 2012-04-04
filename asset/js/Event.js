@@ -229,6 +229,7 @@ Todoyu.Ext.calendar.Event	= {
 	},
 
 
+
 	/**
 	 * @method	fadeOut
 	 * @param	{Number}	idEvent
