@@ -38,6 +38,12 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	 */
 	protected $columnConflicts	= 0;
 
+	/**
+	 * Conflicting event elements
+	 * @var	TodoyuCalendarEventElementDayWeek[]
+	 */
+	protected $conflictingEventElements = array();
+
 
 
 	/**
@@ -131,9 +137,32 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 	 * @return	Integer
 	 */
 	public function getWidth() {
-		$totalConflictingElements	= $this->getColumnConflicts()+1;
+		$totalHorizontalElements	= $this->getMaxColumnConflictsOfConflictingElements()+1;
 
-		return intval(round($this->getViewWidth()/$totalConflictingElements, 0));
+		return intval(round($this->getViewWidth()/$totalHorizontalElements, 0));
+	}
+
+
+
+	/**
+	 * Get the maximum column conflict count of all conflicting elements
+	 * Prevents problems, if conflict count of element is 1,
+	 * but a conflicting element has a higher conflict rate and overlapps the element if it's in a neighbour column
+	 *
+	 * @return	Integer
+	 */
+	private function getMaxColumnConflictsOfConflictingElements() {
+		$maxColumnConflicts = $this->getColumnConflicts();
+
+		foreach($this->conflictingEventElements as $conflictingEventElement) {
+			$elementColumnConflicts = $conflictingEventElement->getColumnConflicts();
+
+			if( $elementColumnConflicts > $maxColumnConflicts ) {
+				$maxColumnConflicts = $elementColumnConflicts;
+			}
+		}
+
+		return $maxColumnConflicts;
 	}
 
 
@@ -183,16 +212,19 @@ abstract class TodoyuCalendarEventElementDayWeek extends TodoyuCalendarEventElem
 
 
 	/**
-	 * @param	TodoyuCalendarEventElementDayWeek[]	$allElements
+	 * @param	TodoyuCalendarEventElementDayWeek[]	$allEventElements
 	 */
-	public function setOverlapCounter(array $allElements) {
+	public function setOverlapCounter(array $allEventElements) {
 		$conflictingColumns	= array();
 
-		foreach($allElements as $element) {
-			if( $element !== $this ) {
-				if( $element->getColumnIndex() !== $this->getColumnIndex() ) {
-					if( $this->isOverlapping($element) ) {
-						$conflictingColumns[]	= $element->getColumnIndex();
+		foreach($allEventElements as $eventElement) {
+			if( $eventElement !== $this ) {
+				if( $eventElement->getColumnIndex() !== $this->getColumnIndex() ) {
+					if( $this->isOverlapping($eventElement) ) {
+							// Store column index of conflicting element
+						$conflictingColumns[]				= $eventElement->getColumnIndex();
+							// Store conflicting element
+						$this->conflictingEventElements[]	= $eventElement;
 					}
 				}
 			}
