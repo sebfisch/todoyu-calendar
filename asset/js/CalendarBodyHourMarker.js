@@ -67,7 +67,8 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @method	init
 	 */
 	init: function() {
-		if( this.isTodayDisplayed() && this.isCurrentHourDisplayed() ) {
+		var activeTab	= this.ext.getActiveTab();
+		if( (activeTab === 'day' || activeTab === 'week') && this.isTodayDisplayed() && this.isCurrentHourDisplayed() ) {
 			this.markCurrentHourDigit();
 
 				// Add marker layer underneath current hour into DOM
@@ -228,7 +229,8 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 	 * @method	updatePosition
 	 */
 	updatePosition: function() {
-		if( this.isTodayDisplayed() && this.isCurrentHourDisplayed() ) {
+		var activeTab	= this.ext.getActiveTab();
+		if( (activeTab === 'day' || activeTab === 'week') && this.isTodayDisplayed() && this.isCurrentHourDisplayed() ) {
 			if( !this.areMarkersCreated() ) {
 				this.createMarkerElements();
 			}
