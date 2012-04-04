@@ -18,7 +18,13 @@
  *****************************************************************************/
 
 /**
+ * @module	Calendar
+ */
+
+/**
  * Handle week view
+ *
+ * @namespace	Todoyu.Ext.calendar.Week
  */
 Todoyu.Ext.calendar.Week	= {
 

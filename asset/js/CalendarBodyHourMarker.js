@@ -324,7 +324,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 		if( activeTab === 'day' ) {
 			width	= '100%';
-		} else {
+		} else if( activeTab === 'week' ) {
 			width	= (this.ext.Week.getDayColWidth() - 2) + 'px';
 		}
 
