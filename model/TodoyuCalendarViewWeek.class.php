@@ -85,17 +85,10 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 		$dayDates	= $this->getRange()->getDayTimestamps();
 		$columns	= array();
 
-		$monthPrevDate	= '';
 		foreach($dayDates as $dayDate) {
-			$formatLabel	= 'DshortD';
-				// Only labels of 1st shown day and days after change of month include the month
-			$monthCurrentDate	= date('n', $dayDate);
-			if( $monthCurrentDate !== $monthPrevDate ) {
-				$formatLabel	= 'DshortDMlong';
-			}
-			$monthPrevDate	= $monthCurrentDate;
+			$formatLabel= 'DshortDMlong';
+			$dayKey		= date('Ymd', $dayDate);
 
-			$dayKey	= date('Ymd', $dayDate);
 			$columns[$dayKey]	=  array(
 				'key'	=> $dayKey,
 				'date'	=> date('Y-m-d', $dayDate),
