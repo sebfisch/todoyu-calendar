@@ -38,7 +38,7 @@
 	<label index="conflicts.noConflicts">Es entstehen keine Überbuchungen</label>
 	<label index="dialog.delete.title">Diesen Termin oder ganze Serie löschen?</label>
 	<label index="dialog.delete.desc">Wollen Sie alle Termine dieser Serie löschen, oder nur den ausgewählten Termin?</label>
-	<label index="dialog.delete.series.button">Alle Termin</label>
+	<label index="dialog.delete.series.button">Alle Termine</label>
 	<label index="dialog.delete.series.label">Lösche alle Termine dieser Serie</label>
 	<label index="dialog.delete.event.button">Diesen Termin</label>
 	<label index="dialog.delete.event.label">Nur diesen Termin löschen. Alle anderen Termine der Serie bleiben unverändert</label>
