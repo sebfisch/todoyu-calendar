@@ -133,7 +133,7 @@
 				</field>
 
 				<field type="saveButton" name="save">
-					<onclick>Todoyu.Ext.calendar.Event.Edit.saveEvent()</onclick>
+					<onclick>Todoyu.Ext.calendar.Event.Edit.saveEvent(false)</onclick>
 				</field>
 
 			</elements>

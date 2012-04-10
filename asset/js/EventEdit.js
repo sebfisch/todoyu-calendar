@@ -180,6 +180,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	/**
 	 * Observe day event field for changes
 	 *
+	 * @method	observeDayEvent
 	 */
 	observeDayEvent: function() {
 		$('event-field-is-dayevent').on('click', this.onDayEventChanged.bind(this));
@@ -203,6 +204,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	/**
 	 * Toggle date fields depending on day event flag
 	 *
+	 * @method	toggleDateFields
 	 */
 	toggleDateFields: function() {
 		var	isDayEvent	= $('event-field-is-dayevent').checked,
@@ -570,6 +572,8 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 */
 	saveEvent: function(isOverbookingConfirmed) {
 		isOverbookingConfirmed	= isOverbookingConfirmed || false;
+
+		Todoyu.Ui.closeRTE($('event-form'));
 
 		$('event-form').request({
 			parameters: {
