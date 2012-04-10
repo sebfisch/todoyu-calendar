@@ -7,6 +7,7 @@ calender 1.2.0 - not released yet
 	* Feature: Implemented month and week mode starting with sunday (system setting)
 	* Added: Implemented forgotten automatic email roles option
 	* Changed: Event types in event forms are now grouped into overbookable and blocking types
+	* Changed: Autonotification info comment in event edit form is only shown when there are any participants receiving an automaitc email notification
 	* Changed: Blocking of event types is no more connected to events being all-day or not. Only the type defines whethere there can be overbooking-conflicts
 	* Changed: Use data sources which can provide own event types which implement the TodoyuCalendarEvent interface
 	* Changed: Use view objects to render content for day, week and month

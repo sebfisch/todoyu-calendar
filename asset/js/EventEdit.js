@@ -350,6 +350,24 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		fieldsToHide.each(function(fieldName){
 			this.hideField(fieldName, 'event');
 		}, this);
+
+		this.initAutonotificationComment();
+	},
+
+
+
+	/**
+	 * Hide auto-notification info if there are no participants receiving an auto-mail
+	 *
+	 * @method	initAutonotificationComment
+	 */
+	initAutonotificationComment: function() {
+		var idCommentElement		= 'formElement-event-field-autonotification-comment-inputbox';
+		var hasNoAutonotification	= $(idCommentElement).down('.commenttext').innerHTML.indexOf('id="person-') === -1;
+
+		if( hasNoAutonotification ) {
+			$('event-fieldset-autoemail').hide();
+		}
 	},
 
 
@@ -397,7 +415,15 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Ajax.Response}					response
 	 */
 	onAutoMailCommentUpdated: function(idEvent, response) {
+		var automailPersonIDs = response.getTodoyuHeader('autoMailPersons');
 
+		if( automailPersonIDs.length > 0 ) {
+				// There are persons to be auto-notified
+			Todoyu.Ui.twinkle($('event-fieldset-autoemail'));
+		} else {
+				// None of the participants receives an auto-notification
+			$('event-fieldset-autoemail').fade();
+		}
 	},
 
 
