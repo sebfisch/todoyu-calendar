@@ -106,9 +106,9 @@ class TodoyuCalendarEventViewHelper {
 		$groupLabel	= Todoyu::Label('calendar.event.group.attendees');
 		$options[$groupLabel]	= self::getEmailReceiverOptions($field);
 
-			// Get staff persons (employees of internal company)
+			// Get staff persons (employees of internal company) having an email
 		$groupLabel	= Todoyu::Label('comment.ext.group.employees');
-		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field, true);
+		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field, true, true, true);
 
 			// Deselect + disable options of persons receiving an automatic notification email
 		if( sizeof($autoNotifiedPersonIDs) > 0 ) {
