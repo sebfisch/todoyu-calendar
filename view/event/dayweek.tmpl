@@ -25,7 +25,7 @@
 	<div class="content">
 		{if $description && (!$isPrivate || isPersonID($id_person))}
 			<div class="description">
-				{htmlencode $description}
+				{cleanHtml $description}
 			</div>
 		{/if}
 	</div>

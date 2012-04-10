@@ -45,7 +45,8 @@
 	cursor:no-drop !important;
 }
 
-.event .description {
+.event .description,
+.event .description * {
 	font-size:9px;
 }
 
