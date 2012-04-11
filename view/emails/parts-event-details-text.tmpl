@@ -1,7 +1,7 @@
 ========================================================================
 
 {math equation="e - s" e=$event.date_end s=$event.date_start assign=duration}{math equation="d / 3600" d=$duration assign=duration}
-{Label calendar.event.attr.timespan}:	{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} {Label core.date.time.hours})
+{Label calendar.event.attr.timespan}:	{formatRange $event.date_start $event.date_end} {if $event.date_end-$event.date_start}({formatDuration $event.date_end-$event.date_start}){/if}
 {Label core.global.title}:	{htmlencode $event.title}
 {Label calendar.event.attr.place}:	{$event.place}
 

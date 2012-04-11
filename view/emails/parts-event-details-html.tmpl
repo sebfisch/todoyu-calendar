@@ -8,7 +8,7 @@
 
 	<tr>
 		<td class="label">{Label calendar.event.attr.timespan}:</td>
-		<td>{dateFormat $event.date_start datetime} - {dateFormat $event.date_end datetime} ({round($duration, 2)} {Label core.date.time.hours})</td>
+		<td>{formatRange $event.date_start $event.date_end} {if $event.date_end-$event.date_start}({formatDuration $event.date_end-$event.date_start}){/if}</td>
 	</tr>
 
 	{if $event.place}

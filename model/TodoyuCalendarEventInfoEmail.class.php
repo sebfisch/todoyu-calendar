@@ -186,7 +186,6 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 
 		$data['hideEmails']	= true;
 		$data['options']	= $this->options;
-//		$data['colors']		= TodoyuCalendarEventStaticManager::getEventTypeColors();
 
 		return Todoyu::render($tmpl, $data);
 	}
