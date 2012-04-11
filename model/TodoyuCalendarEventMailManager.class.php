@@ -141,7 +141,7 @@ class TodoyuCalendarEventMailManager {
 
 
 	/**
-	 * log sent event email of given event to given person
+	 * Log sent event email of given event to given person
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Integer		$idPerson
@@ -206,7 +206,7 @@ class TodoyuCalendarEventMailManager {
 		$urlParams	= array(
 			'ext'	=> 'calendar',
 			'event'	=> $idEvent,
-			'tab'	=> 'view' //'week'
+			'tab'	=> 'view'
 		);
 		$data['eventlink']	= TodoyuString::buildUrl($urlParams, '', true);
 
@@ -280,20 +280,12 @@ class TodoyuCalendarEventMailManager {
 
 					// Sort persons alphabetically
 				if( sizeof($autoMailPersonIDs) > 0 ) {
-					$field		= 'id';
-					$table		= TodoyuContactPersonManager::TABLE;
-					$where		= TodoyuSql::buildInArrayQuery($autoMailPersonIDs);
-					$group		= 'id';
-					$orderBy	= 'lastname,firstname';
-
-					$autoMailPersonIDs	= Todoyu::db()->getColumn($field, $table, $where, $group, $orderBy);
+					$autoMailPersonIDs	= TodoyuContactPersonManager::sortPersonIDs($autoMailPersonIDs);
 				}
 			}
 		}
 
-		$autoMailPersonIDs	= TodoyuArray::removeByValue($autoMailPersonIDs, array(Todoyu::personid()));
-
-		return $autoMailPersonIDs;
+		return TodoyuArray::removeByValue($autoMailPersonIDs, array(Todoyu::personid()));
 	}
 
 
@@ -426,8 +418,6 @@ class TodoyuCalendarEventMailManager {
 		$idPerson	= intval($idPerson);
 		$mail		= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $options);
 		$status		= $mail->send();
-
-		//TodoyuDebug::printInFirebug($idPerson, 'send mail for ' . $idEvent . ' to');
 
 		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $idPerson, $options, $status));
 
