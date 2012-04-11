@@ -344,7 +344,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @param	{Event}			event
 	 */
 	onDrag: function(tab, dragInfo, event) {
-		Todoyu.QuickInfo.deactivate();
+		Todoyu.QuickInfo.disable();
 	},
 
 
@@ -378,7 +378,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 				break;
 		}
 
-		Todoyu.QuickInfo.activate();
+		Todoyu.QuickInfo.enable();
 	},
 
 

@@ -6,6 +6,7 @@ calender 1.2.0 - not released yet
 	* Feature: 5-day week viewing mode (monday to friday)
 	* Feature: Implemented month and week mode starting with sunday (system setting)
 	* Added: Implemented forgotten automatic email roles option
+	* Changed: Active contextmenu disables quickinfos popups
 	* Changed: Event types in event forms are now grouped into overbookable and blocking types
 	* Changed: Autonotification info comment in event edit form is only shown when there are any participants receiving an automaitc email notification
 	* Changed: Blocking of event types is no more connected to events being all-day or not. Only the type defines whethere there can be overbooking-conflicts
