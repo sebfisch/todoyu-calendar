@@ -28,7 +28,7 @@ Todoyu.Ext.calendar.DialogChoiceSeriesEdit = Class.create(Todoyu.DialogChoice, {
 	 * @method	initialize
 	 * @param	{Function}	$super
 	 * @param	{Function}	onSelect		Callback for selection. Args: selection and data
-	 * @param	{Object}	data			Additional data to give to the callback function as second parameter
+	 * @param	{Object}	[data]			Additional data to give to the callback function as second parameter
 	 */
 	initialize: function($super, onSelect, data) {
 		var options		= {

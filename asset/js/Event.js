@@ -145,7 +145,7 @@ Todoyu.Ext.calendar.Event	= {
 	 *
 	 * @method	jumpToEventEditView
 	 * @param	{Number}	idEvent
-	 * @param	{Object}	options
+	 * @param	{Object}	[options]
 	 */
 	jumpToEventEditView: function(idEvent, options) {
 		options		= options || {};
@@ -266,7 +266,7 @@ Todoyu.Ext.calendar.Event	= {
 	 * @method	goToEventInCalendar
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		date
-	 * @param	{String}		view
+	 * @param	{String}		[view]
 	 */
 	goToEventInCalendar: function(idEvent, date, view) {
 		view 		= view || 'day';

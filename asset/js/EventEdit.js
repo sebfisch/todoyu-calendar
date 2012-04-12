@@ -90,6 +90,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @method	loadForm
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		time
+	 * @param	{Object}		[extraOptions]
 	 */
 	loadForm: function(idEvent, time, extraOptions) {
 		extraOptions= extraOptions || {};
@@ -155,7 +156,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 *
 	 * @method	initForm
 	 * @param	{Number}	idEvent
-	 * @param	{Object}	extraOptions
+	 * @param	{Object}	[extraOptions]
 	 */
 	initForm: function(idEvent, extraOptions) {
 		extraOptions = extraOptions || {};
@@ -594,7 +595,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * If overbooking is allowed and warning has been confirmed, save even overbooked entries.
 	 *
 	 * @method	saveEvent
-	 * @param	{Boolean}	isOverbookingConfirmed
+	 * @param	{Boolean}	[isOverbookingConfirmed]
 	 */
 	saveEvent: function(isOverbookingConfirmed) {
 		isOverbookingConfirmed	= isOverbookingConfirmed || false;

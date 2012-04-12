@@ -79,7 +79,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	 * @method	afterSaved
 	 * @param	{Number}	idEvent
 	 * @param	{String}	operation
-	 * @param	{Object}	extraOptions
+	 * @param	{Object}	[extraOptions]
 	 */
 	showPopup: function(idEvent, operation, extraOptions) {
 		extraOptions= extraOptions || {};

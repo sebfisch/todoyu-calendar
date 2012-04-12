@@ -387,6 +387,7 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	 *
 	 * @method	deactivate
 	 * @param	{Number}	idEvent
+	 * @param	{Boolean}	[closePopup]
 	 */
 	deactivate: function(idEvent, closePopup) {
 		closePopup	= closePopup || false;
