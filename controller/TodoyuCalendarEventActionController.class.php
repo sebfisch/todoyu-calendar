@@ -164,7 +164,9 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 			// Check right
 		TodoyuCalendarEventRights::restrictDelete($idEvent);
 
-		TodoyuCalendarEventStaticManager::deleteEvent($idEvent);
+		if( ! TodoyuCalendarEventStaticManager::deleteEvent($idEvent) ) {
+			TodoyuHeader::sendTodoyuErrorHeader();
+		}
 	}
 
 

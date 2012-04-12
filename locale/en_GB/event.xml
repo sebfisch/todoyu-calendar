@@ -25,6 +25,8 @@
 	<label index="type.reminder">Reminder</label>
 	<label index="privateEvent.info">Personal</label>
 	<label index="delete.confirm">Do you really want to delete this event?</label>
+	<label index="delete.success">The event has been deleted.</label>
+	<label index="delete.error">Event deletion failed.</label>
 	<label index="group.attendees">Event Attendees</label>
 	<label index="isseriesevent.info">Part of an event series</label>
 	<label index="eventtype.optgroup.overbookable">Overbookable event types</label>

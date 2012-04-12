@@ -344,13 +344,16 @@ class TodoyuCalendarEventStaticManager {
 	 * Delete event
 	 *
 	 * @param	Integer		$idEvent
+	 * @return	Boolean
 	 */
 	public static function deleteEvent($idEvent) {
 		$idEvent	= intval($idEvent);
 
-		TodoyuRecordManager::deleteRecord(self::TABLE, $idEvent);
+		$deleted	= TodoyuRecordManager::deleteRecord(self::TABLE, $idEvent);
 
 		TodoyuHookManager::callHook('calendar', 'event.delete', array($idEvent, array('series'=>false)));
+
+		return $deleted;
 	}
 
 

@@ -25,6 +25,8 @@
 	<label index="type.reminder">Erinnerung</label>
 	<label index="privateEvent.info">Privat</label>
 	<label index="delete.confirm">Wollen Sie diesen Termin wirklich löschen?</label>
+	<label index="delete.success">Der Termin wurde gelöscht.</label>
+	<label index="delete.error">Löschen des Termins schlug fehl.</label>
 	<label index="group.attendees">Teilnehmer des Termins</label>
 	<label index="isseriesevent.info">Teil einer Termin-Serie</label>
 	<label index="eventtype.optgroup.overbookable">Überbuchbare Termintypen</label>

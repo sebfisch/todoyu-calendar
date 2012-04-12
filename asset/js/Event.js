@@ -226,6 +226,12 @@ Todoyu.Ext.calendar.Event	= {
 		if( Todoyu.Ext.portal.isInPortalArea() ) {
 			this.ext.EventPortal.reduceAppointmentCounter();
 		}
+
+		if( response.hasTodoyuError() ) {
+			Todoyu.notifyError('[LLL:calendar.event.delete.error]');
+		} else {
+			Todoyu.notifySuccess('[LLL:calendar.event.delete.success]');
+		}
 	},
 
 
