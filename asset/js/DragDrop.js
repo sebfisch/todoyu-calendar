@@ -406,12 +406,12 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @param	{Object}	dragInfo
 	 */
 	saveDayDrop: function(idEvent, dragInfo) {
-		var offset	= dragInfo.element.positionedOffset().top;
-		var seconds	= (offset / 42) * Todoyu.Time.seconds.hour;
+		var topOffset	= dragInfo.element.positionedOffset().top;
+		var daySeconds	= Math.round((topOffset / 42) * Todoyu.Time.seconds.hour);
+		var dayStart	= this.ext.getTime();
+		var newDateStart= new Date((dayStart + daySeconds) * 1000);
 
-		var newDate	= new Date((this.ext.getTime() + seconds) * 1000);
-
-		this.saveDropping('day', idEvent, newDate);
+		this.saveDropping('day', idEvent, newDateStart);
 	},
 
 
@@ -469,7 +469,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @param	{String}	tab				'week' or 'month'
 	 * @param	{Number}	idEvent
 	 * @param	{Date}		date
-	 * @param	{Boolean}	isConfirmed
+	 * @param	{Boolean}	[isConfirmed]
 	 */
 	saveDropping: function(tab, idEvent, date, isConfirmed) {
 		isConfirmed	= isConfirmed ? 1 : 0;
