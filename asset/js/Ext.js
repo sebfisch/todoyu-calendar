@@ -209,7 +209,7 @@ Todoyu.Ext.calendar	= {
 	 * @return	{Number}
 	 */
 	getTime: function() {
-		return this.getDate().getTime()/1000;
+		return this.getDate().getTime() / 1000;
 	},
 
 
@@ -257,7 +257,7 @@ Todoyu.Ext.calendar	= {
 	 * @return	{Number}
 	 */
 	getDayStartTime: function() {
-		return this.getDayStart().getTime()/1000;
+		return this.getDayStart().getTime() / 1000;
 	},
 
 
@@ -281,7 +281,7 @@ Todoyu.Ext.calendar	= {
 	 * @return	{Number}
 	 */
 	getWeekStartTime: function() {
-		return this.getWeekStart().getTime()/1000;
+		return this.getWeekStart().getTime() / 1000;
 	},
 
 
@@ -318,7 +318,7 @@ Todoyu.Ext.calendar	= {
 	 * @param	{Object}	update
 	 */
 	onDateChanged: function(widgetName, update) {
-		var time	= update.date.getTime()/1000;
+		var time	= update.date.getTime() / 1000;
 
 		this.show(null, time);
 	},
