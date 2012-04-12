@@ -337,11 +337,30 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 	 * @param	TodoyuDayRange|null		$currentRange
 	 */
 	public function addQuickInfos(TodoyuQuickinfo $quickInfo, TodoyuDayRange $currentRange = null) {
-		$age	= $this->getAge($currentRange);
+		$age		= $this->getAge($currentRange);
+		$name		= TodoyuString::crop($this->getPerson()->getFullName(), 25, '...', false);
 
-		$quickInfo->addInfo('name',		TodoyuString::crop($this->getPerson()->getFullName(), 25, '...', false));
+		$quickInfo->addHTML('name', $this->getPersonDetailLink($name));
 		$quickInfo->addInfo('date',		TodoyuTime::format($this->getPerson()->getBirthday(), 'date'));
 		$quickInfo->addInfo('birthday',	$age . ' ' . Todoyu::Label('calendar.ext.yearsold'));
+	}
+
+	
+
+	/**
+	 * Get person link
+	 *
+	 * @param	String		$name
+	 * @return	String
+	 */
+	protected function getPersonDetailLink($name) {
+		$params	= array(
+			'controller'	=> 'person',
+			'action'		=> 'detail',
+			'person'		=> $this->getPerson()->getID()
+		);
+
+		return TodoyuString::wrapTodoyuLink($name, 'contact', $params);
 	}
 
 
