@@ -86,7 +86,6 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 		$columns	= array();
 
 		foreach($dayDates as $dayDate) {
-			$formatLabel= 'DshortDMlong';
 			$dayKey		= date('Ymd', $dayDate);
 
 			$columns[$dayKey]	=  array(
@@ -94,7 +93,7 @@ class TodoyuCalendarViewWeek extends TodoyuCalendarView {
 				'date'	=> date('Y-m-d', $dayDate),
 				'today'	=> $dayDate === $timeToday,
 				'title'	=> TodoyuTime::format($dayDate, 'DlongD2MlongY4'),
-				'label'	=> TodoyuTime::format($dayDate, $formatLabel)
+				'label'	=> TodoyuTime::format($dayDate, 'DshortDMshort')
 			);
 		}
 
