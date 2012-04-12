@@ -407,7 +407,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 */
 	saveDayDrop: function(idEvent, dragInfo) {
 		var topOffset	= dragInfo.element.positionedOffset().top;
-		var daySeconds	= Math.round((topOffset / 42) * Todoyu.Time.seconds.hour);
+		var daySeconds	= Math.round((topOffset / this.ext.hourHeight) * Todoyu.Time.seconds.hour);
 		var dayStart	= this.ext.getTime();
 		var newDateStart= new Date((dayStart + daySeconds) * 1000);
 

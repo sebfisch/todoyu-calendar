@@ -282,7 +282,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 		var gridHeader		= $('gridHeader');
 		var headerheight	= gridHeader ? gridHeader.getHeight() : 0;
-		var heightHours		= pastHoursShown * 42;
+		var heightHours		= pastHoursShown * this.ext.hourHeight;
 		var heightMinutes	= currentMinutes / 1.5;
 
 		return heightHours + heightMinutes + headerheight + 'px';

@@ -216,8 +216,8 @@ Todoyu.Ext.calendar.CalendarBody	= {
 
 			var numVisibleHours		= this.compactRange.end - this.compactRange.start + 1;
 
-			this.calendarBody.style.height	= (42 * numVisibleHours) + 'px'; //42px = height of one hour
-			this.calendarBody.scrollTop		= 42 * this.compactRange.start;
+			this.calendarBody.style.height	= (this.ext.hourHeight * numVisibleHours) + 'px'; //42px = height of one hour
+			this.calendarBody.scrollTop		= this.ext.hourHeight * this.compactRange.start;
 		}
 
 		if( savePref ) {
@@ -443,7 +443,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 		var offsetTop	= topOffset - boxOffsetTop;
 
 		if( !this.isFullHeight() ) {
-			offsetTop += this.getCompactViewRange().start * 42;
+			offsetTop += this.getCompactViewRange().start * this.ext.hourHeight;
 		}
 
 		return offsetTop;

@@ -155,17 +155,16 @@ Todoyu.Ext.calendar.Week	= {
 	 * @return	{Date}
 	 */
 	getDropDate: function(dragInfo) {
-		var hourHeight	= 42;
 		var timeColWidth= 42;
 		var dayWidth	= this.getDayColWidth();
 		var offset		= dragInfo.element.positionedOffset();
 			// Offset fix (offset seems to be shifted one hour)
-		offset.top	+= hourHeight;
+		offset.top	+= this.ext.hourHeight;
 
 		var weekStart	= this.ext.getWeekStartTime();
 		var dayIndex	= Math.round(Math.abs(offset.left - timeColWidth) / dayWidth);
 
-		var dayHours	= Math.round((offset.top / hourHeight)*4)/4;
+		var dayHours	= Math.round((offset.top / this.ext.hourHeight)*4)/4;
 		var timestamp	= weekStart + Todoyu.Time.seconds.day * dayIndex + dayHours * Todoyu.Time.seconds.hour;
 
 		return new Date(timestamp * 1000);

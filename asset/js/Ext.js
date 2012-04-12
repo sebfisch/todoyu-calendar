@@ -83,6 +83,14 @@ Todoyu.Ext.calendar	= {
 		yearnext:		'&raquo;&raquo;'
 	},
 
+	/**
+	 * Height of one our in pixel for day and week view
+	 *
+	 * @property	hourHeight
+	 * @type		Number
+	 */
+	hourHeight: 42,
+
 
 
 	/**
