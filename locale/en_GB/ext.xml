@@ -70,5 +70,5 @@
 	<label index="profile.saved.error">Error while saving settings.</label>
 	<label index="profile.main.saved">Settings have been saved.</label>
 	<label index="profile.reminders.saved">Reminder settings have been saved.</label>
-	<label index="pastDateWarning">Attention, your're creating an event in the past!</label>
+	<label index="pastDateWarning">Attention, your are creating an event in the past!</label>
 </labels>
