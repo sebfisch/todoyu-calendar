@@ -36,7 +36,7 @@
 				<field type="checkbox" name="is_private">
 					<label>calendar.event.attr.is_private</label>
 					<validate>
-						<user msg="LLL:calendar.event.error.privateEvent">
+						<user msg="calendar.event.error.privateEvent">
 							<function>TodoyuCalendarEventFormValidator::eventIsAssignableToCurrentPersonOnly</function>
 						</user>
 					</validate>
@@ -74,7 +74,7 @@
 				<field type="recordsStaff" name="persons">
 					<label>calendar.event.attr.assigned_to</label>
 					<validate>
-						<user msg="LLL:calendar.event.error.overbooked">
+						<user msg="calendar.event.error.overbooked">
 							<function>TodoyuCalendarEventFormValidator::personsAreBookable</function>
 						</user>
 					</validate>
