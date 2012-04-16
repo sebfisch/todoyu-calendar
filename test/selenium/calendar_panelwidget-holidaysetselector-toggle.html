@@ -22,11 +22,6 @@
 	<td>panelwidget-holidaysetselector-toggle</td>
 	<td></td>
 </tr>
-<tr>
-	<td>assertText</td>
-	<td>//option[@value='0']</td>
-	<td>Hide Holidays</td>
-</tr>
 <!--test toggle content, incl. pref-->
 <tr>
 	<td>storeElementHeight</td>
@@ -38,6 +33,7 @@
 	<td>javascript{storedVars['widgetHeight'] &gt; 50}</td>
 	<td>true</td>
 </tr>
+<!--collapse holidays widget-->
 <tr>
 	<td>click</td>
 	<td>css=div#panelwidget-holidaysetselector.panelWidget h1#panelwidget-holidaysetselector-h1 span#panelwidget-holidaysetselector-toggle.toggle</td>
@@ -65,9 +61,10 @@
 </tr>
 <tr>
 	<td>assertExpression</td>
-	<td>javascript{storedVars['widgetHeight'] &lt; 40}</td>
+	<td>javascript{storedVars['widgetHeight'] &lt; 45}</td>
 	<td>true</td>
 </tr>
+<!--go to project area-->
 <tr>
 	<td>clickAndWait</td>
 	<td>css=div#header div.inner div#navi-main ul#navi-main-list.navilist li.itemProject a</td>
@@ -83,6 +80,7 @@
 	<td>javascript{storedVars['varPageTitle'].substr(0,&nbsp;&nbsp;storedVars['varPageTitle'].indexOf(&quot;-&quot;) - 1);}</td>
 	<td>Projects</td>
 </tr>
+<!--return to calendar area-->
 <tr>
 	<td>clickAndWait</td>
 	<td>css=div#header div.inner div#navi-main ul#navi-main-list.navilist li.itemPlanning a</td>
@@ -98,9 +96,10 @@
 	<td>css=div#panelwidget-holidaysetselector.panelWidget</td>
 	<td>widgetHeight</td>
 </tr>
+<!--widget still collapsed?-->
 <tr>
 	<td>assertExpression</td>
-	<td>javascript{storedVars['widgetHeight'] &lt; 40}</td>
+	<td>javascript{storedVars['widgetHeight'] &lt; 45}</td>
 	<td>true</td>
 </tr>
 <tr>

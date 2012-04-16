@@ -13,23 +13,23 @@
 <!------ calendar > subtabs accessible?-->
 <tr>
 	<td>assertElementPresent</td>
-	<td>//p[@id='calendar-tab-day-label']/span[3]</td>
+	<td>//p[@id='calendar-tab-day-label']/span[2][@class=&quot;labeltext&quot;]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>//p[@id='calendar-tab-week-label']/span[3]</td>
+	<td>//p[@id='calendar-tab-week-label']/span[2][@class=&quot;labeltext&quot;]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>calendar-tab-month-label</td>
+	<td>//p[@id='calendar-tab-month-label']/span[2][@class=&quot;labeltext&quot;]</td>
 	<td></td>
 </tr>
 <!--open day tab-->
 <tr>
 	<td>click</td>
-	<td>//p[@id='calendar-tab-day-label']/span[3]</td>
+	<td>//p[@id='calendar-tab-day-label']/span[2][@class=&quot;labeltext&quot;]</td>
 	<td></td>
 </tr>
 <tr>
@@ -60,7 +60,7 @@
 <!--open week tab-->
 <tr>
 	<td>click</td>
-	<td>//p[@id='calendar-tab-week-label']/span[3]</td>
+	<td>//p[@id='calendar-tab-week-label']/span[2][@class=&quot;labeltext&quot;]</td>
 	<td></td>
 </tr>
 <tr>
@@ -91,7 +91,7 @@
 <!--open month tab-->
 <tr>
 	<td>click</td>
-	<td>//p[@id='calendar-tab-month-label']/span[3]</td>
+	<td>//p[@id='calendar-tab-month-label']/span[2][@class=&quot;labeltext&quot;]</td>
 	<td></td>
 </tr>
 <tr>
@@ -119,7 +119,6 @@
 	<td>css=div#content-tabs ul#calendar-tabs.tabs li#calendar-tab-week.active</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

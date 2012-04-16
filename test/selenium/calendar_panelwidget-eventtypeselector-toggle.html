@@ -88,6 +88,7 @@
 	<td>javascript{storedVars['widgetHeight'] &gt; 50}</td>
 	<td>true</td>
 </tr>
+<!--collapse eventtypeselector-->
 <tr>
 	<td>click</td>
 	<td>css=div#panelwidget-eventtypeselector.panelWidget h1#panelwidget-eventtypeselector-h1 span#panelwidget-eventtypeselector-toggle.toggle</td>
@@ -113,11 +114,13 @@
 	<td>css=div#panelwidget-eventtypeselector.panelWidget</td>
 	<td>widgetHeight</td>
 </tr>
+<!--check: eventtype selector collapsed?-->
 <tr>
 	<td>assertExpression</td>
-	<td>javascript{storedVars['widgetHeight'] &lt; 40}</td>
+	<td>javascript{storedVars['widgetHeight'] &lt; 45}</td>
 	<td>true</td>
 </tr>
+<!--go to project area-->
 <tr>
 	<td>clickAndWait</td>
 	<td>css=div#header div.inner div#navi-main ul#navi-main-list.navilist li.itemProject a</td>
@@ -133,6 +136,7 @@
 	<td>javascript{storedVars['varPageTitle'].substr(0,&nbsp;&nbsp;storedVars['varPageTitle'].indexOf(&quot;-&quot;) - 1);}</td>
 	<td>Projects</td>
 </tr>
+<!--return to calendar area-->
 <tr>
 	<td>clickAndWait</td>
 	<td>css=div#header div.inner div#navi-main ul#navi-main-list.navilist li.itemPlanning a</td>
@@ -150,7 +154,7 @@
 </tr>
 <tr>
 	<td>assertExpression</td>
-	<td>javascript{storedVars['widgetHeight'] &lt; 40}</td>
+	<td>javascript{storedVars['widgetHeight'] &lt; 45}</td>
 	<td>true</td>
 </tr>
 <tr>

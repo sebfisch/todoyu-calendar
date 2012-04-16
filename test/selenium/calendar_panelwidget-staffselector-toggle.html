@@ -38,6 +38,7 @@
 	<td>javascript{storedVars['widgetHeight'] &gt; 50}</td>
 	<td>true</td>
 </tr>
+<!--toggle (collapse) staffselector widget -->
 <tr>
 	<td>click</td>
 	<td>css=div#panelwidget-staffselector.panelWidget h1#panelwidget-staffselector-h1 span#panelwidget-staffselector-toggle.toggle</td>
@@ -65,9 +66,10 @@
 </tr>
 <tr>
 	<td>assertExpression</td>
-	<td>javascript{storedVars['widgetHeight'] &lt; 40}</td>
+	<td>javascript{storedVars['widgetHeight'] &lt; 45}</td>
 	<td>true</td>
 </tr>
+<!--go to project area-->
 <tr>
 	<td>clickAndWait</td>
 	<td>css=div#header div.inner div#navi-main ul#navi-main-list.navilist li.itemProject a</td>
@@ -83,6 +85,7 @@
 	<td>javascript{storedVars['varPageTitle'].substr(0,&nbsp;&nbsp;storedVars['varPageTitle'].indexOf(&quot;-&quot;) - 1);}</td>
 	<td>Projects</td>
 </tr>
+<!--return to calendar area-->
 <tr>
 	<td>clickAndWait</td>
 	<td>css=div#header div.inner div#navi-main ul#navi-main-list.navilist li.itemPlanning a</td>
@@ -98,11 +101,13 @@
 	<td>css=div#panelwidget-staffselector.panelWidget</td>
 	<td>widgetHeight</td>
 </tr>
+<!--check: staffselector widget still collapsed?-->
 <tr>
 	<td>assertExpression</td>
-	<td>javascript{storedVars['widgetHeight'] &lt; 40}</td>
+	<td>javascript{storedVars['widgetHeight'] &lt; 45}</td>
 	<td>true</td>
 </tr>
+<!--expand staffselector widget-->
 <tr>
 	<td>click</td>
 	<td>css=div#panelwidget-staffselector.panelWidget h1#panelwidget-staffselector-h1 span#panelwidget-staffselector-toggle.toggle</td>

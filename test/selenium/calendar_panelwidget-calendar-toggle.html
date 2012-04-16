@@ -19,17 +19,12 @@
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>//div[@id='panelwidget-calendar-jscalendar']/div[1]/div[6]</td>
+	<td>//div[@id='panelwidget-calendar']/div[@class=&quot;content&quot;]/div/div/div[@class=&quot;calendar&quot;]/table</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertElementPresent</td>
 	<td>panelwidget-calendar-toggle</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='panelwidget-calendar-jscalendar']/div[1]/div[3]</td>
 	<td></td>
 </tr>
 <!--test toggle content, incl. pref-->
@@ -60,7 +55,7 @@
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>css=div#panelwidget-calendar.panelWidget h1#panelwidget-calendar-h1.expand span#panelwidget-calendar-toggle.toggle</td>
+	<td>//div[@id=&quot;panelwidget-calendar&quot;][contains(@class,&quot;panelWidget&quot;)]/h1[@id=&quot;panelwidget-calendar-h1&quot;][contains(@class,&quot;expand&quot;)]/span[contains(@class,&quot;toggle&quot;)]</td>
 	<td></td>
 </tr>
 <tr>
@@ -70,9 +65,10 @@
 </tr>
 <tr>
 	<td>assertExpression</td>
-	<td>javascript{storedVars['widgetHeight'] &lt; 40}</td>
+	<td>javascript{storedVars['widgetHeight'] &lt; 45}</td>
 	<td>true</td>
 </tr>
+<!--go to project area-->
 <tr>
 	<td>clickAndWait</td>
 	<td>css=div#header div.inner div#navi-main ul#navi-main-list.navilist li.itemProject a</td>
@@ -88,6 +84,7 @@
 	<td>javascript{storedVars['varPageTitle'].substr(0,&nbsp;&nbsp;storedVars['varPageTitle'].indexOf(&quot;-&quot;) - 1);}</td>
 	<td>Projects</td>
 </tr>
+<!--return to calendar-->
 <tr>
 	<td>clickAndWait</td>
 	<td>css=div#header div.inner div#navi-main ul#navi-main-list.navilist li.itemPlanning a</td>
@@ -103,9 +100,10 @@
 	<td>css=div#panelwidget-calendar.panelWidget</td>
 	<td>widgetHeight</td>
 </tr>
+<!--widget still collapsed?-->
 <tr>
 	<td>assertExpression</td>
-	<td>javascript{storedVars['widgetHeight'] &lt; 40}</td>
+	<td>javascript{storedVars['widgetHeight'] &lt; 45}</td>
 	<td>true</td>
 </tr>
 <tr>
