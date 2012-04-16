@@ -156,30 +156,6 @@ class TodoyuCalendarManager {
 
 
 	/**
-	 * Get various data related to month of given timestamp
-	 *
-	 * @param	Integer 	$timestamp		Selected date
-	 * @return	Array
-	 */
-	public static function getMonthData($timestamp) {
-		$timestamp	= intval($timestamp);
-
-		$month			= date('m', $timestamp);
-		$year			= date('Y', $timestamp);
-		$secondsOfMonth	= TodoyuTime::getDayRange(mktime(0, 0, 0, $month, 1, $year));
-
-		$shownDaysOfLastMonth	= date('w', mktime(0, 0, 0, $month, 1, $year)) - 1;
-		$shownDaysOfNextMonth	= 35 - (TodoyuTime::getDaysInMonth($timestamp)) - (TodoyuTime::getDaysInMonth($timestamp, -1));
-
-		$eventsStart['date']	= $secondsOfMonth['start'] - $shownDaysOfLastMonth * TodoyuTime::SECONDS_DAY;
-		$eventsStart['days']	= TodoyuTime::getDaysInMonth($timestamp) + $shownDaysOfLastMonth + $shownDaysOfNextMonth;
-
-		return $eventsStart;
-	}
-
-
-
-	/**
 	 * Get date range for month of the timestamp
 	 * (include days of the previous and next month because of the calendar layout)
 	 *
@@ -370,76 +346,6 @@ class TodoyuCalendarManager {
 		}
 
 		return $birthdaysByDay;
-	}
-
-
-
-	/**
-	 * Get day events mapping for week view
-	 *
-	 * @param	Integer		$dateStart
-	 * @param	Integer		$dateEnd
-	 * @param	Array		$eventTypes
-	 * @param	Array		$persons
-	 * @return	Array
-	 */
-	public static function getDayEventsWeekMapping($dateStart, $dateEnd, array $eventTypes, array $persons) {
-		$events			= TodoyuCalendarEventStaticManager::getEventsInTimespan($dateStart, $dateEnd, $persons, $eventTypes, true);
-		$rangeKeys		= self::getDayKeys($dateStart, $dateEnd);
-		$mapping		= array();
-		$emptyMap		= array();
-
-		foreach($rangeKeys as $rangeKey) {
-			$emptyMap[$rangeKey]	= 0;
-		}
-
-		$mapping[]	= $emptyMap;
-
-		foreach($events as $event) {
-			$eventDayKeys		= self::getDayKeys($event['date_start'], $event['date_end']);
-			$event['dayLength']	= sizeof($eventDayKeys);
-			$event['daysInView']= sizeof(TodoyuTime::getIntersectingDayTimestamps($dateStart, $dateEnd, $event['date_start'], $event['date_end']));
-			$found				= false;
-
-				// Check all map lines for an empty space
-			foreach($mapping as $lineIndex => $lineMap) {
-					// Check all days of the line
-				foreach($eventDayKeys as $eventDayKey) {
-					if( $lineMap[$eventDayKey] != 0 ) {
-						continue 2;
-					}
-				}
-
-					// If a free spot was found (loop not cancelled)
-				$firstDayKey	= array_shift($eventDayKeys);
-				$mapping[$lineIndex][$firstDayKey]	= $event;
-				$found	= true;
-
-				foreach($eventDayKeys as $eventDayKey) {
-					$mapping[$lineIndex][$eventDayKey]	= 1;
-				}
-				ksort($mapping[$lineIndex]);
-
-					// Free space found, stop checking
-				break;
-			}
-
-			if( !$found ) {
-				$mapping[]	= $emptyMap;
-				$newIndex	= sizeof($mapping)-1;
-
-				$firstDayKey	= array_shift($eventDayKeys);
-				$mapping[$newIndex][$firstDayKey]	= $event;
-
-				foreach($eventDayKeys as $eventDayKey) {
-					$mapping[$newIndex][$eventDayKey]	= 1;
-				}
-
-				ksort($mapping[$newIndex]);
-			}
-		}
-
-		return $mapping;
 	}
 
 

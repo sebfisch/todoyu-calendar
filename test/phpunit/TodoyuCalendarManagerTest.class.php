@@ -145,26 +145,6 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 
 
 	/**
-	 * Test getMonthData
-	 */
-	public function testGetMonthData() {
-			// Get month data of january 1970
-		$timestamp	= 1;
-		$monthData	= TodoyuCalendarManager::getMonthData($timestamp);
-
-			// Assert value data type
-		$expected	= 'array';
-		$this->assertInternalType($expected, $monthData);
-
-			// Assert first shown days date is contained
-		$this->assertArrayHasKey('date', $monthData);
-			// Assert amount of days in month is contained
-		$this->assertArrayHasKey('days', $monthData);
-	}
-
-
-
-	/**
 	 * Test getMonthDisplayRange
 	 *
 	 * @todo	implement	testGetMonthDisplayRange
@@ -307,20 +287,6 @@ class TodoyuCalendarManagerTest extends PHPUnit_Framework_TestCase {
 	 * @todo	implement	testGetBirthdaysByDay
 	 */
 	public function testGetBirthdaysByDay() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-			'This test has not been implemented yet.'
-		);
-	}
-
-
-
-	/**
-	 * Test getDayEventsWeekMapping
-	 *
-	 * @todo	implement	testGetDayEventsWeekMapping
-	 */
-	public function testGetDayEventsWeekMapping() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 			'This test has not been implemented yet.'
