@@ -241,7 +241,7 @@ class TodoyuCalendarEventStaticManager {
 		if( sizeof($eventIDs) > 0 ) {
 			$fields	= 'id_event, id_person';
 			$tables	= 'ext_calendar_mm_event_person';
-			$where	= TodoyuSql::buildInArrayQuery($eventIDs, 'id_event');
+			$where	= TodoyuSql::buildInListQueryPart($eventIDs, 'id_event');
 
 			$epLinks= Todoyu::db()->getArray($fields, $tables, $where, '', 'id_event', '');
 

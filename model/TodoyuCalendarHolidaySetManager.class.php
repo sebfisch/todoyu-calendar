@@ -236,7 +236,7 @@ class TodoyuCalendarHolidaySetManager {
 		if( sizeof($swords) > 0 ) {
 			$fields	= 'id, name';
 			$table	= self::TABLE;
-			$where	= TodoyuSql::buildLikeQuery($swords, array('name', 'description'));
+			$where	= TodoyuSql::buildLikeQueryPart($swords, array('name', 'description'));
 			$order	= 'name';
 			$limit	= 30;
 
