@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="legend.basics">Základní informace o události </label>
+	<label index="legend.details">Další informace </label>
+	<label index="legend.notification">Informovat účastníky </label>
+	<label index="legend.reminders">Mé připomínky </label>
+	<label index="legend.profile.general">Hlavní nastavení kalendáře </label>
+	<label index="legend.profile.reminder.general">Nastavení upozornění </label>
+	<label index="legend.admin.overbooking">Nastav chování pro změnu rezervace </label>
+	<label index="legend.admin.reminders">Standardní nastavení připomínek </label>
+	<label index="legend.admin.automaticEmail">Nastav chování pro poznámky </label>
+	<label index="legend.admin.holidayset.record.general">Sada svátků </label>
+	<label index="legend.admin.holiday.record.general">Svátek </label>
+</labels>

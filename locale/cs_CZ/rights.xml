@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <labels>
-	<label index="general">Obecné</label>
-	<label index="general.use">Používat funkcionalitu kalendáře</label>
+	<label index="general">Obecné nastavení</label>
+	<label index="general.use">Používat kalendář</label>
 	<label index="general.area">Používat plochu kalendáře</label>
 	<label index="event">Událost</label>
 	<label index="event.seeAll">Prohlížet všechny události</label>
-	<label index="event.editAndDeleteAssigned">Upravovat a odstraňovat přidělené události</label>
-	<label index="event.editAndDeleteAll">Upravovat a odstraňovat všechny události</label>
+	<label index="event.editAssigned">Upravit přidělené události</label>
+	<label index="event.editAll">Upravit všechny události</label>
+	<label index="event.deleteAssigned">Smazat přidělené události</label>
+	<label index="event.deleteAll">Smazat všechny události</label>
 	<label index="event.add">Vytvořit novou události</label>
 	<label index="event.search">Vyhledávat události</label>
 	<label index="event.assignOthers">Přidělovat události jiným osobám</label>
+	<label index="mailing">Email k události</label>
+	<label index="mailing.sendAsEmail">Poslat Email o události vybraným příjemcům</label>
+	<label index="reminders">Upozornění událostí</label>
+	<label index="reminders.popup">Použít pop-up upozornění</label>
+	<label index="reminders.email">Použít upozornění Emailem</label>
 </labels>
