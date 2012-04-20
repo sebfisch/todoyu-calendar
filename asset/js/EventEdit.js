@@ -243,7 +243,19 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @method	observeEventType
 	 */
 	observeEventType: function() {
-		$('event-field-eventtype').on('change', this.updateVisibleFields.bind(this));
+		$('event-field-eventtype').on('change', this.onEventTypeChange.bind(this));
+	},
+
+
+
+	/**
+	 * Handle event type change
+	 *
+	 * @param	{Event}		event
+	 */
+	onEventTypeChange: function(event) {
+		this.updateVisibleFields();
+		this.toggleDateFields(); // To toggle hours if required
 	},
 
 
@@ -321,9 +333,8 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * Update the field visibility in the form according to selected type of event
 	 *
 	 * @method	updateVisibleFields
-	 * @param	{Event}		event
 	 */
-	updateVisibleFields: function(event) {
+	updateVisibleFields: function() {
 		var eventType	= $F('event-field-eventtype');
 		var fieldsToHide= [];
 
@@ -490,10 +501,16 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	hideField: function(fieldName, formName) {
 		formName	= formName ? formName : 'event';
 
-		var field	= 'formElement-' + formName + '-field-' + fieldName;
+		var field	= $('formElement-' + formName + '-field-' + fieldName);
 
-		if( Todoyu.exists(field) ) {
-			$(field).addClassName('hidden');
+		if( field ) {
+				// hide field
+			field.addClassName('hidden');
+
+				// Uncheck checkboxes (not relevant is not visible)
+			field.select(':checkbox').each(function(checkbox){
+				checkbox.checked = false;
+			});
 		}
 	},
 
