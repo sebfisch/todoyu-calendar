@@ -26,10 +26,14 @@
  */
 class TodoyuCalendarEventSeriesManager {
 
+	/**
+	 * @var String		Default table for database requests
+	 */
 	const TABLE = 'ext_calendar_series';
 
-
 	protected $createdSeriesID = 0;
+
+
 
 	/**
 	 * Get a series

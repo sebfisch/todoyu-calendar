@@ -26,7 +26,12 @@
  */
 class TodoyuCalendarReminderManager {
 
+	/**
+	 * @var String
+	 */
 	const TABLE = 'ext_calendar_mm_event_person';
+
+
 
 	/**
 	 * Get reminder object to given event/person
