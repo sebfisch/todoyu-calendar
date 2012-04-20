@@ -57,9 +57,14 @@ class TodoyuCalendarEventElementDayeventWeek extends TodoyuCalendarEventElementW
 	 * @return Array
 	 */
 	protected function getElementTemplateData(TodoyuDayRange $range) {
-		$data	= parent::getElementTemplateData($range->getStart());
+		$data		= parent::getElementTemplateData($range->getStart());
+		$days		= $this->getView()->getRange()->getOverlappingRange($this->getEvent()->getRange())->getAmountOfDays();
+		$dayWidth	= $this->getView()->isWeekendDisplayed() ? 88 : 124;
+		$realWitdh	= ($days * $dayWidth) - 6;
 
-		$data['titleCropLength']	= TodoyuCalendarPreferences::isWeekendDisplayed() ? 11 : 16;
+
+		$data['titleCropLength']= TodoyuCalendarPreferences::isWeekendDisplayed() ? 11 : 16;
+		$data['width']			= $realWitdh;
 
 		return $data;
 	}
