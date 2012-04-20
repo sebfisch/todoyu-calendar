@@ -35,7 +35,7 @@ class TodoyuCalendarDataSourceBirthday extends TodoyuCalendarDataSource {
 	public function getEvents() {
 		$events		= array();
 
-		if( $this->areDayEventsEnabled() ) {
+		if( $this->areDayEventsEnabled() && $this->isBirthdayEventTypeSelected() ) {
 			$personIDs	= $this->getBirthdayPersonIDs();
 
 			foreach($personIDs as $idPerson) {
@@ -90,6 +90,28 @@ class TodoyuCalendarDataSourceBirthday extends TodoyuCalendarDataSource {
 	 */
 	private function areDayEventsEnabled() {
 		return $this->getDayEventsFlag() !== false;
+	}
+
+
+
+	/**
+	 * Check whether event type birthday is selected
+	 *
+	 * @return	Boolean
+	 */
+	private function isBirthdayEventTypeSelected() {
+		return in_array(EVENTTYPE_BIRTHDAY, $this->getEventTypes());
+	}
+
+
+
+	/**
+	 * Get selected event types
+	 *
+	 * @return	Array
+	 */
+	private function getEventTypes() {
+		return $this->getFilter('eventtypes', true);
 	}
 
 
