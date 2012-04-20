@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<!-- Event inline reminder setup fieldset, for reminder scheduling of creator -->
-<form	xmlns="http://www.todoyu.com"
+<form	xmlns="http://www.todoyu.com/schema/form"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.todoyu.com ../../../../core/config/form.xsd">
+		xsi:schemaLocation="http://www.todoyu.com/schema/form ../../../../core/config/form.xsd">
 	<fieldsets>
 
 		<fieldset name="reminders">
