@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Extend company address part of form (ext/contact/config/form/company.xml) with holidayset selector -->
-<form>
+<form	xmlns="http://www.todoyu.com"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.todoyu.com ../../../../core/config/form.xsd">
 	<fieldsets>
 		<fieldset name="addressholidayset">
 			<legend>Holidayset of address</legend>
