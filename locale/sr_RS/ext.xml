@@ -56,7 +56,7 @@
 	<label index="extconf.reminder.email_roles.label">Улога да добијеш подсетник догађаја путем маил-а</label>
 	<label index="extconf.autosendeventmail.label">Улога да аутоматски пошаљеш е-маил новог / узмељеног избрисано догађаја интерних учесника догађаја (уклања е-маил опције)?</label>
 	<label index="profile.module.reminders.header">Конфигурација вашег подсетника за догађаје</label>
-	<label index="profile.disableMailingQuestionAfterDraganddrop">Онемогучи питанје да ли да се пошаље е-маил после измена догађаја са "драг & дроп"-ом</label>
+	<label index="profile.disableMailingQuestionAfterDraganddrop">Онемогучи питанје да ли да се пошаље е-маил после измена догађаја са "драг &amp; дроп"-ом</label>
 	<label index="profile.reminder.email.advancetime.label">Унапред постављено време маил-а</label>
 	<label index="profile.reminder.popup.advancetime.label">Унапред постављено време поп-уп-а</label>
 	<label index="profile.main.saved">Подешавања су сачувана.</label>
