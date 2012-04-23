@@ -108,6 +108,8 @@ Todoyu.Ext.calendar.QuickCreateEvent	= {
 	 * @param	{Form}		form		Form element
 	 */
 	save: function(form) {
+		Todoyu.Ui.closeRTE('quickcreate');
+
 		$(form).request({
 			parameters: {
 				action:	'save',
