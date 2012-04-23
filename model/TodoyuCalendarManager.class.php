@@ -51,11 +51,12 @@ class TodoyuCalendarManager {
 	/**
 	 * Get current selected range
 	 *
+	 * @param	Integer			$idArea
 	 * @return	TodoyuDayRange
 	 */
-	public static function getCurrentRange() {
+	public static function getCurrentRange($idArea = 0) {
 		$tab	= TodoyuCalendarPreferences::getActiveTab();
-		$date	= TodoyuCalendarPreferences::getDate();
+		$date	= TodoyuCalendarPreferences::getDate($idArea);
 		$date	= TodoyuTime::time($date);
 
 		switch($tab) {
