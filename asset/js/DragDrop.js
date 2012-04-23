@@ -88,7 +88,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 			// Add dragging for full-day event items in date header row of week view
 		if( tab === 'week' ) {
-			this.makeDayEventsDraggable();
+			this.ext.Week.initDayEventsDragdrop();
 		}
 
 			// Add drop functions to day containers in month view
@@ -177,7 +177,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 *
 	 * @method	getEvents
 	 * @param	{String}	parentElementID
-	 * @return	{Array}
+	 * @return	{Element[]}
 	 */
 	getDraggableEventItems: function(parentElementID) {
 		return $(parentElementID).select('.event').filter(function(element){
@@ -203,7 +203,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * Get all all-day long event elements, except the noAccess classed
 	 *
 	 * @method	getDayEvents
-	 * @return	{Array}
+	 * @return	{Element[]}
 	 */
 	getDayEvents: function() {
 		return this.getDraggableEventItems('gridHeader');
@@ -219,26 +219,6 @@ Todoyu.Ext.calendar.DragDrop	= {
 	makeEventsDraggable: function() {
 		this.getDraggableEvents().each(function(eventElement){
 			new Draggable(eventElement, this.draggableOptions);
-		}, this);
-	},
-
-
-
-	/**
-	 * Add drag functions to all full-day events (used in week view only)
-	 *
-	 * @method	makeEventsDraggable
-	 */
-	makeDayEventsDraggable: function() {
-		var options			= Object.clone(this.defaultDraggableOptions);
-
-		options.constraint	= 'horizontal';
-		options.snap		= this.ext.CalendarBody.getAmountDisplayedDays() === 7 ? 88.5 : 124;	// Day pixel-width
-		options.onStart		= this.onStartDragDayEvent.bind(this);
-		options.onEnd		= this.onEndDragDayEvent.bind(this);
-
-		this.getDayEvents().each(function(eventElement){
-			new Draggable(eventElement, options);
 		}, this);
 	},
 
@@ -322,20 +302,6 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 
 	/**
-	 * Handler when dragging event item starts
-	 *
-	 * @method	onStartDragDayEvent
-	 * @param	{Object}		dragInfo		Information about dragging
-	 * @param	{Event}			event
-	 */
-	onStartDragDayEvent: function(dragInfo, event) {
-		this.initDraggableRevertToOrigin(dragInfo.element);
-		Todoyu.QuickInfo.hide(true);
-	},
-
-
-
-	/**
 	 * Handler when mouse is moved during dragging (called very often!)
 	 *
 	 * @method	onDrag
@@ -384,21 +350,6 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 
 	/**
-	 * Handler when dragging of all-day event ends
-	 *
-	 * @method	onEndDragDayEvent
-	 * @param	{Object}		dragInfo		Information about dragging
-	 * @param	{Event}			domEvent
-	 */
-	onEndDragDayEvent: function(dragInfo, domEvent) {
-		var idEvent	= dragInfo.element.id.split('-').last();
-
-		this.saveAllDayEventDrop(idEvent, dragInfo);
-	},
-
-
-
-	/**
 	 * Save new position when dropped in day view
 	 *
 	 * @method	saveDayDrop
@@ -427,36 +378,6 @@ Todoyu.Ext.calendar.DragDrop	= {
 		var newDate	= this.ext.Week.getDropDate(event);
 
 		this.saveDropping('week', idEvent, newDate, false);
-	},
-
-
-
-	/**
-	 * Save new position after dropping of all-day event
-	 *
-	 * @method	saveWeekDrop
-	 * @param	{Number}	idEvent
-	 * @param	{Object}	dragInfo
-	 */
-	saveAllDayEventDrop: function(idEvent, dragInfo) {
-		var amountDaysInWeek= this.ext.CalendarBody.getAmountDisplayedDays();
-		var dayWidth		= amountDaysInWeek === 7 ? 88 : 123;
-		var weekStart		= this.ext.getWeekStartTime();
-		var offset			= dragInfo.element.positionedOffset();
-		var dayOfWeek		= Math.floor((offset.left - 2) / dayWidth);
-
-			// Normalize dayOfWeek to make sure its in the range
-		var maxDayOfWeek= amountDaysInWeek - 1;
-		dayOfWeek		= dayOfWeek < 0 ? 0 : dayOfWeek > maxDayOfWeek ? maxDayOfWeek : dayOfWeek;
-
-		if( dayOfWeek >= 0 && dayOfWeek <= maxDayOfWeek ) {
-				// Shift starting day date, keep starting time of day
-			var dropDate	= new Date((weekStart + Todoyu.Time.seconds.day * dayOfWeek) * 1000);
-
-			this.saveDropping('week', idEvent, dropDate);
-		} else {
-			dragInfo.element.revertToOrigin();
-		}
 	},
 
 
@@ -541,11 +462,9 @@ Todoyu.Ext.calendar.DragDrop	= {
 			} else {
 					// Have mailing popup shown
 				this.ext.Event.Mail.showPopup(idEvent, 'update');
+				Todoyu.notifySuccess('[LLL:calendar.event.dropped]', 'calendar.event.drop');
+				Todoyu.Hook.exec('calendar.event.moved', idEvent, date);
 			}
-
-			Todoyu.notifySuccess('[LLL:calendar.event.dropped]', 'calendar.event.drop');
-
-			Todoyu.Hook.exec('calendar.event.moved', idEvent, date);
 
 				// Refresh to have event pop into place or revert
 			this.ext.refresh();

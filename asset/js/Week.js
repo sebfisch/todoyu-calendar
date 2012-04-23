@@ -68,7 +68,18 @@ Todoyu.Ext.calendar.Week	= {
 	 * @return	{Boolean}
 	 */
 	isTodayDisplayed: function() {
-		return typeof $('gridHeader').down('.today') === 'object';
+		return $('gridHeader') && $('gridHeader').down('.today');
+	},
+
+
+
+	/**
+	 * Check whether first day of week is sunday
+	 *
+	 * @return	{Boolean}
+	 */
+	isFirstDaySunday: function() {
+		return Todoyu.Config.system.firstDayOfWeek === 0;
 	},
 
 
@@ -131,6 +142,107 @@ Todoyu.Ext.calendar.Week	= {
 		return {
 			snap: this.getDragDropSnap.bind(this)
 		};
+	},
+
+
+
+	/**
+	 * Initialize day events drag and drop in week
+	 */
+	initDayEventsDragdrop: function() {
+		var options			= Object.clone(this.ext.DragDrop.defaultDraggableOptions);
+
+		options.constraint	= 'horizontal';
+		options.snap		= this.isCompactView() ? 124 : 88.5; // Day pixel-width
+		options.onStart		= this.onStartDragDayEvent.bind(this);
+		options.onEnd		= this.onEndDragDayEvent.bind(this);
+
+		this.getDayEvents().each(function(eventElement){
+			new Draggable(eventElement, options);
+		}, this);
+	},
+
+
+
+	/**
+	 * Get all all-day long event elements, except the noAccess classed
+	 *
+	 * @method	getDayEvents
+	 * @return	{Element[]}
+	 */
+	getDayEvents: function() {
+		return this.ext.DragDrop.getDayEvents();
+	},
+
+
+
+	/**
+	 * Handler when dragging event item starts
+	 *
+	 * @method	onStartDragDayEvent
+	 * @param	{Object}		dragInfo		Information about dragging
+	 * @param	{Event}			event
+	 */
+	onStartDragDayEvent: function(dragInfo, event) {
+		this.ext.DragDrop.initDraggableRevertToOrigin(dragInfo.element);
+		Todoyu.QuickInfo.hide(true);
+	},
+
+
+
+	/**
+	 * Handler when dragging of all-day event ends
+	 *
+	 * @method	onEndDragDayEvent
+	 * @param	{Object}		dragInfo		Information about dragging
+	 * @param	{Event}			domEvent
+	 */
+	onEndDragDayEvent: function(dragInfo, domEvent) {
+		var idEvent	= dragInfo.element.id.split('-').last();
+
+		this.saveAllDayEventDrop(idEvent, dragInfo);
+	},
+
+
+
+	/**
+	 * Get week start depending on first day of week and complex view
+	 *
+	 * @return	{Date}
+	 */
+	getWeekStart: function() {
+		var weekStart = this.ext.getWeekStart();
+		
+		if( this.isFirstDaySunday() && this.isCompactView() ) {
+			weekStart.addDays(1);
+		}
+		
+		return weekStart;
+	},
+
+
+
+	/**
+	 * Save new position after dropping of all-day event
+	 *
+	 * @method	saveWeekDrop
+	 * @param	{Number}	idEvent
+	 * @param	{Object}	dragInfo
+	 */
+	saveAllDayEventDrop: function(idEvent, dragInfo) {
+		var dayWidth		= this.getDayColWidth(); // amountDaysInWeek === 7 ? 88 : 123;
+		var weekStart		= this.getWeekStart();
+		var offsetLeft		= dragInfo.element.positionedOffset().left;
+		var dayOfWeek		= Math.floor((offsetLeft) / dayWidth);
+
+		if( dayOfWeek >= 0 && dayOfWeek < this.getNumDays() ) {
+				// Shift starting day date, keep starting time of day
+			var dropDate	= weekStart.addDays(dayOfWeek, true);
+
+			this.ext.DragDrop.saveDropping('week', idEvent, dropDate);
+		} else {
+			dragInfo.element.revertToOrigin();
+		}
 	},
 
 
