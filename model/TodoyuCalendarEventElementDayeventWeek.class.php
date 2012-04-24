@@ -59,7 +59,7 @@ class TodoyuCalendarEventElementDayeventWeek extends TodoyuCalendarEventElementW
 	protected function getElementTemplateData(TodoyuDayRange $range) {
 		$data		= parent::getElementTemplateData($range->getStart());
 
-		$overlappingRange		= $this->getView()->getRange()->getOverlappingRange($this->getEvent()->getRange());
+		$overlappingRange	= $this->getView()->getRange()->getOverlappingRange($this->getEvent()->getRange());
 
 		if( $overlappingRange ) {
 			$days		= $overlappingRange->getAmountOfDays();
