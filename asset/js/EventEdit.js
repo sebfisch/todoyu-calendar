@@ -257,6 +257,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 */
 	onEventTypeChange: function(event) {
 		this.updateVisibleFields();
+		var isDayEvent = false;
 
 		var eventType	= $F('event-field-eventtype');
 		if( eventType == this.ext.Event.eventTypeID.birthday ) {
@@ -264,7 +265,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 			isDayEvent	= true;
 		}
 
-		this.toggleDateFields(); // To toggle hours if required
+		this.toggleDateFields(isDayEvent); // To toggle hours if required
 	},
 
 
