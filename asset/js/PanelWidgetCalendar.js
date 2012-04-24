@@ -87,7 +87,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 * @param	{String}		dateString	Formatted dateString Y-m-d
 	 */
 	init: function(dateString, firstDayOfWeek) {
-		var date	= new Date(dateString);
+		var date	= Todoyu.Time.parseIsoString(dateString);
 		date.setHours(0, 0, 0, 0);
 
 		var parent	= $('panelwidget-calendar-jscalendar');
