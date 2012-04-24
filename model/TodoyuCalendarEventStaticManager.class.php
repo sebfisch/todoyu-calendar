@@ -908,12 +908,7 @@ class TodoyuCalendarEventStaticManager {
 				// Birthday
 			case EVENTTYPE_BIRTHDAY:
 				$data['date_start']	= TodoyuTime::getDayStart($data['date_start']);
-				$data['date_end']	= $data['date_start'] + TodoyuTime::SECONDS_HOUR; // Fix, so event is in day period
-				$data['is_dayevent']= 1;
-				break;
-
-				// Holiday
-			case EVENTTYPE_VACATION:
+				$data['date_end']	= TodoyuTime::getDayEnd($data['date_start']);; // Fix, so event is in day period
 				$data['is_dayevent']= 1;
 				break;
 

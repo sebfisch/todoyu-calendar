@@ -94,7 +94,16 @@ class TodoyuCalendarDataSourceStatic extends TodoyuCalendarDataSource {
 
 			// DayEvents: null = both, true = only, false = without
 		if( ! is_null($dayEvents) ) {
-			$where .= ' AND e.is_dayevent = ' . ($dayEvents ? 1 : 0);
+			$where .= ' AND ( e.is_dayevent = ' . ($dayEvents ? 1 : 0);
+
+			if( $dayEvents === true ) {
+					// Events than intersect more than one day are also displayed as day-events
+				$where .= ' OR DATE_FORMAT(FROM_UNIXTIME(e.date_start), \'%y-%j\') != DATE_FORMAT(FROM_UNIXTIME(e.date_end), \'%y-%j\') ';
+			} else if( $dayEvents === false ) {
+				$where .= ' AND DATE_FORMAT(FROM_UNIXTIME(e.date_start), \'%y-%j\') = DATE_FORMAT(FROM_UNIXTIME(e.date_end), \'%y-%j\') ';
+			}
+
+			$where .= ' ) ';
 		}
 
 			// Limit to given event types

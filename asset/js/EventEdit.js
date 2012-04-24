@@ -203,16 +203,17 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 
 	/**
-	 * Toggle date fields depending on day event flag
+	 * Toggle date fields depending on all-day event flag
 	 *
+	 * @param	{Boolean}	isDayEvent
 	 * @method	toggleDateFields
 	 */
-	toggleDateFields: function() {
-		var	isDayEvent	= $('event-field-is-dayevent').checked,
-			newConfig,
-			classMethod,
-			dateStart	= $('event-field-date-start'),
-			dateEnd		= $('event-field-date-end');
+	toggleDateFields: function(isDayEvent) {
+		isDayEvent	= isDayEvent || $('event-field-is-dayevent').checked;
+
+		classMethod,
+			elementDateStart= $('event-field-date-start'),
+			elementDateEnd	= $('event-field-date-end');
 
 		if( isDayEvent ) {
 			newConfig	= {
@@ -228,11 +229,11 @@ Todoyu.Ext.calendar.Event.Edit	= {
 			classMethod	= 'removeClassName';
 		}
 
-		Todoyu.DateField.changeCalendarConfig(dateStart, newConfig);
-		Todoyu.DateField.changeCalendarConfig(dateEnd, newConfig);
+		Todoyu.DateField.changeCalendarConfig(elementDateStart, newConfig);
+		Todoyu.DateField.changeCalendarConfig(elementDateEnd, newConfig);
 
-		dateStart[classMethod]('dayEvent');
-		dateEnd[classMethod]('dayEvent');
+		elementDateStart[classMethod]('dayEvent');
+		elementDateEnd[classMethod]('dayEvent');
 	},
 
 
@@ -255,6 +256,13 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 */
 	onEventTypeChange: function(event) {
 		this.updateVisibleFields();
+
+		var eventType	= $F('event-field-eventtype');
+		if( eventType == this.ext.Event.eventTypeID.birthday ) {
+				// Exception: birthdays are always all-day (UI:date instead datetime)
+			isDayEvent	= true;
+		}
+
 		this.toggleDateFields(); // To toggle hours if required
 	},
 
@@ -467,12 +475,8 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		switch(eventType) {
 				// Birthday
 			case Todoyu.Ext.calendar.Event.eventTypeID.birthday:
-				fields	= ['is-dayevent', 'date-end', 'person', 'place'];
-				break;
 
-				// Vacation
-			case Todoyu.Ext.calendar.Event.eventTypeID.vacation:
-				fields	= ['is-dayevent'];
+				fields	= ['is-dayevent', 'date-end', 'person', 'place'];
 				break;
 
 				// Away official
@@ -482,7 +486,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 				// Reminder
 			case Todoyu.Ext.calendar.Event.eventTypeID.reminder:
-				fields	= ['is-dayevent', 'date-end'];
+				fields	= ['date-end'];
 				break;
 		}
 

@@ -6,6 +6,9 @@ calendar 1.2.0 - not released yet
 	* Feature: 5-day week viewing mode (monday to friday)
 	* Feature: Implemented month and week mode starting with sunday (system setting)
 	* Added: Implemented forgotten automatic email roles option
+	* Changed: Events that intersect more than one day are automatically rendered as "all-day" events
+	* Changed: Event type birthday has only date, no more time, duration is 23:59:59 not 01:00:00
+	* Changed: Day-Event flag is selectable for all event types but birthdays
 	* Changed: Active contextmenu disables quickinfos popups
 	* Changed: Event types in event forms are now grouped into overbookable and blocking types
 	* Changed: Autonotification info comment in event edit form is only shown when there are any participants receiving an automaitc email notification
