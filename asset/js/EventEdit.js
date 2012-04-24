@@ -211,7 +211,8 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	toggleDateFields: function(isDayEvent) {
 		isDayEvent	= isDayEvent || $('event-field-is-dayevent').checked;
 
-		classMethod,
+		var classMethod,
+			newConfig,
 			elementDateStart= $('event-field-date-start'),
 			elementDateEnd	= $('event-field-date-end');
 
