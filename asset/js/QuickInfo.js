@@ -53,7 +53,7 @@ Todoyu.Ext.calendar.QuickInfo	= {
 	 * @param	{String}	sourceName
 	 */
 	getSelector: function(sourceName) {
-		return '.event.source' + Todoyu.Helper.ucwords(sourceName);
+		return '.event.source' + Todoyu.String.ucwords(sourceName);
 	},
 
 
