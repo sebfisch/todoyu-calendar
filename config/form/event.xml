@@ -46,6 +46,11 @@
 
 				<field type="datetime" name="date_start">
 					<label>calendar.event.attr.startdate</label>
+					<validate>
+						<dateTimeBefore msg="calendar.event.error.starttimeAfterEndtime">
+							<field>date_end</field>
+						</dateTimeBefore>
+					</validate>
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event')"</extraAttributes>
 					<class>datetime</class>
 					<required />
@@ -53,18 +58,6 @@
 
 				<field type="datetime" name="date_end">
 					<label>calendar.event.attr.enddate</label>
-					<validate>
-						<dateTimeNotBefore msg="calendar.event.error.starttimeAfterEndtime">
-							<field>date_start</field>
-							<allow>
-								<fieldEquals>
-									<field>eventtype</field>
-									<!-- @todo use constant EVENTTYPE_REMINDER instead of hard value -->
-									<value>13</value>
-								</fieldEquals>
-							</allow>
-						</dateTimeNotBefore>
-					</validate>
 					<class>datetime</class>
 				</field>
 			</elements>

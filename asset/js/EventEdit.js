@@ -161,8 +161,6 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	initForm: function(idEvent, extraOptions) {
 		extraOptions = extraOptions || {};
 
-		this.updateVisibleFields();
-
 		this.observeEventType();
 		this.observeDayEvent();
 		this.observeDateFields();
@@ -172,6 +170,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 			// Toggle fields, change format if day event is active (wait for init if calendar)
 		this.toggleDateFields.bind(this).defer();
+		this.updateVisibleFields.bind(this).defer();
 
 		this.initialized = true;
 	},
@@ -256,7 +255,6 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Event}		event
 	 */
 	onEventTypeChange: function(event) {
-		this.updateVisibleFields();
 		var isDayEvent = false;
 
 		var eventType	= $F('event-field-eventtype');
@@ -266,6 +264,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 		}
 
 		this.toggleDateFields(isDayEvent); // To toggle hours if required
+		this.updateVisibleFields();
 	},
 
 
@@ -516,6 +515,10 @@ Todoyu.Ext.calendar.Event.Edit	= {
 				// Uncheck checkboxes (not relevant is not visible)
 			field.select(':checkbox').each(function(checkbox){
 				checkbox.checked = false;
+			});
+				// Clear text inputs
+			field.select(':text').each(function(input){
+				input.value = '';
 			});
 		}
 	},
