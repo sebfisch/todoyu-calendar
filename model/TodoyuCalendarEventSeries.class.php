@@ -1178,16 +1178,15 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 			$newEventData['date_end']	= $nextStartDate + $duration;
 
 			$idEvent	= TodoyuCalendarEventStaticManager::addEvent($newEventData);
-//			TodoyuDebug::printInFirebug($idEvent, 'created event');
 
 			TodoyuCalendarEventSeriesManager::assignEvent($idBaseEvent, $idEvent, $assignedPersonIDs);
 
 			TodoyuHookManager::callHook('calendar', 'event.save', array(
 				$idEvent,
 				array(
-					'new'	=> true,
-					'batch'	=> true,
-					'series'=> true
+					'new'		=> true,
+					'batch'		=> true,
+					'series'	=> true
 				)
 			));
 

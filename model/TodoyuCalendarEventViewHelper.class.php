@@ -240,6 +240,7 @@ class TodoyuCalendarEventViewHelper {
 
 		return TodoyuString::crop($event->getTitle(), 20, '...', false);
 	}
+
 }
 
 ?>

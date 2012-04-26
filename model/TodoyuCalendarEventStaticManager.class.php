@@ -418,7 +418,7 @@ class TodoyuCalendarEventStaticManager {
 		TodoyuHookManager::callHook('calendar', 'event.save', array(
 			$idEvent,
 			array(
-				'new' => $isNewEvent
+				'new' 		=> $isNewEvent
 			)
 		));
 

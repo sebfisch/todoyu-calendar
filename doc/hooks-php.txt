@@ -21,6 +21,13 @@ Event Hooks
 	@param	Array		$data
 
 
+#calendar.event.save
+	Event was saved. This hook is called for new and updated events after those hooks
+	@param	Integer		$idEvent
+	@param	Boolean		$isBatch		Optional: Was event saving part of a batch/series creation
+	@param	Boolean		$isSeries		Optional: Is event part of a series
+
+
 #calendar.event.move
 	Event was moved (in time). Will also call an update event
 	@param	Integer		$idEvent
@@ -50,6 +57,19 @@ Event Hooks
 #calendar.email.reminder
 	A reminder email was sent (by cronjob)
 	@param	Integer		$idReminder
+
+
+#calendar.series.delete
+	A series was deleted (and all it's future events
+	@param	Integer		$idSeries
+
+
+#calendar.series.events.delete
+	Events of a series were deleted
+	@param	Integer		$idSeries
+	@param	Array		$deletedEventIDs		IDs of all events which were deleted because they were part of a series
+
+
 
 
 Data modification
