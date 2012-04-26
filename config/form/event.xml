@@ -47,9 +47,9 @@
 				<field type="datetime" name="date_start">
 					<label>calendar.event.attr.startdate</label>
 					<validate>
-						<dateTimeBefore msg="calendar.event.error.starttimeAfterEndtime">
+						<dateTimeNotAfter msg="calendar.event.error.starttimeAfterEndtime">
 							<field>date_end</field>
-						</dateTimeBefore>
+						</dateTimeNotAfter>
 					</validate>
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event')"</extraAttributes>
 					<class>datetime</class>
@@ -59,6 +59,9 @@
 				<field type="datetime" name="date_end">
 					<label>calendar.event.attr.enddate</label>
 					<class>datetime</class>
+					<validate>
+						<isNotEmpty />
+					</validate>
 				</field>
 			</elements>
 		</fieldset>
