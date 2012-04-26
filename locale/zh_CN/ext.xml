@@ -33,10 +33,6 @@
 	<label index="owner">主人</label>
 	<label index="today">今天</label>
 	<label index="calendartitle.dateformat.day">%A, %B %d %Y (CW %W)</label>
-	<label index="calendartitle.dateformat.week.spanstwomonths.part1"><!--Translate-->CW %W: %B %e - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
-	<label index="calendartitle.dateformat.week.spanstwomonths.part2"><!--Translate-->%B %e %Y</label><!-- timestamp: last displayed day, start and end of week are in different months -->
-	<label index="calendartitle.dateformat.week.samemonth.part1"><!--Translate-->CW %W: %B %e - </label><!-- timestamp: first displayed day, start and end of week are in same month -->
-	<label index="calendartitle.dateformat.week.samemonth.part2"><!--Translate-->%e %Y</label><!-- timestamp: last displayed, start and end of week are in same month day -->
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label><!-- timestamp: beginning of shown month -->
 	<label index="calendartitle.dateformat.month.part2">(CW %W - </label><!-- timestamp: first displayed day -->
 	<label index="calendartitle.dateformat.month.part3">CW %W)</label><!-- timestamp: last displayed day -->
@@ -59,8 +55,6 @@
 	<label index="extconf.reminder.email_roles.label">获取事件提醒邮件的角色</label>
 	<label index="extconf.autosendeventmail.label">给内部参加者自动发送新建/修改/删除事件的通知邮件的角色(删除邮件选项)?</label>
 	<label index="extconf.reminder.audio.active.label">在弹窗同事播放音乐?</label>
-	<label index="profile.range.start"><!--Translate-->Start time for compact view</label>
-	<label index="profile.range.end"><!--Translate-->End time for compact view</label>
 	<label index="profile.range.error">结束时间必须在开始时间之后</label>
 	<label index="profile.module.reminders.header">配置事件提醒</label>
 	<label index="profile.module.main.header">主要日历配置</label>
