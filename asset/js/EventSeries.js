@@ -634,7 +634,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	 * @return	{Date}
 	 */
 	getEventDateStart: function() {
-		return Todoyu.DateField.getDate('event-field-date-start');
+		return Todoyu.DateField.getDate('event-field-date-start', true);
 	}
 
 };
