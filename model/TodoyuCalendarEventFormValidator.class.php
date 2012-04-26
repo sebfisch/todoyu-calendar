@@ -176,7 +176,7 @@ class TodoyuCalendarEventFormValidator {
 	 * @param	Array				$formData
 	 * @return	Boolean
 	 */
-	public static function hasInternalPerson($value, array $config = array (), $formElement, $formData) {
+	public static function hasInternalPerson($value, array $config = array(), $formElement, $formData) {
 		$personIDs	= TodoyuArray::intval($value);
 
 		if( sizeof($personIDs) === 0 ) {
@@ -194,6 +194,37 @@ class TodoyuCalendarEventFormValidator {
 		$limit	= 1;
 
 		return Todoyu::db()->hasResult($fields, $tables, $where, '', '', $limit);
+	}
+
+
+
+	/**
+	 * Assert that event has a single-date-type (only birthday and reminder) which does not require an end date
+	 * or make sure date end is set and after date start
+	 *
+	 * @param	Integer				$value
+	 * @param	Array				$config
+	 * @param	TodoyuFormElement	$formElement
+	 * @param	Array				$formData
+	 * @return	Boolean
+	 */
+	public static function isSingleDateTypeOrAfterStartDate($value, array $config, TodoyuFormElement $formElement, array $formData) {
+		$dateStart	= intval($formData['date_start']);
+		$dateEnd	= intval($value);
+		$eventType	= intval($formData['eventtype'][0]);
+		$isDayEvent	= intval($formData['is_dayevent']) === 1;
+
+		if( $eventType === EVENTTYPE_BIRTHDAY || $eventType === EVENTTYPE_REMINDER ) {
+			return true;
+		} else {
+			if( $dateEnd === 0 ) {
+				return false;
+			} elseif( $isDayEvent ) {
+				return $dateEnd >= $dateStart;
+			} else {
+				return $dateEnd > $dateStart;
+			}
+		}
 	}
 
 }

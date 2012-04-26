@@ -60,7 +60,9 @@
 					<label>calendar.event.attr.enddate</label>
 					<class>datetime</class>
 					<validate>
-						<isNotEmpty />
+						<user msg="calendar.event.error.starttimeAfterEndtime">
+							<function>TodoyuCalendarEventFormValidator::isSingleDateTypeOrAfterStartDate</function>
+						</user>
 					</validate>
 				</field>
 			</elements>
@@ -72,7 +74,7 @@
 				<field type="recordsStaff" name="persons">
 					<label>calendar.event.attr.assigned_to</label>
 					<validate>
-						<user msg="calendar.event.error.overbooked">
+						<user msg="calendar.event.error.personsOverbooked">
 							<function>TodoyuCalendarEventFormValidator::personsAreBookable</function>
 						</user>
 					</validate>

@@ -204,11 +204,11 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	/**
 	 * Toggle date fields depending on all-day event flag
 	 *
-	 * @param	{Boolean}	isDayEvent
+	 * @param	{Boolean}	forceDayEvent		Force day event. If not set or false, check the day event field
 	 * @method	toggleDateFields
 	 */
-	toggleDateFields: function(isDayEvent) {
-		isDayEvent	= isDayEvent || $('event-field-is-dayevent').checked;
+	toggleDateFields: function(forceDayEvent) {
+		var isDayEvent	= forceDayEvent ? true : $('event-field-is-dayevent').checked;
 
 		var classMethod,
 			newConfig,
@@ -255,16 +255,28 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @param	{Event}		event
 	 */
 	onEventTypeChange: function(event) {
-		var isDayEvent = false;
+		var forceDayEvent = false;
 
 		var eventType	= $F('event-field-eventtype');
-		if( eventType == this.ext.Event.eventTypeID.birthday ) {
+		if( this.isForcedDayEventType(eventType) ) {
 				// Exception: birthdays are always all-day (UI:date instead datetime)
-			isDayEvent	= true;
+			forceDayEvent	= true;
 		}
 
-		this.toggleDateFields(isDayEvent); // To toggle hours if required
+		this.toggleDateFields(forceDayEvent); // To toggle hours if required
 		this.updateVisibleFields();
+	},
+
+
+
+	/**
+	 * Check whether event type forces a day event
+	 *
+	 * @param	{Number}	eventType
+	 * @return	{Boolean}
+	 */
+	isForcedDayEventType: function(eventType) {
+		return eventType == this.ext.Event.eventTypeID.birthday;
 	},
 
 
