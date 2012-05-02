@@ -38,7 +38,6 @@ Todoyu::$CONFIG['EXT']['calendar']['info']	= array(
 	'constraints'	=> array(
 		'core'		=> '2.2.0b',
 		'depends'	=> array(
-			'project'	=> '1.3.0b',
 			'contact'	=> '1.2.0b'
 		)
 	),
