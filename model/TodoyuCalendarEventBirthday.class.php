@@ -216,11 +216,10 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 
 
 	/**
-	 * A birthday doesn't overlap
+	 * Birthdays don't overlap
 	 *
 	 * @param	TodoyuCalendarEvent $event
 	 * @return	Boolean
-	 * @todo	Should birthdays overlap?
 	 */
 	public function isOverlapping(TodoyuCalendarEvent $event) {
 		return false;

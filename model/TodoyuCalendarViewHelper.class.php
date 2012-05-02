@@ -199,7 +199,6 @@ class TodoyuCalendarViewHelper {
 	 * @return	String
 	 */
 	public static function getCLIinfolinkComment() {
-// @todo	rename template to be prefixed with type => infocomment-cli.tmpl
 		$tmpl	= 'ext/calendar/view/cli-infocomment.tmpl';
 		$data	= array(
 			'url'	=> 'http://doc.todoyu.com/index.php?id=cronjobs'
