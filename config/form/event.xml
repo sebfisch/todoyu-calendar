@@ -104,7 +104,7 @@
 				<field type="recordsStaff" name="emailreceivers">
 					<label>calendar.event.edit.sendasemail</label>
 					<restrict>
-						<allow ext="calendar" right="mailiing:sendAsEmail" />
+						<allow ext="calendar" right="mailing:sendAsEmail" />
 					</restrict>
 				</field>
 
