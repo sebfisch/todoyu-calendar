@@ -158,7 +158,7 @@ class TodoyuCalendarEventMailPopup {
 		$data	= array(
 			'subject'		=> $this->getSubject(),
 			'event'			=> $this->getEvent()->getTemplateData(true, true, true),
-			'mailingForm'	=> $this->getForm()->render()
+			'mailingForm'	=> TodoyuRightsManager::isAllowed('calendar', 'mailing:sendAsEmail') ? $this->getForm()->render() : ''
 		);
 
 		return Todoyu::render($tmpl, $data);

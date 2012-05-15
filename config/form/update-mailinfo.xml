@@ -23,9 +23,6 @@
 					</source>
 					<size>8</size>
 					<multiple />
-					<restrict>
-						<allow ext="comment" right="comment:sendAsEmail" />
-					</restrict>
 				</field>
 
 			</elements>
