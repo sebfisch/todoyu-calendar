@@ -86,7 +86,7 @@ class TodoyuCalendarEventAssignment extends TodoyuBaseObject {
 	 * @return	Boolean
 	 */
 	public function isUpdated() {
-		return intval($this->get('is_updated')) === 1;
+		return $this->getInt('is_updated') === 1;
 	}
 
 
@@ -97,7 +97,7 @@ class TodoyuCalendarEventAssignment extends TodoyuBaseObject {
 	 * @return	Boolean
 	 */
 	public function isAcknowledged() {
-		return intval($this->get('is_acknowledged')) === 1;
+		return $this->getInt('is_acknowledged') === 1;
 	}
 
 }

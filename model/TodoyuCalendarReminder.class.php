@@ -46,7 +46,7 @@ class TodoyuCalendarReminder extends TodoyuCalendarEventAssignment {
 	public function getDateRemind($reminderType = CALENDAR_TYPE_EVENTREMINDER_EMAIL) {
 		$typePrefix	= TodoyuCalendarReminderManager::getReminderTypePrefix($reminderType);
 
-		return intval($this->get('date_remind' . $typePrefix));
+		return $this->getInt('date_remind' . $typePrefix);
 	}
 
 
