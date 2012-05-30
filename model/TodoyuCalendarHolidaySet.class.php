@@ -97,7 +97,6 @@ class TodoyuCalendarHolidaySet extends TodoyuBaseObject {
 
 	/**
 	 * Load foreign data (holidays)
-	 *
 	 */
 	public function loadForeignData() {
 		$this->data['holidays']	= TodoyuCalendarHolidaySetManager::getHolidaysData($this->getID());
