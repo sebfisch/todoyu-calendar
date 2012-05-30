@@ -113,11 +113,11 @@ class TodoyuCalendarHoliday extends TodoyuBaseObject {
 	/**
 	 * Get template data for holiday
 	 *
-	 * @param	Boolean		$loadForeignRecords
+	 * @param	Boolean		$loadForeignData
 	 * @return	Array
 	 */
-	public function getTemplateData($loadForeignRecords	= false) {
-		if( $loadForeignRecords ) {
+	public function getTemplateData($loadForeignData	= false) {
+		if( $loadForeignData ) {
 			$this->loadForeignData();
 		}
 
