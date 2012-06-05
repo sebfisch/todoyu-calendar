@@ -20,9 +20,7 @@
 		{/if}
 
 		<div class="title">
-			{if !$isPrivate || isPersonID($id_person)}
-				{htmlencode(truncate($title,$titleCropLength,'...',true))}
-			{/if}
+			{htmlencode(truncate($title,$titleCropLength,'...',true))}
 		</div>
 
 		{if date('ymd', $date_start) !== date('ymd', $date_end)}

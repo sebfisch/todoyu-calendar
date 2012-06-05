@@ -72,7 +72,6 @@ class TodoyuCalendarEventElementDayeventWeek extends TodoyuCalendarEventElementW
 		$realWidth	= ($days * $dayWidth) - 6;
 
 		$data['width']	= $realWidth;
-
 		return $data;
 	}
 
@@ -99,7 +98,7 @@ class TodoyuCalendarEventElementDayeventWeek extends TodoyuCalendarEventElementW
 		$elementTemplateData= $this->getElementTemplateData($range);
 		$eventTemplateData	= $this->getEvent()->getTemplateData(true);
 
-		return array_merge($elementTemplateData, $eventTemplateData);
+		return array_merge($eventTemplateData, $elementTemplateData);
 	}
 
 
