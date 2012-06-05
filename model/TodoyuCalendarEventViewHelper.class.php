@@ -41,6 +41,7 @@ class TodoyuCalendarEventViewHelper {
 		if( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
 			$options[$groupLabelBlocking]	= array();
 		}
+
 		$options[$groupLabelOverbookable]	= array();
 
 			// Add event types to resp. optgroup
@@ -59,7 +60,10 @@ class TodoyuCalendarEventViewHelper {
 			'label'	=> 'label'
 		);
 		$options[$groupLabelOverbookable]	= TodoyuArray::sortByLabel(TodoyuArray::reform($options[$groupLabelOverbookable], $reformConfig, false), 'label');
-		$options[$groupLabelBlocking]		= TodoyuArray::sortByLabel(TodoyuArray::reform($options[$groupLabelBlocking], $reformConfig, false), 'label');
+
+		if( ! TodoyuCalendarManager::isOverbookingAllowed() ) {
+			$options[$groupLabelBlocking]		= TodoyuArray::sortByLabel(TodoyuArray::reform($options[$groupLabelBlocking], $reformConfig, false), 'label');
+		}
 
 		return $options;
 	}
