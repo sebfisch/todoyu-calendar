@@ -35,11 +35,11 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	private $event;
 
 	/**
-	 * Receiver person
+	 * Email receiver
 	 *
-	 * @var	TodoyuContactPerson
+	 * @var	TodoyuMailReceiver
 	 */
-	private $person;
+	private $mailReceiver;
 
 	/**
 	 * Type of action while email was sent
@@ -53,15 +53,15 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * Initialize
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$idPerson
+	 * @param	Integer		$mailReceiverID
 	 * @param	Array		$options
 	 * @param	Array		$config
 	 */
-	public function __construct($idEvent, $idPerson, array $options, array $config = array()) {
+	public function __construct($idEvent, $mailReceiverID, array $options, array $config = array()) {
 		parent::__construct($config);
 
-		$this->event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
-		$this->person	= TodoyuContactPersonManager::getPerson($idPerson);
+		$this->event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+		$this->mailReceiver	= TodoyuMailReceiverManager::getMailReceiverObject($mailReceiverID);
 		$this->options	= $options;
 		
 			// Assure operation is set

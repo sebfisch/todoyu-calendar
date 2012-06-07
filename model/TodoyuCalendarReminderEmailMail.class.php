@@ -34,6 +34,7 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 	private $reminder;
 
 
+
 	/**
 	 * Initialize with reminder
 	 *
