@@ -76,8 +76,6 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 		$mail		= new TodoyuCalendarReminderEmailMail($this->getID());
 		$sendStatus	= $mail->send();
 
-//		echo "SEND EMAIL TO: " . $person->getFullName() . ' ' . $person->getID() . ' (' . $person->getEmail() . ")\n";
-
 		if( $sendStatus ) {
 			$this->saveAsSent();
 		}
@@ -100,7 +98,8 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 		));
 
 			// Save log record about sent mail
-		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idReminder, array($idReceiver));
+		$receiverTuples	= array($idReceiver);
+		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idReminder, $receiverTuples);
 	}
 
 }

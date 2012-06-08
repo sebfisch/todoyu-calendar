@@ -524,7 +524,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 		}
 
 			// Add email receivers infos
-		$emailPersons	= TodoyuMailManager::getEmailPersons(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $this->data['id']);
+		$emailPersons	= TodoyuMailManager::getEmailReceivers(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $this->data['id']);
 		$this->data['persons_email']	= $emailPersons;
 	}
 

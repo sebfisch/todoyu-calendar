@@ -129,19 +129,6 @@ class TodoyuCalendarEventMailManager {
 
 
 	/**
-	 * Save log record about persons the given mail has been sent to
-	 *
-	 * @todo	!!!!!!!!!!!!!!REMOVE!!!!!!!!!!!!!
-	 * @param	Integer		$idEvent
-	 * @param	Array		$receiverTuples
-	 */
-	public static function saveMailsSent($idEvent, array $receiverTuples = array() ) {
-		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent, $receiverTuples);
-	}
-
-
-
-	/**
 	 * @param	Integer	$idEvent
 	 * @param	String	$receiverTuple
 	 */
@@ -169,13 +156,13 @@ class TodoyuCalendarEventMailManager {
 
 
 	/**
-	 * Get persons the given event has been sent to by email
+	 * Get mail receivers the given event has been sent to by email
 	 *
-	 * @param	Integer		$idEvent
-	 * @return	Array
+	 * @param	Integer					$idEvent
+	 * @return	TodoyuMailReceiver[]
 	 */
-	public static function getEmailPersons($idEvent) {
-		return TodoyuMailManager::getEmailPersons(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent);
+	public static function getEmailReceivers($idEvent) {
+		return TodoyuMailManager::getEmailReceivers(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent);
 	}
 
 
