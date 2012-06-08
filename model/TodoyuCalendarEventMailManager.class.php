@@ -132,10 +132,10 @@ class TodoyuCalendarEventMailManager {
 	 * Save log record about persons the given mail has been sent to
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Array		$personIDs			Persons the event has been sent to
+	 * @param	Array		$receiverIDs			Receivers (e.g. persons) the event has been sent to
 	 */
-	public static function saveMailsSent($idEvent, array $personIDs = array() ) {
-		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent, $personIDs);
+	public static function saveMailsSent($idEvent, array $receiverIDs = array() ) {
+		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent, $receiverIDs);
 	}
 
 
@@ -359,18 +359,18 @@ class TodoyuCalendarEventMailManager {
 	 * Event save hook. Send emails
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Array		$personIDs
+	 * @param	Array		$receiverIDs
 	 * @param	Array		$options
 	 * @return	Boolean
 	 */
-	public static function sendEvent($idEvent, $personIDs, array $options = array()) {
-		$personIDs	= array_unique(TodoyuArray::intval($personIDs, true, true));
+	public static function sendEvent($idEvent, $receiverIDs, array $options = array()) {
+		$receiverIDs= array_unique(TodoyuArray::intval($receiverIDs, true, true));
 		$sent		= false;
 
-		if( sizeof($personIDs) > 0 ) {
-			$sent	= self::sendEmails($idEvent, $personIDs, $options);
+		if( sizeof($receiverIDs) > 0 ) {
+			$sent	= self::sendEmails($idEvent, $receiverIDs, $options);
 			if( $sent ) {
-				self::saveMailsSent($idEvent, $personIDs);
+				self::saveMailsSent($idEvent, $receiverIDs);
 			}
 		}
 

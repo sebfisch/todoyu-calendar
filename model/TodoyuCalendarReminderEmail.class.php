@@ -92,7 +92,7 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 	 */
 	private function saveAsSent() {
 		$idReminder	= $this->getID();
-		$idPerson	= $this->getPersonID();
+		$idReceiver	= $this->getPersonID();
 
 			// Set "is_sent"-flag in ext_calendar_mm_event_person
 		TodoyuCalendarReminderManager::updateReminder($idReminder, array(
@@ -100,7 +100,7 @@ class TodoyuCalendarReminderEmail extends TodoyuCalendarReminder {
 		));
 
 			// Save log record about sent mail
-		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idReminder, array($idPerson));
+		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idReminder, array($idReceiver));
 	}
 
 }

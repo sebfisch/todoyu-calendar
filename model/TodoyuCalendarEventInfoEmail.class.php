@@ -73,13 +73,14 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	}
 
 
+
 	/**
-	 * Get person
+	 * Get receiver record ID, e.g. ID of ext_contact_person
 	 *
-	 * @return	TodoyuContactPerson
+	 * @return	Integer
 	 */
-	public function getPerson() {
-		return $this->person;
+	public function getIdReceiver() {
+		return $this->mailReceiver->getIdReceiver();
 	}
 
 
@@ -110,13 +111,15 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * Initialize info email with correct data
 	 */
 	private function init() {
-		$this->addReceiver($this->getPerson()->getID());
+		$idReceiver	= $this->getIdReceiver();
+
+		$this->addReceiver($idReceiver);
 		$this->setSender(TodoyuAuth::getPersonID());
 		$this->setTypeSubject();
 
 		$this->setHeadlineByType();
 
-		Todoyu::setEnvironmentForPerson($this->getPerson()->getID());
+		Todoyu::setEnvironmentForPerson($idReceiver);
 
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
@@ -233,7 +236,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * @return	Array
 	 */
 	private function getData() {
-		return TodoyuCalendarEventMailManager::getMailData($this->getEvent()->getID(), $this->getPerson()->getID(), true);
+		return TodoyuCalendarEventMailManager::getMailData($this->getEvent()->getID(), $this->getIdReceiver(), true);
 	}
 
 }
