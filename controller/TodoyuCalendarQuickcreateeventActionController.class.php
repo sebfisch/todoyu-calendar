@@ -58,8 +58,8 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 	 * @return	Void|String		Failure returns re-rendered form with error messages
 	 */
 	public function saveAction(array $params) {
-		$data				= $params['event'];
-		$emailReceiverIDs	= TodoyuArray::intval($data['emailreceivers']);
+		$data			= $params['event'];
+		$receiverTuples	= TodoyuArray::intval($data['email_receivers']);
 
 			// Get form object, call save hooks, set data
 		$form	= TodoyuCalendarEventStaticManager::getQuickCreateForm();
@@ -72,8 +72,8 @@ class TodoyuCalendarQuickCreateEventActionController extends TodoyuActionControl
 			$idEvent	= TodoyuCalendarEventStaticManager::saveEvent($storageData);
 
 				// Send event email to selected receivers
-			if( sizeof($emailReceiverIDs) > 0 ) {
-				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $emailReceiverIDs, array('new'=>true)) ) {
+			if( sizeof($receiverTuples) > 0 ) {
+				if( TodoyuCalendarEventMailManager::sendEvent($idEvent, $receiverTuples, array('new'=>true)) ) {
 					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 				}
 			}

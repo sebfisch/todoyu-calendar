@@ -131,11 +131,27 @@ class TodoyuCalendarEventMailManager {
 	/**
 	 * Save log record about persons the given mail has been sent to
 	 *
+	 * @todo	!!!!!!!!!!!!!!REMOVE!!!!!!!!!!!!!
 	 * @param	Integer		$idEvent
-	 * @param	Array		$receiverIDs			Receivers (e.g. persons) the event has been sent to
+	 * @param	Array		$receiverTuples
 	 */
-	public static function saveMailsSent($idEvent, array $receiverIDs = array() ) {
-		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent, $receiverIDs);
+	public static function saveMailsSent($idEvent, array $receiverTuples = array() ) {
+		TodoyuMailManager::saveMailsSent(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent, $receiverTuples);
+	}
+
+
+
+	/**
+	 * @param	Integer	$idEvent
+	 * @param	String	$receiverTuple
+	 */
+	public static function saveMailSent($idEvent, $receiverTuple) {
+		$mailReceiver	= TodoyuMailReceiverManager::getMailReceiverObject($receiverTuple);
+
+		$idReceiver		= $mailReceiver->getIdReceiver();
+		$receiverType	= $mailReceiver->getType();
+
+		TodoyuMailManager::addMailSent(EXTID_COMMENT, COMMENT_TYPE_COMMENT, $idEvent, $idReceiver, $receiverType);
 	}
 
 
@@ -359,19 +375,16 @@ class TodoyuCalendarEventMailManager {
 	 * Event save hook. Send emails
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Array		$receiverIDs
+	 * @param	String[]	$receiverTuples
 	 * @param	Array		$options
 	 * @return	Boolean
 	 */
-	public static function sendEvent($idEvent, $receiverIDs, array $options = array()) {
-		$receiverIDs= array_unique(TodoyuArray::intval($receiverIDs, true, true));
-		$sent		= false;
+	public static function sendEvent($idEvent, $receiverTuples, array $options = array()) {
+		$receiverTuples	= TodoyuArray::trim($receiverTuples);
+		$sent			= false;
 
-		if( sizeof($receiverIDs) > 0 ) {
-			$sent	= self::sendEmails($idEvent, $receiverIDs, $options);
-			if( $sent ) {
-				self::saveMailsSent($idEvent, $receiverIDs);
-			}
+		if( sizeof($receiverTuples) > 0 ) {
+			$sent	= self::sendEmails($idEvent, $receiverTuples, $options);
 		}
 
 		return $sent;
@@ -383,17 +396,17 @@ class TodoyuCalendarEventMailManager {
 	 * Send event information email to the persons
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Array		$personIDs
+	 * @param	Array		$receiverTuples		'type:ID' or just 'ID', which defaults the type to 'contactperson'
 	 * @param	Array		$options
 	 * @return	Boolean
 	 */
-	public static function sendEmails($idEvent, array $personIDs, array $options = array()) {
-		$idEvent	= intval($idEvent);
-		$personIDs	= TodoyuArray::intval($personIDs, true, true);
+	public static function sendEmails($idEvent, array $receiverTuples, array $options = array()) {
+		$idEvent		= intval($idEvent);
+		$receiverTuples	= TodoyuArray::trim($receiverTuples, true, true);
 
 		$succeeded	= true;
-		foreach($personIDs as $idPerson) {
-			$result	= self::sendInfoMail($idEvent, $idPerson, $options);
+		foreach($receiverTuples as $receiverTuple) {
+			$result	= self::sendInfoMail($idEvent, $receiverTuple, $options);
 
 			if( !$result ) {
 				$succeeded	= false;
@@ -406,22 +419,26 @@ class TodoyuCalendarEventMailManager {
 
 
 	/**
-	 * Send an event email to a person
+	 * Send an event email to a person, log sent email.
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$idPerson
+	 * @param	String		$receiverTuple
 	 * @param	Array		$options
 	 * @return	Boolean		Success
 	 */
-	public static function sendInfoMail($idEvent, $idPerson, array $options = array()) {
-		$idEvent	= intval($idEvent);
-		$idPerson	= intval($idPerson);
-		$mail		= new TodoyuCalendarEventInfoEmail($idEvent, $idPerson, $options);
-		$status		= $mail->send();
+	public static function sendInfoMail($idEvent, $receiverTuple, array $options = array()) {
+		$idEvent		= intval($idEvent);
 
-		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $idPerson, $options, $status));
+		$mail		= new TodoyuCalendarEventInfoEmail($idEvent, $receiverTuple, $options);
+		$isSent		= $mail->send();
 
-		return $status;
+		if( $isSent ) {
+			TodoyuCalendarEventMailManager::saveMailSent($idEvent, $receiverTuple);
+		}
+
+		TodoyuHookManager::callHook('calendar', 'email.info', array($idEvent, $receiverTuple, $options, $isSent));
+
+		return $isSent;
 	}
 
 }

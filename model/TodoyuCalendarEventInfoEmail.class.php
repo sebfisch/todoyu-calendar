@@ -53,15 +53,15 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * Initialize
 	 *
 	 * @param	Integer		$idEvent
-	 * @param	Integer		$mailReceiverID
+	 * @param	String		$mailReceiverTuple			'type:ID', e.g. 'contactperson:232'
 	 * @param	Array		$options
 	 * @param	Array		$config
 	 */
-	public function __construct($idEvent, $mailReceiverID, array $options, array $config = array()) {
+	public function __construct($idEvent, $mailReceiverTuple, array $options, array $config = array()) {
 		parent::__construct($config);
 
 		$this->event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
-		$this->mailReceiver	= TodoyuMailReceiverManager::getMailReceiverObject($mailReceiverID);
+		$this->mailReceiver	= TodoyuMailReceiverManager::getMailReceiverObject($mailReceiverTuple);
 		$this->options	= $options;
 		
 			// Assure operation is set
