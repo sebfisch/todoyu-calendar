@@ -1,3 +1,7 @@
+@import "../../../../core/config/theme.scss";
+
+
+
 /* -----------------
 	Calendar widget
    ----------------- */
@@ -34,7 +38,7 @@
 #panelwidget-calendar-jscalendar div.calendar,
 #panelwidget-calendar-jscalendar div.calendar table {
 	background-image:none;
-	background-color:#fff;
+	background-color:$white;
 }
 
 #panelwidget-calendar-jscalendar div.calendar tr.headrow td.button.hilite {
@@ -45,14 +49,14 @@
 	#panelwidget-calendar-jscalendar div.calendar tr td.day.hilite,
 	#panelwidget-calendar-jscalendar div.calendar tr td.button.hilite div {
 		/*background:#316ac5;*/
-		/*color:#fff;*/
+		/*color:$white;*/
 		text-shadow:none;
 		cursor:pointer;
 	}
 
 #panelwidget-calendar-jscalendar .calendar .day {
-	border-bottom:1px solid #ddd;
-	border-right:1px solid #ddd;
+	border-bottom:1px solid $grey02;
+	border-right:1px solid $grey02;
 	text-align:center;
 	padding:4px 7px;
 	cursor:pointer;

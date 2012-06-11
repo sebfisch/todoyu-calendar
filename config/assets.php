@@ -171,7 +171,7 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 	),
 	'css' => array(
 		array(
-			'file'		=> 'ext/calendar/asset/css/contextmenu.css',
+			'file'		=> 'ext/calendar/asset/css/contextmenu.scss',
 			'position'	=> 80
 		),
 		array(
@@ -179,7 +179,7 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'position'	=> 100
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/ext.css',
+			'file'		=> 'ext/calendar/asset/css/ext.scss',
 			'position'	=> 100
 		),
 		array(
@@ -191,15 +191,15 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'poisition'	=> 101
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/day.css',
+			'file'		=> 'ext/calendar/asset/css/day.scss',
 			'poisition'	=> 102
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/week.css',
+			'file'		=> 'ext/calendar/asset/css/week.scss',
 			'poisition'	=> 103
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/month.css',
+			'file'		=> 'ext/calendar/asset/css/month.scss',
 			'poisition'	=> 104
 		),
 		array(
@@ -207,7 +207,7 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'position'	=> 106
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/panelwidget-calendar.css',
+			'file'		=> 'ext/calendar/asset/css/panelwidget-calendar.scss',
 			'position'	=> 110
 		),
 		array(
@@ -219,11 +219,11 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'position'	=> 150
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/series.css',
+			'file'		=> 'ext/calendar/asset/css/series.scss',
 			'position'	=> 150
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/print.css',
+			'file'		=> 'ext/calendar/asset/css/print.scss',
 			'media'		=> 'print',
 			'position'	=> 160
 		)

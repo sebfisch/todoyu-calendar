@@ -1,3 +1,7 @@
+@import "../../../../core/config/theme.scss";
+
+
+
 /* ---------------
 	Event
    --------------- */
@@ -25,7 +29,7 @@ div.dayMode div#calendarBody div.event dt.head {
 	border-color:#6786a7 #aaccee #aaccee #6786a7;
 	border-style:solid;
 	border-width:1px;
-	color:#fff;
+	color:$white;
 	font-weight:bold;
 	padding:1px 3px;
 	margin-left:0;

@@ -6,7 +6,7 @@
 	Grid
    --------------- */
 .mainGrid {
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid $grey02;
 	background:#d7dcc6;
 }
 
@@ -63,7 +63,7 @@
 	z-index:10;
 	width:100%;
 	pointer-events:none;
-	background-color:#ccc;
+	background-color:$grey03;
 	/*background-color:#f00;*/
  	opacity:0.4;
 	overflow:hidden;
@@ -82,9 +82,9 @@
 	width:43px;
 }
 .dayEvents {
-	background-color:#fff;
+	background-color:$white;
 	border: {
-		right:1px solid #cccccc;
+		right:1px solid $grey03;
 		left:1px solid #d7dcc6;
 	}
 
@@ -130,12 +130,12 @@
 	Calendar
    ---------------------- */
 #calendar {
-	background-color:#fff;
+	background-color:$white;
 }
 
 #calendar-body {
 	width:100%;
-	background-color:#fff;
+	background-color:$white;
 	padding-bottom:10px;
 }
 

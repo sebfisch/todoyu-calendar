@@ -1,7 +1,11 @@
+@import "../../../../core/config/theme.scss";
+
+
+
 #formElement-event-field-seriesinfo {
 	background-color:#ffffb1;
 	margin-bottom:20px;
-	box-shadow:2px 2px 7px #999;
+	box-shadow:2px 2px 7px $grey06;
 	padding:10px;
 }
 

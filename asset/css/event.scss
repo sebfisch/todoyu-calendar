@@ -147,7 +147,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
    -------------------------------------------- */
 .dayview div.tg-colwrapper div.event dl,
 .weekMode div.tg-colwrapper div.event dl {
-/*	border:1px dotted #fff;*/
+/*	border:1px dotted $white;*/
 }
 
 .private {
@@ -162,7 +162,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 
 .weekNumber {
 	float:left;
-	color:#999;
+	color:$grey06;
 }
 
 
@@ -345,11 +345,11 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 
 .portalEventsList #events .event.expanded {
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid $grey02;
 }
 
 .portalEventsList #events div.eventDetails	{
-	background-color:#fff;
+	background-color:$white;
 }
 
 
@@ -361,7 +361,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	background:#9b9b9b url(../img/icons.png) no-repeat scroll 0 -390px;
 	padding:0 0 0 15px;
 	margin:0 0 2px 1px;
-	color:#fff;
+	color:$white;
 	overflow:hidden;
 	min-height:17px;
 }
@@ -405,7 +405,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	List mode in portal
   ------------------------- */
 #holidays h3 {
-	background-color:#fff;
+	background-color:$white;
 }
 
 #holidays h3 {
@@ -428,8 +428,8 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 
 #events h3 {
-	background-color:#fff;
-	border-bottom:1px solid #ddd;
+	background-color:$white;
+	border-bottom:1px solid $grey02;
 }
 
 #events .details {
@@ -513,7 +513,7 @@ div.eventDetails dd {
 
 #events .event h3 .label .eventtype,
 #events .event h3 .label .title {
-	border-left:1px solid #ddd;
+	border-left:1px solid $grey02;
 	padding:0 5px 1px;
 }
 
@@ -601,7 +601,7 @@ table.eventDetailView span.reminderLabel {
 
 table.eventDetailView tr.odd,
 table.eventDetailView tr.even {
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid $grey02;
 }
 
 button.editEvent .icon {

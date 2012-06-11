@@ -1,3 +1,7 @@
+@import "../../../../core/config/theme.scss";
+
+
+
 /* ---------------
 	Event
    --------------- */
@@ -32,7 +36,7 @@
 	padding:0 2px 0 6px;
 	font-weight:normal;
 	line-height:16px;
-	color:#000;
+	color:$black;
 	text-transform:uppercase;
 	text-align:center;
 }
@@ -110,8 +114,8 @@
 
 	.standardGrid td.content {
 		height:100px;
-		background-color:#fff;
-		border:1px solid #fff;
+		background-color:$white;
+		border:1px solid $white;
 	}
 	.standardGrid td.content:hover {
 		border:1px solid #bababa;
@@ -162,8 +166,8 @@ div.quickinfoHoliday_content span.holiday {
 }
 
 #mvEventContainer {
-	border-left:1px solid #ddd;
-	border-right:1px solid #ddd;
+	border-left:1px solid $grey02;
+	border-right:1px solid $grey02;
 }
 
 th.mv-dayname.odd{

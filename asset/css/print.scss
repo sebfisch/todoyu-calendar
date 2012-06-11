@@ -1,3 +1,7 @@
+@import "../../../../core/config/theme.scss";
+
+
+
 #calendarBody {
 	position:static;
 	overflow:visible;
@@ -9,7 +13,7 @@
 }
 
 div.weekMode table .standardGrid td.noEventCell {
-	border:1px solid #ddd;
+	border:1px solid $grey02;
 }
 .tg-timedevents {
 	position:static;

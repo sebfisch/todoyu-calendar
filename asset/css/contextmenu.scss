@@ -1,3 +1,7 @@
+@import "../../../../core/config/theme.scss";
+
+
+
 a.eventContextMenu {
 	background:url(../img/contextmenu.png) no-repeat;
 }
@@ -76,7 +80,7 @@ a.eventContextMenu.eventReminderPopup {
 .context-submenu .reminderTime1d,
 .context-submenu .reminderTime2d,
 .context-submenu .reminderTime1w {
-	background-color:#fff;
+	background-color:$white;
 	background-image:none;
 }
 
@@ -87,7 +91,7 @@ a.eventContextMenu.eventReminderPopup {
 }
 .context-submenu li a.eventContextMenu.disabled.selected {
 	cursor:default !important;
-	color:#999 !important;
+	color:$grey06 !important;
 	background:url(../../../../core/asset/img/icons.png) repeat-x 0 -1570px !important;
 	background-color:#c9dbd4 !important;
 }
