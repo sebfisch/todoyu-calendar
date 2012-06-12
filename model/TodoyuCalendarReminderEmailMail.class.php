@@ -64,7 +64,8 @@ class TodoyuCalendarReminderEmailMail extends TodoyuMail {
 		$this->setSubject($subject);
 
 			// Add receivers, headline
-		$this->addReceiver($this->getPerson()->getID());
+		$mailReceiver	= TodoyuMailReceiverManager::getMailReceiver($this->getPerson()->getID());
+		$this->addReceiver($mailReceiver);
 		$this->setHeadline('calendar.reminder.email.title');
 
 			// Add CSS
