@@ -162,7 +162,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 
 .weekNumber {
 	float:left;
-	color:$grey06;
+	color:$colorNeutral06;
 }
 
 
@@ -341,11 +341,11 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 .portalEventsList #events .event.expanded h3	{
 	font-weight:bold;
-	background-color:#e2e2e2;
+	background-color:$colorNeutral01;
 }
 
 .portalEventsList #events .event.expanded {
-	border-bottom:1px solid $grey02;
+	border-bottom:1px solid $colorNeutral02;
 }
 
 .portalEventsList #events div.eventDetails	{
@@ -429,7 +429,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 
 #events h3 {
 	background-color:$white;
-	border-bottom:1px solid $grey02;
+	border-bottom:1px solid $colorNeutral02;
 }
 
 #events .details {
@@ -513,7 +513,7 @@ div.eventDetails dd {
 
 #events .event h3 .label .eventtype,
 #events .event h3 .label .title {
-	border-left:1px solid $grey02;
+	border-left:1px solid $colorNeutral02;
 	padding:0 5px 1px;
 }
 
@@ -601,7 +601,7 @@ table.eventDetailView span.reminderLabel {
 
 table.eventDetailView tr.odd,
 table.eventDetailView tr.even {
-	border-bottom:1px solid $grey02;
+	border-bottom:1px solid $colorNeutral02;
 }
 
 button.editEvent .icon {

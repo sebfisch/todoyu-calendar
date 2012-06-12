@@ -103,10 +103,10 @@
 	position:relative;
 	overflow-y:scroll;
 	overflow-x:hidden;
-	border-top:1px solid $grey06;
-	border-left:1px solid $grey02;
-	border-right:1px solid $grey02;
-	border-bottom:1px solid $grey02;
+	border-top:1px solid $colorNeutral06;
+	border-left:1px solid $colorNeutral02;
+	border-right:1px solid $colorNeutral02;
+	border-bottom:1px solid $colorNeutral02;
 	padding:0;
 	font-size:11px;
 	line-height:normal;
@@ -132,15 +132,15 @@
 }
 
 .tg-dualmarker {
-	border-top:1px solid $grey02;
+	border-top:1px solid $colorNeutral02;
 	height:20px;
 	line-height:20px;
-	border-bottom:1px dotted $grey02;
+	border-bottom:1px dotted $colorNeutral02;
 	margin-bottom:20px
 }
 
 .dayCol {
-	border-left:3px double $grey02;
+	border-left:3px double $colorNeutral02;
 	overflow:hidden;
 	/*vertical-align:top;*/
 }

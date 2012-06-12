@@ -128,7 +128,7 @@ form.createevent label, form.createeventMidcol label{
 .enumColBGmultiOrNone,
 .enumColBgFgmultiOrNone {
 	color:#191919 !important;
-	background-color:#e3eace !important;
+	background-color:$colorCorporate02 !important;
 	border-color:#d7d7cf !important;
 }
 
@@ -147,7 +147,7 @@ form.createevent label, form.createeventMidcol label{
 	right:10px;
 	height:15px;
 	padding:2px 5px;
-	border:1px solid $grey04;
+	border:1px solid $colorNeutral04;
 	background:$white;
 	-moz-border-radius:13px;
 	-webkit-border-radius:13px;
@@ -164,7 +164,7 @@ form.createevent label, form.createeventMidcol label{
 }
 
 .dateNavi .goToday {
-	border:1px solid $grey04;
+	border:1px solid $colorNeutral04;
 	border-width:0 1px;
 	background-position:7px -150px;
 }
@@ -175,11 +175,11 @@ form.createevent label, form.createeventMidcol label{
 	background-position:7px -180px;
 }
 .dateNavi .toggleDayView {
-	border-left:1px solid $grey04;
+	border-left:1px solid $colorNeutral04;
 	background-position:8px -60px;
 }
 .dateNavi .toggleWeekend {
-	border-left:1px solid $grey04;
+	border-left:1px solid $colorNeutral04;
 	background-position:8px -91px;
 }
 

@@ -6,7 +6,7 @@
 	Grid
    --------------- */
 .mainGrid {
-	border-bottom:1px solid $grey02;
+	border-bottom:1px solid $colorNeutral02;
 	background:#d7dcc6;
 }
 
@@ -63,7 +63,7 @@
 	z-index:10;
 	width:100%;
 	pointer-events:none;
-	background-color:$grey03;
+	background-color:$colorNeutral03;
 	/*background-color:#f00;*/
  	opacity:0.4;
 	overflow:hidden;
@@ -84,7 +84,7 @@
 .dayEvents {
 	background-color:$white;
 	border: {
-		right:1px solid $grey03;
+		right:1px solid $colorNeutral03;
 		left:1px solid #d7dcc6;
 	}
 
