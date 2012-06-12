@@ -358,7 +358,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	Holidays in portal list
    ---------------------- */
 .holidays {
-	background:#9b9b9b url(../img/icons.png) no-repeat scroll 0 -390px;
+	background:$colorNeutral05 url(../img/icons.png) no-repeat scroll 0 -390px;
 	padding:0 0 0 15px;
 	margin:0 0 2px 1px;
 	color:$white;

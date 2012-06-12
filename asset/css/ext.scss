@@ -105,7 +105,7 @@ span.holiday {
 }
 
 .dayMode span.holiday {
-	background-color:#D7DCC6;
+	background-color:$colorCorporate04;
 	height:16px;
 	margin:0 0 2px 1px;
 	padding-left:16px;
@@ -127,13 +127,13 @@ form.createevent label, form.createeventMidcol label{
 .enumColBGFademultiOrNone,
 .enumColBGmultiOrNone,
 .enumColBgFgmultiOrNone {
-	color:#191919 !important;
+	color:$colorTextGeneral !important;
 	background-color:$colorCorporate02 !important;
-	border-color:#d7d7cf !important;
+	border-color:$colorCorporate04 !important;
 }
 
 .enumColBGmultiOrNone {
-	background-color:#d3dbc2 !important;
+	background-color:$colorCorporate04 !important;
 }
 
 

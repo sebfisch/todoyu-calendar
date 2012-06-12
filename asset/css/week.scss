@@ -12,7 +12,7 @@
 
 .gridHeader .wk-weektop {
 	width:100%;
-	background-color:#d7dcc6;
+	background-color:$colorCorporate04;
 	overflow:hidden;
 	font-size:11px;
 	line-height:14px;
@@ -31,13 +31,13 @@
 }
 
 .weekMode .dayCol.dayName.odd {
-	background-color:#edf3d9;
+	background-color:$colorCorporate01;
 }
 
 
 .weekMode .dayCol.dayName.today {
-	background-color:#ffffdb;
-	border-color:#9f9f9f #ebebeb #ebebeb #9f9f9f;
+	background-color:$colorHighlight03;
+	border-color:$colorNeutral06 $colorNeutral01 $colorNeutral01 $colorNeutral06;
 	border-style:solid;
 	border-width:1px;
 	font-weight:bold;

@@ -7,7 +7,7 @@
    --------------- */
 .mainGrid {
 	border-bottom:1px solid $colorNeutral02;
-	background:#d7dcc6;
+	background:$colorCorporate04;
 }
 
 #gridContainer {
@@ -39,12 +39,12 @@
 
 	& .hour {
 		padding-left:2px;
-		color:#494949;
+		color:$colorNeutral08;
 		height:41px;
 		margin-top:1px;
 
 		&:hover {
-			background-color:#ffffe0; }
+			background-color:$colorHighlight03; }
 
 		/* Highlight digit of current hour in hours column */
 		&.currentHour {
@@ -64,7 +64,7 @@
 	width:100%;
 	pointer-events:none;
 	background-color:$colorNeutral03;
-	/*background-color:#f00;*/
+	/*background-color:$colorAlert00;*/
  	opacity:0.4;
 	overflow:hidden;
 }
@@ -75,7 +75,7 @@
 	height:2px;
 	width:100%;
 	pointer-events:none;
-	background-color:#F00;
+	background-color:$colorAlert00;
 }
 
 .timeSpacer {
@@ -85,7 +85,7 @@
 	background-color:$white;
 	border: {
 		right:1px solid $colorNeutral03;
-		left:1px solid #d7dcc6;
+		left:1px solid $colorCorporate04;
 	}
 
 	table {

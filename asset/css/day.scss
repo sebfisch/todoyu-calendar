@@ -17,7 +17,7 @@ div.dayMode div#calendarBody div.event dt.head {
    ---------------------- */
 .day-wk-dayname {
 	font-weight:normal;
-	color:#112aab;
+	color:$colorTextGeneral;
 	padding:2px 4px;
 	margin-left:4px;
 	white-space:nowrap;
@@ -25,8 +25,8 @@ div.dayMode div#calendarBody div.event dt.head {
 }
 
 .day-todaywk-dayname{
-	background-color:#88aacc;
-	border-color:#6786a7 #aaccee #aaccee #6786a7;
+	background-color:$blue07;
+	border-color:$blue03 $blue08 $blue08 $blue03;
 	border-style:solid;
 	border-width:1px;
 	color:$white;
@@ -43,7 +43,7 @@ div.dayMode div#calendarBody div.event dt.head {
 	Day view today
    ---------------------- */
 .dayviewToday {
-	background-color:#ffffcc;
+	background-color:$colorHighlight03;
 }
 
 
