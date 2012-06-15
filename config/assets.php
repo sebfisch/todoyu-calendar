@@ -175,7 +175,7 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'position'	=> 80
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/quickinfo.css',
+			'file'		=> 'ext/calendar/asset/css/quickinfo.scss',
 			'position'	=> 100
 		),
 		array(
@@ -183,7 +183,7 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'position'	=> 100
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/profile.css',
+			'file'		=> 'ext/calendar/asset/css/profile.scss',
 			'position'	=> 101
 		),
 		array(
@@ -211,11 +211,11 @@ Todoyu::$CONFIG['EXT']['calendar']['assets']	= array(
 			'position'	=> 110
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/panelwidget-eventtpyeselector.css',
+			'file'		=> 'ext/calendar/asset/css/panelwidget-eventtpyeselector.scss',
 			'position'	=> 140
 		),
 		array(
-			'file'		=> 'ext/calendar/asset/css/panelwidget-holidaysetselector.css',
+			'file'		=> 'ext/calendar/asset/css/panelwidget-holidaysetselector.scss',
 			'position'	=> 150
 		),
 		array(
