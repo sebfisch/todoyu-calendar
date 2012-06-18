@@ -37,7 +37,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	/**
 	 * Email receiver
 	 *
-	 * @var	TodoyuMailReceiver
+	 * @var	TodoyuMailReceiverInterface
 	 */
 	private $mailReceiver;
 
@@ -80,7 +80,7 @@ class TodoyuCalendarEventInfoEmail extends TodoyuMail {
 	 * @return	Integer
 	 */
 	public function getIdReceiver() {
-		return $this->mailReceiver->getIdReceiver();
+		return $this->mailReceiver->getRecordID();
 	}
 
 

@@ -133,7 +133,7 @@ class TodoyuCalendarEventMailManager {
 	 * @param	TodoyuMailReceiverInterface		$mailReceiver
 	 */
 	public static function saveMailSent($idEvent, TodoyuMailReceiverInterface $mailReceiver) {
-		$idReceiver		= $mailReceiver->getIdReceiver();
+		$idReceiver		= $mailReceiver->getRecordID();
 		$receiverType	= $mailReceiver->getType();
 
 		TodoyuMailManager::addMailSent(EXTID_COMMENT, COMMENT_TYPE_COMMENT, $idEvent, $idReceiver, $receiverType);
@@ -157,7 +157,7 @@ class TodoyuCalendarEventMailManager {
 	 * Get mail receivers the given event has been sent to by email
 	 *
 	 * @param	Integer					$idEvent
-	 * @return	TodoyuMailReceiver[]
+	 * @return	TodoyuMailReceiverInterface[]
 	 */
 	public static function getEmailReceivers($idEvent) {
 		return TodoyuMailManager::getEmailReceivers(EXTID_CALENDAR, CALENDAR_TYPE_EVENT, $idEvent);
