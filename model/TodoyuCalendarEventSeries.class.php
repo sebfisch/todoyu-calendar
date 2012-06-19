@@ -560,7 +560,7 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 				}
 			}
 
-			$this->data			= array_merge($this->data, $data);
+			$this->data	= array_merge($this->data, $data);
 		}
 
 		if( isset($formData['date_start']) ) {
