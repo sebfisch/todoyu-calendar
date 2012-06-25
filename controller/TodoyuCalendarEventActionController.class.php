@@ -73,7 +73,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$formData		= $params['event'];
 		$idEvent		= intval($formData['id']);
 		$isNewEvent		= $idEvent === 0;
-		$receiverTuples	= TodoyuArray::trim($formData['email_receivers']);
+		$receiverTuples	= array_key_exists('email_receivers', $formData) ? $formData['email_receivers'] : array();
 
 			// Check rights (new event creation / updating existing event)
 		if( $idEvent === 0 ) {
