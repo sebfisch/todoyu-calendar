@@ -68,7 +68,7 @@ class TodoyuCalendarEventElementDayeventWeek extends TodoyuCalendarEventElementW
 		$overlappingRange	= $viewRange->getOverlappingRange($eventRange, true);
 		$days	= $overlappingRange->getAmountOfDays();
 
-		$dayWidth	= $view->isWeekendDisplayed() ? 88 : 124;
+		$dayWidth	= $view->isWeekendDisplayed() ? CALENDAR_WEEK_DAYEVENT_WIDTH : CALENDAR_WEEK_FIVEDAY_DAYEVENT_WIDTH;
 		$realWidth	= ($days * $dayWidth) - 6;
 
 		$data['width']	= $realWidth;
