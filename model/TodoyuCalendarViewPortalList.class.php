@@ -201,7 +201,8 @@ class TodoyuCalendarViewPortalList extends TodoyuCalendarView {
 	protected function getBirthdayEventsData() {
 		$weeks	= $this->getWeeks('birthday');
 		$filters= array(
-			'dayevents'	=> true
+			'dayevents'	=> true,
+			'eventtypes' => array(EVENTTYPE_BIRTHDAY)
 		);
 
 		return $this->getEventsTemplateData('birthday', $weeks, $filters);
