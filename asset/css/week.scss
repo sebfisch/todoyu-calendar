@@ -146,16 +146,17 @@
 
 .today7,
 .today5 {
-	border-left:3px double #ddd;
+	border: 1px double $colorNeutral02;
+	border-width: 0 3px 0 1px;
 	overflow:hidden;
 	vertical-align:top;
 	position:relative;
 }
 	.today5 {
-		background:url(../img/background-week5-today.png) repeat-y left 1px;
+		background:url(../img/background-week5-today.png) repeat left 1px;
 	}
 	.today7 {
-		background:url(../img/background-week7-today.png) repeat-y left 1px;
+		background:url(../img/background-week5-today.png) repeat left 1px;
 	}
 
 .tg-colwrapper {

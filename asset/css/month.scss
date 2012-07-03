@@ -99,7 +99,7 @@
 	}
 
 	.standardGrid td.title.inSelMonthTitle {
-		background-color:#e4eace;
+		background-color:$colorCorporate02;
 	}
 
 	.standardGrid td.title.inSelMonthTitle:hover {
@@ -107,9 +107,9 @@
 	}
 
 		.standardGrid td.ttoday {
-			background-color:#f6f6c8 !important;
+			background-color:$colorHighlight05 !important;
 			font-weight:bold;
-			color:#0a246a;
+			color:$blue05;
 		}
 
 	.standardGrid td.content {
@@ -118,12 +118,12 @@
 		border:1px solid $white;
 	}
 	.standardGrid td.content:hover {
-		border:1px solid #bababa;
+		border:1px solid $colorNeutral04;
 		cursor:pointer;
 	}
 
 	td.inSelMonth:hover {
-		border:1px solid #204a87 !important;
+		border:1px solid $blue06 !important;
 		cursor:pointer;
 	}
 

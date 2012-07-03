@@ -87,11 +87,11 @@ a.eventContextMenu.eventReminderPopup {
 
 .context-submenu li a.eventContextMenu.selected {
 	background-image:none;
-	background-color:#c9dbd4 !important;
+	background-color:$colorCorporate03 !important;
 }
 .context-submenu li a.eventContextMenu.disabled.selected {
 	cursor:default !important;
 	color:$colorNeutral06 !important;
 	background:url(../../../../core/asset/img/icons.png) repeat-x 0 -1570px !important;
-	background-color:#c9dbd4 !important;
+	background-color:$colorCorporate03 !important;
 }

@@ -376,7 +376,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 			padding:5px 0;
 		}
 		&.odd {
-			background-color:#f3f3f3;
+			background-color:$colorNeutral01;
 		}
 		.type {
 			margin-right:5px;
@@ -422,7 +422,7 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 
 #holidays h3.odd {
-	background-color:#f3f3f3;
+	background-color:$colorNeutral01;
 }
 
 #events h3 {
@@ -431,8 +431,8 @@ div.weekMode div#calendarBody div.event dd span.desc {
 }
 
 #events .details {
-	border-left:1px solid #f3f3f3;
-	border-right:1px solid #f3f3f3;
+	border-left:1px solid $colorNeutral01;
+	border-right:1px solid $colorNeutral01;
 
 }
 
