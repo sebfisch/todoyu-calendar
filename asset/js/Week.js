@@ -158,7 +158,7 @@ Todoyu.Ext.calendar.Week	= {
 		var options			= Object.clone(this.ext.DragDrop.defaultDraggableOptions);
 
 		options.constraint	= 'horizontal';
-		options.snap		= this.isCompactView() ? 124 : 88.5; // Day pixel-width
+		options.snap		= this.isCompactView() ? 175 : 126; // Day pixel-width
 		options.onStart		= this.onStartDragDayEvent.bind(this);
 		options.onEnd		= this.onEndDragDayEvent.bind(this);
 
