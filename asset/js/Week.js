@@ -110,30 +110,35 @@ Todoyu.Ext.calendar.Week	= {
 		var horSnap, horMax;
 
 		if( this.isWeekendDisplayed() ) {
-			horSnap	= 88.8;
-			horMax	= 533;
+			horSnap	= 124.7;
+			horMax	= 750;
 		} else {
-			horSnap	= 124.1;
-			horMax	= 497;
+			horSnap	= 175.7;
+			horMax	= 710;
 		}
 
-		x = Math.round(x/horSnap)*horSnap;
-		y = Math.round(y/verSnap)*verSnap;
+		x = Math.round(x / horSnap) * horSnap;
+		y = Math.round(y / verSnap) * verSnap;
 
-			// Kepp in horizontal range
-		x = x < 0 ? 0 : x;
-		x = x > horMax ? horMax : x;
+			// Keep in horizontal range
+		if( x < 0 ) {
+			x = 0;
+		} else if( x > horMax ) {
+			x = horMax;
+		}
 
 			// Keep in vertical range
-		y = y < 0 ? 0 : y;
+		if( y < 0 ) {
+			y = 0;
+		}
 
-		return [x,y];
+		return [x, y];
 	},
 
 
 
 	/**
-	 * Get options for drag'n'drop
+	 * Get options for drag 'n drop
 	 *
 	 * @method	getDragDropOptions
 	 * @return	{Object}
@@ -276,7 +281,7 @@ Todoyu.Ext.calendar.Week	= {
 		var weekStart	= this.ext.getWeekStartTime();
 		var dayIndex	= Math.round(Math.abs(offset.left - timeColWidth) / dayWidth);
 
-		var dayHours	= Math.round((offset.top / this.ext.hourHeight)*4)/4;
+		var dayHours	= Math.round((offset.top / this.ext.hourHeight) * 4) / 4;
 		var timestamp	= weekStart + Todoyu.Time.seconds.day * dayIndex + dayHours * Todoyu.Time.seconds.hour;
 
 		return new Date(timestamp * 1000);

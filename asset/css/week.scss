@@ -59,21 +59,10 @@
 
 .weekMode .dayCol {
 	width:86px;
-	/*border:none;*/
 }
 .weekMode.fiveDays .dayCol {
 	width:123px;
 }
-
-
-/*div.weekMode table.standardGrid td {*/
-	/*width:86px;*/
-	/*border:none;*/
-/*}*/
-	/*div.weekMode.fiveDays table.standardGrid td {*/
-		/*width:123px;*/
-	/*}*/
-
 
 
 .wk-webcontent-td {
@@ -141,23 +130,17 @@
 .dayCol {
 	border-left:3px double $colorNeutral02;
 	overflow:hidden;
-	/*vertical-align:top;*/
 }
 
 .today7,
 .today5 {
-	border: 1px double $colorNeutral02;
-	border-width: 0 3px 0 1px;
+	border:1px double $colorNeutral02;
+	border-width:0 3px 0 1px;
 	overflow:hidden;
 	vertical-align:top;
 	position:relative;
+	background:url(../img/background-week-today.png) repeat left 1px;
 }
-	.today5 {
-		background:url(../img/background-week5-today.png) repeat left 1px;
-	}
-	.today7 {
-		background:url(../img/background-week5-today.png) repeat left 1px;
-	}
 
 .tg-colwrapper {
 	margin-right:12px;

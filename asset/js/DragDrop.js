@@ -22,7 +22,7 @@
  */
 
 /**
- * Drag'n'Drop support for the calendar
+ * Drag 'n Drop support for the calendar
  *
  * @namespace	Todoyu.Ext.calendar.DragDrop
  */
@@ -42,7 +42,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @property	defaultDraggableOptions
 	 * @type		Object
 	 */
-	defaultDraggableOptions: {
+	defaultDraggableOptions:	{
 		handle:		'head'
 	},
 
@@ -52,7 +52,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @property	draggableOptions
 	 * @type		Object
 	 */
-	draggableOptions: {},
+	draggableOptions:	{},
 
 	/**
 	 * Storage for modified event data when saving is interrupted by confirmation (e.g. overbooking warning)
@@ -60,15 +60,15 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @property	droppedEventData
 	 * @type		Object
 	 */
-	droppedEventData: {},
+	droppedEventData:	{},
 
 	/**
-	 * Vertical pixel snapping
-	 * 42/4
+	 * Vertical pixel snapping = 42 / 4
+	 *
 	 * @property	verticalHourSnap
 	 * @type		Number
 	 */
-	verticalHourSnap: 10.5,
+	verticalHourSnap:	10.5,
 
 
 
@@ -293,7 +293,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 				this.moveEventToTopContainer(dragInfo.element);
 				dragInfo.element.setStyle({
 					position:	'absolute',
-					width:		'90px'
+					width:		'130px'
 				});
 				break;
 		}

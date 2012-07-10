@@ -316,7 +316,7 @@ Todoyu.Ext.calendar.CalendarBody.HourMarker	= {
 
 
 	/**
-	 * Get useable width of marker from day column
+	 * Get usable width of marker from day column
 	 *
 	 * @method	getMarkerWidth
 	 * @return	{String}

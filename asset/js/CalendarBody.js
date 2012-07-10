@@ -309,7 +309,7 @@ Todoyu.Ext.calendar.CalendarBody	= {
 				return this.ext.Week.isTodayDisplayed();
 				break;
 			case 'month':
-				return typeof $('gridContainer').down('.ttoday') === 'object'
+				return typeof $('gridContainer').down('.ttoday') === 'object';
 				break;
 			default:
 				return false;

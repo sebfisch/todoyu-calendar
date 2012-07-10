@@ -33,12 +33,12 @@ Todoyu.Ext.calendar.Month = {
 	/**
 	 * Width of a month day
 	 */
-	monthDaySnap: 94.5,
+	monthDaySnap: 131,
 
 
 
 	/**
-	 * Get options for drag'n' drop
+	 * Get options for drag 'n drop
 	 *
 	 * @method	getDragOptions
 	 * @return	{Object}
@@ -78,18 +78,24 @@ Todoyu.Ext.calendar.Month = {
 	 * @return	{Number[]}
 	 */
 	getDragDropSnap: function(x, y, draggable) {
-		x = Math.round(x/this.monthDaySnap)*this.monthDaySnap;
-		y = Math.round(y/20)*20;
+		x = Math.round(x / this.monthDaySnap) * this.monthDaySnap;
+		y = Math.round(y / 20) * 20;
 
-			// Kepp in horizontal range
-		x = x < 0 ? 0 : x;
-		x = x > 570 ? 570 : x;
+			// Keep in horizontal range
+		if( x < 0 ) {
+			x = 0;
+		} else if( x > 920 ) {
+			x = 920;
+		}
 
 			// Keep in vertical range
-		y = y < 70 ? 70 : y;
-		y = y > 770 ? 770 : y;
+		if( y < 70 ) {
+			y = 70;
+		} else if( y > 770 ) {
+			y = 770;
+		}
 
-		return [x,y];
+		return [x, y];
 	},
 
 
