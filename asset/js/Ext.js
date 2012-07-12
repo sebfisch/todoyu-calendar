@@ -475,7 +475,7 @@ Todoyu.Ext.calendar	= {
 	showDay: function(dateString) {
 		var parts	= dateString.split('-');
 		var date	= new Date(parts[0], parts[1] - 1, parts[2], 0, 0, 0);
-		var time	= date.getTime()/1000;
+		var time	= date.getTime() / 1000;
 
 		this.show('day', time);
 	},
@@ -491,7 +491,7 @@ Todoyu.Ext.calendar	= {
 	showWeek: function(dateString) {
 		var parts	= dateString.split('-');
 		var date	= new Date(parts[0], parts[1] - 1, parts[2], 0, 0, 0);
-		var time	= date.getTime()/1000;
+		var time	= date.getTime() / 1000;
 
 		this.show('week', time);
 	},

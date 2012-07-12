@@ -451,7 +451,7 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 		});
 
 			// Reschedule cached event popup
-		event.popup	= event.start - secondsBefore*1000;
+		event.popup	= event.start - secondsBefore * 1000;
 
 			// Update in DB
 		this.closePopup(idEvent);

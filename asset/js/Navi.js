@@ -110,7 +110,7 @@ Todoyu.Ext.calendar.Navi	= {
 	 */
 	goBackward: function() {
 		var date	= this.getBackwardDate();
-		var time	= date.getTime()/1000;
+		var time	= date.getTime() / 1000;
 
 		this.ext.show(null, time);
 	},
@@ -136,7 +136,7 @@ Todoyu.Ext.calendar.Navi	= {
 	 */
 	goForward: function() {
 		var date	= this.getForwardDate();
-		var time	= date.getTime()/1000;
+		var time	= date.getTime() / 1000;
 
 		this.ext.show(null, time);
 	},
@@ -162,7 +162,7 @@ Todoyu.Ext.calendar.Navi	= {
 	 */
 	goToday: function() {
 		var date	= this.getTodayDate();
-		var time	= date.getTime()/1000;
+		var time	= date.getTime() / 1000;
 
 		this.ext.show(null, time);
 	},

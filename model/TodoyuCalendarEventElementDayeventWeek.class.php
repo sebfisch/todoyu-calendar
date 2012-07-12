@@ -62,7 +62,7 @@ class TodoyuCalendarEventElementDayeventWeek extends TodoyuCalendarEventElementW
 		$data['titleCropLength']= TodoyuCalendarPreferences::isWeekendDisplayed() ? 11 : 16;
 
 		$view		= $this->getView();
-        $viewRange	= $view->getRange();
+		$viewRange	= $view->getRange();
 		$eventRange	= $this->getEvent()->getRange();
 
 		$overlappingRange	= $viewRange->getOverlappingRange($eventRange, true);
