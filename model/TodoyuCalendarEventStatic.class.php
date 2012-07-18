@@ -767,7 +767,7 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 
 			// Duration
 		if( $this->getDuration() > 0 ) {
-			$durationInfo	= TodoyuTime::formatDuration($this->getDuration());
+			$durationInfo	= $this->getDurationFormatted();
 			$quickInfo->addInfo('duration',	$durationInfo, 35);
 		}
 
@@ -777,6 +777,24 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 			$personInfo	= $this->getQuickinfoPersonInfo();
 			$quickInfo->addInfo('persons', $personInfo, 50, false);
 		}
+	}
+
+
+
+	/**
+	 * Get formatted duration
+	 * Handle case when event overlaps multiple days, but does not use the full range (00:00-23:59)
+	 *
+	 * @return	String
+	 */
+	public function getDurationFormatted() {
+		if( $this->isSingleDay() || $this->getDuration() < TodoyuTime::SECONDS_HOUR*12 ) {
+			$duration	= $this->getDuration();
+		} else {
+			$duration	= TodoyuTime::getDayEnd($this->getDateEnd()) - TodoyuTime::getDayStart($this->getDateStart());
+		}
+
+		return TodoyuTime::formatDuration($duration);
 	}
 
 
