@@ -249,7 +249,7 @@ Todoyu::$CONFIG['EXT']['calendar']['weekDays'] = array(
 );
 
 Todoyu::$CONFIG['EXT']['calendar']['series'] = array(
-	'maxCreate'	=> 1000
+	'maxCreate'	=> 300
 );
 
 	// Event data sources
