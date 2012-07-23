@@ -963,11 +963,6 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	public function getOverbookingConflicts() {
 		$event	= TodoyuCalendarEventStaticManager::getEvent(0);
 
-			// Overbookable event types cannot conflict
-		if( TodoyuCalendarEventTypeManager::isOverbookable($event->getTypeIndex()) ) {
-			return array();
-		}
-
 			// Blocking event type: get conflicts
 		$event->injectData($this->eventData);
 		$ranges	= $this->getNextRanges($event->getDateStart(), $event->getDuration());
