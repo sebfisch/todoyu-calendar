@@ -45,24 +45,6 @@
 	cursor:no-drop !important;
 }
 
-.event .description,
-.event .description * {
-	font-size:9px;
-}
-
-
-.event .headInner {
-	position:relative;
-	line-height:1.2;
-	font-size:9px;
-	font-weight:normal;
-	padding-left:20px;
-	padding-top:3px;
-	padding-bottom:3px;
-	overflow:hidden;
-	white-space:nowrap;
-}
-
 .dayMode .event dd,
 .weekMode .event dd {
 	font-size:9px;
@@ -73,21 +55,25 @@
 	margin-bottom:2px;
 }
 
-
 .dayCol .event {
 	z-index:20;
 }
 
+
+
 /* ------------------------
 	Event
    ------------------------ */
-div.weekMode div#calendarBody div.event dt.head {
-	height:15px;
-	padding:3px 0;
-}
-div.weekMode div#calendarBody div.event dd span.desc {
-	display:inline;
-	white-space:normal;
+div.weekMode div#calendarBody div.event {
+	dt.head {
+		height:15px;
+		padding:3px 0;
+	}
+
+	dd span.desc {
+		display:inline;
+		white-space:normal;
+	}
 }
 
 
@@ -96,10 +82,10 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	margin:0 0 1px;
 	height:16px;
 	padding-top:1px;
-}
 
-.dayevent .head {
-	height:16px;
+	.head {
+		height:16px;
+	}
 }
 
 
@@ -108,110 +94,119 @@ div.weekMode div#calendarBody div.event dd span.desc {
 	position:relative;
 }
 
-#calendar .dayEvents .event {
-	margin:1px;
-	position:relative;
+#calendar .dayEvents {
+	.dayMode {
+		.dayEvents .event {
+			.head {
+				cursor:default;
+			}
+		}
+	}
+	.event {
+		margin:1px;
+		position:relative;
+
+		&.hasAccess .head {
+			cursor:move;
+		}
+
+		.date {
+			color:$colorTextGeneral;
+		}
+
+		.head {
+			cursor:default;
+		}
+	}
 }
 
-#calendar .dayEvents .event .head {
-	cursor:default;
-}
-#calendar .dayEvents .event.hasAccess .head {
-	cursor:move;
-}
-#calendar .dayMode .dayEvents .event .head {
-	cursor:default;
-}
+.event {
+	div div {
+		display:inline-block;
+	}
 
-.dayEvents .event .date {
-	color:$colorTextGeneral;
+	.head .typeIcon {
+		height:14px;
+		width:16px;
+	}
+
+	.headInner {
+		font: {
+			size:9px;
+			weight:normal;
+		}
+		line-height:1.2;
+		overflow:hidden;
+		padding: {
+			bottom:3px;
+			left:20px;
+			top:3px;
+		}
+		position:relative;
+		white-space:nowrap;
+	}
+
+	.typeIcon {
+		background:url(../img/icons.png) no-repeat;
+		vertical-align:top;
+	}
+
+	&.typeGeneral .typeIcon {
+		background-position:0 -660px;
+	}
+
+	&.typeAway .typeIcon {
+		background-position:0 -690px;
+	}
+
+	&.typeEducation .typeIcon {
+		background-position:0 -720px;
+	}
+
+	&.typeMeeting .typeIcon {
+		background-position:0 -750px;
+	}
+
+	&.typeAwayofficial .typeIcon {
+		background-position:0 -780px;
+	}
+
+	&.typeHomeoffice .typeIcon {
+		background-position:0 -810px;
+	}
+
+	&.typeCompensation .typeIcon {
+		background-position:0 -900px;
+	}
+
+	&.typeMilestone .typeIcon {
+		background-position:0 -930px;
+	}
+
+	&.typeReminder .typeIcon {
+		background-position:0 -960px;
+	}
+
+	&.typeBirthday .typeIcon {
+		background: {
+			image:url(../../../contact/asset/img/icons.png);
+			position:3px -330px;
+		}
+	}
 }
 
 .event > div {
 	padding:2px;
 }
-.event div div {
-	display:inline-block;
-}
-.event .head .typeIcon {
-	height:14px;
-	width:16px;
+
+.event .description,
+.event .description * {
+	font-size:9px;
 }
 
-
-
-/* --------------------------------------------
-	Events in all views (day, week, month)
-   -------------------------------------------- */
-.dayview div.tg-colwrapper div.event dl,
-.weekMode div.tg-colwrapper div.event dl {
-/*	border:1px dotted $white;*/
-}
-
-.private {
-	display:block;
-	position:absolute;
-	top:8px;
-	left:11px;
-	width:6px;
-	height:7px;
-	background:transparent url(../img/icons.png) no-repeat 0 -1140px;
-}
-
-.weekNumber {
-	float:left;
-	color:$colorNeutral06;
-}
-
-
-
-/* ----------------------
-	Event type icons
-   ---------------------- */
-.eventtypeicon {
-	padding-right:16px;
-}
-
-.event .typeIcon {
-	background:url(../img/icons.png) no-repeat;
-	vertical-align:top;
-}
-
-.event.typeGeneral .typeIcon {
-	background-position:0 -660px;
-}
-.event.typeAway .typeIcon {
-	background-position:0 -690px;
-}
 .event.typeVacation .typeIcon,
 .event.typeHoliday .typeIcon {
 	background-position:0 -390px;
-}
-.event.typeEducation .typeIcon {
-	background-position:0 -720px;
-}
-.event.typeMeeting .typeIcon {
-	background-position:0 -750px;
-}
-.event.typeAwayofficial .typeIcon {
-	background-position:0 -780px;
-}
-.event.typeHomeoffice .typeIcon {
-	background-position:0 -810px;
-}
-.event.typeCompensation .typeIcon {
-	background-position:0 -900px;
-}
-.event.typeMilestone .typeIcon {
-	background-position:0 -930px;
-}
-.event.typeReminder .typeIcon {
-	background-position:0 -960px;
-}
-
-.event.typeBirthday .typeIcon {
-	background-image:url(../../../contact/asset/img/icons.png);
-	background-position:3px -330px;
 }
 
 .event.typeAway .headInner,
@@ -285,38 +280,81 @@ div.weekMode div#calendarBody div.event dd span.desc {
 
 
 
-#quickinfo dt.typeGeneralIcon {
-	background:url(../img/icons.png) no-repeat scroll 3px -656px;
+/* --------------------------------------------
+	Events in all views (day, week, month)
+   -------------------------------------------- */
+.dayview div.tg-colwrapper div.event dl,
+.weekMode div.tg-colwrapper div.event dl {
+/*	border:1px dotted $white;*/
 }
-#quickinfo dt.typeAwayIcon {
-	background:url(../img/icons.png) no-repeat scroll 4px -688px;
+
+.private {
+	display:block;
+	position:absolute;
+	top:8px;
+	left:11px;
+	width:6px;
+	height:7px;
+	background:transparent url(../img/icons.png) no-repeat 0 -1140px;
 }
-#quickinfo dt.typeBirthdayIcon {
-	background:url(../../../contact/asset/img/icons.png) no-repeat 4px -328px;
+
+.weekNumber {
+	float:left;
+	color:$colorNeutral06;
 }
-#quickinfo dt.typeVacationIcon {
-	background:url(../img/icons.png) no-repeat scroll 3px -388px;
+
+
+
+.eventtypeicon {
+	padding-right:16px;
 }
-#quickinfo dt.typeEducationIcon {
-	background:url(../img/icons.png) no-repeat scroll 3px -718px;
-}
-#quickinfo dt.typeMeetingIcon {
-	background:url(../img/icons.png) no-repeat scroll 3px -748px;
-}
-#quickinfo dt.typeAwayofficialIcon {
-	background:url(../img/icons.png) no-repeat scroll 3px -777px;
-}
-#quickinfo dt.typeHomeofficeIcon {
-	background:url(../img/icons.png) no-repeat scroll 3px -807px;
-}
-#quickinfo dt.typeCompensationIcon {
-	background:url(../img/icons.png) no-repeat scroll 3px -898px;
-}
-#quickinfo dt.typeMilestoneIcon {
-	background:url(../img/icons.png) no-repeat scroll 3px -927px;
-}
-#quickinfo dt.typeReminderIcon {
-	background:url(../img/icons.png) no-repeat scroll 3px -958px;
+
+
+
+#quickinfo dt{
+	&.typeGeneralIcon {
+		background:url(../img/icons.png) no-repeat scroll 3px -656px;
+	}
+
+	&.typeAwayIcon {
+		background:url(../img/icons.png) no-repeat scroll 4px -688px;
+	}
+
+	&.typeBirthdayIcon {
+		background:url(../../../contact/asset/img/icons.png) no-repeat 4px -328px;
+	}
+
+	&.typeVacationIcon {
+		background:url(../img/icons.png) no-repeat scroll 3px -388px;
+	}
+
+	&.typeEducationIcon {
+		background:url(../img/icons.png) no-repeat scroll 3px -718px;
+	}
+
+	&.typeMeetingIcon {
+		background:url(../img/icons.png) no-repeat scroll 3px -748px;
+	}
+
+	&.typeAwayofficialIcon {
+		background:url(../img/icons.png) no-repeat scroll 3px -777px;
+	}
+
+	&.typeHomeofficeIcon {
+		background:url(../img/icons.png) no-repeat scroll 3px -807px;
+	}
+
+	&.typeCompensationIcon {
+		background:url(../img/icons.png) no-repeat scroll 3px -898px;
+	}
+
+	&.typeMilestoneIcon {
+		background:url(../img/icons.png) no-repeat scroll 3px -927px;
+	}
+
+	&.typeReminderIcon {
+		background:url(../img/icons.png) no-repeat scroll 3px -958px;
+	}
 }
 
 
@@ -324,34 +362,46 @@ div.weekMode div#calendarBody div.event dd span.desc {
 /* ------------------------
 	Portal events list
    ------------------------ */
-.portalEventsList h1.headerLine span.taskDate {
-	width:260px;
-}
-.portalEventsList h1.headerLine span.eventType {
-	width:110px;
-}
-.portalEventsList .event .eventDetailView td.label {
-  background:none;
+.portalEventsList {
+	h1.headerLine span {
+		&.taskDate {
+			width:260px;
+		}
+
+		&.eventType {
+			width:110px;
+		}
+	}
+
+	.event .eventDetailView td.label {
+	  background:none;
+	}
+
+	#events {
+		div {
+			&.eventDetails	{
+				background-color:$white;
+			}
+		}
+		.event {
+			h3	{
+				border-left:0;
+			}
+
+			.expanded {
+				border-bottom:1px solid $colorNeutral02;
+
+				h3	{
+					font-weight:bold;
+					background-color:$colorNeutral01;
+				}
+			}
+		}
+	}
 }
 
-.portalEventsList #events .event h3	{
-	border-left:0;
-}
-.portalEventsList #events .event.expanded h3	{
-	font-weight:bold;
-	background-color:$colorNeutral01;
-}
-
-.portalEventsList #events .event.expanded {
-	border-bottom:1px solid $colorNeutral02;
-}
-
-.portalEventsList #events div.eventDetails	{
-	background-color:$white;
-}
 
 
-/* @todo clean up:merge sections "portal events list" and "list mode in portal" */
 /* ----------------------
 	Holidays in portal list
    ---------------------- */
@@ -379,11 +429,13 @@ div.weekMode div#calendarBody div.event dd span.desc {
 			background-color:$colorNeutral01;
 		}
 		.type {
-			margin-right:5px;
 			background-position:0 -325px;
 			height:16px;
+			margin:  {
+				left:10px;
+				right:5px;
+			}
 			width:30px;
-			margin-left:10px;
 		}
 		.date {
 			width:200px;
@@ -404,110 +456,118 @@ div.weekMode div#calendarBody div.event dd span.desc {
   ------------------------- */
 #holidays h3 {
 	background-color:$white;
-}
-
-#holidays h3 {
 	white-space:normal;
-}
-#holidays h3.holidaysList {
-	padding-left:10px;
-}
 
-#events .event .headLabel {
-	padding:0 0 0 20px;
-}
+	&.holidaysList {
+		padding-left:10px;
+	}
 
-#events .event .headLabel .icon {
-	padding:0 5px 0 0;
+	&.odd {
+		background-color:$colorNeutral01;
+	}
 }
 
-#holidays h3.odd {
-	background-color:$colorNeutral01;
+
+
+#events {
+	h3 {
+		background-color:$white;
+		border-bottom:1px solid $colorNeutral02;
+
+		span.icon{
+			&.acknowledge {
+			/*margin-right:10px;*/
+
+				&.not {
+					background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1260px;
+					cursor:pointer;
+
+					&.updated {
+						background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1434px;
+						cursor:pointer;
+					}
+				}
+			}
+		}
+	}
+
+	.details {
+		border-left:1px solid $colorNeutral01;
+		border-right:1px solid $colorNeutral01;
+
+		.label{
+			padding-left:10px;
+		}
+
+		.left {
+			float:left;
+			width:380px;
+		}
+
+		.right {
+			float:right;
+			width:280px;
+
+			dt {
+				float:left;
+				width:100px;
+			}
+
+			dd {
+				float:left;
+				width:180px;
+
+				span {
+					padding-left:13px;
+				}
+			}
+		}
+	}
+
+	.event {
+		.headLabel {
+			padding:0 0 0 20px;
+
+			.icon {
+				padding:0 5px 0 0;
+			}
+		}
+
+		h3 .label {
+			cursor:pointer;
+
+			.date {
+				display:inline-block;
+				width:238px;
+			}
+
+			.eventtype {
+				display:inline-block;
+				width:100px;
+			}
+		}
+	}
 }
 
-#events h3 {
-	background-color:$white;
-	border-bottom:1px solid $colorNeutral02;
+
+
+div.eventDetails {
+	dt {
+		clear:both;
+		float:left;
+		line-height:18px;
+		text-align:left;
+	}
+
+	dd {
+		float:right;
+		line-height:18px;
+		width:520px;
+		text-align:left;
+	}
 }
 
-#events .details {
-	border-left:1px solid $colorNeutral01;
-	border-right:1px solid $colorNeutral01;
 
-}
-
-#events .details .label{
-	padding-left:10px;
-
-}
-
-#events .details .left {
-	float:left;
-	width:380px;
-}
-
-#events .details .right {
-	float:right;
-	width:280px;
-}
-
-#events .details .right dt {
-	float:left;
-	width:100px;
-}
-
-#events .details .right dd {
-	float:left;
-	width:180px;
-}
-
-#events .details .right dd span {
-	padding-left:13px;
-}
-
-/*#events .headLabel span.acknowledge {*/
-#events h3 span.icon.acknowledge {
-	/*margin-right:10px;*/
-}
-
-/*#events .headLabel span.acknowledge.not {*/
-#events h3 span.icon.acknowledge.not {
-	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1260px;
-	cursor:pointer;
-}
-
-#events h3 span.icon.acknowledge.not.updated {
-	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1434px;
-	cursor:pointer;
-}
-
-div.eventDetails dt {
-	clear:both;
-	float:left;
-	line-height:18px;
-	text-align:left;
-}
-
-div.eventDetails dd {
-	float:right;
-	line-height:18px;
-	width:520px;
-	text-align:left;
-}
-
-#events .event h3 .label {
-	cursor:pointer;
-}
-
-#events .event h3 .label .date {
-	display:inline-block;
-	width:238px;
-}
-
-#events .event h3 .label .eventtype {
-	display:inline-block;
-	width:100px;
-}
 
 #events .event h3 .label .eventtype,
 #events .event h3 .label .title {
@@ -520,27 +580,31 @@ div.eventDetails dd {
 /* -------------------------------------
 	Holidays list
    ------------------------------------- */
-#holidays .holidaysList span {
-	display:block;
-	float:left;
-}
+#holidays {
+	.holidayDate {
+		padding-left:38px;
+		width:183px;
 
-#holidays .holidayDate {
-	padding-left:38px;
-	width:183px;
-}
-	#holidays .holidayDate.hasIcon {
-		background:url(../img/icons.png) no-repeat scroll 0 -390px;
+		&.hasIcon {
+			background:url(../img/icons.png) no-repeat scroll 0 -390px;
+		}
 	}
 
-#holidays .holidayTitle {
-	padding-left:20px;
-	float:left;
-	width:250px;
-}
-#holidays .holidayWorkinghours {
-	position:relative;
-	width:100px;
+	.holidaysList span {
+		display:block;
+		float:left;
+	}
+
+	.holidayTitle {
+		padding-left:20px;
+		float:left;
+		width:250px;
+	}
+
+	.holidayWorkinghours {
+		position:relative;
+		width:100px;
+	}
 }
 
 
@@ -576,25 +640,25 @@ div.eventDetails dd {
    --------------------------- */
 table.eventDetailView {
 	width:100%;
-}
 
-table.eventDetailView td {
-	text-align:left;
-	padding:7px 0 7px 0;
+	span.reminderLabel {
+		font-weight:bold;
+	}
 
-}
-table.eventDetailView td a {
-	text-decoration:underline;
-}
+	td {
+		text-align:left;
+		padding:7px 0 7px 0;
 
-table.eventDetailView td.label {
-	font-weight:bold;
-	width:120px;
-	padding-left:2px;
-}
+		a {
+			text-decoration:underline;
+		}
 
-table.eventDetailView span.reminderLabel {
-	font-weight:bold;
+		&.label {
+			font-weight:bold;
+			width:120px;
+			padding-left:2px;
+		}
+	}
 }
 
 table.eventDetailView tr.odd,
@@ -626,8 +690,8 @@ button.editEvent .icon {
    ------------------------------------------------- */
 div.mailing fieldset.autoemail {
 	padding:10px 15px 15px;
-}
 
-div.mailing fieldset.autoemail legend {
-	display:block;
+	legend {
+		display:block;
+	}
 }

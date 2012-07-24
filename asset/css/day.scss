@@ -26,15 +26,17 @@ div.dayMode div#calendarBody div.event dt.head {
 
 .day-todaywk-dayname{
 	background-color:$blue07;
-	border-color:$blue03 $blue08 $blue08 $blue03;
-	border-style:solid;
-	border-width:1px;
+	border: {
+		color:$blue03 $blue08 $blue08 $blue03;
+		style:solid;
+		width:1px;
+	}
 	color:$white;
 	font-weight:bold;
-	padding:1px 3px;
 	margin-left:0;
-	white-space:nowrap;
+	padding:1px 3px;
 	text-align:center;
+	white-space:nowrap;
 }
 
 

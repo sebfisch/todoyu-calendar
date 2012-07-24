@@ -30,12 +30,12 @@
 }
 
 #tgnowptr {
-	background:#f2f3ed url(../img/background-hours.png) repeat-y;
+	background:$colorCorporate00 url(../img/background-hours.png) repeat-y;
 }
 
 #calendar .colHours {
 	width:40px;
-	background:#f2f3ed url(../img/background-hours.png) repeat-y;
+	background:$colorCorporate00 url(../img/background-hours.png) repeat-y;
 
 	& .hour {
 		padding-left:2px;
@@ -64,7 +64,6 @@
 	width:100%;
 	pointer-events:none;
 	background-color:$colorNeutral03;
-	/*background-color:$colorAlert00;*/
  	opacity:0.4;
 	overflow:hidden;
 }
@@ -134,9 +133,9 @@
 }
 
 #calendar-body {
-	width:100%;
 	background-color:$white;
 	padding-bottom:10px;
+	width:100%;
 }
 
 
@@ -160,13 +159,14 @@ li.editeventtab p.label span.icon {
 	}
 
 	& #repeatsChoices {
+		background-color:$colorCorporate00;
 		margin: {
 			left:130px;
 			top:5px;
 			bottom:5px;
 		}
 		padding:4px;
-		background-color:#f2f3ed; }
+	}
 
 	& #repeatsChoices_when {
 		margin-top:10px;

@@ -28,20 +28,24 @@ h1.extIconCalendar .title {
 #navi-main-list-planning li.itemCalendarDay a,
 #navi-main-list-planning li.itemCalendarWeek a,
 #navi-main-list-planning li.itemCalendarMonth a {
-	background-image:url(../img/icons.png) !important;
-	background-repeat:no-repeat;
+	background: {
+		image:url(../img/icons.png) !important;
+		repeat:no-repeat;
+	}
 }
 
-#navi-main-list-planning li.itemCalendarDay a {
-	background-position:6px -205px;
-}
+#navi-main-list-planning li{
+	&.itemCalendarDay a {
+		background-position:6px -205px;
+	}
 
-#navi-main-list-planning li.itemCalendarWeek a {
-	background-position:6px -235px;
-}
+	&.itemCalendarWeek a {
+		background-position:6px -235px;
+	}
 
-#navi-main-list-planning li.itemCalendarMonth a {
-	background-position:6px -265px;
+	&.itemCalendarMonth a {
+		background-position:6px -265px;
+	}
 }
 
 
@@ -50,9 +54,11 @@ h1.extIconCalendar .title {
 	Sub menu in portal
    -------------------------- */
 #navi-main-list-portal li.itemAppointment a {
-	background-image:url(../img/icons.png) !important;
-	background-repeat:no-repeat;
-	background-position:6px 5px;
+	background: {
+		image:url(../img/icons.png) !important;
+		repeat:no-repeat;
+		position:6px 5px;
+	}
 }
 
 
@@ -142,45 +148,49 @@ form.createevent label, form.createeventMidcol label{
 	Date navigational buttons (center on today, go forward / backward)
    -------------------------------------------------------------------- */
 .dateNavi {
-	position:absolute;
-	top:2px;
-	right:10px;
+	background:$white;
+	border:1px solid $colorNeutral04;
 	height:15px;
 	padding:2px 5px;
-	border:1px solid $colorNeutral04;
-	background:$white;
+	position:absolute;
+	right:10px;
+	top:2px;
 	-moz-border-radius:13px;
 	-webkit-border-radius:13px;
 	border-radius:13px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
-}
 
-.dateNavi .icon {
-	height:15px;
-	margin:0;
-	min-width:28px;
-	width:28px;
-	cursor:pointer;
-	background:url(../img/icons.png) no-repeat 0 0;
-}
+	.goToday {
+		border:1px solid $colorNeutral04;
+		border-width:0 1px;
+		background-position:7px -150px;
+	}
 
-.dateNavi .goToday {
-	border:1px solid $colorNeutral04;
-	border-width:0 1px;
-	background-position:7px -150px;
-}
-.dateNavi .goBackward {
-	background-position:4px -120px;
-}
-.dateNavi .goForward {
-	background-position:7px -180px;
-}
-.dateNavi .toggleDayView {
-	border-left:1px solid $colorNeutral04;
-	background-position:8px -60px;
-}
-.dateNavi .toggleWeekend {
-	border-left:1px solid $colorNeutral04;
-	background-position:8px -91px;
+	.goBackward {
+		background-position:4px -120px;
+	}
+
+	.goForward {
+		background-position:7px -180px;
+	}
+
+	.icon {
+		background:url(../img/icons.png) no-repeat 0 0;
+		cursor:pointer;
+		height:15px;
+		margin:0;
+		min-width:28px;
+		width:28px;
+	}
+
+	.toggleDayView {
+		border-left:1px solid $colorNeutral04;
+		background-position:8px -60px;
+	}
+
+	.toggleWeekend {
+		border-left:1px solid $colorNeutral04;
+		background-position:8px -91px;
+	}
 }
 
 
@@ -188,14 +198,28 @@ form.createevent label, form.createeventMidcol label{
 /* -------------------
 	Popups
    ------------------- */
-.dialog .notification .fLabel {
-	width:110px;
-}
-.dialog .notification .fField {
-	width:280px;
-}
-.dialog .notification fieldset {
-	padding:8px 15px 15px;
+.dialog .notification {
+	fieldset {
+		padding:8px 15px 15px;
+	}
+
+	.fLabel {
+		width:110px;
+	}
+
+	.fField {
+		width:280px;
+	}
+
+	&.reminder {
+		.eventDetails {
+			margin:16px 0 0 0;
+		}
+
+		.eventDetailView td {
+			padding:4px;
+		}
+	}
 }
 
 
@@ -206,11 +230,4 @@ form.createevent label, form.createeventMidcol label{
 button.rescheduleReminderButton span.icon {
 	background:url(../img/icons.png) no-repeat 2px -1200px;
 	padding-left:6px;
-}
-.dialog .notification.reminder .eventDetailView td {
-	padding:4px;
-}
-
-.dialog .notification.reminder .eventDetails {
-	margin:16px 0 0 0;
 }

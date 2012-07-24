@@ -8,61 +8,60 @@
 .gridHeader {
 	position:relative;
 	z-index:110;
+
+	.wk-weektop {
+		background-color:$colorCorporate04;
+		font-size:11px;
+		line-height:14px;
+		overflow:hidden;
+		width:100%;
+	}
 }
 
-.gridHeader .wk-weektop {
-	width:100%;
-	background-color:$colorCorporate04;
-	overflow:hidden;
-	font-size:11px;
-	line-height:14px;
+.weekMode {
+	.dayCol{
+		width:86px;
+
+		&.dayName {
+			font-weight:normal;
+			white-space:nowrap;
+			padding:2px 4px;
+			width:78px;
+			cursor:pointer;
+			text-align:center;
+
+			&.today {
+				background-color:$colorHighlight03;
+				border-color:$colorNeutral06 $colorNeutral01 $colorNeutral01 $colorNeutral06;
+				border-style:solid;
+				border-width:1px;
+				font-weight:bold;
+				padding:1px 3px;
+			}
+
+			&.odd {
+				background-color:$colorCorporate01;
+			}
+		}
+	}
+
+	.dayevent {
+		margin-left:2px;
+		margin-top:1px;
+		overflow:hidden;
+		padding:1px 2px 2px;
+		white-space:nowrap;
+	}
+
+	&.fiveDays .dayCol{
+		width:123px;
+
+		&.dayName {
+			width:112px;
+		}
+	}
 }
 
-.weekMode .dayCol.dayName {
-	font-weight:normal;
-	white-space:nowrap;
-	padding:2px 4px;
-	width:78px;
-	cursor:pointer;
-	text-align:center;
-}
-.weekMode.fiveDays .dayCol.dayName {
-	width:112px;
-}
-
-.weekMode .dayCol.dayName.odd {
-	background-color:$colorCorporate01;
-}
-
-
-.weekMode .dayCol.dayName.today {
-	background-color:$colorHighlight03;
-	border-color:$colorNeutral06 $colorNeutral01 $colorNeutral01 $colorNeutral06;
-	border-style:solid;
-	border-width:1px;
-	font-weight:bold;
-	padding:1px 3px;
-}
-
-
-
-
-/* ---------------
-	Day events
-   --------------- */
-
-
-
-/* ------------------
-	Week view
-   ------------------ */
-
-.weekMode .dayCol {
-	width:86px;
-}
-.weekMode.fiveDays .dayCol {
-	width:123px;
-}
 
 
 .wk-webcontent-td {
@@ -88,16 +87,16 @@
 }
 
 .wk-scrolltimedevents {
-	position:relative;
-	overflow-y:scroll;
-	overflow-x:hidden;
-	border-top:1px solid $colorNeutral06;
+	border-bottom:1px solid $colorNeutral02;
 	border-left:1px solid $colorNeutral02;
 	border-right:1px solid $colorNeutral02;
-	border-bottom:1px solid $colorNeutral02;
-	padding:0;
+	border-top:1px solid $colorNeutral06;
 	font-size:11px;
 	line-height:normal;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	padding:0;
+	position:relative;
 }
 
 .tg-timedevents {
@@ -151,14 +150,6 @@
 	height:1008px;
 	margin-bottom:-1008px;
 	cursor:pointer;
-}
-
-.weekMode .dayevent {
-	margin-top:1px;
-	padding:1px 2px 2px;
-	white-space:nowrap;
-	overflow:hidden;
-	margin-left:2px;
 }
 
 td.weekModeHourHotspotCell {

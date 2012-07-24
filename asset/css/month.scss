@@ -85,13 +85,13 @@
 	}
 
 	.standardGrid td.title {
+		background-color:$colorCorporate00;
+		color:$colorNeutral08;
+		cursor:pointer;
 		height:20px;
 		line-height:16px;
 		padding:2px;
 		text-align:right;
-		color:#444;
-		background-color:#f2f3ed;
-		cursor:pointer;
 	}
 
 	.standardGrid td.title:hover{
