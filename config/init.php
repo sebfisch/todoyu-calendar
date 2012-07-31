@@ -26,21 +26,6 @@ TodoyuScheduler::addJob('TodoyuCalendarJobReminderEmail', 5);
 
 
 /* -------------------
-	Event Types
-   ------------------- */
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'calendar.event.type.general');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'calendar.event.type.away');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'calendar.event.type.awayofficial');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_BIRTHDAY, 'birthday', 'calendar.event.type.birthday');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_VACATION, 'vacation', 'calendar.event.type.vacation');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_EDUCATION, 'education', 'calendar.event.type.education');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MEETING, 'meeting', 'calendar.event.type.meeting');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'calendar.event.type.homeoffice');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'calendar.event.type.compensation');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'calendar.event.type.milestone');
-TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'calendar.event.type.reminder');
-
-/* -------------------
 	Event data sources
    ------------------- */
 TodoyuCalendarDataSourceManager::addDataSource('static', 'TodoyuCalendarDataSourceStatic');
@@ -209,5 +194,21 @@ if( TodoyuExtensions::isInstalled('profile') && TodoyuAuth::isInternal() ) {
 		);
 	}
 }
+
+
+/* -------------------
+	Event Types
+   ------------------- */
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_GENERAL, 'general', 'calendar.event.type.general');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAY, 'away', 'calendar.event.type.away');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_AWAYOFFICIAL, 'awayofficial', 'calendar.event.type.awayofficial');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_BIRTHDAY, 'birthday', 'calendar.event.type.birthday');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_VACATION, 'vacation', 'calendar.event.type.vacation');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_EDUCATION, 'education', 'calendar.event.type.education');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MEETING, 'meeting', 'calendar.event.type.meeting');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_HOMEOFFICE, 'homeoffice', 'calendar.event.type.homeoffice');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_COMPENSATION, 'compensation', 'calendar.event.type.compensation');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_MILESTONE, 'milestone', 'calendar.event.type.milestone');
+TodoyuCalendarEventTypeManager::addEventType(EVENTTYPE_REMINDER, 'reminder', 'calendar.event.type.reminder');
 
 ?>
