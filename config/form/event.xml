@@ -22,17 +22,9 @@
 					<required />
 				</field>
 
-				<field type="selectgrouped" name="eventtype">
-					<label>calendar.event.attr.eventtype</label>
-					<source type="function">
-						<function>TodoyuCalendarViewHelper::getEventTypeOptions</function>
-					</source>
-					<noPleaseSelect />
-					<required />
-				</field>
-
 				<field type="checkbox" name="is_dayevent">
 					<label>calendar.event.attr.is_dayevent</label>
+					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.Edit.onChangeEventtype(this, 'is_dayevent', 'eventtype');"</extraAttributes>
 				</field>
 
 				<field type="checkbox" name="is_private">
@@ -42,6 +34,16 @@
 							<function>TodoyuCalendarEventFormValidator::eventIsAssignableToCurrentPersonOnly</function>
 						</user>
 					</validate>
+				</field>
+
+				<field type="selectgrouped" name="eventtype">
+					<label>calendar.event.attr.eventtype</label>
+					<source type="function">
+						<function>TodoyuCalendarViewHelper::getEventTypeOptions</function>
+						<lazyInit />
+					</source>
+					<noPleaseSelect />
+					<required />
 				</field>
 
 				<field type="datetime" name="date_start">

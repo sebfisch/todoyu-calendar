@@ -245,6 +245,26 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		return TodoyuFormManager::renderSubFormRecord($xmlPath, $fieldName, $formName, $index, $idRecord, $formData);
 	}
 
+
+
+	/**
+	 * Update Eventtypes options
+	 *
+	 * @param	Array		$params
+	 * @return	String
+	 */
+	public function updateeventtpyesAction(array $params) {
+		$isDayEvent = intval($params['isDayEvent']);
+
+		$tmpl	= 'core/view/select-grouped-options.tmpl';
+		$data	= array(
+			'options'	=> TodoyuCalendarEventViewHelper::getEventTypeOptions($isDayEvent),
+			'value'		=> array(intval($params['value']))
+		);
+
+		return Todoyu::render($tmpl, $data);
+	}
+
 }
 
 ?>

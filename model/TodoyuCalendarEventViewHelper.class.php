@@ -32,7 +32,7 @@ class TodoyuCalendarEventViewHelper {
 	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
-	public static function getEventTypeOptions(TodoyuFormElement $field) {
+	public static function getEventTypeOptions($isDayEvent) {
 		$groupLabelOverbookable	= Todoyu::Label('calendar.event.eventtype.optgroup.overbookable');
 		$groupLabelBlocking		= Todoyu::Label('calendar.event.eventtype.optgroup.blocking');
 
@@ -47,7 +47,7 @@ class TodoyuCalendarEventViewHelper {
 			// Add event types to resp. optgroup
 		$eventTypes	= TodoyuCalendarEventTypeManager::getEventTypes(true);
 		foreach($eventTypes as $eventType) {
-			if( TodoyuCalendarEventTypeManager::isOverbookable($eventType['value']) ) {
+			if( TodoyuCalendarEventTypeManager::isOverbookable($eventType['value'], $isDayEvent) ) {
 				$options[$groupLabelOverbookable][]	= $eventType;
 			} else {
 				$options[$groupLabelBlocking][]	= $eventType;

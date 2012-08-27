@@ -200,6 +200,46 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	},
 
 
+	/**
+	 *
+	 */
+	onChangeEventtype: function(inputField) {
+		var idInputFieldArr			= inputField.id.split('-').without('is');
+		var idFieldEventtype		= idInputFieldArr.join('-').replace('dayevent', 'eventtype');
+
+		var isDayEvent = $('event-field-is-dayevent').checked;
+
+		var url = Todoyu.getUrl('calendar', 'event');
+
+		var options = {
+			parameters: {
+				action: 'updateeventtpyes',
+				isDayEvent: isDayEvent ? 1 : 0,
+				value: $(idFieldEventtype).getValue()
+			},
+			onComplete: this.onUpdateEventTypes.bind(this, idFieldEventtype)
+		};
+
+		Todoyu.Ui.update(idFieldEventtype, url, options);
+	},
+
+
+
+	/**
+	 * Fills the found options to the selector
+	 * Highlights the selector for 2 seconds
+	 *
+	 * @method	onUpdateCompanyAddressRecords
+	 * @param	{String}			idTarget
+	 * @param	{Ajax.Response}		response
+	 */
+	onUpdateEventTypes: function(idTarget, response) {
+		new Effect.Highlight(idTarget, {
+					duration: 2.0
+				});
+	},
+
+
 
 	/**
 	 * Toggle date fields depending on all-day event flag

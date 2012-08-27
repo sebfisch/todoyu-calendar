@@ -112,7 +112,9 @@ class TodoyuCalendarViewHelper {
 	 * @return	Array
 	 */
 	public static function getEventTypeOptions(TodoyuFormElement $field) {
-		return TodoyuCalendarEventViewHelper::getEventTypeOptions($field);
+		$isDayEvent = $field->getForm()->getField('is_dayevent')->getValue();
+
+		return TodoyuCalendarEventViewHelper::getEventTypeOptions($isDayEvent);
 	}
 
 

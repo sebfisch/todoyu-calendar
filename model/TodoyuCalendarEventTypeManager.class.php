@@ -157,9 +157,13 @@ class TodoyuCalendarEventTypeManager {
 	 * @param	Integer		$eventType
 	 * @return	Boolean
 	 */
-	public static function isOverbookable($eventType) {
+	public static function isOverbookable($eventType, $isDayEvent = false) {
 			// Overbooking is generally allowed?
 		if( TodoyuCalendarManager::isOverbookingAllowed() ) {
+			return true;
+		}
+
+		if( $isDayEvent == true && ! in_array($eventType, Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_ABSENCE'])) {
 			return true;
 		}
 
