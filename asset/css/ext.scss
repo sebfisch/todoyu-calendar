@@ -159,6 +159,15 @@ form.createevent label, form.createeventMidcol label{
 	-webkit-border-radius:13px;
 	border-radius:13px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
 
+	.icon {
+		background:url(../img/icons.png) no-repeat 0 0;
+		cursor:pointer;
+		height:15px;
+		margin:0;
+		min-width:28px;
+		width:28px;
+	}
+
 	.goToday {
 		border:1px solid $colorNeutral04;
 		border-width:0 1px;
@@ -173,14 +182,6 @@ form.createevent label, form.createeventMidcol label{
 		background-position:7px -180px;
 	}
 
-	.icon {
-		background:url(../img/icons.png) no-repeat 0 0;
-		cursor:pointer;
-		height:15px;
-		margin:0;
-		min-width:28px;
-		width:28px;
-	}
 
 	.toggleDayView {
 		border-left:1px solid $colorNeutral04;
