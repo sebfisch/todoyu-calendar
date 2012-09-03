@@ -364,7 +364,7 @@ class TodoyuCalendarEventMailManager {
 	 * @param	Array		$options
 	 * @return	Boolean
 	 */
-	public static function sendEvent($idEvent, $receiverTuples, array $options = array()) {
+	public static function sendEvent($idEvent, array $receiverTuples, array $options = array()) {
 		$receiverTuples	= TodoyuArray::trim($receiverTuples);
 		$sent			= false;
 
