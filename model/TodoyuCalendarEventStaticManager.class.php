@@ -382,11 +382,6 @@ class TodoyuCalendarEventStaticManager {
 			$dateStartOld	= $event->getDateStart();
 		}
 
-			// Adjust date end for events of type reminder
-		if( $data['eventtype'] == EVENTTYPE_REMINDER ) {
-			$data['date_end']	= intval($data['date_start']);
-		}
-
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idEvent, array('newEvent'	=> $isNewEvent));
 
@@ -907,15 +902,25 @@ class TodoyuCalendarEventStaticManager {
 		switch( $data['eventtype'] ) {
 				// Birthday
 			case EVENTTYPE_BIRTHDAY:
-				$data['date_start']	= TodoyuTime::getDayStart($data['date_start']);
-				$data['date_end']	= TodoyuTime::getDayEnd($data['date_start']);; // Fix, so event is in day period
 				$data['is_dayevent']= 1;
+				$data['date_end'] 	= $data['date_start']; // Fix, so event is in day period
 				break;
 
 				// Reminder
 			case EVENTTYPE_REMINDER:
-				$data['date_end']	= $data['date_start'];
+				$data['date_end'] = $data['date_start'];
 				break;
+		}
+
+			// Make sure date end is set. Same as date start of not set
+		if( empty($data['date_end']) ) {
+			$data['date_end'] = $data['date_start'];
+		}
+
+			// Expand to maximal hours for day events 00:00-23:59
+		if( $data['is_dayevent'] == 1 ) {
+			$data['date_start']	= TodoyuTime::getDayStart($data['date_start']);
+			$data['date_end']	= TodoyuTime::getDayEnd($data['date_end']);
 		}
 
 		return $data;
