@@ -27,7 +27,7 @@
 class TodoyuCalendarExtActionController extends TodoyuActionController {
 
 	/**
-	 * Initialize calendar default action: check permission
+	 * Init controller: check permission
 	 *
 	 * @param	Array	$params
 	 */
