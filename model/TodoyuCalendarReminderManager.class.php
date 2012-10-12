@@ -242,10 +242,12 @@ class TodoyuCalendarReminderManager {
 
 			if( $dateRemindEmail > 0 ) {
 				$data['date_remindemail']	= $dateRemindEmail + $offset;
+				$data['is_remindemailsent']	= 0;
 			}
 
 			if( $dateRemindPopup > 0 ) {
-				$data['date_remindpopup']	= $dateRemindPopup + $offset;
+				$data['date_remindpopup']			= $dateRemindPopup + $offset;
+				$data['is_remindpopupdismissed']	= 0;
 			}
 
 			if( sizeof($data) > 0 ) {
