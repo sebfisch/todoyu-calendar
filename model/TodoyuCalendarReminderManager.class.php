@@ -242,12 +242,22 @@ class TodoyuCalendarReminderManager {
 
 			if( $dateRemindEmail > 0 ) {
 				$data['date_remindemail']	= $dateRemindEmail + $offset;
-				$data['is_remindemailsent']	= 0;
+			} else if( $event->getDateStart() > NOW) {
+				$advanceTimeEmail = self::getAdvanceTime(CALENDAR_TYPE_EVENTREMINDER_EMAIL, $idPerson);
+				if( $advanceTimeEmail > 0 ) {
+					$data['date_remindemail']		= $event->getDateStart() - $advanceTimeEmail;
+					$data['is_remindemailsent']		= 0;
+				}
 			}
 
 			if( $dateRemindPopup > 0 ) {
 				$data['date_remindpopup']			= $dateRemindPopup + $offset;
-				$data['is_remindpopupdismissed']	= 0;
+			} else if( $event->getDateStart() > NOW) {
+				$advanceTimePopup = self::getAdvanceTime(CALENDAR_TYPE_EVENTREMINDER_POPUP, $idPerson);
+				if( $advanceTimePopup > 0 ) {
+					$data['date_remindpopup']			= $event->getDateStart() - $advanceTimePopup;
+					$data['is_remindpopupdismissed']	= 0;
+				}
 			}
 
 			if( sizeof($data) > 0 ) {
