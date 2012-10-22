@@ -5,7 +5,9 @@ calendar 1.3.0 - not released yet
 	* Bugfix: Styling bug
 	* Bugfix: Change blocking/non-blocking events on dayevent selection
 	* Bugfix: Event mail receivers data was ignored
+	* Feature: Implemented loading of event single view via deeplink
 	* Changed: Width adaption
+	* Added: TodoyuCalendarEventRenderer::renderEventLinkURL()
 
 calendar 1.2.1 - not released yet
 	* Bugfix: fixed drop-zones for dayevents in week view
@@ -25,9 +27,9 @@ calendar 1.2.0 - 2012-05-03
 	* Changed: Events that intersect more than one day are automatically rendered as "all-day" events
 	* Changed: Event type birthday has only date, no more time, duration is 23:59:59 not 01:00:00
 	* Changed: Day-Event flag is selectable for all event types but birthdays
-	* Changed: Active contextmenu disables quickinfos popups
+	* Changed: Active context menu disables quick-info popups
 	* Changed: Event types in event forms are now grouped into overbookable and blocking types
-	* Changed: Autonotification info comment in event edit form is only shown when there are any participants receiving an automaitc email notification
+	* Changed: Auto-notification info comment in event edit form is only shown when there are any participants receiving an automaitc email notification
 	* Changed: Blocking of event types is no more connected to events being all-day or not. Only the type defines whethere there can be overbooking-conflicts
 	* Changed: Use data sources which can provide own event types which implement the TodoyuCalendarEvent interface
 	* Changed: Use view objects to render content for day, week and month
@@ -68,7 +70,7 @@ calendar 1.1.2 - 2011-09-15
 	* Translation: #196 Updated french translation
 
 calendar 1.1.1 - 2011-07-25
-	* Changed: Event reminder popup closing via [x] in popup titlebar now deactivates the reminder
+	* Changed: Event reminder popup closing via [x] in popup title bar now deactivates the reminder
 	* Bugfix: Invalid label in email reminder js
 	* Bugfix: todoyu link URL in event mail links to event single view now (was showing week)
 	* Bugfix: Activation of view tab caused js error because of missing context
@@ -78,7 +80,7 @@ calendar 1.1.1 - 2011-07-25
 
 calendar 1.1.0 - 2011-06-17
 	* Bugfix: Event drag & drop in week & day views had wrong hour offset (-1h)
-	* Bugfix: Fixed event type toggling handling in event quickcreation form
+	* Bugfix: Fixed event type toggling handling in event quick-creation form
 	* Bugfix: Fixed EventManager to not delete events physically anymore (use "deleted" flag)
 	* Bugfix: Added noAccess class to ALL events which can't be edited (Drag&Drop)
 	* Bugfix: Removed empty values from event detail view (description, place)
@@ -112,11 +114,11 @@ calendar 1.1.0 - 2011-06-17
 	* Changed: Quickinfos now always hide when starting to drag events
 
  calendar 1.0.6
-	* Bugfix: Removed wrong wordwrapping (inserted spaces) from event descriptions
-	* Bugfix: quickinfos now always hide when starting to drag events
+	* Bugfix: Removed wrong word wrapping (inserted spaces) from event descriptions
+	* Bugfix: quick-infos now always hide when starting to drag events
 	* Bugfix: event drag & drop in week & day views had wrong hour offset (-1h)
 	* Feature: Different format in single view of events by duration - multi-day / multi-hour / minutes
-	* Feature: made quickinfos deactivateable
+	* Feature: made quick-info deactivatable
 	* Feature: Added placeholders for to-be spanish locale files
 
 calendar 1.0.1 to 1.0.5 - 1.0.5 released 2011-01-17

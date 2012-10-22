@@ -192,8 +192,14 @@ Todoyu.Ext.calendar.Event.View	= {
 		this.hide();
 
 		if( showCalendar !== false ) {
+				// Re-display calendar, if still not shown: reload view of today
 			this.ext.showCalendar();
+			if( $('calendar-body').children.length == 0 ) {
+				Todoyu.Ext.calendar.Navi.goToday();
+			}
+				// Empty the "view" tab's content
 			$('calendar-view').update('');
+
 		}
 	}
 

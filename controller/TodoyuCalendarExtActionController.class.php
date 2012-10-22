@@ -56,10 +56,12 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 		TodoyuPage::init('ext/calendar/view/ext.tmpl');
 		TodoyuPage::setTitle('calendar.ext.page.title');
 
-			// Get type from parameter or preferences
+
+		$idEvent	= intval($params['event']);
+
 		$activeTab	= $params['tab'];
 		if( empty($activeTab) ) {
-			$activeTab	= TodoyuCalendarPreferences::getActiveTab();
+			$activeTab	= $idEvent === 0 ? TodoyuCalendarPreferences::getActiveTab() : 'view';
 		}
 
 			// Verify access rights. If not, change it to day
@@ -69,8 +71,6 @@ class TodoyuCalendarExtActionController extends TodoyuActionController {
 		if( is_numeric($params['date']) ) {
 			TodoyuCalendarPanelWidgetCalendar::saveDate($params['date']);
 		}
-
-		$idEvent	= intval($params['event']);
 
 			// Render the calendar
 		$panelWidgets	= TodoyuCalendarRenderer::renderPanelWidgets();

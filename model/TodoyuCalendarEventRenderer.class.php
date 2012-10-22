@@ -208,6 +208,26 @@ class TodoyuCalendarEventRenderer {
 		return Todoyu::render($tmpl, $data);
 	}
 
+
+
+	/**
+	 * Render hyperlink HTML for linking to event in todoyu calendar
+	 *
+	 * @param	Integer		$idEvent
+	 * @param	Boolean		$absolute
+	 * @return	String
+	 */
+	public static function renderEventLinkURL($idEvent, $absolute = true) {
+		$idEvent	= intval($idEvent);
+
+		$urlParams	= array(
+			'ext'	=> 'calendar',
+			'event'	=> $idEvent
+		);
+
+		return TodoyuString::buildUrl($urlParams, '', $absolute);
+	}
+
 }
 
 ?>
