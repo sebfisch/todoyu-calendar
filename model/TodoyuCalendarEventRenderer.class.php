@@ -211,7 +211,7 @@ class TodoyuCalendarEventRenderer {
 
 
 	/**
-	 * Render hyperlink HTML for linking to event in todoyu calendar
+	 * Render URL pointing to event in todoyu calendar
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Boolean		$absolute
