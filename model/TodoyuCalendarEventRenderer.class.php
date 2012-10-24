@@ -215,9 +215,10 @@ class TodoyuCalendarEventRenderer {
 	 *
 	 * @param	Integer		$idEvent
 	 * @param	Boolean		$absolute
+	 * @param	Boolean		$encode		Encode HTML entities (use & instead of &amp; as argument separator)
 	 * @return	String
 	 */
-	public static function renderEventLinkURL($idEvent, $absolute = true) {
+	public static function renderEventLinkURL($idEvent, $absolute = true, $encode = false) {
 		$idEvent	= intval($idEvent);
 
 		$urlParams	= array(
@@ -225,7 +226,7 @@ class TodoyuCalendarEventRenderer {
 			'event'	=> $idEvent
 		);
 
-		return TodoyuString::buildUrl($urlParams, '', $absolute);
+		return TodoyuString::buildUrl($urlParams, '', $absolute, !$encode);
 	}
 
 }
