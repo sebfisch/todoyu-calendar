@@ -22,7 +22,7 @@
  */
 
 /**
- * Drag 'n Drop support for the calendar
+ * Drag 'n Drop support for events in the calendar
  *
  * @namespace	Todoyu.Ext.calendar.DragDrop
  */
@@ -35,6 +35,13 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @type		Object
 	 */
 	ext: Todoyu.Ext.calendar,
+
+	/**
+	 * Stores Draggables
+	 *
+	 * @type		Array
+	 */
+	draggables: [],
 
 	/**
 	 * Default draggable options for all tree views
@@ -217,9 +224,20 @@ Todoyu.Ext.calendar.DragDrop	= {
 	 * @method	makeEventsDraggable
 	 */
 	makeEventsDraggable: function() {
+		this.draggables	= [];
+
 		this.getDraggableEvents().each(function(eventElement){
-			new Draggable(eventElement, this.draggableOptions);
+			this.draggables.push( new Draggable(eventElement, this.draggableOptions) );
 		}, this);
+	},
+
+
+
+	/**
+	 * @method	stopEventsDraggability
+	 */
+	stopEventsDraggability: function() {
+		this.draggables.invoke('destroy');
 	},
 
 
@@ -316,7 +334,7 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 
 	/**
-	 * Handler when dragging ends (week and day mode)
+	 * Handler when dragging ends
 	 *
 	 * @method	onEnd
 	 * @param	{String}		tab				Current tab
@@ -415,6 +433,9 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 		this.ext.QuickInfo.Static.removeFromCache(idEvent);
 
+			// Disable dragging (is enabled automatically with calendar refresh after saving has finished)
+		this.stopEventsDraggability();
+
 		Todoyu.send(url, options);
 	},
 
@@ -436,8 +457,8 @@ Todoyu.Ext.calendar.DragDrop	= {
 
 
 	/**
-	 * Handler when new date was saved
-	 * Refresh screen the render overlapping events properly
+	 * Handler when changed date of event was saved
+	 * Refresh screen to render overlapping events properly
 	 *
 	 * @method	onDroppingSaved
 	 * @param	{String}			tab
