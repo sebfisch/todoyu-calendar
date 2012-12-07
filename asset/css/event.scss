@@ -583,7 +583,7 @@ div.eventDetails {
 #holidays {
 	.holidayDate {
 		padding-left:38px;
-		width:183px;
+		width: 25%;
 
 		&.hasIcon {
 			background:url(../img/icons.png) no-repeat scroll 0 -390px;
@@ -598,12 +598,12 @@ div.eventDetails {
 	.holidayTitle {
 		padding-left:20px;
 		float:left;
-		width:250px;
+		width:50%;
 	}
 
 	.holidayWorkinghours {
 		position:relative;
-		width:100px;
+		width:15%;
 	}
 }
 
