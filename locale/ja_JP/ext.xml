@@ -28,14 +28,14 @@
 	<label index="workingtime">勤務時間</label>
 	<label index="owner">所有者</label>
 	<label index="today">今日</label>
-	<label index="calendartitle.dateformat.day">%Y年%m月%e日 (%A) (%W 週目)</label>
+	<label index="calendartitle.dateformat.day">%Y年%m月%e日 (%A) (%V 週目)</label>
 	<label index="calendartitle.dateformat.week.spanstwomonths.part1">%Y年%m月%e日 - </label><!-- timestamp: first displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.spanstwomonths.part2">%m月%e日 (%U 週目)</label><!-- timestamp: last displayed day, start and end of week are in different months -->
 	<label index="calendartitle.dateformat.week.samemonth.part1">%Y年%m月%e日 - </label><!-- timestamp: first displayed day, start and end of week are in same month -->
 	<label index="calendartitle.dateformat.week.samemonth.part2">%m月%e日 (%U 週目)</label><!-- timestamp: last displayed day, start and end of week are in same month -->
 	<label index="calendartitle.dateformat.month.part1">%m月 %Y </label>
-	<label index="calendartitle.dateformat.month.part2">(%W 週目 - </label>
-	<label index="calendartitle.dateformat.month.part3">%W 週目)</label>
+	<label index="calendartitle.dateformat.month.part2">(%V 週目 - </label>
+	<label index="calendartitle.dateformat.month.part3">%V 週目)</label>
 	<label index="reminder.popup.title">イベントのリマインダー</label>
 	<label index="reminder.upcomingevent">備忘通知：まもなく以下のイベントがあります</label>
 	<label index="reminder.remindagain">再通知</label>

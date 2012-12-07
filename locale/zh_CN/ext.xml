@@ -32,10 +32,10 @@
 	<label index="workingtime">工作时间</label>
 	<label index="owner">主人</label>
 	<label index="today">今天</label>
-	<label index="calendartitle.dateformat.day">%A, %B %d %Y (CW %W)</label>
+	<label index="calendartitle.dateformat.day">%A, %B %d %Y (CW %V)</label>
 	<label index="calendartitle.dateformat.month.part1">%B %Y </label><!-- timestamp: beginning of shown month -->
-	<label index="calendartitle.dateformat.month.part2">(CW %W - </label><!-- timestamp: first displayed day -->
-	<label index="calendartitle.dateformat.month.part3">CW %W)</label><!-- timestamp: last displayed day -->
+	<label index="calendartitle.dateformat.month.part2">(CW %V - </label><!-- timestamp: first displayed day -->
+	<label index="calendartitle.dateformat.month.part3">CW %V)</label><!-- timestamp: last displayed day -->
 	<label index="reminder.popup.title">事件提醒</label>
 	<label index="reminder.upcomingevent">记信: 你已经有下面的事件.</label>
 	<label index="reminder.remindagain">再次提醒...</label>
