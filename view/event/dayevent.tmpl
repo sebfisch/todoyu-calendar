@@ -20,7 +20,7 @@
 		{/if}
 
 		<div class="title">
-			{htmlencode(truncate($title,$titleCropLength,'...',true))}
+			{htmlencode $title}
 		</div>
 
 		{if date('ymd', $date_start) !== date('ymd', $date_end)}

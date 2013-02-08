@@ -228,7 +228,7 @@ class TodoyuCalendarEventViewHelper {
 	public static function getEventEditTabLabel($idEvent) {
 		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
-		return Todoyu::Label('calendar.event.edit') . ': ' . TodoyuString::crop($event->getTitle(), 20, '...', false);
+		return Todoyu::Label('calendar.event.edit') . ': ' . $event->getTitle();
 	}
 
 
@@ -242,7 +242,7 @@ class TodoyuCalendarEventViewHelper {
 	public static function getEventViewTabLabel($idEvent) {
 		$event	= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
-		return TodoyuString::crop($event->getTitle(), 20, '...', false);
+		return $event->getTitle();
 	}
 
 }

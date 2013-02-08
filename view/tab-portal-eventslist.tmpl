@@ -16,7 +16,7 @@
 					<span class="label" onclick="Todoyu.Ext.calendar.EventPortal.toggleDetails({$event.id})">
 						<span class="date">{formatRange $event.date_start $event.date_end} {if $event.date_end-$event.date_start}({formatDuration $event.date_end-$event.date_start}){/if}</span>
 						<span class="eventtype">{EventTypeLabel $event.eventtype}</span>
-						<span class="title">{htmlencode(truncate($event.title 43 break=true))}</span>
+						<span class="title">{htmlencode $event.title}</span>
 					</span>
 					<div class="clear"><!-- --></div>
 				</h3>
@@ -41,7 +41,7 @@
 			<h3 class="holidaysList {if $dwoo.foreach.holidays.last}last{/if} {cycle values="odd,even"}">
 				<span class="first holidayDate hasIcon">{dateFormat $holiday.date DlongD2MlongY4}</span>
 				<span class="holidayTitle" title="{htmlencode $label}">
-					{htmlencode(truncate($label, 50))}
+					{htmlencode $label}
 				</span>
 				<span class="holidayWorkinghours">{Label calendar.ext.holiday.attr.workingtime}: {$holiday.workingtime / 3600}{Label core.date.hrs}</span>
 			</h3>

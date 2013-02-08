@@ -175,14 +175,16 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 	 * @param	Boolean		$withType
 	 * @return	String
 	 */
-	public function getFullLabel($withType = true) {
-		$label	= TodoyuTime::format($this->getDateStart(), 'DshortD2MlongY4') . ': ' . $this->getTitle();
+	public function getFullLabelHTML($withType = true) {
+		$tmpl = 'ext/calendar/view/event-header.tmpl';
 
-		if( $withType ) {
-			$label	.= ' (' . $this->getTypeLabel() . ')';
-		}
+		$data = array(
+			'date'	=>	TodoyuTime::format($this->getDateStart(), 'DshortD2MlongY4'),
+			'title'	=>	$this->getTitle(),
+			'type'	=>	$this->getTypeLabel(),
+		);
 
-		return $label;
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -810,7 +812,6 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 
 		foreach($persons as $person) {
 			$label	= TodoyuContactPersonManager::getLabel($person['id']);
-			$label	= TodoyuString::crop($label, 25, '...', false);
 
 				// Add person label, linked to contacts detail view if allowed to be seen
 			if( Todoyu::allowed('contact', 'general:area') ) {

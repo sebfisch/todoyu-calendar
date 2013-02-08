@@ -114,7 +114,7 @@ class TodoyuCalendarEventStaticManager {
 	 * @return	String
 	 */
 	public static function getEventFullLabel($idEvent, $withType = true) {
-		return self::getEvent($idEvent)->getFullLabel($withType);
+		return self::getEvent($idEvent)->getFullLabelHTML($withType);
 	}
 
 

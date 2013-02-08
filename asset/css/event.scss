@@ -110,6 +110,13 @@ div.weekMode div#calendarBody div.event {
 			cursor:move;
 		}
 
+		& .title {
+			display: inline-block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 80%;
+		}
+
 		.date {
 			color:$colorTextGeneral;
 		}
@@ -395,6 +402,13 @@ div.weekMode div#calendarBody div.event {
 					font-weight:bold;
 					background-color:$colorNeutral01;
 				}
+			}
+
+			& .label .title {
+				width: 55%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: inline-block;
 			}
 		}
 	}
@@ -693,5 +707,19 @@ div.mailing fieldset.autoemail {
 
 	legend {
 		display:block;
+	}
+}
+
+
+#calendar-view {
+	.headerLine {
+		.innerTitle {
+			display: inline-block;
+			max-width: 50%;
+			padding-left: 10px;
+			padding-right: 10px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 	}
 }

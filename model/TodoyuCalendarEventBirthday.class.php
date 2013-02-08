@@ -337,7 +337,7 @@ class TodoyuCalendarEventBirthday implements TodoyuCalendarEvent {
 	 */
 	public function addQuickInfos(TodoyuQuickinfo $quickInfo, TodoyuDayRange $currentRange = null) {
 		$age		= $this->getAge($currentRange);
-		$name		= TodoyuString::crop($this->getPerson()->getFullName(), 25, '...', false);
+		$name		= $this->getPerson()->getFullName();
 
 		$quickInfo->addHTML('name', $this->getPersonDetailLink($name));
 		$quickInfo->addInfo('date',		TodoyuTime::format($this->getPerson()->getBirthday(), 'date'));

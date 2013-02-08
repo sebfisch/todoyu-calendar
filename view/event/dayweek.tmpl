@@ -11,7 +11,7 @@
 		{/if}
 
 		<div class="title">
-			{htmlencode(truncate($title,$titleCropLength,'...',true))}
+			{htmlencode $title}
 
 			{if $view == 'day' && count($persons) == 1}
 				<div class="assignedPersons">
