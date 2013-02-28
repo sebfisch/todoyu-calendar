@@ -155,9 +155,7 @@ form.createevent label, form.createeventMidcol label{
 	position:absolute;
 	right:10px;
 	top:2px;
-	-moz-border-radius:13px;
-	-webkit-border-radius:13px;
-	border-radius:13px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	border-radius:13px;
 
 	.icon {
 		background:url(../img/icons.png) no-repeat 0 0;
