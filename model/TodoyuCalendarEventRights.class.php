@@ -123,6 +123,11 @@ class TodoyuCalendarEventRights {
 	public static function isEditAllowed($idEvent) {
 		$idEvent	= intval($idEvent);
 
+		if( TodoyuCalendarEventStaticManager::getEvent($idEvent)->isInPast() ) {
+				// No one is allowed to delete events in the past
+			return false;
+		}
+
 		return self::isEditOrDeleteAllowed('edit', $idEvent);
 	}
 
@@ -136,9 +141,8 @@ class TodoyuCalendarEventRights {
 	 */
 	public static function isDeleteAllowed($idEvent) {
 		$idEvent	= intval($idEvent);
-		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
-		if( !$event->isInFuture() ) {
+		if( TodoyuCalendarEventStaticManager::getEvent($idEvent)->isInPast() ) {
 				// No one is allowed to delete events in the past
 			return false;
 		}

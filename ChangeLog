@@ -1,7 +1,7 @@
 todoyu calendar extension changelog
 
 calendar 1.3.0 - not released yet
-	* Feature: Implemented loading of event single view via deeplink
+	* Bugfix: Fixed rights of (fully) past events to not allow edit and delete
 	* Changed: Text-cropping over CSS
 	* Changed: Disable drag'n drop after drop until reload has finished
 	* Changed: Width adaption

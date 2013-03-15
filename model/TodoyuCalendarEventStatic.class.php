@@ -909,6 +909,17 @@ class TodoyuCalendarEventStatic extends TodoyuBaseObject implements TodoyuCalend
 		return $this->getDateStart() > NOW;
 	}
 
+
+
+	/**
+	 * Is the event in the past
+	 *
+	 * @return	Boolean
+	 */
+	public function isInPast() {
+		return $this->getDateEnd() < NOW;
+	}
+
 }
 
 ?>
