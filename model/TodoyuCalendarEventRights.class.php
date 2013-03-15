@@ -136,6 +136,12 @@ class TodoyuCalendarEventRights {
 	 */
 	public static function isDeleteAllowed($idEvent) {
 		$idEvent	= intval($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+
+		if( !$event->isInFuture() ) {
+				// No one is allowed to delete events in the past
+			return false;
+		}
 
 		return self::isEditOrDeleteAllowed('delete', $idEvent);
 	}
@@ -155,8 +161,8 @@ class TodoyuCalendarEventRights {
 			return true;
 		}
 
-		$idEvent			= intval($idEvent);
-		$event				= TodoyuCalendarEventStaticManager::getEvent($idEvent);
+		$idEvent	= intval($idEvent);
+		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 			// Creator can edit event
 		if( $event->isCurrentPersonCreator() ) {

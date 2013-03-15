@@ -1,8 +1,8 @@
 todoyu calendar extension changelog
 
 calendar 1.3.0 - not released yet
+	* Bugfix: Fixed rights of past events to not allow deletion
 	* Bugfix: Fixed Chrome Layout Bug
-	* Changed: Text-cropping over css
 	* Bugfix: Fixed layout for holiday-list in portal
 	* Bugfix: Changed date-format for calendar week to ISO-8601
 	* Bugfix: Wrong right check in records controller
@@ -11,6 +11,7 @@ calendar 1.3.0 - not released yet
 	* Bugfix: Change blocking/non-blocking events on dayevent selection
 	* Bugfix: Event mail receivers data was ignored
 	* Feature: Implemented loading of event single view via deeplink
+	* Changed: Text-cropping over CSS
 	* Changed: Disable drag'n drop after drop until reload has finished
 	* Changed: Width adaption
 
@@ -80,9 +81,9 @@ calendar 1.1.2 - 2011-09-15
 
 calendar 1.1.1 - 2011-07-25
 	* Changed: Event reminder popup closing via [x] in popup title bar now deactivates the reminder
-	* Bugfix: Invalid label in email reminder js
+	* Bugfix: Invalid label in email reminder JS
 	* Bugfix: todoyu link URL in event mail links to event single view now (was showing week)
-	* Bugfix: Activation of view tab caused js error because of missing context
+	* Bugfix: Activation of view tab caused JS error because of missing context
 	* Changed: Works with scheduler API 2.1.1. Frequency changed to 5 minutes
 	* Changed: CSS cleanup (removed old styles)
 	* Changed: icons.png cleanup (removed unused sprite icons)

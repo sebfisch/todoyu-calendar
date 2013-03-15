@@ -6,7 +6,7 @@ a.eventContextMenu {
 	background:url(../img/contextmenu.png) no-repeat;
 
 	&.eventAdd {
-		background-position:5px -298px;
+		background-position:5px -298px!important;
 	}
 
 	&.eventEdit {

@@ -288,5 +288,4 @@ Todoyu::$CONFIG['EXT']['calendar']['ContextMenu']['reminderpopup']	= array(
 	)
 );
 
-
 ?>
