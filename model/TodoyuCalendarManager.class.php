@@ -169,7 +169,7 @@ class TodoyuCalendarManager {
 
 		return array(
 			'start'	=> TodoyuTime::getWeekStart($monthRange['start']),
-			'end'	=> TodoyuTime::getWeekStart($monthRange['end']) + (7 * TodoyuTime::SECONDS_DAY) - 1
+			'end'	=> TodoyuTime::getWeekEnd($monthRange['end'])
 		);
 	}
 
