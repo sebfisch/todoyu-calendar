@@ -175,7 +175,7 @@ Todoyu.Ext.calendar.Navi	= {
 	 * Weekend toggle: only available in week view
 	 *
 	 * @method	toggleViewOptions
-	 * @param	{String}	tab
+	 * @param	{String}	[tab]
 	 */
 	toggleViewOptions: function(tab) {
 		if( !tab ) {

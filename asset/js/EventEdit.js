@@ -161,7 +161,6 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	initForm: function(idEvent, extraOptions) {
 		extraOptions = extraOptions || {};
 
-
 		this.observeEventType();
 		this.observeDayEvent();
 		this.observeDateFields();
