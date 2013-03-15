@@ -479,7 +479,7 @@ Todoyu.Ext.calendar.Event.Series = {
 	 * @param	{Number}	idEvent			Event on which the delete request was made
 	 */
 	removeSeries: function(idSeries, idEvent) {
-		this.fadeAllSeriesEvents(idSeries);
+		this.fadeSeriesEvents(idSeries, true);
 
 		var url		= this.getUrl();
 		var options	= {
@@ -583,14 +583,19 @@ Todoyu.Ext.calendar.Event.Series = {
 
 
 	/**
-	 * Fade out all events of a series
+	 * Fade out all not past events of a series
 	 * Remove elements after fade out
 	 *
-	 * @method	fadeAllSeriesEvents
+	 * @method	fadeSeriesEvents
 	 * @param	{Number}	idSeries
+	 * @param	{Boolean}	[futureEventsOnly]
 	 */
-	fadeAllSeriesEvents: function(idSeries) {
-		this.getSeriesEventElements(idSeries).each(function(eventElement){
+	fadeSeriesEvents: function(idSeries, futureEventsOnly) {
+		futureEventsOnly = futureEventsOnly ? futureEventsOnly : false;
+
+		var events	= this[futureEventsOnly ? 'getSeriesFutureEventElements' : 'getSeriesEventElements'](idSeries);
+
+		events.each(function(eventElement) {
 			eventElement.fade({
 				afterFinish: function(effect) {
 					eventElement.remove();
@@ -608,6 +613,30 @@ Todoyu.Ext.calendar.Event.Series = {
 	 */
 	getSeriesEventElements: function(idSeries) {
 		return $$('.event.series' + idSeries);
+	},
+
+
+
+	/**
+	 * @method	getSeriesFutureEventElements
+	 * @param	{Number}	idSeries
+	 * @return	{Element[]}
+	 */
+	getSeriesFutureEventElements: function(idSeries) {
+		var events		= this.getSeriesEventElements(idSeries);
+		var todayTime	= Todoyu.Time.getTodayDate();
+
+		var eventDate, eventTimestamp;
+		events.each(function(eventEl, index) {
+			eventDate = eventEl.up('td').id.replace('createEventAt-', '');
+			eventTimestamp	= Todoyu.Time.date2Time(eventDate) * 1000;
+
+			if( eventTimestamp <= todayTime ) {
+				events.remove(index);
+			}
+		});
+
+		return events;
 	},
 
 
