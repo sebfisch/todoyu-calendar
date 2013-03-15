@@ -111,6 +111,7 @@ Todoyu.Ext.calendar.Event.Mail	= {
 	 *
 	 * @method	onEventMailPopupInitialized
 	 * @param	{Number}			idEvent
+	 * @param	{String}			operation
 	 * @param	{Ajax.Response}		response
 	 */
 	onPopupShow: function(idEvent, operation, response) {

@@ -227,6 +227,7 @@ Todoyu.Ext.calendar	= {
 	 *
 	 * @method	setTime
 	 * @param	{Number}		time
+	 * @param	{Boolean}		noExternalUpdate
 	 */
 	setTime: function(time, noExternalUpdate) {
 		this.PanelWidget.Calendar.setTime(time, noExternalUpdate);

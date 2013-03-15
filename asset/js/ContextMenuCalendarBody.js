@@ -87,12 +87,10 @@ Todoyu.Ext.calendar.ContextMenuCalendarBody	= {
 		var time;
 
 		if( tab === 'month' ) {
-			time	= Todoyu.Time.date2Time(event.findElement('td').id.replace('createEventAt-', ''));
+			return Todoyu.Time.date2Time(event.findElement('td').id.replace('createEventAt-', ''));
 		} else {
-			time	= this.ext.CalendarBody.getTimeForPosition(event.pointerX(), event.pointerY());
+			return this.ext.CalendarBody.getTimeForPosition(event.pointerX(), event.pointerY());
 		}
-
-		return time;
 	}
 
 };

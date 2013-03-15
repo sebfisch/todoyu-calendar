@@ -218,6 +218,7 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	 * Event handler when reminder popup has been loaded - play reminder audio
 	 *
 	 * @method	onPopupLoaded
+	 * @param	{Number}		idEvent
 	 * @param	{Ajax.Response}	response
 	 */
 	onPopupLoaded: function(idEvent, response) {
@@ -489,6 +490,7 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	 *
 	 * @method	onReminderTimeUpdated
 	 * @param	{Number}			idEvent
+	 * @param	{Number}			secondsBefore
 	 * @param	{Ajax.Response}		response
 	 */
 	onReminderTimeUpdated: function(idEvent, secondsBefore, response) {

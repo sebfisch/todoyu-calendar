@@ -53,7 +53,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * @method	open
 	 * @param	{Number}		idEvent
 	 * @param	{Number}		time
-	 * @param	{Object}		options
+	 * @param	{Object}		[options]
 	 */
 	open: function(idEvent, time, options) {
 		Todoyu.QuickInfo.hide();
@@ -331,9 +331,8 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * Install observer on event form date fields
 	 *
 	 * @method	observeDates
-	 * @param	{Number}		idEvent
 	 */
-	observeDateFields: function(idEvent) {
+	observeDateFields: function() {
 			// Install date field observers
 		$('event-field-date-start').on(	'change', ':input',	this.onDateChanged.bind(this));
 		$('event-field-date-end').on(	'change', ':input',	this.onDateChanged.bind(this));

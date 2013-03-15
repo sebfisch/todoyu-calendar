@@ -85,6 +85,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 *
 	 * @method	init
 	 * @param	{String}		dateString	Formatted dateString Y-m-d
+	 * @param	{Number}		firstDayOfWeek
 	 */
 	init: function(dateString, firstDayOfWeek) {
 		var date	= Todoyu.Time.parseIsoString(dateString);
@@ -177,6 +178,7 @@ Todoyu.Ext.calendar.PanelWidget.Calendar	= {
 	 *
 	 * @method	onUpdate
 	 * @param	{String}	mode		'day' = A day has been selected
+	 * @param	{Number}	delay
 	 */
 	onUpdate: function(mode, delay) {
 		if( this.updateTimeout !== null ) {
