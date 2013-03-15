@@ -161,6 +161,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	initForm: function(idEvent, extraOptions) {
 		extraOptions = extraOptions || {};
 
+
 		this.observeEventType();
 		this.observeDayEvent();
 		this.observeDateFields();
@@ -192,35 +193,38 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 * Handle day event option change
 	 *
 	 * @method	onDayEventChanged
-	 * @param	event
-	 * @param	element
+	 * @param	{Event}		event
+	 * @param	{Element}	element
 	 */
 	onDayEventChanged: function(event, element) {
 		this.toggleDateFields();
 	},
 
 
+
 	/**
+	 * Handle change of selected event type
 	 *
+	 * @method	onChangeEventtype
+	 * @param	{Element}	inputField
 	 */
 	onChangeEventtype: function(inputField) {
-		var idInputFieldArr			= inputField.id.split('-').without('is');
-		var idFieldEventtype		= idInputFieldArr.join('-').replace('dayevent', 'eventtype');
+		var idInputFieldArr		= inputField.id.split('-').without('is');
+		var idFieldEventType	= idInputFieldArr.join('-').replace('dayevent', 'eventtype');
 
-		var isDayEvent = $('event-field-is-dayevent').checked;
-
-		var url = Todoyu.getUrl('calendar', 'event');
+		var isDayEvent	= $('event-field-is-dayevent').checked;
+		var url			= Todoyu.getUrl('calendar', 'event');
 
 		var options = {
 			parameters: {
 				action: 'updateeventtpyes',
 				isDayEvent: isDayEvent ? 1 : 0,
-				value: $(idFieldEventtype).getValue()
+				value: $(idFieldEventType).getValue()
 			},
-			onComplete: this.onUpdateEventTypes.bind(this, idFieldEventtype)
+			onComplete: this.onUpdateEventTypes.bind(this, idFieldEventType)
 		};
 
-		Todoyu.Ui.update(idFieldEventtype, url, options);
+		Todoyu.Ui.update(idFieldEventType, url, options);
 	},
 
 
@@ -292,6 +296,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	/**
 	 * Handle event type change
 	 *
+	 * @method	onEventTypeChange
 	 * @param	{Event}		event
 	 */
 	onEventTypeChange: function(event) {
@@ -312,6 +317,7 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	/**
 	 * Check whether event type forces a day event
 	 *
+	 * @method	isForcedDayEventType
 	 * @param	{Number}	eventType
 	 * @return	{Boolean}
 	 */
@@ -678,9 +684,10 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	saveEvent: function(isOverbookingConfirmed) {
 		isOverbookingConfirmed	= isOverbookingConfirmed || false;
 
-		Todoyu.Ui.closeRTE($('event-form'));
+		var eventForm	= $('event-form');
 
-		$('event-form').request({
+		Todoyu.Ui.closeRTE(eventForm);
+		eventForm.request({
 			parameters: {
 				action:					'save',
 				isOverbookingConfirmed:	isOverbookingConfirmed ? 1 : 0,
