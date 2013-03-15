@@ -46,7 +46,6 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		$idEvent	= intval($params['event']);
 		$options	= TodoyuArray::assureFromJSON($params['options']);
 		$date		= strtotime($params['date']);
-//		$event		= TodoyuCalendarEventStaticManager::getEvent($idEvent);
 
 			// Check rights
 		if( $idEvent === 0 ) {
@@ -248,7 +247,7 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 
 
 	/**
-	 * Update Eventtypes options
+	 * Update event types options
 	 *
 	 * @param	Array		$params
 	 * @return	String

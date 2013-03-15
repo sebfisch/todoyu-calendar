@@ -230,7 +230,7 @@ class TodoyuCalendarEventSeriesManager {
 		$dateStart	= $seriesNew->getFixedStartDate($dateStart);
 
 			// Delete all events of the old series which are not in the past
-		$deletedEventIDs = self::deleteSeriesEventsAfter($idSeriesOld, NOW);
+		$deletedEventIDs = self::deleteSeriesEventsAfter($idSeriesOld, TodoyuTime::getDayStart(NOW), 0, true);
 		$result->setDeletedEvents($deletedEventIDs);
 
 			// Create events for new series
@@ -286,14 +286,15 @@ class TodoyuCalendarEventSeriesManager {
 	 * @param	Integer		$idSeries
 	 * @param	Integer		$dateStart
 	 * @param	Integer		$idEventIgnore			Ignore this event
+	 * @param	Boolean		[$allowStartInPast]
 	 * @return	Integer[]	IDs of deleted events
 	 */
-	public static function deleteSeriesEventsAfter($idSeries, $dateStart = 0, $idEventIgnore = 0) {
+	public static function deleteSeriesEventsAfter($idSeries, $dateStart = 0, $idEventIgnore = 0, $allowStartInPast = false) {
 		$idSeries		= intval($idSeries);
 		$dateStart		= TodoyuTime::time($dateStart);
 		$idEventIgnore	= intval($idEventIgnore);
 
-		if( $dateStart < NOW ) {
+		if( $dateStart < NOW && !$allowStartInPast ) {
 			$dateStart = NOW;
 		}
 
