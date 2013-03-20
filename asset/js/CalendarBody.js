@@ -374,10 +374,6 @@ Todoyu.Ext.calendar.CalendarBody	= {
 	 * @param	{Number}	time
 	 */
 	addEventOnTime: function(time) {
-		if( Todoyu.Time.isTimeInPast(time) ) {
-			this.ext.showPastDateWarning();
-		}
-
 		this.ext.addEvent(time);
 	},
 

@@ -518,6 +518,10 @@ Todoyu.Ext.calendar	= {
 	 * @param	{Number}		time
 	 */
 	addEvent: function(time) {
+		if( Todoyu.Time.isTimeInPast(time) ) {
+			this.showPastDateWarning();
+		}
+
 		this.Event.Edit.open(0, time);
 	},
 
