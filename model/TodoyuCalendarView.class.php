@@ -154,8 +154,6 @@ abstract class TodoyuCalendarView {
 			$filters	= array_merge($filters, $extraFilters);
 		}
 
-//		TodoyuDebug::printInFirebug($filters, 'fff');
-
 		return TodoyuCalendarDataSourceManager::getEvents($this->getRange(), $filters);
 	}
 
