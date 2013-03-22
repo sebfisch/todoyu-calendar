@@ -182,25 +182,35 @@ Todoyu.Ext.calendar.Event.View	= {
 
 
 	/**
+	 * Cancel detail view and go back to calendar
+	 *
+	 */
+	cancelView: function() {
+		this.close();
+		this.ext.show();
+	},
+
+
+
+	/**
 	 * Close event viewing tab and update calendar view
 	 *
 	 * @method	close
-	 * @param	{Boolean}	showCalendar
 	 */
-	close: function(showCalendar) {
+	close: function() {
 		this.removeTab();
 		this.hide();
+		this.cleanView();
+	},
 
-		if( showCalendar !== false ) {
-				// Re-display calendar, if still not shown: reload view of today
-			this.ext.showCalendar();
-			if( $('calendar-body').children.length == 0 ) {
-				Todoyu.Ext.calendar.Navi.goToday();
-			}
-				// Empty the "view" tab's content
-			$('calendar-view').update('');
 
-		}
+
+	/**
+	 * Remove content from view panel
+	 *
+	 */
+	cleanView: function() {
+		$('calendar-view').update('');
 	}
 
 };
