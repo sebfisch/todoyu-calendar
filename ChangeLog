@@ -1,6 +1,6 @@
 todoyu calendar extension changelog
 
-calendar 1.3.0 - not released yet
+calendar 1.3.0 - 2013-03-27
 	* Bugfix: Editing series with past event on current day duplicated that event
 	* Bugfix: Fixed rights of (fully) past events to not allow edit and delete
 	* Bugfix: Fixed inconsistency of event past-time check+notification via double-click creation and via context menu
