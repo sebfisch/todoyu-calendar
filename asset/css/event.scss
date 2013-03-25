@@ -106,10 +106,6 @@ div.weekMode div#calendarBody div.event {
 		margin:1px;
 		position:relative;
 
-		&.hasAccess .head {
-			cursor:move;
-		}
-
 		.title {
 			display: inline-block;
 			overflow: hidden;
@@ -123,6 +119,10 @@ div.weekMode div#calendarBody div.event {
 
 		.head {
 			cursor:default;
+		}
+
+		&.hasAccess .head {
+			cursor: pointer;
 		}
 	}
 }
