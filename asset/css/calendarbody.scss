@@ -23,10 +23,12 @@
 	overflow:hidden;
 
 	&.month {
-		height:auto; }
+		height:auto;
+	}
 
 	&.full {
-		overflow:visible; }
+		overflow:visible;
+	}
 }
 
 #tgnowptr {
@@ -37,18 +39,22 @@
 	width:40px;
 	background:$colorCorporate00 url(../img/background-hours.png) repeat-y;
 
-	& .hour {
+	.hour {
 		padding-left:2px;
 		color:$colorNeutral08;
 		height:41px;
 		margin-top:1px;
+		-moz-user-select: none;
+		user-select: none;
+		cursor: default;
 
 		&:hover {
-			background-color:$colorHighlight03; }
+			background-color:$colorHighlight03;
+		}
 
-		/* Highlight digit of current hour in hours column */
 		&.currentHour {
-			font-weight:bold; }
+			font-weight:bold;
+		}
 	}
 }
 
@@ -148,17 +154,17 @@ li.editeventtab p.label span.icon {
 }
 
 #createevent {
-	& .label {
+	.label {
 		float:left;
 		font-weight:bold;
 		width:125px; }
 
-	& .saveButton {
+	.saveButton {
 		background-color:green;
 		color:$white;
 	}
 
-	& #repeatsChoices {
+	#repeatsChoices {
 		background-color:$colorCorporate00;
 		margin: {
 			left:130px;
@@ -168,11 +174,11 @@ li.editeventtab p.label span.icon {
 		padding:4px;
 	}
 
-	& #repeatsChoices_when {
+	#repeatsChoices_when {
 		margin-top:10px;
 		font-weight:bold; }
 
-	& #repeatsChoices_area {
+	#repeatsChoices_area {
 		margin-top:10px;
 		font-weight:bold; }
 }

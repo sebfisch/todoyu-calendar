@@ -110,7 +110,7 @@ div.weekMode div#calendarBody div.event {
 			cursor:move;
 		}
 
-		& .title {
+		.title {
 			display: inline-block;
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -130,6 +130,7 @@ div.weekMode div#calendarBody div.event {
 .event {
 	div div {
 		display:inline-block;
+		vertical-align: top;
 	}
 
 	.head .typeIcon {
@@ -404,7 +405,7 @@ div.weekMode div#calendarBody div.event {
 				}
 			}
 
-			& .label .title {
+			.label .title {
 				width: 55%;
 				overflow: hidden;
 				text-overflow: ellipsis;
