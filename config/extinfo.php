@@ -38,7 +38,7 @@ Todoyu::$CONFIG['EXT']['calendar']['info']	= array(
 	'constraints'	=> array(
 		'core'		=> '2.3.0',
 		'depends'	=> array(
-			'contact'	=> '1.2.0'
+			'contact'	=> '1.3.0'
 		)
 	),
 	'urlDocumentation'	=> 'http://doc.todoyu.com/?calendar'
