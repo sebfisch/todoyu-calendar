@@ -13,8 +13,10 @@
 		<right name="add" />
 		<right name="editAssigned" />
 		<right name="deleteAssigned" />
-		<right name="editAll" require="event:seeAll" />
-		<right name="deleteAll" require="event:seeAll" />
+		<right name="editAll" require="event:seeAll,event:editAssigned" />
+		<right name="deleteAll" require="event:seeAll,event:editAssigned" />
+		<right name="editInPast" require="event:editAssigned" />
+		<right name="deleteInPast" require="event:deleteAssigned" />
 	</section>
 
 	<section name="mailing" require="event:add">

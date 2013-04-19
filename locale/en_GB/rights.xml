@@ -12,6 +12,8 @@
 	<label index="event.add">Add New Appointment</label>
 	<label index="event.search">Search For Appointments</label>
 	<label index="event.assignOthers">Assign appoinments to all persons</label>
+	<label index="event.deleteInPast">Delete events in the past</label>
+	<label index="event.editInPast">Edit events in the past</label>
 	<label index="mailing">Event email</label>
 	<label index="mailing.sendAsEmail">Send Emails about appointments to selectable receivers</label>
 	<label index="reminders">Appointment Reminders</label>

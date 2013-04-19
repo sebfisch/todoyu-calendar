@@ -121,10 +121,13 @@ class TodoyuCalendarEventRights {
 	 * @return	Boolean
 	 */
 	public static function isEditAllowed($idEvent) {
+		if( TodoyuAuth::isAdmin() ) {
+			return true;
+		}
+
 		$idEvent	= intval($idEvent);
 
-		if( TodoyuCalendarEventStaticManager::getEvent($idEvent)->isInPast() ) {
-				// No one is allowed to delete events in the past
+		if( !Todoyu::allowed('calendar', 'event:editInPast') && TodoyuCalendarEventStaticManager::getEvent($idEvent)->isInPast() ) {
 			return false;
 		}
 
@@ -140,10 +143,13 @@ class TodoyuCalendarEventRights {
 	 * @return	Boolean
 	 */
 	public static function isDeleteAllowed($idEvent) {
+		if( TodoyuAuth::isAdmin() ) {
+			return true;
+		}
+
 		$idEvent	= intval($idEvent);
 
-		if( TodoyuCalendarEventStaticManager::getEvent($idEvent)->isInPast() ) {
-				// No one is allowed to delete events in the past
+		if( !Todoyu::allowed('calendar', 'event:deleteInPast') && TodoyuCalendarEventStaticManager::getEvent($idEvent)->isInPast() ) {
 			return false;
 		}
 
