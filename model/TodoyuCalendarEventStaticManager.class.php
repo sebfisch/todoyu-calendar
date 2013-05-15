@@ -527,7 +527,7 @@ class TodoyuCalendarEventStaticManager {
 			$dateEnd	= $event->getDateEnd() + $offset;
 		}
 
-		if( !TodoyuCalendarEventTypeManager::isOverbookable($event->getTypeIndex()) ) {
+		if( !TodoyuCalendarEventTypeManager::isOverbookable($event->getTypeIndex(), $event->isDayevent()) ) {
 			if( !$overbookingConfirmed || !TodoyuCalendarManager::isOverbookingAllowed() ) {
 					// Collect overbookings of assigned persons (to request confirmation or resetting event)
 				$overbookingPersonsErrors	= self::getOverbookedPersonsErrors($idEvent, $dateStart, $dateEnd);

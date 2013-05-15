@@ -125,14 +125,13 @@ class TodoyuCalendarEventFormValidator {
 				// Check which (any?) event persons are overbooked
 			$idEvent				= intval($formData['id']);
 			$idEventType			= intval($formData['eventtype'][0]);
-			$overbookableEventTypes	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['calendar']['EVENTTYPES_OVERBOOKABLE']);
 			$isDayEvent				= intval($formData['is_dayevent']) === 1;
 
 			if( $isDayEvent ) {
 				$formData['date_end'] = TodoyuTime::getDayEnd($formData['date_end']);
 			}
 
-			if( !in_array($idEventType, $overbookableEventTypes) ) {
+			if( ! TodoyuCalendarEventTypeManager::isOverbookable($idEventType, $isDayEvent) ) {
 				$personIDs		= TodoyuArray::intval($value, true, true);
 				$overbookedInfos= TodoyuCalendarEventStaticManager::getOverbookingInfos($formData['date_start'], $formData['date_end'], $personIDs, $idEvent);
 
