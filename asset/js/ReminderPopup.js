@@ -514,6 +514,20 @@ Todoyu.Ext.calendar.Reminder.Popup	= {
 	closePopup: function(idEvent) {
 		var popupID	= 'reminder' + idEvent;
 		Todoyu.Popups.close(popupID);
-	}
+	},
 
+
+
+	/**
+	 * Dismiss a planned reminder. Used if an event is deleted and no reload is made
+	 *
+	 * @param	{Number}	idEvent
+	 */
+	dismissPlannedEventPopup: function(idEvent) {
+		this.events.each(function(event){
+			if(  event.id == idEvent ) {
+				event.dismissed = true;
+			}
+		}, this);
+	}
 };

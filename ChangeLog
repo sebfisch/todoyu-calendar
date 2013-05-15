@@ -1,6 +1,7 @@
 todoyu calendar extension changelog
 
 calendar 1.3.1 - not released yet
+	* Bugfix: Dismiss reminder popup if event is deleted
 	* Bugfix: Allow edit / delete of events in the past (new rights)
 
 calendar 1.3.0 - 2013-03-27

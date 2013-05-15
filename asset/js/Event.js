@@ -227,6 +227,8 @@ Todoyu.Ext.calendar.Event	= {
 			this.ext.EventPortal.reduceAppointmentCounter();
 		}
 
+		this.ext.Reminder.Popup.dismissPlannedEventPopup(idEvent);
+
 		if( response.hasTodoyuError() ) {
 			Todoyu.notifyError('[LLL:calendar.event.delete.error]');
 		} else {
