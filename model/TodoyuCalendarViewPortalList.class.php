@@ -62,7 +62,7 @@ class TodoyuCalendarViewPortalList extends TodoyuCalendarView {
 	 * @return	String
 	 */
 	public function render() {
-		$tmpl	= 'ext/calendar/view/tab-portal-eventslist.tmpl';
+		$tmpl	= 'ext/calendar/view/views/portal-list-events.tmpl';
 		$data	= array(
 			'staticEvents'	=> $this->getStaticEventsData(),
 			'holidayEvents'	=> $this->getHolidayEventsData(),

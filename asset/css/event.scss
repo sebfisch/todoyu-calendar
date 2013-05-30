@@ -371,13 +371,29 @@ div.weekMode div#calendarBody div.event {
 	Portal events list
    ------------------------ */
 .portalEventsList {
-	h1.headerLine span {
-		&.taskDate {
-			width:260px;
-		}
+	h1 {
+		&.headerLine {
+			span {
+				&.taskDate {
+					width:260px;
+				}
 
-		&.eventType {
-			width:110px;
+				&.eventType {
+					width:110px;
+				}
+			}
+		}
+	}
+
+	h2 {
+		border-bottom:1px solid #ececec;
+		border-top:1px solid #ececec;
+		background-color:#fcfcfc;
+		margin:16px 0 8px 0;
+		padding:16px 0 10px 16px;
+
+		span.eventsGroupTitle {
+
 		}
 	}
 

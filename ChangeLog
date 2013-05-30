@@ -1,6 +1,7 @@
 todoyu calendar extension changelog
 
 calendar 1.3.1 - not released yet
+	* Feature: Events list in portal separates events into groups: today, this week, further
 	* Bugfix: Fixed styling of un/ordered lists inside event description
 	* Bugfix: Fixed overbooking validation (check for dayevent)
 	* Bugfix: Dismiss reminder popup if event is deleted
@@ -132,7 +133,7 @@ calendar 1.1.0 - 2011-06-17
 	* Changed: Added max amount configuration of displayed conflicted appointments in overbooking info
 	* Changed: Quickinfos now always hide when starting to drag events
 
- calendar 1.0.6
+calendar 1.0.6
 	* Bugfix: Removed wrong word wrapping (inserted spaces) from event descriptions
 	* Bugfix: quick-infos now always hide when starting to drag events
 	* Bugfix: event drag & drop in week & day views had wrong hour offset (-1h)

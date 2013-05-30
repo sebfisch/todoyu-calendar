@@ -30,6 +30,8 @@
 	<label index="holiday.attr.holidayset.new">Neues Feiertags-Set</label>
 	<label index="yearsold">Jahre alt</label>
 	<label index="workingtime">Arbeitsstunden</label>
+	<label index="currentweek">Diese Woche</label>
+	<label index="furtherevents">Weitere Termine</label>
 	<label index="owner">Eigner</label>
 	<label index="today">Heute</label>
 	<label index="calendartitle.dateformat.day">%A, %e. %B %Y (KW %V)</label>

@@ -28,6 +28,8 @@
 	<label index="yearsold">Years Old</label>
 	<label index="records.holidayset">Holidayset</label>
 	<label index="workingtime">Durée du jour de travail</label>
+	<label index="currentweek">Cette semaine</label>
+	<label index="furtherevents">Further Events</label>
 	<label index="today">Aujourd'hui</label>
 	<label index="owner">Propriétaire</label>
 	<label index="profile.module">Calendrier</label>
