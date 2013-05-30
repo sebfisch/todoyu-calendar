@@ -673,6 +673,18 @@ table.eventDetailView {
 			width:120px;
 			padding-left:2px;
 		}
+
+		&.description {
+			ol, ul {
+				list-style-position:inside;
+			}
+			ul {
+				list-style-type:disc;
+				li {
+					padding:0 0 0 6px;
+				}
+			}
+		}
 	}
 }
 
