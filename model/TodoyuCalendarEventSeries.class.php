@@ -542,12 +542,12 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 	 * @param	Array		$formData
 	 */
 	public function setFormData(array $formData) {
-		$frequency	= intval($formData['seriesfrequency']);
+		$frequency = $this->getValueFromFormData($formData, 'seriesfrequency');
 
 		if( $frequency ) {
 			$data	= array(
 				'frequency'	=> $frequency,
-				'interval'	=> intval($formData['seriesinterval']),
+				'interval'	=> $this->getValueFromFormData($formData, 'seriesinterval'),
 				'date_end'	=> $this->parseDate($formData['seriesdate_end'])
 			);
 
@@ -653,7 +653,8 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 			$limit		= TodoyuCalendarEventSeriesManager::getCreateLimit();
 		}
 
-		switch( $this->getFrequency() ) {
+		$freq = $this->getFrequency();
+		switch( $freq ) {
 			case CALENDAR_SERIES_FREQUENCY_DAY:
 				$dates	= $this->getStartDatesDay($dateStart, $limit);
 				break;
@@ -1211,6 +1212,21 @@ class TodoyuCalendarEventSeries extends TodoyuBaseObject {
 		return TodoyuCalendarEventStaticManager::getEvent($idEvent);
 	}
 
+
+
+	/**
+	 * @param array $formData
+	 * @return int
+	 */
+	protected function getValueFromFormData(array $formData, $key) {
+		if ( is_array($formData[$key]) ) {
+			$frequency = intval($formData[$key][0]);
+		} else {
+			$frequency = intval($formData[$key]);
+		}
+
+		return $frequency;
+	}
 }
 
 ?>
