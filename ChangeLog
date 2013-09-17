@@ -3,6 +3,8 @@ todoyu calendar extension changelog
 calendar 1.3.1 - not released yet
 	* Added: Catalan language. Credits to Carles Baiges Camprubí LaCol (www.lacol.org)
 	* Feature: Events list in portal separates events into groups: today, this week, further
+	* Changed: out-commented holiday-set filter in calendar
+	* Changed: Show holidays according to selected person
 	* Bugfix: Fixed styling of un/ordered lists inside event description
 	* Bugfix: Fixed overbooking validation (check for dayevent)
 	* Bugfix: Dismiss reminder popup if event is deleted

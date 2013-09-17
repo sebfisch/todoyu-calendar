@@ -294,7 +294,24 @@ class TodoyuCalendarManager {
 	 * @return	Array
 	 */
 	public static function getSelectedHolidaySets() {
-		return TodoyuCalendarPanelWidgetHolidaySetSelector::getSelectedHolidaySetIDs();
+		$personIDs		= self::getSelectedPersons();
+
+		if( sizeof($personIDs) === 0 ) {
+			return TodoyuArray::getColumn(TodoyuCalendarHolidaySetManager::getAllHolidaySets(), 'id');
+		}
+
+		$holidaySets	= array();
+
+		foreach ($personIDs as $idPerson) {
+			$person = TodoyuContactPersonManager::getPerson($idPerson);
+
+			$employers = $person->getEmployers();
+			foreach($employers as $employer) {
+				$holidaySets[] = $employer['workaddress']['id_holidayset'];
+			}
+		}
+
+		return $holidaySets;
 	}
 
 
