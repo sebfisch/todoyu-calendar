@@ -117,6 +117,22 @@ class TodoyuCalendarEventEditRenderer {
 		return $form->render();
 	}
 
+
+
+	/**
+	 * @param	Array		$holidaysInRange
+	 * @return	String
+	 */
+	public static function renderHolidaysInRangeList($holidaysInRange) {
+		$tmpl = 'ext/calendar/view/form-warning-holiday.tmpl';
+
+		$data = array(
+			'holidays' => $holidaysInRange
+		);
+
+		return Todoyu::render($tmpl, $data);
+	}
+
 }
 
 ?>

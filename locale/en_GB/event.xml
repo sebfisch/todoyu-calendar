@@ -101,4 +101,5 @@
 	<label index="mail.notification.sent">Notification email has been sent.</label>
 	<label index="noAccess">You have no access to this event</label>
 	<label index="dropped">Saved new date and time for event</label>
+	<label index="warning.holidayInRange">There are Holidays at the given time:</label>
 </labels>

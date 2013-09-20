@@ -56,6 +56,11 @@
 					<extraAttributes>onchange="Todoyu.Ext.calendar.Event.updateEnddate('event')"</extraAttributes>
 					<class>datetime</class>
 					<required />
+					<validateLive>
+						<function>
+							Todoyu.Ext.calendar.Event.Edit.validatePersonHoliday
+						</function>
+					</validateLive>
 				</field>
 
 				<field type="datetime" name="date_end">
@@ -66,6 +71,11 @@
 							<function>TodoyuCalendarEventFormValidator::isSingleDateTypeOrAfterStartDate</function>
 						</user>
 					</validate>
+					<validateLive>
+						<function>
+							Todoyu.Ext.calendar.Event.Edit.validatePersonHoliday
+						</function>
+					</validateLive>
 				</field>
 			</elements>
 		</fieldset>
@@ -80,6 +90,11 @@
 							<function>TodoyuCalendarEventFormValidator::personsAreBookable</function>
 						</user>
 					</validate>
+					<validateLive>
+						<function>
+							Todoyu.Ext.calendar.Event.Edit.validatePersonHoliday
+						</function>
+					</validateLive>
 				</field>
 			</elements>
 		</fieldset>

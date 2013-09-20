@@ -816,6 +816,48 @@ Todoyu.Ext.calendar.Event.Edit	= {
 	 */
 	onPersonAcSelected: function(inputField, idField, selectedValue, selectedText, autocompleter) {
 		$(inputField).up('div.databaseRelation').down('span.label').update(selectedText);
-	}
+	},
 
+
+
+	/**
+	 *
+	 * @param	{String}		fieldID
+	 */
+	validatePersonHoliday: function(fieldID) {
+		var personIDs	= $('event-field-persons-storage').getValue();
+		var start		= $('event-field-date-start').getValue();
+		var end			= $('event-field-date-end').getValue();
+
+		var url = Todoyu.getUrl('calendar', 'event');
+		var options = {
+			parameters: {
+				action: 'validateUserHoliday',
+				personIDs: JSON.stringify(personIDs),
+				dateStart: start,
+				dateEnd: end
+			},
+			onComplete: this.onPersonHolidayValidated.bind(this)
+		};
+
+
+		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 *
+	 * @param	{Ajax.Response}	response
+	 */
+	onPersonHolidayValidated: function(response) {
+		var fieldIDPersons	= 'event-field-persons-search';
+
+		var error	= response.getTodoyuHeader('holidays');
+		Todoyu.Form.setFieldWarningStatus(fieldIDPersons, error);
+
+		if( error ) {
+			Todoyu.FormValidator.addWarningMessage(fieldIDPersons, response.responseText, false);
+		}
+	}
 };

@@ -300,18 +300,7 @@ class TodoyuCalendarManager {
 			return TodoyuArray::getColumn(TodoyuCalendarHolidaySetManager::getAllHolidaySets(), 'id');
 		}
 
-		$holidaySets	= array();
-
-		foreach ($personIDs as $idPerson) {
-			$person = TodoyuContactPersonManager::getPerson($idPerson);
-
-			$employers = $person->getEmployers();
-			foreach($employers as $employer) {
-				$holidaySets[] = $employer['workaddress']['id_holidayset'];
-			}
-		}
-
-		return $holidaySets;
+		return TodoyuCalendarHolidaySetManager::getPersonHolidaySets($personIDs);
 	}
 
 
@@ -497,7 +486,6 @@ class TodoyuCalendarManager {
 
 		return TodoyuArray::intExplode(',', $roleConfig, true, true);
 	}
-
 }
 
 ?>

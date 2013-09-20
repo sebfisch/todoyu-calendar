@@ -264,6 +264,25 @@ class TodoyuCalendarEventActionController extends TodoyuActionController {
 		return Todoyu::render($tmpl, $data);
 	}
 
+
+
+	/**
+	 * @param	Array		$params
+	 */
+	public function validateUserHolidayAction(array $params){
+		$personIDs = TodoyuArray::intval(json_decode($params['personIDs']));
+		$start		= TodoyuTime::parseDateTime($params['dateStart']);
+		$end		= TodoyuTime::parseDateTime($params['dateEnd']);
+
+
+		$holidaysInRange = TodoyuCalendarHolidayManager::getHolidaysInRange(new TodoyuDayRange($start, $end), TodoyuCalendarHolidaySetManager::getPersonHolidaySets($personIDs));
+
+		if( sizeof($holidaysInRange) > 0 ) {
+			TodoyuHeader::sendTodoyuHeader('holidays', true);
+
+			return TodoyuCalendarEventEditRenderer::renderHolidaysInRangeList($holidaysInRange);
+		}
+	}
 }
 
 ?>

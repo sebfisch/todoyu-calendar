@@ -101,4 +101,5 @@
 	<label index="mail.notification.sent">Termin-Email wurde verschickt.</label>
 	<label index="noAccess">Sie haben keinen Zugriff auf diesen Termin</label>
 	<label index="dropped">Termin verschoben</label>
+	<label index="warning.holidayInRange">Achtung es gibt Feiertage zum angegebenen Zeitpunkt:</label>
 </labels>

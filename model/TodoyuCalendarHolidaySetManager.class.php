@@ -250,6 +250,27 @@ class TodoyuCalendarHolidaySetManager {
 		return $results;
 	}
 
+
+
+	/**
+	 * @param	Array		$personIDs
+	 * @return	Array
+	 */
+	public static function getPersonHolidaySets($personIDs) {
+		$holidaySets = array();
+
+		foreach ($personIDs as $idPerson) {
+			$person = TodoyuContactPersonManager::getPerson($idPerson);
+
+			$employers = $person->getEmployers();
+			foreach ($employers as $employer) {
+				$holidaySets[] = $employer['workaddress']['id_holidayset'];
+			}
+		}
+
+		return $holidaySets;
+	}
+
 }
 
 ?>
