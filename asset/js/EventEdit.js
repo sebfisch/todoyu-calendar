@@ -858,6 +858,8 @@ Todoyu.Ext.calendar.Event.Edit	= {
 
 		if( error ) {
 			Todoyu.FormValidator.addWarningMessage(fieldIDPersons, response.responseText, false);
+		} else {
+			Todoyu.FormValidator.removeWarningMessage(fieldIDPersons);
 		}
 	}
 };
