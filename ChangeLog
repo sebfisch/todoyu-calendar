@@ -12,6 +12,7 @@ calendar 1.3.1 - not released yet
 	* Bugfix: Allow edit / delete of events in the past (new rights)
 	* Bugfix: Series cause performance problems because of wrong data-parsing
 	* Bugfix: Remove warning-message on correct holiday-validation
+	* Bugfix: Visual fix in calendar
 
 calendar 1.3.0 - 2013-03-27
 	* Bugfix: Editing series with past event on current day duplicated that event
