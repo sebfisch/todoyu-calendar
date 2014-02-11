@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="legend.basics">Informasi dasar tentang kegiatan Anda</label>
+	<label index="legend.participants">Peserta</label>
+	<label index="legend.details">Informasi lebih lanjut</label>
+	<label index="legend.notification">Beritahu Peserta</label>
+	<label index="legend.autonotification">Peserta menerima email pemberitahuan otomatis</label>
+	<label index="legend.reminders">Pengingat saya untuk penunjukan ini</label>
+	<label index="legend.profile.appearance">Penampilan</label>
+	<label index="legend.profile.general">Pengaturan Umum Kalender</label>
+	<label index="legend.profile.reminder.general">Konfigurasi pengingat Anda dengan kebutuhan Anda</label>
+	<label index="legend.admin.appearance">Penampilan</label>
+	<label index="legend.admin.overbooking">Mengkonfigurasi perilaku pemindahbukuan</label>
+	<label index="legend.admin.reminders">Pengaturan standar untuk pengingat</label>
+	<label index="legend.admin.automaticEmail">Mengkonfigurasi perilaku pemberitahuan</label>
+	<label index="legend.admin.holidayset.record.general">Liburan ditetapkan</label>
+	<label index="legend.admin.holiday.record.general">Liburan</label>
+	<label index="comment.autonotification.label">Kirim Email pada:</label>
+	<label index="comment.autonotification.noroles">Tidak ada peserta dalam preset peran untuk auto-pemberitahuan.</label>
+	<label index="legend.series">Rangkaian Kegiatan</label>
+</labels>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="general">Umum</label>
+	<label index="general.use">Gunakan Fungsi Kalender</label>
+	<label index="general.area">Gunakan Calendar area</label>
+	<label index="event">Penunjukan</label>
+	<label index="event.seeAll">Tampilkan Semua Penunjukan</label>
+	<label index="event.editAssigned">Ubah Penunjukan Tugas</label>
+	<label index="event.editAll">Ubah Semua Penunjukan</label>
+	<label index="event.deleteAssigned">Hapus Penunjukan Tugas</label>
+	<label index="event.deleteAll">Hapus Semua Penunjukan</label>
+	<label index="event.add">Tambah Penunjukan Baru</label>
+	<label index="event.search">Cari Penunjukan</label>
+	<label index="event.assignOthers">Menetapkan penunjukan untuk semua orang</label>
+	<label index="mailing">Email Kegiatan</label>
+	<label index="mailing.sendAsEmail">Kirim Email tentang penunjukan untuk dapat dipilih penerima</label>
+	<label index="reminders">Pengingat penunjukan</label>
+	<label index="reminders.popup">Gunakan pengingat pop-ups</label>
+	<label index="reminders.email">Gunakan pengingat mailing</label>
+</labels>

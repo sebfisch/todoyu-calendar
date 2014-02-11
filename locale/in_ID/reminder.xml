@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="reminders">Pengingat</label>
+	<label index="myreminders">Pengingat Saya</label>
+	<label index="email">Email</label>
+	<label index="popup">Pop-Up</label>
+	<label index="deactivated">Menonaktifkan Pengingat</label>
+	<label index="notify.email.deactivated">Menonaktifkan pengingat email</label>
+	<label index="notify.popup.deactivated">Menonaktifkan pengingat pop-up</label>
+	<label index="notify.email.timeupdated">Email pengingat jadwal telah diubah.</label>
+	<label index="notify.popup.timeupdated">Pop-up pengingat jadwal telah diubah.</label>
+	<label index="beforeDateStart">sebelum penunjukan</label>
+	<label index="atDateStart">Ketika janji mulai</label>
+	<label index="email.subject">Penunjukan pengingat</label>
+	<label index="email.title">Otomatis penunjukan pengingat</label>
+	<label index="noReminder">Jangan Ingatkan Saya</label>
+	<label index="cli.infocomment">Untuk secara otomatis mengirim pengingat kegiatan per email, cronjob harus terpasang untuk pemasangan todoyu Anda. Petunjuk tentang cara memasang cronjob todoyu:</label>
+</labels>
